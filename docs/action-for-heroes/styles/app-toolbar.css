@@ -1,0 +1,21 @@
+#app-toolbar {
+    display: flex;
+    flex-direction: column;
+}
+
+#app-toolbar > div fieldset {
+    border: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+
+#settings >  button, #help {
+    border: none;
+    background-color: inherit;
+    color: rgb(var(--icon-color));
+    padding: 0;
+    height: var(--icons);
+    width: var(--icons);
+    transition: .2s;
+}

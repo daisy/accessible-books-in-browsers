@@ -1,0 +1,1 @@
+// convert epubtypes to class="epubtype-XYZ"

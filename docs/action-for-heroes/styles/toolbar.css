@@ -1,0 +1,67 @@
+/* toolbars */
+:root {
+    --icons: 2rem;
+    --resting-opacity: 50%;
+}
+
+svg.iconify {
+    width: var(--icons);
+    height: var(--icons);
+}
+
+.toolbar fieldset {
+    border: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+.toolbar button {
+    border: none;
+    background-color: inherit;
+    color: rgb(var(--icon-color));
+}
+.toolbar button, #document-links a {
+    border-radius: 10px;
+}
+.toolbar a {
+    color: inherit;
+}
+.lightup {
+    opacity: calc(var(--resting-opacity) + 10%);
+}
+.lightup:hover {
+    opacity: 100%;
+    transition: .2s;
+    background-color: rgb(var(--hover-color)); 
+}
+
+#document-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+}
+
+#playback-toolbar, #app-toolbar {
+    display: flex;
+    height: min-content;
+    width: min-content;
+}
+
+#playback-toolbar.is-playing #play-icon {
+    display: none;
+}
+#playback-toolbar.is-playing #pause-icon {
+    display: block;
+}
+#playback-toolbar:not(.is-playing) #play-icon {
+    display: block;
+}
+#playback-toolbar:not(.is-playing) #pause-icon {
+    display: none;
+}
+
+
+#app-toolbar fieldset {
+    flex-direction: column;
+}
+

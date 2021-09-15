@@ -1,0 +1,59 @@
+/* define light and dark themes, and respect the system preference for using dark themes */
+:root { 
+    --black: 18, 18, 18;
+    --darkgray: 51, 51, 51;
+    --gray: 191, 191, 191;
+    --lightgray: 83, 83, 83;
+    --white: 255, 255, 255;
+    --darkblue: 8, 51, 55;
+    --lightblue: 172, 235, 243;
+    --lightorange: 255, 201, 160;
+    --transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
+}
+body {
+    --text-color: var(--black);
+    --page-background-color: var(--white);
+    --link-color: var(--darkblue);
+    --icon-color: var(--black);
+    --hover-color: lightgray;
+    --toggle-color: var(--darkblue);
+    --border-color: var(--darkgray);
+    --focus-color: var(--lightorange);
+    --tab-focus-color: var(--lightorange);
+    transition: var(--transition);
+
+}
+body.dark {
+    --text-color: var(--white);
+    --page-background-color: var(--black);
+    --link-color: var(--lightblue);
+    --icon-color: var(--white);
+    --hover-color: var(--darkgray);
+    --toggle-color: var(--lightblue);
+    --tab-focus-color: var(--white);
+    transition: var(--transition);
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        --text-color: var(--white);
+        --page-background-color: var(--black);
+        --link-color: var(--lightblue);
+        --icon-color: var(--white);
+        --hover-color: var(--darkgray);
+        --toggle-color: var(--lightblue);
+        --tab-focus-color: var(--white);
+        transition: var(--transition);
+    }
+    /* the manual toggle can override the system theme */
+    body.prefers-color-scheme-override {
+        --text-color: var(--black);
+        --page-background-color: var(--white);
+        --link-color: var(--darkblue);
+        --icon-color: var(--black);
+        --hover-color: lightgray;
+        --toggle-color: var(--darkblue);
+        --tab-focus-color: var(--lightorange);
+        transition: var(--transition);
+    }
+}
+

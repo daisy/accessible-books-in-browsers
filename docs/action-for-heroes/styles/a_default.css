@@ -1,0 +1,64 @@
+/*=== Minimalist stylesheet from WordToEPUB ===*/
+
+main table {
+  margin-bottom: 2em;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+main table th {
+  padding: .2em 1em;
+  background-color: #eee;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+main table td {
+  padding: .2em 1em;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  vertical-align: top;
+}
+
+main .footnote-ref {
+    font-size: 75%;
+    vertical-align: super;
+    margin-left: 0.1em;
+    color: blue;
+    text-decoration: underline;
+}
+
+/*=== Minimalist additions for EPUB from WordToEPUB ===*/
+
+main table {
+    margin-bottom: 2em;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+main table th {
+    padding: .2em 1em;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+main table td {
+    padding: .2em 1em;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    vertical-align: top;
+}
+
+main .footnote-ref {
+    font-size: 75%;
+    vertical-align: super;
+    margin-left: 0.1em;
+    color: blue;
+    text-decoration: underline;
+}
+

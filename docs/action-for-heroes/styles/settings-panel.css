@@ -1,0 +1,20 @@
+#settings.expanded {
+    right: 0;
+    top: 0;
+    width: 20rem;
+}
+
+#settings fieldset div {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+#settings fieldset div label {
+    white-space: nowrap;
+    width: 5rem;
+}
+
+#settings fieldset div input {
+    width: 5rem;
+}
