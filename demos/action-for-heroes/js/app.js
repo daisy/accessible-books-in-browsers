@@ -28,9 +28,9 @@ async function setupUi(smilHref, pathToRoot = '../') {
 
 
 function initState() {
-    if (localStorage.getItem("darkmode") == null) {
-        localStorage.setItem("darkmode", false);
-    }
+    // if (localStorage.getItem("darkmode") == null) {
+    //     localStorage.setItem("darkmode", false);
+    // }
     if (localStorage.getItem("fontsize") == null) {
         localStorage.setItem("fontsize", "100");
     }

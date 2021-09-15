@@ -1,8 +1,10 @@
 # books-in-browsers
- 
-## UI prototype (Sept 2021)
 
-Features: 
+## Demo
+
+[Link to demo](https://daisy.github.io/books-in-browsers/demos/action-for-heroes/index.html)
+
+Current features: 
 
 * Sidebar with TOC, landmarks, pages, search prototype, and publication info
 * Previous/next spine item controls
@@ -13,6 +15,9 @@ Features:
 
 Note that many of the above features are possible without any JS support. The reading experience gracefully degrades even on older devices and slower connections. 
 
-Next iteration will add:
+Future iterations will add:
 
 * Media overlays support
+* Smoother CSS on page load
+* Full text searching
+* Mobile layout
