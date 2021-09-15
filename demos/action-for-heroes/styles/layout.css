@@ -86,7 +86,7 @@ svg.iconify {
 
         grid-template-areas: 
             "main main main"
-            "nav app-toolbar doc-links";
+            "nav  doc-links app-toolbar";
         grid-template-columns: 5% 80% auto;
         height: 100vh;
     }   
@@ -98,32 +98,29 @@ svg.iconify {
     
     
     #document-links {
-/*         display: none !important; */
         grid-area: doc-links;
         position: sticky;
         bottom: 0;
-        background-color: rgb(var(--page-background-color));
-        
+        background-color: rgb(var(--page-background-color));  
+        border-radius: 4px;
+        /*! justify-self: right; */
     }
+    
     #app-toolbar {
         position: sticky !important;
-        bottom: 0 !important;
+/*         bottom: 0 !important; */
         background-color: rgb(var(--page-background-color));
         border-radius: 4px;
-        width: 80vw !important;
+        flex-direction: row;
+        display: none !important; /* for now */
     }
-    #app-toolbar fieldset {
-        flex-direction: row !important;
-        flex-wrap: nowrap;
-        justify-content: space-evenly;
-/*         margin: auto; */
-        flex-grow: 1;
-    }
-    #nav-panel {
-        position: sticky !important;
+    #nav {
         bottom: 0 !important;    
         background-color: rgb(var(--page-background-color));
         border-radius: 4px;
-        
+        width: min-content;
+    }
+    #nav.expanded {
+        width: 90vw;
     }
 }

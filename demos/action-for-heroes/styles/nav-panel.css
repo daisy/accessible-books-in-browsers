@@ -127,3 +127,12 @@
 #about li span:first-child {
     font-weight: bold;
 }
+
+@media(max-width: 768px) {
+    #nav.expanded > div {
+        grid-template-areas: 
+            "content"
+            "buttons";
+        grid-template-rows: auto 8rem;
+    }
+}
