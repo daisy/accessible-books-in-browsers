@@ -9,8 +9,9 @@
     "clean": "rimraf -rf ./build",
     "compile": "tsc",
     "start": "node build/index.js",
-    "apply-templates": "npm run start -- apply-template ../ui/action-for-heroes/source ../ui/action-for-heroes/text ../ui/action-for-heroes/nav.html ../ui/Action_for_heroes_orig/content.opf",
-    "self-anchor-headings": "npm run start -- self-anchor-headings ../ui/action-for-heroes/text ../ui/action-for-heroes/text"
+    "apply-templates": "npm run start -- apply-template ../experiments/action-for-heroes-split-source ../demos/action-for-heroes/text ../demos/action-for-heroes/nav.html ../experiments/Action_for_heroes_orig/content.opf",
+    "self-anchor-headings": "npm run start -- self-anchor-headings ../demos/action-for-heroes/text ../demos/action-for-heroes/text",
+    "make-about-page": "npm run start -- make-about-page ../experiments/Action_for_heroes_orig/content.opf ../demos/action-for-heroes/about.html"
   },
   "keywords": [],
   "author": "",

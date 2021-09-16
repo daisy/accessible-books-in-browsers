@@ -9,7 +9,7 @@ let template = (
     navDocHref, 
     smilHref = null) =>
 `<!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -27,6 +27,7 @@ let template = (
     <link rel="stylesheet" type="text/css" href="../styles/toolbar.css">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 
 <body>
