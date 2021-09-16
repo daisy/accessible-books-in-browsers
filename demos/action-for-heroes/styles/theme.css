@@ -20,7 +20,7 @@ body {
     --border-color: var(--darkgray);
     --focus-color: var(--lightorange);
     --tab-focus-color: var(--lightorange);
-    transition: var(--transition);
+    transform: var(--transition);
 
 }
 body.dark {

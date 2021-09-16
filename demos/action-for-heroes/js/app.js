@@ -8,21 +8,28 @@ import { createNavPanelContents } from './panels/nav.js';
 import { createSettingsPanelContents } from './panels/settings.js';
 
 async function setupUi(smilHref, pathToRoot = '../') {
-    initState();
-    await createNavToolbar();
-    createAppToolbar();
-    await createNavPanelContents(pathToRoot);
-    await createSettingsPanelContents();
+    try {
+        initState();
+        await createNavToolbar();
+        createAppToolbar();
+        await createNavPanelContents(pathToRoot);
+        await createSettingsPanelContents();
 
-    // if (smilHref) {
-    //     setupPlayback(smilHref);
-    // }
-    
-    setupKeyboardShortcuts();
+        // if (smilHref) {
+        //     setupPlayback(smilHref);
+        // }
+        
+        setupKeyboardShortcuts();
 
-    // remove the link to the nav document, we're using the nav sidebar instead
-    document.querySelector("#toc-link").remove();
-    document.querySelector("#about-link").remove();
+        // remove the link to the nav document, we're using the nav sidebar instead
+        document.querySelector("#toc-link").remove();
+        document.querySelector("#about-link").remove();
+
+        document.documentElement.classList.remove("js");
+    }
+    catch(err) {
+        document.documentElement.classList.remove("js"); // make sure to remove this even if there was a crash
+    }
 
 }
 

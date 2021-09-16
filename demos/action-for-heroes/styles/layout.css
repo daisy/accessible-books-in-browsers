@@ -14,7 +14,12 @@ body {
     color:rgb(var(--text-color));
     height: 100%;
 }
-
+html.js body * {
+    display: none; /* hide until load */
+}
+html.js body {
+    background-color: rgb(var(--page-background-color));
+}
 a {
     color: rgb(var(--link-color));
 }
