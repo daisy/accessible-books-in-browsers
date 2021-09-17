@@ -85,6 +85,7 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 #search input, #pagelist-wrapper input {
     border-radius: 10px;
@@ -97,6 +98,7 @@
 #search input[type=search], #pagelist-wrapper input[type=text] {
     flex-grow: 1;
     padding: 3px;
+    font-size: 100%;
 }
 #search label, #pagelist-wrapper label {
     position: absolute;
@@ -105,6 +107,9 @@
 #search p, #pagelist-wrapper p {
     font-style: italic;
     margin-top: 3rem;
+}
+#search input[type=button], #pagelist-wrapper input[type=button] {
+    font-size: 100%;
 }
 #pagelist-wrapper p {
     display: block;
