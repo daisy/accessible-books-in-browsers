@@ -80,9 +80,20 @@ function initFontsize() {
     setFontSize(fontsize);
 }
 function setFontSize(fontsize) {
+    localStorage.setItem("fontsize", fontsize);
+    
+    // scale the font
     document.querySelector("#font-size-value").textContent = `${fontsize}%`;
     document.querySelector("body").style["font-size"] = `${fontsize}%`;
-    localStorage.setItem("fontsize", fontsize);
+    
+    // scale the icons
+    let icons = Array.from(document.querySelectorAll("svg.iconify"));
+    icons.map(icon => {
+        icon.style["width"] =`calc(${fontsize/100} * var(--icons))`;
+        icon.style["height"] = icon.style["width"];
+    });
+
+    
 }
 
 
