@@ -74,7 +74,7 @@ function initFontsize() {
     let fontSizeRange = document.querySelector("#font-size input");
     fontSizeRange.value = fontsize;
 
-    fontSizeRange.addEventListener("change", e => {
+    fontSizeRange.addEventListener("input", e => {
         setFontSize(e.target.value);
     });
     setFontSize(fontsize);
@@ -93,7 +93,7 @@ function setFontSize(fontsize) {
         icon.style["height"] = icon.style["width"];
     });
 
-    
+
 }
 
 
