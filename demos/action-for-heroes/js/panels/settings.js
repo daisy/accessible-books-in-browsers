@@ -79,6 +79,7 @@ function initFontsize() {
         setFontSize(e.target.value);
     });
     document.querySelector("#reset-font-size").addEventListener("click", e => {
+        fontSizeRange.value = 100;
         setFontSize(100);
     });
 
