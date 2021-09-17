@@ -1,13 +1,15 @@
 #settings.expanded {
     right: 0;
     top: 0;
-    width: 20rem;
+    width: 25%;
 }
 
 #settings fieldset div {
     display: flex;
-    align-items: center;
-    gap: 3rem;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 #settings fieldset div label {
@@ -16,5 +18,20 @@
 }
 
 #settings fieldset div input {
-    width: 5rem;
+    padding: 0;
+    margin: 0;
+}
+#settings fieldset input+p {
+    font-size: smaller;
+    font-family: Courier New, serif;
+    font-weight: bold;
+    
+}
+#settings fieldset div button {
+    border: thin solid;
+    font-size: 100%;
+}
+#settings input[type=range] {
+    background-color: rgb(var(--icon-color));
+    border-radius: 4px;
 }

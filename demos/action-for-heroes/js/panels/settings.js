@@ -11,6 +11,7 @@ async function createSettingsPanelContents() {
             <label for="font-size-range">Font size</label>
             <input type="range" id="font-size-range" min="80" max="300" value="100" step="5">
             <p id="font-size-value">100%</p>
+            <button id="reset-font-size">Reset</button>
         </div>
     </fieldset>`;
 
@@ -77,6 +78,10 @@ function initFontsize() {
     fontSizeRange.addEventListener("input", e => {
         setFontSize(e.target.value);
     });
+    document.querySelector("#reset-font-size").addEventListener("click", e => {
+        setFontSize(100);
+    });
+
     setFontSize(fontsize);
 }
 function setFontSize(fontsize) {
@@ -93,7 +98,31 @@ function setFontSize(fontsize) {
         icon.style["height"] = icon.style["width"];
     });
 
+    // scale the settings controls
+    let settingsInputs = Array.from(document.querySelectorAll("#settings input[type=checkbox]"));
+    settingsInputs.map(input => {
+        input.style["width"] = `calc(${fontsize/200} * var(--icons))`;
+        input.style["height"] = `calc(${fontsize/200} * var(--icons))`;
+    });
+    
+    let style = 
+    `input[type=range] {
+        height: calc(${fontsize/500} * var(--icons));
+    }
+    input[type=range]::-moz-range-thumb {
+        border: thin black solid;
+        width: calc(${fontsize/200} * var(--icons));
+        height: calc(${fontsize/200} * var(--icons));
+    }`;
 
+    if (document.querySelector("#settings style")) {
+        document.querySelector("#settings style").innerHTML = style;
+    }
+    else {
+        let styleElm = document.createElement("style");
+        document.querySelector("#settings").insertBefore(styleElm, document.querySelector("#settings").firstChild);
+        styleElm.innerHTML = style;
+    }
 }
 
 
