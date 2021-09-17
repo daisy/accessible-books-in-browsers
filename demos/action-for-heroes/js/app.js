@@ -28,6 +28,7 @@ async function setupUi(smilHref, pathToRoot = '../') {
         document.documentElement.classList.remove("js");
     }
     catch(err) {
+        console.error(err);
         document.documentElement.classList.remove("js"); // make sure to remove this even if there was a crash
     }
 

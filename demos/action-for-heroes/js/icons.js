@@ -125,7 +125,7 @@ let fontsize =
 
 let hamburger = 
 `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
-    class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20" id="hamburger-icon" width="2rem" height="2rem">
+    class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 20 20" width="2rem" height="2rem">
     <g fill="none">
         <path d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75z" fill="currentColor"/>
         <path d="M2 9.75A.75.75 0 0 1 2.75 9h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 9.75z" fill="currentColor"/>
@@ -135,7 +135,7 @@ let hamburger =
 
 let close = 
 `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
-    class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" id="close-icon" width="2rem" height="2rem">
+    class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2rem" height="2rem">
     <g fill="none">
         <path d="M4.21 4.387l.083-.094a1 1 0 0 1 1.32-.083l.094.083L12 10.585l6.293-6.292a1 1 0 1 1 1.414 1.414L13.415 12l6.292 6.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083L12 13.415l-6.293 6.292a1 1 0 0 1-1.414-1.414L10.585 12L4.293 5.707a1 1 0 0 1-.083-1.32l.083-.094l-.083.094z" fill="currentColor"/>
     </g>
@@ -143,7 +143,7 @@ let close =
 
 let search = 
 `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
-    class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2rem" height="2rem">
+    class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2rem==" height="2rem">
     <g fill="none">
         <path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083l-4.745-4.743A7.5 7.5 0 1 1 10 2.5zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11z" fill="currentColor"/>
     </g>

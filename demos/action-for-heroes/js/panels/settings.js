@@ -140,6 +140,27 @@ function setFontSize(fontsize) {
         document.querySelector("#settings").insertBefore(styleElm, document.querySelector("#settings").firstChild);
         styleElm.innerHTML = style;
     }
+
+    // scale the spacing on the nav sidebar
+    document.querySelector("#nav > div").style["gap"] = `calc(${fontsize/300} * var(--icons))`;
+
+    // scale the close buttons
+    let closeButtons = Array.from(document.querySelectorAll(".panel > button svg:last-child"));
+    closeButtons.map(closeButton => {
+        closeButton.style["width"] = `calc(${fontsize/200} * var(--icons))`;
+        closeButton.style["height"] = `calc(${fontsize/200} * var(--icons))`;
+    });
+
+    toolbarLinks.map(link => {
+        link.style["width"] = `calc(${fontsize/100} * var(--icons))`;
+        link.style["height"] = `calc(${fontsize/100} * var(--icons))`;
+    });
+
+    // scale the self-links next to each heading
+    let selflinks = Array.from(document.querySelectorAll("main .selflink .iconify"));
+    selflinks.map(link => {
+        link.style["width"] = `calc(${fontsize/200} * var(--icons))`;
+    })
 }
 
 

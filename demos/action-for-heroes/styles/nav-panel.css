@@ -10,7 +10,7 @@
     grid-template-areas: 
         "buttons"
         "content";
-    grid-template-rows: 8rem auto;
+    grid-template-rows: min-content auto;
     border-radius: 4px;
     border: none; 
     height: 100vh;
@@ -42,10 +42,11 @@
     padding-top: 1rem;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    flex-wrap: wrap;
+    /*! width: 100%; */
     justify-content: space-between;
-    margin: 0;
-    gap: .25rem;
+    /*! margin: 0; */
+    /*! gap: .25rem; */
 }
 
 #list-of-navs button[role=tab] {
