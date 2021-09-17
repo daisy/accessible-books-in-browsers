@@ -20,7 +20,7 @@ svg.iconify {
     background-color: inherit;
     color: rgb(var(--icon-color));
 }
-.toolbar button, #document-links a {
+.toolbar button, #document-links a, .toolbar #help {
     border-radius: 10px;
 }
 .toolbar a {

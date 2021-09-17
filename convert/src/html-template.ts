@@ -40,7 +40,7 @@ let template = (
     
     <nav aria-label="Sections" id="document-links">
         ${previousSectionHref ? 
-        `<a id="previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="toolbar-button lightup">
+        `<a id="previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled"
@@ -52,7 +52,7 @@ let template = (
             </svg>
         </a>` : ''}
         ${nextSectionHref ? 
-        `<a id="next-section" href="${nextSectionHref}" title="Next: ${nextSectionTitle}" class="toolbar-button lightup">
+        `<a id="next-section" href="${nextSectionHref}" title="Next: ${nextSectionTitle}" class="lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled"
@@ -63,7 +63,7 @@ let template = (
                 </g>
             </svg>
         </a>` : ''}
-        <a id="toc-link" href="../nav.html" title="Table of Contents" class="toolbar-button lightup">
+        <a id="toc-link" href="../nav.html" title="Table of Contents" class="lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2rem" height="2rem">
                 <g fill="none">
@@ -71,7 +71,7 @@ let template = (
                 </g>
             </svg>
         </a>
-        <a id="about-link" href="../about.html" title="About this publication" class="toolbar-button lightup">
+        <a id="about-link" href="../about.html" title="About this publication" class="lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2rem" height="2rem">

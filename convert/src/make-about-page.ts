@@ -10,14 +10,10 @@ let aboutPageTemplate = (metadata) =>
     <meta charset="utf-8" />
     <meta name="generatedBy" content="hand" />
     <title>${metadata['dc:title']}: About</title>
-    <link rel="stylesheet" type="text/css" href="../styles/a_default.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/content.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/layout.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/nav.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/nav-panel.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/theme.css" />
-    <link rel="stylesheet" type="text/css" href="../styles/toolbar.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../styles/a_default.css">
+    <link rel="stylesheet" type="text/css" href="../styles/content.css">
+    <link rel="stylesheet" type="text/css" href="../styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="../styles/theme.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>    
         main {

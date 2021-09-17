@@ -80,6 +80,7 @@ svg.iconify {
 
 #document-links a {
     color: rgb(var(--text-color));
+    height: var(--icons);
 }
 
 /*****************************/

@@ -11,11 +11,11 @@
 }
 
 #settings >  button, #help {
-    border: none;
+    /* border: none;
     background-color: inherit;
-    color: rgb(var(--icon-color));
+    color: rgb(var(--icon-color)); */
     padding: 0;
-    height: var(--icons);
-    width: var(--icons);
+/*     height: var(--icons);
+    width: var(--icons); */
     transition: .2s;
 }

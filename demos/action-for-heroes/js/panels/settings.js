@@ -105,11 +105,28 @@ function setFontSize(fontsize) {
         input.style["height"] = `calc(${fontsize/200} * var(--icons))`;
     });
     
+    // scale the prev/next document links to get the right size hover box
+    let doclinks = Array.from(document.querySelectorAll("#document-links a"));
+    doclinks.map(link => {
+        link.style["width"] = `calc(${fontsize/100} * var(--icons))`;
+        link.style["height"] = `calc(${fontsize/100} * var(--icons))`;
+    });
+
+    // scale the app toolbar help link
+    let toolbarLinks = Array.from(document.querySelectorAll("#app-toolbar #help"));
+    toolbarLinks.map(link => {
+        link.style["width"] = `calc(${fontsize/100} * var(--icons))`;
+        link.style["height"] = `calc(${fontsize/100} * var(--icons))`;
+    });
+
+    // scale the slider
     let style = 
     `input[type=range] {
         height: calc(${fontsize/500} * var(--icons));
     }
-    input[type=range]::-moz-range-thumb {
+    input[type=range]::-moz-range-thumb, 
+    input[type=range]::-ms-thumb,  
+    input[type=range]::-webkit-slider-thumb {
         border: thin black solid;
         width: calc(${fontsize/200} * var(--icons));
         height: calc(${fontsize/200} * var(--icons));
