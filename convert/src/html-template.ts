@@ -84,7 +84,7 @@ let template = (
     </nav>
     
 </body>
-<script type="module">
+<script type="module" id="initApp">
     import { setupUi } from '../js/app.js';
 
     (async () => {

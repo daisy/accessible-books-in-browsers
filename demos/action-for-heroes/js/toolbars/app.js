@@ -26,7 +26,7 @@ function createAppToolbar() {
         </a>
     </div>`;
 
-    document.querySelector("body").appendChild(toolbar);
+    document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#initApp"));
     setupPanel(
         "settings", 
         false, 
