@@ -141,4 +141,8 @@
             "buttons";
         grid-template-rows: auto 8rem;
     }
+    #navs {
+        position: sticky;
+        bottom: 0;
+    }
 }

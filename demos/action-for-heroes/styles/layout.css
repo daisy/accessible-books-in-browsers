@@ -93,38 +93,48 @@ svg.iconify {
         grid-template-areas: 
             "main main main"
             "nav  doc-links app-toolbar";
-        grid-template-columns: 5% 80% auto;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto 10rem;
         height: 100vh;
     }   
     main {
         grid-column: 1/4;
-        height: unset;
-        
     }
     
     
     #document-links {
+        
         grid-area: doc-links;
         position: sticky;
         bottom: 0;
         background-color: rgb(var(--page-background-color));  
         border-radius: 4px;
-        /*! justify-self: right; */
+        grid-column: 3/4;
+        right: 0;
     }
     
     #app-toolbar {
         position: sticky !important;
-/*         bottom: 0 !important; */
         background-color: rgb(var(--page-background-color));
         border-radius: 4px;
         flex-direction: row;
-        display: none !important; /* for now */
+        bottom: 0;
+        align-self: center;
+        gap: 1rem;
+        grid-area: app-toolbar;
+        grid-column: 2/3;
+        top: inherit;
     }
     #nav {
+        position: sticky;
         bottom: 0 !important;    
         background-color: rgb(var(--page-background-color));
         border-radius: 4px;
         width: min-content;
+        left: 0;
+        grid-column: 1/1;
+        grid-template-area: nav;
+
     }
     #nav.expanded {
         width: 90vw;
