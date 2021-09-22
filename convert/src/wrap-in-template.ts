@@ -4,6 +4,9 @@ import { template } from './html-template.js';
 import { getPackageMetadata } from './package-parser.js';
 import { getTitleForNavEntry } from './nav-parser.js';
 import { write } from 'file-io.js';
+import { JSDOM } from 'jsdom';
+import * as utils from './utils.js';
+import iconv from 'iconv-lite';
 
 // given a list of filenames, wrap the contents of each file in the html-template, and write to the output dir as filename.html
 async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename, navDocFilename) {
@@ -46,7 +49,24 @@ async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename
 
 async function applyTemplateOneFile(inputFilename, packageMetadata,
     previousSectionHref, nextSectionHref, navDocHref) {
-    let file = await fs.readFile(inputFilename, 'utf-8');
+    let bodyContents = "";
+    let headContents = '';
+    let encoding = utils.sniffEncoding(inputFilename);
+    let fileContents = await fs.readFile(inputFilename);
+    let fileContentsString = iconv.decode(fileContents, encoding);
+    const dom = new JSDOM(fileContentsString);
+    // this might be a weird file (found in dev experiments only) that starts with <section>
+    if (fileContentsString.trim().substr(0, 8) == "<section")  {
+        bodyContents = fileContentsString;
+        headContents = `<link rel="stylesheet" type="text/css" href="../styles/a_default.css">`;
+    }
+    else {
+        const dom = new JSDOM(fileContentsString);
+        let documentElement = dom.window.document.documentElement;
+        bodyContents = documentElement.querySelector("body").innerHTML;
+        headContents = documentElement.querySelector("head").innerHTML;
+    
+    }
     let sectionTitle = await getTitleForNavEntry(inputFilename, navDocHref);
     let previousSectionTitle = await getTitleForNavEntry(previousSectionHref, navDocHref);
     let nextSectionTitle = await getTitleForNavEntry(nextSectionHref, navDocHref);
@@ -59,12 +79,14 @@ async function applyTemplateOneFile(inputFilename, packageMetadata,
     let newContents = template(
         packageMetadata['dc:title'], 
         sectionTitle, 
-        file,
+        bodyContents,
         relPreviousSectionHref, 
         previousSectionTitle, 
         relNextSectionHref, 
         nextSectionTitle,
-        relNavDocHref
+        relNavDocHref,
+        headContents
+
     );
 
     return newContents;
