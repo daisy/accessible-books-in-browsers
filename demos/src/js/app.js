@@ -25,12 +25,12 @@ async function setupUi(smilHref, pathToRoot = '../') {
         let prevSection = document.querySelector("#p4w-previous-section")
         if (nextSection) {
             nextSection.addEventListener("click", async e => {
-                document.querySelector("body").classList.add("fadeout");
+                document.querySelector("body").classList.add("p4w-fadeout");
             });
         }
         if (prevSection) {
             prevSection.addEventListener("click", async e => {
-                document.querySelector("body").classList.add("fadeout");
+                document.querySelector("body").classList.add("p4w-fadeout");
             });
         }
 
@@ -38,11 +38,8 @@ async function setupUi(smilHref, pathToRoot = '../') {
         document.querySelector("#p4w-toc-link").remove();
         document.querySelector("#p4w-about-link").remove();
 
-        
         document.documentElement.classList.remove("p4w-js");
-        document.querySelector("body").classList.add("fadein");
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
+        document.querySelector("body").classList.add("p4w-fadein");        
     }
     catch(err) {
         console.error(err);

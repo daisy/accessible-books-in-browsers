@@ -13,10 +13,11 @@ body {
     background-color: rgb(var(--p4w-page-background-color));
     color:rgb(var(--p4w-text-color));
     height: 100%;
-    opacity: 0;
 }
+
 html.p4w-js body * {
-    display: none; /* hide until load */
+    /* hide until load */
+    display: none; 
 }
 html.p4w-js body {
     background-color: rgb(var(--p4w-page-background-color));
@@ -39,14 +40,25 @@ main a.p4w-selflink .p4w-iconify {
     width: calc(var(--p4w-icons) * .6);
 }
 /* for page transitions */
-body.fadeout {
+body.p4w-fadeout {
     opacity: 0% !important;
-    transition: opacity 1s;
+    transition: opacity .25s;
 }
-body.fadein {
-    opacity: 100%;
-    transition: opacity 1s;
+body.p4w-fadein > * {
+    animation-duration: .5s;
+    animation-name: p4w-fadein;
 }
+  
+@keyframes p4w-fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+  
 body.p4w-dim-10 main {
     opacity: 10% !important;
 }
