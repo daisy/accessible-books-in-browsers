@@ -17,15 +17,15 @@ let template = (
     <meta name="generatedBy" content="hand" />
     <title>${bookTitle}${sectionTitle ? `: ${sectionTitle}` : ''}</title>
     
-    <link rel="stylesheet" type="text/css" href="../../src/styles/app-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/nav.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/settings-panel.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/collapsible-panel.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/toolbar.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/app-toolbar.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/nav-panel.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/settings-panel.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/content.css">
+    <link rel="stylesheet" type="text/css" href="../../src/styles/nav.css">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

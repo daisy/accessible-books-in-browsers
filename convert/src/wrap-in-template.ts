@@ -31,7 +31,7 @@ async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename
     for (let inputFilename of movedInputFilenames) {
         let outputFilename = path.resolve(outputDirectory, path.basename(inputFilename).replace(".xhtml", ".html"));
         let previousSectionHref = i > 0 ? movedInputFilenames[i - 1] : null;
-        let nextSectionHref = i < movedInputFilenames.length - 2 ? movedInputFilenames[i + 1] : null;
+        let nextSectionHref = i <= movedInputFilenames.length - 2 ? movedInputFilenames[i + 1] : null;
         if (i == 0) {
             // the first page should point back to the cover
             previousSectionHref = path.resolve(path.dirname(navDocFilename), 'index.html');
