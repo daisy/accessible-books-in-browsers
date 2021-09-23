@@ -31,7 +31,7 @@ let template = (
 
     ${headContents}
 
-    <script>document.documentElement.classList.add('js');</script>
+    <script>document.documentElement.classList.add('p4w-js');</script>
 </head>
 
 <body>
@@ -44,7 +44,7 @@ let template = (
     
     <nav aria-label="Sections" id="p4w-document-links">
         ${previousSectionHref ? 
-        `<a id="previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="p4w-lightup">
+        `<a id="p4w-previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled"
