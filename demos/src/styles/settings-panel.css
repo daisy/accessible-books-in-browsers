@@ -18,7 +18,7 @@
 }
 
 #p4w-settings fieldset div input {
-    padding: 0;
+    padding: 10px;
     margin: 0;
 }
 #p4w-settings fieldset input+p {
