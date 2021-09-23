@@ -26,13 +26,11 @@ async function setupUi(smilHref, pathToRoot = '../') {
         if (nextSection) {
             nextSection.addEventListener("click", async e => {
                 document.querySelector("body").classList.add("fadeout");
-                await new Promise(resolve => setTimeout(resolve, 1000));
             });
         }
         if (prevSection) {
             prevSection.addEventListener("click", async e => {
                 document.querySelector("body").classList.add("fadeout");
-                await new Promise(resolve => setTimeout(resolve, 1000));
             });
         }
 
