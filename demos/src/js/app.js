@@ -23,14 +23,18 @@ async function setupUi(smilHref, pathToRoot = '../') {
 
         let nextSection = document.querySelector("#p4w-next-section");
         let prevSection = document.querySelector("#p4w-previous-section")
-        nextSection.addEventListener("click", async e => {
-            document.querySelector("body").classList.add("fadeout");
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        });
-        prevSection.addEventListener("click", async e => {
-            document.querySelector("body").classList.add("fadeout");
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        });
+        if (nextSection) {
+            nextSection.addEventListener("click", async e => {
+                document.querySelector("body").classList.add("fadeout");
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            });
+        }
+        if (prevSection) {
+            prevSection.addEventListener("click", async e => {
+                document.querySelector("body").classList.add("fadeout");
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            });
+        }
 
         // remove the link to the nav document, we're using the nav sidebar instead
         document.querySelector("#p4w-toc-link").remove();
