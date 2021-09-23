@@ -13,10 +13,10 @@ main .p4w-selflink {
 main p {
     line-height: calc(1ex / 0.32);
 }
-/* invert the table header colors */
-main table th {
-    background-color: rgb(var(--p4w-text-color));
-    color: rgb(var(--p4w-page-background-color));
+/* invert the table header colors; otherwise can look weird when using a dark theme */
+body.p4w-dark main table th {
+    background-color: rgb(var(--p4w-text-color)) !important;
+    color: rgb(var(--p4w-page-background-color)) !important;
 }
 
 @supports (font-size-adjust: 1) {
