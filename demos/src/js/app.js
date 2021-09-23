@@ -21,11 +21,26 @@ async function setupUi(smilHref, pathToRoot = '../') {
         
         setupKeyboardShortcuts();
 
+        let nextSection = document.querySelector("#p4w-next-section");
+        let prevSection = document.querySelector("#p4w-previous-section")
+        nextSection.addEventListener("click", async e => {
+            document.querySelector("body").classList.add("fadeout");
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        });
+        prevSection.addEventListener("click", async e => {
+            document.querySelector("body").classList.add("fadeout");
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        });
+
         // remove the link to the nav document, we're using the nav sidebar instead
         document.querySelector("#p4w-toc-link").remove();
         document.querySelector("#p4w-about-link").remove();
 
+        
         document.documentElement.classList.remove("p4w-js");
+        document.querySelector("body").classList.add("fadein");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
     }
     catch(err) {
         console.error(err);

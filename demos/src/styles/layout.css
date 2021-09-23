@@ -13,6 +13,7 @@ body {
     background-color: rgb(var(--p4w-page-background-color));
     color:rgb(var(--p4w-text-color));
     height: 100%;
+    opacity: 0;
 }
 html.p4w-js body * {
     display: none; /* hide until load */
@@ -36,6 +37,15 @@ main a.p4w-selflink {
 }
 main a.p4w-selflink .p4w-iconify {
     width: calc(var(--p4w-icons) * .6);
+}
+/* for page transitions */
+body.fadeout {
+    opacity: 0% !important;
+    transition: opacity 1s;
+}
+body.fadein {
+    opacity: 100%;
+    transition: opacity 1s;
 }
 body.p4w-dim-10 main {
     opacity: 10% !important;
