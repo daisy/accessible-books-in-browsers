@@ -18,7 +18,6 @@ Note that many of the above features are possible without any JS support. The re
 Future iterations will add:
 
 * Media overlays support
-* Smoother CSS on page load
 * Full text searching
 * Mobile layout improvements
 * Fine tune dark mode synchronization with OS prefs
