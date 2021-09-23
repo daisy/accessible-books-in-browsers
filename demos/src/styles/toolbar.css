@@ -1,0 +1,67 @@
+/* toolbars */
+:root {
+    --p4w-icons: 2rem;
+    --p4w-resting-opacity: 50%;
+}
+
+svg.p4w-iconify {
+    width: var(--p4w-icons);
+    height: var(--p4w-icons);
+}
+
+.p4w-toolbar fieldset {
+    border: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+.p4w-toolbar button {
+    border: none;
+    background-color: inherit;
+    color: rgb(var(--p4w-icon-color));
+}
+.p4w-toolbar button, #p4w-document-links a, #p4w-help {
+    border-radius: 10px;
+}
+.p4w-toolbar a {
+    color: inherit;
+}
+.p4w-lightup {
+    opacity: calc(var(--p4w-resting-opacity) + 10%);
+}
+.p4w-lightup:hover {
+    opacity: 100%;
+    transition: .2s;
+    background-color: rgb(var(--p4w-hover-color)); 
+}
+
+#p4w-document-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+}
+
+#p4w-playback-toolbar, #p4w-app-toolbar {
+    display: flex;
+    height: min-content;
+    width: min-content;
+}
+
+/* #playback-toolbar.is-playing #play-icon {
+    display: none;
+}
+#playback-toolbar.is-playing #pause-icon {
+    display: block;
+}
+#playback-toolbar:not(.is-playing) #play-icon {
+    display: block;
+}
+#playback-toolbar:not(.is-playing) #pause-icon {
+    display: none;
+} */
+
+
+#p4w-app-toolbar fieldset {
+    flex-direction: column;
+}
+

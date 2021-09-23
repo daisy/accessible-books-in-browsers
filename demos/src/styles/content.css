@@ -1,0 +1,34 @@
+/* styling the book contents */
+main {
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+    text-align: left;
+    line-height: 1.5;
+    padding: 0 10px;
+}
+main .p4w-selflink {
+    color: inherit;
+    position: relative;
+    top: 3px;
+}
+main p {
+    line-height: calc(1ex / 0.32);
+}
+/* invert the table header colors */
+main table th {
+    background-color: rgb(var(--p4w-text-color));
+    color: rgb(var(--p4w-page-background-color));
+}
+
+@supports (font-size-adjust: 1) {
+    main {
+        font-size-adjust: 0.6;
+    }
+}
+
+@media(max-width: 768px) {
+    main img {
+        max-width: 90vw;
+        object-fit: contain;
+        
+    }
+}

@@ -29,7 +29,7 @@ async function selfAnchorHeadings(inputFilename: string, outputFilename: string)
         }
         let anchor = doc.createElement("a");
         anchor.setAttribute("href", `#${elmId}`);
-        anchor.classList.add("selflink");
+        anchor.classList.add("p4w-selflink");
         anchor.innerHTML = 
         `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" 
             role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">

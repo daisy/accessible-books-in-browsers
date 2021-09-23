@@ -1,0 +1,131 @@
+/* page layout */
+html {
+    height: 100%;
+}
+body {
+    display: grid;
+    grid-template-areas: 
+    "p4w-nav-toolbar p4w-main p4w-app-toolbar"
+    "p4w-playback-toolbar p4w-main p4w-document-links";
+    grid-template-columns: minmax(10rem, 25%) 45rem minmax(10rem, 25%);
+    grid-template-rows: auto 10rem;
+    margin: 1rem 1rem 2rem 1rem;
+    background-color: rgb(var(--p4w-page-background-color));
+    color:rgb(var(--p4w-text-color));
+    height: 100%;
+}
+html.p4w-js body * {
+    display: none; /* hide until load */
+}
+html.p4w-js body {
+    background-color: rgb(var(--p4w-page-background-color));
+}
+a {
+    color: rgb(var(--p4w-link-color));
+}
+a:hover {
+    text-decoration-thickness: 2px;
+}
+
+main {
+    grid-area: p4w-main;
+}
+main a.p4w-selflink {
+    color: rgb(var(--p4w-text-color));
+    margin-left: 1rem; 
+}
+main a.p4w-selflink .p4w-iconify {
+    width: calc(var(--p4w-icons) * .6);
+}
+body.p4w-dim-10 main {
+    opacity: 10% !important;
+}
+body.p4w-dim-70  main {
+    opacity: 70%;
+}
+svg.p4w-iconify {
+    width: var(--p4w-icons);
+    height: var(--p4w-icons);
+}
+
+#p4w-nav-toolbar {
+    grid-area: p4w-nav-toolbar;
+    overflow-y: scroll;
+    position: fixed;
+}
+#p4w-document-links {
+    grid-area: p4w-document-links;
+    justify-self: right;
+    align-self: end;
+    position: sticky;
+    bottom: 1rem;
+    height: min-content;
+    width: min-content;
+}
+
+#p4w-playback-toolbar {
+    grid-area: p4w-playback-toolbar;
+    position: sticky;
+    bottom: 1rem;
+    justify-self: left;
+    align-self: end;
+}
+#p4w-app-toolbar {
+    grid-area: p4w-app-toolbar;
+    position: sticky;
+    top: 0;
+    justify-self: right;
+}
+
+#p4w-document-links a {
+    color: rgb(var(--p4w-text-color));
+    height: var(--p4w-icons);
+}
+
+/*****************************/
+/* MOBILE                    */
+/*****************************/
+@media (max-width: 768px) {
+    body {
+        margin: 0 1rem 0 1rem;
+
+        grid-template-areas: 
+            "p4w-main p4w-main p4w-main"
+            "p4w-nav p4w-document-links p4w-app-toolbar";
+        grid-template-columns: 30% 40% 30%;
+        grid-template-rows: auto 10rem;
+        height: 100vh;
+    }   
+    main {
+    }
+    
+    
+    #p4w-document-links {
+        position: sticky;
+        background-color: rgb(var(--p4w-page-background-color));  
+        border-radius: 4px;
+        align-self: end;
+        bottom: .25rem;
+    }
+    
+    #p4w-app-toolbar {
+        position: sticky;
+        background-color: rgb(var(--p4w-page-background-color));
+        border-radius: 4px;
+        flex-direction: row;
+        align-self: end;
+        gap: 1rem;
+    }
+    #p4w-nav-toolbar {
+        position: sticky;
+        align-self: end;
+    }
+    #p4w-nav {
+        background-color: rgb(var(--p4w-page-background-color));
+        border-radius: 4px;
+
+    }
+    #p4w-nav.p4w-expanded {
+        width: 90vw;
+    }
+}
