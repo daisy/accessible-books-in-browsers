@@ -40,7 +40,7 @@ function setupKeyboardShortcuts() {
         if (e.ctrlKey && e.altKey && e.code == "KeyT") {
             openNavPanel();
             document.querySelector("#p4w-toc-button").click();
-            document.querySelector("#p4w-toc-wrapper .epubtype-toc ol li a").focus();
+            document.querySelector("#p4w-toc-wrapper nav.epubtype-toc ol li a").focus();
         }
         if (e.ctrlKey && e.altKey && e.code == "ArrowRight") {
             closeNavPanel();

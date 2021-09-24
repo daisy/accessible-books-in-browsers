@@ -47,7 +47,8 @@ function convertToTabs() {
         // create if doesn't exist
         listOfNavs = document.createElement("nav");
         listOfNavs.setAttribute("id", "p4w-list-of-navs");
-        
+        listOfNavs.innerHTML = "<ol></ol>";
+        document.querySelector("#p4w-nav > div").insertBefore(listOfNavs, document.querySelector("#p4w-nav > div").firstElementChild);
         // add a link to the toc
         let toc = document.querySelector("nav.epubtype-toc");
         listItems.push({"label": getLabel(toc), "target": toc.id});
