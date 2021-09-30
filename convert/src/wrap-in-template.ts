@@ -9,7 +9,7 @@ import * as utils from './utils.js';
 import iconv from 'iconv-lite';
 
 // given a list of filenames, wrap the contents of each file in the html-template, and write to the output dir as filename.html
-async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename, navDocFilename) {
+async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename, navDocFilename, pubInfo = {}) {
     let metadata = await getPackageMetadata(packageDocFilename);
 
     // copy the input files to the output directory
@@ -41,14 +41,19 @@ async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename
                 metadata, 
                 previousSectionHref,
                 nextSectionHref,
-                navDocFilename);
+                navDocFilename,
+                //@ts-ignore
+                pubInfo ? pubInfo.narration.find(item => path.basename(item.file) == path.basename(inputFilename)) : {},
+                //@ts-ignore
+                pubInfo.favico
+            );
         i++;
         await fs.writeFile(outputFilename, templatizedContents);
     }
 }
 
 async function applyTemplateOneFile(inputFilename, packageMetadata,
-    previousSectionHref, nextSectionHref, navDocHref) {
+    previousSectionHref, nextSectionHref, navDocHref, narration, favico) {
     let bodyContents = "";
     let headContents = '';
     let encoding = utils.sniffEncoding(inputFilename);
@@ -63,6 +68,16 @@ async function applyTemplateOneFile(inputFilename, packageMetadata,
     else {
         const dom = new JSDOM(fileContentsString);
         let documentElement = dom.window.document.documentElement;
+        documentElement.querySelector("title").remove(); // we'll generate a title element
+        // adjust the stylesheet paths
+        let csses = Array.from(documentElement.querySelectorAll("link[rel=stylesheet]"));
+        csses
+            .filter(css => css.hasAttribute("href"))
+            .map(css => css.setAttribute("href", "../" + css.getAttribute("href")));
+        // adjust the image paths
+        let images = Array.from(documentElement.querySelectorAll("img"));
+        images.map(img => img.setAttribute("src", "../" + img.getAttribute("src")));
+        
         bodyContents = documentElement.querySelector("body").innerHTML;
         headContents = documentElement.querySelector("head").innerHTML;
     
@@ -85,8 +100,9 @@ async function applyTemplateOneFile(inputFilename, packageMetadata,
         relNextSectionHref, 
         nextSectionTitle,
         relNavDocHref,
-        headContents
-
+        headContents,
+        narration,
+        favico
     );
 
     return newContents;
