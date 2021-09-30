@@ -62,6 +62,7 @@ async function main() {
         .argument("outputDir", "Output directory")
         .argument("navdoc", "Navigation document filename")
         .argument("packagedoc", "Package document filename")
+        .option("-i, --info <file>", "JSON file containing pub info")
         .action(async(inputDir, outputDir, packagedoc, navdoc, options) => {
 
             let inputDirname = path.resolve(process.cwd(), inputDir);
@@ -70,11 +71,18 @@ async function main() {
                 .map(file => path.join(inputDirname, file));
             let outputDirname = path.resolve(process.cwd(), outputDir);
             utils.ensureDirectory(outputDirname);
+            let pubInfo = null;
+            if (options.info) {
+                let pubInfoContents = fs.readFileSync(path.resolve(process.cwd(), options.info), 'utf-8');
+                pubInfo = JSON.parse(pubInfoContents);
+            }
+
             await applyTemplate(inputFilenames, 
                 outputDirname, 
                 path.resolve(process.cwd(), navdoc),
-                path.resolve(process.cwd(), packagedoc)
-                );
+                path.resolve(process.cwd(), packagedoc),
+                pubInfo
+            );
         });
 
         program
