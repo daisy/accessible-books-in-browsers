@@ -45,8 +45,12 @@ let aboutPageTemplate = (metadata) =>
             <li><span class="label">Title:</span> <span id="title">${metadata['dc:title']}</span></li>
             <li><span class="label">Created by:</span> <span id="createdby">${metadata['dc:creator']}</span></li>
             <li><span class="label">Date:</span> <span id="date">${metadata['dc:date']}</span></li>
-            <li><span class="label">Description:</span> <span id="description">${metadata['dc:description']}</span></li>
-            <li><span class="label">Accessibility summary:</span> <span id="accessibilitySummary">${metadata['schema:accessibilitySummary']}</span></li>
+            ${metadata['dc:description'] ? 
+            `<li><span class="label">Description:</span> <span id="description">${metadata['dc:description']}</span></li>`
+            : ``}
+            ${metadata['schema:accessibilitySummary'] ? 
+            `<li><span class="label">Accessibility summary:</span> <span id="accessibilitySummary">${metadata['schema:accessibilitySummary']}</span></li>`
+            : ``}
         </ul>
     </main>
     
