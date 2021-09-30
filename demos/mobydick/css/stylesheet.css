@@ -207,7 +207,7 @@ text-indent: 0;
 /* NAVIGATION */
 
 a {
-color: black !important;
+/* color: black !important; */
 }
 
 #toc ol {
@@ -312,7 +312,7 @@ font-size: 1.5em;
 
     .source-rw {
 margin-bottom: 0em;
-text-align: right !important;
+/* text-align: right !important; */
 font-variant: small-caps;
 text-transform: lowercase;
 font-size: 1.1em;
