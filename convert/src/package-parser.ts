@@ -58,6 +58,12 @@ async function getPackageMetadata(inputFilename) {
             }
     });
 
+    let coverImage = select("//opf:item[contains(@properties, 'cover-image')]", doc);
+    if (coverImage.length > 0) {
+        //@ts-ignore
+        addItem("cover", coverImage[0].getAttribute("href"));
+    }
+
     return metadata;
 }
 
