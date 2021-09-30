@@ -1,4 +1,4 @@
-async function createSettingsPanelContents() {
+async function createSettingsPanelContents(includeAudioRate = false) {
     let settingsPanelContents = document.querySelector("#p4w-settings > div");
     settingsPanelContents.innerHTML = 
     `<h2>Settings</h2>
@@ -11,8 +11,16 @@ async function createSettingsPanelContents() {
             <label for="p4w-font-size-range">Font size</label>
             <input type="range" id="p4w-font-size-range" min="80" max="300" value="100" step="5">
             <p id="p4w-font-size-value">100%</p>
-            <button id="p4w-reset-font-size">Reset</button>
+            <button id="p4w-reset-font-size">Reset font</button>
         </div>
+        ${includeAudioRate ? 
+            `<div id="p4w-rate" title="Rate">
+                <label for="p4w-rate-range">Rate</label>
+                <input type="range" id="p4w-rate-range" min="50" max="300" value="100" step="5">
+                <p id="p4w-rate-value">100%</p>
+                <button id="p4w-reset-rate">Reset rate</button>
+            </div>` 
+            : ``}
     </fieldset>`;
 
     let darkModeToggle = document.querySelector("#p4w-dark-mode input");
@@ -27,6 +35,7 @@ async function createSettingsPanelContents() {
 
     initFontsize();
     initDarkMode();
+    initRate();
 }
 
 function initDarkMode() {
@@ -162,6 +171,32 @@ function setFontSize(fontsize) {
     selflinks.map(link => {
         link.style["width"] = `calc(${fontsize/200} * var(--p4w-icons))`;
     })
+}
+
+function initRate() {
+    let rate = localStorage.getItem("p4w-rate");
+
+    if (document.querySelector("#p4w-rate input")) {
+        let rateRange = document.querySelector("#p4w-rate input");
+        rateRange.value = rate;
+
+        rateRange.addEventListener("input", e => {
+            setRate(e.target.value);
+        });
+        document.querySelector("#p4w-reset-rate").addEventListener("click", e => {
+            rateRange.value = 100;
+            setRate(100);
+        });
+    }
+    setRate(rate);
+}
+function setRate(rate) {
+    localStorage.setItem("p4w-rate", rate);
+    
+    // set the rate
+    if (document.querySelector("#p4w-audio")) {
+        document.querySelector("#p4w-audio audio").playbackRate = rate/100;
+    }
 }
 
 
