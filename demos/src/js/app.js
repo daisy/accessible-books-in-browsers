@@ -2,10 +2,11 @@ import { createNavToolbar  } from './toolbars/nav.js';
 // import * as icons from './icons.js';
 // import { setupSettings } from './settings.js';
 import { setupKeyboardShortcuts } from './keyboard.js';
-// import { setupPlayback } from './toolbars/playback.js';
+import { createPlaybackToolbar } from './toolbars/playback.js';
 import { createAppToolbar } from './toolbars/app.js';
 import { createNavPanelContents } from './panels/nav.js';
 import { createSettingsPanelContents } from './panels/settings.js';
+import * as player from './player.js';
 
 async function setupUi(smilHref, pathToRoot = '../') {
     try {
@@ -13,11 +14,12 @@ async function setupUi(smilHref, pathToRoot = '../') {
         await createNavToolbar();
         createAppToolbar();
         await createNavPanelContents(pathToRoot);
-        await createSettingsPanelContents();
+        await createSettingsPanelContents(smilHref != null);
 
-        // if (smilHref) {
-        //     setupPlayback(smilHref);
-        // }
+        if (smilHref) {
+            createPlaybackToolbar(player);
+            player.load(smilHref);
+        }
         
         setupKeyboardShortcuts();
 
@@ -55,6 +57,9 @@ function initState() {
     // }
     if (localStorage.getItem("p4w-fontsize") == null) {
         localStorage.setItem("p4w-fontsize", "100");
+    }
+    if (localStorage.getItem("p4w-rate") == null) {
+        localStorage.setItem("p4w-rate", "100");
     }
 }
 

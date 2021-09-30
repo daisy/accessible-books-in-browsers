@@ -1,0 +1,12 @@
+#p4w-playpause.playing > svg:first-child {
+    display: none;
+}
+#p4w-playpause.playing > svg:last-child {
+    display: block;
+}
+#p4w-playpause:not(.playing) > svg:first-child {
+    display: block;
+}
+#p4w-playpause:not(.playing) > svg:last-child {
+    display: none;
+}

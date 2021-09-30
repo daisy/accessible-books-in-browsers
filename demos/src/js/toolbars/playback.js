@@ -1,60 +1,47 @@
 import * as icons from '../icons.js';
+import { createToolbar } from './toolbar.js';
+import { setupPanel } from '../panels/panel.js';
 
-let playbackToolbarButtons = [
-    // {
-    //     id: "rate",
-    //     svg: icons.rate,
-    //     label: "Rate",
-    //     events: {
-    //         click: () => console.log("adjust playback speed")
-    //     }
-    // },
-    {
-        id: "p4w-volume",
-        svg: icons.volume,
-        label: "Volume",
-        events: {
-            click: () => console.log("adjust the volume")
+// volume, prev phrase, play pause, next phrase
+function createPlaybackToolbar(player) {
+    let toolbar = createToolbar("p4w-playback-toolbar");
+    toolbar.setAttribute("aria-label", "Playback toolbar");
+    toolbar.setAttribute("role", "region");
+    toolbar.innerHTML = 
+    `<button 
+        id="p4w-playpause"
+        type="button" 
+        class="p4w-lightup">
+        ${icons.play}
+        ${icons.pause}
+    </button>
+    `;
+
+
+    toolbar.querySelector("#p4w-playpause").addEventListener("click", e => {
+        if (player.isPlaying) {
+            player.pause();
+            setToPause();
         }
-    },
-    {
-        id: "p4w-prev-phrase",
-        svg: icons.prevPhrase,
-        label: "Previous phrase",
-        events: {
-            click: () => console.log("go to previous phrase")
+        else {
+            player.play();
+            setToPlay();
         }
-    },
-    {
-        id: "p4w-playpause",
-        svg: `${icons.play}${icons.pause}`,
-        label: "Play/pause",
-        events: {
-            click: e => {
-                // simulate icon state toggle
-                let tb = document.querySelector("#p4w-playback-toolbar");
-                if (tb.classList.contains("p4w-is-playing")) {
-                    tb.classList.remove("p4w-is-playing");
-                }   
-                else {
-                    tb.classList.add("p4w-is-playing");
-                }
-            }
-        }
-    },
-    {
-        id: "p4w-next-phrase",
-        svg: icons.nextPhrase,
-        label: "Next phrase",
-        events: {
-            click: () => console.log("go to next phrase")
-        }
-    }
+    });
+
     
-];
-
-function setupPlayback(smilHref) {
+    document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#p4w-initApp"));
+    
+    setToPause();
 
 }
 
-export { setupPlayback };
+function setToPause() {
+    document.querySelector("#p4w-playpause").classList.remove("playing");
+}
+
+function setToPlay() {
+    document.querySelector("#p4w-playpause").classList.add("playing");
+}
+
+export { createPlaybackToolbar };
