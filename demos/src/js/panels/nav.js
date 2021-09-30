@@ -292,7 +292,7 @@ function addGoToPage() {
     }
 }
 
-function updateLinks(pathToRoot) {
+function updateLinks(pathToRoot = '') {
     // modify the nav hrefs to make sense in the context of our current document
     let navdocUrl = new URL(`${pathToRoot}nav.html`, document.location.href);
     let aboutdocUrl = new URL(`${pathToRoot}about.html`, document.location.href);
