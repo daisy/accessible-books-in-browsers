@@ -3,8 +3,9 @@ import { createToolbar } from './toolbar.js';
 import { setupPanel } from '../panels/panel.js';
 
 async function createNavToolbar() {
-    let toolbar = createToolbar("p4w-nav-toolbar");
-    toolbar.setAttribute("aria-label", "Navigation toolbar");
+    // let toolbar = createToolbar("p4w-nav-toolbar");
+    // toolbar.setAttribute("aria-label", "Navigation toolbar");
+    let toolbar = document.querySelector("#p4w-nav-toolbar");
     
     toolbar.innerHTML = 
     `<div id="p4w-nav" class="p4w-panel" aria-live="polite">
@@ -21,7 +22,7 @@ async function createNavToolbar() {
         </div>
     </div>`;
     
-    document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#p4w-initApp"));
+    //document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#p4w-initApp"));
     
     setupPanel(
         "p4w-nav", 

@@ -3,9 +3,10 @@ import { createToolbar } from './toolbar.js';
 import { setupPanel } from '../panels/panel.js';
 
 function createAppToolbar() {
-    let toolbar = createToolbar("p4w-app-toolbar");
-    toolbar.setAttribute("aria-label", "Application toolbar");
-    toolbar.setAttribute("role", "region");
+    // let toolbar = createToolbar("p4w-app-toolbar");
+    // toolbar.setAttribute("aria-label", "Application toolbar");
+    // toolbar.setAttribute("role", "region");
+    let toolbar = document.querySelector("#p4w-app-toolbar");
     toolbar.innerHTML = 
     `<div id="p4w-settings" class="p4w-panel" aria-live="polite">
         <button 
@@ -26,7 +27,7 @@ function createAppToolbar() {
         </a>
     </div>`;
 
-    document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#p4w-initApp"));
+    //document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#p4w-initApp"));
     setupPanel(
         "p4w-settings", 
         false, 
