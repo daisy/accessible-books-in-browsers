@@ -10,3 +10,8 @@
 #p4w-playpause:not(.playing) > svg:last-child {
     display: none;
 }
+
+/* for some reason, this button is a little offset when compared to its neighbors, so this adjustment fixes it */
+#p4w-playpause {
+    align-self: start;
+}

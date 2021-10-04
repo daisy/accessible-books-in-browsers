@@ -8,6 +8,7 @@
     --p4w-darkblue: 8, 51, 55;
     --p4w-lightblue: 172, 235, 243;
     --p4w-lightorange: 255, 201, 160;
+    --p4w-yellow: 253, 253, 150;
     --p4w-transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
 }
 body {
@@ -18,7 +19,8 @@ body {
     --p4w-hover-color: var(--p4w-lightgray);
     --p4w-toggle-color: var(--p4w-darkblue);
     --p4w-tab-focus-color: var(--p4w-lightorange);
-
+    --p4w-sync-highlight-background-color: var(--p4w-yellow);
+    --p4w-sync-highlight-color: var(--p4w-text-color);
     --p4w-border-color: var(--p4w-darkgray);
     
     transition: var(--transition);
@@ -32,9 +34,12 @@ body.dark {
     --p4w-hover-color: var(--p4w-darkgray);
     --p4w-toggle-color: var(--p4w-lightblue);
     --p4w-tab-focus-color: var(--p4w-white);
+    --p4w-sync-highlight-background-color: var(--p4w-page-background-color);
+    --p4w-sync-highlight-color: var(--p4w-yellow);
+    
 }
 @media (prefers-color-scheme: dark) {
-    body { /* "dark mode" */
+    body { /* "dark mode" as preferred by the system */
         --p4w-text-color: var(--p4w-white);
         --p4w-page-background-color: var(--p4w-black);
         --p4w-link-color: var(--p4w-lightblue);
@@ -42,6 +47,8 @@ body.dark {
         --p4w-hover-color: var(--p4w-darkgray);
         --p4w-toggle-color: var(--p4w-lightblue);
         --p4w-tab-focus-color: var(--p4w-white);
+        --p4w-sync-highlight-background-color: var(--p4w-page-background-color);
+        --p4w-sync-highlight-color: var(--p4w-yellow);
     }
     /* the manual toggle can override the system theme */
     body.p4w-prefers-color-scheme-override {
@@ -53,6 +60,8 @@ body.dark {
         --p4w-hover-color: var(--p4w-lightgray);
         --p4w-toggle-color: var(--p4w-darkblue);
         --p4w-tab-focus-color: var(--p4w-lightorange);
+        --p4w-sync-highlight-background-color: var(--p4w-yellow);
+        --p4w-sync-highlight-color: var(--p4w-text-color);
     }
 }
 
