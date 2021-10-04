@@ -197,6 +197,9 @@ function setRate(rate) {
     if (document.querySelector("#p4w-audio")) {
         document.querySelector("#p4w-audio audio").playbackRate = rate/100;
     }
+    if (document.querySelector("#p4w-sync-audio")) {
+        document.querySelector("#p4w-sync-audio").playbackRate = rate/100;
+    }
 }
 
 

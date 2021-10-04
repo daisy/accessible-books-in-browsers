@@ -13,8 +13,15 @@ async function load(filename) {
     syncpoints = syncdata.syncpoints;
 
     // it has to be a video because audio elements don't take caption tracks
+    // remove any previous #p4w-sync-audio element
+    let oldSyncElm = document.querySelector("#p4w-sync-audio");
+    if (oldSyncElm) oldSyncElm.remove();
     audio = document.createElement("video");
     audio.setAttribute("src", syncdata.assets.audio);
+    audio.setAttribute("id", "p4w-sync-audio");
+    audio.style['display'] = 'none';
+    document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
+
 
     track = audio.addTextTrack("captions", "Document", "en");
     track.mode = "hidden";
