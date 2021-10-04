@@ -26,9 +26,7 @@
 </head>
 
 <body>
-    
     <main>
-    
     
 <section class="body-rw Chapter-rw" epub:type="bodymatter chapter">
 <header>
@@ -49,8 +47,7 @@
     </main>
     
  
-    
-    <nav aria-label="Sections" id="p4w-document-links">
+    <section role="contentinfo" aria-label="Previous and next" id="p4w-document-links">
         <a id="p4w-previous-section" href="chapter_045.html" title="Previous: Chapter 45. The Affidavit." class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
                 <g fill="none">
@@ -67,6 +64,9 @@
                 </g>
             </svg>
         </a>
+    </section>
+
+    <section id="p4w-nav-toolbar" class="p4w-toolbar" aria-label="Publication overview">
         <a id="p4w-toc-link" href="../nav.html" title="Table of Contents" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
                 <g fill="none">
@@ -82,15 +82,36 @@
                 </g>
             </svg>
         </a>
-    </nav>
+    </section>
+    <section id="p4w-app-toolbar" class="p4w-toolbar" aria-label="Application toolbar">
+        <div id="p4w-help" class="p4w-lightup">
+            <a href="../help.html" title="View help" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
+                    <g fill="none">
+                        <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
+                    </g>
+                </svg>
+            </a>
+        </div>
+    </section>
+
     
 
-<script type="module" id="p4w-initApp">
-    import { setupUi } from '../../src/js/app.js';
+    <script type="module" id="p4w-initApp">
+        import { setupUi } from '../../src/js/app.js';
 
-    (async () => {
-        await setupUi(null);
-    })();
+        (async () => {
+            try {
+                await setupUi(null);
+            }
+            catch(err) {
+                console.error(err);
+            }
+            finally {
+                document.documentElement.classList.remove("p4w-js"); 
+            }
+        })();
 
-</script>
+    </script>
+
 </body></html>

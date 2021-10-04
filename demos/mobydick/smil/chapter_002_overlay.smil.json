@@ -1,0 +1,124 @@
+{
+    "assets": {
+        "text": "../text/chapter_002.html",
+        "audio": "../audio/mobydick_002_melville.m4a"
+    },
+    "syncpoints": [
+        {
+            "text": "../text/chapter_002.html#c02h01",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "00:00.00",
+                "clipEnd": "00:03.473"
+            }
+        },
+        
+        {
+            "text": "../text/chapter_002.html#c02p0001",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "00:03.473",
+                "clipEnd": "00:28.973"
+            }
+        },
+        
+        {
+            "text": "../text/chapter_002.html#c02p0002",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "00:28.973",
+                "clipEnd": "01:39.473"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0003",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "01:39.473",
+                "clipEnd": "02:31.773"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0004",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "02:31.773",
+                "clipEnd": "03:38.973"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0005",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "03:38.973",
+                "clipEnd": "04:36.773"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0006",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "04:36.773",
+                "clipEnd": "05:04.473"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0007",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "05:04.473",
+                "clipEnd": "05:27.073"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0008",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "05:27.073",
+                "clipEnd": "06:02.473"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0009",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "06:02.473",
+                "clipEnd": "08:04.173"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0010",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "08:04.173",
+                "clipEnd": "08:24.973"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0011",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "08:24.973",
+                "clipEnd": "08:48.973"
+            }
+        },
+
+        {
+            "text": "../text/chapter_002.html#c02p0012",
+            "audio": {
+                "src": "../audio/mobydick_002_melville.m4a",
+                "clipBegin": "08:48.973",
+                "clipEnd": "09:02.973"
+            }
+        }
+    ]
+}

@@ -11,7 +11,8 @@
     "start": "node build/index.js",
     "apply-templates": "npm run start -- apply-template ../experiments/action-for-heroes-split-source ../demos/action-for-heroes/text ../demos/action-for-heroes/nav.html ../experiments/Action_for_heroes_orig/content.opf",
     "self-anchor-headings": "npm run start -- self-anchor-headings ../demos/action-for-heroes/text ../demos/action-for-heroes/text",
-    "make-about-page": "npm run start -- make-about-page ../experiments/Action_for_heroes_orig/content.opf ../demos/action-for-heroes/about.html"
+    "make-about-page": "npm run start -- make-about-page ../experiments/Action_for_heroes_orig/content.opf ../demos/action-for-heroes/about.html",
+    "shift-clips": "npm run start -- shift-clips ../demos/mobydick/smil/chapter_001_overlay.smil ../demos/mobydick/ch1.shifted.smil -a -24.5"
   },
   "keywords": [],
   "author": "",
