@@ -9,45 +9,39 @@ import { createSettingsPanelContents } from './panels/settings.js';
 import * as player from './player.js';
 
 async function setupUi(smilHref, pathToRoot = '../') {
-    try {
-        initState();
-        await createNavToolbar();
-        createAppToolbar();
-        await createNavPanelContents(pathToRoot);
-        await createSettingsPanelContents(smilHref != null);
+    initState();
+    await createNavToolbar();
+    createAppToolbar();
+    await createNavPanelContents(pathToRoot);
+    await createSettingsPanelContents(smilHref != null);
 
-        if (smilHref) {
-            createPlaybackToolbar(player);
-            player.load(smilHref);
-        }
-        
-        setupKeyboardShortcuts();
-
-        let nextSection = document.querySelector("#p4w-next-section");
-        let prevSection = document.querySelector("#p4w-previous-section")
-        if (nextSection) {
-            nextSection.addEventListener("click", async e => {
-                document.querySelector("body").classList.add("p4w-fadeout");
-            });
-        }
-        if (prevSection) {
-            prevSection.addEventListener("click", async e => {
-                document.querySelector("body").classList.add("p4w-fadeout");
-            });
-        }
-
-        // remove the link to the nav document, we're using the nav sidebar instead
-        document.querySelector("#p4w-toc-link").remove();
-        document.querySelector("#p4w-about-link").remove();
-
-        document.documentElement.classList.remove("p4w-js");
-        document.querySelector("body").classList.add("p4w-fadein");        
+    if (smilHref) {
+        createPlaybackToolbar(player);
+        player.load(new URL(smilHref, document.location.href));
     }
-    catch(err) {
-        console.error(err);
-        document.documentElement.classList.remove("p4w-js"); // make sure to remove this even if there was a crash
+    
+    setupKeyboardShortcuts();
+
+    let nextSection = document.querySelector("#p4w-next-section");
+    let prevSection = document.querySelector("#p4w-previous-section")
+    if (nextSection) {
+        nextSection.addEventListener("click", async e => {
+            document.querySelector("body").classList.add("p4w-fadeout");
+        });
+    }
+    if (prevSection) {
+        prevSection.addEventListener("click", async e => {
+            document.querySelector("body").classList.add("p4w-fadeout");
+        });
     }
 
+    // remove the link to the nav document, we're using the nav sidebar instead
+    // document.querySelector("#p4w-toc-link").remove();
+    // document.querySelector("#p4w-about-link").remove();
+
+    document.documentElement.classList.remove("p4w-js");
+    document.querySelector("body").classList.add("p4w-fadein");        
+    
 }
 
 

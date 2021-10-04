@@ -41,10 +41,14 @@ svg.p4w-iconify {
     margin: 0;
 }
 
-#p4w-playback-toolbar, #p4w-app-toolbar {
+#p4w-playback-toolbar, #p4w-app-toolbar, #p4w-nav-toolbar {
     display: flex;
     height: min-content;
     width: min-content;
+}
+
+#p4w-nav-toolbar {
+    flex-direction: column;
 }
 
 /* #playback-toolbar.is-playing #play-icon {

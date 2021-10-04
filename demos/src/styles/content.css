@@ -19,6 +19,13 @@ body.p4w-dark main table th {
     color: rgb(var(--p4w-page-background-color)) !important;
 }
 
+.highlight {
+    color: palegoldenrod;
+    padding: 3px;
+    border-radius: 4px;
+    transition: .2s;
+}
+
 @supports (font-size-adjust: 1) {
     main {
         font-size-adjust: 0.6;
