@@ -22,7 +22,7 @@
             padding: 1rem !important;
         }
         figure > img {
-            width: 200%;
+            width: 30rem;
             border-style: solid;
             border-width: thin;
             border-color: rgb(var(--p4w-text-color));
@@ -39,6 +39,14 @@
         }
         h2:not(:first-child) {
             margin-top: 4rem;
+        }
+        @media(max-width: 768px) {
+            img {
+                width: 100%;
+            }
+            figure {
+                display: block;
+            }
         }
     </style>
 </head>
