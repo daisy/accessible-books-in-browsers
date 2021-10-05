@@ -72,7 +72,7 @@ function setupKeyboardShortcuts() {
         if (e.ctrlKey && e.altKey && e.code == "KeyV") {
             document.querySelector("#p4w-volume").focus();
         }
-        if (e.ctrlKey && e.altKey && e.code == ",") {
+        if (e.ctrlKey && e.altKey && e.code == "Comma") {
             openSettingsPanel();
         }
         
