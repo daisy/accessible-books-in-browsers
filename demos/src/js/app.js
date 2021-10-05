@@ -15,7 +15,7 @@ async function setupUi(smilHref, pathToRoot = '../') {
         await player.load(new URL(smilHref, document.location.href));
         createPlaybackToolbar();
     }
-    createApplicationToolbar();
+    createApplicationToolbar(pathToRoot);
     await createSettingsPanelContents(smilHref != null);
     setupKeyboardShortcuts();
 

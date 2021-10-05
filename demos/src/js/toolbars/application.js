@@ -1,7 +1,7 @@
 import * as icons from '../icons.js';
 import { setupPanel } from '../panels/panel.js';
 
-function createApplicationToolbar() {
+function createApplicationToolbar(pathToRoot) {
     let toolbar = document.querySelector("#p4w-app-toolbar");
     toolbar.innerHTML = 
     `<div id="p4w-settings" class="p4w-panel" aria-live="polite">
@@ -18,7 +18,7 @@ function createApplicationToolbar() {
         </div>
     </div>
     <div id="p4w-help" class="p4w-lightup">
-        <a href="../help/"  title="View help" target="_blank">
+        <a href="${pathToRoot}../src/help/"  title="View help" target="_blank">
             ${icons.help}
         </a>
     </div>`;

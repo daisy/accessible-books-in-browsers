@@ -75,6 +75,9 @@ function setupKeyboardShortcuts() {
         if (e.ctrlKey && e.altKey && e.code == "Comma") {
             openSettingsPanel();
         }
+        if (e.ctrlKey && e.altKey && e.code == "KeyH") {
+            document.querySelector("#p4w-help a").click();
+        }
         
     });
 
