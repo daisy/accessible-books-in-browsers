@@ -23,3 +23,4 @@ Future iterations will add:
 * Mobile layout improvements
 * Fine tune dark mode synchronization with OS prefs
 * Testing across browsers
+* Custom keyboard shortcuts
