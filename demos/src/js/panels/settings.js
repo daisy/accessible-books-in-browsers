@@ -192,7 +192,9 @@ function initRate() {
 }
 function setRate(rate) {
     localStorage.setItem("p4w-rate", rate);
-    document.querySelector("#p4w-rate-value").textContent = `${rate}%`;
+    if (document.querySelector("#p4w-rate-value")) {
+        document.querySelector("#p4w-rate-value").textContent = `${rate}%`;
+    }
 
     // set the rate
     if (document.querySelector("#p4w-audio")) {

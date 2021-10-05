@@ -35,10 +35,6 @@ async function setupUi(smilHref, pathToRoot = '../') {
         });
     }
 
-    // remove the link to the nav document, we're using the nav sidebar instead
-    // document.querySelector("#p4w-toc-link").remove();
-    // document.querySelector("#p4w-about-link").remove();
-
     document.documentElement.classList.remove("p4w-js");
     document.querySelector("body").classList.add("p4w-fadein");        
     
