@@ -1,9 +1,10 @@
 import * as icons from '../icons.js';
+import * as player from '../player.js';
 
 // volume, prev phrase, play pause, next phrase
-function createPlaybackToolbar(player) {
+function createPlaybackToolbar() {
     let toolbar = document.querySelector("#p4w-playback-toolbar");
-    toolbar.innerHTML = 
+    toolbar.innerHTML = toolbar.innerHTML + 
     `<button id="p4w-previous-phrase"
         type="button"
         class="p4w-lightup"

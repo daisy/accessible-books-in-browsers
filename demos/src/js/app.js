@@ -12,9 +12,8 @@ async function setupUi(smilHref, pathToRoot = '../') {
     await createNavPanelContents(pathToRoot);
     
     if (smilHref) {
-        // createPlaybackToolbar(player);
         await player.load(new URL(smilHref, document.location.href));
-        createPlaybackToolbar(player);
+        createPlaybackToolbar();
     }
     createApplicationToolbar();
     await createSettingsPanelContents(smilHref != null);

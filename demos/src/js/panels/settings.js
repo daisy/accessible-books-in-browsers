@@ -1,3 +1,5 @@
+import * as player from '../player.js';
+
 async function createSettingsPanelContents(includeAudioRate = false) {
     let settingsPanelContents = document.querySelector("#p4w-settings > div");
     settingsPanelContents.innerHTML = 
@@ -35,7 +37,7 @@ async function createSettingsPanelContents(includeAudioRate = false) {
 
     initScale();
     initDarkMode();
-    initRate();
+    if (includeAudioRate) initRate();
 }
 
 function initDarkMode() {
@@ -150,15 +152,16 @@ function setScale(scale) {
         document.querySelector("#p4w-settings").insertBefore(styleElm, document.querySelector("#p4w-settings").firstChild);
         styleElm.innerHTML = style;
     }
-    if (document.querySelector("#p4w-playback-toolbar style")) {
-        document.querySelector("#p4w-playback-toolbar style").innerHTML = style;
+    if (document.querySelector("#p4w-playback-toolbar")) {
+        if (document.querySelector("#p4w-playback-toolbar style")) {
+            document.querySelector("#p4w-playback-toolbar style").innerHTML = style;
+        }
+        else {
+            let styleElm = document.createElement("style");
+            document.querySelector("#p4w-playback-toolbar").insertBefore(styleElm, document.querySelector("#p4w-playback-toolbar").firstChild);
+            styleElm.innerHTML = style;
+        }
     }
-    else {
-        let styleElm = document.createElement("style");
-        document.querySelector("#p4w-playback-toolbar").insertBefore(styleElm, document.querySelector("#p4w-playback-toolbar").firstChild);
-        styleElm.innerHTML = style;
-    }
-
     // scale the spacing on the nav sidebar
     document.querySelector("#p4w-nav > div").style["gap"] = `calc(${scale/300} * var(--p4w-icons))`;
 
@@ -205,11 +208,8 @@ function setRate(rate) {
     }
 
     // set the rate
-    if (document.querySelector("#p4w-audio")) {
-        document.querySelector("#p4w-audio audio").playbackRate = rate/100;
-    }
-    if (document.querySelector("#p4w-sync-audio")) {
-        document.querySelector("#p4w-sync-audio").playbackRate = rate/100;
+    if (player.audio) {
+        player.audio.playbackRate = parseInt(rate)/100;
     }
 }
 

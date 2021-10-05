@@ -19,9 +19,11 @@ async function load(filename) {
     audio = document.createElement("video");
     audio.setAttribute("src", syncdata.assets.audio);
     audio.setAttribute("id", "p4w-sync-audio");
-    audio.style['display'] = 'none';
+    // audio.style['display'] = 'none';
     document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
 
+    audio = document.querySelector("#p4w-sync-audio");
+    
     track = audio.addTextTrack("captions", "Document", "en");
     track.mode = "hidden";
     syncpoints.map(item => {
