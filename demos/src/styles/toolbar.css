@@ -44,26 +44,12 @@ svg.p4w-iconify {
 #p4w-playback-toolbar, #p4w-app-toolbar, #p4w-nav-toolbar {
     display: flex;
     height: min-content;
-    width: min-content;
+    /* width: min-content; */
 }
 
 #p4w-nav-toolbar {
     flex-direction: column;
 }
-
-/* #playback-toolbar.is-playing #play-icon {
-    display: none;
-}
-#playback-toolbar.is-playing #pause-icon {
-    display: block;
-}
-#playback-toolbar:not(.is-playing) #play-icon {
-    display: block;
-}
-#playback-toolbar:not(.is-playing) #pause-icon {
-    display: none;
-} */
-
 
 #p4w-app-toolbar fieldset {
     flex-direction: column;

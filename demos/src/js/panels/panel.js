@@ -48,7 +48,6 @@ function setPanelState(id, expand) {
     } 
     panelButton.setAttribute("aria-label", label);
     panelButton.setAttribute("title", label);
-        
 }
 
 export { setupPanel };

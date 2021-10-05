@@ -1,9 +1,7 @@
 import { createNavToolbar  } from './toolbars/nav.js';
-// import * as icons from './icons.js';
-// import { setupSettings } from './settings.js';
 import { setupKeyboardShortcuts } from './keyboard.js';
 import { createPlaybackToolbar } from './toolbars/playback.js';
-import { createAppToolbar } from './toolbars/app.js';
+import { createApplicationToolbar } from './toolbars/application.js';
 import { createNavPanelContents } from './panels/nav.js';
 import { createSettingsPanelContents } from './panels/settings.js';
 import * as player from './player.js';
@@ -11,15 +9,15 @@ import * as player from './player.js';
 async function setupUi(smilHref, pathToRoot = '../') {
     initState();
     await createNavToolbar();
-    createAppToolbar();
     await createNavPanelContents(pathToRoot);
-    await createSettingsPanelContents(smilHref != null);
-
-    if (smilHref) {
-        createPlaybackToolbar(player);
-        player.load(new URL(smilHref, document.location.href));
-    }
     
+    if (smilHref) {
+        // createPlaybackToolbar(player);
+        await player.load(new URL(smilHref, document.location.href));
+        createPlaybackToolbar(player);
+    }
+    createApplicationToolbar();
+    await createSettingsPanelContents(smilHref != null);
     setupKeyboardShortcuts();
 
     let nextSection = document.querySelector("#p4w-next-section");
@@ -45,11 +43,14 @@ function initState() {
     // if (localStorage.getItem("p4w-darkmode") == null) {
     //     localStorage.setItem("p4w-darkmode", false);
     // }
-    if (localStorage.getItem("p4w-fontsize") == null) {
-        localStorage.setItem("p4w-fontsize", "100");
+    if (localStorage.getItem("p4w-scale") == null) {
+        localStorage.setItem("p4w-scale", "100");
     }
     if (localStorage.getItem("p4w-rate") == null) {
         localStorage.setItem("p4w-rate", "100");
+    }
+    if (localStorage.getItem("p4w-volume") == null) {
+        localStorage.setItem("p4w-volume", 100);
     }
 }
 

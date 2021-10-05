@@ -7,15 +7,15 @@ async function createSettingsPanelContents(includeAudioRate = false) {
             <label for="p4w-dark-mode-toggle">Dark mode</label>
             <input type="checkbox" id="p4w-dark-mode-toggle">
         </div>
-        <div id="p4w-font-size" title="Font size">
-            <label for="p4w-font-size-range">Font size</label>
-            <input type="range" id="p4w-font-size-range" min="80" max="300" value="100" step="5">
-            <p id="p4w-font-size-value">100%</p>
-            <button id="p4w-reset-font-size">Reset font</button>
+        <div id="p4w-scale" title="Scale">
+            <label for="p4w-scale-range">Scale</label>
+            <input type="range" id="p4w-scale-range" min="80" max="300" value="100" step="5">
+            <p id="p4w-scale-value">100%</p>
+            <button id="p4w-reset-scale">Reset scale</button>
         </div>
         ${includeAudioRate ? 
-            `<div id="p4w-rate" title="Rate">
-                <label for="p4w-rate-range">Rate</label>
+            `<div id="p4w-rate" title="Playback Rate">
+                <label for="p4w-rate-range">Playback Rate</label>
                 <input type="range" id="p4w-rate-range" min="50" max="300" value="100" step="5">
                 <p id="p4w-rate-value">100%</p>
                 <button id="p4w-reset-rate">Reset rate</button>
@@ -33,7 +33,7 @@ async function createSettingsPanelContents(includeAudioRate = false) {
         }
     });
 
-    initFontsize();
+    initScale();
     initDarkMode();
     initRate();
 }
@@ -78,68 +78,68 @@ function darkModeOff() {
     let darkModeToggle = document.querySelector("#p4w-dark-mode input");
     if (darkModeToggle) darkModeToggle.checked = false;
 }
-function initFontsize() {
-    let fontsize = localStorage.getItem("p4w-fontsize");
+function initScale() {
+    let scale = localStorage.getItem("p4w-scale");
 
-    let fontSizeRange = document.querySelector("#p4w-font-size input");
-    fontSizeRange.value = fontsize;
+    let scaleRange = document.querySelector("#p4w-scale input");
+    scaleRange.value = scale;
 
-    fontSizeRange.addEventListener("input", e => {
-        setFontSize(e.target.value);
+    scaleRange.addEventListener("input", e => {
+        setScale(e.target.value);
     });
-    document.querySelector("#p4w-reset-font-size").addEventListener("click", e => {
-        fontSizeRange.value = 100;
-        setFontSize(100);
+    document.querySelector("#p4w-reset-scale").addEventListener("click", e => {
+        scaleRange.value = 100;
+        setScale(100);
     });
 
-    setFontSize(fontsize);
+    setScale(scale);
 }
-function setFontSize(fontsize) {
-    localStorage.setItem("p4w-fontsize", fontsize);
+function setScale(scale) {
+    localStorage.setItem("p4w-scale", scale);
+    document.querySelector("#p4w-scale-value").textContent = `${scale}%`;
     
     // scale the font
-    document.querySelector("#p4w-font-size-value").textContent = `${fontsize}%`;
-    document.querySelector("body").style["font-size"] = `${fontsize}%`;
+    document.querySelector("body").style["font-size"] = `${scale}%`;
     
     // scale the icons
     let icons = Array.from(document.querySelectorAll("svg.p4w-iconify"));
     icons.map(icon => {
-        icon.style["width"] =`calc(${fontsize/100} * var(--p4w-icons))`;
+        icon.style["width"] =`calc(${scale/100} * var(--p4w-icons))`;
         icon.style["height"] = icon.style["width"];
     });
 
     // scale the settings controls
     let settingsInputs = Array.from(document.querySelectorAll("#p4w-settings input[type=checkbox]"));
     settingsInputs.map(input => {
-        input.style["width"] = `calc(${fontsize/200} * var(--p4w-icons))`;
-        input.style["height"] = `calc(${fontsize/200} * var(--p4w-icons))`;
+        input.style["width"] = `calc(${scale/200} * var(--p4w-icons))`;
+        input.style["height"] = `calc(${scale/200} * var(--p4w-icons))`;
     });
     
     // scale the prev/next document links to get the right size hover box
     let doclinks = Array.from(document.querySelectorAll("#p4w-document-links a"));
     doclinks.map(link => {
-        link.style["width"] = `calc(${fontsize/100} * var(--p4w-icons))`;
-        link.style["height"] = `calc(${fontsize/100} * var(--p4w-icons))`;
+        link.style["width"] = `calc(${scale/100} * var(--p4w-icons))`;
+        link.style["height"] = `calc(${scale/100} * var(--p4w-icons))`;
     });
 
     // scale the app toolbar help link
     let toolbarLinks = Array.from(document.querySelectorAll("#p4w-help"));
     toolbarLinks.map(link => {
-        link.style["width"] = `calc(${fontsize/100} * var(--p4w-icons))`;
-        link.style["height"] = `calc(${fontsize/100} * var(--p4w-icons))`;
+        link.style["width"] = `calc(${scale/100} * var(--p4w-icons))`;
+        link.style["height"] = `calc(${scale/100} * var(--p4w-icons))`;
     });
 
-    // scale the slider
+    // scale the sliders
     let style = 
     `input[type=range] {
-        height: calc(${fontsize/500} * var(--p4w-icons));
+        height: calc(${scale/500} * var(--p4w-icons));
     }
     input[type=range]::-moz-range-thumb, 
     input[type=range]::-ms-thumb,  
     input[type=range]::-webkit-slider-thumb {
         border: thin black solid;
-        width: calc(${fontsize/200} * var(--p4w-icons));
-        height: calc(${fontsize/200} * var(--p4w-icons));
+        width: calc(${scale/200} * var(--p4w-icons));
+        height: calc(${scale/200} * var(--p4w-icons));
     }`;
 
     if (document.querySelector("#p4w-settings style")) {
@@ -150,27 +150,35 @@ function setFontSize(fontsize) {
         document.querySelector("#p4w-settings").insertBefore(styleElm, document.querySelector("#p4w-settings").firstChild);
         styleElm.innerHTML = style;
     }
+    if (document.querySelector("#p4w-playback-toolbar style")) {
+        document.querySelector("#p4w-playback-toolbar style").innerHTML = style;
+    }
+    else {
+        let styleElm = document.createElement("style");
+        document.querySelector("#p4w-playback-toolbar").insertBefore(styleElm, document.querySelector("#p4w-playback-toolbar").firstChild);
+        styleElm.innerHTML = style;
+    }
 
     // scale the spacing on the nav sidebar
-    document.querySelector("#p4w-nav > div").style["gap"] = `calc(${fontsize/300} * var(--p4w-icons))`;
+    document.querySelector("#p4w-nav > div").style["gap"] = `calc(${scale/300} * var(--p4w-icons))`;
 
     // scale the close buttons
     let closeButtons = Array.from(document.querySelectorAll(".p4w-panel > button svg:last-child"));
     closeButtons.map(closeButton => {
-        closeButton.style["width"] = `calc(${fontsize/200} * var(--p4w-icons))`;
-        closeButton.style["height"] = `calc(${fontsize/200} * var(--p4w-icons))`;
+        closeButton.style["width"] = `calc(${scale/200} * var(--p4w-icons))`;
+        closeButton.style["height"] = `calc(${scale/200} * var(--p4w-icons))`;
     });
 
     toolbarLinks.map(link => {
-        link.style["width"] = `calc(${fontsize/100} * var(--p4w-icons))`;
-        link.style["height"] = `calc(${fontsize/100} * var(--p4w-icons))`;
+        link.style["width"] = `calc(${scale/100} * var(--p4w-icons))`;
+        link.style["height"] = `calc(${scale/100} * var(--p4w-icons))`;
     });
 
     // scale the self-links next to each heading
     let selflinks = Array.from(document.querySelectorAll("main .p4w-selflink .p4w-iconify"));
     selflinks.map(link => {
-        link.style["width"] = `calc(${fontsize/200} * var(--p4w-icons))`;
-    })
+        link.style["width"] = `calc(${scale/200} * var(--p4w-icons))`;
+    });
 }
 
 function initRate() {

@@ -1,10 +1,7 @@
 import * as icons from '../icons.js';
-import { createToolbar } from './toolbar.js';
 import { setupPanel } from '../panels/panel.js';
 
 async function createNavToolbar() {
-    // let toolbar = createToolbar("p4w-nav-toolbar");
-    // toolbar.setAttribute("aria-label", "Navigation toolbar");
     let toolbar = document.querySelector("#p4w-nav-toolbar");
     
     toolbar.innerHTML = 
@@ -14,15 +11,13 @@ async function createNavToolbar() {
             class="p4w-lightup"
             aria-haspopup="true" 
             aria-expanded="false"
-            data-desc="Navigation sidebar">
+            data-desc="Navigation Sidebar">
             ${icons.hamburger}
             ${icons.close}
         </button>
         <div>
         </div>
     </div>`;
-    
-    //document.querySelector("body").insertBefore(toolbar, document.querySelector("body script#p4w-initApp"));
     
     setupPanel(
         "p4w-nav", 

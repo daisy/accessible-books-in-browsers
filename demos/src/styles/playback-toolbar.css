@@ -1,3 +1,6 @@
+#p4w-playback-toolbar {
+    flex-wrap: wrap;
+}
 #p4w-playpause.playing > svg:first-child {
     display: none;
 }
@@ -14,4 +17,11 @@
 /* for some reason, this button is a little offset when compared to its neighbors, so this adjustment fixes it */
 #p4w-playpause {
     align-self: start;
+}
+
+#p4w-volume {
+    align-self: center;
+    width: calc(var(--p4w-icons) * 1.5);
+    background-color: var(--p4w-page-background-color); /* otherwise there's a background flicker onhover */
+    height: 100%; /* otherwise the thumb gets cut off */
 }

@@ -42,12 +42,14 @@ function setupKeyboardShortcuts() {
             document.querySelector("#p4w-toc-button").click();
             document.querySelector("#p4w-toc-wrapper nav.epubtype-toc ol li a").focus();
         }
-        if (e.ctrlKey && e.altKey && e.code == "ArrowRight") {
+        if (e.ctrlKey && e.altKey && !e.shiftKey && e.code == "ArrowRight") {
             closeNavPanel();
+            closeSettingsPanel();
             document.querySelector("#p4w-next-section")?.click();
         }
-        if (e.ctrlKey && e.altKey && e.code == "ArrowLeft") {
+        if (e.ctrlKey && e.altKey && !e.shiftKey && e.code == "ArrowLeft") {
             closeNavPanel();
+            closeSettingsPanel();
             document.querySelector("#p4w-previous-section")?.click();
         }
         if (e.ctrlKey && e.altKey && e.code == "KeyS") {
@@ -55,6 +57,25 @@ function setupKeyboardShortcuts() {
             document.querySelector("#p4w-search-button").click();
             document.querySelector("#p4w-search-text").focus();
         }
+        if (e.ctrlKey && e.altKey && e.code == "Space") {
+            document.querySelector("#p4w-playpause").click();
+        }
+        if (e.ctrlKey && e.altKey && e.shiftKey && e.code == "ArrowRight") {            
+            document.querySelector("#p4w-next-phrase").click();
+        }
+        if (e.ctrlKey && e.altKey && e.shiftKey && e.code == "ArrowLeft") {
+            document.querySelector("#p4w-previous-phrase").click();
+        }
+        // focus on volume control
+        // we could instead offer dedicated volume up/down shortcuts but i kinda like this better
+        // keyboard users can just use the widget to adjust the volume once it has focus
+        if (e.ctrlKey && e.altKey && e.code == "KeyV") {
+            document.querySelector("#p4w-volume").focus();
+        }
+        if (e.ctrlKey && e.altKey && e.code == ",") {
+            openSettingsPanel();
+        }
+        
     });
 
 }

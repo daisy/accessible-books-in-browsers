@@ -22,7 +22,6 @@ async function load(filename) {
     audio.style['display'] = 'none';
     document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
 
-
     track = audio.addTextTrack("captions", "Document", "en");
     track.mode = "hidden";
     syncpoints.map(item => {
@@ -33,13 +32,33 @@ async function load(filename) {
     console.log(track.cues);
     track.addEventListener("cuechange", onCueChange);
 
-    audio.addEventListener("play", e => document.querySelector("body").classList.add("is-playing"));
-    audio.addEventListener("pause", e => document.querySelector("body").classList.remove("is-playing"));
+    audio.addEventListener("play", e => {
+        document.querySelector("body").classList.add("is-playing");
+        document.querySelector("#p4w-playpause").setAttribute("title", "Pause");
+        document.querySelector("#p4w-playpause").setAttribute("aria-label", "Pause");
+    });
+    audio.addEventListener("pause", e => {
+        document.querySelector("body").classList.remove("is-playing");
+        document.querySelector("#p4w-playpause").setAttribute("title", "Play");
+        document.querySelector("#p4w-playpause").setAttribute("aria-label", "Play");
+    });
     
+    let waitForAudioToLoad = new Promise((resolve, reject) => {
+        audio.addEventListener("loadeddata", e => {
+            // console.log("loaded");
+            resolve();
+        }); 
+        audio.addEventListener("error", e => {
+            reject();
+        });
+    });
+    await waitForAudioToLoad;
+
     // hide the basic html audio player
     if (document.querySelector("#p4w-audio")) {
         document.querySelector("#p4w-audio").style['display'] = 'none';
     }
+    
 }
 
 function onCueChange(e) {
@@ -61,17 +80,6 @@ function highlight(frag) {
 }
 function unhighlight(frag) {
     document.querySelector(`#${frag}`).classList.remove("highlight");
-}
-function isPlaying() {
-    return !audio.paused;
-}
-
-function play() {
-    audio.play();
-}
-
-function pause() {
-    audio.pause();
 }
 
 function goNext() {
@@ -140,4 +148,4 @@ function parseClockValue(value) {
     return total;
 }
 
-export { load, play, pause, isPlaying, goNext, goPrevious, canGoNext, canGoPrevious };
+export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious };
