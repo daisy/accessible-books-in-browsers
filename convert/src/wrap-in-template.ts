@@ -43,9 +43,9 @@ async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename
                 nextSectionHref,
                 navDocFilename,
                 //@ts-ignore
-                pubInfo ? pubInfo.narration.find(item => path.basename(item.file) == path.basename(inputFilename)) : {},
+                pubInfo && pubInfo.narration ? pubInfo.narration.find(item => path.basename(item.file) == path.basename(inputFilename)) : {},
                 //@ts-ignore
-                pubInfo.favico
+                pubInfo?.favico
             );
         i++;
         await fs.writeFile(outputFilename, templatizedContents);

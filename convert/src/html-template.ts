@@ -104,7 +104,7 @@ let template = (
         </div>
     </section>
 
-    ${narration ? 
+    ${narration && narration != {} && narration.audio ? 
         `<section id="p4w-playback-toolbar" class="p4w-toolbar" aria-label="Playback toolbar">        
             <div id="p4w-audio">
                 <audio src="${narration.audio}" controls></audio>
@@ -118,7 +118,7 @@ let template = (
 
         (async () => {
             try {
-                await setupUi(${narration ? `"${narration.smil}"` : null});
+                await setupUi(${narration && narration != {} && narration.smil != undefined ? `"${narration.smil}"` : null});
             }
             catch(err) {
                 console.error(err);
