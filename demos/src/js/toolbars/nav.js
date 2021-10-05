@@ -24,9 +24,12 @@ async function createNavToolbar() {
         false, 
         () => {
             document.querySelector("body").classList.add("p4w-dim-10");
+            // otherwise the navigation sidebar overlaps with the playback toolbar
+            document.querySelector("#p4w-playback-toolbar").style['visibility'] = 'hidden';
         },
         () => {
             document.querySelector("body").classList.remove("p4w-dim-10");
+            document.querySelector("#p4w-playback-toolbar").style['visibility'] = 'visible';
         }
     );
 
