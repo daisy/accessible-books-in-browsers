@@ -11,7 +11,6 @@
         <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
         <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
         <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-        
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Moby-Dick</title>
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
@@ -65,12 +64,27 @@
             </div>
         </section>
         <script type="module" id="p4w-initApp">
-            import { setupUi } from '../src/js/app.js';
-        
+            import { setupUi } from '../../src/js/app.js';
+
             (async () => {
-                await setupUi(null, './');
+                try {
+                    let searchIndex = new URL('idx.json', document.location);
+                    let searchData = new URL('data.json', document.location);
+                    await setupUi(
+                            null,
+                            searchIndex,
+                            searchData,
+                            './'
+                        );
+                }
+                catch(err) {
+                    console.error(err);
+                }
+                finally {
+                    document.documentElement.classList.remove("p4w-js"); 
+                }
             })();
-        
+
         </script>
     </body>
 </html>

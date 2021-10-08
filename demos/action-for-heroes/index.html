@@ -77,12 +77,27 @@
     </section>
     
 
-<script type="module" id="p4w-initApp">
-    import { setupUi } from '../src/js/app.js';
+    <script type="module" id="p4w-initApp">
+        import { setupUi } from '../../src/js/app.js';
 
-    (async () => {
-        await setupUi(null, './');
-    })();
+        (async () => {
+            try {
+                let searchIndex = new URL('idx.json', document.location);
+                let searchData = new URL('data.json', document.location);
+                await setupUi(
+                        null,
+                        searchIndex,
+                        searchData,
+                        './'
+                    );
+            }
+            catch(err) {
+                console.error(err);
+            }
+            finally {
+                document.documentElement.classList.remove("p4w-js"); 
+            }
+        })();
 
-</script>
+    </script>
 </body></html>

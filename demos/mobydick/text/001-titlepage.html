@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en" class="p4w-js"><head>
     <meta charset="utf-8">
     <meta name="generatedBy" content="hand">
-    <title>Moby-Dick: Moby-Dick</title>
+    <title>Moby-Dick</title>
     
     <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
@@ -16,7 +16,7 @@
     
     <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     
       
       <link rel="stylesheet" href="../css/stylesheet.css" type="text/css">
@@ -37,8 +37,8 @@
     </main>
     
  
-    <section role="contentinfo" aria-label="Previous and next" id="p4w-document-links">
-        <a id="p4w-previous-section" href="../index.html" title="Previous: Cover" class="p4w-lightup">
+    <section role="contentinfo" aria-label="Previous and next links" id="p4w-document-links">
+        <a id="p4w-previous-section" href="../index.html" title="Previous: undefined" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
                 <g fill="none">
                     <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
@@ -46,7 +46,7 @@
                 </g>
             </svg>
         </a>
-        <a id="p4w-next-section" href="002-toc-short.html" title="Next: Moby-Dick" class="p4w-lightup">
+        <a id="p4w-next-section" href="002-toc-short.html" title="Next: undefined" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
                 <g fill="none">
                     <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
@@ -92,7 +92,13 @@
 
         (async () => {
             try {
-                await setupUi(null);
+                let searchIndex = new URL('../idx.json', document.location);
+                let searchData = new URL('../data.json', document.location);
+                await setupUi(
+                        null,
+                        searchIndex,
+                        searchData
+                    );
             }
             catch(err) {
                 console.error(err);

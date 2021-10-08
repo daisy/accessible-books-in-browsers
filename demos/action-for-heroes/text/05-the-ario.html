@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en" class="p4w-js"><head>
     <meta charset="utf-8">
     <meta name="generatedBy" content="hand">
-    <title>Action for Heros: THE ARIO</title>
+    <title>THE ARIO</title>
     
     <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
@@ -16,7 +16,7 @@
     
     <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" type="text/css" href="../styles/a_default.css">
 
     <script>document.documentElement.classList.add('p4w-js');</script>
@@ -28,7 +28,7 @@
     <p>
       <span role="doc-pagebreak" id="page12" aria-label="12"></span>
     </p>
-    <h2 data-number="1.5" id="h-1.5">THE ARIO<a href="#h-1.5" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
+    <h2 data-number="1.5" id="h-1.5">THE ARIO<a href="#h-1.5" title="Link to heading THE ARIO" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
             <g transform="rotate(135 12 12)">
                 <g fill="none">
                     <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
@@ -37,7 +37,7 @@
         </svg></a></h2>
     <p>INFORMATION FOR ADULTS</p>
     <section id="adults-benefit-from-listening-to-children" class="level3" data-number="1.5.1">
-      <h3 data-number="1.5.1" id="h-1.5.1">ADULTS BENEFIT FROM LISTENING TO CHILDREN<a href="#h-1.5.1" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
+      <h3 data-number="1.5.1" id="h-1.5.1">ADULTS BENEFIT FROM LISTENING TO CHILDREN<a href="#h-1.5.1" title="Link to heading ADULTS BENEFIT FROM LISTENING TO CHILDREN" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
             <g transform="rotate(135 12 12)">
                 <g fill="none">
                     <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
@@ -74,7 +74,7 @@
     </main>
     
  
-    <section role="contentinfo" aria-label="Previous and next" id="p4w-document-links">
+    <section role="contentinfo" aria-label="Previous and next links" id="p4w-document-links">
         <a id="p4w-previous-section" href="04-understanding-the-guide.html" title="Previous: Understanding the Guide" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
                 <g fill="none">
@@ -129,7 +129,13 @@
 
         (async () => {
             try {
-                await setupUi(null);
+                let searchIndex = new URL('../idx.json', document.location);
+                let searchData = new URL('../data.json', document.location);
+                await setupUi(
+                        null,
+                        searchIndex,
+                        searchData
+                    );
             }
             catch(err) {
                 console.error(err);

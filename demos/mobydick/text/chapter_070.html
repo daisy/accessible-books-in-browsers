@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en" class="p4w-js"><head>
     <meta charset="utf-8">
     <meta name="generatedBy" content="hand">
-    <title>Moby-Dick: Chapter 70. The Sphynx.</title>
+    <title>Chapter 70. The Sphynx.</title>
     
     <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
@@ -16,7 +16,7 @@
     
     <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     
 <link rel="stylesheet" href="../css/stylesheet.css" type="text/css">
 <meta charset="utf-8">
@@ -30,7 +30,7 @@
     
 <section class="body-rw Chapter-rw" epub:type="bodymatter chapter">
 <header>
-<h1 id="h-0">Chapter 70. The Sphynx.<a href="#h-0" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
+<h1 id="h-0">Chapter 70. The Sphynx.<a href="#h-0" title="Link to heading Chapter 70. The Sphynx." class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
             <g transform="rotate(135 12 12)">
                 <g fill="none">
                     <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
@@ -52,7 +52,7 @@
     </main>
     
  
-    <section role="contentinfo" aria-label="Previous and next" id="p4w-document-links">
+    <section role="contentinfo" aria-label="Previous and next links" id="p4w-document-links">
         <a id="p4w-previous-section" href="chapter_069.html" title="Previous: Chapter 69. The Funeral." class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
                 <g fill="none">
@@ -107,7 +107,13 @@
 
         (async () => {
             try {
-                await setupUi(null);
+                let searchIndex = new URL('../idx.json', document.location);
+                let searchData = new URL('../data.json', document.location);
+                await setupUi(
+                        null,
+                        searchIndex,
+                        searchData
+                    );
             }
             catch(err) {
                 console.error(err);

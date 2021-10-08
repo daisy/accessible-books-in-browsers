@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en" class="p4w-js"><head>
     <meta charset="utf-8">
     <meta name="generatedBy" content="hand">
-    <title>Action for Heros: CHAT messages</title>
+    <title>CHAT messages</title>
     
     <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
@@ -16,7 +16,7 @@
     
     <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" type="text/css" href="../styles/a_default.css">
 
     <script>document.documentElement.classList.add('p4w-js');</script>
@@ -25,7 +25,7 @@
 <body>
     <main>
     <section id="chat-messages" class="level2" data-number="1.2">
-        <h1 data-number="1.2" id="h-1.2">CHAT messages<a href="#h-1.2" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
+        <h1 data-number="1.2" id="h-1.2">CHAT messages<a href="#h-1.2" title="Link to heading CHAT messages" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
             <g transform="rotate(135 12 12)">
                 <g fill="none">
                     <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
@@ -33,7 +33,7 @@
             </g>
         </svg></a></h1>
         <section id="the-chat-messages-are" class="level3" data-number="1.2.1">
-            <h2 data-number="1.2.1" id="h-1.2.1">The CHAT messages are:<a href="#h-1.2.1" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
+            <h2 data-number="1.2.1" id="h-1.2.1">The CHAT messages are:<a href="#h-1.2.1" title="Link to heading The CHAT messages are:" class="p4w-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
             <g transform="rotate(135 12 12)">
                 <g fill="none">
                     <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
@@ -97,7 +97,7 @@
     </main>
     
  
-    <section role="contentinfo" aria-label="Previous and next" id="p4w-document-links">
+    <section role="contentinfo" aria-label="Previous and next links" id="p4w-document-links">
         <a id="p4w-previous-section" href="01-intro.html" title="Previous: Introduction" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
                 <g fill="none">
@@ -152,7 +152,13 @@
 
         (async () => {
             try {
-                await setupUi(null);
+                let searchIndex = new URL('../idx.json', document.location);
+                let searchData = new URL('../data.json', document.location);
+                await setupUi(
+                        null,
+                        searchIndex,
+                        searchData
+                    );
             }
             catch(err) {
                 console.error(err);
