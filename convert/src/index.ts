@@ -7,6 +7,7 @@ import fs from 'fs-extra';
 import { applyTemplate } from './wrap-in-template.js';
 import * as utils from './utils.js';
 import { makeAboutPage } from './make-about-page.js';
+import { generateSearchIndex } from './create-search-index.js';
 
 async function main() {
 
@@ -77,12 +78,13 @@ async function main() {
                 pubInfo = JSON.parse(pubInfoContents);
             }
 
-            await applyTemplate(inputFilenames, 
+            let createdFiles = await applyTemplate(inputFilenames, 
                 outputDirname, 
                 path.resolve(process.cwd(), navdoc),
                 path.resolve(process.cwd(), packagedoc),
                 pubInfo
             );
+            await generateSearchIndex(createdFiles, path.resolve(outputDir, "../"));
         });
 
         program

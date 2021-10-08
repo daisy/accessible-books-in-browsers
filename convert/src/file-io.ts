@@ -15,7 +15,7 @@ async function parse(filename):Promise<any> {
     let ext = path.extname(filename);
     if (ext == ".html") {
         // parse as HTML
-        let dom = new JSDOM(fileContentsString);
+        let dom = new JSDOM(fileContentsString, { runScripts: "dangerously" });
         return dom;
     }
     else {

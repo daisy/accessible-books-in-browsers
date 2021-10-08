@@ -11,6 +11,7 @@ import iconv from 'iconv-lite';
 // given a list of filenames, wrap the contents of each file in the html-template, and write to the output dir as filename.html
 async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename, navDocFilename, pubInfo = {}) {
     let metadata = await getPackageMetadata(packageDocFilename);
+    let outputFilenames = [];
 
     // copy the input files to the output directory
     let movedInputFilenames = [];
@@ -45,15 +46,18 @@ async function applyTemplate(inputFilenames, outputDirectory, packageDocFilename
                 //@ts-ignore
                 pubInfo && pubInfo.narration ? pubInfo.narration.find(item => path.basename(item.file) == path.basename(inputFilename)) : {},
                 //@ts-ignore
-                pubInfo?.favico
+                pubInfo?.favico,
+                '../'
             );
         i++;
         await fs.writeFile(outputFilename, templatizedContents);
+        outputFilenames.push(outputFilename);
     }
+    return outputFilenames;
 }
 
 async function applyTemplateOneFile(inputFilename, packageMetadata,
-    previousSectionHref, nextSectionHref, navDocHref, narration, favico) {
+    previousSectionHref, nextSectionHref, navDocHref, narration, favico, pathToRoot) {
     let bodyContents = "";
     let headContents = '';
     let encoding = utils.sniffEncoding(inputFilename);
@@ -102,7 +106,8 @@ async function applyTemplateOneFile(inputFilename, packageMetadata,
         relNavDocHref,
         headContents,
         narration,
-        favico
+        favico,
+        pathToRoot
     );
 
     return newContents;

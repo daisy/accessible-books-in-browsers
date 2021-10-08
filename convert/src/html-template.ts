@@ -9,13 +9,14 @@ let template = (
     navDocHref, 
     headContents,
     narration,
-    favico) =>
+    favico,
+    pathToRoot = '') =>
 `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="generatedBy" content="hand" />
-    <title>${bookTitle}${sectionTitle ? `: ${sectionTitle}` : ''}</title>
+    <title>${sectionTitle ?? bookTitle}</title>
     
     <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
@@ -32,7 +33,7 @@ let template = (
         `<link rel="icon" type="image/png" sizes="96x96" href="../${favico}">`
         : ``}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     ${headContents}
 
     <script>document.documentElement.classList.add('p4w-js');</script>
@@ -114,11 +115,17 @@ let template = (
     }
 
     <script type="module" id="p4w-initApp">
-        import { setupUi } from '../../src/js/app.js';
+        import { setupUi } from '${pathToRoot}../src/js/app.js';
 
         (async () => {
             try {
-                await setupUi(${narration && narration != {} && narration.smil != undefined ? `"${narration.smil}"` : null});
+                let searchIndex = new URL('${pathToRoot}idx.json', document.location);
+                let searchData = new URL('${pathToRoot}data.json', document.location);
+                await setupUi(
+                        ${narration && narration != {} && narration.smil != undefined ? `"${narration.smil}"` : null},
+                        searchIndex,
+                        searchData
+                    );
             }
             catch(err) {
                 console.error(err);
