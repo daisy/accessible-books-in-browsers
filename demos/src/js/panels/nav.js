@@ -325,7 +325,6 @@ async function initSearchPanel(searchPanel, searchIndexUrl, searchDataUrl) {
         let searchText = searchPanel.querySelector("#p4w-search-text").value;
         if (searchText.trim() != '') {
             let result = fuse.search(searchText);
-            // console.log(result);
             presentSearchResults(result);
         }
     });

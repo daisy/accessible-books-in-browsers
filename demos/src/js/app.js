@@ -93,11 +93,6 @@ function trackScrollInLocationUrl() {
     let observer = new IntersectionObserver(callback, options);
     let elmsWithId = Array.from(document.querySelectorAll("main *[id]"));
     elmsWithId.map(elm => observer.observe(elm));
-      
-    
-      
-
 }
-
 
 export { setupUi };
