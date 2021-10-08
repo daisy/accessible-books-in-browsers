@@ -18,15 +18,22 @@ body.p4w-dark main table th {
     background-color: rgb(var(--p4w-text-color)) !important;
     color: rgb(var(--p4w-page-background-color)) !important;
 }
-
-.highlight {
+.highlight { 
     background-color: rgba(var(--p4w-sync-highlight-background-color), 1);
     color: rgba(var(--p4w-sync-highlight-color), 1);
     padding: 3px;
     border-radius: 4px;
     transition: .2s;
 }
-
+.search-result {
+    background-color: rgba(var(--p4w-search-highlight-background-color), 1);
+    color: rgba(var(--p4w-search-highlight-color), 1);
+    padding: 3px;
+    border-radius: 4px;
+    transition: .2s;
+    border: 3px solid rgba(var(--p4w-search-highlight-color), .8);
+    scroll-margin-top: 1rem;
+}
 @supports (font-size-adjust: 1) {
     main {
         font-size-adjust: 0.6;

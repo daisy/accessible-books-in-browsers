@@ -130,6 +130,29 @@
     font-weight: bold;
 }
 
+#p4w-search-results table {
+    font-size: .9rem;
+}
+#p4w-search-results table tr {
+   margin-bottom: 1rem;
+}
+#p4w-search-results table tr td:first-child {
+    text-align: center;
+}
+#p4w-search-results table td {
+    padding: .9rem;
+}
+#p4w-search-results table td:last-child {
+    font-style: italic;
+}
+#p4w-search-results table td:nth-child(2):hover {
+    border: 2px solid rgba(var(--p4w-search-highlight-color));
+}
+#p4w-search-results table th {
+    position: sticky;
+    top: 0;
+    background-color: rgba(var(--p4w-page-background-color));
+}
 @media(max-width: 768px) {
     #p4w-nav.p4w-expanded > div {
         grid-template-areas: 

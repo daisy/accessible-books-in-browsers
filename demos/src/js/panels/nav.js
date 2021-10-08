@@ -1,6 +1,8 @@
 import * as icons from '../icons.js';
+// import Fuse from '../lib/fuse.js';
+import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.esm.js'
 
-async function createNavPanelContents(pathToRoot) {
+async function createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl) {
     // read in the navigation document
     await importNavDoc(pathToRoot);
 
@@ -9,7 +11,7 @@ async function createNavPanelContents(pathToRoot) {
 
     addGoToPage();
 
-    initSearchPanel(document.querySelector("#p4w-search"));
+    await initSearchPanel(document.querySelector("#p4w-search"), searchIndexUrl, searchDataUrl);
     await initAboutPanel(pathToRoot);
 
     updateLinks(pathToRoot);
@@ -46,12 +48,12 @@ function convertToTabs() {
     if (!listOfNavs) {
         // create if doesn't exist
         listOfNavs = document.createElement("nav");
-        listOfNavs.setAttribute("id", "p4w-list-of-navs");
+        listOfNavs.id = "p4w-list-of-navs";
         listOfNavs.innerHTML = "<ol></ol>";
         document.querySelector("#p4w-nav > div").insertBefore(listOfNavs, document.querySelector("#p4w-nav > div").firstElementChild);
         // add a link to the toc
         let toc = document.querySelector("nav.epubtype-toc");
-        listItems.push({"label": getLabel(toc), "target": toc.id});
+        listItems.push({"label": "Table of Contents", "target": toc.id});
     }
     // collect all the links
     listItems.push(
@@ -66,14 +68,14 @@ function convertToTabs() {
     // add a panel and a button for searching
     listItems.push({label: "Search", target: "p4w-search"});
     let searchSection = document.createElement("section");
-    searchSection.setAttribute("id", "p4w-search");
+    searchSection.id = "p4w-search";
     searchSection.classList.add("p4w-search");
     document.querySelector("#p4w-nav > div").appendChild(searchSection);
 
     // add a panel and a button for book info
     listItems.push({label: "About", target: "p4w-about"});
     let aboutSection = document.createElement("section");
-    aboutSection.setAttribute("id", "p4w-about");
+    aboutSection.id = "p4w-about";
     aboutSection.classList.add("p4w-about");
     document.querySelector("#p4w-nav > div").appendChild(aboutSection);
 
@@ -89,7 +91,7 @@ function convertToTabs() {
     // replace listOfNavs with divOfnavs
     document.querySelector("#p4w-nav > div").insertBefore(divOfNavs, listOfNavs);
     listOfNavs.remove();
-    divOfNavs.setAttribute("id", "p4w-list-of-navs");
+    divOfNavs.id = "p4w-list-of-navs";
 
     // remove any redundant labels
     // the navs just use aria-label, not aria-labelledby
@@ -151,7 +153,7 @@ function createNavPanelTab(label, targetId) {
     
     let targetWrapper = document.createElement("div");
     targetWrapper.setAttribute("role", "tabpanel");
-    targetWrapper.setAttribute("id", `${idPrefix}-wrapper`);
+    targetWrapper.id = `${idPrefix}-wrapper`;
     targetWrapper.setAttribute("aria-labelledby", `${idPrefix}-button`);
     targetWrapper.setAttribute("tab-index", "0");
     target.parentElement.insertBefore(targetWrapper, target);
@@ -172,9 +174,10 @@ function createNavPanelTab(label, targetId) {
         tab-index="${tabIndex}"
         aria-selected="${ariaSelected}"
         role="tab"
-        class="p4w-lightup">
+        class="p4w-lightup"
+        aria-label="${label}">
             ${icon}
-                <span>${label}</span>
+            <span>${label}</span>
     </button>`
     
     return button;
@@ -308,14 +311,24 @@ function updateLinks(pathToRoot = '') {
     });
 
 }
-function initSearchPanel(searchPanel) {
+async function initSearchPanel(searchPanel, searchIndexUrl, searchDataUrl) {
     searchPanel.innerHTML = 
     `<div>
         <label for="p4w-search">Search</label>
         <input type="search" id="p4w-search-text" placeholder="Search"></input>
         <input type="button" id="p4w-search-button" value="Search"></input>
-    </div>
-    <p>Search results will appear here when the feature is implemented</p>`;
+    </div>`;
+
+    let fuse = await initSearchEngine(searchIndexUrl, searchDataUrl);
+    
+    searchPanel.querySelector("#p4w-search-button").addEventListener("click", async e => {
+        let searchText = searchPanel.querySelector("#p4w-search-text").value;
+        if (searchText.trim() != '') {
+            let result = fuse.search(searchText);
+            // console.log(result);
+            presentSearchResults(result);
+        }
+    });
 }
 
 async function initAboutPanel(pathToRoot) {
@@ -332,9 +345,27 @@ async function importAboutDoc(pathToRoot) {
     let main = dom.querySelector('main');
 
     let navContainer = document.querySelector("#p4w-about");
+    let images = Array.from(main.querySelector("img"));
+    
+    // adjust the image URLs 
+    images
+        .filter(img => !isAbsolute(img.getAttribute("src")))
+        .map(img => img.setAttribute("src", "../" + img.getAttribute("src")));
+
     // reparent the nav doc elements
     Array.from(main.childNodes).map(child => navContainer.appendChild(child));
 
+}
+
+function isAbsolute(url) {
+    if (!url || url.trim() == "") {
+        return false;
+    }
+    // TODO make this more robust
+    if (url.indexOf("http://") == 0 || url.indexOf("https://") == 0 || url.indexOf("/") == 0) {
+        return true;
+    }
+    return false;
 }
 
 async function importNavDoc(pathToRoot) {
@@ -351,5 +382,63 @@ async function importNavDoc(pathToRoot) {
     Array.from(main.childNodes).map(child => navContainer.appendChild(child));
 
 }
+async function initSearchEngine(searchIndexUrl, searchDataUrl) {
 
+    let idxFile = await fetch(searchIndexUrl);
+    idxFile = await idxFile.text();
+    let idx = Fuse.parseIndex(JSON.parse(idxFile));
+    let dataFile = await fetch(searchDataUrl);
+    let data = await dataFile.text();
+    data = JSON.parse(data);
+    const options = {
+        includeScore: true,
+        keys: ['text'],
+        threshold: 0.4
+    };
+    let fuse = new Fuse(data, options, idx);
+    return fuse;
+}
+
+function presentSearchResults(results) {
+    // clear any old results
+    let resultsElm = document.querySelector("#p4w-search section");
+    if (resultsElm) resultsElm.remove();
+    let oldResultHighlights = Array.from(document.querySelectorAll(".search-result"));
+    oldResultHighlights.map(el => {
+        el.classList.remove('.search-result');
+        let attrval = el.getAttribute("role");
+        attrval = attrval.replace('mark', '');
+        el.setAttribute("role", attrval);
+    });
+
+    resultsElm = document.createElement("section");
+    resultsElm.setAttribute("aria-label", "Search results");
+    resultsElm.id = "p4w-search-results";
+    
+    resultsElm.innerHTML = 
+    `<p>${results.length} results</p>
+    <table summary="Search results, ranked by best match">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Result</th>
+                <th>Chapter</th>
+            </tr>
+        </thead>
+        <tbody>
+        ${results.map((result, idx) => 
+            `<tr>
+                <td>${idx+1}</td>
+                <td><a href="${result.item.filename}" data-selector="${result.item.selector}">${result.item.text}</a></td>
+                <td>${result.item.filetitle}</td>
+            </tr>`)
+        .join('')}
+        </tbody>
+    </table>`;
+    
+    let resultsLinks = Array.from(resultsElm.querySelectorAll("table td a[data-selector]"));
+    resultsLinks.map(link => link.addEventListener("click", e => localStorage.setItem("p4w-target", link.getAttribute("data-selector"))));
+    document.querySelector("#p4w-search").appendChild(resultsElm);
+
+}
 export { createNavPanelContents };

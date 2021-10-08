@@ -21,6 +21,8 @@ body {
     --p4w-tab-focus-color: var(--p4w-lightorange);
     --p4w-sync-highlight-background-color: var(--p4w-yellow);
     --p4w-sync-highlight-color: var(--p4w-text-color);
+    --p4w-search-highlight-background-color: var(--p4w-lightblue);
+    --p4w-search-highlight-color: var(--p4w-text-color);
     --p4w-border-color: var(--p4w-darkgray);
     
     transition: var(--transition);
@@ -36,6 +38,8 @@ body.dark {
     --p4w-tab-focus-color: var(--p4w-white);
     --p4w-sync-highlight-background-color: var(--p4w-page-background-color);
     --p4w-sync-highlight-color: var(--p4w-yellow);
+    --p4w-search-highlight-background-color: var(--p4w-page-background-color);
+    --p4w-search-highlight-color: var(--p4w-lightblue);
     
 }
 @media (prefers-color-scheme: dark) {
@@ -49,6 +53,8 @@ body.dark {
         --p4w-tab-focus-color: var(--p4w-white);
         --p4w-sync-highlight-background-color: var(--p4w-page-background-color);
         --p4w-sync-highlight-color: var(--p4w-yellow);
+        --p4w-search-highlight-background-color: var(--p4w-page-background-color);
+        --p4w-search-highlight-color: var(--p4w-lightblue);
     }
     /* the manual toggle can override the system theme */
     body.p4w-prefers-color-scheme-override {
@@ -62,6 +68,8 @@ body.dark {
         --p4w-tab-focus-color: var(--p4w-lightorange);
         --p4w-sync-highlight-background-color: var(--p4w-yellow);
         --p4w-sync-highlight-color: var(--p4w-text-color);
+        --p4w-search-highlight-background-color: var(--p4w-lightblue);
+        --p4w-search-highlight-color: var(--p4w-text-color);
     }
 }
 

@@ -6,10 +6,10 @@ import { createNavPanelContents } from './panels/nav.js';
 import { createSettingsPanelContents } from './panels/settings.js';
 import * as player from './player.js';
 
-async function setupUi(smilHref, pathToRoot = '../') {
+async function setupUi(smilHref, searchIndexUrl, searchDataUrl, pathToRoot = '../') {
     initState();
     await createNavToolbar();
-    await createNavPanelContents(pathToRoot);
+    await createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl);
     
     if (smilHref) {
         await player.load(new URL(smilHref, document.location.href));
@@ -32,9 +32,22 @@ async function setupUi(smilHref, pathToRoot = '../') {
         });
     }
 
+    if (localStorage.getItem("p4w-target") != '') { 
+        let elm = document.querySelector(localStorage.getItem("p4w-target"));
+        if (elm) {
+            // console.log("highlighting search result", localStorage.getItem("p4w-target"));
+            elm.classList.add("search-result");
+            elm.scrollIntoView();
+            elm.setAttribute("role", "mark");
+        }
+        else {
+            console.log("Not found", localStorage.getItem("p4w-target"));
+        }
+    }
+    localStorage.setItem("p4w-target", null);
+
     document.documentElement.classList.remove("p4w-js");
-    document.querySelector("body").classList.add("p4w-fadein");        
-    
+    document.querySelector("body").classList.add("p4w-fadein");
 }
 
 

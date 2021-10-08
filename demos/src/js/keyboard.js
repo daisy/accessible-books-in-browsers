@@ -31,6 +31,15 @@ function setupKeyboardShortcuts() {
         if (e.code == "Escape") {
             closeNavPanel();  
             closeSettingsPanel(); 
+            // clear any search results styling
+            // TODO duplicate code
+            let oldResultHighlights = Array.from(document.querySelectorAll(".search-result"));
+            oldResultHighlights.map(el => {
+                el.classList.remove('.search-result');
+                let attrval = el.getAttribute("role");
+                attrval = attrval.replace('mark', '');
+                el.setAttribute("role", attrval);
+            });
         }
         if (e.ctrlKey && e.altKey && e.code == 'KeyG') {
             openNavPanel();

@@ -18,7 +18,7 @@ async function load(filename) {
     if (oldSyncElm) oldSyncElm.remove();
     audio = document.createElement("video");
     audio.setAttribute("src", syncdata.assets.audio);
-    audio.setAttribute("id", "p4w-sync-audio");
+    audio.id = "p4w-sync-audio";
     audio.style['display'] = 'none';
     document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
 

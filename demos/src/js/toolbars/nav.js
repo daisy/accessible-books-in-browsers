@@ -19,17 +19,18 @@ async function createNavToolbar() {
         </div>
     </div>`;
     
+    let playbackToolbar = document.querySelector("#p4w-playback-toolbar");
     setupPanel(
         "p4w-nav", 
         false, 
         () => {
             document.querySelector("body").classList.add("p4w-dim-10");
             // otherwise the navigation sidebar overlaps with the playback toolbar
-            document.querySelector("#p4w-playback-toolbar").style['visibility'] = 'hidden';
+            if (playbackToolbar) playbackToolbar.style['visibility'] = 'hidden';
         },
         () => {
             document.querySelector("body").classList.remove("p4w-dim-10");
-            document.querySelector("#p4w-playback-toolbar").style['visibility'] = 'visible';
+            if (playbackToolbar) playbackToolbar.style['visibility'] = 'visible';
         }
     );
 
