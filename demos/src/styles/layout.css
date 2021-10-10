@@ -10,8 +10,8 @@ body {
     grid-template-columns: minmax(10rem, 25%) 45rem minmax(10rem, 25%);
     grid-template-rows: auto 10rem;
     margin: 1rem 1rem 2rem 1rem;
-    background-color: rgb(var(--p4w-page-background-color));
-    color:rgb(var(--p4w-text-color));
+    background-color: rgb(var(--p4w-page-background-color)) !important;
+    color:rgb(var(--p4w-text-color)) !important;
     height: 100%;
 }
 

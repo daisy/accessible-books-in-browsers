@@ -1,6 +1,6 @@
-let template = (
-    bookTitle, 
-    sectionTitle, 
+import * as path from 'path';
+
+function template (
     contents, 
     previousSectionHref, 
     previousSectionTitle, 
@@ -8,29 +8,33 @@ let template = (
     nextSectionTitle, 
     navDocHref, 
     headContents,
-    narration,
+    vttFilename,
+    audioFilename,
     favico,
-    pathToRoot = '') =>
-`<!DOCTYPE html>
+    aboutFilename,
+    pathToSharedClientCode,
+    outputFilename,
+    searchIndexFilename,
+    searchDataFilename) {
+
+let clientCodeDir = pathToSharedClientCode;//path.relative(path.dirname(outputFilename), pathToSharedClientCode);
+return `<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="generatedBy" content="hand" />
-    <title>${sectionTitle ?? bookTitle}</title>
-    
-    <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/app-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/nav.css">
+    <meta charset="utf-8" />    
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/collapsible-panel.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/app-toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/playback-toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/nav-panel.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/settings-panel.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/content.css">
+    <link rel="stylesheet" type="text/css" href="${clientCodeDir}/styles/nav.css">
     
     ${favico ? 
-        `<link rel="icon" type="image/png" sizes="96x96" href="../${favico}">`
+        `<link rel="icon" type="image/png" sizes="96x96" href="${favico}">`
         : ``}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -82,7 +86,7 @@ let template = (
                 </g>
             </svg>
         </a>
-        <a id="p4w-about-link" href="../about.html" title="About this publication" class="p4w-lightup">
+        <a id="p4w-about-link" href="${aboutFilename}" title="About this publication" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
@@ -105,24 +109,26 @@ let template = (
         </div>
     </section>
 
-    ${narration && narration != {} && narration.audio ? 
+    ${audioFilename ? 
         `<section id="p4w-playback-toolbar" class="p4w-toolbar" aria-label="Playback toolbar">        
             <div id="p4w-audio">
-                <audio src="${narration.audio}" controls></audio>
+                <audio src="${audioFilename}" controls>
+                    <track default kind="captions" src="${vttFilename}">
+                </audio>
             </div>
         </section>`
         : ``
     }
 
     <script type="module" id="p4w-initApp">
-        import { setupUi } from '${pathToRoot}../src/js/app.js';
+        import { setupUi } from '${clientCodeDir}/js/app.js';
 
         (async () => {
             try {
-                let searchIndex = new URL('${pathToRoot}idx.json', document.location);
-                let searchData = new URL('${pathToRoot}data.json', document.location);
+                // TODO parameterize this path
+                let searchIndex = new URL('${searchIndexFilename}', document.location);
+                let searchData = new URL('${searchDataFilename}', document.location);
                 await setupUi(
-                        ${narration && narration != {} && narration.smil != undefined ? `"${narration.smil}"` : null},
                         searchIndex,
                         searchData
                     );
@@ -138,5 +144,5 @@ let template = (
     </script>
 </body>
 </html>`;
-
+}
 export { template };

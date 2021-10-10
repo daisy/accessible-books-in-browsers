@@ -2,9 +2,9 @@ import * as icons from '../icons.js';
 // import Fuse from '../lib/fuse.js';
 import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.esm.js'
 
-async function createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl) {
+async function createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDataUrl) {
     // read in the navigation document
-    await importNavDoc(pathToRoot);
+    await importNavDoc(navUrl);
 
     // convert the navigation doc contents into a tabbed view
     convertToTabs();
@@ -12,9 +12,9 @@ async function createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl)
     addGoToPage();
 
     await initSearchPanel(document.querySelector("#p4w-search"), searchIndexUrl, searchDataUrl);
-    await initAboutPanel(pathToRoot);
+    await initAboutPanel(aboutUrl);
 
-    updateLinks(pathToRoot);
+    updateLinks();
 }
 
 
@@ -295,10 +295,10 @@ function addGoToPage() {
     }
 }
 
-function updateLinks(pathToRoot = '') {
+function updateLinks(navUrl) {
     // modify the nav hrefs to make sense in the context of our current document
-    let navdocUrl = new URL(`${pathToRoot}nav.html`, document.location.href);
-    let aboutdocUrl = new URL(`${pathToRoot}about.html`, document.location.href);
+    let navdocUrl = new URL(navUrl, document.location.href);
+    let aboutdocUrl = new URL(navUrl, document.location.href);
     Array.from(document.querySelectorAll("#p4w-nav > div a, #p4w-nav > div img")).map(elm => {
         if (elm.hasAttribute("href")) {
             let newHref = new URL(elm.getAttribute("href"), navdocUrl.href).href;
@@ -330,13 +330,14 @@ async function initSearchPanel(searchPanel, searchIndexUrl, searchDataUrl) {
     });
 }
 
-async function initAboutPanel(pathToRoot) {
-    await importAboutDoc(pathToRoot);
+async function initAboutPanel(aboutUrl) {
+    await importAboutDoc(aboutUrl);
 }
 
-async function importAboutDoc(pathToRoot) {
+async function importAboutDoc(aboutUrl) {
+    
     // fetch the navigation document and extract the nav elements
-    let aboutdocUrl = new URL(`${pathToRoot}about.html`, document.location.href);
+    let aboutdocUrl = new URL(aboutUrl, document.location);
     let res = await fetch(aboutdocUrl.href);
     let text = await res.text();    
     let parser = new DOMParser();
@@ -347,9 +348,9 @@ async function importAboutDoc(pathToRoot) {
     let images = Array.from(main.querySelector("img"));
     
     // adjust the image URLs 
-    images
-        .filter(img => !isAbsolute(img.getAttribute("src")))
-        .map(img => img.setAttribute("src", "../" + img.getAttribute("src")));
+    // images
+    //     .filter(img => !isAbsolute(img.getAttribute("src")))
+    //     .map(img => img.setAttribute("src", "../" + img.getAttribute("src")));
 
     // reparent the nav doc elements
     Array.from(main.childNodes).map(child => navContainer.appendChild(child));
@@ -367,14 +368,13 @@ function isAbsolute(url) {
     return false;
 }
 
-async function importNavDoc(pathToRoot) {
+async function importNavDoc(navUrl) {
     // fetch the navigation document and extract the nav elements
-    let navdocUrl = new URL(`${pathToRoot}nav.html`, document.location.href);
-    let res = await fetch(navdocUrl.href);
+    let res = await fetch(navUrl.href);
     let text = await res.text();    
     let parser = new DOMParser();
     let dom = await parser.parseFromString(text, 'text/html');
-    let main = dom.querySelector('main');
+    let main = dom.querySelector('body');
 
     let navContainer = document.querySelector("#p4w-nav > div");
     // reparent the nav doc elements

@@ -4,10 +4,12 @@ import { shiftClipTimes } from './shift-smil.js';
 import { addIds } from './add-ids.js';
 import { selfAnchorHeadings } from './self-anchor-headings.js';
 import fs from 'fs-extra';
-import { applyTemplate } from './wrap-in-template.js';
+import { applyTemplate } from './apply-template.js';
 import * as utils from './utils.js';
 import { makeAboutPage } from './make-about-page.js';
 import { generateSearchIndex } from './create-search-index.js';
+import { convert } from './convert.js';
+import { singleToMultiPage } from './single-to-multi-page.js';
 
 async function main() {
 
@@ -56,36 +58,7 @@ async function main() {
             }
         });
 
-    program
-        .command("apply-template")
-        .description("wrap all the file contents in a template")
-        .argument('inputDir', "Input directory")
-        .argument("outputDir", "Output directory")
-        .argument("navdoc", "Navigation document filename")
-        .argument("packagedoc", "Package document filename")
-        .option("-i, --info <file>", "JSON file containing pub info")
-        .action(async(inputDir, outputDir, packagedoc, navdoc, options) => {
-
-            let inputDirname = path.resolve(process.cwd(), inputDir);
-            let inputFilenames = fs.readdirSync(inputDirname)
-                .filter(file => path.extname(file) == ".xhtml" || path.extname(file) == ".html")
-                .map(file => path.join(inputDirname, file));
-            let outputDirname = path.resolve(process.cwd(), outputDir);
-            utils.ensureDirectory(outputDirname);
-            let pubInfo = null;
-            if (options.info) {
-                let pubInfoContents = fs.readFileSync(path.resolve(process.cwd(), options.info), 'utf-8');
-                pubInfo = JSON.parse(pubInfoContents);
-            }
-
-            let createdFiles = await applyTemplate(inputFilenames, 
-                outputDirname, 
-                path.resolve(process.cwd(), navdoc),
-                path.resolve(process.cwd(), packagedoc),
-                pubInfo
-            );
-            await generateSearchIndex(createdFiles, path.resolve(outputDir, "../"));
-        });
+    
 
         program
         .command("make-about-page")
@@ -99,6 +72,20 @@ async function main() {
                 );
         });
 
+        program
+        .command("convert")
+        .description("convert an epub to a folder of html pages")
+        .argument('input', "Input EPUB file or directory")
+        .argument('outputDir', "Output directory")
+        .argument('clientCodeDir', "Shared client code folder")
+        .action(async(input, outputDir, clientCodeDir, options) => {
+            await utils.ensureDirectory(outputDir);
+            await convert(
+                path.resolve(process.cwd(), input),
+                path.resolve(process.cwd(), outputDir),
+                clientCodeDir
+            );
+        });
     program.parse(process.argv);
 }
 

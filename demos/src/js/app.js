@@ -6,17 +6,25 @@ import { createNavPanelContents } from './panels/nav.js';
 import { createSettingsPanelContents } from './panels/settings.js';
 import * as player from './player.js';
 
-async function setupUi(smilHref, searchIndexUrl, searchDataUrl, pathToRoot = '../') {
+async function setupUi(searchIndexUrl, searchDataUrl) {
     initState();
+    // collect data
+    let aboutUrl = document.querySelector("#p4w-about-link").getAttribute("href");
+    let navUrl = new URL(document.querySelector("#p4w-toc-link").getAttribute("href"), document.location);
+
     await createNavToolbar();
-    await createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl);
+    await createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDataUrl);
     
-    if (smilHref) {
-        await player.load(new URL(smilHref, document.location.href));
+    let hasSyncAudio = false;
+    if (document.querySelector("#p4w-audio")) {
+        let audioSrc = document.querySelector("#p4w-audio").getAttribute("src");
+        let vttSrc = document.querySelector("#p4w-audio track").getAttribute("src");
+        hasSyncAudio = true;
+        await player.load(audioSrc, vttSrc);
         createPlaybackToolbar();
     }
-    createApplicationToolbar(pathToRoot);
-    await createSettingsPanelContents(smilHref != null);
+    createApplicationToolbar();
+    await createSettingsPanelContents(hasSyncAudio);
     setupKeyboardShortcuts();
 
     let nextSection = document.querySelector("#p4w-next-section");

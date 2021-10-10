@@ -1,0 +1,204 @@
+import * as epubParser from './epubParser/index.js';
+import * as logger from './logger/index.js';
+import * as path from 'path';
+import {singleToMultiPage} from './single-to-multi-page.js';
+import * as utils from './utils.js';
+import fs from 'fs-extra';
+import {renameFileUpdateRefs} from './rename-epub-file.js';
+import { mergeAudioSegments } from './process-audio.js';
+import xpath from 'xpath';
+import * as fileio from './file-io.js';
+import { createVtt } from './vtt.js';
+import {applyTemplate} from './apply-template.js';
+import {makeAboutPage} from './make-about-page.js';
+import {removeXMLThings} from './exhtml.js';
+import { generateSearchIndex } from './create-search-index.js';
+import { selfAnchorHeadings } from './self-anchor-headings.js';
+import { createListOfNavs } from './create-list-of-navs.js';
+
+let select = xpath.useNamespaces({
+    html: 'http://www.w3.org/1999/xhtml',
+    epub: "http://www.idpf.org/2007/ops",
+    dc: "http://purl.org/dc/elements/1.1/",
+    opf: "http://www.idpf.org/2007/opf",
+    smil: "http://www.w3.org/ns/SMIL"
+});
+
+
+async function convert(inputDir, outputDir, pathToSharedClientCode, splitContentDoc=true) {
+    logger.initLogger(path.join(process.cwd(), "output.log"));
+
+    // copy to a working directory
+    let workingDir = path.join(outputDir, path.basename(inputDir));
+    await utils.ensureDirectory(workingDir, true);
+    
+    await fs.copy(inputDir, workingDir);
+
+    await prepareFiles(workingDir, splitContentDoc);
+        
+    // for each spine item, find its audio clips
+    let epub = await epubParser.parse(workingDir);
+
+    let aboutFilename = path.join(path.dirname(epub.navFilename), "about.html");
+    let audioFilenames = [];
+    for (let spineItem of epub.spine) {
+        console.log(spineItem.path);
+        if (spineItem.moPath) {
+            let mediaSegments = await getMediaSegments(spineItem);
+            
+            let audioExt = mediaSegments.length > 0 ? path.extname(mediaSegments[0].src) : '';
+            let spineItemFilename = path.basename(spineItem.path);
+            
+            let syncOutputDir = path.join(path.dirname(spineItem.path), "sync");
+            await utils.ensureDirectory(syncOutputDir);
+            let audioOutputDir = path.join(path.dirname(spineItem.path), "audio");
+            await utils.ensureDirectory(audioOutputDir);
+            
+            let audioFilename = path.join(audioOutputDir, spineItemFilename.replace(".html", audioExt));
+            let vttFilename = path.join(syncOutputDir, spineItemFilename.replace(".html", '.vtt'));
+
+            await mergeAudioSegments(mediaSegments, audioFilename);
+            await createVtt(mediaSegments, vttFilename);
+
+            // apply the HTML template to the spine item
+            await applyTemplate(
+                spineItem.path,
+                audioFilename,
+                vttFilename,
+                spineItem.path,
+                epub,
+                aboutFilename,
+                pathToSharedClientCode
+            );
+
+            await removeXMLThings(spineItem.path, spineItem.path);
+
+            audioFilenames.push(audioFilename);
+        }
+    };
+    
+    
+    await removeXMLThings(epub.navFilename, epub.navFilename);
+    await createListOfNavs(epub.navFilename, epub.navFilename);
+
+    // clean up the directory
+    // - remove mimetype, META-INF, opf, ncx
+    await fs.remove(path.join(workingDir,"mimetype"));
+    await fs.remove(path.join(workingDir, "META-INF"));
+    await fs.remove(path.join(path.dirname(epub.navFilename), "ncx.xml"));
+    await fs.remove(epub.packageFilename);
+    await Promise.all(epub.audioFiles.map(async audioFile => await fs.remove(audioFile)));
+    
+    await makeAboutPage(epub, aboutFilename);
+
+    let removedDirs = [];
+
+    // - collapse directories that contain only one directory
+    let collapseDirs = async dir => {
+        let files = await fs.readdir(dir);
+        files = files.filter(file => file != '.DS_Store');
+        if (files.length == 1) {
+            let stat = await fs.stat(path.join(dir, files[0]));
+            if (stat.isDirectory()) {
+                // copy the contents of this directory to its parent and delete this directory
+                await fs.copy(path.join(dir, files[0]), dir, {overwrite: true});
+                await fs.remove(path.join(dir, files[0]));
+                removedDirs.push(files[0]);
+                // do it again
+                await collapseDirs(dir);
+            }
+        }
+    };
+
+    await collapseDirs(workingDir);
+
+    removedDirs.map(removedDir => epub.navFilename = epub.navFilename.replace(removedDir + "/", ''));
+    epub.spine.map(item => removedDirs.map(removedDir => item.path = item.path.replace(removedDir + "/", '')));
+
+    let spineFiles = epub.spine.map(item => item.path);
+
+    for (let spineFile of spineFiles) {
+        await selfAnchorHeadings(spineFile, spineFile);
+    }
+
+    await generateSearchIndex(spineFiles, path.dirname(epub.navFilename));
+    
+    
+    
+}
+
+// modify the files in workingDir to prepare them for conversion
+// optionally split a monolithic content doc into many files
+// rename xhtml to html
+// make sure there's an index.html entry point file
+async function prepareFiles(workingDir, splitContentDoc) {
+    // if there's a monolithic content doc, split it up
+    if (splitContentDoc) {
+        // also deletes the original single content doc
+        await singleToMultiPage(workingDir);
+    }
+
+    let epub = await epubParser.parse(workingDir);
+
+    // identify the entry page
+    // TODO grab the cover if there is one
+    // else just use the first spine item
+    let entryPage = epub.spine[0];
+    
+    // rename entry page to index.html
+    await renameFileUpdateRefs(
+        entryPage.path, 
+        path.join(path.dirname(entryPage.path), "index.html"),
+        epub
+    );
+    // rename all other spine items from xhtml to html
+    for (let spineItem of epub.spine.slice(1)) {
+        if (path.extname(spineItem.path) == ".xhtml") {
+            await renameFileUpdateRefs(
+                spineItem.path,
+                spineItem.path.replace(".xhtml", ".html"),
+                epub
+            );
+        }
+    }
+
+    await renameFileUpdateRefs(
+        epub.navFilename,
+        path.join(path.dirname(epub.navFilename), "nav.html"),
+        epub
+    );
+
+}
+async function getMediaSegments(spineItem) {
+    let smildoc = await fileio.parse(spineItem.moPath);
+
+    // expand all the srcs
+    let srcs = select("//*/@src", smildoc);
+    //@ts-ignore
+    Array.from(srcs).map(src => src.ownerElement.setAttribute("src", path.join(path.dirname(spineItem.moPath), src.nodeValue)));
+
+    let textElms = select(`//smil:text[contains(@src, '${spineItem.path}')]`, smildoc);
+
+    let mediaSegments = [];
+
+    Array.from(textElms).map(textElm => {
+        //@ts-ignore
+        let audioElms = select(".//smil:audio", textElm.parentNode);
+        Array.from(audioElms).map(audioElm => {
+            mediaSegments.push({
+                //@ts-ignore
+                src: audioElm.getAttribute("src"),
+                //@ts-ignore
+                clipBegin: audioElm.getAttribute("clipBegin"),
+                //@ts-ignore
+                clipEnd: audioElm.getAttribute("clipEnd"),
+                //@ts-ignore
+                textSrc: textElm.getAttribute("src")
+            });
+        }); 
+    });
+    return mediaSegments;
+}
+
+
+export { convert };

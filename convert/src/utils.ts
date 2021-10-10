@@ -59,9 +59,12 @@ function toSeconds(value: string) {
     var total = hours * 3600 + mins * 60 + secs;
     return {seconds: total, format};
 }
-async function ensureDirectory(dir: string) {
+async function ensureDirectory(dir: string, ensureIsEmpty: boolean = false) {
     if (!fs.existsSync(dir)) {
         await fs.mkdir(dir);
+    }
+    if (ensureIsEmpty) {
+        await fs.emptyDir(dir);
     }
 }
 
@@ -86,5 +89,36 @@ function splitSrcSelector(src: string) {
     return { src: src_, selector };
 }
 
+function addItem (key, value, obj) {
+    // combine duplicates into an array
+    if (obj[key]) {
+        if (Array.isArray(obj[key])) { 
+            obj[key].push(value);
+        }
+        else {
+            obj[key] = [obj[key], value];
+        }
+    } 
+    else {
+        obj[key] = value; 
+    }
+};
 
-export { sniffEncoding, toHHMMSS, toSeconds, ensureDirectory, splitSrcSelector };
+function getFrag(str) {
+    if (str.indexOf("#") != -1) {
+        return str.slice(str.indexOf("#") + 1);
+    }
+    else {
+        return '';
+    }
+} 
+function getWithoutFrag(str) {
+    if (str.indexOf("#") != -1) {
+        return str.slice(0, str.indexOf("#"));
+    }
+    else {
+        return str;
+    }
+}
+
+export { sniffEncoding, toHHMMSS, toSeconds, ensureDirectory, splitSrcSelector, addItem, getFrag, getWithoutFrag };

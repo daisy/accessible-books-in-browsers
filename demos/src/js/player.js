@@ -4,34 +4,38 @@ let curridx = 0;
 let track;
 let audio;
 
-async function load(filename) {
-    console.log("player load", filename);
+async function load(audioFilename, vttFilename) {
     
-    let syncdataContents = await fetch(filename);
-    let syncdata = await syncdataContents.text();
-    syncdata = JSON.parse(syncdata);
-    syncpoints = syncdata.syncpoints;
+    // let syncdataContents = await fetch(filename);
+    // let syncdata = await syncdataContents.text();
+    // syncdata = JSON.parse(syncdata);
+    // syncpoints = syncdata.syncpoints;
 
     // it has to be a video because audio elements don't take caption tracks
     // remove any previous #p4w-sync-audio element
     let oldSyncElm = document.querySelector("#p4w-sync-audio");
     if (oldSyncElm) oldSyncElm.remove();
     audio = document.createElement("video");
-    audio.setAttribute("src", syncdata.assets.audio);
+    audio.setAttribute("src", audioFilename);
     audio.id = "p4w-sync-audio";
     audio.style['display'] = 'none';
     document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
 
-    audio = document.querySelector("#p4w-sync-audio");
-
-    track = audio.addTextTrack("captions", "Document", "en");
+    let track = document.createElement("track");
     track.mode = "hidden";
-    syncpoints.map(item => {
-        let clipBegin = parseClockValue(item.audio.clipBegin);
-        let clipEnd = parseClockValue(item.audio.clipEnd)
-        track.addCue(new VTTCue(clipBegin, clipEnd, item.text));
-    });
-    console.log(track.cues);
+    track.setAttribute("src", vttFilename);
+    audio.appendChild(track);
+    
+    // audio = document.querySelector("#p4w-sync-audio");
+
+    // track = audio.addTextTrack("captions", "Document", "en");
+    // track.mode = "hidden";
+    // syncpoints.map(item => {
+    //     let clipBegin = parseClockValue(item.audio.clipBegin);
+    //     let clipEnd = parseClockValue(item.audio.clipEnd)
+    //     track.addCue(new VTTCue(clipBegin, clipEnd, item.text));
+    // });
+    
     track.addEventListener("cuechange", onCueChange);
 
     audio.addEventListener("play", e => {

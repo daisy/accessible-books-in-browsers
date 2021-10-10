@@ -1,8 +1,8 @@
-import {getPackageMetadata} from './package-parser.js';
 import fs from 'fs-extra';
 import dayjs from 'dayjs'
+import * as path from 'path';
 
-let aboutPageTemplate = (metadata) =>
+let aboutPageTemplate = (metadata, coverImage) =>
 `<!DOCTYPE html>
 <html lang="en-us">
 
@@ -40,7 +40,7 @@ let aboutPageTemplate = (metadata) =>
     
     <main>        
         <h1>About this publication</h1>
-        <img src="${metadata['cover']}" alt="Cover image"></img>
+        <img src="${coverImage}" alt="Cover image"></img>
         <ul>
             <li><span class="label">Title:</span> <span id="title">${metadata['dc:title']}</span></li>
             <li><span class="label">Created by:</span> <span id="createdby">${metadata['dc:creator']}</span></li>
@@ -59,10 +59,10 @@ let aboutPageTemplate = (metadata) =>
  </html>
 `;
 
-async function makeAboutPage(opfFilename, outputFilename) {
-    let metadata = await getPackageMetadata(opfFilename);
-    metadata['dc:date'] = dayjs(metadata['dc:date']).format('D MMMM YYYY');
-    let contents = aboutPageTemplate(metadata);
+async function makeAboutPage(epub, outputFilename) {
+    epub.metadata['dc:date'] = dayjs(epub.metadata['dc:date']).format('D MMMM YYYY');
+    let coverImage = path.relative(path.dirname(outputFilename), epub.metadata['cover']);
+    let contents = aboutPageTemplate(epub.metadata, coverImage);
     await fs.writeFile(outputFilename, contents);
 }
 
