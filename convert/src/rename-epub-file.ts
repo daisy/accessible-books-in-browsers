@@ -14,13 +14,13 @@ let select = xpath.useNamespaces({
 
 
 async function renameFileUpdateRefs(oldFilename, newFilename, epub) {
-    await fs.move(oldFilename, newFilename, {overwrite: true});    
     let spineItem = epub.spine.find(item => item.path == oldFilename);
     if (spineItem) { // really we should check manifest not spine but this is faster and will work for now
         await updateSmil(spineItem.moPath, oldFilename, newFilename);
     }
-    await updateNav(newFilename, oldFilename, newFilename);
+    await updateNav(epub.navFilename, oldFilename, newFilename);
     await updateSpine(epub.packageFilename, oldFilename, newFilename);
+    await fs.move(oldFilename, newFilename, {overwrite: true});    
 }
 
 async function updateSmil(smilFilename, oldFilename, newFilename) {
@@ -47,14 +47,14 @@ async function updateNav(navFilename, oldFilename, newFilename) {
     let allLinks = select("//html:a", navdoc);
     Array.from(allLinks).map(linkElm => {
         //@ts-ignore
-        if (linkElm.hasAttribute("src")) {
+        if (linkElm.hasAttribute("href")) {
             //@ts-ignore
-            let src = path.join(path.dirname(smilFilename), linkElm.getAttribute("src"));
+            let src = path.join(path.dirname(navFilename), linkElm.getAttribute("href"));
             if (utils.getWithoutFrag(src) == oldFilename) {
                 let frag = utils.getFrag(src);
                 let newFileSrc = path.relative(path.dirname(navFilename), newFilename);
                 //@ts-ignore
-                linkElm.setAttribute("src", newFileSrc + "#" + frag);
+                linkElm.setAttribute("href", newFileSrc + "#" + frag);
             }
         }
     });
