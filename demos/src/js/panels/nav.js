@@ -31,12 +31,12 @@ structure the navigation like this
 <!-- tab contents -->
 <div role="tab-panel" >
     <!-- from original nav doc -->
-    <nav class="epubtype-toc"> 
+    <nav class="epubtype_toc"> 
     ...
 </div>
 <div role="tab-panel">
     <!-- from original nav doc -->
-    <nav class="epubtype-pagelist">
+    <nav class="epubtype_page-list">
     ...
 </div>
 ...
@@ -52,7 +52,7 @@ function convertToTabs() {
         listOfNavs.innerHTML = "<ol></ol>";
         document.querySelector("#p4w-nav > div").insertBefore(listOfNavs, document.querySelector("#p4w-nav > div").firstElementChild);
         // add a link to the toc
-        let toc = document.querySelector("nav.epubtype-toc");
+        let toc = document.querySelector("nav.epubtype_toc");
         listItems.push({"label": "Table of Contents", "target": toc.id});
     }
     // collect all the links
@@ -118,17 +118,17 @@ function createNavPanelTab(label, targetId) {
     // pick an icon for it
     let icon = '';
     let idPrefix = '';
-    if (target.classList.contains("epubtype-toc")) {
+    if (target.classList.contains("epubtype_toc")) {
         icon = icons.toc;
         idPrefix = 'p4w-toc';
     }
-    else if (target.classList.contains("epubtype-landmarks")) {
+    else if (target.classList.contains("epubtype_landmarks")) {
         icon = icons.landmarks;
         idPrefix = 'p4w-landmarks';
     }
-    else if (target.classList.contains("epubtype-pagelist")) {
+    else if (target.classList.contains("epubtype_page-list")) {
         icon = icons.pages;
-        idPrefix = 'p4w-pagelist';
+        idPrefix = 'p4w-page-list';
     }
     else if (target.classList.contains("p4w-bookmarks")) {
         icon = icons.bookmarks;
@@ -160,7 +160,7 @@ function createNavPanelTab(label, targetId) {
     targetWrapper.appendChild(target);
 
     // default focus on the toc
-    let isToc = target.classList.contains("epubtype-toc");
+    let isToc = target.classList.contains("epubtype_toc");
     let tabIndex = isToc ? "0" : "-1";
     let ariaSelected = isToc ? "true" : "false";
     if (!isToc) {
@@ -261,10 +261,10 @@ function changeTabs(e) {
 }
 
 function addGoToPage() {
-    if (document.querySelector("nav.epubtype-pagelist")) {
+    if (document.querySelector("nav.epubtype_page-list")) {
         let gotoPage = (pageNumber) => {
             document.querySelector("#p4w-gotopage-error").textContent = "";
-            let pages = document.querySelectorAll("nav.epubtype-pagelist li a");
+            let pages = document.querySelectorAll("nav.epubtype_page-list li a");
             let page = Array.from(pages).find(page => page.textContent.toLowerCase() == pageNumber.trim().toLowerCase());
             if (page) page.click();
             else document.querySelector("#p4w-gotopage-error").textContent = "Page not found";
@@ -280,7 +280,7 @@ function addGoToPage() {
         </div>
         <p id="p4w-gotopage-error" aria-live="polite"></p>
         `;
-        document.querySelector("#p4w-pagelist-wrapper").insertBefore(gotoPagelist, document.querySelector("nav.epubtype-pagelist"));
+        document.querySelector("#p4w-page-list-wrapper").insertBefore(gotoPagelist, document.querySelector("nav.epubtype_page-list"));
 
         document.querySelector("#p4w-gotopage-text").addEventListener("keyup", e => {
             if (e.code == "Enter") gotoPage(e.target.value);
