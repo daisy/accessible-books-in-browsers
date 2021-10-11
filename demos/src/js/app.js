@@ -48,9 +48,6 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
             elm.scrollIntoView();
             elm.setAttribute("role", "mark");
         }
-        else {
-            console.log("Not found", localStorage.getItem("p4w-target"));
-        }
     }
     localStorage.setItem("p4w-target", null);
 
