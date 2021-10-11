@@ -25,7 +25,7 @@ let select = xpath.useNamespaces({
 });
 
 
-async function convert(inputDir, outputDir, pathToSharedClientCode, splitContentDoc=true) {
+async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAudio=false, splitContentDoc=true) {
     logger.initLogger(path.join(process.cwd(), "output.log"));
 
     // copy to a working directory
@@ -56,7 +56,9 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, splitContent
             let audioFilename = path.join(audioOutputDir, spineItemFilename.replace(".html", audioExt));
             let vttFilename = path.join(vttOutputDir, spineItemFilename.replace(".html", '.vtt'));
 
-            await mergeAudioSegments(mediaSegments, audioFilename);
+            if (!skipMergeAudio) {
+                await mergeAudioSegments(mediaSegments, audioFilename);
+            }
             await createVtt(mediaSegments, vttFilename);
 
             // apply the HTML template to the spine item
