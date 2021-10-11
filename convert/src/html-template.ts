@@ -21,6 +21,7 @@ function template (
 return `<!DOCTYPE html>
 <html lang="en">
 <head>
+    ${headContents}
     <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/layout.css">
@@ -37,9 +38,6 @@ return `<!DOCTYPE html>
         `<link rel="icon" type="image/png" sizes="96x96" href="${favicoHref}">`
         : ``}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    ${headContents}
-
     <script>document.documentElement.classList.add('p4w-js');</script>
 </head>
 
