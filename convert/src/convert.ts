@@ -42,20 +42,19 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, splitContent
     let aboutFilename = path.join(path.dirname(epub.navFilename), "about.html");
     let audioFilenames = [];
     for (let spineItem of epub.spine) {
-        console.log(spineItem.path);
         if (spineItem.moPath) {
             let mediaSegments = await getMediaSegments(spineItem);
             
             let audioExt = mediaSegments.length > 0 ? path.extname(mediaSegments[0].src) : '';
             let spineItemFilename = path.basename(spineItem.path);
             
-            let syncOutputDir = path.join(path.dirname(spineItem.path), "sync");
-            await utils.ensureDirectory(syncOutputDir);
+            let vttOutputDir = path.join(path.dirname(spineItem.path), "vtt");
+            await utils.ensureDirectory(vttOutputDir);
             let audioOutputDir = path.join(path.dirname(spineItem.path), "audio");
             await utils.ensureDirectory(audioOutputDir);
             
             let audioFilename = path.join(audioOutputDir, spineItemFilename.replace(".html", audioExt));
-            let vttFilename = path.join(syncOutputDir, spineItemFilename.replace(".html", '.vtt'));
+            let vttFilename = path.join(vttOutputDir, spineItemFilename.replace(".html", '.vtt'));
 
             await mergeAudioSegments(mediaSegments, audioFilename);
             await createVtt(mediaSegments, vttFilename);
@@ -189,9 +188,9 @@ async function getMediaSegments(spineItem) {
                 //@ts-ignore
                 src: audioElm.getAttribute("src"),
                 //@ts-ignore
-                clipBegin: audioElm.getAttribute("clipBegin"),
+                clipBegin: utils.toSeconds(audioElm.getAttribute("clipBegin")),
                 //@ts-ignore
-                clipEnd: audioElm.getAttribute("clipEnd"),
+                clipEnd: utils.toSeconds(audioElm.getAttribute("clipEnd")),
                 //@ts-ignore
                 textSrc: textElm.getAttribute("src")
             });

@@ -11,6 +11,7 @@ import { DOMParser, XMLSerializer } from 'xmldom';
 export { singleToMultiPage };
 import fs from 'fs-extra';
 import * as utils from './utils.js';
+import winston from 'winston';
 
 let select = xpath.useNamespaces({
     html: 'http://www.w3.org/1999/xhtml',
@@ -21,19 +22,22 @@ let select = xpath.useNamespaces({
 });
 
 // WARNING: this overwrites what's in inputDir
-// it assumes you've made a copy of the book in an earlier step
+// it assumes you've made a copy of the book in an earlier step, and that's what we're working from here
 // or that you don't care
+//
+// this takes an EPUB with a single content document and creates an EPUB with multiple content documents instead
+// the document is broken into files according to <div class="file"> elements
+// all nav, spine, smil refs are updated accordingly
+// this is not a generic solution and prob not a feature that will make it into the final? script
+// but it makes the demo content look nicer
 async function singleToMultiPage(inputDir) {
-    // logger.initLogger(path.join(outputDir, "output.log"));
-    // copy the whole inputDir to outputDir and work from there
-    
     let epub = await epubParser.parse(inputDir);
     if (epub.spine.length == 0) {
-        console.log("Does not have any content documents");
+        winston.warn("Does not have any content documents");
         return;
     }
     if (epub.spine.length > 1) {
-        console.log("Already has multiple content documents");
+        winston.info("Already has multiple content documents");
         return;
     }
 

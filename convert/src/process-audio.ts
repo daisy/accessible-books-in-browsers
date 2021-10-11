@@ -19,20 +19,19 @@ let select = xpath.useNamespaces({
 });
 
 async function mergeAudioSegments(mediaSegments, outFilename) {
-    winston.info("Merging audio clips into", outFilename);
-    return;
+    winston.info(`Merging audio clips into ${outFilename}`);
     
     tmp.setGracefulCleanup();
     let tmpDirname = tmp.dirSync({unsafeCleanup: true}).name;
     let audioTmpFilenames = [];
     // first, create clips for each audio segment
-    let clipCreation = mediaSegments.map((audio, idx) => {
+    let clipCreation = mediaSegments.map(async (audio, idx) => {
         return new Promise((resolve, reject) => {
             let audioTmpFilename = path.join(tmpDirname, `${idx}${path.extname(audio.src)}`);
             audioTmpFilenames.push(audioTmpFilename);
             ffmpeg()
                 .input(audio.src)
-                .audioFilters(`atrim=${audio.clipBegin}:${audio.clipEnd}`)
+                .audioFilters(`atrim=${audio.clipBegin.seconds}:${audio.clipEnd.seconds}`)
                 .output(audioTmpFilename)
                 .on('progress', (progress) => {
                     winston.verbose(`[ffmpeg] ${JSON.stringify(progress)}`);

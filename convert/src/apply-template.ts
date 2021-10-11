@@ -34,27 +34,28 @@ async function applyTemplate(inputFilename, audioFilename, vttFilename, outputFi
     let relNavDocHref = epub.navFilename ? path.relative(path.dirname(inputFilename), epub.navFilename) : null;
     let relVttFilename = vttFilename ? path.relative(path.dirname(inputFilename), vttFilename) : null;
     let relAudioFilename = audioFilename ? path.relative(path.dirname(inputFilename), audioFilename) : null;
-    let relFavico = epub.spine.favico ? path.relative(path.dirname(inputFilename), epub.spine.favico) : null;
+    let relFavico = epub.favico ? path.relative(path.dirname(inputFilename), epub.favico) : null;
     let relAboutFilename = aboutFilename ? path.relative(path.dirname(inputFilename), aboutFilename) : null;
     let relSearchDataFilename = path.relative(path.dirname(inputFilename), path.join(path.dirname(epub.navFilename), "data.json"));
     let relSearchIndexFilename = path.relative(path.dirname(inputFilename), path.join(path.dirname(epub.navFilename), "idx.json"));
 
     let newContents = template(
-        bodyContents,
-        relPreviousSectionHref, 
-        previousSectionTitle, 
-        relNextSectionHref, 
-        nextSectionTitle,
-        relNavDocHref,
-        headContents,
-        relVttFilename,
-        relAudioFilename,
-        relFavico,
-        relAboutFilename,
-        pathToSharedClientCode,
-        outputFilename,
-        relSearchIndexFilename,
-        relSearchDataFilename
+        {
+            bodyContents,
+            headContents,
+            previousSectionHref: relPreviousSectionHref, 
+            previousSectionTitle, 
+            nextSectionHref: relNextSectionHref, 
+            nextSectionTitle,
+            navDocHref: relNavDocHref,
+            vttSrc: relVttFilename,
+            audioSrc: relAudioFilename,
+            favicoHref: relFavico,
+            aboutHref: relAboutFilename,
+            pathToSharedClientCode,
+            searchIndexSrc: relSearchIndexFilename,
+            searchDataSrc: relSearchDataFilename
+        }    
     );
 
     await fs.writeFile(outputFilename, newContents);

@@ -10,16 +10,14 @@ async function createVtt(mediaSegments, outFilename) {
     let startTime = 0;
 
     let getDuration = (clipBegin, clipEnd) => {
-        let startValue = utils.toSeconds(clipBegin).seconds;
-        let endValue = utils.toSeconds(clipEnd).seconds;
         //@ts-ignore
-        return parseFloat(endValue) - parseFloat(startValue);
+        return parseFloat(clipEnd) - parseFloat(clipBegin);
     };
 
     utils.toSeconds("");
     mediaSegments.map(mediaSegment => {
         let text = utils.getFrag(mediaSegment.textSrc);
-        let dur = getDuration(mediaSegment.clipBegin, mediaSegment.clipEnd);
+        let dur = getDuration(mediaSegment.clipBegin.seconds, mediaSegment.clipEnd.seconds);
         v.add(startTime, startTime + dur, `#${text}`);
         startTime += dur;
     });

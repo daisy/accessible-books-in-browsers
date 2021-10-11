@@ -8,8 +8,8 @@ import * as player from './player.js';
 
 async function setupUi(searchIndexUrl, searchDataUrl) {
     initState();
-    // collect data
-    let aboutUrl = document.querySelector("#p4w-about-link").getAttribute("href");
+    // collect data before these elements get replaced
+    let aboutUrl = new URL(document.querySelector("#p4w-about-link").getAttribute("href"), document.location);
     let navUrl = new URL(document.querySelector("#p4w-toc-link").getAttribute("href"), document.location);
 
     await createNavToolbar();
@@ -17,8 +17,8 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
     
     let hasSyncAudio = false;
     if (document.querySelector("#p4w-audio")) {
-        let audioSrc = document.querySelector("#p4w-audio").getAttribute("src");
-        let vttSrc = document.querySelector("#p4w-audio track").getAttribute("src");
+        let audioSrc = new URL(document.querySelector("#p4w-audio audio").getAttribute("src"), document.location);
+        let vttSrc = new URL(document.querySelector("#p4w-audio track").getAttribute("src"), document.location);
         hasSyncAudio = true;
         await player.load(audioSrc, vttSrc);
         createPlaybackToolbar();
@@ -40,7 +40,7 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
         });
     }
 
-    if (localStorage.getItem("p4w-target") != '') { 
+    if (localStorage.getItem("p4w-target")) { 
         let elm = document.querySelector(localStorage.getItem("p4w-target"));
         if (elm) {
             // console.log("highlighting search result", localStorage.getItem("p4w-target"));

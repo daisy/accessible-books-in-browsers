@@ -18,25 +18,16 @@ async function load(audioFilename, vttFilename) {
     audio = document.createElement("video");
     audio.setAttribute("src", audioFilename);
     audio.id = "p4w-sync-audio";
+    audio.setAttribute("controls", true);
     audio.style['display'] = 'none';
     document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
 
     let track = document.createElement("track");
-    track.mode = "hidden";
     track.setAttribute("src", vttFilename);
+    track.setAttribute("kind", "metadata");
+    track.track.mode = "hidden";
+    track.track.addEventListener("cuechange", onCueChange);
     audio.appendChild(track);
-    
-    // audio = document.querySelector("#p4w-sync-audio");
-
-    // track = audio.addTextTrack("captions", "Document", "en");
-    // track.mode = "hidden";
-    // syncpoints.map(item => {
-    //     let clipBegin = parseClockValue(item.audio.clipBegin);
-    //     let clipEnd = parseClockValue(item.audio.clipEnd)
-    //     track.addCue(new VTTCue(clipBegin, clipEnd, item.text));
-    // });
-    
-    track.addEventListener("cuechange", onCueChange);
 
     audio.addEventListener("play", e => {
         document.querySelector("body").classList.add("is-playing");
@@ -58,7 +49,13 @@ async function load(audioFilename, vttFilename) {
             reject();
         });
     });
-    await waitForAudioToLoad;
+    try {
+        await waitForAudioToLoad;
+    }
+    catch(err) {
+        console.error(err);
+    }
+        
 
     // hide the basic html audio player
     if (document.querySelector("#p4w-audio")) {
@@ -69,12 +66,12 @@ async function load(audioFilename, vttFilename) {
 
 function onCueChange(e) {
     console.log("cue change", e);
-    let cues = track.activeCues;
+    let cues = e.target.activeCues;
     if (cues.length > 0) {
         if (currentfrag != '') unhighlight(currentfrag);
         currentfrag = cues[cues.length - 1].text.split("#")[1];
         highlight(currentfrag);
-        curridx = syncpoints.findIndex(item => item.text.includes(currentfrag));
+        // curridx = syncpoints.findIndex(item => item.text.includes(currentfrag));
     }
 }
 function highlight(frag) {
@@ -89,15 +86,18 @@ function unhighlight(frag) {
 }
 
 function goNext() {
+    throw new Error("GONEXT");
     if (curridx <= syncpoints.length - 2) {
         curridx++;
-        audio.currentTime = parseClockValue(syncpoints[curridx].audio.clipBegin);
+        audio.currentTime = syncpoints[curridx].audio.clipBegin.seconds;
     }
 }
 function goPrevious() {
+    throw new Error("GOPREV");
+
     if (curridx > 0) {
         curridx--;
-        audio.currentTime = parseClockValue(syncpoints[curridx].audio.clipBegin);
+        audio.currentTime = syncpoints[curridx].audio.clipBegin.seconds;
     }
 }
 function canGoNext() {
