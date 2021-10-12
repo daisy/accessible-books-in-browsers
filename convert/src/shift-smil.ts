@@ -1,3 +1,5 @@
+// this standalone script is not part of the conversion process
+
 import fs from 'fs-extra';
 import iconv from 'iconv-lite';
 import { DOMParser, XMLSerializer } from 'xmldom';

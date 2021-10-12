@@ -10,8 +10,6 @@ body {
     grid-template-columns: minmax(10rem, 25%) 45rem minmax(10rem, 25%);
     grid-template-rows: auto 10rem;
     margin: 1rem 1rem 2rem 1rem;
-    background-color: rgb(var(--p4w-page-background-color));
-    color:rgb(var(--p4w-text-color));
     height: 100%;
 }
 
@@ -22,13 +20,6 @@ html.p4w-js body * {
 html.p4w-js body {
     background-color: rgb(var(--p4w-page-background-color));
 }
-a {
-    color: rgb(var(--p4w-link-color));
-}
-a:hover {
-    text-decoration-thickness: 2px;
-}
-
 main {
     grid-area: p4w-main;
 }
@@ -118,8 +109,6 @@ svg.p4w-iconify {
         grid-template-rows: auto 10rem;
         height: 100vh;
     }   
-    main {
-    }
     
     
     #p4w-document-links {

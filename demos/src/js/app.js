@@ -6,17 +6,23 @@ import { createNavPanelContents } from './panels/nav.js';
 import { createSettingsPanelContents } from './panels/settings.js';
 import * as player from './player.js';
 
-async function setupUi(smilHref, searchIndexUrl, searchDataUrl, pathToRoot = '../') {
+async function setupUi(searchIndexUrl, searchDataUrl) {
     initState();
+    // collect data before these elements get replaced
+    let aboutUrl = new URL(document.querySelector("#p4w-about-link").getAttribute("href"), document.location);
+    let navUrl = new URL(document.querySelector("#p4w-toc-link").getAttribute("href"), document.location);
+
     await createNavToolbar();
-    await createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl);
+    await createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDataUrl);
     
-    if (smilHref) {
-        await player.load(new URL(smilHref, document.location.href));
+    let hasSyncAudio = false;
+    if (document.querySelector("#p4w-audio")) {
+        hasSyncAudio = true;
+        await player.load();
         createPlaybackToolbar();
     }
-    createApplicationToolbar(pathToRoot);
-    await createSettingsPanelContents(smilHref != null);
+    createApplicationToolbar('../src/help');
+    await createSettingsPanelContents(hasSyncAudio);
     setupKeyboardShortcuts();
 
     let nextSection = document.querySelector("#p4w-next-section");
@@ -32,16 +38,13 @@ async function setupUi(smilHref, searchIndexUrl, searchDataUrl, pathToRoot = '..
         });
     }
 
-    if (localStorage.getItem("p4w-target") != '') { 
+    if (localStorage.getItem("p4w-target")) { 
         let elm = document.querySelector(localStorage.getItem("p4w-target"));
         if (elm) {
             // console.log("highlighting search result", localStorage.getItem("p4w-target"));
             elm.classList.add("search-result");
             elm.scrollIntoView();
             elm.setAttribute("role", "mark");
-        }
-        else {
-            console.log("Not found", localStorage.getItem("p4w-target"));
         }
     }
     localStorage.setItem("p4w-target", null);

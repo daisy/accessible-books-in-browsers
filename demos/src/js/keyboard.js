@@ -43,13 +43,13 @@ function setupKeyboardShortcuts() {
         }
         if (e.ctrlKey && e.altKey && e.code == 'KeyG') {
             openNavPanel();
-            document.querySelector("#p4w-pagelist-button").click();
+            document.querySelector("#p4w-page-list-button").click();
             document.querySelector("#p4w-gotopage-text").focus();
         }
         if (e.ctrlKey && e.altKey && e.code == "KeyT") {
             openNavPanel();
             document.querySelector("#p4w-toc-button").click();
-            document.querySelector("#p4w-toc-wrapper nav.epubtype-toc ol li a").focus();
+            document.querySelector("#p4w-toc-wrapper nav.epubtype_toc ol li a").focus();
         }
         if (e.ctrlKey && e.altKey && !e.shiftKey && e.code == "ArrowRight") {
             closeNavPanel();

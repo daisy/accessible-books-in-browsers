@@ -1,6 +1,6 @@
 /* nav styles that are relevant whether viewing nav as a standalone document or as a sidebar */
 
-nav ol, nav ul {
+nav ol {
     list-style-type: none;
     padding: 0;
     font-variant: small-caps;
@@ -10,18 +10,23 @@ nav li li {
     line-height: 1.2 !important;
     font-size: 80% !important;
 }
+nav li a:hover {
+    text-decoration: underline;
+    background-color: inherit;
+    text-decoration-thickness: 2px;
+}
 nav li a:not(:hover) {
     text-decoration: none;
 }
-nav ul > li, nav ol > li {
+nav ol > li {
     line-height: 2;
     font-size: 110%;
 }
-nav.epubtype-pagelist li {
+nav.epubtype_page-list li {
     line-height: 2;
     
 }
-nav.epubtype-pagelist ol {
+nav.epubtype_page-list ol {
     column-count: 4;
     height: 100%;
 }

@@ -2,9 +2,9 @@ import * as icons from '../icons.js';
 // import Fuse from '../lib/fuse.js';
 import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.esm.js'
 
-async function createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl) {
+async function createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDataUrl) {
     // read in the navigation document
-    await importNavDoc(pathToRoot);
+    await importNavDoc(navUrl);
 
     // convert the navigation doc contents into a tabbed view
     convertToTabs();
@@ -12,9 +12,9 @@ async function createNavPanelContents(pathToRoot, searchIndexUrl, searchDataUrl)
     addGoToPage();
 
     await initSearchPanel(document.querySelector("#p4w-search"), searchIndexUrl, searchDataUrl);
-    await initAboutPanel(pathToRoot);
+    await initAboutPanel(aboutUrl);
 
-    updateLinks(pathToRoot);
+    updateLinks();
 }
 
 
@@ -31,12 +31,12 @@ structure the navigation like this
 <!-- tab contents -->
 <div role="tab-panel" >
     <!-- from original nav doc -->
-    <nav class="epubtype-toc"> 
+    <nav class="epubtype_toc"> 
     ...
 </div>
 <div role="tab-panel">
     <!-- from original nav doc -->
-    <nav class="epubtype-pagelist">
+    <nav class="epubtype_page-list">
     ...
 </div>
 ...
@@ -52,7 +52,7 @@ function convertToTabs() {
         listOfNavs.innerHTML = "<ol></ol>";
         document.querySelector("#p4w-nav > div").insertBefore(listOfNavs, document.querySelector("#p4w-nav > div").firstElementChild);
         // add a link to the toc
-        let toc = document.querySelector("nav.epubtype-toc");
+        let toc = document.querySelector("nav.epubtype_toc");
         listItems.push({"label": "Table of Contents", "target": toc.id});
     }
     // collect all the links
@@ -118,17 +118,17 @@ function createNavPanelTab(label, targetId) {
     // pick an icon for it
     let icon = '';
     let idPrefix = '';
-    if (target.classList.contains("epubtype-toc")) {
+    if (target.classList.contains("epubtype_toc")) {
         icon = icons.toc;
         idPrefix = 'p4w-toc';
     }
-    else if (target.classList.contains("epubtype-landmarks")) {
+    else if (target.classList.contains("epubtype_landmarks")) {
         icon = icons.landmarks;
         idPrefix = 'p4w-landmarks';
     }
-    else if (target.classList.contains("epubtype-pagelist")) {
+    else if (target.classList.contains("epubtype_page-list")) {
         icon = icons.pages;
-        idPrefix = 'p4w-pagelist';
+        idPrefix = 'p4w-page-list';
     }
     else if (target.classList.contains("p4w-bookmarks")) {
         icon = icons.bookmarks;
@@ -160,7 +160,7 @@ function createNavPanelTab(label, targetId) {
     targetWrapper.appendChild(target);
 
     // default focus on the toc
-    let isToc = target.classList.contains("epubtype-toc");
+    let isToc = target.classList.contains("epubtype_toc");
     let tabIndex = isToc ? "0" : "-1";
     let ariaSelected = isToc ? "true" : "false";
     if (!isToc) {
@@ -261,10 +261,10 @@ function changeTabs(e) {
 }
 
 function addGoToPage() {
-    if (document.querySelector("nav.epubtype-pagelist")) {
+    if (document.querySelector("nav.epubtype_page-list")) {
         let gotoPage = (pageNumber) => {
             document.querySelector("#p4w-gotopage-error").textContent = "";
-            let pages = document.querySelectorAll("nav.epubtype-pagelist li a");
+            let pages = document.querySelectorAll("nav.epubtype_page-list li a");
             let page = Array.from(pages).find(page => page.textContent.toLowerCase() == pageNumber.trim().toLowerCase());
             if (page) page.click();
             else document.querySelector("#p4w-gotopage-error").textContent = "Page not found";
@@ -280,7 +280,7 @@ function addGoToPage() {
         </div>
         <p id="p4w-gotopage-error" aria-live="polite"></p>
         `;
-        document.querySelector("#p4w-pagelist-wrapper").insertBefore(gotoPagelist, document.querySelector("nav.epubtype-pagelist"));
+        document.querySelector("#p4w-page-list-wrapper").insertBefore(gotoPagelist, document.querySelector("nav.epubtype_page-list"));
 
         document.querySelector("#p4w-gotopage-text").addEventListener("keyup", e => {
             if (e.code == "Enter") gotoPage(e.target.value);
@@ -295,10 +295,10 @@ function addGoToPage() {
     }
 }
 
-function updateLinks(pathToRoot = '') {
+function updateLinks(navUrl) {
     // modify the nav hrefs to make sense in the context of our current document
-    let navdocUrl = new URL(`${pathToRoot}nav.html`, document.location.href);
-    let aboutdocUrl = new URL(`${pathToRoot}about.html`, document.location.href);
+    let navdocUrl = new URL(navUrl, document.location.href);
+    let aboutdocUrl = new URL(navUrl, document.location.href);
     Array.from(document.querySelectorAll("#p4w-nav > div a, #p4w-nav > div img")).map(elm => {
         if (elm.hasAttribute("href")) {
             let newHref = new URL(elm.getAttribute("href"), navdocUrl.href).href;
@@ -330,13 +330,14 @@ async function initSearchPanel(searchPanel, searchIndexUrl, searchDataUrl) {
     });
 }
 
-async function initAboutPanel(pathToRoot) {
-    await importAboutDoc(pathToRoot);
+async function initAboutPanel(aboutUrl) {
+    await importAboutDoc(aboutUrl);
 }
 
-async function importAboutDoc(pathToRoot) {
+async function importAboutDoc(aboutUrl) {
+    
     // fetch the navigation document and extract the nav elements
-    let aboutdocUrl = new URL(`${pathToRoot}about.html`, document.location.href);
+    let aboutdocUrl = new URL(aboutUrl, document.location);
     let res = await fetch(aboutdocUrl.href);
     let text = await res.text();    
     let parser = new DOMParser();
@@ -347,9 +348,9 @@ async function importAboutDoc(pathToRoot) {
     let images = Array.from(main.querySelector("img"));
     
     // adjust the image URLs 
-    images
-        .filter(img => !isAbsolute(img.getAttribute("src")))
-        .map(img => img.setAttribute("src", "../" + img.getAttribute("src")));
+    // images
+    //     .filter(img => !isAbsolute(img.getAttribute("src")))
+    //     .map(img => img.setAttribute("src", "../" + img.getAttribute("src")));
 
     // reparent the nav doc elements
     Array.from(main.childNodes).map(child => navContainer.appendChild(child));
@@ -367,14 +368,13 @@ function isAbsolute(url) {
     return false;
 }
 
-async function importNavDoc(pathToRoot) {
+async function importNavDoc(navUrl) {
     // fetch the navigation document and extract the nav elements
-    let navdocUrl = new URL(`${pathToRoot}nav.html`, document.location.href);
-    let res = await fetch(navdocUrl.href);
+    let res = await fetch(navUrl.href);
     let text = await res.text();    
     let parser = new DOMParser();
     let dom = await parser.parseFromString(text, 'text/html');
-    let main = dom.querySelector('main');
+    let main = dom.querySelector('body');
 
     let navContainer = document.querySelector("#p4w-nav > div");
     // reparent the nav doc elements

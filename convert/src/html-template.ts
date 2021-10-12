@@ -1,47 +1,49 @@
-let template = (
-    bookTitle, 
-    sectionTitle, 
-    contents, 
-    previousSectionHref, 
-    previousSectionTitle, 
-    nextSectionHref, 
-    nextSectionTitle, 
-    navDocHref, 
-    headContents,
-    narration,
-    favico,
-    pathToRoot = '') =>
-`<!DOCTYPE html>
+import * as path from 'path';
+
+function template (
+    {
+        bodyContents, 
+        headContents,
+        previousSectionHref, 
+        previousSectionTitle, 
+        nextSectionHref, 
+        nextSectionTitle, 
+        navDocHref, 
+        vttSrc,
+        audioSrc,
+        favicoHref,
+        aboutHref,
+        pathToSharedClientCode,
+        searchIndexSrc,
+        searchDataSrc
+    }) {
+
+return `<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="generatedBy" content="hand" />
-    <title>${sectionTitle ?? bookTitle}</title>
+    ${headContents}
+    <meta charset="utf-8" />    
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/layout.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/collapsible-panel.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/app-toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/playback-toolbar.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/nav-panel.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/settings-panel.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/content.css">
+    <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/nav.css">
     
-    <link rel="stylesheet" type="text/css" href="../../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/app-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../../src/styles/nav.css">
-    
-    ${favico ? 
-        `<link rel="icon" type="image/png" sizes="96x96" href="../${favico}">`
+    ${favicoHref ? 
+        `<link rel="icon" type="image/png" sizes="96x96" href="${favicoHref}">`
         : ``}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    ${headContents}
-
     <script>document.documentElement.classList.add('p4w-js');</script>
 </head>
 
 <body>
     <main>
-    ${contents}
+    ${bodyContents}
     </main>
     
  
@@ -82,7 +84,7 @@ let template = (
                 </g>
             </svg>
         </a>
-        <a id="p4w-about-link" href="../about.html" title="About this publication" class="p4w-lightup">
+        <a id="p4w-about-link" href="${aboutHref}" title="About this publication" class="p4w-lightup">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="p4w-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
@@ -105,24 +107,26 @@ let template = (
         </div>
     </section>
 
-    ${narration && narration != {} && narration.audio ? 
+    ${audioSrc ? 
         `<section id="p4w-playback-toolbar" class="p4w-toolbar" aria-label="Playback toolbar">        
             <div id="p4w-audio">
-                <audio src="${narration.audio}" controls></audio>
+                <audio src="${audioSrc}" controls>
+                    <track default kind="metadata" src="${vttSrc}">
+                </audio>
             </div>
         </section>`
         : ``
     }
 
     <script type="module" id="p4w-initApp">
-        import { setupUi } from '${pathToRoot}../src/js/app.js';
+        import { setupUi } from '${pathToSharedClientCode}/js/app.js';
 
         (async () => {
             try {
-                let searchIndex = new URL('${pathToRoot}idx.json', document.location);
-                let searchData = new URL('${pathToRoot}data.json', document.location);
+                // TODO parameterize this path
+                let searchIndex = new URL('${searchIndexSrc}', document.location);
+                let searchData = new URL('${searchDataSrc}', document.location);
                 await setupUi(
-                        ${narration && narration != {} && narration.smil != undefined ? `"${narration.smil}"` : null},
                         searchIndex,
                         searchData
                     );
@@ -138,5 +142,5 @@ let template = (
     </script>
 </body>
 </html>`;
-
+}
 export { template };

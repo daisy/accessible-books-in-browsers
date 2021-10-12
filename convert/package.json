@@ -12,7 +12,10 @@
     "apply-templates": "npm run start -- apply-template ../experiments/action-for-heroes-split-source ../demos/action-for-heroes/text ../demos/action-for-heroes/nav.html ../experiments/Action_for_heroes_orig/content.opf",
     "self-anchor-headings": "npm run start -- self-anchor-headings ../demos/action-for-heroes/text ../demos/action-for-heroes/text",
     "make-about-page": "npm run start -- make-about-page ../experiments/Action_for_heroes_orig/content.opf ../demos/action-for-heroes/about.html",
-    "shift-clips": "npm run start -- shift-clips ../demos/mobydick/smil/chapter_001_overlay.smil ../demos/mobydick/ch1.shifted.smil -a -24.5"
+    "shift-clips": "npm run start -- shift-clips ../demos/mobydick/smil/chapter_001_overlay.smil ../demos/mobydick/ch1.shifted.smil -a -24.5",
+    "convert": "npm run start -- convert ../experiments/action-for-heroes-epub ../demos/action-for-heros-2",
+    "copyAudioBack": "cp ../demos/audio/* ../demos/action_for_heroes_epub/audio",
+    "gulp": "gulp"
   },
   "keywords": [],
   "author": "",
@@ -27,14 +30,21 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^1.2.0",
     "chardet": "^1.3.0",
     "commander": "^8.0.0",
     "dayjs": "^1.10.6",
+    "extract-zip": "^2.0.1",
+    "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^10.0.0",
     "fuse.js": "^6.4.6",
     "iconv-lite": "^0.6.3",
     "jsdom": "^16.6.0",
+    "pretty": "^2.0.0",
     "tmp": "^0.2.1",
+    "vtt-creator": "^1.1.1",
+    "winston": "^3.3.3",
     "xmldom": "^0.6.0",
     "xpath": "^0.0.32"
   },

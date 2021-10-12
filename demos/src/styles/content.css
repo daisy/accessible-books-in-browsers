@@ -1,6 +1,19 @@
 /* styling the book contents */
+body, h1, h2, h3, h4, h5, h6, p {
+    background-color: rgb(var(--p4w-page-background-color)) !important;
+    color:rgb(var(--p4w-text-color)) !important;
+}
+a {
+    color: rgb(var(--p4w-link-color));
+}
+a:hover, a:active, a:focus {
+    background-color: inherit;
+}
+span.page-normal {
+    margin-top: inherit;
+    border-top: none;
+}
 main {
-    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
     text-align: left;
     line-height: 1.5;
     padding: 0 10px;
@@ -21,7 +34,6 @@ body.p4w-dark main table th {
 .highlight { 
     background-color: rgba(var(--p4w-sync-highlight-background-color), 1);
     color: rgba(var(--p4w-sync-highlight-color), 1);
-    padding: 3px;
     border-radius: 4px;
     transition: .2s;
 }
@@ -44,6 +56,5 @@ body.p4w-dark main table th {
     main img {
         max-width: 90vw;
         object-fit: contain;
-        
     }
 }
