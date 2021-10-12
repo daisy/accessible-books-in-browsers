@@ -1,8 +1,8 @@
 # accessible-books-on-the-web
 
-## Demo
+<!-- ## Demo
 
-* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub)
+* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub) -->
 
 Current features: 
 
