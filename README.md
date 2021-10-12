@@ -1,4 +1,4 @@
-# books-in-browsers
+# accessible-books-on-the-web
 
 ## Demo
 
