@@ -2,9 +2,7 @@
 
 ## Demo
 
-<!-- * [Action for Heroes (text)](https://daisy.github.io/books-in-browsers/demos/action-for-heroes/index.html) -->
-<!-- * [Moby Dick (text + audio for chapters 1 and 2)](https://daisy.github.io/books-in-browsers/demos/mobydick/index.html) -->
-* [Action for Heroes](https://daisy.github.io/books-in-browsers/demos/action_for_heroes_epub)
+* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub)
 
 Current features: 
 
