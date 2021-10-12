@@ -15,6 +15,7 @@ import {removeXMLThings} from './exhtml.js';
 import { generateSearchIndex } from './create-search-index.js';
 import { selfAnchorHeadings } from './self-anchor-headings.js';
 import { createListOfNavs } from './create-list-of-navs.js';
+import pretty from 'pretty';
 
 let select = xpath.useNamespaces({
     html: 'http://www.w3.org/1999/xhtml',
@@ -88,6 +89,11 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
     await fs.remove(path.join(workingDir, "META-INF"));
     await fs.remove(path.join(path.dirname(epub.navFilename), "ncx.xml"));
     await fs.remove(epub.packageFilename);
+    for (let spineItem of epub.spine) {
+        if (spineItem.moPath) {
+            await fs.remove(spineItem.moPath);
+        }
+    }
     await Promise.all(epub.audioFiles.map(async audioFile => await fs.remove(audioFile)));
     
     await makeAboutPage(epub, aboutFilename);
@@ -121,6 +127,18 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
     for (let spineFile of spineFiles) {
         await selfAnchorHeadings(spineFile, spineFile);
     }
+
+    // read the file, prettify it, overwrite it with prettier version
+    let prettyHtml = async htmlFilename => {
+        let filecontents = await fileio.readToString(htmlFilename);
+        let prettyFilecontents = await pretty(filecontents);
+        await fs.writeFile(htmlFilename, prettyFilecontents);
+    }
+    for (let spineFile of spineFiles) {
+        await prettyHtml(spineFile);
+    }
+    await prettyHtml(epub.navFilename);
+    await prettyHtml(path.join(path.dirname(epub.navFilename), "about.html"));
 
     await generateSearchIndex(spineFiles, path.dirname(epub.navFilename));
     

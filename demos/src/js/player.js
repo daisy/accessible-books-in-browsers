@@ -1,33 +1,23 @@
 let currentfrag = '';
-let syncpoints = [];
-let curridx = 0;
-let track;
+let activeCue;
 let audio;
+let activeCueIdx = -1; 
 
-async function load(audioFilename, vttFilename) {
+async function load() {
+    let audioSrc = new URL(document.querySelector("#p4w-audio audio").getAttribute("src"), document.location);
     
-    // let syncdataContents = await fetch(filename);
-    // let syncdata = await syncdataContents.text();
-    // syncdata = JSON.parse(syncdata);
-    // syncpoints = syncdata.syncpoints;
-
     // it has to be a video because audio elements don't take caption tracks
     // remove any previous #p4w-sync-audio element
-    let oldSyncElm = document.querySelector("#p4w-sync-audio");
-    if (oldSyncElm) oldSyncElm.remove();
     audio = document.createElement("video");
-    audio.setAttribute("src", audioFilename);
+    audio.setAttribute("src", audioSrc);
     audio.id = "p4w-sync-audio";
-    audio.setAttribute("controls", true);
     audio.style['display'] = 'none';
     document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
 
-    let track = document.createElement("track");
-    track.setAttribute("src", vttFilename);
-    track.setAttribute("kind", "metadata");
-    track.track.mode = "hidden";
-    track.track.addEventListener("cuechange", onCueChange);
+    // move the track to the sync audio element (aka the video element)
+    let track = document.querySelector("#p4w-audio track");
     audio.appendChild(track);
+    track.track.addEventListener("cuechange", onCueChange);
 
     audio.addEventListener("play", e => {
         document.querySelector("body").classList.add("is-playing");
@@ -42,7 +32,6 @@ async function load(audioFilename, vttFilename) {
     
     let waitForAudioToLoad = new Promise((resolve, reject) => {
         audio.addEventListener("loadeddata", e => {
-            // console.log("loaded");
             resolve();
         }); 
         audio.addEventListener("error", e => {
@@ -55,8 +44,7 @@ async function load(audioFilename, vttFilename) {
     catch(err) {
         console.error(err);
     }
-        
-
+    
     // hide the basic html audio player
     if (document.querySelector("#p4w-audio")) {
         document.querySelector("#p4w-audio").style['display'] = 'none';
@@ -65,13 +53,15 @@ async function load(audioFilename, vttFilename) {
 }
 
 function onCueChange(e) {
+    let track = audio.textTracks[0];
     console.log("cue change", e);
-    let cues = e.target.activeCues;
-    if (cues.length > 0) {
+    let activeCues = Array.from(e.target.activeCues);
+    if (activeCues.length > 0) {
+        let activeCue = activeCues[activeCues.length - 1];
+        activeCueIdx = Array.from(track.cues).findIndex(cue => cue.id == activeCue.id);
         if (currentfrag != '') unhighlight(currentfrag);
-        currentfrag = cues[cues.length - 1].text.split("#")[1];
+        currentfrag = activeCue.text.split("#")[1];
         highlight(currentfrag);
-        // curridx = syncpoints.findIndex(item => item.text.includes(currentfrag));
     }
 }
 function highlight(frag) {
@@ -84,22 +74,23 @@ function highlight(frag) {
 function unhighlight(frag) {
     document.querySelector(`#${frag}`).classList.remove("highlight");
 }
-
 function goNext() {
-    throw new Error("GONEXT");
-    if (curridx <= syncpoints.length - 2) {
-        curridx++;
-        audio.currentTime = syncpoints[curridx].audio.clipBegin.seconds;
+    let track = audio.textTracks[0];
+    if (activeCueIdx != -1) {
+        if (activeCueIdx < track.cues.length - 2) {
+            audio.currentTime = track.cues[activeCueIdx + 1].startTime;
+        }
     }
 }
 function goPrevious() {
-    throw new Error("GOPREV");
-
-    if (curridx > 0) {
-        curridx--;
-        audio.currentTime = syncpoints[curridx].audio.clipBegin.seconds;
+    let track = audio.textTracks[0];
+    if (activeCueIdx != -1) {
+        if (activeCueIdx > 0) {
+            audio.currentTime = track.cues[activeCueIdx - 1].startTime;
+        }
     }
 }
+
 function canGoNext() {
     return curridx <= syncpoints.length - 2;
 }

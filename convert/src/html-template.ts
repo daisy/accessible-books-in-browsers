@@ -111,7 +111,7 @@ return `<!DOCTYPE html>
         `<section id="p4w-playback-toolbar" class="p4w-toolbar" aria-label="Playback toolbar">        
             <div id="p4w-audio">
                 <audio src="${audioSrc}" controls>
-                    <track default kind="captions" src="${vttSrc}">
+                    <track default kind="metadata" src="${vttSrc}">
                 </audio>
             </div>
         </section>`

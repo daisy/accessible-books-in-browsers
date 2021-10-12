@@ -40,7 +40,7 @@ async function singleToMultiPage(inputDir) {
         winston.info("Already has multiple content documents");
         return;
     }
-
+    
     let contentDoc = await fileio.parse(epub.spine[0].path);
     let docHead = select("//html:head", contentDoc)[0];
 
@@ -111,6 +111,11 @@ async function singleToMultiPage(inputDir) {
     });
     await fileio.write(path.join(epub.navFilename), navdoc);
 
+    // get the titles
+    for (let newFile of newFiles) {
+        await addTitle(newFile.path, epub.navFilename, epub.metadata['dc:title']);
+    }
+
     let manifestElm = select("//opf:manifest", packageDoc)[0];
     let spineElm = select("//opf:spine", packageDoc)[0];
     // clear the spine
@@ -149,6 +154,7 @@ async function postProcess(file) {
     
     removeLevelDivs(doc);
     fixHeadings(doc);
+
     //@ts-ignore
     newFile.ids = select("//*/@id", doc).map(attr => attr.value);
     //@ts-ignore
@@ -208,3 +214,27 @@ function fixHeadings(document) {
     }
 }
 
+// get the title from the nav entry and add it to the doc
+// save the doc back to disk
+async function addTitle(docFilename, navFilename, pubTitle) {
+
+    let navdoc = await fileio.parse(navFilename);
+    // expand all the hrefs to be full paths
+    let hrefs = select("//*/@href", navdoc);
+    //@ts-ignore
+    Array.from(hrefs).map(href => href.ownerElement.setAttribute("href", path.join(path.dirname(navFilename), href.nodeValue)));
+
+    let navElm = select(`//html:nav[@epub:type='toc']//html:a[contains(@href, '${docFilename}')]`, navdoc);
+
+    if (navElm.length > 0) {
+        let doc = await fileio.parse(docFilename);
+        let titleElm = doc.window.document.querySelector("title");
+        let titleMeta = doc.window.document.querySelector("meta[name='dc:title']");
+        //@ts-ignore
+        titleElm.textContent = `${pubTitle.trim()}: ${navElm[0].textContent.trim()}`;
+        //@ts-ignore
+        titleMeta.setAttribute("content", `${pubTitle.trim()}: ${navElm[0].textContent.trim()}`);
+        await fileio.write(docFilename, doc);
+    }
+    
+}

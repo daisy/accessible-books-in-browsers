@@ -10,7 +10,8 @@ a:hover, a:active, a:focus {
     background-color: inherit;
 }
 span.page-normal {
-    margin-top: 1rem;
+    margin-top: inherit;
+    border-top: none;
 }
 main {
     text-align: left;

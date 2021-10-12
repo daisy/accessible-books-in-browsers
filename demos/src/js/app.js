@@ -17,13 +17,11 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
     
     let hasSyncAudio = false;
     if (document.querySelector("#p4w-audio")) {
-        let audioSrc = new URL(document.querySelector("#p4w-audio audio").getAttribute("src"), document.location);
-        let vttSrc = new URL(document.querySelector("#p4w-audio track").getAttribute("src"), document.location);
         hasSyncAudio = true;
-        await player.load(audioSrc, vttSrc);
+        await player.load();
         createPlaybackToolbar();
     }
-    createApplicationToolbar();
+    createApplicationToolbar('../src/help');
     await createSettingsPanelContents(hasSyncAudio);
     setupKeyboardShortcuts();
 
