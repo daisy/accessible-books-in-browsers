@@ -9,7 +9,7 @@ a {
 a:hover, a:active, a:focus {
     background-color: inherit;
 }
-span.page-normal {
+main span.page-normal {
     margin-top: inherit;
     border-top: none;
 }

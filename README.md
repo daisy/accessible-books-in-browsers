@@ -4,16 +4,24 @@
 
 * [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub) -->
 
-Current features: 
+This is a prototype project to transform EPUB with Media Overlays into a series of HTML files suitable for reading on the web. The reading controls are embedded into the HTML files themselves.
 
-* Sidebar with TOC, landmarks, pages, search prototype, and publication info
-* Previous/next spine item controls
-* Keyboard shortcuts
-* Help information
-* Settings (dark mode, font size), including support for CSS @prefers-color-scheme, to automatically match the user's OS preference for dark mode.
-* Bookmark any heading using the browser's built-in bookmarking
-* Synchronized text + audio support (even without JS you can listen to the audio file; JS adds synchronized highlighting and phrase navigation* )
-* Full text searching
+Current features
 
-Note that many of the above features are possible without any JS support. The reading experience gracefully degrades even on older devices and slower connections. 
+
+
+| Feature | Basic | JS-enhanced |
+|---------|-------|-------------|
+| Spine navigation | Forward and back through the spine documents with links (shown as arrows) | (same) | 
+| TOC | TOC link opens `nav.html`| Loads TOC in sidebar | 
+| Page list | Page list is within `nav.html`, use landmarks navigation or click the in-page link at top | Loads in sidebar and has go-to-page controls | 
+| Search | Not available | Full text search from sidebar |
+| Publication info | Info link opens `about.html`, a generated page containing publication info | Loads in sidebar |
+| Keyboard shortcuts | Not available | Available (see help for details) | 
+| Help | Opens in new page | (same) |
+| Settings | Not available | Change size, theme, playback rate |
+| Theme | Match OS theme by default | (same) |
+| Bookmarks | Bookmark any heading using your browser | (same) |
+| Audio support | Play embedded audio for the page with native HTML controls | Synchronized highlighting and custom controls, including phrase navigation|
+
 

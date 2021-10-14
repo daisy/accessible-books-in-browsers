@@ -4,21 +4,10 @@ let audio;
 let activeCueIdx = -1; 
 
 async function load() {
-    let audioSrc = new URL(document.querySelector("#p4w-audio audio").getAttribute("src"), document.location);
-    
-    // it has to be a video because audio elements don't take caption tracks
-    // remove any previous #p4w-sync-audio element
-    audio = document.createElement("video");
-    audio.setAttribute("src", audioSrc);
-    audio.id = "p4w-sync-audio";
-    audio.style['display'] = 'none';
-    document.querySelector("#p4w-playback-toolbar").appendChild(audio); // stick it in the toolbar because why not
-
-    // move the track to the sync audio element (aka the video element)
+    audio = document.querySelector("#p4w-audio audio");
     let track = document.querySelector("#p4w-audio track");
-    audio.appendChild(track);
     track.track.addEventListener("cuechange", onCueChange);
-
+    
     audio.addEventListener("play", e => {
         document.querySelector("body").classList.add("is-playing");
         document.querySelector("#p4w-playpause").setAttribute("title", "Pause");
@@ -30,20 +19,20 @@ async function load() {
         document.querySelector("#p4w-playpause").setAttribute("aria-label", "Play");
     });
     
-    let waitForAudioToLoad = new Promise((resolve, reject) => {
-        audio.addEventListener("loadeddata", e => {
-            resolve();
-        }); 
-        audio.addEventListener("error", e => {
-            reject();
-        });
-    });
-    try {
-        await waitForAudioToLoad;
-    }
-    catch(err) {
-        console.error(err);
-    }
+    // let waitForAudioToLoad = new Promise((resolve, reject) => {
+    //     audio.addEventListener("loadeddata", e => {
+    //         resolve();
+    //     }); 
+    //     audio.addEventListener("error", e => {
+    //         reject();
+    //     });
+    // });
+    // try {
+    //     await waitForAudioToLoad;
+    // }
+    // catch(err) {
+    //     console.error(err);
+    // }
     
     // hide the basic html audio player
     if (document.querySelector("#p4w-audio")) {
@@ -54,7 +43,7 @@ async function load() {
 
 function onCueChange(e) {
     let track = audio.textTracks[0];
-    console.log("cue change", e);
+    console.debug("cue change", e);
     let activeCues = Array.from(e.target.activeCues);
     if (activeCues.length > 0) {
         let activeCue = activeCues[activeCues.length - 1];
@@ -71,8 +60,8 @@ function highlight(frag) {
         elm.scrollIntoView();
     }
 }
-function unhighlight(frag) {
-    document.querySelector(`#${frag}`).classList.remove("highlight");
+function unhighlight() {
+    document.querySelector(`.highlight`).classList.remove("highlight");
 }
 function goNext() {
     let track = audio.textTracks[0];
