@@ -23,7 +23,8 @@ async function parse(inputFilename):Promise<Epub> {
        basedir,
        nav,
        favico: packageObj.favico,
-       audioFiles: packageObj.audioFiles
+       audioFiles: packageObj.audioFiles,
+       cssFiles: packageObj.cssFiles
     };
 }
 

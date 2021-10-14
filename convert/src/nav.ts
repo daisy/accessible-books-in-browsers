@@ -2,6 +2,28 @@ import fs from 'fs-extra';
 import * as path from 'path';
 import * as fileio from './file-io.js';
 
+// TODO dynamic favico
+async function addStylesheets(inputFilename, outputFilename) {
+    let dom = await fileio.parse(inputFilename);
+    let doc = dom.window.document;
+    let head = doc.querySelector("head");
+    head.innerHTML = 
+    `
+    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
+    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
+    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
+
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ${head.innerHTML}
+    `;
+
+    let title = doc.querySelector("title");
+    title.textContent = `${title.textContent}: Navigation Document`;
+
+    await fileio.write(outputFilename, dom);
+
+}
 async function createListOfNavs(inputFilename, outputFilename) {
     let dom = await fileio.parse(inputFilename);
 
@@ -40,4 +62,4 @@ function getNavTitle(nav) {
     }
 }
 
-export { createListOfNavs };
+export { createListOfNavs, addStylesheets };

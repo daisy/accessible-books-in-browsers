@@ -21,8 +21,9 @@ async function parse(inputFilename) {
     let navFilename = getManifestItemHrefByProperty("nav", doc, inputFilename);
     let favico = getManifestItemHrefByProperty("favico", doc, inputFilename);
     let audioFiles = getManifestItemHrefsByMediaType("audio/mpeg", doc, inputFilename);
+    let cssFiles = getManifestItemHrefsByMediaType("text/css", doc, inputFilename);
     metadata['cover'] = path.join(path.dirname(inputFilename), metadata['cover']);
-    return { metadata, spine, navFilename, dom: doc, favico, audioFiles };
+    return { metadata, spine, navFilename, dom: doc, favico, audioFiles, cssFiles };
 }
 
 function parseMetadata(doc) {

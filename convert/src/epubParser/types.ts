@@ -11,5 +11,6 @@ type Epub = {
     packageFilename: string,
     navFilename: string,
     favico: string,
-    audioFiles: Array<string>
+    audioFiles: Array<string>,
+    cssFiles: Array<string>
 };

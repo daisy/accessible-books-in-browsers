@@ -4,3 +4,5 @@ build
 experiments
 notes
 .vscode/launch.json
+slides
+output.log

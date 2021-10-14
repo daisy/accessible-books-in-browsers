@@ -14,8 +14,9 @@ import {makeAboutPage} from './make-about-page.js';
 import {removeXMLThings} from './exhtml.js';
 import { generateSearchIndex } from './create-search-index.js';
 import { selfAnchorHeadings } from './self-anchor-headings.js';
-import { createListOfNavs } from './create-list-of-navs.js';
+import * as nav from './nav.js';
 import pretty from 'pretty';
+import { adjustSelectors } from './adjust-css.js';
 
 let select = xpath.useNamespaces({
     html: 'http://www.w3.org/1999/xhtml',
@@ -79,9 +80,14 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
         }
     };
     
+    for (let cssFilename of epub.cssFiles) {
+        await adjustSelectors(cssFilename, cssFilename);
+    }
+    
     
     await removeXMLThings(epub.navFilename, epub.navFilename);
-    await createListOfNavs(epub.navFilename, epub.navFilename);
+    await nav.createListOfNavs(epub.navFilename, epub.navFilename);
+    await nav.addStylesheets(epub.navFilename, epub.navFilename);
 
     // clean up the directory
     // - remove mimetype, META-INF, opf, ncx
