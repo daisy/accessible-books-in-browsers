@@ -1,5 +1,11 @@
 # accessible-books-on-the-web
 
+[Github project page](https://github.com/daisy/accessible-books-on-the-web)
+
+## About 
+
+Transform EPUB with Media Overlays into a series of HTML files suitable for reading on the web. The source files are slightly reworked and wrapped in an HTML template. The reading controls are embedded into these HTML files themselves. 
+
 ## Demos
 
 * [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action-for-heroes)
@@ -7,14 +13,13 @@
 
 ## Status
 
-Creation of the demos here was entirely automated, using the `convert` script, starting from an EPUB fileset. The script and UI are both in the exploratory stages of development.
+This project is currently a prototype. The demos were created using the [convert script](https://github.com/daisy/accessible-books-on-the-web/tree/main/convert). These are the [source files for the user interface](https://github.com/daisy/accessible-books-on-the-web/tree/main/demos/src), embedded in each converted file.
 
 Many features are still experimental or on the to-do list (such as mobile layout). Current features are detailed below.
 
-## About 
-Transform EPUB with Media Overlays into a series of HTML files suitable for reading on the web. In this approach, the reading controls are embedded into the HTML files themselves. There are two parts: 
-* the transformation script: `convert`
-* the UI: `demos/src`
+### Caveats
+
+A few things (navigation document consistency across publications; colors in stylesheets or things marked `!important`) were adjusted manually in the EPUB source; this is, after all, just a prototype. But these aspects can and will be automated in the future.
 
 ## Current features
 
