@@ -84,10 +84,17 @@ function parseSpine(opfFilename, doc) {
                     smilfilename = path.resolve(path.dirname(opfFilename), smilItems[0].getAttribute("href"));
                 }
             }
-            spineItems.push({
-                path: path.resolve(path.dirname(opfFilename), filename),
-                moPath: smilfilename
-            });
+            // don't add the toc
+            //@ts-ignore
+            if (manifestItems[0].getAttribute("properties").indexOf("nav") == -1) {
+                spineItems.push({
+                    path: path.resolve(path.dirname(opfFilename), filename),
+                    moPath: smilfilename
+                });
+            }
+            else {
+                console.debug("Ignoring linear=no but not adding TOC to spine");
+            }
         }
     });
     return spineItems;
