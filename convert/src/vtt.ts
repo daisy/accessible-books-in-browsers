@@ -23,7 +23,6 @@ async function createVtt(mediaSegments, outFilename) {
     });
 
     await fs.writeFile(outFilename, v.toString());
-    winston.info(`Done generating captions`);
 }
 
 export { createVtt };

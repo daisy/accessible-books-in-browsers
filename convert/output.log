@@ -1,212 +1,36 @@
-2021-10-14T17:08:34.584Z
+2021-10-16T18:38:41.291Z
 info:
-	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/action_for_heroes_epub
+	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick
 
-2021-10-14T17:08:36.008Z
+2021-10-16T18:38:41.639Z
 info:
-	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/action_for_heroes_epub
+	Already has multiple content documents
 
-2021-10-14T17:08:36.224Z
+2021-10-16T18:38:41.641Z
 info:
-	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/action_for_heroes_epub
+	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick
 
-2021-10-14T17:08:36.423Z
+2021-10-16T18:38:46.118Z
+info:
+	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick
+
+2021-10-16T18:38:46.791Z
+info:
+	Merging audio clips into /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick/OPS/audio/chapter_001.mp3
+
+2021-10-16T18:38:53.999Z
 info:
 	Generating vtt
 
-2021-10-14T17:08:36.425Z
+2021-10-16T18:38:54.079Z
 info:
-	Done generating captions
+	Merging audio clips into /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick/OPS/audio/chapter_002.mp3
 
-2021-10-14T17:08:36.599Z
+2021-10-16T18:38:58.666Z
 info:
 	Generating vtt
 
-2021-10-14T17:08:36.601Z
+2021-10-16T18:39:08.519Z
 info:
-	Done generating captions
-
-2021-10-14T17:08:36.805Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:36.807Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:37.015Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:37.018Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:37.205Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:37.207Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:37.447Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:37.448Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:37.623Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:37.626Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:37.798Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:37.799Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:37.977Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:37.980Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:38.181Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:38.183Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:38.353Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:38.355Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:38.543Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:38.545Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:38.749Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:38.752Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:38.931Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:38.932Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:39.124Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:39.126Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:39.302Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:39.304Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:39.486Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:39.488Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:39.660Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:39.662Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:39.831Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:39.834Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:40.003Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:40.005Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:40.187Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:40.189Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:40.358Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:40.361Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:40.550Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:40.551Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:40.722Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:40.725Z
-info:
-	Done generating captions
-
-2021-10-14T17:08:40.906Z
-info:
-	Generating vtt
-
-2021-10-14T17:08:40.909Z
-info:
-	Done generating captions
+	Generating search index
 
