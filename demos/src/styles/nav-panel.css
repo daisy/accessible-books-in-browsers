@@ -153,7 +153,7 @@
     top: 0;
     background-color: rgba(var(--p4w-page-background-color));
 }
-@media(max-width: 768px) {
+/* @media(max-width: 768px) {
     #p4w-nav.p4w-expanded > div {
         grid-template-areas: 
             "p4w-content"
@@ -167,4 +167,4 @@
     #p4w-nav[role=tabpanel] {
         
     }
-}
+} */

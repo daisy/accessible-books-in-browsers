@@ -98,19 +98,36 @@ svg.p4w-iconify {
 /*****************************/
 /* MOBILE                    */
 /*****************************/
-@media (max-width: 768px) {
+
+ @media (max-width: 768px) {
     body {
         margin: 0 1rem 0 1rem;
 
         grid-template-areas: 
-            "p4w-main p4w-main p4w-main"
-            "p4w-nav p4w-document-links p4w-app-toolbar";
-        grid-template-columns: 30% 40% 30%;
-        grid-template-rows: auto 10rem;
+        "p4w-nav-toolbar"
+        "p4w-app-toolbar"
+        "p4w-document-links"
+        "p4w-playback-toolbar"
+        "p4w-main";
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(5, auto);
         height: 100vh;
     }   
+    main {
+        /* grid-column: 1/4; */
+    }
+    #p4w-playback-toolbar, #p4w-document-links, #p4w-nav-toolbar, #p4w-app-toolbar {
+        background-color: rgb(var(--p4w-page-background-color));
+    }
+    #p4w-app-toolbar {
+        flex-direction: row !important;
+    }
+     #p4w-document-links {
+         justify-self: start;
+     }
+
     
-    
+/*    
     #p4w-document-links {
         position: sticky;
         background-color: rgb(var(--p4w-page-background-color));  
@@ -139,4 +156,5 @@ svg.p4w-iconify {
     #p4w-nav.p4w-expanded {
         width: 90vw;
     }
-}
+*/
+} 
