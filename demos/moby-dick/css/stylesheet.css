@@ -1,0 +1,344 @@
+@font-face {
+  font-family: 'Stix';
+  font-weight: normal;
+  font-style: normal;
+  src: url(../fonts/STIXGeneral.otf);
+}
+
+@font-face {
+  font-family: 'Stix';
+  font-weight: bold;
+  font-style: normal;
+  src: url(../fonts/STIXGeneralBol.otf);
+}
+
+@font-face {
+  font-family: 'Stix';
+  font-weight: normal;
+  font-style: italic;
+  src: url(../fonts/STIXGeneralItalic.otf);
+}
+
+@font-face {
+  font-family: 'Stix';
+  font-weight: bold;
+  font-style: italic;
+  src: url(../fonts/STIXGeneralBolIta.otf);
+}
+
+body {
+  font-size: 1em;
+  line-height: 1.33em;
+  font-family: 'Stix', serif;
+  font-variant-numeric: oldstyle-nums;
+}
+
+main p {
+  padding: 0;
+  margin: 0;
+  text-align: justify;
+}
+
+main header + p:first-line {
+  text-transform: lowercase !important;
+  font-variant: small-caps;
+  font-size: 1.1em;
+}
+
+main p + p {
+  text-indent: 1.33em;
+}
+
+main .decoration-rw {
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 0em;
+  padding-right: 0em;
+}
+
+main .copyright-rw {
+  font-size: .8em;
+  line-height: 1em;
+  text-align: left;
+  padding-top: 2em;
+}
+
+main .copyright-rw p {
+  margin-bottom: 1em;
+  text-indent: 0;
+}
+
+main .dedication-rw p {
+  text-align: center;
+  text-indent: 0;
+}
+
+main .Dedication-rw {
+  margin-top: 3em;
+}
+
+main .leading-line-rw {
+  height: 1.33em;
+}
+
+main .fp-rw {
+  text-indent: 0;
+}
+
+main h1 {
+  font-size: 1.5em;
+  line-height: 1.33em;
+  text-align: center;
+  padding-bottom: 0em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 4px;
+}
+
+main h2 {
+  text-align: center;
+  font-size: 1.33em;
+  line-height: 1.2em;
+  text-align: center;
+  padding-bottom: 0em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 3px;
+}
+
+main .title-author-rw {
+  text-align: center;
+  font-size: 1.5em;
+  text-indent: 0;
+}
+
+main .title-num-rw {
+  text-align: center;
+  font-size: 1.5em;
+  text-indent: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+main .title-sub-rw {
+  text-align: center;
+  font-size: 1.5em;
+  text-indent: 0;
+}
+
+main .imprint-rw {
+  text-align: center;
+}
+
+main .extract-verse-rw {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  padding-left: 20pt;
+}
+
+main .extract-rw {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  padding-left: 20pt;
+}
+
+main .extract-verse-rw p {
+  text-align: left;
+  text-indent: -20pt;
+  margin-left: 20pt;
+}
+
+main .epigraph-rw {
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+  padding-left: 20pt;
+  padding-right: 20pt;
+}
+
+main .sc-rw {
+  font-size: 75%;
+}
+
+main .block-rw {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 20pt;
+  margin-right: 20pt;
+}
+
+main span.dropcap-rw {
+  float: left;
+  font-size: 2.7em;
+  line-height: .87em;
+}
+
+main .signature-rw {
+  margin-left: 50%;
+  text-align: left;
+  text-indent: 0;
+}
+
+main .AdCard-rw h4 {
+  text-align: center;
+}
+
+main .AdCard-rw p {
+  text-align: center;
+  text-indent: 0;
+}
+
+main .FrontSales-rw h4,
+main .FrontSales-rw h2 {
+  text-align: center;
+}
+
+main .FrontSales-rw p {
+  text-indent: 0;
+}
+
+/* NAVIGATION */
+
+main a {
+  color: black !important;
+}
+
+main #toc ol {
+  list-style-type: none;
+  margin: 0 0 0 2em;
+  padding: 0 0 0 0;
+}
+
+main #toc ol ol {
+  list-style-type: none;
+  margin: 0 0 0 1em;
+  padding: 0 0 0 0;
+}
+
+main #toc ol li {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+main #toc ol li a {
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+main .toc-short ol li a {
+  text-decoration: none;
+  font-family: sans-serif;
+}
+
+main .toc-short ol {
+  list-style-type: none;
+  margin: 0 0 0 2em;
+  padding: 0 0 0 0;
+}
+
+main #guide {
+  display: none;
+}
+
+main header {
+  padding: 3em 0 2em 0;
+}
+
+main header a {
+  text-decoration: none;
+  color: black;
+}
+
+main .center {
+  text-align: center;
+  text-indent: 0;
+}
+
+main img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+main .title-other-rw {
+  text-align: center;
+  text-indent: 0;
+  margin-top: .5em;
+}
+
+main .dateline-rw {
+  text-align: left;
+  text-indent: 0;
+  margin-top: 1.33em;
+  margin-bottom: 1.33em;
+}
+
+main .frontmatter-rw h1 {
+  font-size: 1.5em;
+}
+
+main .backmatter-rw h1 {
+  font-size: 1.5em;
+}
+
+main .direction-rw {
+  text-align: center;
+  text-indent: 0;
+  font-style: italic;
+  margin: 1em 0 1em 0;
+}
+
+main .source-rw {
+  margin-bottom: 0em;
+  text-align: right !important;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  font-size: 1.1em;
+  page-break-before: avoid;
+}
+
+main div.block-rw {
+  border-top: 2px solid #EEE;
+  border-bottom: 2px solid #EEE;
+  padding: 6pt 0 6pt 0;
+}
+
+main .list-simple-rw p {
+  text-indent: 0;
+  text-align: left;
+}
+
+main .headline-rw p {
+  text-indent: 0;
+  text-align: center;
+  padding-top: 6px;
+}
+
+main div.photo {
+  margin-top: 1em;
+  padding-top: 2em;
+  text-align: center;
+}
+
+main div.photo p {
+  text-align: center;
+  padding: 6px;
+  font-style: italic;
+}
+
+main .-epub-media-overlay-active {
+  background-color: #ffb;
+}
+
+@media all and (orientation:portrait) {
+  p {
+    font-family: serif;
+  }
+}
+
+@media all and (orientation:landscape) {
+  p {
+    font-family: sans-serif;
+  }
+}
