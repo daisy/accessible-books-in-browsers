@@ -43,6 +43,8 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
 
     let aboutFilename = path.join(path.dirname(epub.navFilename), "about.html");
     let audioFilenames = [];
+    let audioFilename;
+    let vttFilename;
     for (let spineItem of epub.spine) {
         if (spineItem.moPath) {
             let mediaSegments = await getMediaSegments(spineItem);
@@ -55,29 +57,28 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
             let audioOutputDir = path.join(path.dirname(spineItem.path), "audio");
             await utils.ensureDirectory(audioOutputDir);
             
-            let audioFilename = path.join(audioOutputDir, spineItemFilename.replace(".html", audioExt));
-            let vttFilename = path.join(vttOutputDir, spineItemFilename.replace(".html", '.vtt'));
+            audioFilename = path.join(audioOutputDir, spineItemFilename.replace(".html", ".mp3"));
+            vttFilename = path.join(vttOutputDir, spineItemFilename.replace(".html", '.vtt'));
 
             if (!skipMergeAudio) {
                 await mergeAudioSegments(mediaSegments, audioFilename);
             }
             await createVtt(mediaSegments, vttFilename);
-
-            // apply the HTML template to the spine item
-            await applyTemplate(
-                spineItem.path,
-                audioFilename,
-                vttFilename,
-                spineItem.path,
-                epub,
-                aboutFilename,
-                pathToSharedClientCode
-            );
-
-            await removeXMLThings(spineItem.path, spineItem.path);
-
             audioFilenames.push(audioFilename);
         }
+
+        // apply the HTML template to the spine item
+        await applyTemplate(
+            spineItem.path,
+            audioFilename,
+            vttFilename,
+            spineItem.path,
+            epub,
+            aboutFilename,
+            pathToSharedClientCode
+        );
+
+        await removeXMLThings(spineItem.path, spineItem.path);
     };
     
     for (let cssFilename of epub.cssFiles) {
@@ -190,7 +191,8 @@ async function prepareFiles(workingDir, splitContentDoc) {
     await renameFileUpdateRefs(
         epub.navFilename,
         path.join(path.dirname(epub.navFilename), "nav.html"),
-        epub
+        epub,
+        true
     );
 
 }
