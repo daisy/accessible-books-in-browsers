@@ -54,7 +54,7 @@ function getNavTitle(nav) {
     if (nav.classList.contains("epubtype_toc")) {
         return "Table of Contents";
     }
-    else if (nav.classList.contains("epubtype_guide")) {
+    else if (nav.classList.contains("epubtype_landmarks")) {
         return "Landmarks";
     }
     else if (nav.classList.contains("epubtype_page-list")) {

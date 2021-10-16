@@ -1,116 +1,36 @@
-2021-10-16T19:01:32.204Z
+2021-10-16T19:11:47.241Z
 info:
-	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/action-for-heroes
+	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick
 
-2021-10-16T19:01:33.653Z
+2021-10-16T19:11:47.580Z
 info:
-	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/action-for-heroes
+	Already has multiple content documents
 
-2021-10-16T19:01:33.860Z
+2021-10-16T19:11:47.581Z
 info:
-	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/action-for-heroes
+	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick
 
-2021-10-16T19:01:34.063Z
+2021-10-16T19:11:51.188Z
 info:
-	Generating vtt
+	Reading files from /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick
 
-2021-10-16T19:01:34.247Z
+2021-10-16T19:11:51.761Z
 info:
-	Generating vtt
+	Merging audio clips into /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick/OPS/audio/chapter_001.mp3
 
-2021-10-16T19:01:34.413Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:34.589Z
+2021-10-16T19:11:58.340Z
 info:
 	Generating vtt
 
-2021-10-16T19:01:34.774Z
+2021-10-16T19:11:58.418Z
+info:
+	Merging audio clips into /Users/marisa/dev/accessible-books-on-the-web/demos/moby-dick/OPS/audio/chapter_002.mp3
+
+2021-10-16T19:12:03.066Z
 info:
 	Generating vtt
 
-2021-10-16T19:01:35.011Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:35.185Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:35.354Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:35.552Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:35.734Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:35.903Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:36.092Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:36.294Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:36.468Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:36.655Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:36.833Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:37.015Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:37.183Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:37.348Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:37.514Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:37.689Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:37.855Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:38.041Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:38.202Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:38.371Z
-info:
-	Generating vtt
-
-2021-10-16T19:01:39.552Z
+2021-10-16T19:12:12.652Z
 info:
 	Generating search index
 
