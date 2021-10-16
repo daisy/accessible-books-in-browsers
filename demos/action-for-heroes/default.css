@@ -9,7 +9,6 @@ body {
 }
 
 main * a {
-  color: #000000;
   text-decoration: none;
 }
 
@@ -17,8 +16,6 @@ main a:hover,
 main a:active,
 main a:focus {
   text-decoration: none;
-  color: #CC3333;
-  background-color: #FFFFCC;
 }
 
 /* --- DIV FRONTMATTER --- */
@@ -48,7 +45,6 @@ main span.author {
 /* --- HEADINGS --- */
 
 main h1.title {
-  color: #000000;
   font-family: arial, verdana, sans-serif;
   font-size: 250%;
   font-style: normal;
@@ -58,7 +54,6 @@ main h1.title {
 }
 
 main h1 {
-  color: #000000;
   font-size: 175%;
   font-weight: bold;
   margin-top: 3em;
@@ -66,7 +61,6 @@ main h1 {
 }
 
 main h2 {
-  color: #000000;
   font-size: 150%;
   font-weight: normal;
   margin-top: 2.5em;
@@ -74,7 +68,6 @@ main h2 {
 }
 
 main h3 {
-  color: #000000;
   font-size: 135%;
   font-weight: normal;
   margin-top: 2em;
@@ -82,7 +75,6 @@ main h3 {
 }
 
 main h4 {
-  color: #000000;
   font-size: 115%;
   font-weight: normal;
   margin-top: 1em;
@@ -90,7 +82,6 @@ main h4 {
 }
 
 main h5 {
-  color: #000000;
   font-size: 105%;
   font-weight: bold;
   margin-top: 1em;
@@ -98,14 +89,12 @@ main h5 {
 }
 
 main h6 {
-  color: #000000;
   font-size: 100%;
   font-weight: bold;
   margin-top: 0.5em;
 }
 
 main *.heading {
-  color: #000000;
   font-size: 140%;
   font-weight: normal;
   margin-top: 2em;
@@ -113,7 +102,6 @@ main *.heading {
 }
 
 main *.hd {
-  color: #000000;
   font-size: 140%;
   font-weight: bold;
   margin-top: 2em;
