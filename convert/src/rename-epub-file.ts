@@ -13,12 +13,15 @@ let select = xpath.useNamespaces({
 });
 
 
-async function renameFileUpdateRefs(oldFilename, newFilename, epub) {
+async function renameFileUpdateRefs(oldFilename, newFilename, epub, isNavFile=false) {
+    console.debug("rename file", `${oldFilename} => ${newFilename}`);
     let spineItem = epub.spine.find(item => item.path == oldFilename);
-    if (spineItem) { // really we should check manifest not spine but this is faster and will work for now
+    if (spineItem && spineItem.moPath && spineItem.moPath != '') { // really we should check manifest not spine but this is faster and will work for now
         await updateSmil(spineItem.moPath, oldFilename, newFilename);
     }
-    await updateNav(epub.navFilename, oldFilename, newFilename);
+    if (!isNavFile) {
+        await updateNav(epub.navFilename, oldFilename, newFilename);
+    }
     await updateSpine(epub.packageFilename, oldFilename, newFilename);
     await fs.move(oldFilename, newFilename, {overwrite: true});    
 }
