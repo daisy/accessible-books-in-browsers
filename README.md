@@ -1,14 +1,22 @@
 # accessible-books-on-the-web
 
-<!-- ## Demo
+## Demos
 
-* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub) -->
+* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub)
+* [Moby Dick](https://daisy.github.io/accessible-books-on-the-web/demos/moby-dick)
 
-This is a prototype project to transform EPUB with Media Overlays into a series of HTML files suitable for reading on the web. The reading controls are embedded into the HTML files themselves.
+## Status
 
-Current features
+Creation of the demos here was entirely automated, using the `convert` script, starting from an EPUB fileset. The script and UI are both in the exploratory stages of development.
 
+Many features are still experimental or on the to-do list (such as mobile layout). Current features are detailed below.
 
+## About 
+Transform EPUB with Media Overlays into a series of HTML files suitable for reading on the web. In this approach, the reading controls are embedded into the HTML files themselves. There are two parts: 
+* the transformation script: `convert`
+* the UI: `demos/src`
+
+## Current features
 
 | Feature | Basic | JS-enhanced |
 |---------|-------|-------------|
@@ -23,5 +31,6 @@ Current features
 | Theme | Match OS theme by default | (same) |
 | Bookmarks | Bookmark any heading using your browser | (same) |
 | Audio support | Play embedded audio for the page with native HTML controls | Synchronized highlighting and custom controls, including phrase navigation|
+
 
 
