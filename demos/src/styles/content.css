@@ -1,7 +1,7 @@
 /* styling the book contents */
-body, h1, h2, h3, h4, h5, h6, p {
-    background-color: rgb(var(--p4w-page-background-color)) !important;
-    color:rgb(var(--p4w-text-color)) !important;
+body, main h1, main h2, main h3, main h4, main h5, main h6, main p {
+    background-color: rgb(var(--p4w-page-background-color));
+    color:rgb(var(--p4w-text-color));
 }
 a {
     color: rgb(var(--p4w-link-color));
