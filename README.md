@@ -2,7 +2,7 @@
 
 ## Demos
 
-* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action_for_heroes_epub)
+* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action-for-heroes)
 * [Moby Dick](https://daisy.github.io/accessible-books-on-the-web/demos/moby-dick)
 
 ## Status
