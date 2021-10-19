@@ -70,7 +70,7 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
         // apply the HTML template to the spine item
         await applyTemplate(
             spineItem.path,
-            audioFilename,
+            spineItem.moPath ? audioFilename : null,
             vttFilename,
             spineItem.path,
             epub,
