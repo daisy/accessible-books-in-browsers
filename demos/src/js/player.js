@@ -9,12 +9,12 @@ async function load() {
     track.track.addEventListener("cuechange", onCueChange);
     
     audio.addEventListener("play", e => {
-        document.querySelector("body").classList.add("is-playing");
+        document.querySelector("body").classList.add("p4w-playing");
         document.querySelector("#p4w-playpause").setAttribute("title", "Pause");
         document.querySelector("#p4w-playpause").setAttribute("aria-label", "Pause");
     });
     audio.addEventListener("pause", e => {
-        document.querySelector("body").classList.remove("is-playing");
+        document.querySelector("body").classList.remove("p4w-playing");
         document.querySelector("#p4w-playpause").setAttribute("title", "Play");
         document.querySelector("#p4w-playpause").setAttribute("aria-label", "Play");
     });
@@ -66,7 +66,7 @@ function unhighlight() {
 function goNext() {
     let track = audio.textTracks[0];
     if (activeCueIdx != -1) {
-        if (activeCueIdx < track.cues.length - 2) {
+        if (activeCueIdx < track.cues.length - 1) {
             audio.currentTime = track.cues[activeCueIdx + 1].startTime;
         }
     }
