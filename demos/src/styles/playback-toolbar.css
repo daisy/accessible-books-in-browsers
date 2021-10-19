@@ -1,16 +1,16 @@
 #p4w-playback-toolbar {
     flex-wrap: wrap;
 }
-#p4w-playpause.playing > svg:first-child {
+body.p4w-playing #p4w-playpause > svg:first-child {
     display: none;
 }
-#p4w-playpause.playing > svg:last-child {
+body.p4w-playing #p4w-playpause > svg:last-child {
     display: block;
 }
-#p4w-playpause:not(.playing) > svg:first-child {
+body:not(.p4w-playing) #p4w-playpause > svg:first-child {
     display: block;
 }
-#p4w-playpause:not(.playing) > svg:last-child {
+body:not(.p4w-playing) #p4w-playpause > svg:last-child {
     display: none;
 }
 

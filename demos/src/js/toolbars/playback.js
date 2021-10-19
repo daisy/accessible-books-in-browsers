@@ -41,11 +41,11 @@ function createPlaybackToolbar() {
     toolbar.querySelector("#p4w-playpause").addEventListener("click", e => {
         if (!player.audio.paused) {
             player.audio.pause();
-            document.querySelector("#p4w-playpause").classList.remove("playing");
+            // document.querySelector("#p4w-playpause").classList.remove("playing");
         }
         else {
             player.audio.play();
-            document.querySelector("#p4w-playpause").classList.add("playing");
+            // document.querySelector("#p4w-playpause").classList.add("playing");
         }
     });
 
