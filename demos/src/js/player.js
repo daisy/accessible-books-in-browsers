@@ -1,5 +1,4 @@
 let currentfrag = '';
-let activeCue;
 let audio;
 let activeCueIdx = -1; 
 
@@ -23,21 +22,6 @@ async function load() {
         let nextSection = document.querySelector("#p4w-next-section");
         if (nextSection) nextSection.click();
     });
-    
-    // let waitForAudioToLoad = new Promise((resolve, reject) => {
-    //     audio.addEventListener("loadeddata", e => {
-    //         resolve();
-    //     }); 
-    //     audio.addEventListener("error", e => {
-    //         reject();
-    //     });
-    // });
-    // try {
-    //     await waitForAudioToLoad;
-    // }
-    // catch(err) {
-    //     console.error(err);
-    // }
     
     // hide the basic html audio player
     if (document.querySelector("#p4w-audio")) {
