@@ -5,42 +5,42 @@ html {
 body {
     display: grid;
     grid-template-areas: 
-    "p4w-nav-toolbar p4w-main p4w-app-toolbar"
-    "p4w-playback-toolbar p4w-main p4w-document-links";
+    "abotw-nav-toolbar abotw-main abotw-app-toolbar"
+    "abotw-playback-toolbar abotw-main abotw-document-links";
     grid-template-columns: minmax(10rem, 25%) 45rem minmax(10rem, 25%);
     grid-template-rows: auto 10rem;
     margin: 1rem 1rem 2rem 1rem;
     height: 100%;
 }
 
-html.p4w-js body * {
+html.abotw-js body * {
     /* hide until load */
     display: none; 
 }
-html.p4w-js body {
-    background-color: rgb(var(--p4w-page-background-color));
+html.abotw-js body {
+    background-color: rgb(var(--abotw-page-background-color));
 }
 main {
-    grid-area: p4w-main;
+    grid-area: abotw-main;
 }
-main a.p4w-selflink {
-    color: rgb(var(--p4w-text-color));
+main a.abotw-selflink {
+    color: rgb(var(--abotw-text-color));
     margin-left: 1rem; 
 }
-main a.p4w-selflink .p4w-iconify {
-    width: calc(var(--p4w-icons) * .6);
+main a.abotw-selflink .abotw-iconify {
+    width: calc(var(--abotw-icons) * .6);
 }
 /* for page transitions */
-body.p4w-fadeout {
+body.abotw-fadeout {
     opacity: 0% !important;
     transition: opacity .25s;
 }
-body.p4w-fadein > * {
+body.abotw-fadein > * {
     animation-duration: .5s;
-    animation-name: p4w-fadein;
+    animation-name: abotw-fadein;
 }
   
-@keyframes p4w-fadein {
+@keyframes abotw-fadein {
     from {
         opacity: 0;
     }
@@ -50,24 +50,24 @@ body.p4w-fadein > * {
     }
 }
   
-body.p4w-dim-10 main {
+body.abotw-dim-10 main {
     opacity: 10% !important;
 }
-body.p4w-dim-70  main {
+body.abotw-dim-70  main {
     opacity: 70%;
 }
-svg.p4w-iconify {
-    width: var(--p4w-icons);
-    height: var(--p4w-icons);
+svg.abotw-iconify {
+    width: var(--abotw-icons);
+    height: var(--abotw-icons);
 }
 
-#p4w-nav-toolbar {
-    grid-area: p4w-nav-toolbar;
+#abotw-nav-toolbar {
+    grid-area: abotw-nav-toolbar;
     overflow-y: scroll;
     position: fixed;
 }
-#p4w-document-links {
-    grid-area: p4w-document-links;
+#abotw-document-links {
+    grid-area: abotw-document-links;
     justify-self: right;
     align-self: end;
     position: sticky;
@@ -76,23 +76,23 @@ svg.p4w-iconify {
     width: min-content;
 }
 
-#p4w-playback-toolbar {
-    grid-area: p4w-playback-toolbar;
+#abotw-playback-toolbar {
+    grid-area: abotw-playback-toolbar;
     position: sticky;
     bottom: 1rem;
     justify-self: left;
     align-self: end;
 }
-#p4w-app-toolbar {
-    grid-area: p4w-app-toolbar;
+#abotw-app-toolbar {
+    grid-area: abotw-app-toolbar;
     position: sticky;
     top: 0;
     justify-self: right;
 }
 
-#p4w-document-links a {
-    color: rgb(var(--p4w-text-color));
-    height: var(--p4w-icons);
+#abotw-document-links a {
+    color: rgb(var(--abotw-text-color));
+    height: var(--abotw-icons);
 }
 
 /*****************************/
@@ -104,11 +104,11 @@ svg.p4w-iconify {
         margin: 0 1rem 0 1rem;
 
         grid-template-areas: 
-        "p4w-nav-toolbar"
-        "p4w-app-toolbar"
-        "p4w-document-links"
-        "p4w-playback-toolbar"
-        "p4w-main";
+        "abotw-nav-toolbar"
+        "abotw-app-toolbar"
+        "abotw-document-links"
+        "abotw-playback-toolbar"
+        "abotw-main";
         grid-template-columns: 100%;
         grid-template-rows: repeat(5, auto);
         height: 100vh;
@@ -116,44 +116,44 @@ svg.p4w-iconify {
     main {
         /* grid-column: 1/4; */
     }
-    #p4w-playback-toolbar, #p4w-document-links, #p4w-nav-toolbar, #p4w-app-toolbar {
-        background-color: rgb(var(--p4w-page-background-color));
+    #abotw-playback-toolbar, #abotw-document-links, #abotw-nav-toolbar, #abotw-app-toolbar {
+        background-color: rgb(var(--abotw-page-background-color));
     }
-    #p4w-app-toolbar {
+    #abotw-app-toolbar {
         flex-direction: row !important;
     }
-     #p4w-document-links {
+     #abotw-document-links {
          justify-self: start;
      }
 
     
 /*    
-    #p4w-document-links {
+    #abotw-document-links {
         position: sticky;
-        background-color: rgb(var(--p4w-page-background-color));  
+        background-color: rgb(var(--abotw-page-background-color));  
         border-radius: 4px;
         align-self: end;
         bottom: .25rem;
     }
     
-    #p4w-app-toolbar {
+    #abotw-app-toolbar {
         position: sticky;
-        background-color: rgb(var(--p4w-page-background-color));
+        background-color: rgb(var(--abotw-page-background-color));
         border-radius: 4px;
         flex-direction: row;
         align-self: end;
         gap: 1rem;
     }
-    #p4w-nav-toolbar {
+    #abotw-nav-toolbar {
         position: sticky;
         align-self: end;
     }
-    #p4w-nav {
-        background-color: rgb(var(--p4w-page-background-color));
+    #abotw-nav {
+        background-color: rgb(var(--abotw-page-background-color));
         border-radius: 4px;
 
     }
-    #p4w-nav.p4w-expanded {
+    #abotw-nav.abotw-expanded {
         width: 90vw;
     }
 */

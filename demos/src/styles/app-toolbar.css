@@ -1,16 +1,16 @@
-#p4w-app-toolbar {
+#abotw-app-toolbar {
     display: flex;
     flex-direction: column;
 }
 
-#p4w-app-toolbar > div fieldset {
+#abotw-app-toolbar > div fieldset {
     border: none;
     display: flex;
     gap: 1rem;
     padding: 0;
 }
 
-#p4w-settings >  button, #p4w-help {
+#abotw-settings >  button, #abotw-help {
     padding: 0;
     transition: .2s;
 }

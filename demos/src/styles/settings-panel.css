@@ -1,10 +1,10 @@
-#p4w-settings.p4w-expanded {
+#abotw-settings.abotw-expanded {
     right: 0;
     top: 0;
     width: 25%;
 }
 
-#p4w-settings fieldset div {
+#abotw-settings fieldset div {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -12,26 +12,26 @@
     line-height: 1.6;
 }
 
-#p4w-settings fieldset div label {
+#abotw-settings fieldset div label {
     white-space: nowrap;
     width: 5rem;
 }
 
-#p4w-settings fieldset div input {
+#abotw-settings fieldset div input {
     padding: 10px;
     margin: 0;
 }
-#p4w-settings fieldset input+p {
+#abotw-settings fieldset input+p {
     font-size: smaller;
     font-family: Courier New, serif;
     font-weight: bold;
     
 }
-#p4w-settings fieldset div button {
+#abotw-settings fieldset div button {
     border: thin solid;
     font-size: 100%;
 }
-#p4w-settings input[type=range] {
-    background-color: rgb(var(--p4w-icon-color));
+#abotw-settings input[type=range] {
+    background-color: rgb(var(--abotw-icon-color));
     border-radius: 4px;
 }

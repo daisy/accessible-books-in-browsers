@@ -1,75 +1,75 @@
 /* define light and dark themes, and respect the system preference for using dark themes */
 :root { 
-    --p4w-black: 18, 18, 18;
-    --p4w-darkgray: 51, 51, 51;
-    --p4w-gray: 191, 191, 191;
-    --p4w-lightgray: 200, 200, 200;
-    --p4w-white: 255, 255, 255;
-    --p4w-darkblue: 8, 51, 55;
-    --p4w-lightblue: 172, 235, 243;
-    --p4w-lightorange: 255, 201, 160;
-    --p4w-yellow: 253, 253, 150;
-    --p4w-transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
+    --abotw-black: 18, 18, 18;
+    --abotw-darkgray: 51, 51, 51;
+    --abotw-gray: 191, 191, 191;
+    --abotw-lightgray: 200, 200, 200;
+    --abotw-white: 255, 255, 255;
+    --abotw-darkblue: 8, 51, 55;
+    --abotw-lightblue: 172, 235, 243;
+    --abotw-lightorange: 255, 201, 160;
+    --abotw-yellow: 253, 253, 150;
+    --abotw-transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
 }
 body {
-    --p4w-text-color: var(--p4w-black);
-    --p4w-page-background-color: var(--p4w-white);
-    --p4w-link-color: var(--p4w-darkblue);
-    --p4w-icon-color: var(--p4w-black);
-    --p4w-hover-color: var(--p4w-lightgray);
-    --p4w-toggle-color: var(--p4w-darkblue);
-    --p4w-tab-focus-color: var(--p4w-lightorange);
-    --p4w-sync-highlight-background-color: var(--p4w-yellow);
-    --p4w-sync-highlight-color: var(--p4w-text-color);
-    --p4w-search-highlight-background-color: var(--p4w-lightblue);
-    --p4w-search-highlight-color: var(--p4w-text-color);
-    --p4w-border-color: var(--p4w-darkgray);
+    --abotw-text-color: var(--abotw-black);
+    --abotw-page-background-color: var(--abotw-white);
+    --abotw-link-color: var(--abotw-darkblue);
+    --abotw-icon-color: var(--abotw-black);
+    --abotw-hover-color: var(--abotw-lightgray);
+    --abotw-toggle-color: var(--abotw-darkblue);
+    --abotw-tab-focus-color: var(--abotw-lightorange);
+    --abotw-sync-highlight-background-color: var(--abotw-yellow);
+    --abotw-sync-highlight-color: var(--abotw-text-color);
+    --abotw-search-highlight-background-color: var(--abotw-lightblue);
+    --abotw-search-highlight-color: var(--abotw-text-color);
+    --abotw-border-color: var(--abotw-darkgray);
     
     transition: var(--transition);
 
 }
 body.dark {
-    --p4w-text-color: var(--p4w-white);
-    --p4w-page-background-color: var(--p4w-black);
-    --p4w-link-color: var(--p4w-lightblue);
-    --p4w-icon-color: var(--p4w-white);
-    --p4w-hover-color: var(--p4w-darkgray);
-    --p4w-toggle-color: var(--p4w-lightblue);
-    --p4w-tab-focus-color: var(--p4w-white);
-    --p4w-sync-highlight-background-color: var(--p4w-page-background-color);
-    --p4w-sync-highlight-color: var(--p4w-yellow);
-    --p4w-search-highlight-background-color: var(--p4w-page-background-color);
-    --p4w-search-highlight-color: var(--p4w-lightblue);
+    --abotw-text-color: var(--abotw-white);
+    --abotw-page-background-color: var(--abotw-black);
+    --abotw-link-color: var(--abotw-lightblue);
+    --abotw-icon-color: var(--abotw-white);
+    --abotw-hover-color: var(--abotw-darkgray);
+    --abotw-toggle-color: var(--abotw-lightblue);
+    --abotw-tab-focus-color: var(--abotw-white);
+    --abotw-sync-highlight-background-color: var(--abotw-page-background-color);
+    --abotw-sync-highlight-color: var(--abotw-yellow);
+    --abotw-search-highlight-background-color: var(--abotw-page-background-color);
+    --abotw-search-highlight-color: var(--abotw-lightblue);
     
 }
 @media (prefers-color-scheme: dark) {
     body { /* "dark mode" as preferred by the system */
-        --p4w-text-color: var(--p4w-white);
-        --p4w-page-background-color: var(--p4w-black);
-        --p4w-link-color: var(--p4w-lightblue);
-        --p4w-icon-color: var(--p4w-white);
-        --p4w-hover-color: var(--p4w-darkgray);
-        --p4w-toggle-color: var(--p4w-lightblue);
-        --p4w-tab-focus-color: var(--p4w-white);
-        --p4w-sync-highlight-background-color: var(--p4w-page-background-color);
-        --p4w-sync-highlight-color: var(--p4w-yellow);
-        --p4w-search-highlight-background-color: var(--p4w-page-background-color);
-        --p4w-search-highlight-color: var(--p4w-lightblue);
+        --abotw-text-color: var(--abotw-white);
+        --abotw-page-background-color: var(--abotw-black);
+        --abotw-link-color: var(--abotw-lightblue);
+        --abotw-icon-color: var(--abotw-white);
+        --abotw-hover-color: var(--abotw-darkgray);
+        --abotw-toggle-color: var(--abotw-lightblue);
+        --abotw-tab-focus-color: var(--abotw-white);
+        --abotw-sync-highlight-background-color: var(--abotw-page-background-color);
+        --abotw-sync-highlight-color: var(--abotw-yellow);
+        --abotw-search-highlight-background-color: var(--abotw-page-background-color);
+        --abotw-search-highlight-color: var(--abotw-lightblue);
     }
     /* the manual toggle can override the system theme */
-    body.p4w-prefers-color-scheme-override {
+    body.abotw-prefers-color-scheme-override {
         /* "light mode" */
-        --p4w-text-color: var(--p4w-black);
-        --p4w-page-background-color: var(--p4w-white);
-        --p4w-link-color: var(--p4w-darkblue);
-        --p4w-icon-color: var(--p4w-black);
-        --p4w-hover-color: var(--p4w-lightgray);
-        --p4w-toggle-color: var(--p4w-darkblue);
-        --p4w-tab-focus-color: var(--p4w-lightorange);
-        --p4w-sync-highlight-background-color: var(--p4w-yellow);
-        --p4w-sync-highlight-color: var(--p4w-text-color);
-        --p4w-search-highlight-background-color: var(--p4w-lightblue);
-        --p4w-search-highlight-color: var(--p4w-text-color);
+        --abotw-text-color: var(--abotw-black);
+        --abotw-page-background-color: var(--abotw-white);
+        --abotw-link-color: var(--abotw-darkblue);
+        --abotw-icon-color: var(--abotw-black);
+        --abotw-hover-color: var(--abotw-lightgray);
+        --abotw-toggle-color: var(--abotw-darkblue);
+        --abotw-tab-focus-color: var(--abotw-lightorange);
+        --abotw-sync-highlight-background-color: var(--abotw-yellow);
+        --abotw-sync-highlight-color: var(--abotw-text-color);
+        --abotw-search-highlight-background-color: var(--abotw-lightblue);
+        --abotw-search-highlight-color: var(--abotw-text-color);
     }
 }
 

@@ -1,24 +1,24 @@
-.p4w-panel {
+.abotw-panel {
     z-index: 1;  
     -webkit-user-select: none;
     user-select: none;
 }
 
-.p4w-panel > div {
+.abotw-panel > div {
     -webkit-font-smoothing: antialiased;
     z-index: 0;
 }
 
-.p4w-panel button[aria-expanded=true] + div { 
+.abotw-panel button[aria-expanded=true] + div { 
     -webkit-touch-callout: none;
     display: block;
 }
 
-.p4w-panel button[aria-expanded=false] + div {
+.abotw-panel button[aria-expanded=false] + div {
     display: none;
 }
 
-.p4w-panel {
+.abotw-panel {
     position: relative;
     /*! top: -.25rem; */
     border: none;
@@ -26,39 +26,39 @@
     font-size: 100%;
 }
 
-.p4w-panel.p4w-expanded {
+.abotw-panel.abotw-expanded {
     box-shadow: 0px 0px 7px black;
     padding: .5rem;
     padding-bottom: 10px;
-    border: 2px var(--p4w-border-color) solid;
+    border: 2px var(--abotw-border-color) solid;
     position: fixed;
-    background: rgb(var(--p4w-page-background-color));
+    background: rgb(var(--abotw-page-background-color));
 }
 
-.p4w-panel:not(.p4w-expanded) {
+.abotw-panel:not(.abotw-expanded) {
     height: min-content;
     width: min-content;
 }
 
 /* the hamburger */
-.p4w-panel:hover > button, .p4w-panel.p4w-expanded > button {
+.abotw-panel:hover > button, .abotw-panel.abotw-expanded > button {
     opacity: 100%;
 }
-.p4w-panel.p4w-expanded > button > svg:first-child {
+.abotw-panel.abotw-expanded > button > svg:first-child {
     display: none;
 }
-.p4w-panel.p4w-expanded > button > svg:last-child {
+.abotw-panel.abotw-expanded > button > svg:last-child {
     display: block;
 }
-.p4w-panel:not(.p4w-expanded) > button > svg:first-child {
+.abotw-panel:not(.abotw-expanded) > button > svg:first-child {
     display: block;
 }
-.p4w-panel:not(.p4w-expanded) > button > svg:last-child {
+.abotw-panel:not(.abotw-expanded) > button > svg:last-child {
     display: none;
 }
 /* make close "X" button icon smaller than the default icon size */
-.p4w-panel.p4w-expanded > button .p4w-iconify {
-    width: calc(var(--p4w-icons)/2);
-    height: calc(var(--p4w-icons)/2);
+.abotw-panel.abotw-expanded > button .abotw-iconify {
+    width: calc(var(--abotw-icons)/2);
+    height: calc(var(--abotw-icons)/2);
     transition: .2s;
 }

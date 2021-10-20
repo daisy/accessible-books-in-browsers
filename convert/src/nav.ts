@@ -27,7 +27,7 @@ async function addStylesheets(inputFilename, outputFilename) {
 async function createListOfNavs(inputFilename, outputFilename) {
     let dom = await fileio.parse(inputFilename);
 
-    // <nav id="p4w-list-of-navs">
+    // <nav id="abotw-list-of-navs">
     //      <ol>
     //          <li><a href="#toc">Table of Contents</a></li>
     //          <li><a href="#guide">Landmarks</a></li>
@@ -40,7 +40,7 @@ async function createListOfNavs(inputFilename, outputFilename) {
     let navs = Array.from(doc.querySelectorAll("nav"));
 
     let listOfNavs = doc.createElement("nav");
-    listOfNavs.id = "p4w-list-of-navs";
+    listOfNavs.id = "abotw-list-of-navs";
     
     listOfNavs.innerHTML = 
     //@ts-ignore

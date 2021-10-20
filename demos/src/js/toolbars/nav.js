@@ -2,13 +2,13 @@ import * as icons from '../icons.js';
 import { setupPanel } from '../panels/panel.js';
 
 async function createNavToolbar() {
-    let toolbar = document.querySelector("#p4w-nav-toolbar");
+    let toolbar = document.querySelector("#abotw-nav-toolbar");
     
     toolbar.innerHTML = 
-    `<div id="p4w-nav" class="p4w-panel" aria-live="polite">
+    `<div id="abotw-nav" class="abotw-panel" aria-live="polite">
         <button 
             type="button" 
-            class="p4w-lightup"
+            class="abotw-lightup"
             aria-haspopup="true" 
             aria-expanded="false"
             data-desc="Navigation Sidebar">
@@ -19,17 +19,17 @@ async function createNavToolbar() {
         </div>
     </div>`;
     
-    let playbackToolbar = document.querySelector("#p4w-playback-toolbar");
+    let playbackToolbar = document.querySelector("#abotw-playback-toolbar");
     setupPanel(
-        "p4w-nav", 
+        "abotw-nav", 
         false, 
         () => {
-            document.querySelector("body").classList.add("p4w-dim-10");
+            document.querySelector("body").classList.add("abotw-dim-10");
             // otherwise the navigation sidebar overlaps with the playback toolbar
             if (playbackToolbar) playbackToolbar.style['visibility'] = 'hidden';
         },
         () => {
-            document.querySelector("body").classList.remove("p4w-dim-10");
+            document.querySelector("body").classList.remove("abotw-dim-10");
             if (playbackToolbar) playbackToolbar.style['visibility'] = 'visible';
         }
     );

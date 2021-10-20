@@ -3,34 +3,34 @@ import * as player from '../player.js';
 
 // volume, prev phrase, play pause, next phrase
 function createPlaybackToolbar() {
-    let toolbar = document.querySelector("#p4w-playback-toolbar");
+    let toolbar = document.querySelector("#abotw-playback-toolbar");
     toolbar.innerHTML = toolbar.innerHTML + 
-    `<button id="p4w-previous-phrase"
+    `<button id="abotw-previous-phrase"
         type="button"
-        class="p4w-lightup"
+        class="abotw-lightup"
         aria-label="Previous phrase"
         title="Previous phrase">
         ${icons.prevPhrase}
     </button>
-    <button id="p4w-playpause"
+    <button id="abotw-playpause"
         type="button" 
-        class="p4w-lightup"
+        class="abotw-lightup"
         aria-label="Play"
         title="Play">
         ${icons.play}
         ${icons.pause}
     </button>
-    <button id="p4w-next-phrase"
+    <button id="abotw-next-phrase"
         type="button"
-        class="p4w-lightup"
+        class="abotw-lightup"
         aria-label="Next phrase"
         title="Next phrase">
         ${icons.nextPhrase}
     </button>
-    <input id="p4w-volume"
+    <input id="abotw-volume"
         aria-label="Volume" 
         title="volume"
-        class="p4w-lightup"
+        class="abotw-lightup"
         type="range"  
         min="0" 
         max="100" 
@@ -38,7 +38,7 @@ function createPlaybackToolbar() {
         step="5">
     </input>`;
 
-    toolbar.querySelector("#p4w-playpause").addEventListener("click", async e => {
+    toolbar.querySelector("#abotw-playpause").addEventListener("click", async e => {
         if (!player.audio.paused) {
             player.audio.pause();
         }
@@ -52,22 +52,22 @@ function createPlaybackToolbar() {
         }
     });
 
-    toolbar.querySelector("#p4w-previous-phrase").addEventListener("click", e => {
+    toolbar.querySelector("#abotw-previous-phrase").addEventListener("click", e => {
         player.goPrevious();
     });
 
-    toolbar.querySelector("#p4w-next-phrase").addEventListener("click", e => {
+    toolbar.querySelector("#abotw-next-phrase").addEventListener("click", e => {
         player.goNext();
     });
 
-    let volumeRange = document.querySelector("#p4w-volume");
+    let volumeRange = document.querySelector("#abotw-volume");
     let setVolume = (volume, player) => {
-        localStorage.setItem("p4w-volume", volume);
+        localStorage.setItem("abotw-volume", volume);
         player.audio.volume = volume/100;
         volumeRange.value = volume;
     };
 
-    let volume = localStorage.getItem("p4w-volume");
+    let volume = localStorage.getItem("abotw-volume");
     setVolume(volume, player);
     volumeRange.addEventListener("change", e => {
         setVolume(e.target.value, player);

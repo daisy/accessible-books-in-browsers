@@ -1,10 +1,10 @@
 /* styling the book contents */
 body, main h1, main h2, main h3, main h4, main h5, main h6, main p {
-    background-color: rgb(var(--p4w-page-background-color));
-    color:rgb(var(--p4w-text-color));
+    background-color: rgb(var(--abotw-page-background-color));
+    color:rgb(var(--abotw-text-color));
 }
 a {
-    color: rgb(var(--p4w-link-color));
+    color: rgb(var(--abotw-link-color));
 }
 a:hover, a:active, a:focus {
     background-color: inherit;
@@ -18,7 +18,7 @@ main {
     line-height: 1.5;
     padding: 0 10px;
 }
-main .p4w-selflink {
+main .abotw-selflink {
     color: inherit;
     position: relative;
     top: 3px;
@@ -27,23 +27,23 @@ main p {
     line-height: calc(1ex / 0.32);
 }
 /* invert the table header colors; otherwise can look weird when using a dark theme */
-body.p4w-dark main table th {
-    background-color: rgb(var(--p4w-text-color)) !important;
-    color: rgb(var(--p4w-page-background-color)) !important;
+body.abotw-dark main table th {
+    background-color: rgb(var(--abotw-text-color)) !important;
+    color: rgb(var(--abotw-page-background-color)) !important;
 }
 .highlight { 
-    background-color: rgba(var(--p4w-sync-highlight-background-color), 1);
-    color: rgba(var(--p4w-sync-highlight-color), 1);
+    background-color: rgba(var(--abotw-sync-highlight-background-color), 1);
+    color: rgba(var(--abotw-sync-highlight-color), 1);
     border-radius: 4px;
     transition: .2s;
 }
 .search-result {
-    background-color: rgba(var(--p4w-search-highlight-background-color), 1);
-    color: rgba(var(--p4w-search-highlight-color), 1);
+    background-color: rgba(var(--abotw-search-highlight-background-color), 1);
+    color: rgba(var(--abotw-search-highlight-color), 1);
     padding: 3px;
     border-radius: 4px;
     transition: .2s;
-    border: 3px solid rgba(var(--p4w-search-highlight-color), .8);
+    border: 3px solid rgba(var(--abotw-search-highlight-color), .8);
     scroll-margin-top: 1rem;
 }
 @supports (font-size-adjust: 1) {

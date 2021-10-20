@@ -3,29 +3,29 @@ let audio;
 let activeCueIdx = -1; 
 
 async function load() {
-    audio = document.querySelector("#p4w-audio audio");
-    let track = document.querySelector("#p4w-audio track");
+    audio = document.querySelector("#abotw-audio audio");
+    let track = document.querySelector("#abotw-audio track");
     track.track.addEventListener("cuechange", onCueChange);
     
     audio.addEventListener("play", e => {
-        document.querySelector("body").classList.add("p4w-playing");
-        document.querySelector("#p4w-playpause").setAttribute("title", "Pause");
-        document.querySelector("#p4w-playpause").setAttribute("aria-label", "Pause");
+        document.querySelector("body").classList.add("abotw-playing");
+        document.querySelector("#abotw-playpause").setAttribute("title", "Pause");
+        document.querySelector("#abotw-playpause").setAttribute("aria-label", "Pause");
     });
     audio.addEventListener("pause", e => {
-        document.querySelector("body").classList.remove("p4w-playing");
-        document.querySelector("#p4w-playpause").setAttribute("title", "Play");
-        document.querySelector("#p4w-playpause").setAttribute("aria-label", "Play");
+        document.querySelector("body").classList.remove("abotw-playing");
+        document.querySelector("#abotw-playpause").setAttribute("title", "Play");
+        document.querySelector("#abotw-playpause").setAttribute("aria-label", "Play");
     });
     audio.addEventListener("ended", e => {
-        localStorage.setItem("p4w-autoplay", true);
-        let nextSection = document.querySelector("#p4w-next-section");
+        localStorage.setItem("abotw-autoplay", true);
+        let nextSection = document.querySelector("#abotw-next-section");
         if (nextSection) nextSection.click();
     });
     
     // hide the basic html audio player
-    if (document.querySelector("#p4w-audio")) {
-        document.querySelector("#p4w-audio").style['display'] = 'none';
+    if (document.querySelector("#abotw-audio")) {
+        document.querySelector("#abotw-audio").style['display'] = 'none';
     }
     
 }
