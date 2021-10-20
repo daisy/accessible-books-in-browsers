@@ -38,14 +38,17 @@ function createPlaybackToolbar() {
         step="5">
     </input>`;
 
-    toolbar.querySelector("#p4w-playpause").addEventListener("click", e => {
+    toolbar.querySelector("#p4w-playpause").addEventListener("click", async e => {
         if (!player.audio.paused) {
             player.audio.pause();
-            // document.querySelector("#p4w-playpause").classList.remove("playing");
         }
         else {
-            player.audio.play();
-            // document.querySelector("#p4w-playpause").classList.add("playing");
+            try {
+                await player.audio.play();
+            }
+            catch(err) {
+                console.error("Play() failed");
+            }
         }
     });
 

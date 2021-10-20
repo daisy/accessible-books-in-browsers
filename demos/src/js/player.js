@@ -18,6 +18,11 @@ async function load() {
         document.querySelector("#p4w-playpause").setAttribute("title", "Play");
         document.querySelector("#p4w-playpause").setAttribute("aria-label", "Play");
     });
+    audio.addEventListener("ended", e => {
+        localStorage.setItem("p4w-autoplay", true);
+        let nextSection = document.querySelector("#p4w-next-section");
+        if (nextSection) nextSection.click();
+    });
     
     // let waitForAudioToLoad = new Promise((resolve, reject) => {
     //     audio.addEventListener("loadeddata", e => {

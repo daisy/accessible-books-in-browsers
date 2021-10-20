@@ -41,7 +41,6 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
     if (localStorage.getItem("p4w-target")) { 
         let elm = document.querySelector(localStorage.getItem("p4w-target"));
         if (elm) {
-            // console.log("highlighting search result", localStorage.getItem("p4w-target"));
             elm.classList.add("search-result");
             elm.scrollIntoView();
             elm.setAttribute("role", "mark");
@@ -51,13 +50,23 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
 
     document.documentElement.classList.remove("p4w-js");
     document.querySelector("body").classList.add("p4w-fadein");
+
+    if (localStorage.getItem("p4w-autoplay") == "true") {
+        localStorage.setItem("p4w-autoplay", false);
+        let playButton = document.querySelector("#p4w-playpause");
+        try {
+            console.debug("Attempting to start playback automatically");
+            if (playButton) playButton.click();
+            else console.error("Play button not found");
+        }
+        catch(err) {
+            console.error(err);
+        }
+    }
 }
 
 
 function initState() {
-    // if (localStorage.getItem("p4w-darkmode") == null) {
-    //     localStorage.setItem("p4w-darkmode", false);
-    // }
     if (localStorage.getItem("p4w-scale") == null) {
         localStorage.setItem("p4w-scale", "100");
     }
