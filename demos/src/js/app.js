@@ -67,8 +67,8 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
 
 
 function initState() {
-    if (localStorage.getItem("abotw-scale") == null) {
-        localStorage.setItem("abotw-scale", "100");
+    if (localStorage.getItem("abotw-size") == null) {
+        localStorage.setItem("abotw-size", "100");
     }
     if (localStorage.getItem("abotw-rate") == null) {
         localStorage.setItem("abotw-rate", "100");

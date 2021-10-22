@@ -9,11 +9,11 @@ async function createSettingsPanelContents(includeAudioRate = false) {
             <label for="abotw-dark-mode-toggle">Dark mode</label>
             <input type="checkbox" id="abotw-dark-mode-toggle">
         </div>
-        <div id="abotw-scale" title="Scale">
-            <label for="abotw-scale-range">Scale</label>
-            <input type="range" id="abotw-scale-range" min="80" max="300" value="100" step="5">
-            <p id="abotw-scale-value">100%</p>
-            <button id="abotw-reset-scale">Reset scale</button>
+        <div id="abotw-size" title="Size">
+            <label for="abotw-size-range">Size</label>
+            <input type="range" id="abotw-size-range" min="80" max="300" value="100" step="5">
+            <p id="abotw-size-value">100%</p>
+            <button id="abotw-reset-size">Reset size</button>
         </div>
         ${includeAudioRate ? 
             `<div id="abotw-rate" title="Playback Rate">
@@ -35,7 +35,7 @@ async function createSettingsPanelContents(includeAudioRate = false) {
         }
     });
 
-    initScale();
+    initSize();
     initDarkMode();
     if (includeAudioRate) initRate();
 }
@@ -80,68 +80,68 @@ function darkModeOff() {
     let darkModeToggle = document.querySelector("#abotw-dark-mode input");
     if (darkModeToggle) darkModeToggle.checked = false;
 }
-function initScale() {
-    let scale = localStorage.getItem("abotw-scale");
+function initSize() {
+    let size = localStorage.getItem("abotw-size");
 
-    let scaleRange = document.querySelector("#abotw-scale input");
-    scaleRange.value = scale;
+    let sizeRange = document.querySelector("#abotw-size input");
+    sizeRange.value = size;
 
-    scaleRange.addEventListener("input", e => {
-        setScale(e.target.value);
+    sizeRange.addEventListener("input", e => {
+        setSize(e.target.value);
     });
-    document.querySelector("#abotw-reset-scale").addEventListener("click", e => {
-        scaleRange.value = 100;
-        setScale(100);
+    document.querySelector("#abotw-reset-size").addEventListener("click", e => {
+        sizeRange.value = 100;
+        setSize(100);
     });
 
-    setScale(scale);
+    setSize(size);
 }
-function setScale(scale) {
-    localStorage.setItem("abotw-scale", scale);
-    document.querySelector("#abotw-scale-value").textContent = `${scale}%`;
+function setSize(size) {
+    localStorage.setItem("abotw-size", size);
+    document.querySelector("#abotw-size-value").textContent = `${size}%`;
     
     // scale the font
-    document.querySelector("body").style["font-size"] = `${scale}%`;
+    document.querySelector("body").style["font-size"] = `${size}%`;
     
     // scale the icons
     let icons = Array.from(document.querySelectorAll("svg.abotw-iconify"));
     icons.map(icon => {
-        icon.style["width"] =`calc(${scale/100} * var(--abotw-icons))`;
+        icon.style["width"] =`calc(${size/100} * var(--abotw-icons))`;
         icon.style["height"] = icon.style["width"];
     });
 
     // scale the settings controls
     let settingsInputs = Array.from(document.querySelectorAll("#abotw-settings input[type=checkbox]"));
     settingsInputs.map(input => {
-        input.style["width"] = `calc(${scale/200} * var(--abotw-icons))`;
-        input.style["height"] = `calc(${scale/200} * var(--abotw-icons))`;
+        input.style["width"] = `calc(${size/200} * var(--abotw-icons))`;
+        input.style["height"] = `calc(${size/200} * var(--abotw-icons))`;
     });
     
     // scale the prev/next document links to get the right size hover box
     let doclinks = Array.from(document.querySelectorAll("#abotw-document-links a"));
     doclinks.map(link => {
-        link.style["width"] = `calc(${scale/100} * var(--abotw-icons))`;
-        link.style["height"] = `calc(${scale/100} * var(--abotw-icons))`;
+        link.style["width"] = `calc(${size/100} * var(--abotw-icons))`;
+        link.style["height"] = `calc(${size/100} * var(--abotw-icons))`;
     });
 
     // scale the app toolbar help link
     let toolbarLinks = Array.from(document.querySelectorAll("#abotw-help"));
     toolbarLinks.map(link => {
-        link.style["width"] = `calc(${scale/100} * var(--abotw-icons))`;
-        link.style["height"] = `calc(${scale/100} * var(--abotw-icons))`;
+        link.style["width"] = `calc(${size/100} * var(--abotw-icons))`;
+        link.style["height"] = `calc(${size/100} * var(--abotw-icons))`;
     });
 
     // scale the sliders
     let style = 
     `input[type=range] {
-        height: calc(${scale/500} * var(--abotw-icons));
+        height: calc(${size/500} * var(--abotw-icons));
     }
     input[type=range]::-moz-range-thumb, 
     input[type=range]::-ms-thumb,  
     input[type=range]::-webkit-slider-thumb {
         border: thin black solid;
-        width: calc(${scale/200} * var(--abotw-icons));
-        height: calc(${scale/200} * var(--abotw-icons));
+        width: calc(${size/200} * var(--abotw-icons));
+        height: calc(${size/200} * var(--abotw-icons));
     }`;
 
     if (document.querySelector("#abotw-settings style")) {
@@ -163,24 +163,24 @@ function setScale(scale) {
         }
     }
     // scale the spacing on the nav sidebar
-    document.querySelector("#abotw-nav > div").style["gap"] = `calc(${scale/300} * var(--abotw-icons))`;
+    document.querySelector("#abotw-nav > div").style["gap"] = `calc(${size/300} * var(--abotw-icons))`;
 
     // scale the close buttons
     let closeButtons = Array.from(document.querySelectorAll(".abotw-panel > button svg:last-child"));
     closeButtons.map(closeButton => {
-        closeButton.style["width"] = `calc(${scale/200} * var(--abotw-icons))`;
-        closeButton.style["height"] = `calc(${scale/200} * var(--abotw-icons))`;
+        closeButton.style["width"] = `calc(${size/200} * var(--abotw-icons))`;
+        closeButton.style["height"] = `calc(${size/200} * var(--abotw-icons))`;
     });
 
     toolbarLinks.map(link => {
-        link.style["width"] = `calc(${scale/100} * var(--abotw-icons))`;
-        link.style["height"] = `calc(${scale/100} * var(--abotw-icons))`;
+        link.style["width"] = `calc(${size/100} * var(--abotw-icons))`;
+        link.style["height"] = `calc(${size/100} * var(--abotw-icons))`;
     });
 
     // scale the self-links next to each heading
     let selflinks = Array.from(document.querySelectorAll("main .abotw-selflink .abotw-iconify"));
     selflinks.map(link => {
-        link.style["width"] = `calc(${scale/200} * var(--abotw-icons))`;
+        link.style["width"] = `calc(${size/200} * var(--abotw-icons))`;
     });
 }
 
