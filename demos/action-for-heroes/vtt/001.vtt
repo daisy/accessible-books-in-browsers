@@ -2,20 +2,20 @@ WEBVTT
 
 1
 00:00:00.000 --> 00:00:03.704
-#page1
+{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"page1"}}
 
 2
 00:00:03.704 --> 00:00:06.868
-#dtb3
+{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb3"}}
 
 3
 00:00:06.868 --> 00:00:12.976
-#dtb4
+{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb4"}}
 
 4
 00:00:12.976 --> 00:00:39.406
-#rId51
+{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"rId51"}}
 
 5
 00:00:39.406 --> 00:00:43.425
-#rId62
+{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"rId62"}}

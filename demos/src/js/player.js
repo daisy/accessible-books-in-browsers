@@ -1,6 +1,6 @@
-let currentfrag = '';
 let audio;
 let activeCueIdx = -1; 
+let activeCueMetadata;
 
 async function load() {
     audio = document.querySelector("#abotw-audio audio");
@@ -27,7 +27,6 @@ async function load() {
     if (document.querySelector("#abotw-audio")) {
         document.querySelector("#abotw-audio").style['display'] = 'none';
     }
-    
 }
 
 function onCueChange(e) {
@@ -37,20 +36,39 @@ function onCueChange(e) {
     if (activeCues.length > 0) {
         let activeCue = activeCues[activeCues.length - 1];
         activeCueIdx = Array.from(track.cues).findIndex(cue => cue.id == activeCue.id);
-        if (currentfrag != '') unhighlight(currentfrag);
-        currentfrag = activeCue.text.split("#")[1];
-        highlight(currentfrag);
+        endCueAction();
+        let cueMetadata = JSON.parse(activeCue.text);
+        startCueAction(cueMetadata);
     }
 }
-function highlight(frag) {
-    let elm = document.querySelector(`#${frag}`);
-    elm.classList.add("highlight");
-    if (!isInViewport(elm, document)) {
-        elm.scrollIntoView();
+function startCueAction(cueMetadata) {
+    activeCueMetadata = cueMetadata;
+    if (cueMetadata.action == "addCssClass") {
+        let elm = select(cueMetadata.selector);
+        if (elm) {
+            elm.classList.add(cueMetadata.data);
+            if (!isInViewport(elm, document)) {
+                elm.scrollIntoView();
+            }
+        }
     }
 }
-function unhighlight() {
-    document.querySelector(`.highlight`).classList.remove("highlight");
+function endCueAction() {
+    if (!activeCueMetadata) return;
+    let elm = select(activeCueMetadata.selector);
+    // undo add css class
+    if (elm && activeCueMetadata.action == "addCssClass") {
+        document.querySelector(`.${activeCueMetadata.data}`)?.classList.remove(activeCueMetadata.data);
+    }
+}
+function select(selector) {
+    if (selector.type == "FragmentSelector") {
+        return document.querySelector(`#${selector.value}`);
+    }
+    else if (selector.type == "CssSelector") {
+        return document.querySelector(selector.value);
+    }
+    else return null;
 }
 function goNext() {
     let track = audio.textTracks[0];

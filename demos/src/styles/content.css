@@ -31,7 +31,7 @@ body.abotw-dark main table th {
     background-color: rgb(var(--abotw-text-color)) !important;
     color: rgb(var(--abotw-page-background-color)) !important;
 }
-.highlight { 
+.abotw-sync-highlight { 
     background-color: rgba(var(--abotw-sync-highlight-background-color), 1);
     color: rgba(var(--abotw-sync-highlight-color), 1);
     border-radius: 4px;
