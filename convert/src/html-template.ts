@@ -52,7 +52,7 @@ return `<!DOCTYPE html>
     ${previousSectionHref || nextSectionHref ? 
     `<section role="contentinfo" aria-label="Previous and next links" id="abotw-document-links">
         ${previousSectionHref ? 
-        `<a id="abotw-previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="abotw-lightup">
+        `<a id="abotw-previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="abotw-lightup" rel="prev">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="abotw-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled"
@@ -64,7 +64,7 @@ return `<!DOCTYPE html>
             </svg>
         </a>` : ''}
         ${nextSectionHref ? 
-        `<a id="abotw-next-section" href="${nextSectionHref}" title="Next: ${nextSectionTitle}" class="abotw-lightup">
+        `<a id="abotw-next-section" href="${nextSectionHref}" title="Next: ${nextSectionTitle}" class="abotw-lightup" rel="next">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 
                 class="abotw-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled"
@@ -99,7 +99,7 @@ return `<!DOCTYPE html>
     </section>
     <section id="abotw-app-toolbar" class="abotw-toolbar" aria-label="Application toolbar">
         <div id="abotw-help" class="abotw-lightup">
-            <a href="../../src/help/" title="View help" target="_blank">
+            <a href="../../src/help/" title="View help" target="_blank" rel="help">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="abotw-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em" >
                     <g fill="none">
                         <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
