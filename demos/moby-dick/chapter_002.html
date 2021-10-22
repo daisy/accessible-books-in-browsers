@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
     <meta charset="utf-8">
 
-    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
     <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
@@ -20,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
 
 
+    <link rel="alternate" href="#abotw-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
       document.documentElement.classList.add('abotw-js');
@@ -104,11 +104,9 @@
     </section>
 
     <section id="abotw-playback-toolbar" class="abotw-toolbar" aria-label="Playback toolbar">
-      <div id="abotw-audio">
-        <audio src="audio/chapter_002.mp3" controls="">
-          <track default="" kind="metadata" src="vtt/chapter_002.vtt">
-        </audio>
-      </div>
+      <audio src="audio/chapter_002.mp3" controls="" id="abotw-audio">
+        <track default="" kind="metadata" src="vtt/chapter_002.vtt">
+      </audio>
     </section>
 
     <script type="module" id="abotw-initApp">

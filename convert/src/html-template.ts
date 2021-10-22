@@ -22,7 +22,6 @@ return `<!DOCTYPE html>
 <html lang="en">
 <head>
     ${headContents}
-    <meta charset="utf-8" />    
     <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/theme.css">
     <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/layout.css">
     <link rel="stylesheet" type="text/css" href="${pathToSharedClientCode}/styles/collapsible-panel.css">
@@ -36,6 +35,9 @@ return `<!DOCTYPE html>
     
     ${favicoHref ? 
         `<link rel="icon" type="image/png" sizes="96x96" href="${favicoHref}">`
+        : ``}
+    ${audioSrc ? 
+        `<link rel="alternate" href="#abotw-audio" type="audio/mpeg">`
         : ``}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>document.documentElement.classList.add('abotw-js');</script>
@@ -109,11 +111,9 @@ return `<!DOCTYPE html>
 
     ${audioSrc ? 
         `<section id="abotw-playback-toolbar" class="abotw-toolbar" aria-label="Playback toolbar">        
-            <div id="abotw-audio">
-                <audio src="${audioSrc}" controls>
-                    <track default kind="metadata" src="${vttSrc}">
-                </audio>
-            </div>
+            <audio src="${audioSrc}" controls id="abotw-audio">
+                <track default kind="metadata" src="${vttSrc}">
+            </audio>
         </section>`
         : ``
     }

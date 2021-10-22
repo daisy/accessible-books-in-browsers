@@ -3,7 +3,7 @@ let activeCueIdx = -1;
 let activeCueMetadata;
 
 async function load() {
-    audio = document.querySelector("#abotw-audio audio");
+    audio = document.querySelector("#abotw-audio");
     let track = document.querySelector("#abotw-audio track");
     track.track.addEventListener("cuechange", onCueChange);
     
