@@ -317,15 +317,23 @@ async function initSearchPanel(searchPanel, searchIndexUrl, searchDataUrl) {
         <label for="abotw-search">Search</label>
         <input type="search" id="abotw-search-text" placeholder="Search"></input>
         <input type="button" id="abotw-search-button" value="Search"></input>
-    </div>`;
+    </div>
+    <section aria-label="Search results" id="abotw-search-results" aria-live="polite">
+    </section>`;
 
     let fuse = await initSearchEngine(searchIndexUrl, searchDataUrl);
     
-    searchPanel.querySelector("#abotw-search-button").addEventListener("click", async e => {
+    let performSearch = async e => {
         let searchText = searchPanel.querySelector("#abotw-search-text").value;
         if (searchText.trim() != '') {
             let result = fuse.search(searchText);
             presentSearchResults(result);
+        }
+    };
+    searchPanel.querySelector("#abotw-search-button").addEventListener("click", performSearch);
+    searchPanel.querySelector("#abotw-search-text").addEventListener("keydown", async e => {
+        if (e.code == "Enter") {
+            await performSearch();
         }
     });
 }
@@ -400,8 +408,9 @@ async function initSearchEngine(searchIndexUrl, searchDataUrl) {
 
 function presentSearchResults(results) {
     // clear any old results
-    let resultsElm = document.querySelector("#abotw-search section");
-    if (resultsElm) resultsElm.remove();
+    let resultsElm = document.querySelector("#abotw-search-results");
+    resultsElm.innerHTML = '';
+    
     let oldResultHighlights = Array.from(document.querySelectorAll(".search-result"));
     oldResultHighlights.map(el => {
         el.classList.remove('.search-result');
@@ -410,9 +419,7 @@ function presentSearchResults(results) {
         el.setAttribute("role", attrval);
     });
 
-    resultsElm = document.createElement("section");
-    resultsElm.setAttribute("aria-label", "Search results");
-    resultsElm.id = "abotw-search-results";
+    resultsElm = document.querySelector("#abotw-search-results");
     
     resultsElm.innerHTML = 
     `<p>${results.length} results</p>
