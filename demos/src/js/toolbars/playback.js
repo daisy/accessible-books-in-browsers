@@ -69,7 +69,7 @@ function createPlaybackToolbar() {
 
     let volume = localStorage.getItem("abotw-volume");
     setVolume(volume, player);
-    volumeRange.addEventListener("change", e => {
+    volumeRange.addEventListener("input", e => {
         setVolume(e.target.value, player);
     });
 }
