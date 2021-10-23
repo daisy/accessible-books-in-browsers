@@ -57,4 +57,5 @@ A few things (navigation document consistency across publications; colors in sty
 
 - Autoplay between chapters is [not working yet](https://github.com/daisy/accessible-books-on-the-web/issues/3)
 - Slight flashing on page load if not using dark mode
-- [Any other issues](https://github.com/daisy/accessible-books-on-the-web/issues)
+
+[See issues list](https://github.com/daisy/accessible-books-on-the-web/issues)
