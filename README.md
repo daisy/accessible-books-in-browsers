@@ -4,7 +4,17 @@
 
 ## About 
 
-Transform EPUB with Media Overlays into a series of HTML files suitable for reading on the web. The source files are slightly reworked and wrapped in an HTML template. The reading controls are embedded into these HTML files themselves. 
+Transform EPUB with Media Overlays into a series of HTML files for reading directly on the web. 
+
+A typical conversion creates the following files:
+- HTML files with the original contents, plus reading interface controls and links to the TOC, Previous, and Next pages.
+- An About page containing publication metainformation
+- A TOC based on the original EPUB Nav Document
+
+Media Overlays conversion adds the following:
+- Creation of one audio file per HTML page
+- Embedding that audio file in the HTML page
+- A VTT file containing the phrase timing information for that audio file
 
 ## Demos
 
@@ -13,13 +23,10 @@ Transform EPUB with Media Overlays into a series of HTML files suitable for read
 
 ## Status
 
-This project is currently a prototype. The demos were created using the [convert script](https://github.com/daisy/accessible-books-on-the-web/tree/main/convert). These are the [source files for the user interface](https://github.com/daisy/accessible-books-on-the-web/tree/main/demos/src), embedded in each converted file.
+This project is currently a prototype. The demos were created using the [convert script](https://github.com/daisy/accessible-books-on-the-web/tree/main/convert). And, these are the [source files for the user interface](https://github.com/daisy/accessible-books-on-the-web/tree/main/demos/src), embedded in each converted file.
 
 Many features are still experimental or on the to-do list (such as mobile layout). Current features are detailed below.
 
-### Caveats
-
-A few things (navigation document consistency across publications; colors in stylesheets or things marked `!important`) were adjusted manually in the EPUB source; this is, after all, just a prototype. But these aspects can and will be automated in the future.
 
 ## Current features
 
@@ -38,4 +45,14 @@ A few things (navigation document consistency across publications; colors in sty
 | Audio support | Play embedded audio for the page with native HTML controls | Synchronized highlighting and custom controls, including phrase navigation and control over announcing page numbers|
 
 
+## Caveats
 
+### Conversion
+A few things (navigation document consistency across publications; colors in stylesheets or things marked `!important`) were adjusted manually in the EPUB source; this is, after all, just a prototype. But these aspects can and will be automated in the future.
+
+
+### User interface
+
+- Autoplay between chapters is [not working yet](https://github.com/daisy/accessible-books-on-the-web/issues/3)
+- Slight flashing on page load if not using dark mode
+- [Any other issues](https://github.com/daisy/accessible-books-on-the-web/issues)
