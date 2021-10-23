@@ -35,16 +35,16 @@ This project is currently a __prototype__.
 | Feature | Basic | JS-enhanced |
 |---------|-------|-------------|
 | Spine navigation | Forward and back through the spine documents with links (shown as arrows) | (same) | 
-| TOC | TOC link opens `nav.html`| Loads TOC in sidebar | 
-| Page list | Page list is within `nav.html`, use landmarks navigation or click the in-page link at top | Loads in sidebar and has go-to-page controls | 
-| Search | Not available | Full text search from sidebar |
-| Publication info | Info link opens `about.html`, a generated page containing publication info | Loads in sidebar |
+| TOC | TOC link opens `nav.html`| TOC loads in sidebar | 
+| Page list | Page list is within `nav.html`, use landmarks navigation or click the in-page link at top | Page list loads in sidebar and has go-to-page controls | 
+| Search | Not available | Full text search available from sidebar |
+| Publication info | Info link opens `about.html`, containing publication info | About page loads in sidebar instead|
 | Keyboard shortcuts | Not available | Available (see help for details) | 
 | Help | Opens in new page | (same) |
-| Settings | Not available | Change size, theme, playback rate |
-| Theme | Match OS dark theme preference by default | Same, plus ability to turn on/off |
+| Settings | Not available | Change size, theme, playback rate, page number announcements |
+| Theme | Match OS dark theme preference by default | Adds ability to turn on/off |
 | Bookmarks | Bookmark any heading using your browser | (same) |
-| Audio support | Play embedded audio for the page with native HTML controls | Synchronized highlighting and custom controls, including phrase navigation and control over announcing page numbers|
+| Audio support | Play embedded audio for the page with native HTML controls | Adds synchronized highlighting and custom controls, including phrase navigation and control over announcing page numbers|
 
 
 ## Caveats
