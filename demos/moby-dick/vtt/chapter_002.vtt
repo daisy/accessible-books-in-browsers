@@ -1,53 +1,53 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:03.500
+00:00:00.000 --> 00:00:03.553
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02h01"}}
 
 2
-00:00:03.500 --> 00:00:29.000
+00:00:03.553 --> 00:00:29.127
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0001"}}
 
 3
-00:00:29.000 --> 00:01:39.500
+00:00:29.127 --> 00:01:39.683
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0002"}}
 
 4
-00:01:39.500 --> 00:02:31.800
+00:01:39.683 --> 00:02:32.059
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0003"}}
 
 5
-00:02:31.800 --> 00:03:39.000
+00:02:32.059 --> 00:03:39.324
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0004"}}
 
 6
-00:03:39.000 --> 00:04:36.800
+00:03:39.324 --> 00:04:37.185
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0005"}}
 
 7
-00:04:36.800 --> 00:05:04.500
+00:04:37.185 --> 00:05:04.953
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0006"}}
 
 8
-00:05:04.500 --> 00:05:27.100
+00:05:04.953 --> 00:05:27.628
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0007"}}
 
 9
-00:05:27.100 --> 00:06:02.500
+00:05:27.628 --> 00:06:03.102
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0008"}}
 
 10
-00:06:02.500 --> 00:08:04.200
+00:06:03.102 --> 00:08:04.859
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0009"}}
 
 11
-00:08:04.200 --> 00:08:25.000
+00:08:04.859 --> 00:08:25.731
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0010"}}
 
 12
-00:08:25.000 --> 00:08:49.000
+00:08:25.731 --> 00:08:49.789
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0011"}}
 
 13
-00:08:49.000 --> 00:09:03.000
+00:08:49.789 --> 00:09:03.843
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"c02p0012"}}

@@ -28,6 +28,7 @@ async function mergeAudioSegments(mediaSegments, outFilename) {
     let clipCreation = mediaSegments.map(async (audio, idx) => {
         return new Promise((resolve, reject) => {
             let audioTmpFilename = path.join(tmpDirname, `${idx}${ext}`);
+            audio.tmpFilename = audioTmpFilename;
             audioTmpFilenames.push(audioTmpFilename);
             ffmpeg()
                 .input(audio.src)
@@ -50,6 +51,11 @@ async function mergeAudioSegments(mediaSegments, outFilename) {
 
     await Promise.all(clipCreation);
 
+    // correct the durations
+    for (let audio of mediaSegments) {
+        let dur = await utils.getDuration(audio.tmpFilename);
+        audio.durOnDisk = dur;
+    }
     let concatFiles = 'concat:' + audioTmpFilenames.join('|');
     
     // merge the clips into one audio file

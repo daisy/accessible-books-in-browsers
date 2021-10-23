@@ -1,117 +1,117 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:04.789
+00:00:00.000 --> 00:00:04.859
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb24"}}
 
 2
-00:00:04.789 --> 00:00:07.913
+00:00:04.859 --> 00:00:08.046
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb25"}}
 
 3
-00:00:07.913 --> 00:00:11.481
+00:00:08.046 --> 00:00:11.677
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb28"}}
 
 4
-00:00:11.481 --> 00:00:13.505
+00:00:11.677 --> 00:00:13.767
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb29"}}
 
 5
-00:00:13.505 --> 00:00:15.479
+00:00:13.767 --> 00:00:15.804
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb30"}}
 
 6
-00:00:15.479 --> 00:00:17.098
+00:00:15.804 --> 00:00:17.476
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb32"}}
 
 7
-00:00:17.098 --> 00:00:19.312
+00:00:17.476 --> 00:00:19.749
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb33"}}
 
 8
-00:00:19.312 --> 00:00:21.561
+00:00:19.749 --> 00:00:22.073
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb34"}}
 
 9
-00:00:21.561 --> 00:00:23.260
+00:00:22.073 --> 00:00:23.850
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb36"}}
 
 10
-00:00:23.260 --> 00:00:25.379
+00:00:23.850 --> 00:00:26.044
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb37"}}
 
 11
-00:00:25.379 --> 00:00:27.613
+00:00:26.044 --> 00:00:28.343
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb38"}}
 
 12
-00:00:27.613 --> 00:00:29.317
+00:00:28.343 --> 00:00:30.119
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb40"}}
 
 13
-00:00:29.317 --> 00:00:31.666
+00:00:30.119 --> 00:00:32.522
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb41"}}
 
 14
-00:00:31.666 --> 00:00:33.995
+00:00:32.522 --> 00:00:34.926
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb42"}}
 
 15
-00:00:33.995 --> 00:00:35.724
+00:00:34.926 --> 00:00:36.728
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb44"}}
 
 16
-00:00:35.724 --> 00:00:38.003
+00:00:36.728 --> 00:00:39.079
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb45"}}
 
 17
-00:00:38.003 --> 00:00:40.277
+00:00:39.079 --> 00:00:41.430
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb46"}}
 
 18
-00:00:40.277 --> 00:00:42.106
+00:00:41.430 --> 00:00:43.337
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb48"}}
 
 19
-00:00:42.106 --> 00:00:44.735
+00:00:43.337 --> 00:00:46.028
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb49"}}
 
 20
-00:00:44.735 --> 00:00:47.129
+00:00:46.028 --> 00:00:48.483
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb50"}}
 
 21
-00:00:47.129 --> 00:00:48.908
+00:00:48.483 --> 00:00:50.338
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb52"}}
 
 22
-00:00:48.908 --> 00:00:50.982
+00:00:50.338 --> 00:00:52.480
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb53"}}
 
 23
-00:00:50.982 --> 00:00:53.431
+00:00:52.480 --> 00:00:54.988
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb54"}}
 
 24
-00:00:53.431 --> 00:00:55.030
+00:00:54.988 --> 00:00:56.660
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb56"}}
 
 25
-00:00:55.030 --> 00:00:57.519
+00:00:56.660 --> 00:00:59.220
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb57"}}
 
 26
-00:00:57.519 --> 00:00:59.548
+00:00:59.220 --> 00:01:01.309
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb58"}}
 
 27
-00:00:59.548 --> 00:01:01.242
+00:01:01.309 --> 00:01:03.060
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb60"}}
 
 28
-00:01:01.242 --> 00:01:03.286
+00:01:03.060 --> 00:01:05.176
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb61"}}
 
 29
-00:01:03.286 --> 00:01:09.749
+00:01:05.176 --> 00:01:11.706
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb62"}}

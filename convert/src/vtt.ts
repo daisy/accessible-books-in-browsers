@@ -17,7 +17,8 @@ async function createVtt(mediaSegments, outFilename) {
     utils.toSeconds("");
     mediaSegments.map(mediaSegment => {
         let textId = utils.getFrag(mediaSegment.textSrc);
-        let dur = getDuration(mediaSegment.clipBegin.seconds, mediaSegment.clipEnd.seconds);
+        // let dur = getDuration(mediaSegment.clipBegin.seconds, mediaSegment.clipEnd.seconds);
+        let dur = mediaSegment.durOnDisk;
         let metadata = {
             action: "addCssClass",
             data: "abotw-sync-highlight",

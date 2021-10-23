@@ -1,81 +1,81 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:04.029
+00:00:00.000 --> 00:00:04.101
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"page42"}}
 
 2
-00:00:04.029 --> 00:00:08.353
+00:00:04.101 --> 00:00:08.490
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb687"}}
 
 3
-00:00:08.353 --> 00:00:10.182
+00:00:08.490 --> 00:00:10.397
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb688"}}
 
 4
-00:00:10.182 --> 00:00:11.911
+00:00:10.397 --> 00:00:12.199
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb689"}}
 
 5
-00:00:11.911 --> 00:00:15.135
+00:00:12.199 --> 00:00:15.491
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb690"}}
 
 6
-00:00:15.135 --> 00:00:18.299
+00:00:15.491 --> 00:00:18.730
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb691"}}
 
 7
-00:00:18.299 --> 00:00:22.448
+00:00:18.730 --> 00:00:22.936
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb692"}}
 
 8
-00:00:22.448 --> 00:00:30.226
+00:00:22.936 --> 00:00:30.772
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb693"}}
 
 9
-00:00:30.226 --> 00:00:35.545
+00:00:30.772 --> 00:00:36.153
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb694"}}
 
 10
-00:00:35.545 --> 00:00:43.063
+00:00:36.153 --> 00:00:43.729
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb695"}}
 
 11
-00:00:43.063 --> 00:00:46.647
+00:00:43.729 --> 00:00:47.386
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb696"}}
 
 12
-00:00:46.647 --> 00:00:51.326
+00:00:47.386 --> 00:00:52.140
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb697"}}
 
 13
-00:00:51.326 --> 00:00:55.685
+00:00:52.140 --> 00:00:56.555
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb698"}}
 
 14
-00:00:55.685 --> 00:00:59.184
+00:00:56.555 --> 00:01:00.108
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb699"}}
 
 15
-00:00:59.184 --> 00:01:01.708
+00:01:00.108 --> 00:01:02.694
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"rId4541"}}
 
 16
-00:01:01.708 --> 00:01:03.482
+00:01:02.694 --> 00:01:04.522
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb700"}}
 
 17
-00:01:03.482 --> 00:01:06.496
+00:01:04.522 --> 00:01:07.605
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb701"}}
 
 18
-00:01:06.496 --> 00:01:08.610
+00:01:07.605 --> 00:01:09.773
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"page43"}}
 
 19
-00:01:08.610 --> 00:01:11.509
+00:01:09.773 --> 00:01:12.725
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"rId4642"}}
 
 20
-00:01:11.509 --> 00:01:14.408
+00:01:12.725 --> 00:01:15.677
 {"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"rId4743"}}

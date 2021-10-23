@@ -1,3 +1,6 @@
+import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
+import { path as ffprobePath } from '@ffprobe-installer/ffprobe';
+import ffmpeg from 'fluent-ffmpeg';
 import chardet from 'chardet';
 import fs from "fs-extra";
 
@@ -120,5 +123,19 @@ function getWithoutFrag(str) {
         return str;
     }
 }
+async function getDuration(filename) {
+    ffmpeg.setFfmpegPath(ffmpegPath);
+    ffmpeg.setFfprobePath(ffprobePath);
 
-export { sniffEncoding, toHHMMSS, toSeconds, ensureDirectory, splitSrcSelector, addItem, getFrag, getWithoutFrag };
+    let getDurationOperation = new Promise((resolve, reject) => {
+        ffmpeg.ffprobe(filename, function (err, metadata) {
+            //console.dir(metadata); // all metadata
+            resolve(metadata.format.duration);
+        });
+    });
+
+    let dur = await getDurationOperation;
+    return dur;
+}
+
+export { sniffEncoding, toHHMMSS, toSeconds, ensureDirectory, splitSrcSelector, addItem, getFrag, getWithoutFrag, getDuration };
