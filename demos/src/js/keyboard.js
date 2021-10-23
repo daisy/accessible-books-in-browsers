@@ -1,9 +1,4 @@
 function setupKeyboardShortcuts() {
-    // modifier + G = go to page dialog
-    // modifier + arrow = prev/next section
-    // modifier + T = open TOC
-    // modifier + S = open search
-
     let isPanelOpen = (id) => document.querySelector(`#${id}`).classList.contains("abotw-expanded");
     let closeNavPanel = () => {
         if (isPanelOpen("abotw-nav")) {

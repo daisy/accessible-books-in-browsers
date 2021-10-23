@@ -1,5 +1,4 @@
-// All the icons are in here, nothing more. Except for ... 
-// the previous section, next section, and link icons are hardcoded into the HTML files
+// All the icons are in here, nothing more. Except for anything hardcoded into the HTML files
 
 let rate = 
 `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" 

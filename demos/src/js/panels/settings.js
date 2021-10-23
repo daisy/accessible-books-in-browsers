@@ -1,6 +1,6 @@
 import * as player from '../player.js';
 
-async function createSettingsPanelContents(includeAudioRate = false) {
+async function createSettingsPanelContents(includeAudioControls = false) {
     let settingsPanelContents = document.querySelector("#abotw-settings > div");
     settingsPanelContents.innerHTML = 
     `<h2>Settings</h2>
@@ -15,12 +15,16 @@ async function createSettingsPanelContents(includeAudioRate = false) {
             <p id="abotw-size-value">100%</p>
             <button id="abotw-reset-size">Reset size</button>
         </div>
-        ${includeAudioRate ? 
+        ${includeAudioControls ? 
             `<div id="abotw-rate" title="Playback Rate">
                 <label for="abotw-rate-range">Playback Rate</label>
                 <input type="range" id="abotw-rate-range" min="50" max="300" value="100" step="5">
                 <p id="abotw-rate-value">100%</p>
                 <button id="abotw-reset-rate">Reset rate</button>
+            </div>
+            <div id="abotw-announce-pagenumbers" title="Announce page numbers">
+                <label for="abotw-announce-pagenumbers-toggle">Announce page numbers</label>
+                <input type="checkbox" id="abotw-announce-pagenumbers-toggle" checked>
             </div>` 
             : ``}
     </fieldset>`;
@@ -35,9 +39,22 @@ async function createSettingsPanelContents(includeAudioRate = false) {
         }
     });
 
+    let announcePageNumbersToggle = document.querySelector("#abotw-announce-pagenumbers-toggle");
+    announcePageNumbersToggle.addEventListener("change", e => {
+        if (announcePageNumbersToggle.checked) {
+            announcePageNumbersOn();
+        }
+        else {
+            announcePageNumbersOff();
+        }
+    });
+
     initSize();
     initDarkMode();
-    if (includeAudioRate) initRate();
+    if (includeAudioControls) {
+        initRate();
+        initAnnouncePageNumbers();
+    }
 }
 
 function initDarkMode() {
@@ -213,5 +230,18 @@ function setRate(rate) {
     }
 }
 
-
+function initAnnouncePageNumbers() {
+    if (localStorage.getItem("abotw-announce-pagenumbers") == "true"){
+        announcePageNumbersOn();
+    }
+    else {
+        announcePageNumbersOff();
+    }
+}
+function announcePageNumbersOn() {
+    player.setAnnouncePagebreaks(true);
+}
+function announcePageNumbersOff() {
+    player.setAnnouncePagebreaks(false);
+}
 export { createSettingsPanelContents };

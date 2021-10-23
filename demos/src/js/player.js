@@ -1,6 +1,7 @@
 let audio;
 let activeCueIdx = -1; 
 let activeCueMetadata;
+let skipPagebreaks = true;
 
 async function load() {
     audio = document.querySelector("#abotw-audio");
@@ -36,7 +37,7 @@ function onCueChange(e) {
     if (activeCues.length > 0) {
         let activeCue = activeCues[activeCues.length - 1];
         activeCueIdx = Array.from(track.cues).findIndex(cue => cue.id == activeCue.id);
-        endCueAction();
+        endCueAction(); // this event also marks the end of the previous cue
         let cueMetadata = JSON.parse(activeCue.text);
         startCueAction(cueMetadata);
     }
@@ -46,9 +47,14 @@ function startCueAction(cueMetadata) {
     if (cueMetadata.action == "addCssClass") {
         let elm = select(cueMetadata.selector);
         if (elm) {
-            elm.classList.add(cueMetadata.data);
-            if (!isInViewport(elm, document)) {
-                elm.scrollIntoView();
+            if (canPlay(elm)) {
+                elm.classList.add(cueMetadata.data);
+                if (!isInViewport(elm, document)) {
+                    elm.scrollIntoView();
+                }
+            }
+            else {
+                goNext();
             }
         }
     }
@@ -93,14 +99,20 @@ function canGoNext() {
 function canGoPrevious() {
     return curridx > 0;
 }
-function isInViewport(elm, doc) {
+function isInViewport(elm) {
     let bounding = elm.getBoundingClientRect();
+    let doc = elm.ownerDocument;
     return (
         bounding.top >= 0 &&
         bounding.left >= 0 &&
         bounding.bottom <= (doc.defaultView.innerHeight || doc.documentElement.clientHeight) &&
         bounding.right <= (doc.defaultView.innerWidth || doc.documentElement.clientWidth)
     );
+}
+function canPlay(elm) {
+    // true unless this is a pagebreak
+    return !(skipPagebreaks && elm.classList.contains("epubtype_pagebreak"));
+
 }
 // parse the timestamp and return the value in seconds
 // supports this syntax: https://www.w3.org/publishing/epub/epub-mediaoverlays.html#app-clock-examples
@@ -141,4 +153,8 @@ function parseClockValue(value) {
     return total;
 }
 
-export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious };
+function setAnnouncePagebreaks(value) {
+    skipPagebreaks = !value;
+}
+
+export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious, setAnnouncePagebreaks };
