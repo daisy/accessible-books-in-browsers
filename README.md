@@ -6,7 +6,7 @@
 
 Transform EPUB with Media Overlays into a series of HTML files for reading directly on the web. 
 
-A typical conversion creates the following files:
+A typical conversion creates the following files (see an [example fileset](https://github.com/daisy/accessible-books-on-the-web/tree/main/demos/moby-dick)):
 - HTML files with the original contents, plus reading interface controls and links to the TOC, Previous, and Next pages.
 - An About page containing publication metainformation
 - A TOC based on the original EPUB Nav Document
@@ -21,11 +21,13 @@ Media Overlays conversion adds the following:
 * [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action-for-heroes)
 * [Moby Dick](https://daisy.github.io/accessible-books-on-the-web/demos/moby-dick)
 
+These demos were created using this [conversion script](https://github.com/daisy/accessible-books-on-the-web/tree/main/convert). 
+
 ## Status
 
-This project is currently a prototype. The demos were created using the [convert script](https://github.com/daisy/accessible-books-on-the-web/tree/main/convert). And, these are the [source files for the user interface](https://github.com/daisy/accessible-books-on-the-web/tree/main/demos/src), embedded in each converted file.
+This project is currently a __prototype__. 
 
-Many features are still experimental or on the to-do list (such as mobile layout). Current features are detailed below.
+
 
 
 ## Current features
