@@ -76,6 +76,9 @@ function initState() {
     if (localStorage.getItem("abotw-volume") == null) {
         localStorage.setItem("abotw-volume", 100);
     }
+    if (localStorage.getItem("abotw-announce-pagenumbers") == null) {
+        localStorage.setItem("abotw-announce-pagenumbers", true);
+    }
 }
 
 // for the future

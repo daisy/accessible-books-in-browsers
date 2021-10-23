@@ -1,7 +1,6 @@
 let audio;
 let activeCueIdx = -1; 
 let activeCueMetadata;
-let skipPagebreaks = true;
 
 async function load() {
     audio = document.querySelector("#abotw-audio");
@@ -111,8 +110,10 @@ function isInViewport(elm) {
 }
 function canPlay(elm) {
     // true unless this is a pagebreak
-    return !(skipPagebreaks && elm.classList.contains("epubtype_pagebreak"));
-
+    if (elm.classList.contains("epubtype_pagebreak")) {
+        return localStorage.getItem("abotw-announce-pagenumbers") == "true";
+    }
+    return true;
 }
 // parse the timestamp and return the value in seconds
 // supports this syntax: https://www.w3.org/publishing/epub/epub-mediaoverlays.html#app-clock-examples
@@ -153,8 +154,5 @@ function parseClockValue(value) {
     return total;
 }
 
-function setAnnouncePagebreaks(value) {
-    skipPagebreaks = !value;
-}
 
-export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious, setAnnouncePagebreaks };
+export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious };

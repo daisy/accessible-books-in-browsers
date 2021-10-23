@@ -231,17 +231,17 @@ function setRate(rate) {
 }
 
 function initAnnouncePageNumbers() {
-    if (localStorage.getItem("abotw-announce-pagenumbers") == "true"){
-        announcePageNumbersOn();
+    if (localStorage.getItem("abotw-announce-pagenumbers") == "false"){
+        announcePageNumbersOff();
     }
     else {
-        announcePageNumbersOff();
+        announcePageNumbersOn();
     }
 }
 function announcePageNumbersOn() {
-    player.setAnnouncePagebreaks(true);
+    localStorage.setItem("abotw-announce-pagenumbers", true);
 }
 function announcePageNumbersOff() {
-    player.setAnnouncePagebreaks(false);
+    localStorage.setItem("abotw-announce-pagenumbers", false);
 }
 export { createSettingsPanelContents };
