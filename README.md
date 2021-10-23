@@ -33,7 +33,7 @@ A few things (navigation document consistency across publications; colors in sty
 | Keyboard shortcuts | Not available | Available (see help for details) | 
 | Help | Opens in new page | (same) |
 | Settings | Not available | Change size, theme, playback rate |
-| Theme | Match OS theme by default | (same) |
+| Theme | Match OS dark theme preference by default | Same with ability to turn on/off |
 | Bookmarks | Bookmark any heading using your browser | (same) |
 | Audio support | Play embedded audio for the page with native HTML controls | Synchronized highlighting and custom controls, including phrase navigation|
 
