@@ -10,7 +10,6 @@
     "compile": "tsc",
     "start": "node build/index.js",
     "convert": "npm run start -- convert",
-    "copyAudioBack": "cp ../demos/audio/* ../demos/action-for-heroes/audio",
     "gulp": "gulp"
   },
   "keywords": [],
