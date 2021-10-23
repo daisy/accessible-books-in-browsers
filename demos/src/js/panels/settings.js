@@ -240,8 +240,12 @@ function initAnnouncePageNumbers() {
 }
 function announcePageNumbersOn() {
     localStorage.setItem("abotw-announce-pagenumbers", true);
+    let announcePageNumbersToggle = document.querySelector("#abotw-announce-pagenumbers-toggle");
+    if (announcePageNumbersToggle) announcePageNumbersToggle.checked = true;
 }
 function announcePageNumbersOff() {
     localStorage.setItem("abotw-announce-pagenumbers", false);
+    let announcePageNumbersToggle = document.querySelector("#abotw-announce-pagenumbers-toggle");
+    if (announcePageNumbersToggle) announcePageNumbersToggle.checked = false;
 }
 export { createSettingsPanelContents };

@@ -1,6 +1,7 @@
 let audio;
 let activeCueIdx = -1; 
 let activeCueMetadata;
+let goingBackwards = false;
 
 async function load() {
     audio = document.querySelector("#abotw-audio");
@@ -53,7 +54,13 @@ function startCueAction(cueMetadata) {
                 }
             }
             else {
-                goNext();
+                if (goingBackwards) {
+                    goingBackwards = false;
+                    goPrevious();
+                }
+                else {
+                    goNext();
+                }
             }
         }
     }
@@ -76,6 +83,7 @@ function select(selector) {
     else return null;
 }
 function goNext() {
+    goingBackwards = false;
     let track = audio.textTracks[0];
     if (activeCueIdx != -1) {
         if (activeCueIdx < track.cues.length - 1) {
@@ -84,6 +92,7 @@ function goNext() {
     }
 }
 function goPrevious() {
+    goingBackwards = true;
     let track = audio.textTracks[0];
     if (activeCueIdx != -1) {
         if (activeCueIdx > 0) {
@@ -153,6 +162,5 @@ function parseClockValue(value) {
     let total = hours * 3600 + mins * 60 + secs;
     return total;
 }
-
 
 export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious };
