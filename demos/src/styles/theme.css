@@ -28,7 +28,7 @@ body {
     transition: var(--transition);
 
 }
-body.dark {
+body.abotw-dark {
     --abotw-text-color: var(--abotw-white);
     --abotw-page-background-color: var(--abotw-black);
     --abotw-link-color: var(--abotw-lightblue);
@@ -57,7 +57,7 @@ body.dark {
         --abotw-search-highlight-color: var(--abotw-lightblue);
     }
     /* the manual toggle can override the system theme */
-    body.abotw-prefers-color-scheme-override {
+    body.abotw-dark-pref-override {
         /* "light mode" */
         --abotw-text-color: var(--abotw-black);
         --abotw-page-background-color: var(--abotw-white);

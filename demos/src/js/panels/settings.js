@@ -58,21 +58,21 @@ async function createSettingsPanelContents(includeAudioControls = false) {
 }
 
 function initDarkMode() {
+    let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    // listen for changes to the system theme preference
+    darkModeMediaQuery.addEventListener("change", e => {
+        if (e.matches) darkModeOn();
+        else darkModeOff();
+    });
+
     if (localStorage.getItem("abotw-darkmode") == null) {
-        // set the initial state of the checkbox to the system theme preference
-        let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        // set the initial state of the checkbox to the system theme preference    
         if (darkModeMediaQuery.matches) {
             darkModeOn();
         }
         else {
             darkModeOff();
         }
-        
-        // listen for changes to the system theme preference
-        darkModeMediaQuery.addEventListener("change", e => {
-            if (e.matches) darkModeOff();
-            else darkModeOn();
-        });
     }
     else if (localStorage.getItem("abotw-darkmode") == "true"){
         darkModeOn();
@@ -84,7 +84,7 @@ function initDarkMode() {
 
 function darkModeOn() {
     document.querySelector('body').classList.add('abotw-dark');
-    document.querySelector('body').classList.remove('abotw-prefers-color-scheme-override');
+    document.querySelector('body').classList.remove('abotw-dark-pref-override');
     let darkModeToggle = document.querySelector("#abotw-dark-mode input");
     if (darkModeToggle) darkModeToggle.checked = true;
 
@@ -92,7 +92,7 @@ function darkModeOn() {
 }
 function darkModeOff() {
     document.querySelector('body').classList.remove('abotw-dark');
-    document.querySelector('body').classList.add('abotw-prefers-color-scheme-override');
+    document.querySelector('body').classList.add('abotw-dark-pref-override');
     localStorage.setItem("abotw-darkmode", false);
     let darkModeToggle = document.querySelector("#abotw-dark-mode input");
     if (darkModeToggle) darkModeToggle.checked = false;
