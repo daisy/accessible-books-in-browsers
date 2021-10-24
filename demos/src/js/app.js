@@ -53,15 +53,15 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
 
     if (localStorage.getItem("abotw-autoplay") == "true") {
         localStorage.setItem("abotw-autoplay", false);
-        let playButton = document.querySelector("#abotw-playpause");
-        try {
-            console.debug("Attempting to start playback automatically");
-            if (playButton) playButton.click();
-            else console.error("Play button not found");
-        }
-        catch(err) {
-            console.error(err);
-        }
+        // let playButton = document.querySelector("#abotw-playpause");
+        // try {
+        //     console.debug("Attempting to start playback automatically");
+        //     if (playButton) playButton.click();
+        //     else console.error("Play button not found");
+        // }
+        // catch(err) {
+        //     console.error(err);
+        // }
     }
 }
 
