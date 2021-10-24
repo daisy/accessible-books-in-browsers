@@ -78,14 +78,15 @@ async function main() {
         .argument('input', "Input EPUB file or directory")
         .argument('outputDir', "Output directory")
         .argument('clientCodeDir', "Shared client code folder")
-        .option('-x, --skipAudio', 'Skip merging audio')
+        // .option('-x, --skipAudio', 'Skip merging audio')
         .action(async(input, outputDir, clientCodeDir, options) => {
             await utils.ensureDirectory(outputDir);
             await convert(
                 path.resolve(process.cwd(), input),
                 path.resolve(process.cwd(), outputDir),
-                clientCodeDir,
-                options.skipAudio
+                clientCodeDir
+                // ,
+                // options.skipAudio
             );
         });
     program.parse(process.argv);

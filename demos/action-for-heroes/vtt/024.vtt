@@ -1,29 +1,29 @@
 WEBVTT
 
 1
-00:00:00.000 --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"page59"}}
+00:00:00.000 --> 00:00:04.206
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"page59"}}
 
 2
-NaN:NaN:NaN --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb911"}}
+00:00:04.206 --> 00:00:08.438
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb911"}}
 
 3
-NaN:NaN:NaN --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb912"}}
+00:00:08.438 --> 00:00:12.957
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb912"}}
 
 4
-NaN:NaN:NaN --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb913"}}
+00:00:12.957 --> 00:00:17.371
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb913"}}
 
 5
-NaN:NaN:NaN --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb914"}}
+00:00:17.371 --> 00:00:27.899
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb914"}}
 
 6
-NaN:NaN:NaN --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb915"}}
+00:00:27.899 --> 00:00:34.926
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb915"}}
 
 7
-NaN:NaN:NaN --> NaN:NaN:NaN
-{"action":"addCssClass","data":"abotw-sync-highlight","selector":{"type":"FragmentSelector","value":"dtb916"}}
+00:00:34.926 --> 00:00:41.900
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb916"}}

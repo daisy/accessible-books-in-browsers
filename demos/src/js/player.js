@@ -44,11 +44,11 @@ function onCueChange(e) {
 }
 function startCueAction(cueMetadata) {
     activeCueMetadata = cueMetadata;
-    if (cueMetadata.action == "addCssClass") {
+    if (cueMetadata.action.name == "addCssClass") {
         let elm = select(cueMetadata.selector);
         if (elm) {
             if (canPlay(elm)) {
-                elm.classList.add(cueMetadata.data);
+                elm.classList.add(cueMetadata.action.data);
                 if (!isInViewport(elm, document)) {
                     elm.scrollIntoView();
                 }
@@ -63,14 +63,17 @@ function startCueAction(cueMetadata) {
                 }
             }
         }
+        else {
+            console.debug(`Element not found ${cueMetadata.selector}`);
+        }
     }
 }
 function endCueAction() {
     if (!activeCueMetadata) return;
     let elm = select(activeCueMetadata.selector);
     // undo add css class
-    if (elm && activeCueMetadata.action == "addCssClass") {
-        document.querySelector(`.${activeCueMetadata.data}`)?.classList.remove(activeCueMetadata.data);
+    if (elm && activeCueMetadata.action.name == "addCssClass") {
+        document.querySelector(`.${activeCueMetadata.action.data}`)?.classList.remove(activeCueMetadata.action.data);
     }
 }
 function select(selector) {
