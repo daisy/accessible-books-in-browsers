@@ -28,8 +28,6 @@ These demos were created using this [conversion script](https://github.com/daisy
 This project is currently a __prototype__. 
 
 
-
-
 ## Current features
 
 | Feature | Basic | JS-enhanced |
@@ -59,3 +57,24 @@ A few things (navigation document consistency across publications; colors in sty
 - Slight flashing on page load if not using dark mode
 
 [See issues list](https://github.com/daisy/accessible-books-on-the-web/issues)
+
+## Approach
+
+Generate a set of HTML pages:
+* Target DAISY 2.02 content which has been automatically converted to EPUB 3
+* Use an HTML template prepopulated with the basic structure of our pages (intra-publication links, audio if applicable)
+* For each EPUB HTML spine item (except for the TOC), move the contents of `<body>` into the HTML template's `<main>` element.
+* Generate a navigation file based on the EPUB navigation document
+* Generate an About file containing publication information
+* The cover page is renamed `index.html` and can act as an entry page (though a user can enter the publication from any page)
+* Add links to each heading for easy bookmarking
+
+Add javascript enhancements:
+* Sidebar with table of contents, page list, search, and about tabs
+* Settings panel to control visual adjustments and audio preferences
+* Audio playback with synchronized highlighting
+* Keyboard shortcuts
+
+What this isn't:
+* An authoring format definition
+* A generic "player" to apply to any EPUB
