@@ -40,14 +40,16 @@ async function createSettingsPanelContents(includeAudioControls = false) {
     });
 
     let announcePageNumbersToggle = document.querySelector("#abotw-announce-pagenumbers-toggle");
-    announcePageNumbersToggle.addEventListener("change", e => {
-        if (announcePageNumbersToggle.checked) {
-            announcePageNumbersOn();
-        }
-        else {
-            announcePageNumbersOff();
-        }
-    });
+    if (announcePageNumbersToggle) {
+        announcePageNumbersToggle.addEventListener("change", e => {
+            if (announcePageNumbersToggle.checked) {
+                announcePageNumbersOn();
+            }
+            else {
+                announcePageNumbersOff();
+            }
+        });
+    }
 
     initSize();
     initDarkMode();
