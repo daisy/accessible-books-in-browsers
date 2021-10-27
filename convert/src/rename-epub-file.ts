@@ -12,15 +12,15 @@ let select = xpath.useNamespaces({
     smil: "http://www.w3.org/ns/SMIL"
 });
 
-
+// in the entire EPUB, rename oldFilename refs to newFilename
 async function renameFileUpdateRefs(oldFilename, newFilename, epub, isNavFile=false) {
     console.debug("rename file", `${oldFilename} => ${newFilename}`);
-    let spineItem = epub.spine.find(item => item.path == oldFilename);
+    let spineItem = epub.spine.find(item => item.path == newFilename);
     if (spineItem && spineItem.moPath && spineItem.moPath != '') { // really we should check manifest not spine but this is faster and will work for now
         await updateSmil(spineItem.moPath, oldFilename, newFilename);
     }
     if (!isNavFile) {
-        await updateNav(epub.navFilename, oldFilename, newFilename);
+        await updateXHtml(epub.navFilename, [{old: oldFilename, new: newFilename}]);
     }
     await updateSpine(epub.packageFilename, oldFilename, newFilename);
     await fs.move(oldFilename, newFilename, {overwrite: true});    
@@ -45,23 +45,30 @@ async function updateSmil(smilFilename, oldFilename, newFilename) {
     await fileio.write(smilFilename, smildoc);
 }
 
-async function updateNav(navFilename, oldFilename, newFilename) {
-    let navdoc = await fileio.parse(navFilename);
-    let allLinks = select("//html:a", navdoc);
+// open contentFilename and replace each <a href="replacements[i].old" with replacements[i].new
+// rewrite contentFilename
+async function updateXHtml(contentFilename, replacements) {
+    let doc = await fileio.parse(contentFilename, true);
+    let allLinks = select("//html:a", doc);
     Array.from(allLinks).map(linkElm => {
         //@ts-ignore
         if (linkElm.hasAttribute("href")) {
             //@ts-ignore
-            let src = path.join(path.dirname(navFilename), linkElm.getAttribute("href"));
-            if (utils.getWithoutFrag(src) == oldFilename) {
+            let src = path.join(path.dirname(contentFilename), linkElm.getAttribute("href"));
+            // if (utils.getWithoutFrag(src) == searchFilename) {
+                let srcNoFrag = utils.getWithoutFrag(src);
+            // if this src is among the things that need replacing... 
+            if (replacements.map(item => item.old).includes(srcNoFrag)) {
                 let frag = utils.getFrag(src);
-                let newFileSrc = path.relative(path.dirname(navFilename), newFilename);
+                let replacement = replacements.find(item => item.old == src).new;
+                let newFileSrc = path.relative(path.dirname(contentFilename), replacement);
+                newFileSrc = frag ? `${newFileSrc}#${frag}` : newFileSrc;
                 //@ts-ignore
-                linkElm.setAttribute("href", newFileSrc + "#" + frag);
+                linkElm.setAttribute("href", newFileSrc);
             }
         }
     });
-    await fileio.write(navFilename, navdoc);
+    await fileio.write(contentFilename, doc, true);
 }
 
 async function updateSpine(spineFilename, oldFilename, newFilename) {
@@ -82,4 +89,28 @@ async function updateSpine(spineFilename, oldFilename, newFilename) {
     await fileio.write(spineFilename, spinedoc);
 }
 
-export { renameFileUpdateRefs };
+async function updateHtml(contentFilename, replacements) {
+    let doc = await fileio.parse(contentFilename);
+    let allLinks = doc.window.document.querySelectorAll("a");
+    Array.from(allLinks).map(linkElm => {
+        //@ts-ignore
+        if (linkElm.hasAttribute("href")) {
+            //@ts-ignore
+            let src = path.join(path.dirname(contentFilename), linkElm.getAttribute("href"));
+            // if (utils.getWithoutFrag(src) == searchFilename) {
+                let srcNoFrag = utils.getWithoutFrag(src);
+            // if this src is among the things that need replacing... 
+            if (replacements.map(item => item.old).includes(srcNoFrag)) {
+                let frag = utils.getFrag(src);
+                let replacement = replacements.find(item => item.old == src).new;
+                let newFileSrc = path.relative(path.dirname(contentFilename), replacement);
+                newFileSrc = frag ? `${newFileSrc}#${frag}` : newFileSrc;
+                //@ts-ignore
+                linkElm.setAttribute("href", newFileSrc);
+            }
+        }
+    });
+    await fileio.write(contentFilename, doc);
+}
+
+export { renameFileUpdateRefs, updateHtml, updateXHtml };

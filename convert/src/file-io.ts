@@ -34,9 +34,9 @@ async function parseFromString(filestring, isHtml) {
 }
 
 // write a dom
-async function write(filename, dom) {
+async function write(filename, dom, forceXml = false) {
     let ext = path.extname(filename);
-    if (ext == ".html") {
+    if (ext == ".html" && !forceXml) {
         // if HTML
         let domString = dom.serialize();
         await fs.writeFile(filename, domString);

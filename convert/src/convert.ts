@@ -4,7 +4,7 @@ import * as path from 'path';
 import {singleToMultiPage} from './single-to-multi-page.js';
 import * as utils from './utils.js';
 import fs from 'fs-extra';
-import {renameFileUpdateRefs} from './rename-epub-file.js';
+import {renameFileUpdateRefs, updateXHtml } from './rename-epub-file.js';
 import { mergeAudioSegments } from './process-audio.js';
 import xpath from 'xpath';
 import * as fileio from './file-io.js';
@@ -48,7 +48,9 @@ async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAud
     for (let spineItem of epub.spine) {
         if (spineItem.moPath) {
             let mediaSegments = await getMediaSegments(spineItem);
-            
+            if (mediaSegments.length == 0) {
+                console.error("No media segments found for ", spineItem);
+            }
             let audioExt = mediaSegments.length > 0 ? path.extname(mediaSegments[0].src) : '';
             let spineItemFilename = path.basename(spineItem.path);
             
@@ -171,30 +173,44 @@ async function prepareFiles(workingDir, splitContentDoc) {
     // else just use the first spine item
     let entryPage = epub.spine[0];
     
+    let renamedPaths = [];
+    let renamedPath = {old: entryPage.path, new: path.join(path.dirname(entryPage.path), "index.html")};
+    renamedPaths.push(renamedPath);
+    entryPage.path = renamedPath.new;
     // rename entry page to index.html
     await renameFileUpdateRefs(
-        entryPage.path, 
-        path.join(path.dirname(entryPage.path), "index.html"),
+        renamedPath.old, 
+        renamedPath.new,
         epub
     );
+    
+    
+
     // rename all other spine items from xhtml to html
     for (let spineItem of epub.spine.slice(1)) {
         if (path.extname(spineItem.path) == ".xhtml") {
+            renamedPath = {old: spineItem.path, new: spineItem.path.replace(".xhtml", ".html")};
+            renamedPaths.push(renamedPath);
+            spineItem.path = renamedPath.new;
             await renameFileUpdateRefs(
-                spineItem.path,
-                spineItem.path.replace(".xhtml", ".html"),
+                renamedPath.old,
+                renamedPath.new,
                 epub
             );
         }
     }
 
+    renamedPath = {old: epub.navFilename, new: path.join(path.dirname(epub.navFilename), "nav.html")};
+    renamedPaths.push(renamedPath);
+    epub.navFilename = renamedPath.new;
     await renameFileUpdateRefs(
-        epub.navFilename,
-        path.join(path.dirname(epub.navFilename), "nav.html"),
+        renamedPath.old,
+        renamedPath.new,
         epub,
         true
     );
 
+    await Promise.all(epub.spine.map(async item => await updateXHtml(item.path, renamedPaths)));
 }
 async function getMediaSegments(spineItem) {
     let smildoc = await fileio.parse(spineItem.moPath);
