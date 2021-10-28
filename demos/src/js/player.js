@@ -2,6 +2,7 @@ let audio;
 let activeCueIdx = -1; 
 let activeCueMetadata;
 let goingBackwards = false;
+let startedPlayback = false;
 
 async function load() {
     audio = document.querySelector("#abotw-audio");
@@ -9,6 +10,7 @@ async function load() {
     track.track.addEventListener("cuechange", onCueChange);
     
     audio.addEventListener("play", e => {
+        startedPlayback = true;
         document.querySelector("body").classList.add("abotw-playing");
         document.querySelector("#abotw-playpause").setAttribute("title", "Pause");
         document.querySelector("#abotw-playpause").setAttribute("aria-label", "Pause");
@@ -28,11 +30,20 @@ async function load() {
     if (document.querySelector("#abotw-audio")) {
         document.querySelector("#abotw-audio").style['display'] = 'none';
     }
+
+    window.addEventListener("hashchange", async e => {
+        startedPlayback = false; // act like it's a new page load
+        let wasPlaying = !audio.paused;
+        if (wasPlaying) await audio.pause;
+        console.log("hashchange");
+        jumpToFragment();
+        await audio.play();
+    });
 }
 
 function onCueChange(e) {
     let track = audio.textTracks[0];
-    console.debug("cue change", e);
+    // console.debug("cue change", e);
     let activeCues = Array.from(e.target.activeCues);
     if (activeCues.length > 0) {
         let activeCue = activeCues[activeCues.length - 1];
@@ -127,6 +138,61 @@ function canPlay(elm) {
     }
     return true;
 }
+// call this when a new page loads
+// it searches the cues list for a starting point, based on the document location hash
+function jumpToFragment() {
+    // only do it if the page is newly loaded
+    // caveat and TODO: this doesn't handle in-page jumps 
+    if (startedPlayback) return;
+    if (document.location.hash == '') return;
+    let track = audio.textTracks[0];
+    // all the element selectors that we have cues for
+    let allSelectors = Array.from(track.cues).map(cue => {
+        let cueMetadata = JSON.parse(cue.text);
+        return cueMetadata.selector.value;
+    });
+    let getMatchingCueIdx = elm => allSelectors.findIndex(selector => elm.matches(`#${selector}`));
+
+    let targetElm = document.querySelector(document.location.hash);
+    
+
+    // first see if the target element or any of its descendents have a matching cue
+    let matchingCueIdx = getMatchingCueIdx(targetElm);
+    if (matchingCueIdx == -1) {
+        let descendents = Array.from(targetElm.querySelectorAll("*"));
+        for (let elm of descendents) {
+            matchingCueIdx = getMatchingCueIdx(elm);
+            if (matchingCueIdx != -1) {
+                break;
+            }
+        }
+    }
+    // if still not found, look up the ancestor tree
+    if (matchingCueIdx == -1) {
+        let closest = targetElm.closest(allSelectors);
+        if (closest) {
+            matchingCueIdx = getMatchingCueIdx(closest);
+        }
+    }
+    if (matchingCueIdx == -1) {
+        console.log("ugh TODO");
+        /*
+        this could happen for something like
+        <h1 id="target-elm">The href goes here</h1>
+        <p id="cue-point">But this is the nearest narration point</p>
+        */
+       // so do we do an exhaustive dom search looking for the nearest starting point in this case?
+       // or do we just start at the beginning of the file?
+        return;
+    }
+    else {
+        // we found a matching cue, now update the audio player's current location to its start time
+        activeCueIdx = matchingCueIdx;
+        audio.currentTime = track.cues[matchingCueIdx].startTime;
+    }
+    
+}
+
 // parse the timestamp and return the value in seconds
 // supports this syntax: https://www.w3.org/publishing/epub/epub-mediaoverlays.html#app-clock-examples
 function parseClockValue(value) { 
@@ -166,4 +232,4 @@ function parseClockValue(value) {
     return total;
 }
 
-export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious };
+export { load, audio, goNext, goPrevious, canGoNext, canGoPrevious, jumpToFragment };

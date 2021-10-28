@@ -44,6 +44,7 @@ function createPlaybackToolbar() {
         }
         else {
             try {
+                player.jumpToFragment();
                 await player.audio.play();
             }
             catch(err) {
