@@ -1,0 +1,124 @@
+{
+    "@context": [
+        "https://schema.org",
+        "https://www.w3.org/ns/pub-context"
+    ],
+    "conformsTo": "https://www.w3.org/TR/audiobooks/",
+    "type": "Audiobook",
+    "id": "blue-fairy-abridged-syncnarr",
+    "url": "https://marisademeglio.github.io/worlds-best-audiobook/content/blue-fairy-abridged/blue-fairy-syncnarr/",
+    "name": "The Abridged Blue Fairy Book (with Synchronized Narration)",
+    "author": "Andrew Lang",
+    "readBy": "Various",
+    "abridged": true,
+    "accessMode": ["audio", "text"],
+    "accessModeSufficient": [{
+        "type": "ItemList",
+        "itemListElement": ["audio", "text"],
+        "description": "audio and text"
+    }],
+    "accessibilityFeature": ["readingOrder", "unlocked", "tableOfContents", "highContrastDisplay"],
+    "accessibilityHazard": "none",
+    "accessibilitySummary": "Audio plus table of contents and synchronized text highlight for each chapter.",
+    "dateModified": "2020-04-29",
+    "datePublished": "1889",
+    "inLanguage": "en", 
+    "readingProgression": "ltr",
+    "duration": "PT3892S",
+    "readingOrder": [
+        {
+            "url": "http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_07_lang_64kb.mp3#t=28.51,1162.22",
+            "encodingFormat": "audio/mpeg",
+            "name": "Cinderella; or, The Little Glass Slipper",
+            "duration": "PT1170S",
+            "alternate": [{
+                "type": "LinkedResource",
+                "url": "sync/CINDERELLA,-OR-THE-LITTLE-GLASS-SLIPPER.vtt",
+                "encodingFormat": "text/vtt"
+            },
+            {
+                "type": "LinkedResource",
+                "url": "html/CINDERELLA,-OR-THE-LITTLE-GLASS-SLIPPER.html",
+                "encodingFormat": "text/html"
+            }]
+        },
+        {
+            "url": "http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_10_lang_64kb.mp3",
+            "encodingFormat": "audio/mpeg",
+            "name": "Rumpelstiltzkin",
+            "duration": "PT475S",
+            "alternate": [{
+                "type": "LinkedResource",
+                "url": "sync/RUMPELSTILTZKIN.vtt",
+                "encodingFormat": "text/vtt"
+            },
+            {
+                "type": "LinkedResource",
+                "url": "html/RUMPELSTILTZKIN.html",
+                "encodingFormat": "text/html"
+            }]
+        },
+        {
+            "url": "http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_14_lang_64kb.mp3",
+            "encodingFormat": "audio/mpeg",
+            "name": "The Master Cat; or, Puss in Boots",
+            "duration": "PT532S",
+            "alternate": [{
+                "type": "LinkedResource",
+                "url": "sync/THE-MASTER-CAT;-OR,-PUSS-IN-BOOTS.vtt",
+                "encodingFormat": "text/vtt"
+            },
+            {   
+                "type": "LinkedResource",
+                "url": "html/RUMPELSTILTZKIN.html",
+                "encodingFormat": "text/html"
+            }]
+        },
+        {
+            "url": "http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_24_lang_64kb.mp3",
+            "encodingFormat": "audio/mpeg",
+            "name": "Hansel and Grettel",
+            "duration": "PT1130S",
+            "alternate": [{
+                "type": "LinkedResource",
+                "url": "sync/HANSEL-AND-GRETTEL.vtt",
+                "encodingFormat": "text/vtt"
+            },
+            {
+                "type": "LinkedResource",
+                "url": "html/HANSEL-AND-GRETTEL.html",
+                "encodingFormat": "text/html"
+            }]
+        },
+        {
+            "url": "http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_35_lang_64kb.mp3",
+            "encodingFormat": "audio/mpeg",
+            "name": "The History of Jack the GiantKiller",
+            "duration": "PT585S",
+            "alternate": [{
+                "type": "LinkedResource",
+                "url": "sync/THE-HISTORY-OF-JACK-THE-GIANT-KILLER.vtt",
+                "encodingFormat": "text/vtt"
+            },
+            {
+                "type": "LinkedResource",
+                "url": "html/THE-HISTORY-OF-JACK-THE-GIANT-KILLER.html",
+                "encodingFormat": "text/html"
+            }]
+        }
+    ],
+    "resources": [
+        {
+            "url": "cover.jpg",
+            "encodingFormat": "image/jpeg",
+            "rel": "cover",
+            "name": "Cover"
+        },
+        {
+            "url": "index.html",
+            "encodingFormat": "text/html",
+            "name": "Primary Entry Page",
+            "rel": "contents"
+        }
+    ]
+}

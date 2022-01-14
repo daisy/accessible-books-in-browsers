@@ -10,7 +10,7 @@ import { makeAboutPage } from './make-about-page.js';
 import { generateSearchIndex } from './create-search-index.js';
 import { convert } from './convert.js';
 import { singleToMultiPage } from './single-to-multi-page.js';
-
+import { syncJsonToVTT } from './syncjson-to-vtt.js';
 async function main() {
 
     let program = new Command();
@@ -58,9 +58,20 @@ async function main() {
             }
         });
 
+    program
+        .command("syncjson-to-vtt")
+        .description("Sync json to VTT")
+        .argument('input', "Input file")
+        .argument("output", "Output file")
+        .action(async(input, output, options) => {
+
+            let inputFilename = path.resolve(process.cwd(), input);
+            let outputFilename = path.resolve(process.cwd(), output);
+            await syncJsonToVTT(inputFilename, outputFilename);
+        });
     
 
-        program
+    program
         .command("make-about-page")
         .description("make an HTML page with relevant publication metadata")
         .argument('inputFilename', "Input OPF")

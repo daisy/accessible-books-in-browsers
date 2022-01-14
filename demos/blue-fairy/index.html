@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Abridged Blue Fairy Book</title>
+        <link rel="publication" href="blue.json" />
+        <link rel="stylesheet" href="css/pub-default.css"/>
+
+        <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/app-toolbar.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
+        <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
+
+
+        <link rel="alternate" href="#abotw-audio" type="audio/mpeg">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            document.documentElement.classList.add('abotw-js');
+        </script>
+    </head>
+    <body>
+        <nav role="doc-toc">
+            <ol>
+                <li><a
+                    href="http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_07_lang_64kb.mp3">Cinderella;
+                    or The Little Glass Slipper</a></li>
+                <li><a
+                    href="http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_10_lang_64kb.mp3">Rumpelstiltkin</a>
+                </li>
+                <li><a href="http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_14_lang_64kb.mp3">The
+                    Master Cat; or Puss in Boots</a></li>            
+                <li><a
+                    href="http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_24_lang_64kb.mp3">Hansel
+                    and Gretel</a></li>
+                <li><a href="http://www.archive.org/download/blue_fairy_book_0707_librivox/bluefairybook_35_lang_64kb.mp3">The
+                History of Jack the Giant Killer</a></li>
+            </ol>
+        </nav>
+    </body>
+    <script type="module" id="abotw-initApp">
+        import {
+          setupUi
+        } from '../src/js/app.js';
+  
+        (async () => {
+          try {
+            // TODO parameterize this path
+            let searchIndex = new URL('idx.json', document.location);
+            let searchData = new URL('data.json', document.location);
+            await setupUi(
+              searchIndex,
+              searchData
+            );
+          } catch (err) {
+            console.error(err);
+          } finally {
+            document.documentElement.classList.remove("abotw-js");
+          }
+        })();
+      </script>
+</html>

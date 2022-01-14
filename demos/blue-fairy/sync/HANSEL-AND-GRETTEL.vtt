@@ -1,0 +1,505 @@
+WEBVTT
+
+1
+00:00:27.820 --> 00:00:30.090
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-0"}}
+
+2
+00:00:30.090 --> 00:00:41.570
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-1"}}
+
+3
+00:00:41.570 --> 00:00:50.580
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-2"}}
+
+4
+00:00:50.580 --> 00:01:07.170
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-3"}}
+
+5
+00:01:07.170 --> 00:01:27.370
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-4"}}
+
+6
+00:01:27.370 --> 00:01:39.700
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-5"}}
+
+7
+00:01:39.700 --> 00:01:48.800
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-6"}}
+
+8
+00:01:48.800 --> 00:01:57.530
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-7"}}
+
+9
+00:01:57.530 --> 00:02:04.920
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-8"}}
+
+10
+00:02:04.920 --> 00:02:11.280
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-9"}}
+
+11
+00:02:11.280 --> 00:02:18.860
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-10"}}
+
+12
+00:02:18.860 --> 00:02:27.490
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-11"}}
+
+13
+00:02:27.490 --> 00:02:35.270
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-12"}}
+
+14
+00:02:35.270 --> 00:02:40.670
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-13"}}
+
+15
+00:02:40.670 --> 00:02:51.390
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-14"}}
+
+16
+00:02:51.390 --> 00:03:02.010
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-15"}}
+
+17
+00:03:02.010 --> 00:03:10.930
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-16"}}
+
+18
+00:03:10.930 --> 00:03:16.430
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-17"}}
+
+19
+00:03:16.430 --> 00:03:20.120
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-18"}}
+
+20
+00:03:20.120 --> 00:03:29.320
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-19"}}
+
+21
+00:03:29.320 --> 00:03:39.560
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-20"}}
+
+22
+00:03:39.560 --> 00:03:47.810
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-21"}}
+
+23
+00:03:47.810 --> 00:03:55.690
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-22"}}
+
+24
+00:03:55.690 --> 00:04:03.840
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-23"}}
+
+25
+00:04:03.840 --> 00:04:14.840
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-24"}}
+
+26
+00:04:14.840 --> 00:04:21.000
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-25"}}
+
+27
+00:04:21.000 --> 00:04:36.650
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-26"}}
+
+28
+00:04:36.650 --> 00:04:43.380
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-27"}}
+
+29
+00:04:43.380 --> 00:04:48.510
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-28"}}
+
+30
+00:04:48.510 --> 00:04:56.380
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-29"}}
+
+31
+00:04:56.380 --> 00:05:04.150
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-30"}}
+
+32
+00:05:04.150 --> 00:05:07.850
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-31"}}
+
+33
+00:05:07.850 --> 00:05:14.490
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-32"}}
+
+34
+00:05:14.490 --> 00:05:23.400
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-33"}}
+
+35
+00:05:23.400 --> 00:05:33.170
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-34"}}
+
+36
+00:05:33.170 --> 00:05:38.860
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-35"}}
+
+37
+00:05:38.860 --> 00:05:49.770
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-36"}}
+
+38
+00:05:49.770 --> 00:05:57.640
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-37"}}
+
+39
+00:05:57.640 --> 00:06:07.590
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-38"}}
+
+40
+00:06:07.590 --> 00:06:27.600
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-39"}}
+
+41
+00:06:27.600 --> 00:06:36.520
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-40"}}
+
+42
+00:06:36.520 --> 00:06:53.680
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-41"}}
+
+43
+00:06:53.680 --> 00:06:58.330
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-42"}}
+
+44
+00:06:58.330 --> 00:07:10.750
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-43"}}
+
+45
+00:07:10.750 --> 00:07:19.380
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-44"}}
+
+46
+00:07:19.380 --> 00:07:24.410
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-45"}}
+
+47
+00:07:24.410 --> 00:07:29.810
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-46"}}
+
+48
+00:07:29.810 --> 00:07:37.680
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-47"}}
+
+49
+00:07:37.680 --> 00:07:42.800
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-48"}}
+
+50
+00:07:42.800 --> 00:07:49.820
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-49"}}
+
+51
+00:07:49.820 --> 00:07:56.740
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-50"}}
+
+52
+00:07:56.740 --> 00:08:00.540
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-51"}}
+
+53
+00:08:00.540 --> 00:08:07.930
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-52"}}
+
+54
+00:08:07.930 --> 00:08:22.920
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-53"}}
+
+55
+00:08:22.920 --> 00:08:29.930
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-54"}}
+
+56
+00:08:29.930 --> 00:08:37.610
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-55"}}
+
+57
+00:08:37.610 --> 00:08:53.170
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-56"}}
+
+58
+00:08:53.170 --> 00:09:06.250
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-57"}}
+
+59
+00:09:06.250 --> 00:09:15.550
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-58"}}
+
+60
+00:09:15.550 --> 00:09:23.990
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-59"}}
+
+61
+00:09:23.990 --> 00:09:30.620
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-60"}}
+
+62
+00:09:30.620 --> 00:09:41.440
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-61"}}
+
+63
+00:09:41.440 --> 00:09:56.510
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-62"}}
+
+64
+00:09:56.510 --> 00:10:07.040
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-63"}}
+
+65
+00:10:07.040 --> 00:10:12.540
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-64"}}
+
+66
+00:10:12.540 --> 00:10:28.380
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-65"}}
+
+67
+00:10:28.380 --> 00:10:40.320
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-66"}}
+
+68
+00:10:40.320 --> 00:10:50.090
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-67"}}
+
+69
+00:10:50.090 --> 00:10:55.020
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-68"}}
+
+70
+00:10:55.020 --> 00:10:57.580
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-69"}}
+
+71
+00:10:57.580 --> 00:11:00.140
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-70"}}
+
+72
+00:11:00.140 --> 00:11:02.330
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-71"}}
+
+73
+00:11:02.330 --> 00:11:05.080
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-72"}}
+
+74
+00:11:05.080 --> 00:11:06.880
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-73"}}
+
+75
+00:11:06.880 --> 00:11:10.290
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-74"}}
+
+76
+00:11:10.290 --> 00:11:22.240
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-75"}}
+
+77
+00:11:22.240 --> 00:11:28.880
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-76"}}
+
+78
+00:11:28.880 --> 00:11:34.380
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-77"}}
+
+79
+00:11:34.380 --> 00:11:45.660
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-78"}}
+
+80
+00:11:45.660 --> 00:11:57.800
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-79"}}
+
+81
+00:11:57.800 --> 00:12:10.600
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-80"}}
+
+82
+00:12:10.600 --> 00:12:22.360
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-81"}}
+
+83
+00:12:22.360 --> 00:12:30.900
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-82"}}
+
+84
+00:12:30.900 --> 00:12:42.660
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-83"}}
+
+85
+00:12:42.660 --> 00:12:53.660
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-84"}}
+
+86
+00:12:53.660 --> 00:13:09.210
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-85"}}
+
+87
+00:13:09.210 --> 00:13:20.970
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-86"}}
+
+88
+00:13:20.970 --> 00:13:32.060
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-87"}}
+
+89
+00:13:32.060 --> 00:13:40.410
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-88"}}
+
+90
+00:13:40.410 --> 00:13:46.860
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-89"}}
+
+91
+00:13:46.860 --> 00:13:55.580
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-90"}}
+
+92
+00:13:55.580 --> 00:14:08.670
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-91"}}
+
+93
+00:14:08.670 --> 00:14:16.730
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-92"}}
+
+94
+00:14:16.730 --> 00:14:26.970
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-93"}}
+
+95
+00:14:26.970 --> 00:14:46.600
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-94"}}
+
+96
+00:14:46.600 --> 00:14:51.620
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-95"}}
+
+97
+00:14:51.620 --> 00:14:58.740
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-96"}}
+
+98
+00:14:58.740 --> 00:15:05.940
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-97"}}
+
+99
+00:15:05.940 --> 00:15:11.730
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-98"}}
+
+100
+00:15:11.730 --> 00:15:18.650
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-99"}}
+
+101
+00:15:18.650 --> 00:15:27.190
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-100"}}
+
+102
+00:15:27.190 --> 00:15:35.530
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-101"}}
+
+103
+00:15:35.530 --> 00:15:46.530
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-102"}}
+
+104
+00:15:46.530 --> 00:15:52.880
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-103"}}
+
+105
+00:15:52.880 --> 00:16:02.840
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-104"}}
+
+106
+00:16:02.840 --> 00:16:11.660
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-105"}}
+
+107
+00:16:11.660 --> 00:16:16.120
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-106"}}
+
+108
+00:16:16.120 --> 00:16:23.320
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-107"}}
+
+109
+00:16:23.320 --> 00:16:35.750
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-108"}}
+
+110
+00:16:35.750 --> 00:16:48.450
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-109"}}
+
+111
+00:16:48.450 --> 00:16:54.430
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-110"}}
+
+112
+00:16:54.430 --> 00:16:58.600
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-111"}}
+
+113
+00:16:58.600 --> 00:17:05.140
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-112"}}
+
+114
+00:17:05.140 --> 00:17:17.660
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-113"}}
+
+115
+00:17:17.660 --> 00:17:21.170
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-114"}}
+
+116
+00:17:21.170 --> 00:17:24.020
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-115"}}
+
+117
+00:17:24.020 --> 00:17:26.580
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-116"}}
+
+118
+00:17:26.580 --> 00:17:29.520
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-117"}}
+
+119
+00:17:29.520 --> 00:17:36.820
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-118"}}
+
+120
+00:17:36.820 --> 00:17:44.210
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-119"}}
+
+121
+00:17:44.210 --> 00:17:58.150
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-120"}}
+
+122
+00:17:58.150 --> 00:18:03.840
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-121"}}
+
+123
+00:18:03.840 --> 00:18:10.670
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-122"}}
+
+124
+00:18:10.670 --> 00:18:20.910
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-123"}}
+
+125
+00:18:20.910 --> 00:18:27.360
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-124"}}
+
+126
+00:18:27.360 --> 00:18:36.840
+{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"sn-125"}}
