@@ -1,12 +1,12 @@
-# accessible-books-on-the-web
+# accessible-books-in-browsers
 
-[Github project page](https://github.com/daisy/accessible-books-on-the-web)
+[Github project page](https://github.com/daisy/accessible-books-in-browsers)
 
 ## About 
 
-Transform EPUB with Media Overlays into a series of HTML files for reading directly on the web. 
+Transform EPUB with Media Overlays into a series of HTML files for reading directly in the browser. 
 
-A typical conversion creates the following files (see an [example fileset](https://github.com/daisy/accessible-books-on-the-web/tree/main/demos/moby-dick)):
+A typical conversion creates the following files (see an [example fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick)):
 - HTML files with the original contents, plus reading interface controls and links to the TOC, Previous, and Next pages.
 - An About page containing publication metainformation
 - A TOC based on the original EPUB Nav Document
@@ -18,10 +18,10 @@ Media Overlays conversion adds the following:
 
 ## Demos
 
-* [Action for Heroes](https://daisy.github.io/accessible-books-on-the-web/demos/action-for-heroes)
-* [Moby Dick](https://daisy.github.io/accessible-books-on-the-web/demos/moby-dick)
+* [Action for Heroes](https://daisy.github.io/accessible-books-in-browsers/demos/action-for-heroes)
+* [Moby Dick](https://daisy.github.io/accessible-books-in-browsers/demos/moby-dick)
 
-These demos were created using this [conversion script](https://github.com/daisy/accessible-books-on-the-web/tree/main/convert). 
+These demos were created using this [conversion script](https://github.com/daisy/accessible-books-in-browsers/tree/main/convert). 
 
 ## Status
 
@@ -53,10 +53,10 @@ A few things (navigation document consistency across publications; colors in sty
 
 ### User interface
 
-- Autoplay between chapters is [not working yet](https://github.com/daisy/accessible-books-on-the-web/issues/3)
+- Autoplay between chapters is [not working yet](https://github.com/daisy/accessible-books-in-browsers/issues/3)
 - Slight flashing on page load if not using dark mode
 
-[See issues list](https://github.com/daisy/accessible-books-on-the-web/issues)
+[See issues list](https://github.com/daisy/accessible-books-in-browsers/issues)
 
 ## Approach
 
