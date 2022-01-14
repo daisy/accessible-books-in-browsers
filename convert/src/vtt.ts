@@ -22,7 +22,7 @@ async function createVtt(mediaSegments, outFilename) {
         let metadata = {
             action: {
                 name: "addCssClass",
-                data: "abotw-sync-highlight"
+                data: "abinb-sync-highlight"
             },
             selector: {
                 type: "FragmentSelector",

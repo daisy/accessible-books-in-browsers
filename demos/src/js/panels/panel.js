@@ -38,13 +38,13 @@ function setPanelState(id, expand) {
         //show
         label = `Close ${desc}`;
         panelButton.setAttribute("aria-expanded", true);
-        panel.classList.add("abotw-expanded");
+        panel.classList.add("abinb-expanded");
     }
     else {
         //hide
         label = `Show ${desc}`;
         panelButton.setAttribute("aria-expanded", false);
-        panel.classList.remove("abotw-expanded");
+        panel.classList.remove("abinb-expanded");
     } 
     panelButton.setAttribute("aria-label", label);
     panelButton.setAttribute("title", label);

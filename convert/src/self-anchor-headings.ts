@@ -31,7 +31,7 @@ async function selfAnchorHeadings(inputFilename: string, outputFilename: string)
         anchor.setAttribute("href", `#${elmId}`);
         //@ts-ignore
         anchor.setAttribute("title", `Link to heading ${elm.textContent.trim()}`)
-        anchor.classList.add("abotw-selflink");
+        anchor.classList.add("abinb-selflink");
         anchor.innerHTML = 
         `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" 
             role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">

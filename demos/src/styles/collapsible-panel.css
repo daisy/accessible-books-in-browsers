@@ -1,24 +1,24 @@
-.abotw-panel {
+.abinb-panel {
     z-index: 1;  
     -webkit-user-select: none;
     user-select: none;
 }
 
-.abotw-panel > div {
+.abinb-panel > div {
     -webkit-font-smoothing: antialiased;
     z-index: 0;
 }
 
-.abotw-panel button[aria-expanded=true] + div { 
+.abinb-panel button[aria-expanded=true] + div { 
     -webkit-touch-callout: none;
     display: block;
 }
 
-.abotw-panel button[aria-expanded=false] + div {
+.abinb-panel button[aria-expanded=false] + div {
     display: none;
 }
 
-.abotw-panel {
+.abinb-panel {
     position: relative;
     /*! top: -.25rem; */
     border: none;
@@ -26,39 +26,39 @@
     font-size: 100%;
 }
 
-.abotw-panel.abotw-expanded {
+.abinb-panel.abinb-expanded {
     box-shadow: 0px 0px 7px black;
     padding: .5rem;
     padding-bottom: 10px;
-    border: 2px var(--abotw-border-color) solid;
+    border: 2px var(--abinb-border-color) solid;
     position: fixed;
-    background: rgb(var(--abotw-page-background-color));
+    background: rgb(var(--abinb-page-background-color));
 }
 
-.abotw-panel:not(.abotw-expanded) {
+.abinb-panel:not(.abinb-expanded) {
     height: min-content;
     width: min-content;
 }
 
 /* the hamburger */
-.abotw-panel:hover > button, .abotw-panel.abotw-expanded > button {
+.abinb-panel:hover > button, .abinb-panel.abinb-expanded > button {
     opacity: 100%;
 }
-.abotw-panel.abotw-expanded > button > svg:first-child {
+.abinb-panel.abinb-expanded > button > svg:first-child {
     display: none;
 }
-.abotw-panel.abotw-expanded > button > svg:last-child {
+.abinb-panel.abinb-expanded > button > svg:last-child {
     display: block;
 }
-.abotw-panel:not(.abotw-expanded) > button > svg:first-child {
+.abinb-panel:not(.abinb-expanded) > button > svg:first-child {
     display: block;
 }
-.abotw-panel:not(.abotw-expanded) > button > svg:last-child {
+.abinb-panel:not(.abinb-expanded) > button > svg:last-child {
     display: none;
 }
 /* make close "X" button icon smaller than the default icon size */
-.abotw-panel.abotw-expanded > button .abotw-iconify {
-    width: calc(var(--abotw-icons)/2);
-    height: calc(var(--abotw-icons)/2);
+.abinb-panel.abinb-expanded > button .abinb-iconify {
+    width: calc(var(--abinb-icons)/2);
+    height: calc(var(--abinb-icons)/2);
     transition: .2s;
 }

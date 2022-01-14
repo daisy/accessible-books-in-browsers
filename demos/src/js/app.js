@@ -9,14 +9,14 @@ import * as player from './player.js';
 async function setupUi(searchIndexUrl, searchDataUrl) {
     initState();
     // collect data before these elements get replaced
-    let aboutUrl = new URL(document.querySelector("#abotw-about-link").getAttribute("href"), document.location);
-    let navUrl = new URL(document.querySelector("#abotw-toc-link").getAttribute("href"), document.location);
+    let aboutUrl = new URL(document.querySelector("#abinb-about-link").getAttribute("href"), document.location);
+    let navUrl = new URL(document.querySelector("#abinb-toc-link").getAttribute("href"), document.location);
 
     await createNavToolbar();
     await createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDataUrl);
     
     let hasSyncAudio = false;
-    if (document.querySelector("#abotw-audio")) {
+    if (document.querySelector("#abinb-audio")) {
         hasSyncAudio = true;
         await player.load();
         createPlaybackToolbar();
@@ -25,35 +25,35 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
     await createSettingsPanelContents(hasSyncAudio);
     setupKeyboardShortcuts();
 
-    let nextSection = document.querySelector("#abotw-next-section");
-    let prevSection = document.querySelector("#abotw-previous-section")
+    let nextSection = document.querySelector("#abinb-next-section");
+    let prevSection = document.querySelector("#abinb-previous-section")
     if (nextSection) {
         nextSection.addEventListener("click", async e => {
-            document.querySelector("body").classList.add("abotw-fadeout");
+            document.querySelector("body").classList.add("abinb-fadeout");
         });
     }
     if (prevSection) {
         prevSection.addEventListener("click", async e => {
-            document.querySelector("body").classList.add("abotw-fadeout");
+            document.querySelector("body").classList.add("abinb-fadeout");
         });
     }
 
-    if (localStorage.getItem("abotw-target")) { 
-        let elm = document.querySelector(localStorage.getItem("abotw-target"));
+    if (localStorage.getItem("abinb-target")) { 
+        let elm = document.querySelector(localStorage.getItem("abinb-target"));
         if (elm) {
             elm.classList.add("search-result");
             elm.scrollIntoView();
             elm.setAttribute("role", "mark");
         }
     }
-    localStorage.setItem("abotw-target", null);
+    localStorage.setItem("abinb-target", null);
 
-    document.documentElement.classList.remove("abotw-js");
-    document.querySelector("body").classList.add("abotw-fadein");
+    document.documentElement.classList.remove("abinb-js");
+    document.querySelector("body").classList.add("abinb-fadein");
 
-    if (localStorage.getItem("abotw-autoplay") == "true") {
-        localStorage.setItem("abotw-autoplay", false);
-        // let playButton = document.querySelector("#abotw-playpause");
+    if (localStorage.getItem("abinb-autoplay") == "true") {
+        localStorage.setItem("abinb-autoplay", false);
+        // let playButton = document.querySelector("#abinb-playpause");
         // try {
         //     console.debug("Attempting to start playback automatically");
         //     if (playButton) playButton.click();
@@ -67,17 +67,17 @@ async function setupUi(searchIndexUrl, searchDataUrl) {
 
 
 function initState() {
-    if (localStorage.getItem("abotw-size") == null) {
-        localStorage.setItem("abotw-size", "100");
+    if (localStorage.getItem("abinb-size") == null) {
+        localStorage.setItem("abinb-size", "100");
     }
-    if (localStorage.getItem("abotw-rate") == null) {
-        localStorage.setItem("abotw-rate", "100");
+    if (localStorage.getItem("abinb-rate") == null) {
+        localStorage.setItem("abinb-rate", "100");
     }
-    if (localStorage.getItem("abotw-volume") == null) {
-        localStorage.setItem("abotw-volume", 100);
+    if (localStorage.getItem("abinb-volume") == null) {
+        localStorage.setItem("abinb-volume", 100);
     }
-    if (localStorage.getItem("abotw-announce-pagenumbers") == null) {
-        localStorage.setItem("abotw-announce-pagenumbers", true);
+    if (localStorage.getItem("abinb-announce-pagenumbers") == null) {
+        localStorage.setItem("abinb-announce-pagenumbers", true);
     }
 }
 

@@ -1,57 +1,57 @@
 /* toolbars */
 :root {
-    --abotw-icons: 2rem;
-    --abotw-resting-opacity: 50%;
+    --abinb-icons: 2rem;
+    --abinb-resting-opacity: 50%;
 }
 
-svg.abotw-iconify {
-    width: var(--abotw-icons);
-    height: var(--abotw-icons);
+svg.abinb-iconify {
+    width: var(--abinb-icons);
+    height: var(--abinb-icons);
 }
 
-.abotw-toolbar fieldset {
+.abinb-toolbar fieldset {
     border: none;
     display: flex;
     gap: 1rem;
     padding: 0;
 }
-.abotw-toolbar button {
+.abinb-toolbar button {
     border: none;
     background-color: inherit;
-    color: rgb(var(--abotw-icon-color));
+    color: rgb(var(--abinb-icon-color));
 }
-.abotw-toolbar button, #abotw-document-links a, #abotw-help {
+.abinb-toolbar button, #abinb-document-links a, #abinb-help {
     border-radius: 10px;
 }
-.abotw-toolbar a {
+.abinb-toolbar a {
     color: inherit;
 }
-.abotw-lightup {
-    opacity: calc(var(--abotw-resting-opacity) + 10%);
+.abinb-lightup {
+    opacity: calc(var(--abinb-resting-opacity) + 10%);
 }
-.abotw-lightup:hover {
+.abinb-lightup:hover {
     opacity: 100%;
     transition: .2s;
-    background-color: rgb(var(--abotw-hover-color)); 
+    background-color: rgb(var(--abinb-hover-color)); 
 }
 
-#abotw-document-links {
+#abinb-document-links {
     display: flex;
     gap: 1rem;
     margin: 0;
 }
 
-#abotw-playback-toolbar, #abotw-app-toolbar, #abotw-nav-toolbar {
+#abinb-playback-toolbar, #abinb-app-toolbar, #abinb-nav-toolbar {
     display: flex;
     height: min-content;
     /* width: min-content; */
 }
 
-#abotw-nav-toolbar {
+#abinb-nav-toolbar {
     flex-direction: column;
 }
 
-#abotw-app-toolbar fieldset {
+#abinb-app-toolbar fieldset {
     flex-direction: column;
 }
 

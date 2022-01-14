@@ -1,10 +1,10 @@
-#abotw-settings.abotw-expanded {
+#abinb-settings.abinb-expanded {
     right: 0;
     top: 0;
     width: 25%;
 }
 
-#abotw-settings fieldset div {
+#abinb-settings fieldset div {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -12,26 +12,26 @@
     line-height: 1.6;
 }
 
-#abotw-settings fieldset div label {
+#abinb-settings fieldset div label {
     white-space: nowrap;
     width: 5rem;
 }
 
-#abotw-settings fieldset div input {
+#abinb-settings fieldset div input {
     padding: 10px;
     margin: 0;
 }
-#abotw-settings fieldset input+p {
+#abinb-settings fieldset input+p {
     font-size: smaller;
     font-family: Courier New, serif;
     font-weight: bold;
     
 }
-#abotw-settings fieldset div button {
+#abinb-settings fieldset div button {
     border: thin solid;
     font-size: 100%;
 }
-#abotw-settings input[type=range] {
-    background-color: rgb(var(--abotw-icon-color));
+#abinb-settings input[type=range] {
+    background-color: rgb(var(--abinb-icon-color));
     border-radius: 4px;
 }

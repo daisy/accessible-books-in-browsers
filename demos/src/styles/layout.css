@@ -5,42 +5,42 @@ html {
 body {
     display: grid;
     grid-template-areas: 
-    "abotw-nav-toolbar abotw-main abotw-app-toolbar"
-    "abotw-playback-toolbar abotw-main abotw-document-links";
+    "abinb-nav-toolbar abinb-main abinb-app-toolbar"
+    "abinb-playback-toolbar abinb-main abinb-document-links";
     grid-template-columns: minmax(10rem, 25%) 45rem minmax(10rem, 25%);
     grid-template-rows: auto 10rem;
     margin: 1rem 1rem 2rem 1rem;
     height: 100%;
 }
 
-html.abotw-js body * {
+html.abinb-js body * {
     /* hide until load */
     display: none; 
 }
-html.abotw-js body {
-    background-color: rgb(var(--abotw-page-background-color));
+html.abinb-js body {
+    background-color: rgb(var(--abinb-page-background-color));
 }
 main {
-    grid-area: abotw-main;
+    grid-area: abinb-main;
 }
-main a.abotw-selflink {
-    color: rgb(var(--abotw-text-color));
+main a.abinb-selflink {
+    color: rgb(var(--abinb-text-color));
     margin-left: 1rem; 
 }
-main a.abotw-selflink .abotw-iconify {
-    width: calc(var(--abotw-icons) * .6);
+main a.abinb-selflink .abinb-iconify {
+    width: calc(var(--abinb-icons) * .6);
 }
 /* for page transitions */
-body.abotw-fadeout {
+body.abinb-fadeout {
     opacity: 0% !important;
     transition: opacity .25s;
 }
-body.abotw-fadein > * {
+body.abinb-fadein > * {
     animation-duration: .5s;
-    animation-name: abotw-fadein;
+    animation-name: abinb-fadein;
 }
   
-@keyframes abotw-fadein {
+@keyframes abinb-fadein {
     from {
         opacity: 0;
     }
@@ -50,24 +50,24 @@ body.abotw-fadein > * {
     }
 }
   
-body.abotw-dim-10 main {
+body.abinb-dim-10 main {
     opacity: 10% !important;
 }
-body.abotw-dim-70  main {
+body.abinb-dim-70  main {
     opacity: 70%;
 }
-svg.abotw-iconify {
-    width: var(--abotw-icons);
-    height: var(--abotw-icons);
+svg.abinb-iconify {
+    width: var(--abinb-icons);
+    height: var(--abinb-icons);
 }
 
-#abotw-nav-toolbar {
-    grid-area: abotw-nav-toolbar;
+#abinb-nav-toolbar {
+    grid-area: abinb-nav-toolbar;
     overflow-y: scroll;
     position: fixed;
 }
-#abotw-document-links {
-    grid-area: abotw-document-links;
+#abinb-document-links {
+    grid-area: abinb-document-links;
     justify-self: right;
     align-self: end;
     position: sticky;
@@ -76,23 +76,23 @@ svg.abotw-iconify {
     width: min-content;
 }
 
-#abotw-playback-toolbar {
-    grid-area: abotw-playback-toolbar;
+#abinb-playback-toolbar {
+    grid-area: abinb-playback-toolbar;
     position: sticky;
     bottom: 1rem;
     justify-self: left;
     align-self: end;
 }
-#abotw-app-toolbar {
-    grid-area: abotw-app-toolbar;
+#abinb-app-toolbar {
+    grid-area: abinb-app-toolbar;
     position: sticky;
     top: 0;
     justify-self: right;
 }
 
-#abotw-document-links a {
-    color: rgb(var(--abotw-text-color));
-    height: var(--abotw-icons);
+#abinb-document-links a {
+    color: rgb(var(--abinb-text-color));
+    height: var(--abinb-icons);
 }
 
 /*****************************/
@@ -104,11 +104,11 @@ svg.abotw-iconify {
         margin: 0 1rem 0 1rem;
 
         grid-template-areas: 
-        "abotw-nav-toolbar"
-        "abotw-app-toolbar"
-        "abotw-document-links"
-        "abotw-playback-toolbar"
-        "abotw-main";
+        "abinb-nav-toolbar"
+        "abinb-app-toolbar"
+        "abinb-document-links"
+        "abinb-playback-toolbar"
+        "abinb-main";
         grid-template-columns: 100%;
         grid-template-rows: repeat(5, auto);
         height: 100vh;
@@ -116,44 +116,44 @@ svg.abotw-iconify {
     main {
         /* grid-column: 1/4; */
     }
-    #abotw-playback-toolbar, #abotw-document-links, #abotw-nav-toolbar, #abotw-app-toolbar {
-        background-color: rgb(var(--abotw-page-background-color));
+    #abinb-playback-toolbar, #abinb-document-links, #abinb-nav-toolbar, #abinb-app-toolbar {
+        background-color: rgb(var(--abinb-page-background-color));
     }
-    #abotw-app-toolbar {
+    #abinb-app-toolbar {
         flex-direction: row !important;
     }
-     #abotw-document-links {
+     #abinb-document-links {
          justify-self: start;
      }
 
     
 /*    
-    #abotw-document-links {
+    #abinb-document-links {
         position: sticky;
-        background-color: rgb(var(--abotw-page-background-color));  
+        background-color: rgb(var(--abinb-page-background-color));  
         border-radius: 4px;
         align-self: end;
         bottom: .25rem;
     }
     
-    #abotw-app-toolbar {
+    #abinb-app-toolbar {
         position: sticky;
-        background-color: rgb(var(--abotw-page-background-color));
+        background-color: rgb(var(--abinb-page-background-color));
         border-radius: 4px;
         flex-direction: row;
         align-self: end;
         gap: 1rem;
     }
-    #abotw-nav-toolbar {
+    #abinb-nav-toolbar {
         position: sticky;
         align-self: end;
     }
-    #abotw-nav {
-        background-color: rgb(var(--abotw-page-background-color));
+    #abinb-nav {
+        background-color: rgb(var(--abinb-page-background-color));
         border-radius: 4px;
 
     }
-    #abotw-nav.abotw-expanded {
+    #abinb-nav.abinb-expanded {
         width: 90vw;
     }
 */

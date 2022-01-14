@@ -11,7 +11,7 @@ async function createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDa
 
     addGoToPage();
 
-    await initSearchPanel(document.querySelector("#abotw-search"), searchIndexUrl, searchDataUrl);
+    await initSearchPanel(document.querySelector("#abinb-search"), searchIndexUrl, searchDataUrl);
     await initAboutPanel(aboutUrl);
 
     updateLinks();
@@ -42,15 +42,15 @@ structure the navigation like this
 ...
 */
 function convertToTabs() {
-    let listOfNavs = document.querySelector("#abotw-list-of-navs");
+    let listOfNavs = document.querySelector("#abinb-list-of-navs");
     let listItems = []; // all the tabs
 
     if (!listOfNavs) {
         // create if doesn't exist
         listOfNavs = document.createElement("nav");
-        listOfNavs.id = "abotw-list-of-navs";
+        listOfNavs.id = "abinb-list-of-navs";
         listOfNavs.innerHTML = "<ol></ol>";
-        document.querySelector("#abotw-nav > div").insertBefore(listOfNavs, document.querySelector("#abotw-nav > div").firstElementChild);
+        document.querySelector("#abinb-nav > div").insertBefore(listOfNavs, document.querySelector("#abinb-nav > div").firstElementChild);
         // add a link to the toc
         let toc = document.querySelector("nav.epubtype_toc");
         listItems.push({"label": "Table of Contents", "target": toc.id});
@@ -66,18 +66,18 @@ function convertToTabs() {
     listOfNavs.querySelector("ol").innerHTML = '';
 
     // add a panel and a button for searching
-    listItems.push({label: "Search", target: "abotw-search"});
+    listItems.push({label: "Search", target: "abinb-search"});
     let searchSection = document.createElement("section");
-    searchSection.id = "abotw-search";
-    searchSection.classList.add("abotw-search");
-    document.querySelector("#abotw-nav > div").appendChild(searchSection);
+    searchSection.id = "abinb-search";
+    searchSection.classList.add("abinb-search");
+    document.querySelector("#abinb-nav > div").appendChild(searchSection);
 
     // add a panel and a button for book info
-    listItems.push({label: "About", target: "abotw-about"});
+    listItems.push({label: "About", target: "abinb-about"});
     let aboutSection = document.createElement("section");
-    aboutSection.id = "abotw-about";
-    aboutSection.classList.add("abotw-about");
-    document.querySelector("#abotw-nav > div").appendChild(aboutSection);
+    aboutSection.id = "abinb-about";
+    aboutSection.classList.add("abinb-about");
+    document.querySelector("#abinb-nav > div").appendChild(aboutSection);
 
     // convert all list items <button>s
     // Array.from(listOfNavs.querySelectorAll("li a")).map(link => {
@@ -89,14 +89,14 @@ function convertToTabs() {
     divOfNavs.setAttribute("role", "tablist");
     
     // replace listOfNavs with divOfnavs
-    document.querySelector("#abotw-nav > div").insertBefore(divOfNavs, listOfNavs);
+    document.querySelector("#abinb-nav > div").insertBefore(divOfNavs, listOfNavs);
     listOfNavs.remove();
-    divOfNavs.id = "abotw-list-of-navs";
+    divOfNavs.id = "abinb-list-of-navs";
 
     // remove any redundant labels
     // the navs just use aria-label, not aria-labelledby
     // the tab panels will have the visual label for the nav wrapper
-    document.querySelectorAll("#abotw-nav nav").forEach(nav => {
+    document.querySelectorAll("#abinb-nav nav").forEach(nav => {
         if (nav.hasAttribute("aria-labelledby")) {
             let label = getLabel(nav);
             nav.setAttribute("aria-label", label);
@@ -120,27 +120,27 @@ function createNavPanelTab(label, targetId) {
     let idPrefix = '';
     if (target.classList.contains("epubtype_toc")) {
         icon = icons.toc;
-        idPrefix = 'abotw-toc';
+        idPrefix = 'abinb-toc';
     }
     else if (target.classList.contains("epubtype_landmarks")) {
         icon = icons.landmarks;
-        idPrefix = 'abotw-landmarks';
+        idPrefix = 'abinb-landmarks';
     }
     else if (target.classList.contains("epubtype_page-list")) {
         icon = icons.pages;
-        idPrefix = 'abotw-page-list';
+        idPrefix = 'abinb-page-list';
     }
-    else if (target.classList.contains("abotw-bookmarks")) {
+    else if (target.classList.contains("abinb-bookmarks")) {
         icon = icons.bookmarks;
-        idPrefix = 'abotw-bookmarks';
+        idPrefix = 'abinb-bookmarks';
     }
-    else if (target.classList.contains("abotw-search")) {
+    else if (target.classList.contains("abinb-search")) {
         icon = icons.search;
-        idPrefix = 'abotw-search';
+        idPrefix = 'abinb-search';
     }
-    else if (target.classList.contains("abotw-about")) {
+    else if (target.classList.contains("abinb-about")) {
         icon = icons.info;
-        idPrefix = 'abotw-about';
+        idPrefix = 'abinb-about';
     }
     else {
         icon = icons.landmarks; // this icon is pretty generic-looking
@@ -174,7 +174,7 @@ function createNavPanelTab(label, targetId) {
         tab-index="${tabIndex}"
         aria-selected="${ariaSelected}"
         role="tab"
-        class="abotw-lightup"
+        class="abinb-lightup"
         aria-label="${label}">
             ${icon}
             <span>${label}</span>
@@ -196,8 +196,8 @@ function getLabel(elm) {
 }
 
 function addEvents() {
-    const tabs = document.querySelectorAll('#abotw-nav [role="tab"]');
-    const tabList = document.querySelector('#abotw-nav [role="tablist"]');
+    const tabs = document.querySelectorAll('#abinb-nav [role="tab"]');
+    const tabList = document.querySelector('#abinb-nav [role="tablist"]');
 
     // Add a click event handler to each tab
     tabs.forEach(tab => {
@@ -235,8 +235,8 @@ function addEvents() {
 function changeTabs(e) {
 
     const target = e.target;
-    const tablist = document.querySelector("#abotw-nav *[role=tablist]");
-    const navPanel = document.querySelector("#abotw-nav");
+    const tablist = document.querySelector("#abinb-nav *[role=tablist]");
+    const navPanel = document.querySelector("#abinb-nav");
 
     if (target.hasAttribute("aria-controls") && target.getAttribute("role") == "tab") {
         // Remove all current selected tabs
@@ -263,34 +263,34 @@ function changeTabs(e) {
 function addGoToPage() {
     if (document.querySelector("nav.epubtype_page-list")) {
         let gotoPage = (pageNumber) => {
-            document.querySelector("#abotw-gotopage-error").textContent = "";
+            document.querySelector("#abinb-gotopage-error").textContent = "";
             let pages = document.querySelectorAll("nav.epubtype_page-list li a");
             let page = Array.from(pages).find(page => page.textContent.toLowerCase() == pageNumber.trim().toLowerCase());
             if (page) page.click();
-            else document.querySelector("#abotw-gotopage-error").textContent = "Page not found";
+            else document.querySelector("#abinb-gotopage-error").textContent = "Page not found";
         };
     
         
         let gotoPagelist = document.createElement("div");
         gotoPagelist.innerHTML = 
         `<div>
-            <label for="abotw-gotopage-text">Go to page:</label>
-            <input id="abotw-gotopage-text" type="text" placeholder="Page number"></input>
+            <label for="abinb-gotopage-text">Go to page:</label>
+            <input id="abinb-gotopage-text" type="text" placeholder="Page number"></input>
             <input type="button" value="Go"></input>
         </div>
-        <p id="abotw-gotopage-error" aria-live="polite"></p>
+        <p id="abinb-gotopage-error" aria-live="polite"></p>
         `;
-        document.querySelector("#abotw-page-list-wrapper").insertBefore(gotoPagelist, document.querySelector("nav.epubtype_page-list"));
+        document.querySelector("#abinb-page-list-wrapper").insertBefore(gotoPagelist, document.querySelector("nav.epubtype_page-list"));
 
-        document.querySelector("#abotw-gotopage-text").addEventListener("keyup", e => {
+        document.querySelector("#abinb-gotopage-text").addEventListener("keyup", e => {
             if (e.code == "Enter") gotoPage(e.target.value);
             else {
-                if (e.target.value == "") document.querySelector("#abotw-gotopage-error").textContent = "";
+                if (e.target.value == "") document.querySelector("#abinb-gotopage-error").textContent = "";
             }
         });
 
-        document.querySelector("#abotw-gotopage-text ~ input[type=button]").addEventListener("click", e => 
-            gotoPage(document.querySelector("#abotw-gotopage-text").value));
+        document.querySelector("#abinb-gotopage-text ~ input[type=button]").addEventListener("click", e => 
+            gotoPage(document.querySelector("#abinb-gotopage-text").value));
 
     }
 }
@@ -299,7 +299,7 @@ function updateLinks(navUrl) {
     // modify the nav hrefs to make sense in the context of our current document
     let navdocUrl = new URL(navUrl, document.location.href);
     let aboutdocUrl = new URL(navUrl, document.location.href);
-    Array.from(document.querySelectorAll("#abotw-nav > div a, #abotw-nav > div img")).map(elm => {
+    Array.from(document.querySelectorAll("#abinb-nav > div a, #abinb-nav > div img")).map(elm => {
         if (elm.hasAttribute("href")) {
             let newHref = new URL(elm.getAttribute("href"), navdocUrl.href).href;
             elm.setAttribute("href", newHref);
@@ -314,24 +314,24 @@ function updateLinks(navUrl) {
 async function initSearchPanel(searchPanel, searchIndexUrl, searchDataUrl) {
     searchPanel.innerHTML = 
     `<div>
-        <label for="abotw-search">Search</label>
-        <input type="search" id="abotw-search-text" placeholder="Search"></input>
-        <input type="button" id="abotw-search-button" value="Search"></input>
+        <label for="abinb-search">Search</label>
+        <input type="search" id="abinb-search-text" placeholder="Search"></input>
+        <input type="button" id="abinb-search-button" value="Search"></input>
     </div>
-    <section aria-label="Search results" id="abotw-search-results" aria-live="polite">
+    <section aria-label="Search results" id="abinb-search-results" aria-live="polite">
     </section>`;
 
     let fuse = await initSearchEngine(searchIndexUrl, searchDataUrl);
     
     let performSearch = async e => {
-        let searchText = searchPanel.querySelector("#abotw-search-text").value;
+        let searchText = searchPanel.querySelector("#abinb-search-text").value;
         if (searchText.trim() != '') {
             let result = fuse.search(searchText);
             presentSearchResults(result);
         }
     };
-    searchPanel.querySelector("#abotw-search-button").addEventListener("click", performSearch);
-    searchPanel.querySelector("#abotw-search-text").addEventListener("keydown", async e => {
+    searchPanel.querySelector("#abinb-search-button").addEventListener("click", performSearch);
+    searchPanel.querySelector("#abinb-search-text").addEventListener("keydown", async e => {
         if (e.code == "Enter") {
             await performSearch();
         }
@@ -352,7 +352,7 @@ async function importAboutDoc(aboutUrl) {
     let dom = await parser.parseFromString(text, 'text/html');
     let main = dom.querySelector('main');
 
-    let navContainer = document.querySelector("#abotw-about");
+    let navContainer = document.querySelector("#abinb-about");
     let images = Array.from(main.querySelector("img"));
     
     // adjust the image URLs 
@@ -384,7 +384,7 @@ async function importNavDoc(navUrl) {
     let dom = await parser.parseFromString(text, 'text/html');
     let main = dom.querySelector('body');
 
-    let navContainer = document.querySelector("#abotw-nav > div");
+    let navContainer = document.querySelector("#abinb-nav > div");
     // reparent the nav doc elements
     Array.from(main.childNodes).map(child => navContainer.appendChild(child));
 
@@ -408,7 +408,7 @@ async function initSearchEngine(searchIndexUrl, searchDataUrl) {
 
 function presentSearchResults(results) {
     // clear any old results
-    let resultsElm = document.querySelector("#abotw-search-results");
+    let resultsElm = document.querySelector("#abinb-search-results");
     resultsElm.innerHTML = '';
     
     let oldResultHighlights = Array.from(document.querySelectorAll(".search-result"));
@@ -419,7 +419,7 @@ function presentSearchResults(results) {
         el.setAttribute("role", attrval);
     });
 
-    resultsElm = document.querySelector("#abotw-search-results");
+    resultsElm = document.querySelector("#abinb-search-results");
     
     resultsElm.innerHTML = 
     `<p>${results.length} results</p>
@@ -443,8 +443,8 @@ function presentSearchResults(results) {
     </table>`;
     
     let resultsLinks = Array.from(resultsElm.querySelectorAll("table td a[data-selector]"));
-    resultsLinks.map(link => link.addEventListener("click", e => localStorage.setItem("abotw-target", link.getAttribute("data-selector"))));
-    document.querySelector("#abotw-search").appendChild(resultsElm);
+    resultsLinks.map(link => link.addEventListener("click", e => localStorage.setItem("abinb-target", link.getAttribute("data-selector"))));
+    document.querySelector("#abinb-search").appendChild(resultsElm);
 
 }
 export { createNavPanelContents };

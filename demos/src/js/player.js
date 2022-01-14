@@ -5,30 +5,30 @@ let goingBackwards = false;
 let startedPlayback = false;
 
 async function load() {
-    audio = document.querySelector("#abotw-audio");
-    let track = document.querySelector("#abotw-audio track");
+    audio = document.querySelector("#abinb-audio");
+    let track = document.querySelector("#abinb-audio track");
     track.track.addEventListener("cuechange", onCueChange);
     
     audio.addEventListener("play", e => {
         startedPlayback = true;
-        document.querySelector("body").classList.add("abotw-playing");
-        document.querySelector("#abotw-playpause").setAttribute("title", "Pause");
-        document.querySelector("#abotw-playpause").setAttribute("aria-label", "Pause");
+        document.querySelector("body").classList.add("abinb-playing");
+        document.querySelector("#abinb-playpause").setAttribute("title", "Pause");
+        document.querySelector("#abinb-playpause").setAttribute("aria-label", "Pause");
     });
     audio.addEventListener("pause", e => {
-        document.querySelector("body").classList.remove("abotw-playing");
-        document.querySelector("#abotw-playpause").setAttribute("title", "Play");
-        document.querySelector("#abotw-playpause").setAttribute("aria-label", "Play");
+        document.querySelector("body").classList.remove("abinb-playing");
+        document.querySelector("#abinb-playpause").setAttribute("title", "Play");
+        document.querySelector("#abinb-playpause").setAttribute("aria-label", "Play");
     });
     audio.addEventListener("ended", e => {
-        localStorage.setItem("abotw-autoplay", true);
-        let nextSection = document.querySelector("#abotw-next-section");
+        localStorage.setItem("abinb-autoplay", true);
+        let nextSection = document.querySelector("#abinb-next-section");
         if (nextSection) nextSection.click();
     });
     
     // hide the basic html audio player
-    if (document.querySelector("#abotw-audio")) {
-        document.querySelector("#abotw-audio").style['display'] = 'none';
+    if (document.querySelector("#abinb-audio")) {
+        document.querySelector("#abinb-audio").style['display'] = 'none';
     }
 
     window.addEventListener("hashchange", async e => {
@@ -134,7 +134,7 @@ function isInViewport(elm) {
 function canPlay(elm) {
     // true unless this is a pagebreak
     if (elm.classList.contains("epubtype_pagebreak")) {
-        return localStorage.getItem("abotw-announce-pagenumbers") == "true";
+        return localStorage.getItem("abinb-announce-pagenumbers") == "true";
     }
     return true;
 }

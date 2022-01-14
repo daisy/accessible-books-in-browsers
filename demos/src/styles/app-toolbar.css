@@ -1,16 +1,16 @@
-#abotw-app-toolbar {
+#abinb-app-toolbar {
     display: flex;
     flex-direction: column;
 }
 
-#abotw-app-toolbar > div fieldset {
+#abinb-app-toolbar > div fieldset {
     border: none;
     display: flex;
     gap: 1rem;
     padding: 0;
 }
 
-#abotw-settings >  button, #abotw-help {
+#abinb-settings >  button, #abinb-help {
     padding: 0;
     transition: .2s;
 }

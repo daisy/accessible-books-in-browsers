@@ -1,75 +1,75 @@
 /* define light and dark themes, and respect the system preference for using dark themes */
 :root { 
-    --abotw-black: 18, 18, 18;
-    --abotw-darkgray: 51, 51, 51;
-    --abotw-gray: 191, 191, 191;
-    --abotw-lightgray: 200, 200, 200;
-    --abotw-white: 255, 255, 255;
-    --abotw-darkblue: 8, 51, 55;
-    --abotw-lightblue: 172, 235, 243;
-    --abotw-lightorange: 255, 201, 160;
-    --abotw-yellow: 253, 253, 150;
-    --abotw-transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
+    --abinb-black: 18, 18, 18;
+    --abinb-darkgray: 51, 51, 51;
+    --abinb-gray: 191, 191, 191;
+    --abinb-lightgray: 200, 200, 200;
+    --abinb-white: 255, 255, 255;
+    --abinb-darkblue: 8, 51, 55;
+    --abinb-lightblue: 172, 235, 243;
+    --abinb-lightorange: 255, 201, 160;
+    --abinb-yellow: 253, 253, 150;
+    --abinb-transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
 }
 body {
-    --abotw-text-color: var(--abotw-black);
-    --abotw-page-background-color: var(--abotw-white);
-    --abotw-link-color: var(--abotw-darkblue);
-    --abotw-icon-color: var(--abotw-black);
-    --abotw-hover-color: var(--abotw-lightgray);
-    --abotw-toggle-color: var(--abotw-darkblue);
-    --abotw-tab-focus-color: var(--abotw-lightorange);
-    --abotw-sync-highlight-background-color: var(--abotw-yellow);
-    --abotw-sync-highlight-color: var(--abotw-text-color);
-    --abotw-search-highlight-background-color: var(--abotw-lightblue);
-    --abotw-search-highlight-color: var(--abotw-text-color);
-    --abotw-border-color: var(--abotw-darkgray);
+    --abinb-text-color: var(--abinb-black);
+    --abinb-page-background-color: var(--abinb-white);
+    --abinb-link-color: var(--abinb-darkblue);
+    --abinb-icon-color: var(--abinb-black);
+    --abinb-hover-color: var(--abinb-lightgray);
+    --abinb-toggle-color: var(--abinb-darkblue);
+    --abinb-tab-focus-color: var(--abinb-lightorange);
+    --abinb-sync-highlight-background-color: var(--abinb-yellow);
+    --abinb-sync-highlight-color: var(--abinb-text-color);
+    --abinb-search-highlight-background-color: var(--abinb-lightblue);
+    --abinb-search-highlight-color: var(--abinb-text-color);
+    --abinb-border-color: var(--abinb-darkgray);
     
     transition: var(--transition);
 
 }
-body.abotw-dark {
-    --abotw-text-color: var(--abotw-white);
-    --abotw-page-background-color: var(--abotw-black);
-    --abotw-link-color: var(--abotw-lightblue);
-    --abotw-icon-color: var(--abotw-white);
-    --abotw-hover-color: var(--abotw-darkgray);
-    --abotw-toggle-color: var(--abotw-lightblue);
-    --abotw-tab-focus-color: var(--abotw-white);
-    --abotw-sync-highlight-background-color: var(--abotw-page-background-color);
-    --abotw-sync-highlight-color: var(--abotw-yellow);
-    --abotw-search-highlight-background-color: var(--abotw-page-background-color);
-    --abotw-search-highlight-color: var(--abotw-lightblue);
+body.abinb-dark {
+    --abinb-text-color: var(--abinb-white);
+    --abinb-page-background-color: var(--abinb-black);
+    --abinb-link-color: var(--abinb-lightblue);
+    --abinb-icon-color: var(--abinb-white);
+    --abinb-hover-color: var(--abinb-darkgray);
+    --abinb-toggle-color: var(--abinb-lightblue);
+    --abinb-tab-focus-color: var(--abinb-white);
+    --abinb-sync-highlight-background-color: var(--abinb-page-background-color);
+    --abinb-sync-highlight-color: var(--abinb-yellow);
+    --abinb-search-highlight-background-color: var(--abinb-page-background-color);
+    --abinb-search-highlight-color: var(--abinb-lightblue);
     
 }
 @media (prefers-color-scheme: dark) {
     body { /* "dark mode" as preferred by the system */
-        --abotw-text-color: var(--abotw-white);
-        --abotw-page-background-color: var(--abotw-black);
-        --abotw-link-color: var(--abotw-lightblue);
-        --abotw-icon-color: var(--abotw-white);
-        --abotw-hover-color: var(--abotw-darkgray);
-        --abotw-toggle-color: var(--abotw-lightblue);
-        --abotw-tab-focus-color: var(--abotw-white);
-        --abotw-sync-highlight-background-color: var(--abotw-page-background-color);
-        --abotw-sync-highlight-color: var(--abotw-yellow);
-        --abotw-search-highlight-background-color: var(--abotw-page-background-color);
-        --abotw-search-highlight-color: var(--abotw-lightblue);
+        --abinb-text-color: var(--abinb-white);
+        --abinb-page-background-color: var(--abinb-black);
+        --abinb-link-color: var(--abinb-lightblue);
+        --abinb-icon-color: var(--abinb-white);
+        --abinb-hover-color: var(--abinb-darkgray);
+        --abinb-toggle-color: var(--abinb-lightblue);
+        --abinb-tab-focus-color: var(--abinb-white);
+        --abinb-sync-highlight-background-color: var(--abinb-page-background-color);
+        --abinb-sync-highlight-color: var(--abinb-yellow);
+        --abinb-search-highlight-background-color: var(--abinb-page-background-color);
+        --abinb-search-highlight-color: var(--abinb-lightblue);
     }
     /* the manual toggle can override the system theme */
-    body.abotw-dark-pref-override {
+    body.abinb-dark-pref-override {
         /* "light mode" */
-        --abotw-text-color: var(--abotw-black);
-        --abotw-page-background-color: var(--abotw-white);
-        --abotw-link-color: var(--abotw-darkblue);
-        --abotw-icon-color: var(--abotw-black);
-        --abotw-hover-color: var(--abotw-lightgray);
-        --abotw-toggle-color: var(--abotw-darkblue);
-        --abotw-tab-focus-color: var(--abotw-lightorange);
-        --abotw-sync-highlight-background-color: var(--abotw-yellow);
-        --abotw-sync-highlight-color: var(--abotw-text-color);
-        --abotw-search-highlight-background-color: var(--abotw-lightblue);
-        --abotw-search-highlight-color: var(--abotw-text-color);
+        --abinb-text-color: var(--abinb-black);
+        --abinb-page-background-color: var(--abinb-white);
+        --abinb-link-color: var(--abinb-darkblue);
+        --abinb-icon-color: var(--abinb-black);
+        --abinb-hover-color: var(--abinb-lightgray);
+        --abinb-toggle-color: var(--abinb-darkblue);
+        --abinb-tab-focus-color: var(--abinb-lightorange);
+        --abinb-sync-highlight-background-color: var(--abinb-yellow);
+        --abinb-sync-highlight-color: var(--abinb-text-color);
+        --abinb-search-highlight-background-color: var(--abinb-lightblue);
+        --abinb-search-highlight-color: var(--abinb-text-color);
     }
 }
 

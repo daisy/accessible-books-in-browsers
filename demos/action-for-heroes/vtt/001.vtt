@@ -2,20 +2,20 @@ WEBVTT
 
 1
 00:00:00.000 --> 00:00:03.762
-{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"page1"}}
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"page1"}}
 
 2
 00:00:03.762 --> 00:00:07.001
-{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb3"}}
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb3"}}
 
 3
 00:00:07.001 --> 00:00:13.166
-{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb4"}}
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb4"}}
 
 4
 00:00:13.166 --> 00:00:39.654
-{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"rId51"}}
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"rId51"}}
 
 5
 00:00:39.654 --> 00:00:43.729
-{"action":{"name":"addCssClass","data":"abotw-sync-highlight"},"selector":{"type":"FragmentSelector","value":"rId62"}}
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"rId62"}}

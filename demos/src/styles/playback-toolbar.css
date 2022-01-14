@@ -1,27 +1,27 @@
-#abotw-playback-toolbar {
+#abinb-playback-toolbar {
     flex-wrap: wrap;
 }
-body.abotw-playing #abotw-playpause > svg:first-child {
+body.abinb-playing #abinb-playpause > svg:first-child {
     display: none;
 }
-body.abotw-playing #abotw-playpause > svg:last-child {
+body.abinb-playing #abinb-playpause > svg:last-child {
     display: block;
 }
-body:not(.abotw-playing) #abotw-playpause > svg:first-child {
+body:not(.abinb-playing) #abinb-playpause > svg:first-child {
     display: block;
 }
-body:not(.abotw-playing) #abotw-playpause > svg:last-child {
+body:not(.abinb-playing) #abinb-playpause > svg:last-child {
     display: none;
 }
 
 /* for some reason, this button is a little offset when compared to its neighbors, so this adjustment fixes it */
-#abotw-playpause {
+#abinb-playpause {
     align-self: start;
 }
 
-#abotw-volume {
+#abinb-volume {
     align-self: center;
-    width: calc(var(--abotw-icons) * 1.5);
-    background-color: var(--abotw-page-background-color); /* otherwise there's a background flicker onhover */
+    width: calc(var(--abinb-icons) * 1.5);
+    background-color: var(--abinb-page-background-color); /* otherwise there's a background flicker onhover */
     height: 100%; /* otherwise the thumb gets cut off */
 }

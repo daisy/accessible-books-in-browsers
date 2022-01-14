@@ -2,12 +2,12 @@ import * as icons from '../icons.js';
 import { setupPanel } from '../panels/panel.js';
 
 function createApplicationToolbar(helpUrl) {
-    let toolbar = document.querySelector("#abotw-app-toolbar");
+    let toolbar = document.querySelector("#abinb-app-toolbar");
     toolbar.innerHTML = 
-    `<div id="abotw-settings" class="abotw-panel" aria-live="polite">
+    `<div id="abinb-settings" class="abinb-panel" aria-live="polite">
         <button 
             type="button" 
-            class="abotw-lightup"
+            class="abinb-lightup"
             aria-haspopup="true" 
             aria-expanded="false"
             data-desc="Settings">
@@ -17,20 +17,20 @@ function createApplicationToolbar(helpUrl) {
         <div>
         </div>
     </div>
-    <div id="abotw-help" class="abotw-lightup">
+    <div id="abinb-help" class="abinb-lightup">
         <a href="${helpUrl}"  title="View help" target="_blank">
             ${icons.help}
         </a>
     </div>`;
 
     setupPanel(
-        "abotw-settings", 
+        "abinb-settings", 
         false, 
         () => {
-            document.querySelector("body").classList.add("abotw-dim-70");
+            document.querySelector("body").classList.add("abinb-dim-70");
         },
         () => {
-            document.querySelector("body").classList.remove("abotw-dim-70");
+            document.querySelector("body").classList.remove("abinb-dim-70");
         }
     );
 }
