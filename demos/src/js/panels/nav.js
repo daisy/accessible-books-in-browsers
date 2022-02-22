@@ -342,9 +342,8 @@ async function initAboutPanel(aboutUrl) {
     await importAboutDoc(aboutUrl);
 }
 
+// 'about' is an HTML file that we import so it appears in the sidebar
 async function importAboutDoc(aboutUrl) {
-    
-    // fetch the navigation document and extract the nav elements
     let aboutdocUrl = new URL(aboutUrl, document.location);
     let res = await fetch(aboutdocUrl.href);
     let text = await res.text();    
@@ -353,7 +352,8 @@ async function importAboutDoc(aboutUrl) {
     let main = dom.querySelector('main');
 
     let navContainer = document.querySelector("#abinb-about");
-    let images = Array.from(main.querySelector("img"));
+    
+    // let images = Array.from(main.querySelector("img"));
     
     // adjust the image URLs 
     // images
