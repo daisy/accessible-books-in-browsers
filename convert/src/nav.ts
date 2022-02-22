@@ -38,7 +38,14 @@ async function createListOfNavs(inputFilename, outputFilename) {
     let doc = dom.window.document;
 
     let navs = Array.from(doc.querySelectorAll("nav"));
-
+    
+    navs.map((nav, idx) => {
+        //@ts-ignore
+        if (!nav.id) {
+            //@ts-ignore
+            nav.id = `nav-${idx}`;
+        }
+    });
     let listOfNavs = doc.createElement("nav");
     listOfNavs.id = "abinb-list-of-navs";
     
