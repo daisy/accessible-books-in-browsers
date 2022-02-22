@@ -27,7 +27,7 @@ let select = xpath.useNamespaces({
 });
 
 
-async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAudio=false, splitContentDoc=true) {
+async function convert(inputDir, outputDir, pathToSharedClientCode, skipMergeAudio=false, splitContentDoc=false) {
     logger.initLogger(path.join(process.cwd(), "output.log"));
 
     // copy to a working directory
