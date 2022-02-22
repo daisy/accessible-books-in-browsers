@@ -41,7 +41,7 @@ let aboutPageTemplate = (metadata, coverImage) =>
     
     <main>        
         <h1>About this publication</h1>
-        <img src="${coverImage}" alt="Cover image"></img>
+        ${coverImage ? `<img src="${coverImage}" alt="Cover image"></img>` : ``}
         <ul>
             <li><span class="label">Title:</span> <span id="title">${metadata['dc:title']}</span></li>
             <li><span class="label">Created by:</span> <span id="createdby">${metadata['dc:creator']}</span></li>
@@ -62,7 +62,7 @@ let aboutPageTemplate = (metadata, coverImage) =>
 
 async function makeAboutPage(epub, outputFilename) {
     epub.metadata['dc:date'] = dayjs(epub.metadata['dc:date']).format('D MMMM YYYY');
-    let coverImage = path.relative(path.dirname(outputFilename), epub.metadata['cover']);
+    let coverImage = epub.metadata['cover'] ? path.relative(path.dirname(outputFilename), epub.metadata['cover']) : null;
     let contents = aboutPageTemplate(epub.metadata, coverImage);
     await fs.writeFile(outputFilename, contents);
 }
