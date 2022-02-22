@@ -1,0 +1,29 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.855
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_6"}}
+
+2
+00:00:01.855 --> 00:00:04.023
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_7"}}
+
+3
+00:00:04.023 --> 00:00:08.098
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_12"}}
+
+4
+00:00:08.098 --> 00:00:10.762
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_13"}}
+
+5
+00:00:10.762 --> 00:00:12.121
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_14"}}
+
+6
+00:00:12.121 --> 00:00:13.244
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_15"}}
+
+7
+00:00:13.244 --> 00:00:16.509
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_16"}}

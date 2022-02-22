@@ -1,0 +1,21 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.038
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_27"}}
+
+2
+00:00:02.038 --> 00:00:05.329
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_28"}}
+
+3
+00:00:05.329 --> 00:00:14.263
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_29"}}
+
+4
+00:00:14.263 --> 00:00:21.864
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_30"}}
+
+5
+00:00:21.864 --> 00:00:29.701
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_31"}}

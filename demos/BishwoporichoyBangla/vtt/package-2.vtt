@@ -1,0 +1,9 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:13.740
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_6"}}
+
+2
+00:00:13.740 --> 00:00:23.876
+{"action":{"name":"addCssClass","data":"abinb-sync-highlight"},"selector":{"type":"FragmentSelector","value":"dtb_7"}}
