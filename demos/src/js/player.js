@@ -37,7 +37,7 @@ async function load() {
         if (wasPlaying) await audio.pause;
         console.log("hashchange");
         jumpToFragment();
-        await audio.play();
+        if (wasPlaying) await audio.play();
     });
 }
 

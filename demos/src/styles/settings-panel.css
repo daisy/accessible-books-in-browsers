@@ -1,7 +1,7 @@
 #abinb-settings.abinb-expanded {
     right: 0;
     top: 0;
-    width: 25%;
+    width: 90vw; /* mobile-friendly by default */
 }
 
 #abinb-settings fieldset div {
@@ -34,4 +34,10 @@
 #abinb-settings input[type=range] {
     background-color: rgb(var(--abinb-icon-color));
     border-radius: 4px;
+}
+/* basically: non-narrow screens */
+@media(min-width: 500px) {
+    #abinb-settings.abinb-expanded {
+        width: 60ch;
+    }
 }

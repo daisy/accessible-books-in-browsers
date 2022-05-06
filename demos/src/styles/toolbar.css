@@ -35,6 +35,26 @@ svg.abinb-iconify {
     background-color: rgb(var(--abinb-hover-color)); 
 }
 
+
+.abinb-toolbar-wrapper {
+    justify-content: space-between;
+    display: flex;
+    background-color: rgb(var(--abinb-page-background-color));
+}
+#abinb-top-toolbar-area {
+    top: 0;
+    padding-bottom: .5rem;
+    z-index: 3;
+    width: 100%;
+    position: sticky;
+}
+#abinb-bottom-toolbar-area {
+    bottom: 0;
+    padding-top: .5rem;
+    position: fixed;
+    width: 100%;
+}
+
 #abinb-document-links {
     display: flex;
     gap: 1rem;
@@ -44,14 +64,58 @@ svg.abinb-iconify {
 #abinb-playback-toolbar, #abinb-app-toolbar, #abinb-nav-toolbar {
     display: flex;
     height: min-content;
-    /* width: min-content; */
 }
 
 #abinb-nav-toolbar {
-    flex-direction: column;
+    overflow-y: scroll;
+}
+#abinb-document-links {
+    gap: 1rem;
+}
+#abinb-app-toolbar, #abinb-playback-toolbar, #abinb-nav-toolbar {
+    gap: 0;
+}
+#abinb-playback-toolbar {
+    width: 100%;
+}
+#abinb-playback-toolbar audio {
+    width: 100%;
+    height: var(--abinb-icons);
+}
+#abinb-document-links {
+    height: min-content;
+    width: min-content;
+    margin: 0;
+}
+
+#abinb-playback-toolbar {
+    bottom: 1rem;
+    justify-self: left;
+    align-self: end;
+}
+
+#abinb-document-links a {
+    color: rgb(var(--abinb-text-color));
+    height: var(--abinb-icons);
 }
 
 #abinb-app-toolbar fieldset {
     flex-direction: column;
 }
 
+#abinb-app-toolbar {
+    display: flex;
+    flex-direction: row;
+}
+
+#abinb-app-toolbar > div fieldset {
+    border: none;
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+}
+
+#abinb-settings >  button, #abinb-help {
+    padding: 0;
+    transition: .2s;
+}
