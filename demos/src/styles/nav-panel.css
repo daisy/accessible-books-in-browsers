@@ -148,6 +148,6 @@
 /* basically: non-narrow screens */
 @media(min-width: 500px) {
     #abinb-nav.abinb-expanded {
-        width: 60ch;
+        width: 40ch;
     }
 }

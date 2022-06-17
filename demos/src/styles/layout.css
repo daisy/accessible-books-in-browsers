@@ -1,7 +1,10 @@
 :root {
-    --abinb-measure: 160ch;
+    --abinb-measure: 120ch;
 }
 /* page layout */
+html {
+    height: 100%;
+}
 body {
     margin: 1rem 1rem 1rem 1rem;
     height: 100%;

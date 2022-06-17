@@ -91,7 +91,7 @@ return `<!DOCTYPE html>
             : ``
         }
         ${previousSectionHref || nextSectionHref ? 
-        `<section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links">
+        `<section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
             ${previousSectionHref ? 
             `<a id="abinb-previous-section" href="${previousSectionHref}" title="Previous: ${previousSectionTitle}" class="abinb-lightup" rel="prev">
                 <svg aria-hidden="true" role="img" 

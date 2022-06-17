@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" prefix="media: http://www.idpf.org/epub/vocab/overlays/# dcterms: http://purl.org/dc/terms/ marc: http://id.loc.gov/vocabulary/" version="3.0" unique-identifier="pub-id2">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+        <dc:title id="title2">Action for Heroes </dc:title>
+        <dc:identifier id="pub-id2">AUTO-UID-4754997194290171790</dc:identifier>
+        <dc:language>en-US en-IN</dc:language>
+        <meta property="dcterms:modified">2021-10-08T17:06:29Z</meta>
+        <meta name="dcterms:modified" content="2021-10-08T17:06:29Z"/>
+        <dc:date id="date2">2021-10-07</dc:date>
+        <dc:format>EPUB3</dc:format>
+        <dc:creator>IASC </dc:creator>
+        <dc:publisher>IASC </dc:publisher>
+        <dc:contributor id="d557e312">DAISY Pipeline Narrator</dc:contributor>
+        <meta refines="#d557e312" property="role" scheme="marc:relators">nrt</meta>
+        <meta xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
+            xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal"
+            xmlns:opf="http://www.idpf.org/2007/opf" property="media:duration">1:14:52.106</meta>
+        <meta name="media:duration" content="1:14:52.106"/>
+        <meta xmlns:px="http://www.daisy.org/ns/pipeline/xproc"
+            xmlns:pxi="http://www.daisy.org/ns/pipeline/xproc/internal"
+            xmlns:opf="http://www.idpf.org/2007/opf" property="media:duration" refines="#item_110">1:14:52.106</meta>
+    </metadata>
+    <manifest>
+        <item href="Content/favicon-96x96.png" properties="favico"/>
+        <item href="Content/images/cover.png" media-type="image/png" properties="cover-image"/>
+        <item href="Content/ncc.xhtml" media-type="application/xhtml+xml" id="item_1" properties="nav"/>
+        <item media-type="application/xhtml+xml" href="Content/content.xhtml" id="item_2" media-overlay="item_110"/>
+        <item href="Content/default.css" media-type="text/css" id="item_3"/>
+        <item href="Content/images/Action_for_heros-Picture3.png" media-type="image/png" id="item_4"/>
+        <item href="Content/images/Action_for_heros-Picture4.png" media-type="image/png" id="item_5"/>
+        <item href="Content/images/Action_for_heros-Picture1.png" media-type="image/png" id="item_6"/>
+        <item href="Content/images/Action_for_heros-Picture2.png" media-type="image/png" id="item_7"/>
+        <item href="Content/images/Action_for_heros-Picture7.png" media-type="image/png" id="item_8"/>
+        <item href="Content/images/Action_for_heros-Picture9.png" media-type="image/png" id="item_9"/>
+        <item href="Content/images/Action_for_heros-Picture11.png" media-type="image/png" id="item_10"/>
+        <item href="Content/images/Action_for_heros-Picture15.png" media-type="image/png" id="item_11"/>
+        <item href="Content/images/Action_for_heros-Picture16.png" media-type="image/png" id="item_12"/>
+        <item href="Content/images/Action_for_heros-Picture17.png" media-type="image/png" id="item_13"/>
+        <item href="Content/images/Action_for_heros-Picture18.png" media-type="image/png" id="item_14"/>
+        <item href="Content/images/Action_for_heros-Picture28.png" media-type="image/png" id="item_15"/>
+        <item href="Content/images/Action_for_heros-Picture64.png" media-type="image/png" id="item_16"/>
+        <item href="Content/images/Action_for_heros-Picture65.png" media-type="image/png" id="item_17"/>
+        <item href="Content/images/Action_for_heros-Picture66.png" media-type="image/png" id="item_18"/>
+        <item href="Content/images/Action_for_heros-Picture68.png" media-type="image/png" id="item_19"/>
+        <item href="Content/images/Action_for_heros-Picture69.png" media-type="image/png" id="item_20"/>
+        <item href="Content/images/Action_for_heros-Picture70.png" media-type="image/png" id="item_21"/>
+        <item href="Content/images/Action_for_heros-Picture71.png" media-type="image/png" id="item_22"/>
+        <item href="Content/images/Action_for_heros-Picture72.png" media-type="image/png" id="item_23"/>
+        <item href="Content/images/Action_for_heros-Picture73.png" media-type="image/png" id="item_24"/>
+        <item href="Content/images/Action_for_heros-Picture74.png" media-type="image/png" id="item_25"/>
+        <item href="Content/images/Action_for_heros-Picture75.png" media-type="image/png" id="item_26"/>
+        <item href="Content/images/Action_for_heros-Picture76.png" media-type="image/png" id="item_27"/>
+        <item href="Content/images/Action_for_heros-Picture77.png" media-type="image/png" id="item_28"/>
+        <item href="Content/images/Action_for_heros-Picture78.png" media-type="image/png" id="item_29"/>
+        <item href="Content/images/Action_for_heros-Picture79.png" media-type="image/png" id="item_30"/>
+        <item href="Content/images/Action_for_heros-Picture80.png" media-type="image/png" id="item_31"/>
+        <item href="Content/images/Action_for_heros-Picture81.png" media-type="image/png" id="item_32"/>
+        <item href="Content/images/Action_for_heros-Picture82.png" media-type="image/png" id="item_33"/>
+        <item href="Content/images/Action_for_heros-Picture83.png" media-type="image/png" id="item_34"/>
+        <item href="Content/images/Action_for_heros-Picture84.png" media-type="image/png" id="item_35"/>
+        <item href="Content/images/Action_for_heros-Picture85.png" media-type="image/png" id="item_36"/>
+        <item href="Content/images/Action_for_heros-Picture86.png" media-type="image/png" id="item_37"/>
+        <item href="Content/images/Action_for_heros-Picture87.png" media-type="image/png" id="item_38"/>
+        <item href="Content/images/Action_for_heros-Picture88.png" media-type="image/png" id="item_39"/>
+        <item href="Content/images/Action_for_heros-Picture89.png" media-type="image/png" id="item_40"/>
+        <item href="Content/images/Action_for_heros-Picture90.png" media-type="image/png" id="item_41"/>
+        <item href="Content/images/Action_for_heros-Picture91.png" media-type="image/png" id="item_42"/>
+        <item href="Content/images/Action_for_heros-Picture92.png" media-type="image/png" id="item_43"/>
+        <item href="Content/images/Action_for_heros-Picture93.png" media-type="image/png" id="item_44"/>
+        <item href="Content/images/Action_for_heros-Picture94.png" media-type="image/png" id="item_45"/>
+        <item href="Content/images/Action_for_heros-Picture95.png" media-type="image/png" id="item_46"/>
+        <item href="Content/images/Action_for_heros-Picture96.png" media-type="image/png" id="item_47"/>
+        <item href="Content/images/Action_for_heros-Picture98.png" media-type="image/png" id="item_48"/>
+        <item href="Content/images/Action_for_heros-Picture99.png" media-type="image/png" id="item_49"/>
+        <item href="Content/images/Action_for_heros-Picture100.png" media-type="image/png" id="item_50"/>
+        <item href="Content/images/Action_for_heros-Picture101.png" media-type="image/png" id="item_51"/>
+        <item href="Content/images/Action_for_heros-Picture103.png" media-type="image/png" id="item_52"/>
+        <item href="Content/images/Action_for_heros-Picture104.png" media-type="image/png" id="item_53"/>
+        <item href="Content/images/Action_for_heros-Picture105.png" media-type="image/png" id="item_54"/>
+        <item href="Content/images/Action_for_heros-Picture106.png" media-type="image/png" id="item_55"/>
+        <item href="Content/images/Action_for_heros-Picture107.png" media-type="image/png" id="item_56"/>
+        <item href="Content/images/Action_for_heros-Picture108.png" media-type="image/png" id="item_57"/>
+        <item href="Content/images/Action_for_heros-Picture109.png" media-type="image/png" id="item_58"/>
+        <item href="Content/images/Action_for_heros-Picture110.png" media-type="image/png" id="item_59"/>
+        <item href="Content/images/Action_for_heros-Picture111.png" media-type="image/png" id="item_60"/>
+        <item href="Content/images/Action_for_heros-Picture112.png" media-type="image/png" id="item_61"/>
+        <item href="Content/images/Action_for_heros-Picture113.png" media-type="image/png" id="item_62"/>
+        <item href="Content/speechgen0001.mp3" media-type="audio/mpeg" id="item_63"/>
+        <item href="Content/speechgen0002.mp3" media-type="audio/mpeg" id="item_64"/>
+        <item href="Content/speechgen0003.mp3" media-type="audio/mpeg" id="item_65"/>
+        <item href="Content/speechgen0004.mp3" media-type="audio/mpeg" id="item_66"/>
+        <item href="Content/speechgen0005.mp3" media-type="audio/mpeg" id="item_67"/>
+        <item href="Content/speechgen0006.mp3" media-type="audio/mpeg" id="item_68"/>
+        <item href="Content/speechgen0007.mp3" media-type="audio/mpeg" id="item_69"/>
+        <item href="Content/speechgen0008.mp3" media-type="audio/mpeg" id="item_70"/>
+        <item href="Content/speechgen0009.mp3" media-type="audio/mpeg" id="item_71"/>
+        <item href="Content/speechgen0010.mp3" media-type="audio/mpeg" id="item_72"/>
+        <item href="Content/speechgen0011.mp3" media-type="audio/mpeg" id="item_73"/>
+        <item href="Content/speechgen0012.mp3" media-type="audio/mpeg" id="item_74"/>
+        <item href="Content/speechgen0013.mp3" media-type="audio/mpeg" id="item_75"/>
+        <item href="Content/speechgen0014.mp3" media-type="audio/mpeg" id="item_76"/>
+        <item href="Content/speechgen0015.mp3" media-type="audio/mpeg" id="item_77"/>
+        <item href="Content/speechgen0016.mp3" media-type="audio/mpeg" id="item_78"/>
+        <item href="Content/speechgen0017.mp3" media-type="audio/mpeg" id="item_79"/>
+        <item href="Content/speechgen0018.mp3" media-type="audio/mpeg" id="item_80"/>
+        <item href="Content/speechgen0019.mp3" media-type="audio/mpeg" id="item_81"/>
+        <item href="Content/speechgen0020.mp3" media-type="audio/mpeg" id="item_82"/>
+        <item href="Content/speechgen0021.mp3" media-type="audio/mpeg" id="item_83"/>
+        <item href="Content/speechgen0022.mp3" media-type="audio/mpeg" id="item_84"/>
+        <item href="Content/speechgen0023.mp3" media-type="audio/mpeg" id="item_85"/>
+        <item href="Content/speechgen0024.mp3" media-type="audio/mpeg" id="item_86"/>
+        <item href="Content/speechgen0025.mp3" media-type="audio/mpeg" id="item_87"/>
+        <item href="Content/speechgen0026.mp3" media-type="audio/mpeg" id="item_88"/>
+        <item href="Content/speechgen0027.mp3" media-type="audio/mpeg" id="item_89"/>
+        <item href="Content/speechgen0028.mp3" media-type="audio/mpeg" id="item_90"/>
+        <item href="Content/speechgen0029.mp3" media-type="audio/mpeg" id="item_91"/>
+        <item href="Content/speechgen0030.mp3" media-type="audio/mpeg" id="item_92"/>
+        <item href="Content/speechgen0031.mp3" media-type="audio/mpeg" id="item_93"/>
+        <item href="Content/speechgen0032.mp3" media-type="audio/mpeg" id="item_94"/>
+        <item href="Content/speechgen0033.mp3" media-type="audio/mpeg" id="item_95"/>
+        <item href="Content/speechgen0034.mp3" media-type="audio/mpeg" id="item_96"/>
+        <item href="Content/speechgen0035.mp3" media-type="audio/mpeg" id="item_97"/>
+        <item href="Content/speechgen0036.mp3" media-type="audio/mpeg" id="item_98"/>
+        <item href="Content/speechgen0037.mp3" media-type="audio/mpeg" id="item_99"/>
+        <item href="Content/speechgen0038.mp3" media-type="audio/mpeg" id="item_100"/>
+        <item href="Content/speechgen0039.mp3" media-type="audio/mpeg" id="item_101"/>
+        <item href="Content/speechgen0040.mp3" media-type="audio/mpeg" id="item_102"/>
+        <item href="Content/speechgen0041.mp3" media-type="audio/mpeg" id="item_103"/>
+        <item href="Content/speechgen0042.mp3" media-type="audio/mpeg" id="item_104"/>
+        <item href="Content/speechgen0043.mp3" media-type="audio/mpeg" id="item_105"/>
+        <item href="Content/speechgen0044.mp3" media-type="audio/mpeg" id="item_106"/>
+        <item href="Content/speechgen0045.mp3" media-type="audio/mpeg" id="item_107"/>
+        <item href="Content/speechgen0046.mp3" media-type="audio/mpeg" id="item_108"/>
+        <item href="Content/ncx.xml" media-type="application/x-dtbncx+xml" id="item_109"/>
+        <item id="item_110" href="Content/content.smil" media-type="application/smil+xml"/>
+    </manifest>
+    <spine toc="item_109">
+        <itemref idref="item_2" id="itemref_1"/>
+    </spine>
+</package>
+                
