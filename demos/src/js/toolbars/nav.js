@@ -20,6 +20,9 @@ async function createNavToolbar() {
     </div>`;
     
     let playbackToolbar = document.querySelector("#abinb-playback-toolbar");
+    let applicationToolbar = document.querySelector("#abinb-app-toolbar");
+    let navPanel = document.querySelector("#abinb-nav");
+
     setupPanel(
         "abinb-nav", 
         false, 
@@ -27,10 +30,16 @@ async function createNavToolbar() {
             document.querySelector("body").classList.add("abinb-dim-10");
             // otherwise the navigation sidebar overlaps with the playback toolbar
             if (playbackToolbar) playbackToolbar.style['visibility'] = 'hidden';
+            // on smaller screens, the nav panel overlaps with the application toolbar
+            if (navPanel.getBoundingClientRect().x + navPanel.getBoundingClientRect().width >= applicationToolbar.getBoundingClientRect().x) {
+                applicationToolbar.style['visibility'] = 'hidden';
+            }
+
         },
         () => {
             document.querySelector("body").classList.remove("abinb-dim-10");
             if (playbackToolbar) playbackToolbar.style['visibility'] = 'visible';
+            applicationToolbar.style['visibility'] = 'visible';
         }
     );
 

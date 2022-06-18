@@ -60,7 +60,7 @@ async function updateXHtml(contentFilename, replacements) {
             // if this src is among the things that need replacing... 
             if (replacements.map(item => item.old).includes(srcNoFrag)) {
                 let frag = utils.getFrag(src);
-                let replacement = replacements.find(item => item.old == src).new;
+                let replacement = replacements.find(item => item.old == srcNoFrag).new;
                 let newFileSrc = path.relative(path.dirname(contentFilename), replacement);
                 newFileSrc = frag ? `${newFileSrc}#${frag}` : newFileSrc;
                 //@ts-ignore

@@ -11,14 +11,14 @@ async function createSettingsPanelContents(includeAudioControls = false) {
         </div>
         <div id="abinb-size" title="Size">
             <label for="abinb-size-range">Size</label>
-            <input type="range" id="abinb-size-range" min="80" max="300" value="100" step="5">
+            <input type="range" id="abinb-size-range" min="80" max="200" value="100" step="5">
             <p id="abinb-size-value">100%</p>
             <button id="abinb-reset-size">Reset size</button>
         </div>
         ${includeAudioControls ? 
             `<div id="abinb-rate" title="Playback Rate">
                 <label for="abinb-rate-range">Playback Rate</label>
-                <input type="range" id="abinb-rate-range" min="50" max="300" value="100" step="5">
+                <input type="range" id="abinb-rate-range" min="50" max="200" value="100" step="5">
                 <p id="abinb-rate-value">100%</p>
                 <button id="abinb-reset-rate">Reset rate</button>
             </div>

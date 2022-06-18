@@ -32,7 +32,7 @@
     padding-bottom: 10px;
     border: 2px var(--abinb-border-color) solid;
     position: fixed;
-    background: rgb(var(--abinb-page-background-color));
+    background-color: rgb(var(--abinb-page-background-color));
 }
 
 .abinb-panel:not(.abinb-expanded) {

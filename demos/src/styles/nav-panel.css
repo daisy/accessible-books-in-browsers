@@ -1,20 +1,15 @@
 #abinb-nav.abinb-expanded {
     top: 0;
     left: 0;
-    width: 25rem;
+    width: 90vw; /* mobile-friendly by default */
 }
 
 #abinb-nav.abinb-expanded > div {
-    display: grid;
-    grid-template-areas: 
-        "abinb-buttons"
-        "abinb-content";
-    grid-template-rows: min-content auto;
+    display: flex;
+    flex-direction: column;
     border-radius: 4px;
     border: none; 
-    height: 100vh;
-    /* left: 0; */
-    
+    height: 100vh;    
 }
 #abinb-nav nav a {
     color: rgb(var(--abinb-text-color));
@@ -22,7 +17,6 @@
 
 /* tab panels */
 #abinb-nav [role=tabpanel] {
-    grid-area: abinb-content;
     overflow: scroll;
     margin-left: 1rem;
     margin-right: 1rem;
@@ -42,10 +36,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /*! width: 100%; */
     justify-content: space-between;
-    /*! margin: 0; */
-    /*! gap: .25rem; */
 }
 
 #abinb-list-of-navs button[role=tab] {
@@ -153,18 +144,10 @@
     top: 0;
     background-color: rgba(var(--abinb-page-background-color));
 }
-/* @media(max-width: 768px) {
-    #abinb-nav.abinb-expanded > div {
-        grid-template-areas: 
-            "abinb-content"
-            "abinb-buttons";
-        grid-template-rows: auto 8rem;
+
+/* basically: non-narrow screens */
+@media(min-width: 500px) {
+    #abinb-nav.abinb-expanded {
+        width: 40ch;
     }
-    #abinb-list-of-navs {
-        position: sticky;
-        bottom: 0;
-    }
-    #abinb-nav[role=tabpanel] {
-        
-    }
-} */
+}
