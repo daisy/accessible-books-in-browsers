@@ -7,6 +7,7 @@ async function createNavToolbar() {
     toolbar.innerHTML = 
     `<div id="abinb-nav" class="abinb-panel" aria-live="polite">
         <button 
+            id="abinb-nav-toggle"
             type="button" 
             class="abinb-lightup"
             aria-haspopup="true" 

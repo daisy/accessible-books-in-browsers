@@ -14,6 +14,7 @@ async function createNavPanelContents(navUrl, aboutUrl, searchIndexUrl, searchDa
     await initSearchPanel(document.querySelector("#abinb-search"), searchIndexUrl, searchDataUrl);
     await initAboutPanel(aboutUrl);
 
+    
     updateLinks();
 }
 
@@ -388,6 +389,11 @@ async function importNavDoc(navUrl) {
     // reparent the nav doc elements
     Array.from(main.childNodes).map(child => navContainer.appendChild(child));
 
+    // make sure to close the tab panel after selecting a chapter or page
+    let navLinks = Array.from(navContainer.querySelectorAll('nav a'))
+    navLinks.map(link => link.addEventListener('click', e => {
+        document.querySelector('#abinb-nav-toggle')?.click()
+    }));
 }
 async function initSearchEngine(searchIndexUrl, searchDataUrl) {
 
