@@ -23,10 +23,6 @@ Media Overlays conversion adds the following:
 
 These demos were created using this [conversion script](https://github.com/daisy/accessible-books-in-browsers/tree/main/convert). 
 
-## Status
-
-This project is currently a __prototype__. 
-
 
 ## Current features
 
