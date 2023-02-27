@@ -24,7 +24,7 @@ main .abinb-selflink {
     top: 3px;
 }
 main p {
-    line-height: calc(1ex / 0.32);
+    line-height: calc(1ex / 0.28);
 }
 /* invert the table header colors; otherwise can look weird when using a dark theme */
 body.abinb-dark main table th {
@@ -35,7 +35,8 @@ body.abinb-dark main table th {
     background-color: rgba(var(--abinb-sync-highlight-background-color), 1);
     color: rgba(var(--abinb-sync-highlight-color), 1);
     border-radius: 4px;
-    transition: .2s;
+    padding: 2px;
+    margin: -2px;
 }
 .search-result {
     background-color: rgba(var(--abinb-search-highlight-background-color), 1);

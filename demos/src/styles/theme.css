@@ -9,6 +9,7 @@
     --abinb-lightblue: 172, 235, 243;
     --abinb-lightorange: 255, 201, 160;
     --abinb-yellow: 253, 253, 150;
+    --abinb-bold-yellow: 255, 255, 0;
     --abinb-transition: transform .1s cubic-bezier(0.12, 0, 0.39, 0);
 }
 body {
@@ -24,6 +25,7 @@ body {
     --abinb-search-highlight-background-color: var(--abinb-lightblue);
     --abinb-search-highlight-color: var(--abinb-text-color);
     --abinb-border-color: var(--abinb-darkgray);
+    --abinb-sync-highlight-font-size: larger;
     
     transition: var(--transition);
 
@@ -36,8 +38,8 @@ body.abinb-dark {
     --abinb-hover-color: var(--abinb-darkgray);
     --abinb-toggle-color: var(--abinb-lightblue);
     --abinb-tab-focus-color: var(--abinb-white);
-    --abinb-sync-highlight-background-color: var(--abinb-page-background-color);
-    --abinb-sync-highlight-color: var(--abinb-yellow);
+    --abinb-sync-highlight-background-color: var(--abinb-yellow);
+    --abinb-sync-highlight-color: var(--abinb-page-background-color);
     --abinb-search-highlight-background-color: var(--abinb-page-background-color);
     --abinb-search-highlight-color: var(--abinb-lightblue);
     
@@ -51,8 +53,8 @@ body.abinb-dark {
         --abinb-hover-color: var(--abinb-darkgray);
         --abinb-toggle-color: var(--abinb-lightblue);
         --abinb-tab-focus-color: var(--abinb-white);
-        --abinb-sync-highlight-background-color: var(--abinb-page-background-color);
-        --abinb-sync-highlight-color: var(--abinb-yellow);
+        --abinb-sync-highlight-background-color: var(--abinb-yellow);
+        --abinb-sync-highlight-color: var(--abinb-page-background-color);
         --abinb-search-highlight-background-color: var(--abinb-page-background-color);
         --abinb-search-highlight-color: var(--abinb-lightblue);
     }
