@@ -59,7 +59,8 @@ A few things (navigation document consistency across publications; colors in sty
 Generate a set of HTML pages:
 * Target DAISY 2.02 content which has been automatically converted to EPUB 3
 * Use an HTML template prepopulated with the basic structure of our pages (intra-publication links, audio if applicable)
-* For each EPUB HTML spine item (except for the TOC), move the contents of `<body>` into the HTML template's `<main>` element.
+* For each EPUB HTML spine item (except for the TOC), create an HTML file from our template
+* Move the contents of the source file's `<body>` into the template's `<main>` element.
 * Generate a navigation file based on the EPUB navigation document
 * Generate an About file containing publication information
 * The cover page is renamed `index.html` and can act as an entry page (though a user can enter the publication from any page)
@@ -74,3 +75,7 @@ Add javascript enhancements:
 What this isn't:
 * An authoring format definition
 * A generic "player" to apply to any EPUB
+
+## Future experiments
+* Use the Shadow DOM for the interface elements and keep the document as plain or close to the original as possible
+* Try the CSS Highlights API to similarly stay out of the document's way
