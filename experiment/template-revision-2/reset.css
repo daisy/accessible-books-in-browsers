@@ -1,0 +1,54 @@
+:root {
+    --size-step-0: 1rem;
+    --size-step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
+    --size-step-1: clamp(1.25rem, calc(1.16rem + 0.43vw), 1.5rem);
+    --size-step-2: clamp(1.56rem, calc(1.41rem + 0.76vw), 2rem);
+    --size-step-3: clamp(1.95rem, calc(1.71rem + 1.24vw), 2.66rem);
+    --size-step-4: clamp(2.44rem, calc(2.05rem + 1.93vw), 3.55rem);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+
+    font-family: Inter, Roboto, sans-serif;
+    font-size: var(--size-step-1);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+    font-family: Inter, sans-serif;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: var(--size-step-4);
+}
+
+h2 {
+    font-size: var(--size-step-3);
+}
+
+h3 {
+    font-size: var(--size-step-2);
+}
+
+
+ul,
+ol {
+    padding-inline-start: 1em;
+}
+
+blockquote {
+    padding-inline-start: 1em;
+    border-inline-start: 0.3em solid;
+    font-size: var(--size-step-1);
+    font-style: italic;
+}
+
+blockquote {
+    max-width: 50ch;
+}
