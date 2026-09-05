@@ -662,6 +662,13 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 #webbook-top-toolbar:focus-within {
     opacity: 1;
 }
+@media (prefers-reduced-motion: reduce) {
+    #webbook-spine-nav,
+    #webbook-toolbar,
+    #webbook-top-toolbar {
+        transition: none;
+    }
+}
 /* webbook's go-to-page popover — anchored top-left */
 #webbook-menu:popover-open {
     display: flex;
