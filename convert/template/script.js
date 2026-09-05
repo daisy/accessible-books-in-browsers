@@ -362,7 +362,7 @@ WEBBOOK_POPOVER_IDS.forEach(id => {
                 const current = popover.querySelector('a[aria-current="page"]');
                 if (current) { current.scrollIntoView(); current.focus(); }
             } else if (id === 'webbook-info') {
-                const tocLinks = Array.from(document.querySelectorAll('#webbook-cover-link, #webbook-toc-nav > ol > li > a'));
+                const tocLinks = Array.from(document.querySelectorAll('#webbook-cover-link, #webbook-toc-nav ol a'));
                 const currentIdx = tocLinks.findIndex(a => a.getAttribute('aria-current') === 'page');
                 const total = tocLinks.length;
                 const pageLabel = document.querySelector('#webbook-current-page-label');

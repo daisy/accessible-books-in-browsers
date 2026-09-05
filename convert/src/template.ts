@@ -67,22 +67,50 @@ function renderToc(doc: Document, site: SiteModel, currentPage: SitePage): void 
 
     clearElement(tocList);
     const coverHref = site.pages[0]?.outputFilename;
-    site.toc
-        .filter(entry => entry.href !== coverHref)
-        .forEach(entry => {
-            const li = doc.createElement('li');
-            li.id = `toc-${path.basename(entry.href, path.extname(entry.href))}`;
+    renderTocEntries(doc, tocList, site.toc, currentPage, coverHref, []);
+}
 
+function renderTocEntries(
+    doc: Document,
+    list: Element,
+    entries: SiteModel['toc'],
+    currentPage: SitePage,
+    coverHref: string | undefined,
+    position: number[]
+): void {
+    entries.forEach((entry, index) => {
+        const itemPosition = [...position, index + 1];
+        if (entry.href === coverHref) {
+            renderTocEntries(doc, list, entry.children, currentPage, coverHref, itemPosition);
+            return;
+        }
+
+        const li = doc.createElement('li');
+        li.id = `toc-${itemPosition.join('-')}`;
+
+        if (entry.href) {
             const link = doc.createElement('a');
             link.href = entry.href;
             link.textContent = entry.title;
             if (entry.href === currentPage.outputFilename) {
                 link.setAttribute('aria-current', 'page');
             }
-
             li.appendChild(link);
-            tocList.appendChild(li);
-        });
+        }
+        else {
+            const span = doc.createElement('span');
+            span.textContent = entry.title;
+            li.appendChild(span);
+        }
+
+        if (entry.children.length > 0) {
+            const childList = doc.createElement('ol');
+            renderTocEntries(doc, childList, entry.children, currentPage, coverHref, itemPosition);
+            li.appendChild(childList);
+        }
+
+        list.appendChild(li);
+    });
 }
 
 function renderCoverLink(doc: Document, site: SiteModel, currentPage: SitePage): void {

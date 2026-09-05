@@ -13,6 +13,7 @@ export type BookMetadata = {
 };
 
 export type TocEntry = {
+    children: TocEntry[];
     href: string;
     sourceHref: string;
     title: string;
@@ -51,6 +52,8 @@ function buildSiteModel(epub: Epub): SiteModel {
     const navTitleBySource = new Map<string, string>();
 
     navLinks.forEach(link => {
+        if (utils.getFrag(link.href)) return;
+
         const sourcePath = normalizeSourcePath(utils.getWithoutFrag(link.href));
         if (!navTitleBySource.has(sourcePath)) {
             navTitleBySource.set(sourcePath, link.title);
@@ -79,18 +82,12 @@ function buildSiteModel(epub: Epub): SiteModel {
         };
     });
 
-    const toc = pages.map(page => ({
-        href: page.outputFilename,
-        sourceHref: page.sourcePath,
-        title: page.title
-    }));
-
     return {
         metadata,
         pageList: buildPageList(epub.nav['page-list'], sourceToOutput),
         pages,
         sourceToOutput,
-        toc
+        toc: buildToc(epub.nav.toc, sourceToOutput)
     };
 }
 
@@ -152,14 +149,46 @@ function buildPageList(nav: Element | undefined, sourceToOutput: Map<string, str
         .filter((entry): entry is PageListEntry => Boolean(entry));
 }
 
+function buildToc(nav: Element | undefined, sourceToOutput: Map<string, string>): TocEntry[] {
+    if (!nav) return [];
+    return collectTocEntries(nav, sourceToOutput);
+}
+
+function collectTocEntries(parent: Element, sourceToOutput: Map<string, string>): TocEntry[] {
+    return directChildElements(parent, 'li')
+        .map(item => buildTocEntry(item, sourceToOutput))
+        .filter((entry): entry is TocEntry => Boolean(entry));
+}
+
+function buildTocEntry(item: Element, sourceToOutput: Map<string, string>): TocEntry | null {
+    const link = directChildElement(item, 'a');
+    const label = link ?? directChildElement(item, 'span');
+    const childList = directChildElement(item, 'ol');
+    const children = childList ? collectTocEntries(childList, sourceToOutput) : [];
+
+    const sourceHref = link?.getAttribute('href') ?? '';
+    const href = sourceHref ? rewriteSourceHref(sourceHref, sourceToOutput) : '';
+    if (sourceHref && !href && children.length === 0) return null;
+
+    const title = normalizeWhitespace(label?.textContent ?? '');
+    if (!title && children.length === 0) return null;
+
+    return {
+        children,
+        href,
+        sourceHref,
+        title
+    };
+}
+
 function collectNavLinks(nav: Element | undefined): Array<{ href: string; title: string }> {
     if (!nav) return [];
 
-    const links = select('.//html:a', nav) as Element[];
+    const links = select('.//html:a', nav) as unknown as Element[];
     return links
         .map(link => ({
             href: link.getAttribute('href') ?? '',
-            title: (link.textContent ?? '').trim()
+            title: normalizeWhitespace(link.textContent ?? '')
         }))
         .filter(link => link.href && link.title);
 }
@@ -177,6 +206,10 @@ function normalizePageLabel(label: string): string {
     return label.trim().replace(/^page[-\s]*/i, '');
 }
 
+function normalizeWhitespace(value: string): string {
+    return value.trim().replace(/\s+/g, ' ');
+}
+
 function firstValue(value: string | string[] | undefined): string {
     if (Array.isArray(value)) return value[0] ?? '';
     return value ?? '';
@@ -184,6 +217,16 @@ function firstValue(value: string | string[] | undefined): string {
 
 function normalizeSourcePath(sourcePath: string): string {
     return path.resolve(sourcePath);
+}
+
+function directChildElement(parent: Element, localName: string): Element | null {
+    return directChildElements(parent, localName)[0] ?? null;
+}
+
+function directChildElements(parent: Element, localName: string): Element[] {
+    return Array.from(parent.childNodes)
+        .filter((node): node is Element => node.nodeType === 1)
+        .filter(element => element.localName === localName);
 }
 
 export {
