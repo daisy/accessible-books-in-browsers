@@ -199,6 +199,7 @@ function seekToHashTarget(audio, track) {
 
 const RESUME_ENABLED_KEY = 'webbook-resume-enabled';
 const RESUME_BANNER_PENDING_KEY = 'webbook-resume-banner-pending';
+const RESUME_SESSION_CHECKED_KEY = 'webbook-resume-checked';
 const RESUME_BANNER_TEXT = 'Loaded last position.';
 
 function getBookId() {
@@ -253,9 +254,12 @@ function showResumeBanner() {
     showResumeBanner._timer = setTimeout(() => { el.hidden = true; }, 4000);
 }
 
-// Runs once per page load. If a saved position exists for this book, this is the entry
-// page, and the "resume" setting is on, redirects to the saved page/position and returns
-// true. Otherwise records the current page as the latest-visited one and returns false.
+// Runs once per page load. The very first time this fires in a tab session, if a saved
+// position exists for this book, this is the entry page, and the "resume" setting is on,
+// redirects to the saved page/position and returns true. On later loads within the same
+// session the redirect is skipped even on the entry page, so navigating back to it on
+// purpose (e.g. the TOC's "Cover" link) doesn't bounce the reader away again. Otherwise
+// records the current page as the latest-visited one and returns false.
 function initResumePosition() {
     const bookId = getBookId();
 
@@ -266,8 +270,15 @@ function initResumePosition() {
 
     if (!bookId) return false;
 
+    // Only offer to resume once per tab session (sessionStorage, not localStorage) —
+    // otherwise deliberately navigating back to the entry page later (e.g. clicking
+    // "Cover" in the TOC) would immediately bounce the reader right back to their last
+    // position instead of showing them the page they just asked for.
+    const alreadyCheckedThisSession = sessionStorage.getItem(RESUME_SESSION_CHECKED_KEY) === 'true';
+    sessionStorage.setItem(RESUME_SESSION_CHECKED_KEY, 'true');
+
     const resumeEnabled = localStorage.getItem(RESUME_ENABLED_KEY) !== 'false';
-    if (resumeEnabled && isEntryPage()) {
+    if (resumeEnabled && !alreadyCheckedThisSession && isEntryPage()) {
         const saved = readResumePosition(bookId);
         if (saved?.page && saved.page !== currentPageFilename()) {
             localStorage.setItem(RESUME_BANNER_PENDING_KEY, 'true');
