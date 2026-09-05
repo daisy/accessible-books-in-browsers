@@ -147,6 +147,22 @@ function renderAudio(doc: Document, audioAssets: PageAudioAssets | null): void {
 }
 
 function renderPageList(doc: Document, site: SiteModel): void {
+    const menu = doc.querySelector('#webbook-menu');
+    const menuButton = doc.querySelector('button[popovertarget="webbook-menu"]');
+    if (site.pageList.length === 0) {
+        menu?.remove();
+        menuButton?.remove();
+        return;
+    }
+
+    const input = doc.querySelector('#goto-page');
+    if (pageLabelsAreNumeric(site.pageList)) {
+        input?.setAttribute('inputmode', 'numeric');
+    }
+    else {
+        input?.removeAttribute('inputmode');
+    }
+
     const datalist = requireElement(doc, 'datalist#pages');
     clearElement(datalist);
 
@@ -157,6 +173,10 @@ function renderPageList(doc: Document, site: SiteModel): void {
         option.dataset.href = entry.href;
         datalist.appendChild(option);
     });
+}
+
+function pageLabelsAreNumeric(pageList: SiteModel['pageList']): boolean {
+    return pageList.every(entry => /^\d+$/.test(entry.label.trim()));
 }
 
 function renderInfo(doc: Document, site: SiteModel, coverHref: string): void {
