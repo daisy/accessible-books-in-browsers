@@ -63,8 +63,9 @@ function renderToc(doc: Document, site: SiteModel, currentPage: SitePage): void 
         ol = doc.createElement('ol');
         nav.appendChild(ol);
     }
+    const tocList = ol;
 
-    clearElement(ol);
+    clearElement(tocList);
     const coverHref = site.pages[0]?.outputFilename;
     site.toc
         .filter(entry => entry.href !== coverHref)
@@ -80,7 +81,7 @@ function renderToc(doc: Document, site: SiteModel, currentPage: SitePage): void 
             }
 
             li.appendChild(link);
-            ol.appendChild(li);
+            tocList.appendChild(li);
         });
 }
 

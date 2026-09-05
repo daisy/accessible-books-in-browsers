@@ -1,13 +1,18 @@
 {
     "compilerOptions": {
         "baseUrl": "src",
+        "rootDir": "./src",
         "outDir": "./build",
-        "allowJs": true,
         "target": "ES2020",
+        "module": "ES2020",
         "moduleResolution": "node",
+        "types": [
+            "node",
+            "jsdom"
+        ],
         "allowSyntheticDefaultImports": true,
         "alwaysStrict": true,
-        "module": "ES2020",
+        "strict": true,
         "sourceMap": true,
         "esModuleInterop": true
     },

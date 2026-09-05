@@ -58,14 +58,16 @@ async function createAudioForPage(page: SitePage, outputPaths: OutputPaths): Pro
 
 async function getMediaSegments(page: SitePage): Promise<MediaSegment[]> {
     const smildoc = await fileio.parse(page.moPath);
-    const textElms = select('//smil:text', smildoc) as Element[];
+    const textElms = select('//smil:text', smildoc) as unknown as Element[];
     const mediaSegments: MediaSegment[] = [];
 
     textElms.forEach(textElm => {
         const textSrc = resolveSmilReference(page.moPath, textElm.getAttribute('src') ?? '', page.sourcePath);
         if (utils.getWithoutFrag(textSrc) !== page.sourcePath) return;
 
-        const audioElms = select('.//smil:audio', textElm.parentNode) as Element[];
+        if (!textElm.parentNode) return;
+
+        const audioElms = select('.//smil:audio', textElm.parentNode) as unknown as Element[];
         audioElms.forEach(audioElm => {
             const clipBegin = audioElm.getAttribute('clipBegin');
             const clipEnd = audioElm.getAttribute('clipEnd');
