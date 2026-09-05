@@ -165,6 +165,11 @@ function selfAnchorHeadings(doc: Document): void {
             || heading.getAttribute('data-number')
             || `h-${index}`;
         heading.setAttribute('id', headingId);
+        // Same-page anchor targets aren't natively focusable, so activating a link to one
+        // is normally a silent no-op for a screen reader user (no scroll, no focus change,
+        // nothing perceptible happens). tabindex="-1" makes the heading a real focus target
+        // without adding it to the tab order — the standard fix for this class of link.
+        if (!heading.hasAttribute('tabindex')) heading.setAttribute('tabindex', '-1');
 
         const hasSelfAnchor = Array.from(heading.children).some(child =>
             child.tagName.toLowerCase() === 'a'
@@ -173,10 +178,12 @@ function selfAnchorHeadings(doc: Document): void {
         if (hasSelfAnchor) return;
 
         const anchor = doc.createElement('a');
+        const anchorLabel = `Link to ${heading.textContent?.trim() ?? 'heading'}`;
         anchor.setAttribute('href', `#${headingId}`);
         anchor.setAttribute('rel', 'bookmark');
         anchor.setAttribute('class', 'webbook');
-        anchor.setAttribute('title', `Link to ${heading.textContent?.trim() ?? 'heading'}`);
+        anchor.setAttribute('title', anchorLabel);
+        anchor.setAttribute('aria-label', anchorLabel);
         anchor.innerHTML = selfAnchorSvg();
         heading.appendChild(anchor);
     });
