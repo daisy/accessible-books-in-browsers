@@ -1,44 +1,74 @@
-import * as fileio from '../file-io.js';
-import xpath from 'xpath';
+import fs from 'fs-extra';
 import path from 'path';
+import xpath from 'xpath';
+import * as fileio from '../file-io.js';
+import * as utils from '../utils.js';
+import type { EpubNavMap } from './types.js';
 
-let select = xpath.useNamespaces({
-    html: 'http://www.w3.org/1999/xhtml',
-    epub: "http://www.idpf.org/2007/ops",
-    dc: "http://purl.org/dc/elements/1.1/",
-    opf: "http://www.idpf.org/2007/opf"
+const select = xpath.useNamespaces({
+    html: 'http://www.w3.org/1999/xhtml'
 });
 
-// return {epubtype: OL element, ...}
-async function parse(inputFilename):Promise<Object> {
-    let navs = {};
-    let doc = await fileio.parse(inputFilename, true);
-    let navElms = select("//html:nav", doc);
-    navElms.map(nav => {
-        //@ts-ignore
-        let epubType = nav.getAttribute("epub:type");
-        //@ts-ignore
-        navs[epubType] = nav.getElementsByTagName("ol")[0];
+export type NavDocumentParseOptions = {
+    warn?: (message: string) => void;
+};
 
-        // update all hrefs with absolute paths
-        let hrefs = select("//html:a/@href", navs[epubType]);
-        //@ts-ignore
-        Array.from(hrefs).map(href => href.ownerElement.setAttribute("href", path.join(path.dirname(inputFilename), href.nodeValue)));
+async function parse(inputFilename: string, options: NavDocumentParseOptions = {}): Promise<EpubNavMap> {
+    const navs: EpubNavMap = {};
+    if (!inputFilename) return navs;
 
-        // TODO could also collect the optional heading content
-        // https://www.w3.org/publishing/epub32/epub-packages.html#sec-package-nav-def-model
+    const doc = await fileio.parse(inputFilename, true);
+    const navElms = select('//html:nav', doc) as Element[];
+
+    navElms.forEach(nav => {
+        const epubType = nav.getAttribute('epub:type');
+        const ol = nav.getElementsByTagName('ol')[0];
+        if (!epubType || !ol) return;
+
+        navs[epubType] = ol;
+        const hrefs = select('.//html:a/@href', ol);
+        hrefs.forEach(href => {
+            const attr = href as Attr;
+            if (!attr.nodeValue || !attr.ownerElement) return;
+            attr.ownerElement.setAttribute(
+                'href',
+                resolveNavHref(inputFilename, attr.nodeValue, options.warn)
+            );
+        });
     });
+
     return navs;
 }
 
-// find the label for the navigation entry with the given href
-async function getTitleForNavEntry(href, navlist) {
-    let navlinks = select(`.//html:a[contains(@href, '${href}')]`, navlist);
-    if (navlinks.length > 0) {
-        //@ts-ignore
-        return navlinks[0].textContent;
+function resolveNavHref(navFilename: string, href: string, warn?: (message: string) => void): string {
+    const withoutFrag = utils.getWithoutFrag(href);
+    if (!isLocalFileHref(withoutFrag)) {
+        warn?.(`Nav document href is not a local file reference in ${navFilename}; leaving unchanged: ${href}`);
+        return href;
     }
-    else return '';
+
+    const frag = utils.getFrag(href);
+    const resolved = path.resolve(path.dirname(navFilename), withoutFrag);
+    if (!isFile(resolved)) {
+        warn?.(`Nav document href does not resolve to a local file in ${navFilename}: ${href}`);
+    }
+
+    return frag ? `${resolved}#${frag}` : resolved;
 }
 
-export { parse, getTitleForNavEntry };
+function isLocalFileHref(href: string): boolean {
+    return Boolean(href)
+        && !path.isAbsolute(href)
+        && !/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
+}
+
+function isFile(filename: string): boolean {
+    try {
+        return fs.statSync(filename).isFile();
+    }
+    catch {
+        return false;
+    }
+}
+
+export { parse };

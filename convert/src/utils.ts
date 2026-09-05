@@ -1,108 +1,104 @@
-import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
-import { path as ffprobePath } from '@ffprobe-installer/ffprobe';
-import ffmpeg from 'fluent-ffmpeg';
 import chardet from 'chardet';
-import fs from "fs-extra";
+import ffmpeg from 'fluent-ffmpeg';
+import { configureFfmpeg } from './ffmpeg.js';
 
-function sniffEncoding(filepath: string) {
-    let encoding = chardet.detectFileSync(filepath).toString();
-    return encoding;
+export type ClockValue = {
+    seconds: number;
+    format: string;
+};
+
+function sniffEncoding(filepath: string): string {
+    return chardet.detectFileSync(filepath)?.toString() ?? 'utf-8';
 }
 
-// parse the timestamp and return the value in seconds
-// supports this syntax: http://idpf.org/epub/30/spec/epub30-mediaoverlays.html#app-clock-examples
-function toSeconds(value: string) {        
+// Supports EPUB Media Overlays clock values:
+// http://idpf.org/epub/30/spec/epub30-mediaoverlays.html#app-clock-examples
+function toSeconds(value: string): ClockValue {
     let hours = 0;
     let mins = 0;
     let secs = 0;
     let format = 's';
-    
-    if (value.indexOf("min") != -1) {
-        mins = parseFloat(value.substr(0, value.indexOf("min")));
+
+    if (value.includes('min')) {
+        mins = parseFloat(value.substring(0, value.indexOf('min')));
         format = 'min';
     }
-    else if (value.indexOf("ms") != -1) {
-        var ms = parseFloat(value.substr(0, value.indexOf("ms")));
-        secs = ms/1000;
+    else if (value.includes('ms')) {
+        const ms = parseFloat(value.substring(0, value.indexOf('ms')));
+        secs = ms / 1000;
         format = 'ms';
     }
-    else if (value.indexOf("s") != -1) {
-        secs = parseFloat(value.substr(0, value.indexOf("s")));                
+    else if (value.includes('s')) {
+        secs = parseFloat(value.substring(0, value.indexOf('s')));
         format = 's';
     }
-    else if (value.indexOf("h") != -1) {
-        hours = parseFloat(value.substr(0, value.indexOf("h")));                
+    else if (value.includes('h')) {
+        hours = parseFloat(value.substring(0, value.indexOf('h')));
         format = 'h';
     }
     else {
-        // parse as hh:mm:ss.fraction
-        // this also works for seconds-only, e.g. 12.345
-        let arr = value.split(":");
-        secs = parseFloat(arr.pop());
-        if (arr.length > 0) {
-            mins = parseFloat(arr.pop());
-            if (arr.length > 0) {
-                hours = parseFloat(arr.pop());
-            }
-        }
+        const parts = value.split(':');
+        secs = parseFloat(parts.pop() ?? '0');
+        if (parts.length > 0) mins = parseFloat(parts.pop() ?? '0');
+        if (parts.length > 0) hours = parseFloat(parts.pop() ?? '0');
         format = 'hms';
     }
-    var total = hours * 3600 + mins * 60 + secs;
-    return {seconds: total, format};
-}
-async function ensureDirectory(dir: string, ensureIsEmpty: boolean = false) {
-    if (!fs.existsSync(dir)) {
-        await fs.mkdir(dir);
-    }
-    if (ensureIsEmpty) {
-        await fs.emptyDir(dir);
-    }
+
+    return {
+        seconds: hours * 3600 + mins * 60 + secs,
+        format
+    };
 }
 
-function addItem (key, value, obj) {
-    // combine duplicates into an array
-    if (obj[key]) {
-        if (Array.isArray(obj[key])) { 
-            obj[key].push(value);
+function addItem(key: string, value: string, obj: Record<string, string | string[]>): void {
+    const existing = obj[key];
+    if (existing) {
+        if (Array.isArray(existing)) {
+            existing.push(value);
         }
         else {
-            obj[key] = [obj[key], value];
+            obj[key] = [existing, value];
         }
-    } 
-    else {
-        obj[key] = value; 
-    }
-};
-
-function getFrag(str) {
-    if (str.indexOf("#") != -1) {
-        return str.slice(str.indexOf("#") + 1);
     }
     else {
-        return '';
-    }
-} 
-function getWithoutFrag(str) {
-    if (str.indexOf("#") != -1) {
-        return str.slice(0, str.indexOf("#"));
-    }
-    else {
-        return str;
+        obj[key] = value;
     }
 }
-async function getDuration(filename) {
-    ffmpeg.setFfmpegPath(ffmpegPath);
-    ffmpeg.setFfprobePath(ffprobePath);
 
-    let getDurationOperation = new Promise((resolve, reject) => {
-        ffmpeg.ffprobe(filename, function (err, metadata) {
-            //console.dir(metadata); // all metadata
-            resolve(metadata.format.duration);
+function getFrag(str: string): string {
+    const hashIndex = str.indexOf('#');
+    return hashIndex === -1 ? '' : str.slice(hashIndex + 1);
+}
+
+function getWithoutFrag(str: string): string {
+    const hashIndex = str.indexOf('#');
+    return hashIndex === -1 ? str : str.slice(0, hashIndex);
+}
+
+async function getDuration(filename: string): Promise<number> {
+    await configureFfmpeg();
+
+    return new Promise((resolve, reject) => {
+        ffmpeg.ffprobe(filename, (err, metadata) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve(metadata.format.duration ?? 0);
         });
     });
-
-    let dur = await getDurationOperation;
-    return dur;
 }
 
-export { sniffEncoding, toSeconds, ensureDirectory, addItem, getFrag, getWithoutFrag, getDuration };
+function toPosixPath(value: string): string {
+    return value.split(/[\\/]/).join('/');
+}
+
+export {
+    addItem,
+    getDuration,
+    getFrag,
+    getWithoutFrag,
+    sniffEncoding,
+    toPosixPath,
+    toSeconds
+};

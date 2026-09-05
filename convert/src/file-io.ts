@@ -1,51 +1,24 @@
 import fs from 'fs-extra';
 import iconv from 'iconv-lite';
-import { DOMParser, XMLSerializer } from 'xmldom';
-import * as utils from './utils.js';
-import path from 'path';
 import { JSDOM } from 'jsdom';
+import path from 'path';
+import { DOMParser } from 'xmldom';
+import * as utils from './utils.js';
 
-async function readToString(filename) {
-    let encoding = utils.sniffEncoding(filename);
-    let fileContents = await fs.readFile(filename);
-    let fileContentsString = iconv.decode(fileContents, encoding);
-    return fileContentsString;
-}
-// return a dom (JSDOM for HTML, XMLDOM for XML)
-async function parse(filename, forceXml = false):Promise<any> {
-    let fileContentsString = await readToString(filename);
-    let ext = path.extname(filename);
-    let domOrDoc = parseFromString(fileContentsString, ext == ".html" && !forceXml);
-    return domOrDoc;
+async function readToString(filename: string): Promise<string> {
+    const encoding = utils.sniffEncoding(filename);
+    const fileContents = await fs.readFile(filename);
+    return iconv.decode(fileContents, encoding);
 }
 
-async function parseFromString(filestring, isHtml) {
-    if (isHtml) {
-        // parse as HTML
-        let dom = new JSDOM(filestring);
-        return dom;
-    }
-    else {
-        // parse as XML
-        let doc = new DOMParser().parseFromString(filestring);
-        return doc;
-    }
+async function parse(filename: string, forceXml = false): Promise<any> {
+    const fileContentsString = await readToString(filename);
+    const ext = path.extname(filename);
+    if (ext === '.html' && !forceXml) return new JSDOM(fileContentsString);
+    return new DOMParser().parseFromString(fileContentsString);
 }
 
-// write a dom
-async function write(filename, dom, forceXml = false) {
-    let ext = path.extname(filename);
-    if (ext == ".html" && !forceXml) {
-        // if HTML
-        let domString = dom.serialize();
-        await fs.writeFile(filename, domString);
-    }
-    else {
-        // if XML
-        let serializer = new XMLSerializer();
-        let domString = serializer.serializeToString(dom);
-        await fs.writeFile(filename, domString);
-    }
-}
-
-export {parse, parseFromString, write, readToString};
+export {
+    parse,
+    readToString
+};

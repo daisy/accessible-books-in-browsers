@@ -1,0 +1,843 @@
+@import "reset.css";
+
+:root {
+    --offblack: #111;
+    --theme-bg: #fafafa;
+    --theme-fg: #111;
+    --webbook-focus-color: #005fcc;
+    --webbook-panel-border: 1px solid color-mix(in srgb, var(--theme-fg) 18%, transparent);
+    /* #767676 on a light background is ~4.54:1, the standard minimum-passing AA gray for normal text */
+    --webbook-muted-fg: #767676;
+}
+:root.webbook-dark,
+body.webbook-dark {
+    --theme-bg: black;
+    --theme-fg: white;
+    --webbook-focus-color: #8ec5ff;
+    /* lighter gray needed for AA on a black background */
+    --webbook-muted-fg: #a8a8a8;
+    color-scheme: dark;
+}
+:root.webbook-light,
+body.webbook-light {
+    --theme-bg: #fafafa;
+    --theme-fg: #111;
+    --webbook-focus-color: #005fcc;
+    --webbook-muted-fg: #767676;
+    color-scheme: light;
+}
+
+/* page container */
+body {
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    min-height: 100dvh;
+    
+    display: grid;
+    grid-template-areas:
+        "topbar topbar topbar"
+        "prev main next"
+        "toolbar toolbar toolbar";
+}
+[hidden] {
+    display: none !important;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* publication text */
+main {
+    grid-area: main;
+    max-width: 45rem;
+    margin: auto;
+    padding-bottom: 5rem;
+    font-family: var(--webbook-main-font-family, system-ui);
+    font-size: var(--webbook-main-font-size, 100%);
+    
+
+    /* the anchor links at chapter headings */
+    a[rel=bookmark].webbook {
+        color: var(--theme-fg);
+        svg {
+            height: 2rem;
+        }
+    }
+    table {
+        width: 100%;
+        margin: 1.5rem 0;
+        border-collapse: collapse;
+        font-size: .95rem;
+    }
+    caption {
+        margin-bottom: .4rem;
+        font-weight: 700;
+        text-align: left;
+    }
+    th,
+    td {
+        border: 1px solid color-mix(in srgb, var(--theme-fg) 25%, transparent);
+        padding: .45rem .55rem;
+        text-align: left;
+        vertical-align: top;
+    }
+    th {
+        font-weight: 700;
+    }
+    .epubtype_pagebreak {
+        display: block;
+        width: fit-content;
+        margin: 1.5rem auto;
+        padding: .1rem .45rem;
+        border-top: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+        border-bottom: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+        color: var(--webbook-muted-fg);
+        font-size: .85rem;
+    }
+}
+.webbook-title-page {
+    min-height: calc(100dvh - 7rem);
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: .75rem;
+    padding: 2rem 1rem 5rem;
+    text-align: center;
+}
+.webbook-title-cover {
+    width: min(18rem, 80%);
+    max-height: 55vh;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border: 1px solid color-mix(in srgb, var(--theme-fg) 20%, transparent);
+    border-radius: 6px;
+    box-shadow: 0 1rem 2rem rgb(0 0 0 / 20%);
+}
+.webbook-title-kicker {
+    margin: .5rem 0 0;
+    color: var(--webbook-muted-fg);
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.webbook-title-page h1,
+.webbook-title-page p {
+    margin: 0;
+}
+.webbook-title-page p {
+    max-width: 32rem;
+}
+/* small screens */
+@media(max-width: 45rem) {
+    main {
+        padding-left: var(--size-step-0);
+        padding-right: var(--size-step-0);
+    }
+}
+
+/* synchronized narration highlight — Mark/MarkText are OS system colors, accessible by default */
+::highlight(narration) {
+    background-color: var(--webbook-highlight-color, Mark);
+    color: MarkText;
+}
+
+/* caption mode */
+:root.webbook-caption-mode main,
+body.webbook-caption-mode main {
+    opacity: 0;
+    pointer-events: none;
+}
+#webbook-caption-view {
+    display: none;
+    position: fixed;
+    inset: 0 0 4.75rem;
+    z-index: 6;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    text-align: center;
+    pointer-events: none;
+}
+body.webbook-caption-mode #webbook-caption-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+#webbook-caption-count {
+    margin: 0;
+    color: var(--webbook-muted-fg);
+    font-size: .85rem;
+    font-variant-numeric: tabular-nums;
+}
+#webbook-caption-text {
+    max-width: 42rem;
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+@media(max-width: 45rem) {
+    #webbook-caption-view {
+        padding: 3rem 1rem;
+    }
+    #webbook-caption-text {
+        font-size: 1.5rem;
+    }
+}
+
+/* webbook's pop over screens */
+.webbook[popover]:popover-open {
+    box-sizing: border-box;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    overflow: scroll;
+    border-radius: 5px;
+    border: thin solid gray;
+
+    &::backdrop {
+        background: rgb(0 0 0 / 65%);
+    }
+}
+body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
+    backdrop-filter: blur(3px);
+}
+.webbook[popover]:popover-open > .webbook-popover-close {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    z-index: 4;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+}
+.webbook-popover-close {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    border: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.webbook-popover-close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+/* escapability */
+#webbook-escape-container {
+    position: fixed;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+#webbook-escape-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+#webbook-escape-btn {
+    background: var(--offblack);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    padding: .4rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: var(--size-step-0);
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+}
+/* "loaded last position" toast */
+#webbook-resume-banner {
+    position: fixed;
+    top: 4.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    background: var(--offblack);
+    color: white;
+    border-radius: 2rem;
+    padding: .4rem 1rem;
+    font-size: var(--size-step-0);
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+}
+/* spine nav arrows — fixed in the viewport margins */
+#webbook-spine-nav {
+    position: fixed;
+    top: 45vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    a {
+        pointer-events: auto;
+        color: var(--theme-fg);
+    }
+    #webbook-next-document {
+        margin-left: auto;
+    }
+}
+#webbook-spine-nav.visible,
+#webbook-spine-nav:focus-within {
+    opacity: 1;
+}
+/* webbook's TOC */
+#webbook-toc-nav:popover-open {
+    margin: 0;
+    inset: 0 auto 0 0;
+    width: min(360px, 80vw);
+    height: 100dvh;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 5px 5px 0;
+
+    a {
+        background: var(--theme-bg);
+        color: var(--theme-fg);
+    }
+    ol {
+        list-style-type: none;
+    }
+    & > ol {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin: 0;
+        overflow-y: auto;
+        flex: 1;
+    }
+    a[aria-current="page"] {
+        outline: 2px solid var(--webbook-focus-color);
+        outline-offset: 2px;
+        scroll-margin-top: 20vh;
+    }
+    li {
+        margin-block: .35rem;
+    }
+    ol ol {
+        padding-top: .25rem;
+        padding-bottom: .5rem;
+    }
+    ol ol a {
+        font-size: .9em;
+    }
+    #webbook-toc-header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        position: sticky;
+        top: 0;
+        background: var(--theme-bg);
+        margin: 0 -1rem 1rem;
+        padding: 1rem 3.75rem 1rem 1rem;
+        border-bottom: var(--webbook-panel-border);
+    }
+    #webbook-toc-nav-hd {
+        margin: 0;
+    }
+    #webbook-cover-link {
+        flex-shrink: 0;
+        border: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+        border-radius: 4px;
+        padding: .25rem .55rem;
+        text-decoration: none;
+        font-size: .95rem;
+    }
+}
+/* small screens */
+@media(max-width: 45rem) {
+    #webbook-toc-nav:popover-open {
+        width: 100vw;
+        border-radius: 0;
+    }
+}
+/* webbook's settings */
+#webbook-settings:popover-open {
+    margin: 0;
+    inset: 0 0 0 auto;
+    width: min(400px, 92vw);
+    height: 100dvh;
+    padding: 0;
+    border-radius: 5px 0 0 5px;
+    overflow-y: auto;
+
+    h2 {
+        margin: 0;
+        padding: 1rem 3.75rem 1rem 1.5rem;
+        border-bottom: var(--webbook-panel-border);
+    }
+    fieldset {
+        border: none;
+        padding: 1.5rem;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    /* each control group: label left, control right */
+    fieldset > div {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        column-gap: 1rem;
+        row-gap: .25rem;
+    }
+    /* range groups span full width with value + reset below */
+    fieldset > div:has(input[type=range]) {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        input[type=range] {
+            grid-column: 1 / -1;
+        }
+    }
+    /* highlight color: two rows inside one div */
+    #webbook-color {
+        grid-template-columns: 1fr auto;
+        row-gap: .5rem;
+    }
+    label {
+        font-size: var(--size-step-0);
+    }
+    select {
+        background: var(--theme-bg);
+        color: var(--theme-fg);
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: .2rem .4rem;
+        font-size: var(--size-step-0);
+    }
+    input[type=color] {
+        border: 1px solid gray;
+        border-radius: 4px;
+        width: 2.5rem;
+        height: 1.75rem;
+        padding: 0;
+        cursor: pointer;
+    }
+    input[type=checkbox] {
+        width: 1.25rem;
+        height: 1.25rem;
+        justify-self: end;
+        cursor: pointer;
+    }
+    input[type=range] {
+        accent-color: var(--theme-fg);
+    }
+    input:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+    button {
+        background: none;
+        color: var(--theme-fg);
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: .2rem .6rem;
+        font-size: var(--size-step-0);
+        cursor: pointer;
+    }
+    p {
+        margin: 0;
+        font-size: var(--size-step-0);
+        text-align: right;
+        color: var(--webbook-muted-fg);
+    }
+}
+/* webbook's about panel */
+#webbook-info:popover-open {
+    margin: 0;
+    inset: 0 0 0 auto;
+    width: min(340px, 92vw);
+    height: 100dvh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 5px 0 0 5px;
+
+    #webbook-cover {
+        width: 100%;
+        aspect-ratio: 2/3;
+        object-fit: cover;
+        display: block;
+        flex-shrink: 0;
+        border-bottom: var(--webbook-panel-border);
+    }
+    .webbook-info-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    h2 {
+        margin: 0;
+    }
+    dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: .25rem 1.5rem;
+        margin: 0;
+    }
+    dt {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--webbook-muted-fg);
+        padding-top: .15em;
+    }
+    dd {
+        margin: 0;
+        font-size: var(--size-step-0);
+    }
+    dt:not(:first-child) {
+        margin-top: .75rem;
+    }
+    #webbook-progress {
+        h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--webbook-muted-fg);
+            margin: 0 0 .75rem;
+        }
+        p {
+            margin: 0;
+            font-size: var(--size-step-0);
+        }
+        progress {
+            width: 100%;
+            height: .4rem;
+            margin: .5rem 0;
+            accent-color: var(--theme-fg);
+        }
+        #webbook-progress-count {
+            color: var(--webbook-muted-fg);
+            font-size: 0.75rem;
+        }
+    }
+}
+/* small screens */
+@media(max-width: 45rem) {
+    #webbook-info:popover-open {
+        width: 100vw;
+        border-radius: 0;
+    }
+    #webbook-settings:popover-open {
+        width: 100vw;
+        border-radius: 0;
+    }
+}
+/* webbook's toolbar */
+#webbook-toolbar {
+    background: var(--offblack);
+    display: grid;
+    grid-template-areas: 'toc playback about settings';
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    grid-area: toolbar;
+    z-index: 20;
+
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    button {
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: .5rem .75rem;
+        display: flex;
+        align-items: center;
+    }
+    audio {
+        display: none;
+    }
+    #webbook-audio-controls {
+        grid-area: playback;
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        padding: 0 .25rem;
+        min-width: 0;
+    }
+    #webbook-audio-controls[hidden] {
+        display: none;
+    }
+    #webbook-audio-controls #webbook-seek {
+        flex: 1;
+        min-width: 0;
+        accent-color: white;
+    }
+    #webbook-audio-controls #webbook-time {
+        color: white;
+        font-size: .75rem;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    button[popovertarget=webbook-toc-nav] {
+        grid-area: toc;
+        justify-self: start;
+    }
+    button[popovertarget=webbook-settings] {
+        grid-area: settings;
+    }
+    button[popovertarget=webbook-info] {
+        grid-area: about;
+    }
+    button[popovertarget].open {
+        border: thin gray solid;
+    }
+}
+#webbook-toolbar.visible,
+#webbook-toolbar:focus-within {
+    opacity: 1;
+}
+/* top toolbar */
+#webbook-top-toolbar {
+    background: var(--offblack);
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+    grid-area: topbar;
+    padding: .5rem 0;
+    z-index: 20;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    button {
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: .5rem .75rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    button[popovertarget].open {
+        border: thin gray solid;
+    }
+}
+#webbook-top-toolbar.visible,
+#webbook-top-toolbar:focus-within {
+    opacity: 1;
+}
+/* webbook's go-to-page popover — anchored top-left */
+#webbook-menu:popover-open {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+
+    margin: 0;
+    inset: 3.5rem .5rem auto auto;
+    width: max-content;
+    height: min-content;
+    padding: .75rem 1rem;
+
+    label {
+        font-size: medium;
+        color: var(--theme-fg);
+        white-space: nowrap;
+    }
+    input {
+        width: 5rem;
+        font-size: medium;
+    }
+    input[aria-invalid="true"] {
+        outline: 2px solid #c1121f;
+        outline-offset: 2px;
+    }
+    button {
+        background: none;
+        border: none;
+        color: var(--theme-fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .webbook-popover-close {
+        position: static;
+        flex-shrink: 0;
+        margin-left: .25rem;
+        border: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+        order: 10;
+    }
+}
+/* webbook's search popover — anchored top-right */
+#webbook-search:popover-open {
+    margin: 0;
+    inset: 3.5rem .5rem auto auto;
+    width: min(420px, calc(100vw - 1rem));
+    height: min-content;
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    h2 {
+        margin: 0 0 .25rem;
+        padding-right: 3.25rem;
+        font-size: var(--size-step-1, 1.125rem);
+    }
+    #webbook-search-form {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        input {
+            flex: 1;
+            min-width: 0;
+            font-size: medium;
+            padding: .3rem .5rem;
+            border: 1px solid gray;
+            border-radius: 4px;
+            background: var(--theme-bg);
+            color: var(--theme-fg);
+        }
+        button {
+            background: none;
+            border: none;
+            color: var(--theme-fg);
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: .3rem;
+        }
+    }
+    #webbook-search-results {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        max-height: 50vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+}
+#webbook-settings:popover-open > .webbook-popover-close {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--theme-bg);
+}
+/* small screens */
+@media(max-width: 45rem) {
+    #webbook-menu:popover-open {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: end;
+        width: auto;
+        inset: 3.75rem .75rem auto .75rem;
+        gap: .5rem;
+        padding: 1rem;
+        label {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            font-size: var(--size-step-1);
+        }
+        input {
+            grid-column: 1;
+            grid-row: 2;
+            width: 100%;
+            min-height: 2.75rem;
+            box-sizing: border-box;
+            padding: .35rem .5rem;
+            font-size: 1.25rem;
+        }
+        #webbook-goto-page-go,
+        .webbook-popover-close {
+            width: 2.75rem;
+            height: 2.75rem;
+            padding: 0;
+            margin: 0;
+        }
+        #webbook-goto-page-go {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        .webbook-popover-close {
+            grid-column: 3;
+            grid-row: 2;
+        }
+    }
+    #webbook-search:popover-open {
+        inset: 0;
+        width: 100vw;
+        height: 100dvh;
+        padding: 0;
+        border-radius: 0;
+        gap: 0;
+        h2 {
+            margin: 0;
+            padding: 1rem 3.75rem 1rem 1rem;
+            border-bottom: var(--webbook-panel-border);
+            font-size: var(--size-step-2);
+        }
+        #webbook-search-form {
+            padding: 1rem;
+            border-bottom: var(--webbook-panel-border);
+            input {
+                min-width: 0;
+                min-height: 2.75rem;
+                font-size: 1.125rem;
+            }
+            button {
+                min-width: 2.75rem;
+                min-height: 2.75rem;
+                border: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+                border-radius: 5px;
+                justify-content: center;
+            }
+        }
+        #webbook-search-results {
+            flex: 1;
+            min-height: 0;
+            max-height: none;
+            padding: 1rem;
+        }
+    }
+}

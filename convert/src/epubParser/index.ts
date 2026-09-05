@@ -1,58 +1,64 @@
-import tmp from 'tmp';
-import * as path from 'path';
-import winston from 'winston';
 import fs from 'fs-extra';
-import { unzip } from './unzip-epub.js'
-import * as packageDocument from './package-document.js';
-import * as navDocument from './nav-document.js';
-import * as fileio from '../file-io.js';
+import path from 'path';
+import tmp from 'tmp';
+import winston from 'winston';
 import xpath from 'xpath';
+import * as fileio from '../file-io.js';
+import * as navDocument from './nav-document.js';
+import * as packageDocument from './package-document.js';
+import type { Epub, EpubParseOptions } from './types.js';
+import { unzip } from './unzip-epub.js';
 
-async function parse(inputFilename):Promise<Epub> {
-    let basedir = await setupBasedir(inputFilename);
+const selectContainer = xpath.useNamespaces({
+    ocf: 'urn:oasis:names:tc:opendocument:xmlns:container'
+});
+
+async function parse(inputFilename: string, options: EpubParseOptions = {}): Promise<Epub> {
+    const basedir = await setupBasedir(inputFilename);
     winston.info(`Reading files from ${basedir}`);
-    let opfFilename = await calculatePackageDocPath(basedir);
-    let packageObj = await packageDocument.parse(opfFilename);
-    let nav = await navDocument.parse(packageObj.navFilename);
 
-    return { 
-       spine: packageObj.spine,
-       metadata: packageObj.metadata,
-       navFilename: packageObj.navFilename, 
-       packageFilename: opfFilename,
-       basedir,
-       nav,
-       favico: packageObj.favico,
-       audioFiles: packageObj.audioFiles,
-       cssFiles: packageObj.cssFiles
+    const opfFilename = await calculatePackageDocPath(basedir);
+    const packageObj = await packageDocument.parse(opfFilename, {
+        includeNonLinear: options.includeNonLinear
+    });
+    const nav = await navDocument.parse(packageObj.navFilename, {
+        warn: options.warn
+    });
+
+    return {
+        spine: packageObj.spine,
+        metadata: packageObj.metadata,
+        navFilename: packageObj.navFilename,
+        packageFilename: opfFilename,
+        basedir,
+        nav
     };
 }
 
-// unzip to temp dir if needed
-async function setupBasedir(inputFilename) {
+async function setupBasedir(inputFilename: string): Promise<string> {
     tmp.setGracefulCleanup();
     if (fs.statSync(inputFilename).isDirectory()) {
         winston.verbose('EPUB is already unpacked');
         return inputFilename;
-    } 
-    else {
-        winston.verbose('Extracting EPUB');
-        let tmpdir = await unzip(inputFilename);
-        return tmpdir;
     }
+
+    winston.verbose('Extracting EPUB');
+    return unzip(inputFilename);
 }
 
-async function calculatePackageDocPath (epubDir) {
-    const containerFilePath = `${epubDir}/META-INF/container.xml`;
-    let doc = await fileio.parse(containerFilePath);
-    const select = xpath.useNamespaces({ ocf: 'urn:oasis:names:tc:opendocument:xmlns:container' });
-    const rootfiles = select('//ocf:rootfile[@media-type="application/oebps-package+xml"]/@full-path', doc);
-    // just grab the first one as we're not handling the case of multiple renditions
-    if (rootfiles.length > 0) {
-        //@ts-ignore
-        return (path.join(epubDir, rootfiles[0].nodeValue));
+async function calculatePackageDocPath(epubDir: string): Promise<string> {
+    const containerFilePath = path.join(epubDir, 'META-INF', 'container.xml');
+    const doc = await fileio.parse(containerFilePath);
+    const rootfiles = selectContainer(
+        '//ocf:rootfile[@media-type="application/oebps-package+xml"]/@full-path',
+        doc
+    );
+    const rootfile = rootfiles[0] as Attr | undefined;
+    if (!rootfile?.nodeValue) {
+        throw new Error(`Could not find EPUB package document in ${containerFilePath}`);
     }
-    return '';
+    return path.join(epubDir, rootfile.nodeValue);
 }
 
 export { parse };
+export type { Epub };

@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 build
 experiments
+experiment
 notes
 .vscode/launch.json
 slides

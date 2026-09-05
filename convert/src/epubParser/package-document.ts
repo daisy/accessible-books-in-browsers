@@ -1,114 +1,135 @@
-import * as utils from '../utils.js';
-import * as fileio from '../file-io.js';
-import xpath from 'xpath';
 import path from 'path';
+import xpath from 'xpath';
+import * as fileio from '../file-io.js';
+import * as utils from '../utils.js';
+import type { Metadata, SpineItem } from './types.js';
 
-let select = xpath.useNamespaces({
-    html: 'http://www.w3.org/1999/xhtml',
-    epub: "http://www.idpf.org/2007/ops",
-    dc: "http://purl.org/dc/elements/1.1/",
-    opf: "http://www.idpf.org/2007/opf"
+const select = xpath.useNamespaces({
+    opf: 'http://www.idpf.org/2007/opf'
 });
 
-async function parse(inputFilename) {
-    let doc = await fileio.parse(inputFilename);
-    
-    let metadata = parseMetadata(doc);
-    let spine = parseSpine(inputFilename, doc);
-    let navFilename = getManifestItemHrefByProperty("nav", doc, inputFilename);
-    let favico = getManifestItemHrefByProperty("favico", doc, inputFilename);
-    let audioFiles = getManifestItemHrefsByMediaType("audio/mpeg", doc, inputFilename);
-    let cssFiles = getManifestItemHrefsByMediaType("text/css", doc, inputFilename);
-    metadata['cover'] = metadata['cover'] ? path.join(path.dirname(inputFilename), metadata['cover']) : '';
-    return { metadata, spine, navFilename, dom: doc, favico, audioFiles, cssFiles };
+export type PackageDocument = {
+    metadata: Metadata;
+    navFilename: string;
+    spine: SpineItem[];
+};
+
+export type PackageDocumentParseOptions = {
+    includeNonLinear?: boolean;
+};
+
+async function parse(inputFilename: string, options: PackageDocumentParseOptions = {}): Promise<PackageDocument> {
+    const doc = await fileio.parse(inputFilename);
+    const metadata = parseMetadata(doc, inputFilename);
+    return {
+        metadata,
+        spine: parseSpine(inputFilename, doc, options),
+        navFilename: getManifestItemHrefByProperty('nav', doc, inputFilename)
+    };
 }
 
-function parseMetadata(doc) {
-    let parsedMetadata = {};
-    let metadataSection = select("//opf:metadata", doc)[0];
-    // @ts-ignore
-    Array.from(metadataSection.childNodes ?? [])
-        //@ts-ignore
-        .filter(child => child.nodeType == 1)
-        .map(child => {
-            //@ts-ignore
-            if (child.nodeName == "opf:meta") {
-                //@ts-ignore
-                if (child.hasAttribute("property")) {
-                    //@ts-ignore
-                    utils.addItem(child.getAttribute("property"), child.textContent, parsedMetadata);    
-                }
-                //@ts-ignore
-                else if (child.hasAttribute("name") && child.getAttribute("name") == "cover") {
-                    // dereference the cover
-                    //@ts-ignore
-                    let coverElm = select(`//*[@id='${child.getAttribute('content')}']`, doc)[0];
-                    //@ts-ignore
-                    utils.addItem("cover", coverElm.getAttribute("href"), parsedMetadata);
-                }
-            }
-            //@ts-ignore
-            else {
-                //@ts-ignore
-                utils.addItem(child.nodeName, child.textContent, parsedMetadata);
-            }
-    });
+function parseMetadata(doc: Document, opfFilename: string): Metadata {
+    const parsedMetadata: Metadata = {};
+    const metadataSection = select('//opf:metadata', doc)[0] as Element | undefined;
+    if (!metadataSection) return parsedMetadata;
 
-    let coverImage = select("//opf:item[contains(@properties, 'cover-image')]", doc);
-    if (coverImage.length > 0) {
-        //@ts-ignore
-        utils.addItem("cover", coverImage[0].getAttribute("href"), parsedMetadata);
+    Array.from(metadataSection.childNodes ?? [])
+        .filter((child): child is Element => child.nodeType === 1)
+        .forEach(child => {
+            if (child.nodeName === 'opf:meta' || child.nodeName === 'meta') {
+                if (child.hasAttribute('property')) {
+                    utils.addItem(child.getAttribute('property') ?? '', child.textContent ?? '', parsedMetadata);
+                }
+                else if (child.getAttribute('name') === 'cover') {
+                    const coverElm = select(`//*[@id='${child.getAttribute('content')}']`, doc)[0] as Element | undefined;
+                    if (coverElm) {
+                        utils.addItem('cover', coverElm.getAttribute('href') ?? '', parsedMetadata);
+                    }
+                }
+            }
+            else {
+                utils.addItem(child.nodeName, child.textContent ?? '', parsedMetadata);
+            }
+        });
+
+    const coverImage = getManifestItemByProperty('cover-image', doc);
+    if (coverImage) {
+        utils.addItem('cover', coverImage.getAttribute('href') ?? '', parsedMetadata);
     }
+
+    const cover = firstMetadataValue(parsedMetadata.cover);
+    if (cover) {
+        parsedMetadata.cover = path.resolve(path.dirname(opfFilename), cover);
+    }
+
     return parsedMetadata;
 }
 
-function parseSpine(opfFilename, doc) {
-    let spineItems = [];
-    let spineItemIdrefs = select('//opf:itemref/@idref', doc);
-    spineItemIdrefs.map(idref => {
-        //@ts-ignore
-        let manifestItems = select(`//opf:item[@id='${idref.nodeValue}']`, doc);
-        if (manifestItems.length > 0) {
-            //@ts-ignore
-            let filename = manifestItems[0].getAttribute('href');
-            let smilfilename = '';
-            //@ts-ignore
-            if (manifestItems[0].hasAttribute("media-overlay")) {
-                //@ts-ignore
-                let smilItems = select(`//opf:item[@id='${manifestItems[0].getAttribute("media-overlay")}']`, doc);
-                if (smilItems.length > 0) {
-                    //@ts-ignore
-                    smilfilename = path.resolve(path.dirname(opfFilename), smilItems[0].getAttribute("href"));
-                }
-            }
-            // don't add the toc
-            //@ts-ignore
-            if (manifestItems[0].getAttribute("properties").indexOf("nav") == -1) {
-                spineItems.push({
-                    path: path.resolve(path.dirname(opfFilename), filename),
-                    moPath: smilfilename
-                });
-            }
-            else {
-                console.debug("Ignoring linear=no but not adding TOC to spine");
+function parseSpine(opfFilename: string, doc: Document, options: PackageDocumentParseOptions): SpineItem[] {
+    const spineItems: SpineItem[] = [];
+    const spineItemrefs = select('//opf:spine/opf:itemref', doc) as Element[];
+    const manifestItems = buildManifestItemMap(doc);
+
+    spineItemrefs.forEach(itemref => {
+        if (!options.includeNonLinear && (itemref.getAttribute('linear') ?? '').toLowerCase() === 'no') return;
+
+        const idrefValue = itemref.getAttribute('idref');
+        if (!idrefValue) return;
+
+        const manifestItem = manifestItems.get(idrefValue);
+        if (!manifestItem) return;
+
+        const filename = manifestItem.getAttribute('href');
+        if (!filename) return;
+
+        const properties = manifestItem.getAttribute('properties') ?? '';
+        if (properties.split(/\s+/).includes('nav')) return;
+
+        let smilfilename = '';
+        const mediaOverlayId = manifestItem.getAttribute('media-overlay');
+        if (mediaOverlayId) {
+            const smilItem = manifestItems.get(mediaOverlayId);
+            const smilHref = smilItem?.getAttribute('href');
+            if (smilHref) {
+                smilfilename = path.resolve(path.dirname(opfFilename), smilHref);
             }
         }
+
+        spineItems.push({
+            path: path.resolve(path.dirname(opfFilename), filename),
+            moPath: smilfilename
+        });
     });
+
     return spineItems;
 }
 
-function getManifestItemHrefByProperty(property, doc, opfFilename) {
-    let items = select(`//opf:item[contains(@properties, '${property}')]`, doc);
-    let item;
-    if (items.length > 0) item = items[0];
-    else return '';
-    let href = item.getAttribute("href");
-    return path.resolve(path.dirname(opfFilename), href);
+function getManifestItemHrefByProperty(property: string, doc: Document, opfFilename: string): string {
+    const item = getManifestItemByProperty(property, doc);
+    const href = item?.getAttribute('href');
+    return href ? path.resolve(path.dirname(opfFilename), href) : '';
 }
 
-function getManifestItemHrefsByMediaType(mediaType, doc, opfFilename) {
-    let hrefs = Array.from(select(`//opf:item[contains(@media-type, '${mediaType}')]/@href`, doc));
-    //@ts-ignore
-    return hrefs.map(href => path.resolve(path.dirname(opfFilename), href.nodeValue));
+function getManifestItemByProperty(property: string, doc: Document): Element | undefined {
+    const items = select('//opf:manifest/opf:item', doc) as Element[];
+    return items.find(item => {
+        const properties = item.getAttribute('properties') ?? '';
+        return properties.split(/\s+/).includes(property);
+    });
 }
+
+function buildManifestItemMap(doc: Document): Map<string, Element> {
+    const manifestItems = new Map<string, Element>();
+    (select('//opf:manifest/opf:item', doc) as Element[]).forEach(item => {
+        const id = item.getAttribute('id');
+        if (id) manifestItems.set(id, item);
+    });
+    return manifestItems;
+}
+
+function firstMetadataValue(value: string | string[] | undefined): string {
+    if (Array.isArray(value)) return value[0] ?? '';
+    return value ?? '';
+}
+
 export { parse };

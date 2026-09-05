@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2. Quibble Lantern</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="gibberish-field-notes-template-sample">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <section class="epubtype_bodymatter epubtype_chapter">
+            <h1 id="chapter-2">Chapter 2. Quibble Lantern</h1>
+            <section class="epubtype_section">
+                <h2 id="chapter-2-a">Mudlit coordinates</h2>
+                <p id="c2p1">Plonky measures wobble across the damp graph paper. A lantern with no opinion clicks softly and labels the ceiling as Tuesday.</p>
+                <p id="c2p2">The route begins at seventeenish, turns left at the squeaky comma, and ends beside a jar of borrowed vowels.</p>
+            </section>
+            <span class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 2" id="print-page-2">2</span>
+            <section class="epubtype_section">
+                <h2 id="chapter-2-b">Parcel of tiny thunder</h2>
+                <p id="c2p3">Inside the parcel: one blue clatter, three polite sparks, and a receipt for yesterday's umbrella.</p>
+                <table class="epubtype_table" id="c2-table">
+                    <caption>Parcel inventory</caption>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Count</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">Splonk</th>
+                        <td>Blue</td>
+                        <td>3</td>
+                        <td>Humming</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Maybe fold</th>
+                        <td>Yellow</td>
+                        <td>7</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Comma gear</th>
+                        <td>Red</td>
+                        <td>2</td>
+                        <td>Aligned</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Lint map</th>
+                        <td>Teal</td>
+                        <td>5</td>
+                        <td>Filed</td>
+                    </tr>
+                </table>
+                <ul class="epubtype_list" id="c2-list">
+                    <li>First, stir the almost.</li>
+                    <li>Second, fold the maybe.</li>
+                    <li>Third, hum until the margins settle.</li>
+                </ul>
+                <p id="c2p4">After the table, the paragraph resumes with a quiet click and a tidy stack of vowels.</p>
+            </section>
+        </section>
+    </main>
+
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="chapter-1.html" title="Previous: Chapter 1. Flimble Sprout" aria-label="Previous: Chapter 1. Flimble Sprout" rel="prev">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"/></svg>
+        </a>
+        <a id="webbook-next-document" href="chapter-3.html" title="Next: Chapter 3. Wobble Archive" aria-label="Next: Chapter 3. Wobble Archive" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"/></svg>
+        </a>
+    </nav>
+
+    <nav popover id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol>
+            <li id="toc-chapter-1">
+                <a href="chapter-1.html">Chapter 1. Flimble Sprout</a>
+                <ol>
+                    <li><a href="chapter-1.html#chapter-1-a">Fizzing at the blue hinge</a></li>
+                    <li><a href="chapter-1.html#chapter-1-b">The kettle votes maybe</a></li>
+                </ol>
+            </li>
+            <li id="toc-chapter-2">
+                <a href="chapter-2.html" aria-current="page">Chapter 2. Quibble Lantern</a>
+                <ol>
+                    <li><a href="chapter-2.html#chapter-2-a">Mudlit coordinates</a></li>
+                    <li><a href="chapter-2.html#chapter-2-b">Parcel of tiny thunder</a></li>
+                </ol>
+            </li>
+            <li id="toc-chapter-3">
+                <a href="chapter-3.html">Chapter 3. Wobble Archive</a>
+                <ol>
+                    <li><a href="chapter-3.html#chapter-3-a">Index of spare crumbs</a></li>
+                    <li><a href="chapter-3.html#chapter-3-b">Farewell to the purple gasket</a></li>
+                </ol>
+            </li>
+        </ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"/></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"/><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"/></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden disabled>
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"/></svg>
+        </button>
+    </div>
+
+    <div id="webbook-resume-banner" role="status" hidden></div>
+
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"/></svg>
+        </button>
+        <audio preload="metadata" src="audio/chapter-2.m4a">
+            <track default kind="metadata" src="vtt/chapter-2.vtt">
+        </audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <input type="range" id="webbook-seek" list="webbook-seek-ticks" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <datalist id="webbook-seek-ticks"></datalist>
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"/></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"/></svg>
+        </button>
+    </section>
+
+    <section popover id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"/></svg>
+        </button>
+        <datalist id="pages">
+            <option value="1" data-href="chapter-1.html#print-page-1">1</option>
+            <option value="2" data-href="chapter-2.html#print-page-2">2</option>
+            <option value="3" data-href="chapter-3.html#print-page-3">3</option>
+        </datalist>
+    </section>
+
+    <section popover id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"/></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover class="webbook">
+        <img id="webbook-cover" src="assets/gibberish-cover.png" alt="Abstract paper collage cover for Gibberish Field Notes">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl>
+                <dt>Title</dt>
+                <dd>Gibberish Field Notes</dd>
+                <dt>Author</dt>
+                <dd>Template Sample</dd>
+                <dt>Date</dt>
+                <dd>Today-ish</dd>
+            </dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked>
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled>
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked>
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked>
+            </div>
+        </fieldset>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

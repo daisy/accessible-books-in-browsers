@@ -1,0 +1,41 @@
+WEBVTT
+
+cue-1
+00:00:00.000 --> 00:00:01.948
+{"selector":{"type":"FragmentSelector","value":"chapter-2"}}
+
+cue-2
+00:00:01.948 --> 00:00:03.148
+{"selector":{"type":"FragmentSelector","value":"chapter-2-a"}}
+
+cue-3
+00:00:03.148 --> 00:00:10.228
+{"selector":{"type":"FragmentSelector","value":"c2p1"}}
+
+cue-4
+00:00:10.228 --> 00:00:16.219
+{"selector":{"type":"FragmentSelector","value":"c2p2"}}
+
+cue-5
+00:00:16.219 --> 00:00:16.913
+{"selector":{"type":"FragmentSelector","value":"print-page-2"}}
+
+cue-6
+00:00:16.913 --> 00:00:18.259
+{"selector":{"type":"FragmentSelector","value":"chapter-2-b"}}
+
+cue-7
+00:00:18.259 --> 00:00:24.165
+{"selector":{"type":"FragmentSelector","value":"c2p3"}}
+
+cue-8
+00:00:24.165 --> 00:00:39.188
+{"selector":{"type":"FragmentSelector","value":"c2-table"}}
+
+cue-9
+00:00:39.188 --> 00:00:45.076
+{"selector":{"type":"FragmentSelector","value":"c2-list"}}
+
+cue-10
+00:00:45.076 --> 00:00:50.030
+{"selector":{"type":"FragmentSelector","value":"c2p4"}}

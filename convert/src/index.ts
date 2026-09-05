@@ -1,22 +1,24 @@
 import { Command } from 'commander';
 import path from 'path';
-import * as utils from './utils.js';
 import { convert } from './convert.js';
 
 async function main() {
     let program = new Command();
     program
         .command("convert")
-        .description("convert an epub to a folder of html pages")
+        .description("Convert an EPUB to a book for the web")
         .argument('input', "Input EPUB file or directory")
-        .argument('outputDir', "Output directory")
-        .argument('clientCodeDir', "Shared client code folder")
-        .action(async(input, outputDir, clientCodeDir, options) => {
-            await utils.ensureDirectory(outputDir);
+        .argument('output', "Output directory")
+        .argument('template', "Directory containing template files")
+        .option('--include-non-linear', 'Include OPF spine items marked linear="no" in the generated reading order')
+        .action(async(input, output, template, options: { includeNonLinear?: boolean }) => {
             await convert(
                 path.resolve(process.cwd(), input),
-                path.resolve(process.cwd(), outputDir),
-                clientCodeDir
+                path.resolve(process.cwd(), output),
+                path.resolve(process.cwd(), template),
+                {
+                    includeNonLinear: options.includeNonLinear === true
+                }
             );
         });
     program.parse(process.argv);
