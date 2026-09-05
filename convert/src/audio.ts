@@ -113,6 +113,7 @@ async function mergeAudioSegments(mediaSegments: MediaSegment[], outFilename: st
     await new Promise<void>((resolve, reject) => {
         ffmpeg()
             .input(concatFiles)
+            .audioChannels(2)
             .output(outFilename)
             .on('progress', progress => {
                 winston.verbose(`[ffmpeg] ${JSON.stringify(progress)}`);
