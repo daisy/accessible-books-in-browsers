@@ -67,9 +67,15 @@ main {
     /* the anchor links at chapter headings */
     a[rel=bookmark].webbook {
         color: var(--theme-fg);
+        opacity: 0;
+        transition: opacity 0.15s;
         svg {
             height: 2rem;
         }
+    }
+    :is(h1, h2, h3, h4, h5, h6):hover a[rel=bookmark].webbook,
+    :is(h1, h2, h3, h4, h5, h6):focus-within a[rel=bookmark].webbook {
+        opacity: 1;
     }
     table {
         width: 100%;
@@ -665,7 +671,8 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 @media (prefers-reduced-motion: reduce) {
     #webbook-spine-nav,
     #webbook-toolbar,
-    #webbook-top-toolbar {
+    #webbook-top-toolbar,
+    main a[rel=bookmark].webbook {
         transition: none;
     }
 }
