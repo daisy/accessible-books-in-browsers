@@ -4,9 +4,12 @@
 
 ## About 
 
-Transform EPUB with Media Overlays into a series of HTML files for reading directly in the browser. 
+Transform EPUB into a series of HTML files for reading directly in the browser, with built-in Media Overlays support too.
 
-A typical conversion creates the following files (see an [example fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick)):
+See an [example fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick)):
+
+After conversion, the original EPUB is rewritten as:
+
 - HTML files with the original contents, plus reading interface controls and links to the TOC, Previous, and Next pages.
 - An About page containing publication metainformation
 - A TOC based on the original EPUB Nav Document
@@ -16,90 +19,50 @@ Media Overlays conversion adds the following:
 - Embedding that audio file in the HTML page
 - A VTT file containing the phrase timing information for that audio file
 
-## Updates
 
-September 2024
+## Latest
 
-* VTT sync format updated to stay current with latest Synchronized Media in Publications recommendation
-* Chapters can play through (#3) 
-_Read about [autoplay](https://github.com/daisy/accessible-books-in-browsers/wiki/About-%60autoplay%60)_
-* An [experimental sample in Arabic](https://github.com/daisy/accessible-books-in-browsers/wiki/Right-to-left-support) was generated, though it's not online as the files are a bit too big for github. Will try to work around or host elsewhere.
-* CSS Custom Highlight API used everywhere that text has to be highlighted (playback highlight and search results). This is a way to support sub-element highlighting (e.g. word-level) without marking up the text with IDs everywhere.
-* Bugs were fixed: #32, #8
+September 2026
+
+* The converter has been rewritten around a clean parse-once, render-once pipeline, resulting in faster conversions.
+* Accessibility fixes based on direct feedback from screen reader testers: 
+  * proper ARIA roles for footnotes, endnotes, and pagebreaks; 
+  * accessible names and values on sliders and sidebars; 
+  * a single-keystroke way to skip past tables, lists, and footnotes during narration; 
+  * heading permalinks that are more usable by screen reader users. 
+
+See [Reading features](#reading-features) and [Keyboard shortcuts](#keyboard-shortcuts) below.
 
 ## Demos
 
-Viewing these requires an up to date browser, specifically because they use the [CSS Custom Highlight API](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API#browser_compatibility) and [`autoplay` permissions](https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API#browser_compatibility).
-
-As of now (Sept 2024), the latest of Chrome, Firefox, and Safari perform reasonably; though in Firefox, the [highlight API](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Experimental_features#css_custom_highlight_api) is experimental right now so support has to be enabled by setting a preference (see their docs for details).
-
-To autoplay the contents from chapter to chapter, go to the page and then go to "site settings" in your browser. Under "audio", say "allow". You only have to do this once for the whole demo site (per domain).
+These demos were created using this [conversion script](https://github.com/daisy/accessible-books-in-browsers/tree/main/convert). 
 
 * [Action for Heroes](https://daisy.github.io/accessible-books-in-browsers/demos/action-for-heroes)
 * [Moby Dick](https://daisy.github.io/accessible-books-in-browsers/demos/moby-dick)
 
-These demos were created using this [conversion script](https://github.com/daisy/accessible-books-in-browsers/tree/main/convert). 
 
+## Reading features
 
-## Current features
+- Synchronized narration playback with word/phrase-level highlighting (CSS Custom Highlight API), auto-continuing across chapters when a chapter's audio ends
+- Table of contents generated from the EPUB's own navigation document, including nested sub-entries, with the current page marked
+- Go-to-page, using the EPUB's page-list navigation where available
+- Settings: appearance (auto/dark/light), font size and family, narration highlight color (auto or custom), playback rate, caption mode (a full-screen, narration-synced text view), skip-toggles for page numbers/footnotes/endnotes/notes/sidebars, and whether to resume the last reading position on open
+- Resumes your last reading position (page, heading, and exact audio offset) automatically when you reopen a book, with an announced "Loaded last position" banner
+- "Skip past" notification plus a single-keystroke escape (see Keyboard shortcuts below) so a table, list, figure, sidebar, footnote, endnote, or note doesn't have to be sat through during playback
+- Every heading has a permalink (visible on hover/focus) for bookmarking or sharing a specific section
+- The URL updates to reflect your reading position as narration plays, without adding browser-history entries
 
-| Feature | Basic | JS-enhanced |
-|---------|-------|-------------|
-| Spine navigation | Forward and back through the spine documents with links (shown as arrows) | (same) | 
-| TOC | TOC link opens `nav.html`| TOC loads in sidebar | 
-| Page list | Page list is within `nav.html`, use landmarks navigation or click the in-page link at top | Page list loads in sidebar and has go-to-page controls | 
-| Search | Not available | Full text search available from sidebar |
-| Publication info | Info link opens `about.html`, containing publication info | About page loads in sidebar instead|
-| Keyboard shortcuts | Not available | Available (see help for details) | 
-| Help | Opens in new page | (same) |
-| Settings | Not available | Change size, theme, playback rate, page number announcements |
-| Theme | Match OS dark theme preference by default | Adds ability to turn on/off |
-| Bookmarks | Bookmark any heading using your browser | (same) |
-| Audio support | Play embedded audio for the page with native HTML controls | Adds synchronized highlighting and custom controls, including phrase navigation and control over announcing page numbers|
+## Keyboard shortcuts
 
+| Shortcut | Where it works | What it does |
+|---|---|---|
+| `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, sidebar, footnote, endnote, or note during narration playback |
+| `[` | Seek slider must have focus | Jump to the previous narration cue |
+| `]` | Seek slider must have focus | Jump to the next narration cue |
+| `Shift` + `←` | Seek slider must have focus | Seek back 10 seconds |
+| `Shift` + `→` | Seek slider must have focus | Seek forward 10 seconds |
+| `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Step to the previous/next caption item |
 
-## Caveats
+None of these use modifier-key combinations like `Ctrl`+`Alt`+*key*. An earlier version of this reader did, and screen reader users reported those combinations clashing with their own assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). Shortcuts here are deliberately either unmodified single keys or scoped to only fire when a specific control already has focus.
 
-### Conversion
-A few things (navigation document consistency across publications; colors in stylesheets or things marked `!important`) were adjusted manually in the EPUB source; this is, after all, just a prototype. But these aspects can and will be automated in the future.
-
-
-## Approach
-
-Generate a set of HTML pages:
-* Target DAISY 2.02 content which has been automatically converted to EPUB 3
-* Use an HTML template prepopulated with the basic structure of our pages (intra-publication links, audio if applicable)
-* For each EPUB HTML spine item (except for the TOC), create an HTML file from our template
-* Move the contents of the source file's `<body>` into the template's `<main>` element.
-* Generate a navigation file based on the EPUB navigation document
-* Generate an About file containing publication information
-* The cover page is renamed `index.html` and can act as an entry page (though a user can enter the publication from any page)
-* Add links to each heading for easy bookmarking
-
-Add javascript enhancements:
-* Sidebar with table of contents, page list, search, and about tabs
-* Settings panel to control visual adjustments and audio preferences
-* Audio playback with synchronized highlighting
-* Keyboard shortcuts
-
-What this isn't:
-* An authoring format definition
-* A generic "player" to apply to any EPUB
-
-
-## Spaces to watch
-
-Advances in these areas would make this project better.
-
-* Coordinating screen reader focus with browser text highlights.
-https://stackoverflow.com/questions/31921688/moving-the-cursor-in-a-screen-reader  
-_Use case: user wants to stop synchronized playback and use their screen reader to explore at a word or character level._
-
-* Web packaging
-https://github.com/WICG/webpackage  
-_Use case: package material for downloadable/offline distribution_
-
-## Future experiments
-* Use the Shadow DOM for the interface elements and keep the document as plain or close to the original as possible
-* Try the CSS Highlights API to similarly stay out of the document's way
 
