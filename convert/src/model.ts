@@ -35,6 +35,8 @@ export type SitePage = {
 };
 
 export type SiteModel = {
+    // Keys saved reading positions (`webbook-book-id`). The EPUB's identifier unless overridden.
+    bookId: string;
     metadata: BookMetadata;
     pageList: PageListEntry[];
     pages: SitePage[];
@@ -46,7 +48,11 @@ const select = xpath.useNamespaces({
     html: 'http://www.w3.org/1999/xhtml'
 });
 
-function buildSiteModel(epub: Epub): SiteModel {
+export type SiteModelOptions = {
+    identifier?: string;
+};
+
+function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): SiteModel {
     const sourceToOutput = buildSourceToOutputMap(epub.spine.map(item => item.path));
     const navLinks = collectNavLinks(epub.nav.toc);
     const navTitleBySource = new Map<string, string>();
@@ -83,6 +89,7 @@ function buildSiteModel(epub: Epub): SiteModel {
     });
 
     return {
+        bookId: options.identifier ?? metadata.identifier,
         metadata,
         pageList: buildPageList(epub.nav['page-list'], sourceToOutput),
         pages,

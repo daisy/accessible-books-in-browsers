@@ -11,6 +11,7 @@ import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath }
 import { transformContent } from './content-transform.js';
 
 export type ConvertOptions = {
+    identifier?: string;
     includeNonLinear?: boolean;
 };
 
@@ -29,7 +30,10 @@ async function convert(input: string, output: string, template: string, options:
             includeNonLinear: options.includeNonLinear,
             warn: message => winston.warn(message)
         });
-        const site = buildSiteModel(epub);
+        const site = buildSiteModel(epub, { identifier: options.identifier });
+        if (options.identifier) {
+            winston.info(`Using book ID ${options.identifier} (EPUB identifier: ${site.metadata.identifier || 'none'})`);
+        }
         const imageRegistry = new ImageAssetRegistry();
         const renderer = await TemplateRenderer.load(template);
         const coverAsset = site.metadata.coverPath

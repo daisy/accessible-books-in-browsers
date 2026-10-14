@@ -35,7 +35,7 @@ class TemplateRenderer {
         const doc = this.cloneTemplateDocument();
         doc.documentElement.setAttribute('lang', site.metadata.language);
         setText(doc.querySelector('title'), page.title || content.title || site.metadata.title);
-        doc.querySelector('meta[name="webbook-book-id"]')?.setAttribute('content', site.metadata.identifier);
+        doc.querySelector('meta[name="webbook-book-id"]')?.setAttribute('content', site.bookId);
 
         const main = requireElement(doc, 'main');
         main.innerHTML = content.bodyHtml;
