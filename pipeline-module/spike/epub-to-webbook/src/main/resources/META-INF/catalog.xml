@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"
+         xmlns:px="http://www.daisy.org/ns/pipeline">
+    <uri name="http://www.daisy.org/pipeline/modules/epub-to-webbook/epub-to-webbook.xpl"
+         uri="../xml/xproc/epub-to-webbook.xpl"
+         px:content-type="script"
+         px:id="epub-to-webbook"/>
+    <uri name="http://www.daisy.org/pipeline/modules/epub-to-webbook/library.xpl"
+         uri="../xml/xproc/library.xpl"/>
+</catalog>

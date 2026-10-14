@@ -19,10 +19,10 @@
     "@types/commander": "^2.12.2",
     "@types/fs-extra": "^9.0.12",
     "@types/jsdom": "^16.2.13",
-    "@types/node": "^16.4.1",
+    "@types/node": "^24.13.3",
     "@types/xmldom": "^0.1.31",
     "rimraf": "^3.0.2",
-    "typescript": "^4.3.5"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
