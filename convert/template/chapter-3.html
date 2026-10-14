@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-webbook-contract="0">
 
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
         })();
     </script>
     <meta name="webbook-book-id" content="gibberish-field-notes-template-sample">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
@@ -113,7 +113,13 @@
         </button>
         <audio preload="metadata"></audio>
         <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"/></svg>
+            </button>
             <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"/></svg>
+            </button>
             <input type="range" id="webbook-seek" list="webbook-seek-ticks" min="0" max="0" step="any" value="0" aria-label="Seek">
             <datalist id="webbook-seek-ticks"></datalist>
             <span id="webbook-time" aria-hidden="true">0:00</span>
@@ -240,7 +246,7 @@
         </fieldset>
     </section>
 
-    <script src="script.js"></script>
+    <script type="module" src="src/js/main.js"></script>
 </body>
 
 </html>

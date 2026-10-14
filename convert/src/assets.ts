@@ -4,7 +4,7 @@ import { OutputLayout } from './output.js';
 import type { OutputPaths } from './output.js';
 import * as utils from './utils.js';
 
-const UI_ASSET_ALLOWLIST = ['script.js', 'style.css', 'reset.css'] as const;
+const UI_ASSET_DIRS = ['src'] as const;
 
 export type ImageAsset = {
     href: string;
@@ -53,10 +53,10 @@ class ImageAssetRegistry {
 }
 
 async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise<void> {
-    await Promise.all(UI_ASSET_ALLOWLIST.map(async filename => {
-        const source = path.join(template, filename);
+    await Promise.all(UI_ASSET_DIRS.map(async dirname => {
+        const source = path.join(template, dirname);
         if (await fs.pathExists(source)) {
-            await fs.copy(source, path.join(outputPaths.stagingDir, filename));
+            await fs.copy(source, path.join(outputPaths.stagingDir, dirname));
         }
     }));
 }
@@ -71,5 +71,5 @@ export {
     copyImageAssets,
     copyUiAssets,
     ImageAssetRegistry,
-    UI_ASSET_ALLOWLIST
+    UI_ASSET_DIRS
 };

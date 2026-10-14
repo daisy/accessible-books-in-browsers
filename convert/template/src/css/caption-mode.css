@@ -1,0 +1,44 @@
+/* caption mode */
+:root.webbook-caption-mode main,
+body.webbook-caption-mode main {
+    opacity: 0;
+    pointer-events: none;
+}
+#webbook-caption-view {
+    display: none;
+    position: fixed;
+    inset: 0 0 4.75rem;
+    z-index: 6;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1.5rem;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    text-align: center;
+    pointer-events: none;
+}
+body.webbook-caption-mode #webbook-caption-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+#webbook-caption-count {
+    margin: 0;
+    color: var(--webbook-muted-fg);
+    font-size: .85rem;
+    font-variant-numeric: tabular-nums;
+}
+#webbook-caption-text {
+    max-width: 42rem;
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+@media(max-width: 45rem) {
+    #webbook-caption-view {
+        padding: 3rem 1rem;
+    }
+    #webbook-caption-text {
+        font-size: 1.5rem;
+    }
+}
