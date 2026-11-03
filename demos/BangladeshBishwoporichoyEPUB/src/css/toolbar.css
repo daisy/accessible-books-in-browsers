@@ -1,0 +1,120 @@
+/* webbook's toolbar */
+#webbook-toolbar {
+    background: var(--offblack);
+    display: grid;
+    grid-template-areas: 'toc playback about settings';
+    grid-template-columns: auto 1fr auto auto;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    grid-area: toolbar;
+    z-index: 20;
+
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    button {
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: .5rem .75rem;
+        display: flex;
+        align-items: center;
+    }
+    audio {
+        display: none;
+    }
+    #webbook-audio-controls {
+        grid-area: playback;
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        padding: 0 .25rem;
+        min-width: 0;
+    }
+    #webbook-audio-controls[hidden] {
+        display: none;
+    }
+    #webbook-audio-controls button {
+        flex: 0 0 auto;
+        padding: .45rem .5rem;
+    }
+    #webbook-audio-controls button:disabled {
+        opacity: .45;
+        cursor: default;
+    }
+    #webbook-audio-controls #webbook-seek {
+        flex: 1;
+        min-width: 0;
+        accent-color: white;
+    }
+    #webbook-audio-controls #webbook-time {
+        color: white;
+        font-size: .75rem;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    button[popovertarget=webbook-toc-nav] {
+        grid-area: toc;
+        justify-self: start;
+    }
+    button[popovertarget=webbook-settings] {
+        grid-area: settings;
+    }
+    button[popovertarget=webbook-info] {
+        grid-area: about;
+    }
+    button[popovertarget].open {
+        border: thin gray solid;
+    }
+}
+#webbook-toolbar.visible,
+#webbook-toolbar:focus-within {
+    opacity: 1;
+}
+/* top toolbar */
+#webbook-top-toolbar {
+    background: var(--offblack);
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+    grid-area: topbar;
+    padding: .5rem 0;
+    z-index: 20;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    button {
+        background: none;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: .5rem .75rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    button[popovertarget].open {
+        border: thin gray solid;
+    }
+}
+#webbook-top-toolbar.visible,
+#webbook-top-toolbar:focus-within {
+    opacity: 1;
+}
+@media(max-width: 45rem) {
+    #webbook-toolbar button svg,
+    #webbook-top-toolbar button svg {
+        width: 28px;
+        height: 28px;
+    }
+}

@@ -1,170 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <title>
-      Moby-Dick</title>
-    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-
+<html lang="en-US" data-webbook-contract="0"><head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 134. The Chase—Second Day.</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="urn:isbn:9780316000000">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
+<body>
     <main>
+<section class="body-rw Chapter-rw epubtype_bodymatter epubtype_chapter">
+<header>
+<h1 id="h-0" tabindex="-1">Chapter 134. The Chase—Second Day.<a href="#h-0" rel="bookmark" class="webbook" title="Link to Chapter 134. The Chase—Second Day." aria-label="Link to Chapter 134. The Chase—Second Day."><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1></header>
+<p>At day-break, the three mast-heads were punctually manned afresh.</p>
+<p>“D’ye see him?” cried Ahab after allowing a little space for the light to spread.</p>
+<p>“See nothing, sir.”</p>
+<p>“Turn up all hands and make sail! he travels faster than I thought for;—the top-gallant sails!—aye, they should have been kept on her all night. But no matter—’tis but resting for the rush.”</p>
+<p>Here be it said, that this pertinacious pursuit of one particular whale, continued through day into night, and through night into day, is a thing by no means unprecedented in the South sea fishery. For such is the wonderful skill, prescience of experience, and invincible confidence acquired by some great natural geniuses among the Nantucket commanders; that from the simple observation of a whale when last descried, they will, under certain given circumstances, pretty accurately foretell both the direction in which he will continue to swim for a time, while out of sight, as well as his probable rate of progression during that period. And, in these cases, somewhat as a pilot, when about losing sight of a coast, whose general trending he well knows, and which he desires shortly to return to again, but at some further point; like as this pilot stands by his compass, and takes the precise bearing of the cape at present visible, in order the more certainly to hit aright the remote, unseen headland, eventually to be visited: so does the fisherman, at his compass, with the whale; for after being chased, and diligently marked, through several hours of daylight, then, when night obscures the fish, the creature’s future wake through the darkness is almost as established to the sagacious mind of the hunter, as the pilot’s coast is to him. So that to this hunter’s wondrous skill, the proverbial evanescence of a thing writ in water, a wake, is to all desired purposes well nigh as reliable as the steadfast land. And as the mighty iron Leviathan of the modern railway is so familiarly known in its every pace, that, with watches in their hands, men time his rate as doctors that of a baby’s pulse; and lightly say of it, the up train or the down train will reach such or such a spot, at such or such an hour; even so, almost, there are occasions when these Nantucketers time that other Leviathan of the deep, according to the observed humor of his speed; and say to themselves, so many hours hence this whale will have gone two hundred miles, will have about reached this or that degree of latitude or longitude. But to render this acuteness at all successful in the end, the wind and the sea must be the whaleman’s allies; for of what present avail to the becalmed or windbound mariner is the skill that assures him he is exactly ninety-three leagues and a quarter from his port? Inferable from these statements, are many collateral subtile matters touching the chase of whales.</p>
+<p>The ship tore on; leaving such a furrow in the sea as when a cannon-ball, missent, becomes a plough-share and turns up the level field.</p>
+<p>“By salt and hemp!” cried Stubb, “but this swift motion of the deck creeps up one’s legs and tingles at the heart. This ship and I are two brave fellows!—Ha, ha! Some one take me up, and launch me, spine-wise, on the sea,—for by live-oaks! my spine’s a keel. Ha, ha! we go the gait that leaves no dust behind!”</p>
+<p>“There she blows—she blows!—she blows!—right ahead!” was now the mast-head cry.</p>
+<p>“Aye, aye!” cried Stubb, “I knew it—ye can’t escape—blow on and split your spout, O whale! the mad fiend himself is after ye! blow your trump—blister your lungs!—Ahab will dam off your blood, as a miller shuts his watergate upon the stream!”</p>
+<p>And Stubb did but speak out for well nigh all that crew. The frenzies of the chase had by this time worked them bubblingly up, like old wine worked anew. Whatever pale fears and forebodings some of them might have felt before; these were not only now kept out of sight through the growing awe of Ahab, but they were broken up, and on all sides routed, as timid prairie hares that scatter before the bounding bison. The hand of Fate had snatched all their souls; and by the stirring perils of the previous day; the rack of the past night’s suspense; the fixed, unfearing, blind, reckless way in which their wild craft went plunging towards its flying mark; by all these things, their hearts were bowled along. The wind that made great bellies of their sails, and rushed the vessel on by arms invisible as irresistible; this seemed the symbol of that unseen agency which so enslaved them to the race.</p>
+<p>They were one man, not thirty. For as the one ship that held them all; though it was put together of all contrasting things—oak, and maple, and pine wood; iron, and pitch, and hemp—yet all these ran into each other in the one concrete hull, which shot on its way, both balanced and directed by the long central keel; even so, all the individualities of the crew, this man’s valor, that man’s fear; guilt and guiltiness, all varieties were welded into oneness, and were all directed to that fatal goal which Ahab their one lord and keel did point to.</p>
+<p>The rigging lived. The mast-heads, like the tops of tall palms, were outspreadingly tufted with arms and legs. Clinging to a spar with one hand, some reached forth the other with impatient wavings; others, shading their eyes from the vivid sunlight, sat far out on the rocking yards; all the spars in full bearing of mortals, ready and ripe for their fate. Ah! how they still strove through that infinite blueness to seek out the thing that might destroy them!</p>
+<p>“Why sing ye not out for him, if ye see him?” cried Ahab, when, after the lapse of some minutes since the first cry, no more had been heard. “Sway me up, men; ye have been deceived; not Moby Dick casts one odd jet that way, and then disappears.”</p>
+<p>It was even so; in their headlong eagerness, the men had mistaken some other thing for the whale-spout, as the event itself soon proved; for hardly had Ahab reached his perch; hardly was the rope belayed to its pin on deck, when he struck the key-note to an orchestra, that made the air vibrate as with the combined discharges of rifles. The triumphant halloo of thirty buckskin lungs was heard, as—much nearer to the ship than the place of the imaginary jet, less than a mile ahead—Moby Dick bodily burst into view! For not by any calm and indolent spoutings; not by the peaceable gush of that mystic fountain in his head, did the White Whale now reveal his vicinity; but by the far more wondrous phenomenon of breaching. Rising with his utmost velocity from the furthest depths, the Sperm Whale thus booms his entire bulk into the pure element of air, and piling up a mountain of dazzling foam, shows his place to the distance of seven miles and more. In those moments, the torn, enraged waves he shakes off, seem his mane; in some cases, this breaching is his act of defiance.</p>
+<p>“There she breaches! there she breaches!” was the cry, as in his immeasurable bravadoes the White Whale tossed himself salmon-like to Heaven. So suddenly seen in the blue plain of the sea, and relieved against the still bluer margin of the sky, the spray that he raised, for the moment, intolerably glittered and glared like a glacier; and stood there gradually fading and fading away from its first sparkling intensity, to the dim mistiness of an advancing shower in a vale.</p>
+<p>“Aye, breach your last to the sun, Moby Dick!” cried Ahab, “thy hour and thy harpoon are at hand!—Down! down all of ye, but one man at the fore. The boats!—stand by!”</p>
+<p>Unmindful of the tedious rope-ladders of the shrouds, the men, like shooting stars, slid to the deck, by the isolated backstays and halyards; while Ahab, less dartingly, but still rapidly was dropped from his perch.</p>
+<p>“Lower away,” he cried, so soon as he had reached his boat—a spare one, rigged the afternoon previous. “Mr. Starbuck, the ship is thine—keep away from the boats, but keep near them. Lower, all!”</p>
+<p>As if to strike a quick terror into them, by this time being the first assailant himself, Moby Dick had turned, and was now coming for the three crews. Ahab’s boat was central; and cheering his men, he told them he would take the whale head-and-head,—that is, pull straight up to his forehead,—a not uncommon thing; for when within a certain limit, such a course excludes the coming onset from the whale’s sidelong vision. But ere that close limit was gained, and while yet all three boats were plain as the ship’s three masts to his eye; the White Whale churning himself into furious speed, almost in an instant as it were, rushing among the boats with open jaws, and a lashing tail, offered appalling battle on every side; and heedless of the irons darted at him from every boat, seemed only intent on annihilating each separate plank of which those boats were made. But skilfully manoeuvred, incessantly wheeling like trained chargers in the field; the boats for a while eluded him; though, at times, but by a plank’s breadth; while all the time, Ahab’s unearthly slogan tore every other cry but his to shreds.</p>
+<p>But at last in his untraceable evolutions, the White Whale so crossed and recrossed, and in a thousand ways entangled the slack of the three lines now fast to him, that they foreshortened, and, of themselves, warped the devoted boats towards the planted irons in him; though now for a moment the whale drew aside a little, as if to rally for a more tremendous charge. Seizing that opportunity, Ahab first paid out more line: and then was rapidly hauling and jerking in upon it again—hoping that way to disencumber it of some snarls—when lo!—a sight more savage than the embattled teeth of sharks!</p>
+<p>Caught and twisted—corkscrewed in the mazes of the line, loose harpoons and lances, with all their bristling barbs and points, came flashing and dripping up to the chocks in the bows of Ahab’s boat. Only one thing could be done. Seizing the boat-knife, he critically reached within—through—and then, without—the rays of steel; dragged in the line beyond, passed it, inboard, to the bowsman, and then, twice sundering the rope near the chocks—dropped the intercepted fagot of steel into the sea; and was all fast again. That instant, the White Whale made a sudden rush among the remaining tangles of the other lines; by so doing, irresistibly dragged the more involved boats of Stubb and Flask towards his flukes; dashed them together like two rolling husks on a surf-beaten beach, and then, diving down into the sea, disappeared in a boiling maelstrom, in which, for a space, the odorous cedar chips of the wrecks danced round and round, like the grated nutmeg in a swiftly stirred bowl of punch.</p>
+<p>While the two crews were yet circling in the waters, reaching out after the revolving line-tubs, oars, and other floating furniture, while aslope little Flask bobbed up and down like an empty vial, twitching his legs upwards to escape the dreaded jaws of sharks; and Stubb was lustily singing out for some one to ladle him up; and while the old man’s line—now parting—admitted of his pulling into the creamy pool to rescue whom he could;—in that wild simultaneousness of a thousand concreted perils,—Ahab’s yet unstricken boat seemed drawn up towards Heaven by invisible wires,—as, arrow-like, shooting perpendicularly from the sea, the White Whale dashed his broad forehead against its bottom, and sent it, turning over and over, into the air; till it fell again—gunwale downwards—and Ahab and his men struggled out from under it, like seals from a sea-side cave.</p>
+<p>The first uprising momentum of the whale—modifying its direction as he struck the surface—involuntarily launched him along it, to a little distance from the centre of the destruction he had made; and with his back to it, he now lay for a moment slowly feeling with his flukes from side to side; and whenever a stray oar, bit of plank, the least chip or crumb of the boats touched his skin, his tail swiftly drew back, and came sideways smiting the sea. But soon, as if satisfied that his work for that time was done, he pushed his pleated forehead through the ocean, and trailing after him the intertangled lines, continued his leeward way at a traveller’s methodic pace.</p>
+<p>As before, the attentive ship having descried the whole fight, again came bearing down to the rescue, and dropping a boat, picked up the floating mariners, tubs, oars, and whatever else could be caught at, and safely landed them on her decks. Some sprained shoulders, wrists, and ankles; livid contusions; wrenched harpoons and lances; inextricable intricacies of rope; shattered oars and planks; all these were there; but no fatal or even serious ill seemed to have befallen any one. As with Fedallah the day before, so Ahab was now found grimly clinging to his boat’s broken half, which afforded a comparatively easy float; nor did it so exhaust him as the previous day’s mishap.</p>
+<p>But when he was helped to the deck, all eyes were fastened upon him; as instead of standing by himself he still half-hung upon the shoulder of Starbuck, who had thus far been the foremost to assist him. His ivory leg had been snapped off, leaving but one short sharp splinter.</p>
+<p>“Aye, aye, Starbuck, ‘tis sweet to lean sometimes, be the leaner who he will; and would old Ahab had leaned oftener than he has.”</p>
+<p>“The ferrule has not stood, sir,” said the carpenter, now coming up; “I put good work into that leg.”</p>
+<p>“But no bones broken, sir, I hope,” said Stubb with true concern.</p>
+<p>“Aye! and all splintered to pieces, Stubb!—d’ye see it.—But even with a broken bone, old Ahab is untouched; and I account no living bone of mine one jot more me, than this dead one that’s lost. Nor white whale, nor man, nor fiend, can so much as graze old Ahab in his own proper and inaccessible being. Can any lead touch yonder floor, any mast scrape yonder roof?—Aloft there! which way?”</p>
+<p>“Dead to leeward, sir.”</p>
+<p>“Up helm, then; pile on the sail again, ship keepers! down the rest of the spare boats and rig them—Mr. Starbuck away, and muster the boat’s crews.”</p>
+<p>“Let me first help thee towards the bulwarks, sir.”</p>
+<p>“Oh, oh, oh! how this splinter gores me now! Accursed fate! that the unconquerable captain in the soul should have such a craven mate!”</p>
+<p>“Sir?”</p>
+<p>“My body, man, not thee. Give me something for a cane—there, that shivered lance will do. Muster the men. Surely I have not seen him yet. By heaven it cannot be!—missing?—quick! call them all.”</p>
+<p>The old man’s hinted thought was true. Upon mustering the company, the Parsee was not there.</p>
+<p>“The Parsee!” cried Stubb—"he must have been caught in—”</p>
+<p>“The black vomit wrench thee!—run all of ye above, alow, cabin, forecastle—find him—not gone—not gone!”</p>
+<p>But quickly they returned to him with the tidings that the Parsee was nowhere to be found.</p>
+<p>“Aye, sir,” said Stubb—"caught among the tangles of your line—I thought I saw him dragging under.”</p>
+<p>“MY line! MY line? Gone?—gone? What means that little word?—What death-knell rings in it, that old Ahab shakes as if he were the belfry. The harpoon, too!—toss over the litter there,—d’ye see it?—the forged iron, men, the white whale’s—no, no, no,—blistered fool! this hand did dart it!—'tis in the fish!—Aloft there! Keep him nailed—Quick!—all hands to the rigging of the boats—collect the oars—harpooneers! the irons, the irons!—hoist the royals higher—a pull on all the sheets!—helm there! steady, steady for your life! I’ll ten times girdle the unmeasured globe; yea and dive straight through it, but I’ll slay him yet!</p>
+<p>“Great God! but for one single instant show thyself,” cried Starbuck; “never, never wilt thou capture him, old man—In Jesus’ name no more of this, that’s worse than devil’s madness. Two days chased; twice stove to splinters; thy very leg once more snatched from under thee; thy evil shadow gone—all good angels mobbing thee with warnings:—</p>
+<p>“What more wouldst thou have?—Shall we keep chasing this murderous fish till he swamps the last man? Shall we be dragged by him to the bottom of the sea? Shall we be towed by him to the infernal world? Oh, oh,—Impiety and blasphemy to hunt him more!”</p>
+<p>“Starbuck, of late I’ve felt strangely moved to thee; ever since that hour we both saw—thou know’st what, in one another’s eyes. But in this matter of the whale, be the front of thy face to me as the palm of this hand—a lipless, unfeatured blank. Ahab is for ever Ahab, man. This whole act’s immutably decreed. ‘Twas rehearsed by thee and me a billion years before this ocean rolled. Fool! I am the Fates’ lieutenant; I act under orders. Look thou, underling! that thou obeyest mine.—Stand round me, men. Ye see an old man cut down to the stump; leaning on a shivered lance; propped up on a lonely foot. ‘Tis Ahab—his body’s part; but Ahab’s soul’s a centipede, that moves upon a hundred legs. I feel strained, half stranded, as ropes that tow dismasted frigates in a gale; and I may look so. But ere I break, yell hear me crack; and till ye hear THAT, know that Ahab’s hawser tows his purpose yet. Believe ye, men, in the things called omens? Then laugh aloud, and cry encore! For ere they drown, drowning things will twice rise to the surface; then rise again, to sink for evermore. So with Moby Dick—two days he’s floated—tomorrow will be the third. Aye, men, he’ll rise once more,—but only to spout his last! D’ye feel brave men, brave?”</p>
+<p>“As fearless fire,” cried Stubb.</p>
+<p>“And as mechanical,” muttered Ahab. Then as the men went forward, he muttered on: “The things called omens! And yesterday I talked the same to Starbuck there, concerning my broken boat. Oh! how valiantly I seek to drive out of others’ hearts what’s clinched so fast in mine!—The Parsee—the Parsee!—gone, gone? and he was to go before:—but still was to be seen again ere I could perish—How’s that?—There’s a riddle now might baffle all the lawyers backed by the ghosts of the whole line of judges:—like a hawk’s beak it pecks my brain. I’LL, I’LL solve it, though!”</p>
+<p>When dusk descended, the whale was still in sight to leeward.</p>
+<p>So once more the sail was shortened, and everything passed nearly as on the previous night; only, the sound of hammers, and the hum of the grindstone was heard till nearly daylight, as the men toiled by lanterns in the complete and careful rigging of the spare boats and sharpening their fresh weapons for the morrow. Meantime, of the broken keel of Ahab’s wrecked craft the carpenter made him another leg; while still as on the night before, slouched Ahab stood fixed within his scuttle; his hid, heliotrope glance anticipatingly gone backward on its dial; sat due eastward for the earliest sun.</p>
+</section></main>
 
-      <section class="body-rw Chapter-rw epubtype_bodymatter epubtype_chapter">
-        <header>
-          <h1 id="h-0">Chapter 134. The Chase—Second Day.<a href="#h-0" title="Link to heading Chapter 134. The Chase—Second Day." class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-        </header>
-        <p>At day-break, the three mast-heads were punctually manned afresh.</p>
-        <p>“D’ye see him?” cried Ahab after allowing a little space for the light to spread.</p>
-        <p>“See nothing, sir.”</p>
-        <p>“Turn up all hands and make sail! he travels faster than I thought for;—the top-gallant sails!—aye, they should have been kept on her all night. But no matter—’tis but resting for the rush.”</p>
-        <p>Here be it said, that this pertinacious pursuit of one particular whale, continued through day into night, and through night into day, is a thing by no means unprecedented in the South sea fishery. For such is the wonderful skill, prescience of experience, and invincible confidence acquired by some great natural geniuses among the Nantucket commanders; that from the simple observation of a whale when last descried, they will, under certain given circumstances, pretty accurately foretell both the direction in which he will continue to swim for a time, while out of sight, as well as his probable rate of progression during that period. And, in these cases, somewhat as a pilot, when about losing sight of a coast, whose general trending he well knows, and which he desires shortly to return to again, but at some further point; like as this pilot stands by his compass, and takes the precise bearing of the cape at present visible, in order the more certainly to hit aright the remote, unseen headland, eventually to be visited: so does the fisherman, at his compass, with the whale; for after being chased, and diligently marked, through several hours of daylight, then, when night obscures the fish, the creature’s future wake through the darkness is almost as established to the sagacious mind of the hunter, as the pilot’s coast is to him. So that to this hunter’s wondrous skill, the proverbial evanescence of a thing writ in water, a wake, is to all desired purposes well nigh as reliable as the steadfast land. And as the mighty iron Leviathan of the modern railway is so familiarly known in its every pace, that, with watches in their hands, men time his rate as doctors that of a baby’s pulse; and lightly say of it, the up train or the down train will reach such or such a spot, at such or such an hour; even so, almost, there are occasions when these Nantucketers time that other Leviathan of the deep, according to the observed humor of his speed; and say to themselves, so many hours hence this whale will have gone two hundred miles, will have about reached this or that degree of latitude or longitude. But to render this acuteness at all successful in the end, the wind and the sea must be the whaleman’s allies; for of what present avail to the becalmed or windbound mariner is the skill that assures him he is exactly ninety-three leagues and a quarter from his port? Inferable from these statements, are many collateral subtile matters touching the chase of whales.</p>
-        <p>The ship tore on; leaving such a furrow in the sea as when a cannon-ball, missent, becomes a plough-share and turns up the level field.</p>
-        <p>“By salt and hemp!” cried Stubb, “but this swift motion of the deck creeps up one’s legs and tingles at the heart. This ship and I are two brave fellows!—Ha, ha! Some one take me up, and launch me, spine-wise, on the sea,—for by live-oaks! my spine’s a keel. Ha, ha! we go the gait that leaves no dust behind!”</p>
-        <p>“There she blows—she blows!—she blows!—right ahead!” was now the mast-head cry.</p>
-        <p>“Aye, aye!” cried Stubb, “I knew it—ye can’t escape—blow on and split your spout, O whale! the mad fiend himself is after ye! blow your trump—blister your lungs!—Ahab will dam off your blood, as a miller shuts his watergate upon the stream!”</p>
-        <p>And Stubb did but speak out for well nigh all that crew. The frenzies of the chase had by this time worked them bubblingly up, like old wine worked anew. Whatever pale fears and forebodings some of them might have felt before; these were not only now kept out of sight through the growing awe of Ahab, but they were broken up, and on all sides routed, as timid prairie hares that scatter before the bounding bison. The hand of Fate had snatched all their souls; and by the stirring perils of the previous day; the rack of the past night’s suspense; the fixed, unfearing, blind, reckless way in which their wild craft went plunging towards its flying mark; by all these things, their hearts were bowled along. The wind that made great bellies of their sails, and rushed the vessel on by arms invisible as irresistible; this seemed the symbol of that unseen agency which so enslaved them to the race.</p>
-        <p>They were one man, not thirty. For as the one ship that held them all; though it was put together of all contrasting things—oak, and maple, and pine wood; iron, and pitch, and hemp—yet all these ran into each other in the one concrete hull, which shot on its way, both balanced and directed by the long central keel; even so, all the individualities of the crew, this man’s valor, that man’s fear; guilt and guiltiness, all varieties were welded into oneness, and were all directed to that fatal goal which Ahab their one lord and keel did point to.</p>
-        <p>The rigging lived. The mast-heads, like the tops of tall palms, were outspreadingly tufted with arms and legs. Clinging to a spar with one hand, some reached forth the other with impatient wavings; others, shading their eyes from the vivid sunlight, sat far out on the rocking yards; all the spars in full bearing of mortals, ready and ripe for their fate. Ah! how they still strove through that infinite blueness to seek out the thing that might destroy them!</p>
-        <p>“Why sing ye not out for him, if ye see him?” cried Ahab, when, after the lapse of some minutes since the first cry, no more had been heard. “Sway me up, men; ye have been deceived; not Moby Dick casts one odd jet that way, and then disappears.”</p>
-        <p>It was even so; in their headlong eagerness, the men had mistaken some other thing for the whale-spout, as the event itself soon proved; for hardly had Ahab reached his perch; hardly was the rope belayed to its pin on deck, when he struck the key-note to an orchestra, that made the air vibrate as with the combined discharges of rifles. The triumphant halloo of thirty buckskin lungs was heard, as—much nearer to the ship than the place of the imaginary jet, less than a mile ahead—Moby Dick bodily burst into view! For not by any calm and indolent spoutings; not by the peaceable gush of that mystic fountain in his head, did the White Whale now reveal his vicinity; but by the far more wondrous phenomenon of breaching. Rising with his utmost velocity from the furthest depths, the Sperm Whale thus booms his entire bulk into the pure element of air, and piling up a mountain of dazzling foam, shows his place to the distance of seven miles and more. In those moments, the torn, enraged waves he shakes off, seem his mane; in some cases, this breaching is his act of defiance.</p>
-        <p>“There she breaches! there she breaches!” was the cry, as in his immeasurable bravadoes the White Whale tossed himself salmon-like to Heaven. So suddenly seen in the blue plain of the sea, and relieved against the still bluer margin of the sky, the spray that he raised, for the moment, intolerably glittered and glared like a glacier; and stood there gradually fading and fading away from its first sparkling intensity, to the dim mistiness of an advancing shower in a vale.</p>
-        <p>“Aye, breach your last to the sun, Moby Dick!” cried Ahab, “thy hour and thy harpoon are at hand!—Down! down all of ye, but one man at the fore. The boats!—stand by!”</p>
-        <p>Unmindful of the tedious rope-ladders of the shrouds, the men, like shooting stars, slid to the deck, by the isolated backstays and halyards; while Ahab, less dartingly, but still rapidly was dropped from his perch.</p>
-        <p>“Lower away,” he cried, so soon as he had reached his boat—a spare one, rigged the afternoon previous. “Mr. Starbuck, the ship is thine—keep away from the boats, but keep near them. Lower, all!”</p>
-        <p>As if to strike a quick terror into them, by this time being the first assailant himself, Moby Dick had turned, and was now coming for the three crews. Ahab’s boat was central; and cheering his men, he told them he would take the whale head-and-head,—that is, pull straight up to his forehead,—a not uncommon thing; for when within a certain limit, such a course excludes the coming onset from the whale’s sidelong vision. But ere that close limit was gained, and while yet all three boats were plain as the ship’s three masts to his eye; the White Whale churning himself into furious speed, almost in an instant as it were, rushing among the boats with open jaws, and a lashing tail, offered appalling battle on every side; and heedless of the irons darted at him from every boat, seemed only intent on annihilating each separate plank of which those boats were made. But skilfully manoeuvred, incessantly wheeling like trained chargers in the field; the boats for a while eluded him; though, at times, but by a plank’s breadth; while all the time, Ahab’s unearthly slogan tore every other cry but his to shreds.</p>
-        <p>But at last in his untraceable evolutions, the White Whale so crossed and recrossed, and in a thousand ways entangled the slack of the three lines now fast to him, that they foreshortened, and, of themselves, warped the devoted boats towards the planted irons in him; though now for a moment the whale drew aside a little, as if to rally for a more tremendous charge. Seizing that opportunity, Ahab first paid out more line: and then was rapidly hauling and jerking in upon it again—hoping that way to disencumber it of some snarls—when lo!—a sight more savage than the embattled teeth of sharks!</p>
-        <p>Caught and twisted—corkscrewed in the mazes of the line, loose harpoons and lances, with all their bristling barbs and points, came flashing and dripping up to the chocks in the bows of Ahab’s boat. Only one thing could be done. Seizing the boat-knife, he critically reached within—through—and then, without—the rays of steel; dragged in the line beyond, passed it, inboard, to the bowsman, and then, twice sundering the rope near the chocks—dropped the intercepted fagot of steel into the sea; and was all fast again. That instant, the White Whale made a sudden rush among the remaining tangles of the other lines; by so doing, irresistibly dragged the more involved boats of Stubb and Flask towards his flukes; dashed them together like two rolling husks on a surf-beaten beach, and then, diving down into the sea, disappeared in a boiling maelstrom, in which, for a space, the odorous cedar chips of the wrecks danced round and round, like the grated nutmeg in a swiftly stirred bowl of punch.</p>
-        <p>While the two crews were yet circling in the waters, reaching out after the revolving line-tubs, oars, and other floating furniture, while aslope little Flask bobbed up and down like an empty vial, twitching his legs upwards to escape the dreaded jaws of sharks; and Stubb was lustily singing out for some one to ladle him up; and while the old man’s line—now parting—admitted of his pulling into the creamy pool to rescue whom he could;—in that wild simultaneousness of a thousand concreted perils,—Ahab’s yet unstricken boat seemed drawn up towards Heaven by invisible wires,—as, arrow-like, shooting perpendicularly from the sea, the White Whale dashed his broad forehead against its bottom, and sent it, turning over and over, into the air; till it fell again—gunwale downwards—and Ahab and his men struggled out from under it, like seals from a sea-side cave.</p>
-        <p>The first uprising momentum of the whale—modifying its direction as he struck the surface—involuntarily launched him along it, to a little distance from the centre of the destruction he had made; and with his back to it, he now lay for a moment slowly feeling with his flukes from side to side; and whenever a stray oar, bit of plank, the least chip or crumb of the boats touched his skin, his tail swiftly drew back, and came sideways smiting the sea. But soon, as if satisfied that his work for that time was done, he pushed his pleated forehead through the ocean, and trailing after him the intertangled lines, continued his leeward way at a traveller’s methodic pace.</p>
-        <p>As before, the attentive ship having descried the whole fight, again came bearing down to the rescue, and dropping a boat, picked up the floating mariners, tubs, oars, and whatever else could be caught at, and safely landed them on her decks. Some sprained shoulders, wrists, and ankles; livid contusions; wrenched harpoons and lances; inextricable intricacies of rope; shattered oars and planks; all these were there; but no fatal or even serious ill seemed to have befallen any one. As with Fedallah the day before, so Ahab was now found grimly clinging to his boat’s broken half, which afforded a comparatively easy float; nor did it so exhaust him as the previous day’s mishap.</p>
-        <p>But when he was helped to the deck, all eyes were fastened upon him; as instead of standing by himself he still half-hung upon the shoulder of Starbuck, who had thus far been the foremost to assist him. His ivory leg had been snapped off, leaving but one short sharp splinter.</p>
-        <p>“Aye, aye, Starbuck, ‘tis sweet to lean sometimes, be the leaner who he will; and would old Ahab had leaned oftener than he has.”</p>
-        <p>“The ferrule has not stood, sir,” said the carpenter, now coming up; “I put good work into that leg.”</p>
-        <p>“But no bones broken, sir, I hope,” said Stubb with true concern.</p>
-        <p>“Aye! and all splintered to pieces, Stubb!—d’ye see it.—But even with a broken bone, old Ahab is untouched; and I account no living bone of mine one jot more me, than this dead one that’s lost. Nor white whale, nor man, nor fiend, can so much as graze old Ahab in his own proper and inaccessible being. Can any lead touch yonder floor, any mast scrape yonder roof?—Aloft there! which way?”</p>
-        <p>“Dead to leeward, sir.”</p>
-        <p>“Up helm, then; pile on the sail again, ship keepers! down the rest of the spare boats and rig them—Mr. Starbuck away, and muster the boat’s crews.”</p>
-        <p>“Let me first help thee towards the bulwarks, sir.”</p>
-        <p>“Oh, oh, oh! how this splinter gores me now! Accursed fate! that the unconquerable captain in the soul should have such a craven mate!”</p>
-        <p>“Sir?”</p>
-        <p>“My body, man, not thee. Give me something for a cane—there, that shivered lance will do. Muster the men. Surely I have not seen him yet. By heaven it cannot be!—missing?—quick! call them all.”</p>
-        <p>The old man’s hinted thought was true. Upon mustering the company, the Parsee was not there.</p>
-        <p>“The Parsee!” cried Stubb—"he must have been caught in—”</p>
-        <p>“The black vomit wrench thee!—run all of ye above, alow, cabin, forecastle—find him—not gone—not gone!”</p>
-        <p>But quickly they returned to him with the tidings that the Parsee was nowhere to be found.</p>
-        <p>“Aye, sir,” said Stubb—"caught among the tangles of your line—I thought I saw him dragging under.”</p>
-        <p>“MY line! MY line? Gone?—gone? What means that little word?—What death-knell rings in it, that old Ahab shakes as if he were the belfry. The harpoon, too!—toss over the litter there,—d’ye see it?—the forged iron, men, the white whale’s—no, no, no,—blistered fool! this hand did dart it!—'tis in the fish!—Aloft there! Keep him nailed—Quick!—all hands to the rigging of the boats—collect the oars—harpooneers! the irons, the irons!—hoist the royals higher—a pull on all the sheets!—helm there! steady, steady for your life! I’ll ten times girdle the unmeasured globe; yea and dive straight through it, but I’ll slay him yet!</p>
-        <p>“Great God! but for one single instant show thyself,” cried Starbuck; “never, never wilt thou capture him, old man—In Jesus’ name no more of this, that’s worse than devil’s madness. Two days chased; twice stove to splinters; thy very leg once more snatched from under thee; thy evil shadow gone—all good angels mobbing thee with warnings:—</p>
-        <p>“What more wouldst thou have?—Shall we keep chasing this murderous fish till he swamps the last man? Shall we be dragged by him to the bottom of the sea? Shall we be towed by him to the infernal world? Oh, oh,—Impiety and blasphemy to hunt him more!”</p>
-        <p>“Starbuck, of late I’ve felt strangely moved to thee; ever since that hour we both saw—thou know’st what, in one another’s eyes. But in this matter of the whale, be the front of thy face to me as the palm of this hand—a lipless, unfeatured blank. Ahab is for ever Ahab, man. This whole act’s immutably decreed. ‘Twas rehearsed by thee and me a billion years before this ocean rolled. Fool! I am the Fates’ lieutenant; I act under orders. Look thou, underling! that thou obeyest mine.—Stand round me, men. Ye see an old man cut down to the stump; leaning on a shivered lance; propped up on a lonely foot. ‘Tis Ahab—his body’s part; but Ahab’s soul’s a centipede, that moves upon a hundred legs. I feel strained, half stranded, as ropes that tow dismasted frigates in a gale; and I may look so. But ere I break, yell hear me crack; and till ye hear THAT, know that Ahab’s hawser tows his purpose yet. Believe ye, men, in the things called omens? Then laugh aloud, and cry encore! For ere they drown, drowning things will twice rise to the surface; then rise again, to sink for evermore. So with Moby Dick—two days he’s floated—tomorrow will be the third. Aye, men, he’ll rise once more,—but only to spout his last! D’ye feel brave men, brave?”</p>
-        <p>“As fearless fire,” cried Stubb.</p>
-        <p>“And as mechanical,” muttered Ahab. Then as the men went forward, he muttered on: “The things called omens! And yesterday I talked the same to Starbuck there, concerning my broken boat. Oh! how valiantly I seek to drive out of others’ hearts what’s clinched so fast in mine!—The Parsee—the Parsee!—gone, gone? and he was to go before:—but still was to be seen again ere I could perish—How’s that?—There’s a riddle now might baffle all the lawyers backed by the ghosts of the whole line of judges:—like a hawk’s beak it pecks my brain. I’LL, I’LL solve it, though!”</p>
-        <p>When dusk descended, the whale was still in sight to leeward.</p>
-        <p>So once more the sail was shortened, and everything passed nearly as on the previous night; only, the sound of hammers, and the hum of the grindstone was heard till nearly daylight, as the men toiled by lanterns in the complete and careful rigging of the spare boats and sharpening their fresh weapons for the morrow. Meantime, of the broken keel of Ahab’s wrecked craft the carpenter made him another leg; while still as on the night before, slouched Ahab stood fixed within his scuttle; his hid, heliotrope glance anticipatingly gone backward on its dial; sat due eastward for the earliest sun.</p>
-      </section>
-    </main>
-
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="chapter_133.html" title="Previous: Chapter 133. The Chase—First Day." class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="chapter_133.html" rel="prev" title="Previous: Chapter 133. The Chase—First Day." aria-label="Previous: Chapter 133. The Chase—First Day.">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="chapter_135.html" title="Next: Chapter 135. The Chase.—Third Day." class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="chapter_135.html" title="Next: Chapter 135. The Chase.—Third Day." aria-label="Next: Chapter 135. The Chase.—Third Day." class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-2"><a href="preface_001.html">Original Transcriber’s Notes:</a></li><li id="toc-3"><a href="introduction_001.html">ETYMOLOGY.</a></li><li id="toc-4"><a href="epigraph_001.html">EXTRACTS (Supplied by a Sub-Sub-Librarian).</a></li><li id="toc-5"><a href="chapter_001.html">Chapter 1. Loomings.</a></li><li id="toc-6"><a href="chapter_002.html">Chapter 2. The Carpet-Bag.</a></li><li id="toc-7"><a href="chapter_003.html">Chapter 3. The Spouter-Inn.</a></li><li id="toc-8"><a href="chapter_004.html">Chapter 4. The Counterpane.</a></li><li id="toc-9"><a href="chapter_005.html">Chapter 5. Breakfast.</a></li><li id="toc-10"><a href="chapter_006.html">Chapter 6. The Street.</a></li><li id="toc-11"><a href="chapter_007.html">Chapter 7. The Chapel.</a></li><li id="toc-12"><a href="chapter_008.html">Chapter 8. The Pulpit.</a></li><li id="toc-13"><a href="chapter_009.html">Chapter 9. The Sermon.</a></li><li id="toc-14"><a href="chapter_010.html">Chapter 10. A Bosom Friend.</a></li><li id="toc-15"><a href="chapter_011.html">Chapter 11. Nightgown.</a></li><li id="toc-16"><a href="chapter_012.html">Chapter 12. Biographical.</a></li><li id="toc-17"><a href="chapter_013.html">Chapter 13. Wheelbarrow.</a></li><li id="toc-18"><a href="chapter_014.html">Chapter 14. Nantucket.</a></li><li id="toc-19"><a href="chapter_015.html">Chapter 15. Chowder.</a></li><li id="toc-20"><a href="chapter_016.html">Chapter 16. The Ship.</a></li><li id="toc-21"><a href="chapter_017.html">Chapter 17. The Ramadan.</a></li><li id="toc-22"><a href="chapter_018.html">Chapter 18. His Mark.</a></li><li id="toc-23"><a href="chapter_019.html">Chapter 19. The Prophet.</a></li><li id="toc-24"><a href="chapter_020.html">Chapter 20. All Astir.</a></li><li id="toc-25"><a href="chapter_021.html">Chapter 21. Going Aboard.</a></li><li id="toc-26"><a href="chapter_022.html">Chapter 22. Merry Christmas.</a></li><li id="toc-27"><a href="chapter_023.html">Chapter 23. The Lee Shore.</a></li><li id="toc-28"><a href="chapter_024.html">Chapter 24. The Advocate.</a></li><li id="toc-29"><a href="chapter_025.html">Chapter 25. Postscript.</a></li><li id="toc-30"><a href="chapter_026.html">Chapter 26. Knights and Squires.</a></li><li id="toc-31"><a href="chapter_027.html">Chapter 27. Knights and Squires.</a></li><li id="toc-32"><a href="chapter_028.html">Chapter 28. Ahab.</a></li><li id="toc-33"><a href="chapter_029.html">Chapter 29. Enter Ahab; to Him, Stubb.</a></li><li id="toc-34"><a href="chapter_030.html">Chapter 30. The Pipe.</a></li><li id="toc-35"><a href="chapter_031.html">Chapter 31. Queen Mab.</a></li><li id="toc-36"><a href="chapter_032.html">Chapter 32. Cetology.</a></li><li id="toc-37"><a href="chapter_033.html">Chapter 33. The Specksnyder.</a></li><li id="toc-38"><a href="chapter_034.html">Chapter 34. The Cabin-Table.</a></li><li id="toc-39"><a href="chapter_035.html">Chapter 35. The Mast-Head.</a></li><li id="toc-40"><a href="chapter_036.html">Chapter 36. The Quarter-Deck.</a></li><li id="toc-41"><a href="chapter_037.html">Chapter 37. Sunset.</a></li><li id="toc-42"><a href="chapter_038.html">Chapter 38. Dusk.</a></li><li id="toc-43"><a href="chapter_039.html">Chapter 39. First Night Watch.</a></li><li id="toc-44"><a href="chapter_040.html">Chapter 40. Midnight, Forecastle.</a></li><li id="toc-45"><a href="chapter_041.html">Chapter 41. Moby Dick.</a></li><li id="toc-46"><a href="chapter_042.html">Chapter 42. The Whiteness of The Whale.</a></li><li id="toc-47"><a href="chapter_043.html">Chapter 43. Hark!</a></li><li id="toc-48"><a href="chapter_044.html">Chapter 44. The Chart.</a></li><li id="toc-49"><a href="chapter_045.html">Chapter 45. The Affidavit.</a></li><li id="toc-50"><a href="chapter_046.html">Chapter 46. Surmises.</a></li><li id="toc-51"><a href="chapter_047.html">Chapter 47. The Mat-Maker.</a></li><li id="toc-52"><a href="chapter_048.html">Chapter 48. The First Lowering.</a></li><li id="toc-53"><a href="chapter_049.html">Chapter 49. The Hyena.</a></li><li id="toc-54"><a href="chapter_050.html">Chapter 50. Ahab’s Boat and Crew. Fedallah.</a></li><li id="toc-55"><a href="chapter_051.html">Chapter 51. The Spirit-Spout.</a></li><li id="toc-56"><a href="chapter_052.html">Chapter 52. The Albatross.</a></li><li id="toc-57"><a href="chapter_053.html">Chapter 53. The Gam.</a></li><li id="toc-58"><a href="chapter_054.html">Chapter 54. The Town-Ho’s Story.</a></li><li id="toc-59"><a href="chapter_055.html">Chapter 55. Of the Monstrous Pictures of Whales.</a></li><li id="toc-60"><a href="chapter_056.html">Chapter 56. Of the Less Erroneous Pictures of Whales, and the True</a></li><li id="toc-61"><a href="chapter_057.html">Chapter 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in</a></li><li id="toc-62"><a href="chapter_058.html">Chapter 58. Brit.</a></li><li id="toc-63"><a href="chapter_059.html">Chapter 59. Squid.</a></li><li id="toc-64"><a href="chapter_060.html">Chapter 60. The Line.</a></li><li id="toc-65"><a href="chapter_061.html">Chapter 61. Stubb Kills a Whale.</a></li><li id="toc-66"><a href="chapter_062.html">Chapter 62. The Dart.</a></li><li id="toc-67"><a href="chapter_063.html">Chapter 63. The Crotch.</a></li><li id="toc-68"><a href="chapter_064.html">Chapter 64. Stubb’s Supper.</a></li><li id="toc-69"><a href="chapter_065.html">Chapter 65. The Whale as a Dish.</a></li><li id="toc-70"><a href="chapter_066.html">Chapter 66. The Shark Massacre.</a></li><li id="toc-71"><a href="chapter_067.html">Chapter 67. Cutting In.</a></li><li id="toc-72"><a href="chapter_068.html">Chapter 68. The Blanket.</a></li><li id="toc-73"><a href="chapter_069.html">Chapter 69. The Funeral.</a></li><li id="toc-74"><a href="chapter_070.html">Chapter 70. The Sphynx.</a></li><li id="toc-75"><a href="chapter_071.html">Chapter 71. The Jeroboam’s Story.</a></li><li id="toc-76"><a href="chapter_072.html">Chapter 72. The Monkey-Rope.</a></li><li id="toc-77"><a href="chapter_073.html">Chapter 73. Stubb and Flask Kill a Right Whale; and Then Have a Talk</a></li><li id="toc-78"><a href="chapter_074.html">Chapter 74. The Sperm Whale’s Head—Contrasted View.</a></li><li id="toc-79"><a href="chapter_075.html">Chapter 75. The Right Whale’s Head—Contrasted View.</a></li><li id="toc-80"><a href="chapter_076.html">Chapter 76. The Battering-Ram.</a></li><li id="toc-81"><a href="chapter_077.html">Chapter 77. The Great Heidelburgh Tun.</a></li><li id="toc-82"><a href="chapter_078.html">Chapter 78. Cistern and Buckets.</a></li><li id="toc-83"><a href="chapter_079.html">Chapter 79. The Prairie.</a></li><li id="toc-84"><a href="chapter_080.html">Chapter 80. The Nut.</a></li><li id="toc-85"><a href="chapter_081.html">Chapter 81. The Pequod Meets The Virgin.</a></li><li id="toc-86"><a href="chapter_082.html">Chapter 82. The Honour and Glory of Whaling.</a></li><li id="toc-87"><a href="chapter_083.html">Chapter 83. Jonah Historically Regarded.</a></li><li id="toc-88"><a href="chapter_084.html">Chapter 84. Pitchpoling.</a></li><li id="toc-89"><a href="chapter_085.html">Chapter 85. The Fountain.</a></li><li id="toc-90"><a href="chapter_086.html">Chapter 86. The Tail.</a></li><li id="toc-91"><a href="chapter_087.html">Chapter 87. The Grand Armada.</a></li><li id="toc-92"><a href="chapter_088.html">Chapter 88. Schools and Schoolmasters.</a></li><li id="toc-93"><a href="chapter_089.html">Chapter 89. Fast-Fish and Loose-Fish.</a></li><li id="toc-94"><a href="chapter_090.html">Chapter 90. Heads or Tails.</a></li><li id="toc-95"><a href="chapter_091.html">Chapter 91. The Pequod Meets The Rose-Bud.</a></li><li id="toc-96"><a href="chapter_092.html">Chapter 92. Ambergris.</a></li><li id="toc-97"><a href="chapter_093.html">Chapter 93. The Castaway.</a></li><li id="toc-98"><a href="chapter_094.html">Chapter 94. A Squeeze of the Hand.</a></li><li id="toc-99"><a href="chapter_095.html">Chapter 95. The Cassock.</a></li><li id="toc-100"><a href="chapter_096.html">Chapter 96. The Try-Works.</a></li><li id="toc-101"><a href="chapter_097.html">Chapter 97. The Lamp.</a></li><li id="toc-102"><a href="chapter_098.html">Chapter 98. Stowing Down and Clearing Up.</a></li><li id="toc-103"><a href="chapter_099.html">Chapter 99. The Doubloon.</a></li><li id="toc-104"><a href="chapter_100.html">Chapter 100. Leg and Arm.</a></li><li id="toc-105"><a href="chapter_101.html">Chapter 101. The Decanter.</a></li><li id="toc-106"><a href="chapter_102.html">Chapter 102. A Bower in the Arsacides.</a></li><li id="toc-107"><a href="chapter_103.html">Chapter 103. Measurement of The Whale’s Skeleton.</a></li><li id="toc-108"><a href="chapter_104.html">Chapter 104. The Fossil Whale.</a></li><li id="toc-109"><a href="chapter_105.html">Chapter 105. Does the Whale’s Magnitude Diminish?—Will He Perish?</a></li><li id="toc-110"><a href="chapter_106.html">Chapter 106. Ahab’s Leg.</a></li><li id="toc-111"><a href="chapter_107.html">Chapter 107. The Carpenter.</a></li><li id="toc-112"><a href="chapter_108.html">Chapter 108. Ahab and the Carpenter.</a></li><li id="toc-113"><a href="chapter_109.html">Chapter 109. Ahab and Starbuck in the Cabin.</a></li><li id="toc-114"><a href="chapter_110.html">Chapter 110. Queequeg in His Coffin.</a></li><li id="toc-115"><a href="chapter_111.html">Chapter 111. The Pacific.</a></li><li id="toc-116"><a href="chapter_112.html">Chapter 112. The Blacksmith.</a></li><li id="toc-117"><a href="chapter_113.html">Chapter 113. The Forge.</a></li><li id="toc-118"><a href="chapter_114.html">Chapter 114. The Gilder.</a></li><li id="toc-119"><a href="chapter_115.html">Chapter 115. The Pequod Meets The Bachelor.</a></li><li id="toc-120"><a href="chapter_116.html">Chapter 116. The Dying Whale.</a></li><li id="toc-121"><a href="chapter_117.html">Chapter 117. The Whale Watch.</a></li><li id="toc-122"><a href="chapter_118.html">Chapter 118. The Quadrant.</a></li><li id="toc-123"><a href="chapter_119.html">Chapter 119. The Candles.</a></li><li id="toc-124"><a href="chapter_120.html">Chapter 120. The Deck Towards the End of the First Night Watch.</a></li><li id="toc-125"><a href="chapter_121.html">Chapter 121. Midnight.—The Forecastle Bulwarks.</a></li><li id="toc-126"><a href="chapter_122.html">Chapter 122. Midnight Aloft.—Thunder and Lightning.</a></li><li id="toc-127"><a href="chapter_123.html">Chapter 123. The Musket.</a></li><li id="toc-128"><a href="chapter_124.html">Chapter 124. The Needle.</a></li><li id="toc-129"><a href="chapter_125.html">Chapter 125. The Log and Line.</a></li><li id="toc-130"><a href="chapter_126.html">Chapter 126. The Life-Buoy.</a></li><li id="toc-131"><a href="chapter_127.html">Chapter 127. The Deck.</a></li><li id="toc-132"><a href="chapter_128.html">Chapter 128. The Pequod Meets The Rachel.</a></li><li id="toc-133"><a href="chapter_129.html">Chapter 129. The Cabin.</a></li><li id="toc-134"><a href="chapter_130.html">Chapter 130. The Hat.</a></li><li id="toc-135"><a href="chapter_131.html">Chapter 131. The Pequod Meets The Delight.</a></li><li id="toc-136"><a href="chapter_132.html">Chapter 132. The Symphony.</a></li><li id="toc-137"><a href="chapter_133.html">Chapter 133. The Chase—First Day.</a></li><li id="toc-138"><a href="chapter_134.html" aria-current="page">Chapter 134. The Chase—Second Day.</a></li><li id="toc-139"><a href="chapter_135.html">Chapter 135. The Chase.—Third Day.</a></li><li id="toc-140"><a href="chapter_136.html">Epilogue</a></li><li id="toc-141"><a href="copyright.html">Copyright Page</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        
+        
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" src="images/9780316000000.jpg" alt="Cover for Moby-Dick">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>Moby-Dick</dd><dt>Author</dt><dd>Herman Melville</dd><dt>Date</dt><dd>2012-01-13T01:13:00Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

@@ -1,947 +1,677 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> Unit Thirteen </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Thirteen</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="664feee6-fc43-4ace-af04-5efffd7bdc04">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <main>
-      <section id="id_86">
-        <h1 id="dtb_9192" xml:lang="bn-IN"> Unit Thirteen <a href="#dtb_9192" title="Link to heading Unit Thirteen" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <section id="id_87">
-          <h1 id="dtb_9193" xml:lang="en-US"> Media and modes of e-communications <a href="#dtb_9193" title="Link to heading Media and modes of e-communications" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <div id="dtb_9195"><img src="EngforToday-9-style-page_153.jpg" alt="" id="dtb_9196"></div>
-          <p id="dtb_9197" xml:lang="bn-IN">After we have studied this unit, we will be able to </p>
-          <ul id="dtb_9198">
-            <li id="dtb_9199">
-              <p id="dtb_9200" xml:lang="bn-IN">surf the Internet.</p>
-            </li>
-            <li id="dtb_9201">
-              <p id="dtb_9202" xml:lang="bn-IN">read and write emails.</p>
-            </li>
-            <li id="dtb_9203">
-              <p id="dtb_9204" xml:lang="bn-IN">narrate incidents in a logical sequence.</p>
-            </li>
-            <li id="dtb_9205">
-              <p id="dtb_9206" xml:lang="bn-IN">understand texts.</p>
-            </li>
-            <li id="dtb_9207">
-              <p id="dtb_9208" xml:lang="bn-IN">read intensively and extensively</p>
-            </li>
-            <li id="dtb_9209">
-              <p id="dtb_9210" xml:lang="bn-IN">participate in debates.</p>
-            </li>
-          </ul><span title="Page-154" id="dtb_9211" class="epubtype_pagebreak"></span>
-        </section>
-        <section id="id_88">
-          <h1 id="dtb_9212" xml:lang="en-US"> Lesson 1: Media and models of e-communications <a href="#dtb_9212" title="Link to heading Lesson 1: Media and models of e-communications" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_9213" xml:lang="bn-IN">
-            <span id="dtb_9214"> <em id="dtb_9215">A</em> <em id="dtb_9216">.</em> </span>
-            <span id="dtb_9217">
+<body>
+    <main><section id="id_86"><h1 id="dtb_9192" xml:lang="bn-IN" tabindex="-1"> Unit Thirteen <a href="#dtb_9192" rel="bookmark" class="webbook" title="Link to Unit Thirteen" aria-label="Link to Unit Thirteen"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><section id="id_87"><h1 id="dtb_9193" xml:lang="en-US" tabindex="-1"> Media and modes of e-communications <a href="#dtb_9193" rel="bookmark" class="webbook" title="Link to Media and modes of e-communications" aria-label="Link to Media and modes of e-communications"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><div id="dtb_9195"><img src="images/EngforToday-9-style-page_153.jpg" alt="" id="dtb_9196"></div><p id="dtb_9197" xml:lang="bn-IN">After we have studied this unit, we will be able to </p><ul id="dtb_9198"><li id="dtb_9199">
+							<p id="dtb_9200" xml:lang="bn-IN">surf the Internet.</p>
+						</li><li id="dtb_9201">
+							<p id="dtb_9202" xml:lang="bn-IN">read and write emails.</p>
+						</li><li id="dtb_9203">
+							<p id="dtb_9204" xml:lang="bn-IN">narrate incidents in a logical sequence.</p>
+						</li><li id="dtb_9205">
+							<p id="dtb_9206" xml:lang="bn-IN">understand texts.</p>
+						</li><li id="dtb_9207">
+							<p id="dtb_9208" xml:lang="bn-IN">read intensively and extensively</p>
+						</li><li id="dtb_9209">
+							<p id="dtb_9210" xml:lang="bn-IN">participate in debates.</p>
+						</li></ul><span title="Page-154" id="dtb_9211" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 154">154</span></section><section id="id_88"><h1 id="dtb_9212" xml:lang="en-US" tabindex="-1"> Lesson 1: Media and models of e-communications <a href="#dtb_9212" rel="bookmark" class="webbook" title="Link to Lesson 1: Media and models of e-communications" aria-label="Link to Lesson 1: Media and models of e-communications"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_9213" xml:lang="bn-IN">
+						<span id="dtb_9214"> <em id="dtb_9215">A</em> <em id="dtb_9216">.</em> </span>
+						<span id="dtb_9217">
 							<em id="dtb_9218">Look at the pictures and say what you see in them. </em> </span>
-          </p>
-          <div id="dtb_9220"><img src="EngforToday-9-style-page_154_image_1.jpg" alt="" id="dtb_9221"></div>
-          <p id="dtb_9222" xml:lang="bn-IN">
-            <span id="dtb_9223"> <em id="dtb_9224">B </em> <em id="dtb_9225">Work in pairs. Discuss which of the following words you are familiar with. How are they related to e-communications?</em> </span>
-          </p>
-          <table id="dtb_9226">
-            <colgroup>
-              <col id="dtb_9227" span="1">
-            </colgroup>
-            <tbody id="dtb_9228">
-              <tr id="dtb_9229">
-                <td id="dtb_9230" colspan="1" rowspan="1">
-                  <p id="dtb_9231" xml:lang="bn-IN">facebook</p>
-                </td>
-                <td id="dtb_9232" colspan="1" rowspan="1">
-                  <p id="dtb_9233" xml:lang="bn-IN">e-mail</p>
-                </td>
-                <td id="dtb_9234" colspan="1" rowspan="1">
-                  <p id="dtb_9235" xml:lang="bn-IN">web site</p>
-                </td>
-                <td id="dtb_9236" colspan="1" rowspan="1">
-                  <p id="dtb_9237" xml:lang="bn-IN">blog</p>
-                </td>
-                <td id="dtb_9238" colspan="1" rowspan="1">
-                  <p id="dtb_9239" xml:lang="bn-IN">e-commerce</p>
-                </td>
-                <td id="dtb_9240" colspan="1" rowspan="1">
-                  <p id="dtb_9241" xml:lang="bn-IN">e-learning</p>
-                </td>
-              </tr>
-              <tr id="dtb_9242">
-                <td id="dtb_9243" colspan="1" rowspan="1">
-                  <p id="dtb_9244" xml:lang="bn-IN">iPod</p>
-                </td>
-                <td id="dtb_9245" colspan="1" rowspan="1">
-                  <p id="dtb_9246" xml:lang="bn-IN">tablet pc</p>
-                </td>
-                <td id="dtb_9247" colspan="1" rowspan="1">
-                  <p id="dtb_9248" xml:lang="bn-IN">information</p>
-                </td>
-                <td id="dtb_9249" colspan="1" rowspan="1">
-                  <p id="dtb_9250" xml:lang="bn-IN">super high way</p>
-                </td>
-                <td id="dtb_9251" colspan="1" rowspan="1">
-                  <p id="dtb_9252" xml:lang="bn-IN">social network</p>
-                </td>
-                <td id="dtb_9253" colspan="1" rowspan="1">
-                  <p id="dtb_9254" xml:lang="bn-IN">smart phone</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_9255" xml:lang="bn-IN">
-            <span id="dtb_9256"> <em id="dtb_9257">C </em> <em id="dtb_9258">.</em> </span>
-            <span id="dtb_9259">
+					</p><div id="dtb_9220"><img src="images/EngforToday-9-style-page_154_image_1.jpg" alt="" id="dtb_9221"></div><p id="dtb_9222" xml:lang="bn-IN">
+						<span id="dtb_9223"> <em id="dtb_9224">B </em> <em id="dtb_9225">Work in pairs. Discuss which of the following words you are familiar with. How are they related to e-communications?</em> </span>
+					</p><table id="dtb_9226"><colgroup><col id="dtb_9227" span="1"></colgroup><tbody id="dtb_9228"><tr id="dtb_9229"><td id="dtb_9230" colspan="1" rowspan="1">
+									<p id="dtb_9231" xml:lang="bn-IN">facebook</p>
+								</td><td id="dtb_9232" colspan="1" rowspan="1">
+									<p id="dtb_9233" xml:lang="bn-IN">e-mail</p>
+								</td><td id="dtb_9234" colspan="1" rowspan="1">
+									<p id="dtb_9235" xml:lang="bn-IN">web site</p>
+								</td><td id="dtb_9236" colspan="1" rowspan="1">
+									<p id="dtb_9237" xml:lang="bn-IN">blog</p>
+								</td><td id="dtb_9238" colspan="1" rowspan="1">
+									<p id="dtb_9239" xml:lang="bn-IN">e-commerce</p>
+								</td><td id="dtb_9240" colspan="1" rowspan="1">
+									<p id="dtb_9241" xml:lang="bn-IN">e-learning</p>
+								</td></tr><tr id="dtb_9242"><td id="dtb_9243" colspan="1" rowspan="1">
+									<p id="dtb_9244" xml:lang="bn-IN">iPod</p>
+								</td><td id="dtb_9245" colspan="1" rowspan="1">
+									<p id="dtb_9246" xml:lang="bn-IN">tablet pc</p>
+								</td><td id="dtb_9247" colspan="1" rowspan="1">
+									<p id="dtb_9248" xml:lang="bn-IN">information</p>
+								</td><td id="dtb_9249" colspan="1" rowspan="1">
+									<p id="dtb_9250" xml:lang="bn-IN">super high way</p>
+								</td><td id="dtb_9251" colspan="1" rowspan="1">
+									<p id="dtb_9252" xml:lang="bn-IN">social network</p>
+								</td><td id="dtb_9253" colspan="1" rowspan="1">
+									<p id="dtb_9254" xml:lang="bn-IN">smart phone</p>
+								</td></tr></tbody></table><p id="dtb_9255" xml:lang="bn-IN">
+						<span id="dtb_9256"> <em id="dtb_9257">C </em> <em id="dtb_9258">.</em> </span>
+						<span id="dtb_9259">
 							<em id="dtb_9260">Read the text and answer the questions that follow. </em> </span>
-          </p>
-          <p id="dtb_9261" xml:lang="bn-IN">
-            <span id="dtb_9262">Let's imagine a citizen's ordinary day at work. </span>
-            <span id="dtb_9263">The morning probably starts with a cup of coffee/tea, followed by greeting the colleagues. </span>
-            <span id="dtb_9264">Then comes the inevitable, which is logging in the computer. </span>
-            <span id="dtb_9265">For many of us the third step has become an automatic behavior and it dominates the rest of our work day, receiving and sending dozens of emails.</span>
-          </p>
-          <div id="dtb_9267"><img src="EngforToday-9-style-page_154_image_2.jpg" alt="" id="dtb_9268"></div>
-          <p id="dtb_9269" xml:lang="bn-IN">
-            <span id="dtb_9270">An e-mail is an electronic mail. </span>
-            <span id="dtb_9271">It is a computer-aided way of exchanging digital text messages from a sender to one or multiple recipient/s. </span>
-            <span id="dtb_9272">Emails operate through a network of computers linked by the Internet. </span>
-            <span id="dtb_9273">There are commercial server agencies such as Yahoo, Gmail, Ymail, Hotmail, etc. that accept the text message from the sender, forward it and deliver instantly to the digital mailbox of the recipient. </span>
-            <span id="dtb_9274">If the recipient is not online, the message is stored and delivered later when the recipient is online. </span>
-            <span id="dtb_9275">It works instantly just with the click of your mouse. </span>
-            <span id="dtb_9276">It has been a powerful communication tool in modern life.</span>
-          </p><span title="Page-155" id="dtb_9277" class="epubtype_pagebreak"></span>
-          <p id="dtb_9278" xml:lang="bn-IN">
-            <em id="dtb_9279">Questions</em>
-          </p>
-          <p id="dtb_9280" xml:lang="bn-IN">
-            <span id="dtb_9281">1. </span>
-            <span id="dtb_9282">What is an email?</span>
-          </p>
-          <p id="dtb_9283" xml:lang="bn-IN">
-            <span id="dtb_9284">2. </span>
-            <span id="dtb_9285">How do emails operate?</span>
-          </p>
-          <p id="dtb_9286" xml:lang="bn-IN">
-            <span id="dtb_9287">3. </span>
-            <span id="dtb_9288">How do the commercial servers serve in the process of an email?</span>
-          </p>
-          <p id="dtb_9289" xml:lang="bn-IN">
-            <span id="dtb_9290">4. </span>
-            <span id="dtb_9291">`It has been a powerful communication tool in modern life.' </span>
-            <span id="dtb_9292">Explain the statement.</span>
-          </p>
-          <p id="dtb_9293" xml:lang="bn-IN">
-            <span id="dtb_9294">5. </span>
-            <span id="dtb_9295">How do emails affect our daily work schedule?</span>
-          </p>
-          <p id="dtb_9296" xml:lang="bn-IN">
-            <span id="dtb_9297"> <em id="dtb_9298">D</em> <em id="dtb_9299">.</em> </span>
-            <span id="dtb_9300">
+					</p><p id="dtb_9261" xml:lang="bn-IN">
+						<span id="dtb_9262">Let's imagine a citizen's ordinary day at work. </span>
+						<span id="dtb_9263">The morning probably starts with a cup of coffee/tea, followed by greeting the colleagues. </span>
+						<span id="dtb_9264">Then comes the inevitable, which is logging in the computer. </span>
+						<span id="dtb_9265">For many of us the third step has become an automatic behavior and it dominates the rest of our work day, receiving and sending dozens of emails.</span>
+					</p><div id="dtb_9267"><img src="images/EngforToday-9-style-page_154_image_2.jpg" alt="" id="dtb_9268"></div><p id="dtb_9269" xml:lang="bn-IN">
+						<span id="dtb_9270">An e-mail is an electronic mail. </span>
+						<span id="dtb_9271">It is a computer-aided way of exchanging digital text messages from a sender to one or multiple recipient/s. </span>
+						<span id="dtb_9272">Emails operate through a network of computers linked by the Internet. </span>
+						<span id="dtb_9273">There are commercial server agencies such as Yahoo, Gmail, Ymail, Hotmail, etc. that accept the text message from the sender, forward it and deliver instantly to the digital mailbox of the recipient. </span>
+						<span id="dtb_9274">If the recipient is not online, the message is stored and delivered later when the recipient is online. </span>
+						<span id="dtb_9275">It works instantly just with the click of your mouse. </span>
+						<span id="dtb_9276">It has been a powerful communication tool in modern life.</span>
+					</p><span title="Page-155" id="dtb_9277" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 155">155</span><p id="dtb_9278" xml:lang="bn-IN">
+						<em id="dtb_9279">Questions</em>
+					</p><p id="dtb_9280" xml:lang="bn-IN">
+						<span id="dtb_9281">1. </span>
+						<span id="dtb_9282">What is an email?</span>
+					</p><p id="dtb_9283" xml:lang="bn-IN">
+						<span id="dtb_9284">2. </span>
+						<span id="dtb_9285">How do emails operate?</span>
+					</p><p id="dtb_9286" xml:lang="bn-IN">
+						<span id="dtb_9287">3. </span>
+						<span id="dtb_9288">How do the commercial servers serve in the process of an email?</span>
+					</p><p id="dtb_9289" xml:lang="bn-IN">
+						<span id="dtb_9290">4. </span>
+						<span id="dtb_9291">`It has been a powerful communication tool in modern life.' </span>
+						<span id="dtb_9292">Explain the statement.</span>
+					</p><p id="dtb_9293" xml:lang="bn-IN">
+						<span id="dtb_9294">5. </span>
+						<span id="dtb_9295">How do emails affect our daily work schedule?</span>
+					</p><p id="dtb_9296" xml:lang="bn-IN">
+						<span id="dtb_9297"> <em id="dtb_9298">D</em> <em id="dtb_9299">.</em> </span>
+						<span id="dtb_9300">
 							<em id="dtb_9301">Work in pairs and discuss the steps of your normal days, weekends, etc. </em> </span>
-          </p>
-          <p id="dtb_9302" xml:lang="bn-IN">
-            <span id="dtb_9303"> <em id="dtb_9304">E</em> <em id="dtb_9305">.</em> </span>
-            <span id="dtb_9306">
+					</p><p id="dtb_9302" xml:lang="bn-IN">
+						<span id="dtb_9303"> <em id="dtb_9304">E</em> <em id="dtb_9305">.</em> </span>
+						<span id="dtb_9306">
 							<em id="dtb_9307">Pair work</em> <em id="dtb_9308">. Read the following email exchanged between two friends. Like an informal letter, an email to a close one is casually written. Identify the mistakes in the main body of the message, discuss with your partner, and correct them.</em> </span>
-          </p>
-          <p id="dtb_9309" xml:lang="bn-IN"> <em id="dtb_9310">S</em> <em id="dtb_9311">ubject: Details of Dhaka Tour</em> </p>
-          <p id="dtb_9312" xml:lang="bn-IN">
-            <span id="dtb_9313" class="normalized">FROM: Alexa Dowson&lt;alex- </span>
-            <a href="mailto:dowson@yahoo.com" rel="external" id="dtb_9314">dowson@yahoo.com</a>
-            <span id="dtb_9315" class="normalized">&gt;</span>
-          </p>
-          <p id="dtb_9316" xml:lang="bn-IN">
-            <span id="dtb_9317" class="normalized">T0: Moutushi Laboni&lt;</span>
-            <a href="mailto:moutushi1997@ymail.com" rel="external" id="dtb_9318">moutushi1997@ymail.com</a>
-            <span id="dtb_9319" class="normalized">&gt; </span>
-          </p>
-          <p id="dtb_9320" xml:lang="bn-IN">Monday, May 21, 2012 6:20 AM</p>
-          <p id="dtb_9321" xml:lang="bn-IN">Hi Moutushi!</p>
-          <p id="dtb_9322" xml:lang="bn-IN">
-            <span id="dtb_9323">Thanks for your mail. </span>
-            <span id="dtb_9324">I'll fly from Ottawa on 7:36 hours local time on 13 July with Qatar Airlines via London-Doha and land Dhaka on 15 July around 13:41hours local Time Wish to stay 2 days in the Cox's Bazar and 1 day in khulna. </span>
-            <span id="dtb_9325">Return flight on 21 July at 3:04 hours local time.</span>
-          </p>
-          <p id="dtb_9326" xml:lang="bn-IN">
-            <span id="dtb_9327">Keep fine and in touch. </span>
-            <span id="dtb_9328">Hope to see you soon! </span>
-          </p>
-          <p id="dtb_9329" xml:lang="bn-IN">Alexa</p><span title="Page-156" id="dtb_9330" class="epubtype_pagebreak"></span>
-          <p id="dtb_9331" xml:lang="bn-IN">
-            <span id="dtb_9332"> <em id="dtb_9333">F</em> <em id="dtb_9334">.</em> </span>
-            <span id="dtb_9335">
+					</p><p id="dtb_9309" xml:lang="bn-IN"> <em id="dtb_9310">S</em> <em id="dtb_9311">ubject: Details of Dhaka Tour</em> </p><p id="dtb_9312" xml:lang="bn-IN">
+						<span id="dtb_9313" class="normalized">FROM: Alexa Dowson&lt;alex- </span>
+						<a href="mailto:dowson@yahoo.com" rel="external" id="dtb_9314">dowson@yahoo.com</a>
+						<span id="dtb_9315" class="normalized">&gt;</span>
+					</p><p id="dtb_9316" xml:lang="bn-IN">
+						<span id="dtb_9317" class="normalized">T0: Moutushi Laboni&lt;</span>
+						<a href="mailto:moutushi1997@ymail.com" rel="external" id="dtb_9318">moutushi1997@ymail.com</a>
+						<span id="dtb_9319" class="normalized">&gt; </span>
+					</p><p id="dtb_9320" xml:lang="bn-IN">Monday, May 21, 2012 6:20 AM</p><p id="dtb_9321" xml:lang="bn-IN">Hi Moutushi!</p><p id="dtb_9322" xml:lang="bn-IN">
+						<span id="dtb_9323">Thanks for your mail. </span>
+						<span id="dtb_9324">I'll fly from Ottawa on 7:36 hours local time on 13 July with Qatar Airlines via London-Doha and land Dhaka on 15 July around 13:41hours local Time Wish to stay 2 days in the Cox's Bazar and 1 day in khulna. </span>
+						<span id="dtb_9325">Return flight on 21 July at 3:04 hours local time.</span>
+					</p><p id="dtb_9326" xml:lang="bn-IN">
+						<span id="dtb_9327">Keep fine and in touch. </span>
+						<span id="dtb_9328">Hope to see you soon! </span>
+					</p><p id="dtb_9329" xml:lang="bn-IN">Alexa</p><span title="Page-156" id="dtb_9330" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 156">156</span><p id="dtb_9331" xml:lang="bn-IN">
+						<span id="dtb_9332"> <em id="dtb_9333">F</em> <em id="dtb_9334">.</em> </span>
+						<span id="dtb_9335">
 							<em id="dtb_9336">Pair work</em> <em id="dtb_9337">. The email in section E is a reply by Alexa to Moutushi's previous email. Imagine what Moutushi might have written to Alexa. Write that email.</em> </span>
-          </p>
-          <ul id="dtb_9338">
-            <li id="dtb_9339">
-              <p id="dtb_9340" xml:lang="bn-IN"><span id="dtb_9341"> <em id="dtb_9342">F. Read the following text. It gives the information about the </em> <em id="dtb_9343">origin</em> <em id="dtb_9344"> of the email. Choose the appropriate forms of the verbs from the box to complete the sentences. You can use a verb more than once.</em> </span></p>
-            </li>
-          </ul>
-          <table id="dtb_9345">
-            <colgroup>
-              <col id="dtb_9346" span="1">
-            </colgroup>
-            <tbody id="dtb_9347">
-              <tr id="dtb_9348">
-                <td id="dtb_9349" colspan="1" rowspan="1">
-                  <p id="dtb_9350" xml:lang="bn-IN">send</p>
-                </td>
-                <td id="dtb_9351" colspan="1" rowspan="1">
-                  <p id="dtb_9352" xml:lang="bn-IN">say</p>
-                </td>
-                <td id="dtb_9353" colspan="1" rowspan="1">
-                  <p id="dtb_9354" xml:lang="bn-IN">use</p>
-                </td>
-                <td id="dtb_9355" colspan="1" rowspan="1">
-                  <p id="dtb_9356" xml:lang="bn-IN">remain</p>
-                </td>
-                <td id="dtb_9357" colspan="1" rowspan="1">
-                  <p id="dtb_9358" xml:lang="bn-IN">call</p>
-                </td>
-                <td id="dtb_9359" colspan="1" rowspan="1">
-                  <p id="dtb_9360" xml:lang="bn-IN">expand </p>
-                </td>
-                <td id="dtb_9361" colspan="1" rowspan="1">
-                  <p id="dtb_9362" xml:lang="bn-IN">allow</p>
-                </td>
-                <td id="dtb_9363" colspan="1" rowspan="1">
-                  <p id="dtb_9364" xml:lang="bn-IN">develop</p>
-                </td>
-                <td id="dtb_9365" colspan="1" rowspan="1">
-                  <p id="dtb_9366" xml:lang="bn-IN">spread</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_9367" xml:lang="bn-IN">
-            <span id="dtb_9368">Sending text messages electronically could be [dash] to date back to the Morse code telegraph of the mid 1800s and the 1939 New York World's Fair, In the fair, <abbr title="" id="dtb_9369">IBM</abbr> [dash] a letter of congratulations from San Francisco to New York on an <abbr title="" id="dtb_9370">IBM</abbr> radio-type, [dash] .it a high-speed substitute for mail service in the world of tomorrow. </span>
-            <span id="dtb_9371">Tele printers were [dash] in Germany during World War II. </span>
-            <span id="dtb_9372">The use [dash] until the late 1960s when there was a worldwide Telex network. </span>
-            <span id="dtb_9373">Additionally, there was the similar American system [dash] TWX which [dash] important until the late 1980s.</span>
-          </p>
-          <p id="dtb_9374" xml:lang="bn-IN">
-            <span id="dtb_9375">With the introduction of MIT's Compatible Time-Sharing System (CTSS) in 1961, for the first time multiple users were [dash] to log into a central system from remote dial-up terminals. </span>
-            <span id="dtb_9376">They were also able to store and share files on the central disk. </span>
-            <span id="dtb_9377">Informal methods of using this to pass messages [dash] and were [dash] to create the first true email system.</span>
-          </p>
-          <p id="dtb_9378" xml:lang="bn-IN">
-            <span id="dtb_9379"> <em id="dtb_9380">H </em> <em id="dtb_9381">.</em> </span>
-            <span id="dtb_9382">
+					</p><ul id="dtb_9338"><li id="dtb_9339"> <p id="dtb_9340" xml:lang="bn-IN"><span id="dtb_9341"> <em id="dtb_9342">F. Read the following text. It gives the information about the </em> <em id="dtb_9343">origin</em> <em id="dtb_9344"> of the email. Choose the appropriate forms of the verbs from the box to complete the sentences. You can use a verb more than once.</em> </span></p> </li></ul><table id="dtb_9345"><colgroup><col id="dtb_9346" span="1"></colgroup><tbody id="dtb_9347"><tr id="dtb_9348"><td id="dtb_9349" colspan="1" rowspan="1">
+									<p id="dtb_9350" xml:lang="bn-IN">send</p>
+								</td><td id="dtb_9351" colspan="1" rowspan="1">
+									<p id="dtb_9352" xml:lang="bn-IN">say</p>
+								</td><td id="dtb_9353" colspan="1" rowspan="1">
+									<p id="dtb_9354" xml:lang="bn-IN">use</p>
+								</td><td id="dtb_9355" colspan="1" rowspan="1">
+									<p id="dtb_9356" xml:lang="bn-IN">remain</p>
+								</td><td id="dtb_9357" colspan="1" rowspan="1">
+									<p id="dtb_9358" xml:lang="bn-IN">call</p>
+								</td><td id="dtb_9359" colspan="1" rowspan="1">
+									<p id="dtb_9360" xml:lang="bn-IN">expand </p>
+								</td><td id="dtb_9361" colspan="1" rowspan="1">
+									<p id="dtb_9362" xml:lang="bn-IN">allow</p>
+								</td><td id="dtb_9363" colspan="1" rowspan="1">
+									<p id="dtb_9364" xml:lang="bn-IN">develop</p>
+								</td><td id="dtb_9365" colspan="1" rowspan="1">
+									<p id="dtb_9366" xml:lang="bn-IN">spread</p>
+								</td></tr></tbody></table><p id="dtb_9367" xml:lang="bn-IN">
+						<span id="dtb_9368">Sending text messages electronically could be [dash] to date back to the Morse code telegraph of the mid 1800s and the 1939 New York World's Fair, In the fair, <abbr title="" id="dtb_9369">IBM</abbr> [dash] a letter of congratulations from San Francisco to New York on an <abbr title="" id="dtb_9370">IBM</abbr> radio-type, [dash] .it a high-speed substitute for mail service in the world of tomorrow. </span>
+						<span id="dtb_9371">Tele printers were [dash] in Germany during World War II. </span>
+						<span id="dtb_9372">The use [dash] until the late 1960s when there was a worldwide Telex network. </span>
+						<span id="dtb_9373">Additionally, there was the similar American system [dash] TWX which [dash] important until the late 1980s.</span>
+					</p><p id="dtb_9374" xml:lang="bn-IN">
+						<span id="dtb_9375">With the introduction of MIT's Compatible Time-Sharing System (CTSS) in 1961, for the first time multiple users were [dash] to log into a central system from remote dial-up terminals. </span>
+						<span id="dtb_9376">They were also able to store and share files on the central disk. </span>
+						<span id="dtb_9377">Informal methods of using this to pass messages [dash] and were [dash] to create the first true email system.</span>
+					</p><p id="dtb_9378" xml:lang="bn-IN">
+						<span id="dtb_9379"> <em id="dtb_9380">H </em> <em id="dtb_9381">.</em> </span>
+						<span id="dtb_9382">
 							<em id="dtb_9383">Read the following grid first. Then listen to the CD/teacher and tick the right box in the following grid.</em> </span>
-          </p>
-          <table id="dtb_9384">
-            <colgroup>
-              <col id="dtb_9385" span="1">
-            </colgroup>
-            <tbody id="dtb_9386">
-              <tr id="dtb_9387">
-                <td id="dtb_9388" colspan="1" rowspan="1">
-                  <p id="dtb_9389" xml:lang="bn-IN">Listening text</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_9390" xml:lang="bn-IN"> <em id="dtb_9391">Comparison </em> <em id="dtb_9392">between emails, phone conversations and face to face meetings</em> </p><span title="Page-157" id="dtb_9393" class="epubtype_pagebreak"></span>
-          <table id="dtb_9394">
-            <colgroup>
-              <col id="dtb_9395" span="1">
-            </colgroup>
-            <tbody id="dtb_9396">
-              <tr id="dtb_9397">
-                <td id="dtb_9398" colspan="1" rowspan="2">
-                  <p id="dtb_9399" xml:lang="bn-IN"> -</p>
-                </td>
-                <td id="dtb_9400" colspan="2" rowspan="1">
-                  <p id="dtb_9401" xml:lang="bn-IN">
-                    <em id="dtb_9402">time-consuming</em>
-                  </p>
-                </td>
-                <td id="dtb_9403" colspan="2" rowspan="1">
-                  <p id="dtb_9404" xml:lang="bn-IN">
-                    <em id="dtb_9405">reliable</em>
-                  </p>
-                </td>
-                <td id="dtb_9406" colspan="2" rowspan="1">
-                  <p id="dtb_9407" xml:lang="bn-IN">
-                    <em id="dtb_9408">efficient</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_9409">
-                <td id="dtb_9410" colspan="1" rowspan="1"></td>
-                <td id="dtb_9411" colspan="1" rowspan="1">
-                  <p id="dtb_9412" xml:lang="bn-IN">
-                    <em id="dtb_9413">less</em>
-                  </p>
-                </td>
-                <td id="dtb_9414" colspan="1" rowspan="1">
-                  <p id="dtb_9415" xml:lang="bn-IN">
-                    <em id="dtb_9416">more</em>
-                  </p>
-                </td>
-                <td id="dtb_9417" colspan="1" rowspan="1">
-                  <p id="dtb_9418" xml:lang="bn-IN">
-                    <em id="dtb_9419">less</em>
-                  </p>
-                </td>
-                <td id="dtb_9420" colspan="1" rowspan="1">
-                  <p id="dtb_9421" xml:lang="bn-IN">
-                    <em id="dtb_9422">more</em>
-                  </p>
-                </td>
-                <td id="dtb_9423" colspan="1" rowspan="1">
-                  <p id="dtb_9424" xml:lang="bn-IN">
-                    <em id="dtb_9425">less</em>
-                  </p>
-                </td>
-                <td id="dtb_9426" colspan="2" rowspan="1">
-                  <p id="dtb_9427" xml:lang="bn-IN">
-                    <em id="dtb_9428">more</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_9429">
-                <td id="dtb_9430" colspan="1" rowspan="1">
-                  <p id="dtb_9431" xml:lang="bn-IN">
-                    <em id="dtb_9432">Emails</em>
-                  </p>
-                </td>
-                <td id="dtb_9433" colspan="1" rowspan="1">
-                  <p id="dtb_9434" xml:lang="bn-IN">
-                    <em id="dtb_9435">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9436" colspan="1" rowspan="1">
-                  <p id="dtb_9437" xml:lang="bn-IN">
-                    <em id="dtb_9438">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9439" colspan="1" rowspan="1">
-                  <p id="dtb_9440" xml:lang="bn-IN">
-                    <em id="dtb_9441">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9442" colspan="1" rowspan="1">
-                  <p id="dtb_9443" xml:lang="bn-IN">
-                    <em id="dtb_9444">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9445" colspan="1" rowspan="1">
-                  <p id="dtb_9446" xml:lang="bn-IN">
-                    <em id="dtb_9447">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9448" colspan="2" rowspan="1">
-                  <p id="dtb_9449" xml:lang="bn-IN">
-                    <em id="dtb_9450">-</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_9451">
-                <td id="dtb_9452" colspan="1" rowspan="1">
-                  <p id="dtb_9453" xml:lang="bn-IN"><em id="dtb_9454">Phone</em></p>
-                  <p id="dtb_9455" xml:lang="bn-IN"><em id="dtb_9456">conversations</em></p>
-                </td>
-                <td id="dtb_9457" colspan="1" rowspan="1">
-                  <p id="dtb_9458" xml:lang="bn-IN">
-                    <em id="dtb_9459">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9460" colspan="1" rowspan="1">
-                  <p id="dtb_9461" xml:lang="bn-IN">
-                    <em id="dtb_9462">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9463" colspan="1" rowspan="1">
-                  <p id="dtb_9464" xml:lang="bn-IN">
-                    <em id="dtb_9465">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9466" colspan="1" rowspan="1">
-                  <p id="dtb_9467" xml:lang="bn-IN">
-                    <em id="dtb_9468">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9469" colspan="1" rowspan="1">
-                  <p id="dtb_9470" xml:lang="bn-IN">
-                    <em id="dtb_9471">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9472" colspan="2" rowspan="1">
-                  <p id="dtb_9473" xml:lang="bn-IN">
-                    <em id="dtb_9474">-</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_9475">
-                <td id="dtb_9476" colspan="1" rowspan="1">
-                  <p id="dtb_9477" xml:lang="bn-IN">
-                    <em id="dtb_9478">F2F meetings</em>
-                  </p>
-                </td>
-                <td id="dtb_9479" colspan="1" rowspan="1">
-                  <p id="dtb_9480" xml:lang="bn-IN">
-                    <em id="dtb_9481">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9482" colspan="1" rowspan="1">
-                  <p id="dtb_9483" xml:lang="bn-IN">
-                    <em id="dtb_9484">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9485" colspan="1" rowspan="1">
-                  <p id="dtb_9486" xml:lang="bn-IN">
-                    <em id="dtb_9487">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9488" colspan="1" rowspan="1">
-                  <p id="dtb_9489" xml:lang="bn-IN">
-                    <em id="dtb_9490">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9491" colspan="1" rowspan="1">
-                  <p id="dtb_9492" xml:lang="bn-IN">
-                    <em id="dtb_9493">-</em>
-                  </p>
-                </td>
-                <td id="dtb_9494" colspan="2" rowspan="1">
-                  <p id="dtb_9495" xml:lang="bn-IN">
-                    <em id="dtb_9496">-</em>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_9497" xml:lang="bn-IN">
-            <span id="dtb_9498"> <em id="dtb_9499">I</em> <em id="dtb_9500">.</em> <em id="dtb_9501"> Group work. Arrange a debate in the class on the advantages and the disadvantages of the email.</em> </span>
-          </p>
-        </section>
-        <section id="id_89">
-          <h1 id="dtb_9502" xml:lang="bn-IN"> Lesson 2: Social network services <a href="#dtb_9502" title="Link to heading Lesson 2: Social network services" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_9503" xml:lang="bn-IN">
-            <span id="dtb_9504"> <em id="dtb_9505">A</em> <em id="dtb_9506">.</em> </span>
-            <span id="dtb_9507">
+					</p><table id="dtb_9384"><colgroup><col id="dtb_9385" span="1"></colgroup><tbody id="dtb_9386"><tr id="dtb_9387"><td id="dtb_9388" colspan="1" rowspan="1">
+									<p id="dtb_9389" xml:lang="bn-IN">Listening text</p>
+								</td></tr></tbody></table><p id="dtb_9390" xml:lang="bn-IN"> <em id="dtb_9391">Comparison </em> <em id="dtb_9392">between emails, phone conversations and face to face meetings</em> </p><span title="Page-157" id="dtb_9393" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 157">157</span><table id="dtb_9394"><colgroup><col id="dtb_9395" span="1"></colgroup><tbody id="dtb_9396"><tr id="dtb_9397"><td id="dtb_9398" colspan="1" rowspan="2">
+									<p id="dtb_9399" xml:lang="bn-IN"> -</p>
+								</td><td id="dtb_9400" colspan="2" rowspan="1">
+									<p id="dtb_9401" xml:lang="bn-IN">
+										<em id="dtb_9402">time-consuming</em>
+									</p> </td><td id="dtb_9403" colspan="2" rowspan="1">
+									<p id="dtb_9404" xml:lang="bn-IN">
+										<em id="dtb_9405">reliable</em>
+									</p> </td><td id="dtb_9406" colspan="2" rowspan="1">
+									<p id="dtb_9407" xml:lang="bn-IN">
+										<em id="dtb_9408">efficient</em>
+									</p> </td></tr><tr id="dtb_9409"><td id="dtb_9410" colspan="1" rowspan="1"></td><td id="dtb_9411" colspan="1" rowspan="1">
+									<p id="dtb_9412" xml:lang="bn-IN">
+										<em id="dtb_9413">less</em>
+									</p> </td><td id="dtb_9414" colspan="1" rowspan="1">
+									<p id="dtb_9415" xml:lang="bn-IN">
+										<em id="dtb_9416">more</em>
+									</p> </td><td id="dtb_9417" colspan="1" rowspan="1">
+									<p id="dtb_9418" xml:lang="bn-IN">
+										<em id="dtb_9419">less</em>
+									</p> </td><td id="dtb_9420" colspan="1" rowspan="1">
+									<p id="dtb_9421" xml:lang="bn-IN">
+										<em id="dtb_9422">more</em>
+									</p> </td><td id="dtb_9423" colspan="1" rowspan="1">
+									<p id="dtb_9424" xml:lang="bn-IN">
+										<em id="dtb_9425">less</em>
+									</p> </td><td id="dtb_9426" colspan="2" rowspan="1">
+									<p id="dtb_9427" xml:lang="bn-IN">
+										<em id="dtb_9428">more</em>
+									</p> </td></tr><tr id="dtb_9429"><td id="dtb_9430" colspan="1" rowspan="1">
+									<p id="dtb_9431" xml:lang="bn-IN">
+										<em id="dtb_9432">Emails</em>
+									</p> </td><td id="dtb_9433" colspan="1" rowspan="1">
+									<p id="dtb_9434" xml:lang="bn-IN">
+										<em id="dtb_9435">-</em>
+									</p> </td><td id="dtb_9436" colspan="1" rowspan="1">
+									<p id="dtb_9437" xml:lang="bn-IN">
+										<em id="dtb_9438">-</em>
+									</p> </td><td id="dtb_9439" colspan="1" rowspan="1">
+									<p id="dtb_9440" xml:lang="bn-IN">
+										<em id="dtb_9441">-</em>
+									</p> </td><td id="dtb_9442" colspan="1" rowspan="1">
+									<p id="dtb_9443" xml:lang="bn-IN">
+										<em id="dtb_9444">-</em>
+									</p> </td><td id="dtb_9445" colspan="1" rowspan="1">
+									<p id="dtb_9446" xml:lang="bn-IN">
+										<em id="dtb_9447">-</em>
+									</p> </td><td id="dtb_9448" colspan="2" rowspan="1">
+									<p id="dtb_9449" xml:lang="bn-IN">
+										<em id="dtb_9450">-</em>
+									</p> </td></tr><tr id="dtb_9451"><td id="dtb_9452" colspan="1" rowspan="1"> <p id="dtb_9453" xml:lang="bn-IN"><em id="dtb_9454">Phone</em></p> <p id="dtb_9455" xml:lang="bn-IN"><em id="dtb_9456">conversations</em></p> </td><td id="dtb_9457" colspan="1" rowspan="1">
+									<p id="dtb_9458" xml:lang="bn-IN">
+										<em id="dtb_9459">-</em>
+									</p> </td><td id="dtb_9460" colspan="1" rowspan="1">
+									<p id="dtb_9461" xml:lang="bn-IN">
+										<em id="dtb_9462">-</em>
+									</p> </td><td id="dtb_9463" colspan="1" rowspan="1">
+									<p id="dtb_9464" xml:lang="bn-IN">
+										<em id="dtb_9465">-</em>
+									</p> </td><td id="dtb_9466" colspan="1" rowspan="1">
+									<p id="dtb_9467" xml:lang="bn-IN">
+										<em id="dtb_9468">-</em>
+									</p> </td><td id="dtb_9469" colspan="1" rowspan="1">
+									<p id="dtb_9470" xml:lang="bn-IN">
+										<em id="dtb_9471">-</em>
+									</p> </td><td id="dtb_9472" colspan="2" rowspan="1">
+									<p id="dtb_9473" xml:lang="bn-IN">
+										<em id="dtb_9474">-</em>
+									</p> </td></tr><tr id="dtb_9475"><td id="dtb_9476" colspan="1" rowspan="1">
+									<p id="dtb_9477" xml:lang="bn-IN">
+										<em id="dtb_9478">F2F meetings</em>
+									</p> </td><td id="dtb_9479" colspan="1" rowspan="1">
+									<p id="dtb_9480" xml:lang="bn-IN">
+										<em id="dtb_9481">-</em>
+									</p> </td><td id="dtb_9482" colspan="1" rowspan="1">
+									<p id="dtb_9483" xml:lang="bn-IN">
+										<em id="dtb_9484">-</em>
+									</p> </td><td id="dtb_9485" colspan="1" rowspan="1">
+									<p id="dtb_9486" xml:lang="bn-IN">
+										<em id="dtb_9487">-</em>
+									</p> </td><td id="dtb_9488" colspan="1" rowspan="1">
+									<p id="dtb_9489" xml:lang="bn-IN">
+										<em id="dtb_9490">-</em>
+									</p> </td><td id="dtb_9491" colspan="1" rowspan="1">
+									<p id="dtb_9492" xml:lang="bn-IN">
+										<em id="dtb_9493">-</em>
+									</p> </td><td id="dtb_9494" colspan="2" rowspan="1">
+									<p id="dtb_9495" xml:lang="bn-IN">
+										<em id="dtb_9496">-</em>
+									</p> </td></tr></tbody></table><p id="dtb_9497" xml:lang="bn-IN">
+						<span id="dtb_9498"> <em id="dtb_9499">I</em> <em id="dtb_9500">.</em> <em id="dtb_9501"> Group work. Arrange a debate in the class on the advantages and the disadvantages of the email.</em> </span>
+					</p></section><section id="id_89"><h1 id="dtb_9502" xml:lang="bn-IN" tabindex="-1"> Lesson 2: Social network services <a href="#dtb_9502" rel="bookmark" class="webbook" title="Link to Lesson 2: Social network services" aria-label="Link to Lesson 2: Social network services"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_9503" xml:lang="bn-IN">
+						<span id="dtb_9504"> <em id="dtb_9505">A</em> <em id="dtb_9506">.</em> </span>
+						<span id="dtb_9507">
 							<em id="dtb_9508">Look at the following logos. Are you familiar with them? Discuss with your partner what they are and how they are related to the field of </em> <em id="dtb_9509">communications</em> <em id="dtb_9510">.</em> </span>
-          </p>
-          <div id="dtb_9512"><img src="EngforToday-9-style-page_157.jpg" alt="" id="dtb_9513"></div>
-          <p id="dtb_9514" xml:lang="bn-IN">
-            <span id="dtb_9515"> <em id="dtb_9516">B</em> <em id="dtb_9517">.</em> </span>
-            <span id="dtb_9518">
+					</p><div id="dtb_9512"><img src="images/EngforToday-9-style-page_157.jpg" alt="" id="dtb_9513"></div><p id="dtb_9514" xml:lang="bn-IN">
+						<span id="dtb_9515"> <em id="dtb_9516">B</em> <em id="dtb_9517">.</em> </span>
+						<span id="dtb_9518">
 							<em id="dtb_9519">Read the text and answer the following questions.</em> </span>
-          </p>
-          <p id="dtb_9520" xml:lang="bn-IN">
-            <span id="dtb_9521">The advantages of the Internet technology have made a good number of web sites to emerge to facilitate social relations among people around the world. </span>
-            <span id="dtb_9522">These are known as social networking services or social networks. </span>
-            <span id="dtb_9523">At present, Facebook is the most popular. </span>
-            <span id="dtb_9524">Google+, Twitter, LinkedIn, etc. are other frequently used social services. </span>
-            <span id="dtb_9525">Social network services are web-based and hence, provide ways for the users to interact through the Internet. </span>
-            <span id="dtb_9526">These services make it possible to connect people sharing interests and activities across the borders and thus have made a lot for the users to feel that they really live in a global village.</span>
-          </p>
-          <p id="dtb_9527" xml:lang="bn-IN">
-            <span id="dtb_9528">Why are social networks expanding so fast? </span>
-            <span id="dtb_9529">The answer is simple. </span>
-            <span id="dtb_9530">Most of the social services are cost-free. </span>
-            <span id="dtb_9531">You can make use of them free, paying a very little to your Internet service provider. </span>
-            <span id="dtb_9532">Secondly, you can make your personal profile public before the entire online community. </span>
-            <span id="dtb_9533">It is like presenting yourself before the entire world. </span>
-            <span id="dtb_9534">You can also look into other people's profile if you are interested. </span>
-            <span id="dtb_9535">It is simple and easy. </span>
-            <span id="dtb_9536">
+					</p><p id="dtb_9520" xml:lang="bn-IN">
+						<span id="dtb_9521">The advantages of the Internet technology have made a good number of web sites to emerge to facilitate social relations among people around the world. </span>
+						<span id="dtb_9522">These are known as social networking services or social networks. </span>
+						<span id="dtb_9523">At present, Facebook is the most popular. </span>
+						<span id="dtb_9524">Google+, Twitter, LinkedIn, etc. are other frequently used social services. </span>
+						<span id="dtb_9525">Social network services are web-based and hence, provide ways for the users to interact through the Internet. </span>
+						<span id="dtb_9526">These services make it possible to connect people sharing interests and activities across the borders and thus have made a lot for the users to feel that they really live in a global village.</span>
+					</p><p id="dtb_9527" xml:lang="bn-IN">
+						<span id="dtb_9528">Why are social networks expanding so fast? </span>
+						<span id="dtb_9529">The answer is simple. </span>
+						<span id="dtb_9530">Most of the social services are cost-free. </span>
+						<span id="dtb_9531">You can make use of them free, paying a very little to your Internet service provider. </span>
+						<span id="dtb_9532">Secondly, you can make your personal profile public before the entire online community. </span>
+						<span id="dtb_9533">It is like presenting yourself before the entire world. </span>
+						<span id="dtb_9534">You can also look into other people's profile if you are interested. </span>
+						<span id="dtb_9535">It is simple and easy. </span>
+						<span id="dtb_9536">
 							<em id="dtb_9537">Thirdly,</em> social networks allow users to upload pictures, multimedia contents and modify the profile. </span>
-            <span id="dtb_9538">Some services like Facebook allow users to update their profiles. </span>
-            <span id="dtb_9539">
+						<span id="dtb_9538">Some services like Facebook allow users to update their profiles. </span>
+						<span id="dtb_9539">
 							<em id="dtb_9540">Fourthly,</em> networks allow users to post blog entries. </span>
-            <span id="dtb_9541">User profiles have a section dedicated to comments from friends and other users. </span>
-            <span id="dtb_9542">
+						<span id="dtb_9541">User profiles have a section dedicated to comments from friends and other users. </span>
+						<span id="dtb_9542">
 							<em id="dtb_9543">Finally,</em> there are privacy protection measures too. </span>
-            <span id="dtb_9544">A user himself or herself decides over the number of visitors/viewers, and what information should be shared with others.</span>
-          </p><span title="Page-158" id="dtb_9545" class="epubtype_pagebreak"></span>
-          <p id="dtb_9546" xml:lang="bn-IN">
-            <em id="dtb_9547">Questions</em>
-          </p>
-          <p id="dtb_9548" xml:lang="bn-IN">
-            <span id="dtb_9549">1. </span>
-            <span id="dtb_9550">What do you mean by social networks?</span>
-          </p>
-          <p id="dtb_9551" xml:lang="bn-IN">
-            <span id="dtb_9552">2. </span>
-            <span id="dtb_9553">What are some uses of social networks?</span>
-          </p>
-          <p id="dtb_9554" xml:lang="bn-IN">
-            <span id="dtb_9555">3. </span>
-            <span id="dtb_9556">'These services ... have made a lot for the users to feel that they really live in a global village'. </span>
-            <span id="dtb_9557">Do you agree with this view? </span>
-            <span id="dtb_9558">Why/ Why not?</span>
-          </p>
-          <p id="dtb_9559" xml:lang="bn-IN">
-            <span id="dtb_9560">4. </span>
-            <span id="dtb_9561">Make a list of the arguments as to why social networks are expanding so fast. </span>
-            <span id="dtb_9562">What's your view regarding them?</span>
-          </p>
-          <p id="dtb_9563" xml:lang="bn-IN">
-            <span id="dtb_9564"> <em id="dtb_9565">C</em> <em id="dtb_9566">.</em> </span>
-            <span id="dtb_9567">
+						<span id="dtb_9544">A user himself or herself decides over the number of visitors/viewers, and what information should be shared with others.</span>
+					</p><span title="Page-158" id="dtb_9545" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 158">158</span><p id="dtb_9546" xml:lang="bn-IN">
+						<em id="dtb_9547">Questions</em>
+					</p><p id="dtb_9548" xml:lang="bn-IN">
+						<span id="dtb_9549">1. </span>
+						<span id="dtb_9550">What do you mean by social networks?</span>
+					</p><p id="dtb_9551" xml:lang="bn-IN">
+						<span id="dtb_9552">2. </span>
+						<span id="dtb_9553">What are some uses of social networks?</span>
+					</p><p id="dtb_9554" xml:lang="bn-IN">
+						<span id="dtb_9555">3. </span>
+						<span id="dtb_9556">'These services ... have made a lot for the users to feel that they really live in a global village'. </span>
+						<span id="dtb_9557">Do you agree with this view? </span>
+						<span id="dtb_9558">Why/ Why not?</span>
+					</p><p id="dtb_9559" xml:lang="bn-IN">
+						<span id="dtb_9560">4. </span>
+						<span id="dtb_9561">Make a list of the arguments as to why social networks are expanding so fast. </span>
+						<span id="dtb_9562">What's your view regarding them?</span>
+					</p><p id="dtb_9563" xml:lang="bn-IN">
+						<span id="dtb_9564"> <em id="dtb_9565">C</em> <em id="dtb_9566">.</em> </span>
+						<span id="dtb_9567">
 							<em id="dtb_9568">Read the second paragraph of the text in section B again. Notice the words in italics and write how they work in maintaining logical sequence in the paragraph.</em> </span>
-          </p>
-          <p id="dtb_9569" xml:lang="bn-IN">
-            <span id="dtb_9570"> <em id="dtb_9571">D</em> <em id="dtb_9572">.</em> </span>
-            <span id="dtb_9573">
+					</p><p id="dtb_9569" xml:lang="bn-IN">
+						<span id="dtb_9570"> <em id="dtb_9571">D</em> <em id="dtb_9572">.</em> </span>
+						<span id="dtb_9573">
 							<em id="dtb_9574">Choose the best answers.</em> </span>
-          </p>
-          <p id="dtb_9575" xml:lang="bn-IN">`</p>
-          <p id="dtb_9576" xml:lang="bn-IN">
-            <span id="dtb_9577">1. </span>
-            <span id="dtb_9578">The [dash] technology has made social networking sites to emerge.</span>
-          </p>
-          <p id="dtb_9579" xml:lang="bn-IN">
-            <span id="dtb_9580">a . </span>
-            <span id="dtb_9581">LinkedIn </span>
-          </p>
-          <p id="dtb_9582" xml:lang="bn-IN">
-            <span id="dtb_9583">b . </span>
-            <span id="dtb_9584">Google+</span>
-          </p>
-          <p id="dtb_9585" xml:lang="bn-IN">
-            <span id="dtb_9586">c. </span>
-            <span id="dtb_9587">Internet </span>
-          </p>
-          <p id="dtb_9588" xml:lang="bn-IN">
-            <span id="dtb_9589">d . </span>
-            <span id="dtb_9590">Twitter</span>
-          </p>
-          <p id="dtb_9591" xml:lang="bn-IN">
-            <span id="dtb_9592">2. </span>
-            <span id="dtb_9593">Users have to pay for</span>
-          </p>
-          <p id="dtb_9594" xml:lang="bn-IN">a . social networks. </p>
-          <p id="dtb_9595" xml:lang="bn-IN">b. their online connections.</p>
-          <p id="dtb_9596" xml:lang="bn-IN">c . multimedia contents. </p>
-          <p id="dtb_9597" xml:lang="bn-IN">d. uploading pictures.</p>
-          <p id="dtb_9598" xml:lang="bn-IN">
-            <span id="dtb_9599">3. </span>
-            <span id="dtb_9600">User accounts have [dash] protection measures.</span>
-          </p>
-          <p id="dtb_9601" xml:lang="bn-IN">
-            <span id="dtb_9602">a. </span>
-            <span id="dtb_9603">virus </span>
-          </p>
-          <p id="dtb_9604" xml:lang="bn-IN">
-            <span id="dtb_9605">b. </span>
-            <span id="dtb_9606">identity </span>
-          </p>
-          <p id="dtb_9607" xml:lang="bn-IN">c . personal secrecy </p>
-          <p id="dtb_9608" xml:lang="bn-IN">
-            <span id="dtb_9609">d. </span>
-            <span id="dtb_9610">network</span>
-          </p>
-          <p id="dtb_9611" xml:lang="bn-IN">
-            <span id="dtb_9612">4. </span>
-            <span id="dtb_9613">User profiles have a section for</span>
-          </p>
-          <p id="dtb_9614" xml:lang="bn-IN">a. others' remarks. </p>
-          <p id="dtb_9615" xml:lang="bn-IN">b. outsider's editing.</p>
-          <p id="dtb_9616" xml:lang="bn-IN">c. outsider's moderation. </p>
-          <p id="dtb_9617" xml:lang="bn-IN">d. outsider's uploading.</p><span title="Page-159" id="dtb_9618" class="epubtype_pagebreak"></span>
-          <ul id="dtb_9619">
-            <li id="dtb_9620">
-              <p id="dtb_9621" xml:lang="bn-IN"><span id="dtb_9622"> <em id="dtb_9623">E. Fill in the follow</em> <em id="dtb_9624">ing dialogue box to open a Face</em> <em id="dtb_9625">book account.</em> </span></p>
-            </li>
-          </ul>
-          <div id="dtb_9627"><img src="EngforToday-9-style-page_159.jpg" alt="" id="dtb_9628"></div>
-          <p id="dtb_9629" xml:lang="bn-IN">
-            <span id="dtb_9630"> <em id="dtb_9631">F</em> <em id="dtb_9632">.</em> </span>
-            <span id="dtb_9633">
+					</p><p id="dtb_9575" xml:lang="bn-IN">`</p><p id="dtb_9576" xml:lang="bn-IN">
+						<span id="dtb_9577">1. </span>
+						<span id="dtb_9578">The [dash] technology has made social networking sites to emerge.</span>
+					</p><p id="dtb_9579" xml:lang="bn-IN">
+						<span id="dtb_9580">a . </span>
+						<span id="dtb_9581">LinkedIn </span>
+					</p><p id="dtb_9582" xml:lang="bn-IN">
+						<span id="dtb_9583">b . </span>
+						<span id="dtb_9584">Google+</span>
+					</p><p id="dtb_9585" xml:lang="bn-IN">
+						<span id="dtb_9586">c. </span>
+						<span id="dtb_9587">Internet </span>
+					</p><p id="dtb_9588" xml:lang="bn-IN">
+						<span id="dtb_9589">d . </span>
+						<span id="dtb_9590">Twitter</span>
+					</p><p id="dtb_9591" xml:lang="bn-IN">
+						<span id="dtb_9592">2. </span>
+						<span id="dtb_9593">Users have to pay for</span>
+					</p><p id="dtb_9594" xml:lang="bn-IN">a . social networks. </p><p id="dtb_9595" xml:lang="bn-IN">b. their online connections.</p><p id="dtb_9596" xml:lang="bn-IN">c . multimedia contents. </p><p id="dtb_9597" xml:lang="bn-IN">d. uploading pictures.</p><p id="dtb_9598" xml:lang="bn-IN">
+						<span id="dtb_9599">3. </span>
+						<span id="dtb_9600">User accounts have [dash] protection measures.</span>
+					</p><p id="dtb_9601" xml:lang="bn-IN">
+						<span id="dtb_9602">a. </span>
+						<span id="dtb_9603">virus </span>
+					</p><p id="dtb_9604" xml:lang="bn-IN">
+						<span id="dtb_9605">b. </span>
+						<span id="dtb_9606">identity </span>
+					</p><p id="dtb_9607" xml:lang="bn-IN">c . personal secrecy </p><p id="dtb_9608" xml:lang="bn-IN">
+						<span id="dtb_9609">d. </span>
+						<span id="dtb_9610">network</span>
+					</p><p id="dtb_9611" xml:lang="bn-IN">
+						<span id="dtb_9612">4. </span>
+						<span id="dtb_9613">User profiles have a section for</span>
+					</p><p id="dtb_9614" xml:lang="bn-IN">a. others' remarks. </p><p id="dtb_9615" xml:lang="bn-IN">b. outsider's editing.</p><p id="dtb_9616" xml:lang="bn-IN">c. outsider's moderation. </p><p id="dtb_9617" xml:lang="bn-IN">d. outsider's uploading.</p><span title="Page-159" id="dtb_9618" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 159">159</span><ul id="dtb_9619"><li id="dtb_9620"> <p id="dtb_9621" xml:lang="bn-IN"><span id="dtb_9622"> <em id="dtb_9623">E. Fill in the follow</em> <em id="dtb_9624">ing dialogue box to open a Face</em> <em id="dtb_9625">book account.</em> </span></p> </li></ul><div id="dtb_9627"><img src="images/EngforToday-9-style-page_159.jpg" alt="" id="dtb_9628"></div><p id="dtb_9629" xml:lang="bn-IN">
+						<span id="dtb_9630"> <em id="dtb_9631">F</em> <em id="dtb_9632">.</em> </span>
+						<span id="dtb_9633">
 							<em id="dtb_9634">Look at the following table adapted from Wikipedia. It shows some data on worldwide use of social networks.</em> </span>
-          </p>
-          <table id="dtb_9635">
-            <colgroup>
-              <col id="dtb_9636" span="1">
-            </colgroup>
-            <tbody id="dtb_9637">
-              <tr id="dtb_9638">
-                <td id="dtb_9639" colspan="1" rowspan="1">
-                  <p id="dtb_9640" xml:lang="bn-IN">
-                    <em id="dtb_9641">Social Networks</em>
-                  </p>
-                </td>
-                <td id="dtb_9642" colspan="1" rowspan="1">
-                  <p id="dtb_9643" xml:lang="bn-IN">
-                    <em id="dtb_9644">Individual users</em>
-                  </p>
-                </td>
-                <td id="dtb_9645" colspan="1" rowspan="1">
-                  <p id="dtb_9646" xml:lang="bn-IN"><em id="dtb_9647">Percentage (%)of</em></p>
-                  <p id="dtb_9648" xml:lang="bn-IN"><em id="dtb_9649">popularity</em></p>
-                </td>
-                <td id="dtb_9650" colspan="1" rowspan="1">
-                  <p id="dtb_9651" xml:lang="bn-IN">
-                    <em id="dtb_9652">Regions covered</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_9653">
-                <td id="dtb_9654" colspan="1" rowspan="1">
-                  <p id="dtb_9655" xml:lang="bn-IN">Facebook</p>
-                </td>
-                <td id="dtb_9656" colspan="1" rowspan="1">
-                  <p id="dtb_9657" xml:lang="bn-IN">792,999,000,</p>
-                </td>
-                <td id="dtb_9658" colspan="1" rowspan="1">
-                  <p id="dtb_9659" xml:lang="bn-IN">55.1 %</p>
-                </td>
-                <td id="dtb_9660" colspan="1" rowspan="1">
-                  <p id="dtb_9661" xml:lang="bn-IN">worldwide</p>
-                </td>
-              </tr>
-              <tr id="dtb_9662">
-                <td id="dtb_9663" colspan="1" rowspan="1">
-                  <p id="dtb_9664" xml:lang="bn-IN">Google+</p>
-                </td>
-                <td id="dtb_9665" colspan="1" rowspan="1">
-                  <p id="dtb_9666" xml:lang="bn-IN">250,000,000</p>
-                </td>
-                <td id="dtb_9667" colspan="1" rowspan="1">
-                  <p id="dtb_9668" xml:lang="bn-IN">17.7%</p>
-                </td>
-                <td id="dtb_9669" colspan="1" rowspan="1">
-                  <p id="dtb_9670" xml:lang="bn-IN">worldwide</p>
-                </td>
-              </tr>
-              <tr id="dtb_9671">
-                <td id="dtb_9672" colspan="1" rowspan="1">
-                  <p id="dtb_9673" xml:lang="bn-IN">Twitter</p>
-                </td>
-                <td id="dtb_9674" colspan="1" rowspan="1">
-                  <p id="dtb_9675" xml:lang="bn-IN">167,903,000</p>
-                </td>
-                <td id="dtb_9676" colspan="1" rowspan="1">
-                  <p id="dtb_9677" xml:lang="bn-IN">11.7%</p>
-                </td>
-                <td id="dtb_9678" colspan="1" rowspan="1">
-                  <p id="dtb_9679" xml:lang="bn-IN">worldwide</p>
-                </td>
-              </tr>
-              <tr id="dtb_9680">
-                <td id="dtb_9681" colspan="1" rowspan="1">
-                  <p id="dtb_9682" xml:lang="bn-IN">LinkedIn</p>
-                </td>
-                <td id="dtb_9683" colspan="1" rowspan="1">
-                  <p id="dtb_9684" xml:lang="bn-IN">94,823,000</p>
-                </td>
-                <td id="dtb_9685" colspan="1" rowspan="1">
-                  <p id="dtb_9686" xml:lang="bn-IN">6.6%</p>
-                </td>
-                <td id="dtb_9687" colspan="1" rowspan="1">
-                  <p id="dtb_9688" xml:lang="bn-IN">Asia and Europe.</p>
-                </td>
-              </tr>
-              <tr id="dtb_9689">
-                <td id="dtb_9690" colspan="1" rowspan="1">
-                  <p id="dtb_9691" xml:lang="bn-IN">MySpaee</p>
-                </td>
-                <td id="dtb_9692" colspan="1" rowspan="1">
-                  <p id="dtb_9693" xml:lang="bn-IN">61,037,000</p>
-                </td>
-                <td id="dtb_9694" colspan="1" rowspan="1">
-                  <p id="dtb_9695" xml:lang="bn-IN">4.2%</p>
-                </td>
-                <td id="dtb_9696" colspan="1" rowspan="1">
-                  <p id="dtb_9697" xml:lang="bn-IN">
-                    <abbr title="" id="dtb_9698">USA</abbr> and Canada
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_9699">
-                <td id="dtb_9700" colspan="1" rowspan="1">
-                  <p id="dtb_9701" xml:lang="bn-IN">Others</p>
-                </td>
-                <td id="dtb_9702" colspan="1" rowspan="1">
-                  <p id="dtb_9703" xml:lang="bn-IN">255,539,000</p>
-                </td>
-                <td id="dtb_9704" colspan="1" rowspan="1">
-                  <p id="dtb_9705" xml:lang="bn-IN">17.8%</p>
-                </td>
-                <td id="dtb_9706" colspan="1" rowspan="1"></td>
-              </tr>
-              <tr id="dtb_9707">
-                <td id="dtb_9708" colspan="1" rowspan="1">
-                  <p id="dtb_9709" xml:lang="bn-IN"> Total</p>
-                </td>
-                <td id="dtb_9710" colspan="1" rowspan="1">
-                  <p id="dtb_9711" xml:lang="bn-IN">1,438,877,000</p>
-                </td>
-                <td id="dtb_9712" colspan="1" rowspan="1">
-                  <p id="dtb_9713" xml:lang="bn-IN">100%</p>
-                </td>
-                <td id="dtb_9714" colspan="1" rowspan="1"></td>
-              </tr>
-            </tbody>
-          </table><span title="Page-160" id="dtb_9715" class="epubtype_pagebreak"></span>
-          <p id="dtb_9716" xml:lang="bn-IN">
-            <span id="dtb_9717">
+					</p><table id="dtb_9635"><colgroup><col id="dtb_9636" span="1"></colgroup><tbody id="dtb_9637"><tr id="dtb_9638"><td id="dtb_9639" colspan="1" rowspan="1">
+									<p id="dtb_9640" xml:lang="bn-IN">
+										<em id="dtb_9641">Social Networks</em>
+									</p> </td><td id="dtb_9642" colspan="1" rowspan="1">
+									<p id="dtb_9643" xml:lang="bn-IN">
+										<em id="dtb_9644">Individual users</em>
+									</p> </td><td id="dtb_9645" colspan="1" rowspan="1"> <p id="dtb_9646" xml:lang="bn-IN"><em id="dtb_9647">Percentage (%)of</em></p> <p id="dtb_9648" xml:lang="bn-IN"><em id="dtb_9649">popularity</em></p> </td><td id="dtb_9650" colspan="1" rowspan="1">
+									<p id="dtb_9651" xml:lang="bn-IN">
+										<em id="dtb_9652">Regions covered</em>
+									</p> </td></tr><tr id="dtb_9653"><td id="dtb_9654" colspan="1" rowspan="1">
+									<p id="dtb_9655" xml:lang="bn-IN">Facebook</p>
+								</td><td id="dtb_9656" colspan="1" rowspan="1">
+									<p id="dtb_9657" xml:lang="bn-IN">792,999,000,</p>
+								</td><td id="dtb_9658" colspan="1" rowspan="1">
+									<p id="dtb_9659" xml:lang="bn-IN">55.1 %</p>
+								</td><td id="dtb_9660" colspan="1" rowspan="1">
+									<p id="dtb_9661" xml:lang="bn-IN">worldwide</p>
+								</td></tr><tr id="dtb_9662"><td id="dtb_9663" colspan="1" rowspan="1">
+									<p id="dtb_9664" xml:lang="bn-IN">Google+</p>
+								</td><td id="dtb_9665" colspan="1" rowspan="1">
+									<p id="dtb_9666" xml:lang="bn-IN">250,000,000</p>
+								</td><td id="dtb_9667" colspan="1" rowspan="1">
+									<p id="dtb_9668" xml:lang="bn-IN">17.7%</p>
+								</td><td id="dtb_9669" colspan="1" rowspan="1">
+									<p id="dtb_9670" xml:lang="bn-IN">worldwide</p>
+								</td></tr><tr id="dtb_9671"><td id="dtb_9672" colspan="1" rowspan="1">
+									<p id="dtb_9673" xml:lang="bn-IN">Twitter</p>
+								</td><td id="dtb_9674" colspan="1" rowspan="1">
+									<p id="dtb_9675" xml:lang="bn-IN">167,903,000</p>
+								</td><td id="dtb_9676" colspan="1" rowspan="1">
+									<p id="dtb_9677" xml:lang="bn-IN">11.7%</p>
+								</td><td id="dtb_9678" colspan="1" rowspan="1">
+									<p id="dtb_9679" xml:lang="bn-IN">worldwide</p>
+								</td></tr><tr id="dtb_9680"><td id="dtb_9681" colspan="1" rowspan="1">
+									<p id="dtb_9682" xml:lang="bn-IN">LinkedIn</p>
+								</td><td id="dtb_9683" colspan="1" rowspan="1">
+									<p id="dtb_9684" xml:lang="bn-IN">94,823,000</p>
+								</td><td id="dtb_9685" colspan="1" rowspan="1">
+									<p id="dtb_9686" xml:lang="bn-IN">6.6%</p>
+								</td><td id="dtb_9687" colspan="1" rowspan="1">
+									<p id="dtb_9688" xml:lang="bn-IN">Asia and Europe.</p>
+								</td></tr><tr id="dtb_9689"><td id="dtb_9690" colspan="1" rowspan="1">
+									<p id="dtb_9691" xml:lang="bn-IN">MySpaee</p>
+								</td><td id="dtb_9692" colspan="1" rowspan="1">
+									<p id="dtb_9693" xml:lang="bn-IN">61,037,000</p>
+								</td><td id="dtb_9694" colspan="1" rowspan="1">
+									<p id="dtb_9695" xml:lang="bn-IN">4.2%</p>
+								</td><td id="dtb_9696" colspan="1" rowspan="1">
+									<p id="dtb_9697" xml:lang="bn-IN">
+										<abbr title="" id="dtb_9698">USA</abbr> and Canada</p>
+								</td></tr><tr id="dtb_9699"><td id="dtb_9700" colspan="1" rowspan="1">
+									<p id="dtb_9701" xml:lang="bn-IN">Others</p>
+								</td><td id="dtb_9702" colspan="1" rowspan="1">
+									<p id="dtb_9703" xml:lang="bn-IN">255,539,000</p>
+								</td><td id="dtb_9704" colspan="1" rowspan="1">
+									<p id="dtb_9705" xml:lang="bn-IN">17.8%</p>
+								</td><td id="dtb_9706" colspan="1" rowspan="1"></td></tr><tr id="dtb_9707"><td id="dtb_9708" colspan="1" rowspan="1">
+									<p id="dtb_9709" xml:lang="bn-IN"> Total</p>
+								</td><td id="dtb_9710" colspan="1" rowspan="1">
+									<p id="dtb_9711" xml:lang="bn-IN">1,438,877,000</p>
+								</td><td id="dtb_9712" colspan="1" rowspan="1">
+									<p id="dtb_9713" xml:lang="bn-IN">100%</p>
+								</td><td id="dtb_9714" colspan="1" rowspan="1"></td></tr></tbody></table><span title="Page-160" id="dtb_9715" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 160">160</span><p id="dtb_9716" xml:lang="bn-IN">
+						<span id="dtb_9717">
 							<em id="dtb_9718">Now complete the following dialogues about Facebook and MySpace, and make your own dialogue on the rest of the social networks in the table. Act them out in pairs.</em>
 						</span>
-          </p>
-          <p id="dtb_9719" xml:lang="bn-IN">1 Q: [dash] social network is the most popular ? </p>
-          <p id="dtb_9720" xml:lang="bn-IN">A: Facebook is [dash]</p>
-          <p id="dtb_9721" xml:lang="bn-IN">Q: [dash] individual users use Facebook? </p>
-          <p id="dtb_9722" xml:lang="bn-IN">A: About 793 million.</p>
-          <p id="dtb_9723" xml:lang="bn-IN">Q: [dash] part of the world is Facebook mostly used in? </p>
-          <p id="dtb_9724" xml:lang="bn-IN">
-            <span id="dtb_9725">A: Worldwide. </span>
-            <span id="dtb_9726">It's popular worldwide among individual users. </span>
-          </p>
-          <p id="dtb_9727" xml:lang="bn-IN">2 Q: [dash] the least popular ?</p>
-          <p id="dtb_9728" xml:lang="bn-IN">A : MySpace is [dash] </p>
-          <p id="dtb_9729" xml:lang="bn-IN">Q: [dash] individual users use MySpace? </p>
-          <p id="dtb_9730" xml:lang="bn-IN">A: [dash]</p>
-          <p id="dtb_9731" xml:lang="bn-IN">Q: [dash] mostly used?</p>
-          <p id="dtb_9732" xml:lang="bn-IN">A: [dash] among individual users. </p>
-          <p id="dtb_9733" xml:lang="bn-IN">(Continue)</p>
-          <p id="dtb_9734" xml:lang="bn-IN">3 – 4- 5- </p>
-        </section>
-        <section id="id_90">
-          <h1 id="dtb_9735" xml:lang="bn-IN"> Lesson 3: E-learning <a href="#dtb_9735" title="Link to heading Lesson 3: E-learning" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_9736" xml:lang="bn-IN">
-            <span id="dtb_9737"> <em id="dtb_9738">A</em> <em id="dtb_9739">.</em> </span>
-            <span id="dtb_9740">
+					</p><p id="dtb_9719" xml:lang="bn-IN">1 Q: [dash] social network is the most popular ? </p><p id="dtb_9720" xml:lang="bn-IN">A: Facebook is [dash]</p><p id="dtb_9721" xml:lang="bn-IN">Q: [dash] individual users use Facebook? </p><p id="dtb_9722" xml:lang="bn-IN">A: About 793 million.</p><p id="dtb_9723" xml:lang="bn-IN">Q: [dash] part of the world is Facebook mostly used in? </p><p id="dtb_9724" xml:lang="bn-IN">
+						<span id="dtb_9725">A: Worldwide. </span>
+						<span id="dtb_9726">It's popular worldwide among individual users. </span>
+					</p><p id="dtb_9727" xml:lang="bn-IN">2 Q: [dash] the least popular ?</p><p id="dtb_9728" xml:lang="bn-IN">A : MySpace is [dash] </p><p id="dtb_9729" xml:lang="bn-IN">Q: [dash] individual users use MySpace? </p><p id="dtb_9730" xml:lang="bn-IN">A: [dash]</p><p id="dtb_9731" xml:lang="bn-IN">Q: [dash] mostly used?</p><p id="dtb_9732" xml:lang="bn-IN">A: [dash] among individual users. </p><p id="dtb_9733" xml:lang="bn-IN">(Continue)</p><p id="dtb_9734" xml:lang="bn-IN">3 – 4- 5- </p></section><section id="id_90"><h1 id="dtb_9735" xml:lang="bn-IN" tabindex="-1"> Lesson 3: E-learning <a href="#dtb_9735" rel="bookmark" class="webbook" title="Link to Lesson 3: E-learning" aria-label="Link to Lesson 3: E-learning"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_9736" xml:lang="bn-IN">
+						<span id="dtb_9737"> <em id="dtb_9738">A</em> <em id="dtb_9739">.</em> </span>
+						<span id="dtb_9740">
 							<em id="dtb_9741">Look at the following picture. Do you recognize it? Discuss with your partner and say what it is.</em> </span>
-          </p>
-          <div id="dtb_9743"><img src="EngforToday-9-style-page_160.jpg" alt="" id="dtb_9744"></div><span title="Page-161" id="dtb_9745" class="epubtype_pagebreak"></span>
-          <p id="dtb_9746" xml:lang="bn-IN">
-            <span id="dtb_9747">B. </span>
-            <span id="dtb_9748">
+					</p><div id="dtb_9743"><img src="images/EngforToday-9-style-page_160.jpg" alt="" id="dtb_9744"></div><span title="Page-161" id="dtb_9745" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 161">161</span><p id="dtb_9746" xml:lang="bn-IN">
+						<span id="dtb_9747">B. </span>
+						<span id="dtb_9748">
 							<em id="dtb_9749">Work in pairs. Discuss the following questions.</em>
 						</span>
-          </p>
-          <ul id="dtb_9750">
-            <li id="dtb_9751">
-              <p id="dtb_9752" xml:lang="bn-IN">Have you ever experienced any digital education programmes in multimedia or CD/DVD?</p>
-            </li>
-            <li id="dtb_9753">
-              <p id="dtb_9754" xml:lang="bn-IN">Have you ever used any digitized educational resources such as Oxford Dictionary, Banglapdedia and IELTS/TOEFL practice materials?</p>
-            </li>
-            <li id="dtb_9755">
-              <p id="dtb_9756" xml:lang="bn-IN">Have you ever heard of any online education course?</p>
-            </li>
-            <li id="dtb_9757">
-              <p id="dtb_9758" xml:lang="bn-IN">Have you ever seen a classroom teaching programme on TV?</p>
-            </li>
-          </ul>
-          <p id="dtb_9759" xml:lang="bn-IN">
-            <span id="dtb_9760"> <em id="dtb_9761">C</em> <em id="dtb_9762">.</em> </span>
-            <span id="dtb_9763">
+					</p><ul id="dtb_9750"><li id="dtb_9751">
+							<p id="dtb_9752" xml:lang="bn-IN">Have you ever experienced any digital education programmes in multimedia or CD/DVD?</p>
+						</li><li id="dtb_9753">
+							<p id="dtb_9754" xml:lang="bn-IN">Have you ever used any digitized educational resources such as Oxford Dictionary, Banglapdedia and IELTS/TOEFL practice materials?</p>
+						</li><li id="dtb_9755">
+							<p id="dtb_9756" xml:lang="bn-IN">Have you ever heard of any online education course?</p>
+						</li><li id="dtb_9757">
+							<p id="dtb_9758" xml:lang="bn-IN">Have you ever seen a classroom teaching programme on TV?</p>
+						</li></ul><p id="dtb_9759" xml:lang="bn-IN">
+						<span id="dtb_9760"> <em id="dtb_9761">C</em> <em id="dtb_9762">.</em> </span>
+						<span id="dtb_9763">
 							<em id="dtb_9764">Read the text and answer the following questions.</em> </span>
-          </p>
-          <p id="dtb_9765" xml:lang="bn-IN">
-            <span id="dtb_9766">Can you think of a classroom where there is no blackboard or desks? </span>
-            <span id="dtb_9767">Do you believe that you can be a student without a traditional book or a writing pad or even pen/pencil? </span>
-            <span id="dtb_9768">Are you not thrilled to imagine that you have asked a question and your tutor is answering that while flying midair in a Boeing from California to Tokyo? </span>
-            <span id="dtb_9769">These are all possible in a `virtual campus' in the system of e-learning. </span>
-            <span id="dtb_9770">No kidding! </span>
-            <span id="dtb_9771">For quite a long time, educationists have been utilizing the advantages of computer technology. </span>
-            <span id="dtb_9772">The social networking services have a huge potential to help educationists in this sector. </span>
-            <span id="dtb_9773">They have access to millions of people worldwide. </span>
-            <span id="dtb_9774">Educationists have noticed that a large number of social network users come from young generation and especially belong to student community. </span>
-            <span id="dtb_9775">So side by side with computer assisted teaching-learning software, online education programmes are evolving fairly rapidly to assist conventional education system.is that e-learning?</span>
-          </p>
-          <p id="dtb_9776" xml:lang="bn-IN">
-            <span id="dtb_9777">We may confuse distant education or computer-based learning or computer-assisted training or even online education programmes with e-learning. </span>
-            <span id="dtb_9778">But we should be cautious about the mix-up. </span>
-            <span id="dtb_9779">What happens in an online education programme? </span>
-            <span id="dtb_9780">Maybe you get some materials online from your tutor. </span>
-            <span id="dtb_9781">Maybe you submit your assignment through email. </span>
-            <span id="dtb_9782">Or even you may take your test online. </span>
-            <span id="dtb_9783">But there must be some conventional campus, a department/institute from where your certificate will come. </span>
-            <span id="dtb_9784">But in e-learning, as said by global e-learning guru Dr Badrul H Khan*, every step such as, registration, admission, classroom entry and exit, class work, attendance, discussion with course mates, feedback, exams and finally certification must take place electronically through computer and the Internet technology in a virtual campus. </span>
-          </p><span title="Page-162" id="dtb_9785" class="epubtype_pagebreak"></span>
-          <p id="dtb_9786" xml:lang="bn-IN">
-            <span id="dtb_9787">Everything is digitized and conducted by a system called Learning Management System (LMS). </span>
-            <span id="dtb_9788">So online education programmes blend various components of e-learning.</span>
-          </p>
-          <p id="dtb_9789" xml:lang="bn-IN">
-            <span id="dtb_9790">The revolutionary concept of e-learning is already in its practice phase in many parts of the world. </span>
-            <span id="dtb_9791">Professor Khan has developed a framework and important literatures on e-learning which have been praised by pundits worldwide including Bangladesh. </span>
-            <span id="dtb_9792">Professor Khan is especially enthusiastic about the prospect of e-learning in Bangladesh.</span>
-          </p>
-          <p id="dtb_9793" xml:lang="bn-IN">
-            <span id="dtb_9794">How would you feel if Bangladesh contemplates establishing South Asia's first virtual university? </span>
-            <span id="dtb_9795">Won't it be a pioneering step for us in the world of e-learning? </span>
-            <span id="dtb_9796">Let's keep our fingers crossed.</span>
-          </p>
-          <p id="dtb_9797" xml:lang="bn-IN">
-            <span id="dtb_9798">
+					</p><p id="dtb_9765" xml:lang="bn-IN">
+						<span id="dtb_9766">Can you think of a classroom where there is no blackboard or desks? </span>
+						<span id="dtb_9767">Do you believe that you can be a student without a traditional book or a writing pad or even pen/pencil? </span>
+						<span id="dtb_9768">Are you not thrilled to imagine that you have asked a question and your tutor is answering that while flying midair in a Boeing from California to Tokyo? </span>
+						<span id="dtb_9769">These are all possible in a `virtual campus' in the system of e-learning. </span>
+						<span id="dtb_9770">No kidding! </span>
+						<span id="dtb_9771">For quite a long time, educationists have been utilizing the advantages of computer technology. </span>
+						<span id="dtb_9772">The social networking services have a huge potential to help educationists in this sector. </span>
+						<span id="dtb_9773">They have access to millions of people worldwide. </span>
+						<span id="dtb_9774">Educationists have noticed that a large number of social network users come from young generation and especially belong to student community. </span>
+						<span id="dtb_9775">So side by side with computer assisted teaching-learning software, online education programmes are evolving fairly rapidly to assist conventional education system.is that e-learning?</span>
+					</p><p id="dtb_9776" xml:lang="bn-IN">
+						<span id="dtb_9777">We may confuse distant education or computer-based learning or computer-assisted training or even online education programmes with e-learning. </span>
+						<span id="dtb_9778">But we should be cautious about the mix-up. </span>
+						<span id="dtb_9779">What happens in an online education programme? </span>
+						<span id="dtb_9780">Maybe you get some materials online from your tutor. </span>
+						<span id="dtb_9781">Maybe you submit your assignment through email. </span>
+						<span id="dtb_9782">Or even you may take your test online. </span>
+						<span id="dtb_9783">But there must be some conventional campus, a department/institute from where your certificate will come. </span>
+						<span id="dtb_9784">But in e-learning, as said by global e-learning guru Dr Badrul H Khan*, every step such as, registration, admission, classroom entry and exit, class work, attendance, discussion with course mates, feedback, exams and finally certification must take place electronically through computer and the Internet technology in a virtual campus. </span>
+					</p><span title="Page-162" id="dtb_9785" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 162">162</span><p id="dtb_9786" xml:lang="bn-IN">
+						<span id="dtb_9787">Everything is digitized and conducted by a system called Learning Management System (LMS). </span>
+						<span id="dtb_9788">So online education programmes blend various components of e-learning.</span>
+					</p><p id="dtb_9789" xml:lang="bn-IN">
+						<span id="dtb_9790">The revolutionary concept of e-learning is already in its practice phase in many parts of the world. </span>
+						<span id="dtb_9791">Professor Khan has developed a framework and important literatures on e-learning which have been praised by pundits worldwide including Bangladesh. </span>
+						<span id="dtb_9792">Professor Khan is especially enthusiastic about the prospect of e-learning in Bangladesh.</span>
+					</p><p id="dtb_9793" xml:lang="bn-IN">
+						<span id="dtb_9794">How would you feel if Bangladesh contemplates establishing South Asia's first virtual university? </span>
+						<span id="dtb_9795">Won't it be a pioneering step for us in the world of e-learning? </span>
+						<span id="dtb_9796">Let's keep our fingers crossed.</span>
+					</p><p id="dtb_9797" xml:lang="bn-IN">
+						<span id="dtb_9798">
 							<span id="dtb_9799" class="normalized">*<em id="dtb_9800">Born and graduated in Bangladesh, Dr Badrul H Khan was a professor at George Washington University and the University of Texas, <abbr title="" id="dtb_9801">USA</abbr>. He is one of the celebrated theorists in the field of e-learning.</em></span>
-            </span>
-          </p>
-          <p id="dtb_9802" xml:lang="bn-IN">
-            <span id="dtb_9803"> <em id="dtb_9804">D</em> <em id="dtb_9805">.</em> </span>
-            <span id="dtb_9806">
+						</span>
+					</p><p id="dtb_9802" xml:lang="bn-IN">
+						<span id="dtb_9803"> <em id="dtb_9804">D</em> <em id="dtb_9805">.</em> </span>
+						<span id="dtb_9806">
 							<em id="dtb_9807">Write an email to your teacher expressing your feelings and opinion regarding the next mode of education -- e-learning. Also ask your teacher to clarify if anything in the text is unclear to you.</em> </span>
-          </p>
-          <p id="dtb_9808" xml:lang="bn-IN">
-            <span id="dtb_9809"> <em id="dtb_9810">E</em> <em id="dtb_9811">.</em> </span>
-            <span id="dtb_9812">
+					</p><p id="dtb_9808" xml:lang="bn-IN">
+						<span id="dtb_9809"> <em id="dtb_9810">E</em> <em id="dtb_9811">.</em> </span>
+						<span id="dtb_9812">
 							<em id="dtb_9813">Suppose Badrul Huda Khan has come to visit your school and intended to meet students for a presentation on e-learning. Write a text message to invite your friend to attend that presentation.</em> </span>
-          </p>
-          <p id="dtb_9814" xml:lang="bn-IN">
-            <span id="dtb_9815"> <em id="dtb_9816">F</em> <em id="dtb_9817">.</em> </span>
-            <span id="dtb_9818">
+					</p><p id="dtb_9814" xml:lang="bn-IN">
+						<span id="dtb_9815"> <em id="dtb_9816">F</em> <em id="dtb_9817">.</em> </span>
+						<span id="dtb_9818">
 							<em id="dtb_9819">Complete the following sentences.</em> </span>
-          </p>
-          <p id="dtb_9820" xml:lang="bn-IN">
-            <span id="dtb_9821">1. </span>
-            <span id="dtb_9822">Education experts [dash] utilizing the advantages of computer technology [dash] a long time.</span>
-          </p>
-          <p id="dtb_9823" xml:lang="bn-IN">
-            <span id="dtb_9824">2. </span>
-            <span id="dtb_9825">In e-learning, everything from admission to certification must [dash] electronically through computer and the Internet technology in a virtual campus.</span>
-          </p>
-          <p id="dtb_9826" xml:lang="bn-IN">
-            <span id="dtb_9827">3. </span>
-            <span id="dtb_9828">In some online courses, you [dash] your test online.</span>
-          </p>
-          <p id="dtb_9829" xml:lang="bn-IN">
-            <span id="dtb_9830">4. </span>
-            <span id="dtb_9831">In case of online programmes, there [dash] some conventional campus from where [dash]</span>
-          </p>
-          <p id="dtb_9832" xml:lang="bn-IN">
-            <span id="dtb_9833">5. </span>
-            <span id="dtb_9834">In e-learning, all activities [dash] by a system called Learning Management System (LMS).</span>
-          </p><span title="Page-163" id="dtb_9835" class="epubtype_pagebreak"></span>
-        </section>
-      </section>
-    </main>
+					</p><p id="dtb_9820" xml:lang="bn-IN">
+						<span id="dtb_9821">1. </span>
+						<span id="dtb_9822">Education experts [dash] utilizing the advantages of computer technology [dash] a long time.</span>
+					</p><p id="dtb_9823" xml:lang="bn-IN">
+						<span id="dtb_9824">2. </span>
+						<span id="dtb_9825">In e-learning, everything from admission to certification must [dash] electronically through computer and the Internet technology in a virtual campus.</span>
+					</p><p id="dtb_9826" xml:lang="bn-IN">
+						<span id="dtb_9827">3. </span>
+						<span id="dtb_9828">In some online courses, you [dash] your test online.</span>
+					</p><p id="dtb_9829" xml:lang="bn-IN">
+						<span id="dtb_9830">4. </span>
+						<span id="dtb_9831">In case of online programmes, there [dash] some conventional campus from where [dash]</span>
+					</p><p id="dtb_9832" xml:lang="bn-IN">
+						<span id="dtb_9833">5. </span>
+						<span id="dtb_9834">In e-learning, all activities [dash] by a system called Learning Management System (LMS).</span>
+					</p><span title="Page-163" id="dtb_9835" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 163">163</span></section></section></main>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-18.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-18.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-17.html" title="Previous: Unit Twelve" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-17.html" rel="prev" title="Previous: Unit Twelve" aria-label="Previous: Unit Twelve">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="package-19.html" title="Next: Unit Fourteen" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-19.html" title="Next: Unit Fourteen" aria-label="Next: Unit Fourteen" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-1"><a href="package-2.html#dtb_6">English For Today</a><ol><li id="toc-1-1"><a href="package-2.html#dtb_7">Classes 9-10</a></li></ol></li><li id="toc-2"><a href="package-3.html#dtb_17">ENGLISH FOR TODAY</a><ol><li id="toc-2-1"><a href="package-3.html#dtb_18">Classes 9-10</a></li></ol></li><li id="toc-3"><a href="package-4.html#dtb_66">Preface</a></li><li id="toc-4"><a href="package-5.html#dtb_96">Contents</a></li><li id="toc-5"><a href="package-6.html#dtb_215">Unit One</a><ol><li id="toc-5-1"><a href="package-6.html#dtb_216">Good citizens</a></li><li id="toc-5-2"><a href="package-6.html#dtb_221">Learning outcomes</a></li><li id="toc-5-3"><a href="package-6.html#dtb_424">Lesson 2: Knowledge, skills and attitudes</a></li><li id="toc-5-4"><a href="package-6.html#dtb_560">Lesson 3: Good character</a></li><li id="toc-5-5"><a href="package-6.html#dtb_744">Lesson 4: Responsibilities</a></li></ol></li><li id="toc-6"><a href="package-7.html#dtb_875">Unit Two</a><ol><li id="toc-6-1"><a href="package-7.html#dtb_876">Pastimes</a></li><li id="toc-6-2"><a href="package-7.html#dtb_892">Lesson 1: Have you any favourite pastime?</a></li></ol></li><li id="toc-7"><a href="package-8.html#dtb_1691">Unit Three</a><ol><li id="toc-7-1"><a href="package-8.html#dtb_1692">Events and festivals</a><ol><li id="toc-7-1-1"><a href="package-8.html#dtb_1697">Learning outcomes</a></li></ol></li><li id="toc-7-2"><a href="package-8.html#dtb_2153">Lesson 4 : International Mother Language Day – 2</a></li><li id="toc-7-3"><a href="package-8.html#dtb_2268">Lesson 5 : Independence Day</a></li><li id="toc-7-4"><a href="package-8.html#dtb_2398">Lesson 6: Pahela Boishakh</a></li></ol></li><li id="toc-8"><a href="package-9.html#dtb_2526">Unit Four</a><ol><li id="toc-8-1"><a href="package-9.html#dtb_2527">Are we aware?</a><ol><li id="toc-8-1-1"><a href="package-9.html#dtb_2533">Learning outcomes</a></li></ol></li><li id="toc-8-2"><a href="package-9.html#dtb_2547">Lesson 1: The ferry boat</a><ol><li id="toc-8-2-1"><a href="package-9.html#dtb_2614">Questions</a></li></ol></li><li id="toc-8-3"><a href="package-9.html#dtb_2705">Lesson 2: Are we too many?</a><ol><li id="toc-8-3-1"><a href="package-9.html#dtb_2763">Questions</a></li></ol></li><li id="toc-8-4"><a href="package-9.html#dtb_2934">Lesson 3: Our food and shelter</a></li><li id="toc-8-5"><a href="package-9.html#dtb_3067">Lesson 4: The story of Lipi</a><ol><li id="toc-8-5-1"><a href="package-9.html#dtb_3103">Question 1</a></li><li id="toc-8-5-2"><a href="package-9.html#dtb_3128">Question 2</a></li></ol></li><li id="toc-8-6"><a href="package-9.html#dtb_3175">Lesson 5: Let's become skilled workforce</a></li></ol></li><li id="toc-9"><a href="package-10.html#dtb_3322">Unit Five</a><ol><li id="toc-9-1"><a href="package-10.html#dtb_3323">Climate change</a><ol><li id="toc-9-1-1"><a href="package-10.html#dtb_3328">Learning outcomes</a></li></ol></li><li id="toc-9-2"><a href="package-10.html#dtb_3346">Lesson 1: The greed of the roaring rivers</a></li><li id="toc-9-3"><a href="package-10.html#dtb_3509">Lesson 2: Environmental pollution</a></li><li id="toc-9-4"><a href="package-10.html#dtb_3726">Lesson 3: Man and climate</a></li><li id="toc-9-5"><a href="package-10.html#dtb_3888">Lesson 4: Putting our fish in hot water!</a></li></ol></li><li id="toc-10"><a href="package-11.html#dtb_4147">Unit Six</a><ol><li id="toc-10-1"><a href="package-11.html#dtb_4148">Our Neighbours</a><ol><li id="toc-10-1-1"><a href="package-11.html#dtb_4153">Learning outcomes</a></li></ol></li><li id="toc-10-2"><a href="package-11.html#dtb_4167">Lesson 1: Nepal, the land of Everest</a></li><li id="toc-10-3"><a href="package-11.html#dtb_4417">Lesson 2: Sri Lanka: The pearl of the Indian Ocean</a></li><li id="toc-10-4"><a href="package-11.html#dtb_4684">Lesson 3: The Maldives</a></li><li id="toc-10-5"><a href="package-11.html#dtb_4852">Lesson 4: India: Unity within diversity</a></li><li id="toc-10-6"><a href="package-11.html#dtb_5007">Lesson 5: Bhutan: The land of happiness</a></li></ol></li><li id="toc-11"><a href="package-12.html#dtb_5113">Unit Seven</a><ol><li id="toc-11-1"><a href="package-12.html#dtb_5114">People who stand out</a></li><li id="toc-11-2"><a href="package-12.html#dtb_5131">Lesson l: Zainul Abedin, the great artist</a></li><li id="toc-11-3"><a href="package-12.html#dtb_5300">Lesson 2: The art of silence</a></li><li id="toc-11-4"><a href="package-12.html#dtb_5580">Lesson 4: The beginning</a></li><li id="toc-11-5"><a href="package-12.html#dtb_5671">Lesson 5: The missionary</a></li><li id="toc-11-6"><a href="package-12.html#dtb_5779">Lesson 6: Love for humanity</a></li><li id="toc-11-7"><a href="package-12.html#dtb_5978">Lesson 8: Jobs' childhood</a></li></ol></li><li id="toc-12"><a href="package-13.html#dtb_6072">Unit Eight</a><ol><li id="toc-12-1"><a href="package-13.html#dtb_6073">World heritage</a></li><li id="toc-12-2"><a href="package-13.html#dtb_6088">Lesson 1: The Shat Gambuj Mosque</a></li><li id="toc-12-3"><a href="package-13.html#dtb_6214">Lesson 2: The Somapura Mahavihara</a></li><li id="toc-12-4"><a href="package-13.html#dtb_6399">Lesson 3: The Statue of Liberty</a></li><li id="toc-12-5"><a href="package-13.html#dtb_6585">Lesson 4: Lake Baikal</a></li></ol></li><li id="toc-13"><a href="package-14.html#dtb_6759">Unit Nine</a><ol><li id="toc-13-1"><a href="package-14.html#dtb_6760">Unconventional jobs</a></li><li id="toc-13-2"><a href="package-14.html#dtb_6780">Lesson 1: Jobs around</a></li><li id="toc-13-3"><a href="package-14.html#dtb_6968">Lesson 2: Weird jobs around</a></li><li id="toc-13-4"><a href="package-14.html#dtb_7097">Lesson 3: Floral career</a></li></ol></li><li id="toc-14"><a href="package-15.html#dtb_7268">Unit Ten</a><ol><li id="toc-14-1"><a href="package-15.html#dtb_7269">Dreams</a><ol><li id="toc-14-1-1"><a href="package-15.html#dtb_7273">Learning outcomes</a></li></ol></li><li id="toc-14-2"><a href="package-15.html#dtb_7287">Lesson 1: I have a dream</a></li><li id="toc-14-3"><a href="package-15.html#dtb_7397">Lesson 2: What I dream to be</a></li><li id="toc-14-4"><a href="package-15.html#dtb_7572">Lesson 3: They had dreams 1</a></li><li id="toc-14-5"><a href="package-15.html#dtb_7737">Lesson 4: They had dreams 2</a></li></ol></li><li id="toc-15"><a href="package-16.html#dtb_7872">Unit Eleven</a><ol><li id="toc-15-1"><a href="package-16.html#dtb_7873">Renewable energy</a></li><li id="toc-15-2"><a href="package-16.html#dtb_7888">Lesson 1: Renewable energy sources -1</a></li><li id="toc-15-3"><a href="package-16.html#dtb_8103">Lesson 2: Renewable energy sources -2</a></li><li id="toc-15-4"><a href="package-16.html#dtb_8387">Lesson 3: Renewable energy sources-3</a></li></ol></li><li id="toc-16"><a href="package-17.html#dtb_8590">Unit Twelve</a><ol><li id="toc-16-1"><a href="package-17.html#dtb_8591">Roots</a></li><li id="toc-16-2"><a href="package-17.html#dtb_8614">Lesson 1: My roots</a></li><li id="toc-16-3"><a href="package-17.html#dtb_8776">Lesson 2: My roots -2</a></li><li id="toc-16-4"><a href="package-17.html#dtb_9013">Lesson 4: In search of identity</a></li></ol></li><li id="toc-17"><a href="package-18.html#dtb_9192">Unit Thirteen</a><ol><li id="toc-17-1"><a href="package-18.html#dtb_9193">Media and modes of e-communications</a></li><li id="toc-17-2"><a href="package-18.html#dtb_9212">Lesson 1: Media and models of e-communications</a></li><li id="toc-17-3"><a href="package-18.html#dtb_9502">Lesson 2: Social network services</a></li><li id="toc-17-4"><a href="package-18.html#dtb_9735">Lesson 3: E-learning</a></li></ol></li><li id="toc-18"><a href="package-19.html#dtb_9836">Unit Fourteen</a><ol><li id="toc-18-1"><a href="package-19.html#dtb_9837">Pleasure and purpose</a></li><li id="toc-18-2"><a href="package-19.html#dtb_9852">Lesson 1: Books</a></li><li id="toc-18-3"><a href="package-19.html#dtb_9971">Lesson 3: The Sands of Dee</a></li><li id="toc-18-4"><a href="package-19.html#dtb_10036">Lesson 4: Time, You Old Gipsy Man</a></li><li id="toc-18-5"><a href="package-19.html#dtb_10109">Lesson 5: Stopping by Woods on a Snowing Evening</a></li><li id="toc-18-6"><a href="package-19.html#dtb_10177">Lesson 6: The Purple Jar-1</a></li><li id="toc-18-7"><a href="package-19.html#dtb_10258">Lesson 7: The Purple Jar-2</a></li><li id="toc-18-8"><a href="package-19.html#dtb_10355">Lesson 8: The Purple Jar-3</a></li><li id="toc-18-9"><a href="package-19.html#dtb_10486">Lesson 9: A Pound of Flesh</a></li><li id="toc-18-10"><a href="package-19.html#dtb_10617">Lesson 10: The three caskets</a></li><li id="toc-18-11"><a href="package-19.html#dtb_10695">Lesson 11: the trial</a></li><li id="toc-18-12"><a href="package-19.html#dtb_10774">Lessons 9, 10 &amp; 11 are adapted horn The Merchant of Vinice by William Shakespeare.</a></li></ol></li><li id="toc-19"><a href="package-20.html#dtb_10792">Sample Question</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-18.mp3"><track default="" kind="metadata" src="vtt/package-18.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="1" label="1" data-href="package-6.html#dtb_217"></option><option value="2" label="2" data-href="package-6.html#dtb_232"></option><option value="3" label="3" data-href="package-6.html#dtb_282"></option><option value="4" label="4" data-href="package-6.html#dtb_342"></option><option value="5" label="5" data-href="package-6.html#dtb_386"></option><option value="6" label="6" data-href="package-6.html#dtb_446"></option><option value="7" label="7" data-href="package-6.html#dtb_503"></option><option value="8" label="8" data-href="package-6.html#dtb_593"></option><option value="9" label="9" data-href="package-6.html#dtb_683"></option><option value="10" label="10" data-href="package-6.html#dtb_743"></option><option value="11" label="11" data-href="package-6.html#dtb_793"></option><option value="12" label="12" data-href="package-6.html#dtb_860"></option><option value="13" label="13" data-href="package-6.html#dtb_874"></option><option value="14" label="14" data-href="package-7.html#dtb_891"></option><option value="l5" label="l5" data-href="package-7.html#dtb_953"></option><option value="16" label="16" data-href="package-7.html#dtb_1017"></option><option value="17" label="17" data-href="package-7.html#dtb_1145"></option><option value="18" label="18" data-href="package-7.html#dtb_1201"></option><option value="19" label="19" data-href="package-7.html#dtb_1259"></option><option value="20" label="20" data-href="package-7.html#dtb_1319"></option><option value="21" label="21" data-href="package-7.html#dtb_1416"></option><option value="22" label="22" data-href="package-7.html#dtb_1451"></option><option value="23" label="23" data-href="package-7.html#dtb_1574"></option><option value="Pae-24" label="Pae-24" data-href="package-7.html#dtb_1637"></option><option value="25" label="25" data-href="package-7.html#dtb_1673"></option><option value="26" label="26" data-href="package-8.html#dtb_1693"></option><option value="27" label="27" data-href="package-8.html#dtb_1706"></option><option value="28" label="28" data-href="package-8.html#dtb_1838"></option><option value="29" label="29" data-href="package-8.html#dtb_1920"></option><option value="30" label="30" data-href="package-8.html#dtb_2004"></option><option value="31" label="31" data-href="package-8.html#dtb_2094"></option><option value="32" label="32" data-href="package-8.html#dtb_2191"></option><option value="33" label="33" data-href="package-8.html#dtb_2296"></option><option value="34" label="34" data-href="package-8.html#dtb_2375"></option><option value="35" label="35" data-href="package-8.html#dtb_2417"></option><option value="36" label="36" data-href="package-8.html#dtb_2475"></option><option value="37" label="37" data-href="package-8.html#dtb_2525"></option><option value="38" label="38" data-href="package-9.html#dtb_2546"></option><option value="39" label="39" data-href="package-9.html#dtb_2598"></option><option value="40" label="40" data-href="package-9.html#dtb_2664"></option><option value="41" label="41" data-href="package-9.html#dtb_2727"></option><option value="42" label="42" data-href="package-9.html#dtb_2811"></option><option value="43" label="43" data-href="package-9.html#dtb_2933"></option><option value="44" label="44" data-href="package-9.html#dtb_2995"></option><option value="45" label="45" data-href="package-9.html#dtb_3054"></option><option value="46" label="46" data-href="package-9.html#dtb_3118"></option><option value="47" label="47" data-href="package-9.html#dtb_3174"></option><option value="48" label="48" data-href="package-9.html#dtb_3248"></option><option value="49" label="49" data-href="package-10.html#dtb_3324"></option><option value="50" label="50" data-href="package-10.html#dtb_3345"></option><option value="51" label="51" data-href="package-10.html#dtb_3391"></option><option value="52" label="52" data-href="package-10.html#dtb_3458"></option><option value="53" label="53" data-href="package-10.html#dtb_3547"></option><option value="54" label="54" data-href="package-10.html#dtb_3574"></option><option value="55" label="55" data-href="package-10.html#dtb_3614"></option><option value="56" label="56" data-href="package-10.html#dtb_3725"></option><option value="57" label="57" data-href="package-10.html#dtb_3764"></option><option value="58" label="58" data-href="package-10.html#dtb_3859"></option><option value="59" label="59" data-href="package-10.html#dtb_3913"></option><option value="60" label="60" data-href="package-10.html#dtb_3975"></option><option value="61" label="61" data-href="package-10.html#dtb_4032"></option><option value="62" label="62" data-href="package-10.html#dtb_4104"></option><option value="63" label="63" data-href="package-11.html#dtb_4149"></option><option value="64" label="64" data-href="package-11.html#dtb_4166"></option><option value="65" label="65" data-href="package-11.html#dtb_4206"></option><option value="66" label="66" data-href="package-11.html#dtb_4256"></option><option value="67" label="67" data-href="package-11.html#dtb_4311"></option><option value="68" label="68" data-href="package-11.html#dtb_4371"></option><option value="69" label="69" data-href="package-11.html#dtb_4409"></option><option value="70" label="70" data-href="package-11.html#dtb_4463"></option><option value="71" label="71" data-href="package-11.html#dtb_4508"></option><option value="72" label="72" data-href="package-11.html#dtb_4622"></option><option value="73" label="73" data-href="package-11.html#dtb_4671"></option><option value="74" label="74" data-href="package-11.html#dtb_4721"></option><option value="75" label="75" data-href="package-11.html#dtb_4751"></option><option value="76" label="76" data-href="package-11.html#dtb_4842"></option><option value="77" label="77" data-href="package-11.html#dtb_4884"></option><option value="78" label="78" data-href="package-11.html#dtb_4943"></option><option value="79" label="79" data-href="package-11.html#dtb_5019"></option><option value="80" label="80" data-href="package-11.html#dtb_5049"></option><option value="81" label="81" data-href="package-11.html#dtb_5089"></option><option value="82" label="82" data-href="package-11.html#dtb_5112"></option><option value="83" label="83" data-href="package-12.html#dtb_5130"></option><option value="84" label="84" data-href="package-12.html#dtb_5163"></option><option value="85" label="85" data-href="package-12.html#dtb_5209"></option><option value="86" label="86" data-href="package-12.html#dtb_5265"></option><option value="87" label="87" data-href="package-12.html#dtb_5322"></option><option value="88" label="88" data-href="package-12.html#dtb_5358"></option><option value="89" label="89" data-href="package-12.html#dtb_5402"></option><option value="90" label="90" data-href="package-12.html#dtb_5468"></option><option value="91" label="91" data-href="package-12.html#dtb_5553"></option><option value="92" label="92" data-href="package-12.html#dtb_5611"></option><option value="93" label="93" data-href="package-12.html#dtb_5670"></option><option value="94" label="94" data-href="package-12.html#dtb_5722"></option><option value="95" label="95" data-href="package-12.html#dtb_5807"></option><option value="96" label="96" data-href="package-12.html#dtb_5836"></option><option value="97" label="97" data-href="package-12.html#dtb_5909"></option><option value="98" label="98" data-href="package-12.html#dtb_5950"></option><option value="99" label="99" data-href="package-12.html#dtb_6005"></option><option value="100" label="100" data-href="package-12.html#dtb_6071"></option><option value="101" label="101" data-href="package-13.html#dtb_6087"></option><option value="102" label="102" data-href="package-13.html#dtb_6134"></option><option value="103" label="103" data-href="package-13.html#dtb_6194"></option><option value="104" label="104" data-href="package-13.html#dtb_6235"></option><option value="105" label="105" data-href="package-13.html#dtb_6265"></option><option value="106" label="106" data-href="package-13.html#dtb_6350"></option><option value="107" label="107" data-href="package-13.html#dtb_6434"></option><option value="108" label="108" data-href="package-13.html#dtb_6551"></option><option value="109" label="109" data-href="package-13.html#dtb_6609"></option><option value="110" label="110" data-href="package-13.html#dtb_6674"></option><option value="111" label="111" data-href="package-13.html#dtb_6758"></option><option value="112" label="112" data-href="package-14.html#dtb_6779"></option><option value="113" label="113" data-href="package-14.html#dtb_6832"></option><option value="114" label="114" data-href="package-14.html#dtb_6896"></option><option value="115" label="115" data-href="package-14.html#dtb_6967"></option><option value="116" label="116" data-href="package-14.html#dtb_6996"></option><option value="117" label="117" data-href="package-14.html#dtb_7047"></option><option value="118" label="118" data-href="package-14.html#dtb_7096"></option><option value="119" label="119" data-href="package-14.html#dtb_7216"></option><option value="120" label="120" data-href="package-14.html#dtb_7267"></option><option value="121" label="121" data-href="package-15.html#dtb_7286"></option><option value="122" label="122" data-href="package-15.html#dtb_7345"></option><option value="123" label="123" data-href="package-15.html#dtb_7432"></option><option value="124" label="124" data-href="package-15.html#dtb_7531"></option><option value="125" label="125" data-href="package-15.html#dtb_7612"></option><option value="126" label="126" data-href="package-15.html#dtb_7674"></option><option value="127" label="127" data-href="package-15.html#dtb_7761"></option><option value="128" label="128" data-href="package-15.html#dtb_7821"></option><option value="129" label="129" data-href="package-15.html#dtb_7871"></option><option value="130" label="130" data-href="package-16.html#dtb_7887"></option><option value="131" label="131" data-href="package-16.html#dtb_7944"></option><option value="132" label="132" data-href="package-16.html#dtb_8036"></option><option value="133" label="133" data-href="package-16.html#dtb_8077"></option><option value="134" label="134" data-href="package-16.html#dtb_8168"></option><option value="135" label="135" data-href="package-16.html#dtb_8205"></option><option value="136" label="136" data-href="package-16.html#dtb_8294"></option><option value="137" label="137" data-href="package-16.html#dtb_8386"></option><option value="138" label="138" data-href="package-16.html#dtb_8432"></option><option value="139" label="139" data-href="package-16.html#dtb_8508"></option><option value="139" label="139" data-href="package-16.html#dtb_8589"></option><option value="141" label="141" data-href="package-17.html#dtb_8613"></option><option value="142" label="142" data-href="package-17.html#dtb_8644"></option><option value="143" label="143" data-href="package-17.html#dtb_8673"></option><option value="144" label="144" data-href="package-17.html#dtb_8775"></option><option value="145" label="145" data-href="package-17.html#dtb_8815"></option><option value="146" label="146" data-href="package-17.html#dtb_8862"></option><option value="147" label="147" data-href="package-17.html#dtb_8931"></option><option value="148" label="148" data-href="package-17.html#dtb_8977"></option><option value="149" label="149" data-href="package-17.html#dtb_9026"></option><option value="150" label="150" data-href="package-17.html#dtb_9082"></option><option value="151" label="151" data-href="package-17.html#dtb_9123"></option><option value="152" label="152" data-href="package-17.html#dtb_9168"></option><option value="153" label="153" data-href="package-17.html#dtb_9191"></option><option value="154" label="154" data-href="package-18.html#dtb_9211"></option><option value="155" label="155" data-href="package-18.html#dtb_9277"></option><option value="156" label="156" data-href="package-18.html#dtb_9330"></option><option value="157" label="157" data-href="package-18.html#dtb_9393"></option><option value="158" label="158" data-href="package-18.html#dtb_9545"></option><option value="159" label="159" data-href="package-18.html#dtb_9618"></option><option value="160" label="160" data-href="package-18.html#dtb_9715"></option><option value="161" label="161" data-href="package-18.html#dtb_9745"></option><option value="162" label="162" data-href="package-18.html#dtb_9785"></option><option value="163" label="163" data-href="package-18.html#dtb_9835"></option><option value="164" label="164" data-href="package-19.html#dtb_9851"></option><option value="165" label="165" data-href="package-19.html#dtb_9895"></option><option value="166" label="166" data-href="package-19.html#dtb_9940"></option><option value="167" label="167" data-href="package-19.html#dtb_9981"></option><option value="168" label="168" data-href="package-19.html#dtb_10035"></option><option value="169" label="169" data-href="package-19.html#dtb_10081"></option><option value="170" label="170" data-href="package-19.html#dtb_10134"></option><option value="171" label="171" data-href="package-19.html#dtb_10191"></option><option value="172" label="172" data-href="package-19.html#dtb_10246"></option><option value="173" label="173" data-href="package-19.html#dtb_10295"></option><option value="174" label="174" data-href="package-19.html#dtb_10354"></option><option value="175" label="175" data-href="package-19.html#dtb_10392"></option><option value="176" label="176" data-href="package-19.html#dtb_10513"></option><option value="177" label="177" data-href="package-19.html#dtb_10570"></option><option value="178" label="178" data-href="package-19.html#dtb_10641"></option><option value="179" label="179" data-href="package-19.html#dtb_10712"></option><option value="180" label="180" data-href="package-19.html#dtb_10745"></option><option value="181" label="181" data-href="package-19.html#dtb_10791"></option><option value="182" label="182" data-href="package-20.html#dtb_10842"></option><option value="183" label="183" data-href="package-20.html#dtb_10879"></option><option value="184" label="184" data-href="package-20.html#dtb_10927"></option><option value="185" label="185" data-href="package-20.html#dtb_11007"></option><option value="186" label="186" data-href="package-20.html#dtb_11068"></option><option value="187" label="187" data-href="package-20.html#dtb_11103"></option><option value="188" label="188" data-href="package-20.html#dtb_11160"></option><option value="189" label="189" data-href="package-20.html#dtb_11197"></option><option value="190" label="190" data-href="package-20.html#dtb_11232"></option><option value="191" label="191" data-href="package-20.html#dtb_11288"></option><option value="192" label="192" data-href="package-20.html#dtb_11333"></option></datalist>
+    </section>
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>English For Today Classes 9-10</dd><dt>Author</dt><dd>Created By: YPSA. In cooperation with A2i, Prime Minister Office</dd><dt>Date</dt><dd>2022-02-11T23:26:17Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

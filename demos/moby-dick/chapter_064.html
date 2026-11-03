@@ -1,181 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <title>
-      Moby-Dick</title>
-    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-
+<html lang="en-US" data-webbook-contract="0"><head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 64. Stubb’s Supper.</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="urn:isbn:9780316000000">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
+<body>
     <main>
+<section class="body-rw Chapter-rw epubtype_bodymatter epubtype_chapter">
+<header>
+<h1 id="h-0" tabindex="-1">Chapter 64. Stubb’s Supper.<a href="#h-0" rel="bookmark" class="webbook" title="Link to Chapter 64. Stubb’s Supper." aria-label="Link to Chapter 64. Stubb’s Supper."><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1></header>
+<p>Stubb’s whale had been killed some distance from the ship. It was a calm; so, forming a tandem of three boats, we commenced the slow business of towing the trophy to the Pequod. And now, as we eighteen men with our thirty-six arms, and one hundred and eighty thumbs and fingers, slowly toiled hour after hour upon that inert, sluggish corpse in the sea; and it seemed hardly to budge at all, except at long intervals; good evidence was hereby furnished of the enormousness of the mass we moved. For, upon the great canal of Hang-Ho, or whatever they call it, in China, four or five laborers on the foot-path will draw a bulky freighted junk at the rate of a mile an hour; but this grand argosy we towed heavily forged along, as if laden with pig-lead in bulk.</p>
+<p>Darkness came on; but three lights up and down in the Pequod’s main-rigging dimly guided our way; till drawing nearer we saw Ahab dropping one of several more lanterns over the bulwarks. Vacantly eyeing the heaving whale for a moment, he issued the usual orders for securing it for the night, and then handing his lantern to a seaman, went his way into the cabin, and did not come forward again until morning.</p>
+<p>Though, in overseeing the pursuit of this whale, Captain Ahab had evinced his customary activity, to call it so; yet now that the creature was dead, some vague dissatisfaction, or impatience, or despair, seemed working in him; as if the sight of that dead body reminded him that Moby Dick was yet to be slain; and though a thousand other whales were brought to his ship, all that would not one jot advance his grand, monomaniac object. Very soon you would have thought from the sound on the Pequod’s decks, that all hands were preparing to cast anchor in the deep; for heavy chains are being dragged along the deck, and thrust rattling out of the port-holes. But by those clanking links, the vast corpse itself, not the ship, is to be moored. Tied by the head to the stern, and by the tail to the bows, the whale now lies with its black hull close to the vessel’s and seen through the darkness of the night, which obscured the spars and rigging aloft, the two—ship and whale, seemed yoked together like colossal bullocks, whereof one reclines while the other remains standing.*</p>
+<p>*A little item may as well be related here. The strongest and most reliable hold which the ship has upon the whale when moored alongside, is by the flukes or tail; and as from its greater density that part is relatively heavier than any other (excepting the side-fins), its flexibility even in death, causes it to sink low beneath the surface; so that with the hand you cannot get at it from the boat, in order to put the chain round it. But this difficulty is ingeniously overcome: a small, strong line is prepared with a wooden float at its outer end, and a weight in its middle, while the other end is secured to the ship. By adroit management the wooden float is made to rise on the other side of the mass, so that now having girdled the whale, the chain is readily made to follow suit; and being slipped along the body, is at last locked fast round the smallest part of the tail, at the point of junction with its broad flukes or lobes.</p>
+<p>If moody Ahab was now all quiescence, at least so far as could be known on deck, Stubb, his second mate, flushed with conquest, betrayed an unusual but still good-natured excitement. Such an unwonted bustle was he in that the staid Starbuck, his official superior, quietly resigned to him for the time the sole management of affairs. One small, helping cause of all this liveliness in Stubb, was soon made strangely manifest. Stubb was a high liver; he was somewhat intemperately fond of the whale as a flavorish thing to his palate.</p>
+<p>“A steak, a steak, ere I sleep! You, Daggoo! overboard you go, and cut me one from his small!”</p>
+<p>Here be it known, that though these wild fishermen do not, as a general thing, and according to the great military maxim, make the enemy defray the current expenses of the war (at least before realizing the proceeds of the voyage), yet now and then you find some of these Nantucketers who have a genuine relish for that particular part of the Sperm Whale designated by Stubb; comprising the tapering extremity of the body.</p>
+<p>About midnight that steak was cut and cooked; and lighted by two lanterns of sperm oil, Stubb stoutly stood up to his spermaceti supper at the capstan-head, as if that capstan were a sideboard. Nor was Stubb the only banqueter on whale’s flesh that night. Mingling their mumblings with his own mastications, thousands on thousands of sharks, swarming round the dead leviathan, smackingly feasted on its fatness. The few sleepers below in their bunks were often startled by the sharp slapping of their tails against the hull, within a few inches of the sleepers’ hearts. Peering over the side you could just see them (as before you heard them) wallowing in the sullen, black waters, and turning over on their backs as they scooped out huge globular pieces of the whale of the bigness of a human head. This particular feat of the shark seems all but miraculous. How at such an apparently unassailable surface, they contrive to gouge out such symmetrical mouthfuls, remains a part of the universal problem of all things. The mark they thus leave on the whale, may best be likened to the hollow made by a carpenter in countersinking for a screw.</p>
+<p>Though amid all the smoking horror and diabolism of a sea-fight, sharks will be seen longingly gazing up to the ship’s decks, like hungry dogs round a table where red meat is being carved, ready to bolt down every killed man that is tossed to them; and though, while the valiant butchers over the deck-table are thus cannibally carving each other’s live meat with carving-knives all gilded and tasselled, the sharks, also, with their jewel-hilted mouths, are quarrelsomely carving away under the table at the dead meat; and though, were you to turn the whole affair upside down, it would still be pretty much the same thing, that is to say, a shocking sharkish business enough for all parties; and though sharks also are the invariable outriders of all slave ships crossing the Atlantic, systematically trotting alongside, to be handy in case a parcel is to be carried anywhere, or a dead slave to be decently buried; and though one or two other like instances might be set down, touching the set terms, places, and occasions, when sharks do most socially congregate, and most hilariously feast; yet is there no conceivable time or occasion when you will find them in such countless numbers, and in gayer or more jovial spirits, than around a dead sperm whale, moored by night to a whaleship at sea. If you have never seen that sight, then suspend your decision about the propriety of devil-worship, and the expediency of conciliating the devil.</p>
+<p>But, as yet, Stubb heeded not the mumblings of the banquet that was going on so nigh him, no more than the sharks heeded the smacking of his own epicurean lips.</p>
+<p>“Cook, cook!—where’s that old Fleece?” he cried at length, widening his legs still further, as if to form a more secure base for his supper; and, at the same time darting his fork into the dish, as if stabbing with his lance; “cook, you cook!—sail this way, cook!”</p>
+<p>The old black, not in any very high glee at having been previously roused from his warm hammock at a most unseasonable hour, came shambling along from his galley, for, like many old blacks, there was something the matter with his knee-pans, which he did not keep well scoured like his other pans; this old Fleece, as they called him, came shuffling and limping along, assisting his step with his tongs, which, after a clumsy fashion, were made of straightened iron hoops; this old Ebony floundered along, and in obedience to the word of command, came to a dead stop on the opposite side of Stubb’s sideboard; when, with both hands folded before him, and resting on his two-legged cane, he bowed his arched back still further over, at the same time sideways inclining his head, so as to bring his best ear into play.</p>
+<p>“Cook,” said Stubb, rapidly lifting a rather reddish morsel to his mouth, “don’t you think this steak is rather overdone? You’ve been beating this steak too much, cook; it’s too tender. Don’t I always say that to be good, a whale-steak must be tough? There are those sharks now over the side, don’t you see they prefer it tough and rare? What a shindy they are kicking up! Cook, go and talk to 'em; tell ’em they are welcome to help themselves civilly, and in moderation, but they must keep quiet. Blast me, if I can hear my own voice. Away, cook, and deliver my message. Here, take this lantern,” snatching one from his sideboard; “now then, go and preach to 'em!”</p>
+<p>Sullenly taking the offered lantern, old Fleece limped across the deck to the bulwarks; and then, with one hand dropping his light low over the sea, so as to get a good view of his congregation, with the other hand he solemnly flourished his tongs, and leaning far over the side in a mumbling voice began addressing the sharks, while Stubb, softly crawling behind, overheard all that was said.</p>
+<p>“Fellow-critters: I’se ordered here to say dat you must stop dat dam noise dare. You hear? Stop dat dam smackin’ ob de lips! Massa Stubb say dat you can fill your dam bellies up to de hatchings, but by Gor! you must stop dat dam racket!”</p>
+<p>“Cook,” here interposed Stubb, accompanying the word with a sudden slap on the shoulder,—"Cook! why, damn your eyes, you mustn’t swear that way when you’re preaching. That’s no way to convert sinners, cook!”</p>
+<p>“Who dat? Den preach to him yourself,” sullenly turning to go.</p>
+<p>“No, cook; go on, go on.”</p>
+<p>“Well, den, Belubed fellow-critters:"—</p>
+<p>“Right!” exclaimed Stubb, approvingly, “coax ’em to it; try that,” and Fleece continued.</p>
+<p>“Do you is all sharks, and by natur wery woracious, yet I zay to you, fellow-critters, dat dat woraciousness—‘top dat dam slappin’ ob de tail! How you tink to hear, spose you keep up such a dam slappin’ and bitin’ dare?”</p>
+<p>“Cook,” cried Stubb, collaring him, “I won’t have that swearing. Talk to ’em gentlemanly.”</p>
+<p>Once more the sermon proceeded.</p>
+<p>“Your woraciousness, fellow-critters, I don’t blame ye so much for; dat is natur, and can’t be helped; but to gobern dat wicked natur, dat is de pint. You is sharks, sartin; but if you gobern de shark in you, why den you be angel; for all angel is not’ing more dan de shark well goberned. Now, look here, bred’ren, just try wonst to be cibil, a helping yourselbs from dat whale. Don’t be tearin’ de blubber out your neighbour’s mout, I say. Is not one shark dood right as toder to dat whale? And, by Gor, none on you has de right to dat whale; dat whale belong to some one else. I know some o’ you has berry brig mout, brigger dan oders; but den de brig mouts sometimes has de small bellies; so dat de brigness of de mout is not to swaller wid, but to bit off de blubber for de small fry ob sharks, dat can’t get into de scrouge to help demselves.”</p>
+<p>“Well done, old Fleece!” cried Stubb, “that’s Christianity; go on.”</p>
+<p>“No use goin’ on; de dam willains will keep a scougin’ and slappin’ each oder, Massa Stubb; dey don’t hear one word; no use a-preaching to such dam g’uttons as you call 'em, till dare bellies is full, and dare bellies is bottomless; and when dey do get ’em full, dey wont hear you den; for den dey sink in the sea, go fast to sleep on de coral, and can’t hear noting at all, no more, for eber and eber.”</p>
+<p>“Upon my soul, I am about of the same opinion; so give the benediction, Fleece, and I’ll away to my supper.”</p>
+<p>Upon this, Fleece, holding both hands over the fishy mob, raised his shrill voice, and cried—</p>
+<p>“Cussed fellow-critters! Kick up de damndest row as ever you can; fill your dam bellies 'till dey bust—and den die.”</p>
+<p>“Now, cook,” said Stubb, resuming his supper at the capstan; “stand just where you stood before, there, over against me, and pay particular attention.”</p>
+<p>“All 'dention,” said Fleece, again stooping over upon his tongs in the desired position.</p>
+<p>“Well,” said Stubb, helping himself freely meanwhile; “I shall now go back to the subject of this steak. In the first place, how old are you, cook?”</p>
+<p>“What dat do wid de 'teak,” said the old black, testily.</p>
+<p>“Silence! How old are you, cook?”</p>
+<p>“‘Bout ninety, dey say,” he gloomily muttered.</p>
+<p>“And you have lived in this world hard upon one hundred years, cook, and don’t know yet how to cook a whale-steak?” rapidly bolting another mouthful at the last word, so that morsel seemed a continuation of the question. “Where were you born, cook?”</p>
+<p>“‘Hind de hatchway, in ferry-boat, goin’ ober de Roanoke.”</p>
+<p>“Born in a ferry-boat! That’s queer, too. But I want to know what country you were born in, cook!”</p>
+<p>“Didn’t I say de Roanoke country?” he cried sharply.</p>
+<p>“No, you didn’t, cook; but I’ll tell you what I’m coming to, cook. You must go home and be born over again; you don’t know how to cook a whale-steak yet.”</p>
+<p>“Bress my soul, if I cook noder one,” he growled, angrily, turning round to depart.</p>
+<p>“Come back here, cook;—here, hand me those tongs;—now take that bit of steak there, and tell me if you think that steak cooked as it should be? Take it, I say"—holding the tongs towards him—"take it, and taste it.”</p>
+<p>Faintly smacking his withered lips over it for a moment, the old negro muttered, “Best cooked 'teak I eber taste; joosy, berry joosy.”</p>
+<p>“Cook,” said Stubb, squaring himself once more; “do you belong to the church?”</p>
+<p>“Passed one once in Cape-Down,” said the old man sullenly.</p>
+<p>“And you have once in your life passed a holy church in Cape-Town, where you doubtless overheard a holy parson addressing his hearers as his beloved fellow-creatures, have you, cook! And yet you come here, and tell me such a dreadful lie as you did just now, eh?” said Stubb. “Where do you expect to go to, cook?”</p>
+<p>“Go to bed berry soon,” he mumbled, half-turning as he spoke.</p>
+<p>“Avast! heave to! I mean when you die, cook. It’s an awful question. Now what’s your answer?”</p>
+<p>“When dis old brack man dies,” said the negro slowly, changing his whole air and demeanor, “he hisself won’t go nowhere; but some bressed angel will come and fetch him.”</p>
+<p>“Fetch him? How? In a coach and four, as they fetched Elijah? And fetch him where?”</p>
+<p>“Up dere,” said Fleece, holding his tongs straight over his head, and keeping it there very solemnly.</p>
+<p>“So, then, you expect to go up into our main-top, do you, cook, when you are dead? But don’t you know the higher you climb, the colder it gets? Main-top, eh?”</p>
+<p>“Didn’t say dat t’all,” said Fleece, again in the sulks.</p>
+<p>“You said up there, didn’t you? and now look yourself, and see where your tongs are pointing. But, perhaps you expect to get into heaven by crawling through the lubber’s hole, cook; but, no, no, cook, you don’t get there, except you go the regular way, round by the rigging. It’s a ticklish business, but must be done, or else it’s no go. But none of us are in heaven yet. Drop your tongs, cook, and hear my orders. Do ye hear? Hold your hat in one hand, and clap t’other a’top of your heart, when I’m giving my orders, cook. What! that your heart, there?—that’s your gizzard! Aloft! aloft!—that’s it—now you have it. Hold it there now, and pay attention.”</p>
+<p>“All 'dention,” said the old black, with both hands placed as desired, vainly wriggling his grizzled head, as if to get both ears in front at one and the same time.</p>
+<p>“Well then, cook, you see this whale-steak of yours was so very bad, that I have put it out of sight as soon as possible; you see that, don’t you? Well, for the future, when you cook another whale-steak for my private table here, the capstan, I’ll tell you what to do so as not to spoil it by overdoing. Hold the steak in one hand, and show a live coal to it with the other; that done, dish it; d’ye hear? And now to-morrow, cook, when we are cutting in the fish, be sure you stand by to get the tips of his fins; have them put in pickle. As for the ends of the flukes, have them soused, cook. There, now ye may go.”</p>
+<p>But Fleece had hardly got three paces off, when he was recalled.</p>
+<p>“Cook, give me cutlets for supper to-morrow night in the mid-watch. D’ye hear? away you sail, then.—Halloa! stop! make a bow before you go.—Avast heaving again! Whale-balls for breakfast—don’t forget.”</p>
+<p>“Wish, by gor! whale eat him, ‘stead of him eat whale. I’m bressed if he ain’t more of shark dan Massa Shark hisself,” muttered the old man, limping away; with which sage ejaculation he went to his hammock.</p>
+</section></main>
 
-      <section class="body-rw Chapter-rw epubtype_bodymatter epubtype_chapter">
-        <header>
-          <h1 id="h-0">Chapter 64. Stubb’s Supper.<a href="#h-0" title="Link to heading Chapter 64. Stubb’s Supper." class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-        </header>
-        <p>Stubb’s whale had been killed some distance from the ship. It was a calm; so, forming a tandem of three boats, we commenced the slow business of towing the trophy to the Pequod. And now, as we eighteen men with our thirty-six arms, and one hundred and eighty thumbs and fingers, slowly toiled hour after hour upon that inert, sluggish corpse in the sea; and it seemed hardly to budge at all, except at long intervals; good evidence was hereby furnished of the enormousness of the mass we moved. For, upon the great canal of Hang-Ho, or whatever they call it, in China, four or five laborers on the foot-path will draw a bulky freighted junk at the rate of a mile an hour; but this grand argosy we towed heavily forged along, as if laden with pig-lead in bulk.</p>
-        <p>Darkness came on; but three lights up and down in the Pequod’s main-rigging dimly guided our way; till drawing nearer we saw Ahab dropping one of several more lanterns over the bulwarks. Vacantly eyeing the heaving whale for a moment, he issued the usual orders for securing it for the night, and then handing his lantern to a seaman, went his way into the cabin, and did not come forward again until morning.</p>
-        <p>Though, in overseeing the pursuit of this whale, Captain Ahab had evinced his customary activity, to call it so; yet now that the creature was dead, some vague dissatisfaction, or impatience, or despair, seemed working in him; as if the sight of that dead body reminded him that Moby Dick was yet to be slain; and though a thousand other whales were brought to his ship, all that would not one jot advance his grand, monomaniac object. Very soon you would have thought from the sound on the Pequod’s decks, that all hands were preparing to cast anchor in the deep; for heavy chains are being dragged along the deck, and thrust rattling out of the port-holes. But by those clanking links, the vast corpse itself, not the ship, is to be moored. Tied by the head to the stern, and by the tail to the bows, the whale now lies with its black hull close to the vessel’s and seen through the darkness of the night, which obscured the spars and rigging aloft, the two—ship and whale, seemed yoked together like colossal bullocks, whereof one reclines while the other remains standing.*</p>
-        <p>*A little item may as well be related here. The strongest and most reliable hold which the ship has upon the whale when moored alongside, is by the flukes or tail; and as from its greater density that part is relatively heavier than any other (excepting the side-fins), its flexibility even in death, causes it to sink low beneath the surface; so that with the hand you cannot get at it from the boat, in order to put the chain round it. But this difficulty is ingeniously overcome: a small, strong line is prepared with a wooden float at its outer end, and a weight in its middle, while the other end is secured to the ship. By adroit management the wooden float is made to rise on the other side of the mass, so that now having girdled the whale, the chain is readily made to follow suit; and being slipped along the body, is at last locked fast round the smallest part of the tail, at the point of junction with its broad flukes or lobes.</p>
-        <p>If moody Ahab was now all quiescence, at least so far as could be known on deck, Stubb, his second mate, flushed with conquest, betrayed an unusual but still good-natured excitement. Such an unwonted bustle was he in that the staid Starbuck, his official superior, quietly resigned to him for the time the sole management of affairs. One small, helping cause of all this liveliness in Stubb, was soon made strangely manifest. Stubb was a high liver; he was somewhat intemperately fond of the whale as a flavorish thing to his palate.</p>
-        <p>“A steak, a steak, ere I sleep! You, Daggoo! overboard you go, and cut me one from his small!”</p>
-        <p>Here be it known, that though these wild fishermen do not, as a general thing, and according to the great military maxim, make the enemy defray the current expenses of the war (at least before realizing the proceeds of the voyage), yet now and then you find some of these Nantucketers who have a genuine relish for that particular part of the Sperm Whale designated by Stubb; comprising the tapering extremity of the body.</p>
-        <p>About midnight that steak was cut and cooked; and lighted by two lanterns of sperm oil, Stubb stoutly stood up to his spermaceti supper at the capstan-head, as if that capstan were a sideboard. Nor was Stubb the only banqueter on whale’s flesh that night. Mingling their mumblings with his own mastications, thousands on thousands of sharks, swarming round the dead leviathan, smackingly feasted on its fatness. The few sleepers below in their bunks were often startled by the sharp slapping of their tails against the hull, within a few inches of the sleepers’ hearts. Peering over the side you could just see them (as before you heard them) wallowing in the sullen, black waters, and turning over on their backs as they scooped out huge globular pieces of the whale of the bigness of a human head. This particular feat of the shark seems all but miraculous. How at such an apparently unassailable surface, they contrive to gouge out such symmetrical mouthfuls, remains a part of the universal problem of all things. The mark they thus leave on the whale, may best be likened to the hollow made by a carpenter in countersinking for a screw.</p>
-        <p>Though amid all the smoking horror and diabolism of a sea-fight, sharks will be seen longingly gazing up to the ship’s decks, like hungry dogs round a table where red meat is being carved, ready to bolt down every killed man that is tossed to them; and though, while the valiant butchers over the deck-table are thus cannibally carving each other’s live meat with carving-knives all gilded and tasselled, the sharks, also, with their jewel-hilted mouths, are quarrelsomely carving away under the table at the dead meat; and though, were you to turn the whole affair upside down, it would still be pretty much the same thing, that is to say, a shocking sharkish business enough for all parties; and though sharks also are the invariable outriders of all slave ships crossing the Atlantic, systematically trotting alongside, to be handy in case a parcel is to be carried anywhere, or a dead slave to be decently buried; and though one or two other like instances might be set down, touching the set terms, places, and occasions, when sharks do most socially congregate, and most hilariously feast; yet is there no conceivable time or occasion when you will find them in such countless numbers, and in gayer or more jovial spirits, than around a dead sperm whale, moored by night to a whaleship at sea. If you have never seen that sight, then suspend your decision about the propriety of devil-worship, and the expediency of conciliating the devil.</p>
-        <p>But, as yet, Stubb heeded not the mumblings of the banquet that was going on so nigh him, no more than the sharks heeded the smacking of his own epicurean lips.</p>
-        <p>“Cook, cook!—where’s that old Fleece?” he cried at length, widening his legs still further, as if to form a more secure base for his supper; and, at the same time darting his fork into the dish, as if stabbing with his lance; “cook, you cook!—sail this way, cook!”</p>
-        <p>The old black, not in any very high glee at having been previously roused from his warm hammock at a most unseasonable hour, came shambling along from his galley, for, like many old blacks, there was something the matter with his knee-pans, which he did not keep well scoured like his other pans; this old Fleece, as they called him, came shuffling and limping along, assisting his step with his tongs, which, after a clumsy fashion, were made of straightened iron hoops; this old Ebony floundered along, and in obedience to the word of command, came to a dead stop on the opposite side of Stubb’s sideboard; when, with both hands folded before him, and resting on his two-legged cane, he bowed his arched back still further over, at the same time sideways inclining his head, so as to bring his best ear into play.</p>
-        <p>“Cook,” said Stubb, rapidly lifting a rather reddish morsel to his mouth, “don’t you think this steak is rather overdone? You’ve been beating this steak too much, cook; it’s too tender. Don’t I always say that to be good, a whale-steak must be tough? There are those sharks now over the side, don’t you see they prefer it tough and rare? What a shindy they are kicking up! Cook, go and talk to 'em; tell ’em they are welcome to help themselves civilly, and in moderation, but they must keep quiet. Blast me, if I can hear my own voice. Away, cook, and deliver my message. Here, take this lantern,” snatching one from his sideboard; “now then, go and preach to 'em!”</p>
-        <p>Sullenly taking the offered lantern, old Fleece limped across the deck to the bulwarks; and then, with one hand dropping his light low over the sea, so as to get a good view of his congregation, with the other hand he solemnly flourished his tongs, and leaning far over the side in a mumbling voice began addressing the sharks, while Stubb, softly crawling behind, overheard all that was said.</p>
-        <p>“Fellow-critters: I’se ordered here to say dat you must stop dat dam noise dare. You hear? Stop dat dam smackin’ ob de lips! Massa Stubb say dat you can fill your dam bellies up to de hatchings, but by Gor! you must stop dat dam racket!”</p>
-        <p>“Cook,” here interposed Stubb, accompanying the word with a sudden slap on the shoulder,—"Cook! why, damn your eyes, you mustn’t swear that way when you’re preaching. That’s no way to convert sinners, cook!”</p>
-        <p>“Who dat? Den preach to him yourself,” sullenly turning to go.</p>
-        <p>“No, cook; go on, go on.”</p>
-        <p>“Well, den, Belubed fellow-critters:"—</p>
-        <p>“Right!” exclaimed Stubb, approvingly, “coax ’em to it; try that,” and Fleece continued.</p>
-        <p>“Do you is all sharks, and by natur wery woracious, yet I zay to you, fellow-critters, dat dat woraciousness—‘top dat dam slappin’ ob de tail! How you tink to hear, spose you keep up such a dam slappin’ and bitin’ dare?”</p>
-        <p>“Cook,” cried Stubb, collaring him, “I won’t have that swearing. Talk to ’em gentlemanly.”</p>
-        <p>Once more the sermon proceeded.</p>
-        <p>“Your woraciousness, fellow-critters, I don’t blame ye so much for; dat is natur, and can’t be helped; but to gobern dat wicked natur, dat is de pint. You is sharks, sartin; but if you gobern de shark in you, why den you be angel; for all angel is not’ing more dan de shark well goberned. Now, look here, bred’ren, just try wonst to be cibil, a helping yourselbs from dat whale. Don’t be tearin’ de blubber out your neighbour’s mout, I say. Is not one shark dood right as toder to dat whale? And, by Gor, none on you has de right to dat whale; dat whale belong to some one else. I know some o’ you has berry brig mout, brigger dan oders; but den de brig mouts sometimes has de small bellies; so dat de brigness of de mout is not to swaller wid, but to bit off de blubber for de small fry ob sharks, dat can’t get into de scrouge to help demselves.”</p>
-        <p>“Well done, old Fleece!” cried Stubb, “that’s Christianity; go on.”</p>
-        <p>“No use goin’ on; de dam willains will keep a scougin’ and slappin’ each oder, Massa Stubb; dey don’t hear one word; no use a-preaching to such dam g’uttons as you call 'em, till dare bellies is full, and dare bellies is bottomless; and when dey do get ’em full, dey wont hear you den; for den dey sink in the sea, go fast to sleep on de coral, and can’t hear noting at all, no more, for eber and eber.”</p>
-        <p>“Upon my soul, I am about of the same opinion; so give the benediction, Fleece, and I’ll away to my supper.”</p>
-        <p>Upon this, Fleece, holding both hands over the fishy mob, raised his shrill voice, and cried—</p>
-        <p>“Cussed fellow-critters! Kick up de damndest row as ever you can; fill your dam bellies 'till dey bust—and den die.”</p>
-        <p>“Now, cook,” said Stubb, resuming his supper at the capstan; “stand just where you stood before, there, over against me, and pay particular attention.”</p>
-        <p>“All 'dention,” said Fleece, again stooping over upon his tongs in the desired position.</p>
-        <p>“Well,” said Stubb, helping himself freely meanwhile; “I shall now go back to the subject of this steak. In the first place, how old are you, cook?”</p>
-        <p>“What dat do wid de 'teak,” said the old black, testily.</p>
-        <p>“Silence! How old are you, cook?”</p>
-        <p>“‘Bout ninety, dey say,” he gloomily muttered.</p>
-        <p>“And you have lived in this world hard upon one hundred years, cook, and don’t know yet how to cook a whale-steak?” rapidly bolting another mouthful at the last word, so that morsel seemed a continuation of the question. “Where were you born, cook?”</p>
-        <p>“‘Hind de hatchway, in ferry-boat, goin’ ober de Roanoke.”</p>
-        <p>“Born in a ferry-boat! That’s queer, too. But I want to know what country you were born in, cook!”</p>
-        <p>“Didn’t I say de Roanoke country?” he cried sharply.</p>
-        <p>“No, you didn’t, cook; but I’ll tell you what I’m coming to, cook. You must go home and be born over again; you don’t know how to cook a whale-steak yet.”</p>
-        <p>“Bress my soul, if I cook noder one,” he growled, angrily, turning round to depart.</p>
-        <p>“Come back here, cook;—here, hand me those tongs;—now take that bit of steak there, and tell me if you think that steak cooked as it should be? Take it, I say"—holding the tongs towards him—"take it, and taste it.”</p>
-        <p>Faintly smacking his withered lips over it for a moment, the old negro muttered, “Best cooked 'teak I eber taste; joosy, berry joosy.”</p>
-        <p>“Cook,” said Stubb, squaring himself once more; “do you belong to the church?”</p>
-        <p>“Passed one once in Cape-Down,” said the old man sullenly.</p>
-        <p>“And you have once in your life passed a holy church in Cape-Town, where you doubtless overheard a holy parson addressing his hearers as his beloved fellow-creatures, have you, cook! And yet you come here, and tell me such a dreadful lie as you did just now, eh?” said Stubb. “Where do you expect to go to, cook?”</p>
-        <p>“Go to bed berry soon,” he mumbled, half-turning as he spoke.</p>
-        <p>“Avast! heave to! I mean when you die, cook. It’s an awful question. Now what’s your answer?”</p>
-        <p>“When dis old brack man dies,” said the negro slowly, changing his whole air and demeanor, “he hisself won’t go nowhere; but some bressed angel will come and fetch him.”</p>
-        <p>“Fetch him? How? In a coach and four, as they fetched Elijah? And fetch him where?”</p>
-        <p>“Up dere,” said Fleece, holding his tongs straight over his head, and keeping it there very solemnly.</p>
-        <p>“So, then, you expect to go up into our main-top, do you, cook, when you are dead? But don’t you know the higher you climb, the colder it gets? Main-top, eh?”</p>
-        <p>“Didn’t say dat t’all,” said Fleece, again in the sulks.</p>
-        <p>“You said up there, didn’t you? and now look yourself, and see where your tongs are pointing. But, perhaps you expect to get into heaven by crawling through the lubber’s hole, cook; but, no, no, cook, you don’t get there, except you go the regular way, round by the rigging. It’s a ticklish business, but must be done, or else it’s no go. But none of us are in heaven yet. Drop your tongs, cook, and hear my orders. Do ye hear? Hold your hat in one hand, and clap t’other a’top of your heart, when I’m giving my orders, cook. What! that your heart, there?—that’s your gizzard! Aloft! aloft!—that’s it—now you have it. Hold it there now, and pay attention.”</p>
-        <p>“All 'dention,” said the old black, with both hands placed as desired, vainly wriggling his grizzled head, as if to get both ears in front at one and the same time.</p>
-        <p>“Well then, cook, you see this whale-steak of yours was so very bad, that I have put it out of sight as soon as possible; you see that, don’t you? Well, for the future, when you cook another whale-steak for my private table here, the capstan, I’ll tell you what to do so as not to spoil it by overdoing. Hold the steak in one hand, and show a live coal to it with the other; that done, dish it; d’ye hear? And now to-morrow, cook, when we are cutting in the fish, be sure you stand by to get the tips of his fins; have them put in pickle. As for the ends of the flukes, have them soused, cook. There, now ye may go.”</p>
-        <p>But Fleece had hardly got three paces off, when he was recalled.</p>
-        <p>“Cook, give me cutlets for supper to-morrow night in the mid-watch. D’ye hear? away you sail, then.—Halloa! stop! make a bow before you go.—Avast heaving again! Whale-balls for breakfast—don’t forget.”</p>
-        <p>“Wish, by gor! whale eat him, ‘stead of him eat whale. I’m bressed if he ain’t more of shark dan Massa Shark hisself,” muttered the old man, limping away; with which sage ejaculation he went to his hammock.</p>
-      </section>
-    </main>
-
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="chapter_063.html" title="Previous: Chapter 63. The Crotch." class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="chapter_063.html" rel="prev" title="Previous: Chapter 63. The Crotch." aria-label="Previous: Chapter 63. The Crotch.">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="chapter_065.html" title="Next: Chapter 65. The Whale as a Dish." class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="chapter_065.html" title="Next: Chapter 65. The Whale as a Dish." aria-label="Next: Chapter 65. The Whale as a Dish." class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-2"><a href="preface_001.html">Original Transcriber’s Notes:</a></li><li id="toc-3"><a href="introduction_001.html">ETYMOLOGY.</a></li><li id="toc-4"><a href="epigraph_001.html">EXTRACTS (Supplied by a Sub-Sub-Librarian).</a></li><li id="toc-5"><a href="chapter_001.html">Chapter 1. Loomings.</a></li><li id="toc-6"><a href="chapter_002.html">Chapter 2. The Carpet-Bag.</a></li><li id="toc-7"><a href="chapter_003.html">Chapter 3. The Spouter-Inn.</a></li><li id="toc-8"><a href="chapter_004.html">Chapter 4. The Counterpane.</a></li><li id="toc-9"><a href="chapter_005.html">Chapter 5. Breakfast.</a></li><li id="toc-10"><a href="chapter_006.html">Chapter 6. The Street.</a></li><li id="toc-11"><a href="chapter_007.html">Chapter 7. The Chapel.</a></li><li id="toc-12"><a href="chapter_008.html">Chapter 8. The Pulpit.</a></li><li id="toc-13"><a href="chapter_009.html">Chapter 9. The Sermon.</a></li><li id="toc-14"><a href="chapter_010.html">Chapter 10. A Bosom Friend.</a></li><li id="toc-15"><a href="chapter_011.html">Chapter 11. Nightgown.</a></li><li id="toc-16"><a href="chapter_012.html">Chapter 12. Biographical.</a></li><li id="toc-17"><a href="chapter_013.html">Chapter 13. Wheelbarrow.</a></li><li id="toc-18"><a href="chapter_014.html">Chapter 14. Nantucket.</a></li><li id="toc-19"><a href="chapter_015.html">Chapter 15. Chowder.</a></li><li id="toc-20"><a href="chapter_016.html">Chapter 16. The Ship.</a></li><li id="toc-21"><a href="chapter_017.html">Chapter 17. The Ramadan.</a></li><li id="toc-22"><a href="chapter_018.html">Chapter 18. His Mark.</a></li><li id="toc-23"><a href="chapter_019.html">Chapter 19. The Prophet.</a></li><li id="toc-24"><a href="chapter_020.html">Chapter 20. All Astir.</a></li><li id="toc-25"><a href="chapter_021.html">Chapter 21. Going Aboard.</a></li><li id="toc-26"><a href="chapter_022.html">Chapter 22. Merry Christmas.</a></li><li id="toc-27"><a href="chapter_023.html">Chapter 23. The Lee Shore.</a></li><li id="toc-28"><a href="chapter_024.html">Chapter 24. The Advocate.</a></li><li id="toc-29"><a href="chapter_025.html">Chapter 25. Postscript.</a></li><li id="toc-30"><a href="chapter_026.html">Chapter 26. Knights and Squires.</a></li><li id="toc-31"><a href="chapter_027.html">Chapter 27. Knights and Squires.</a></li><li id="toc-32"><a href="chapter_028.html">Chapter 28. Ahab.</a></li><li id="toc-33"><a href="chapter_029.html">Chapter 29. Enter Ahab; to Him, Stubb.</a></li><li id="toc-34"><a href="chapter_030.html">Chapter 30. The Pipe.</a></li><li id="toc-35"><a href="chapter_031.html">Chapter 31. Queen Mab.</a></li><li id="toc-36"><a href="chapter_032.html">Chapter 32. Cetology.</a></li><li id="toc-37"><a href="chapter_033.html">Chapter 33. The Specksnyder.</a></li><li id="toc-38"><a href="chapter_034.html">Chapter 34. The Cabin-Table.</a></li><li id="toc-39"><a href="chapter_035.html">Chapter 35. The Mast-Head.</a></li><li id="toc-40"><a href="chapter_036.html">Chapter 36. The Quarter-Deck.</a></li><li id="toc-41"><a href="chapter_037.html">Chapter 37. Sunset.</a></li><li id="toc-42"><a href="chapter_038.html">Chapter 38. Dusk.</a></li><li id="toc-43"><a href="chapter_039.html">Chapter 39. First Night Watch.</a></li><li id="toc-44"><a href="chapter_040.html">Chapter 40. Midnight, Forecastle.</a></li><li id="toc-45"><a href="chapter_041.html">Chapter 41. Moby Dick.</a></li><li id="toc-46"><a href="chapter_042.html">Chapter 42. The Whiteness of The Whale.</a></li><li id="toc-47"><a href="chapter_043.html">Chapter 43. Hark!</a></li><li id="toc-48"><a href="chapter_044.html">Chapter 44. The Chart.</a></li><li id="toc-49"><a href="chapter_045.html">Chapter 45. The Affidavit.</a></li><li id="toc-50"><a href="chapter_046.html">Chapter 46. Surmises.</a></li><li id="toc-51"><a href="chapter_047.html">Chapter 47. The Mat-Maker.</a></li><li id="toc-52"><a href="chapter_048.html">Chapter 48. The First Lowering.</a></li><li id="toc-53"><a href="chapter_049.html">Chapter 49. The Hyena.</a></li><li id="toc-54"><a href="chapter_050.html">Chapter 50. Ahab’s Boat and Crew. Fedallah.</a></li><li id="toc-55"><a href="chapter_051.html">Chapter 51. The Spirit-Spout.</a></li><li id="toc-56"><a href="chapter_052.html">Chapter 52. The Albatross.</a></li><li id="toc-57"><a href="chapter_053.html">Chapter 53. The Gam.</a></li><li id="toc-58"><a href="chapter_054.html">Chapter 54. The Town-Ho’s Story.</a></li><li id="toc-59"><a href="chapter_055.html">Chapter 55. Of the Monstrous Pictures of Whales.</a></li><li id="toc-60"><a href="chapter_056.html">Chapter 56. Of the Less Erroneous Pictures of Whales, and the True</a></li><li id="toc-61"><a href="chapter_057.html">Chapter 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in</a></li><li id="toc-62"><a href="chapter_058.html">Chapter 58. Brit.</a></li><li id="toc-63"><a href="chapter_059.html">Chapter 59. Squid.</a></li><li id="toc-64"><a href="chapter_060.html">Chapter 60. The Line.</a></li><li id="toc-65"><a href="chapter_061.html">Chapter 61. Stubb Kills a Whale.</a></li><li id="toc-66"><a href="chapter_062.html">Chapter 62. The Dart.</a></li><li id="toc-67"><a href="chapter_063.html">Chapter 63. The Crotch.</a></li><li id="toc-68"><a href="chapter_064.html" aria-current="page">Chapter 64. Stubb’s Supper.</a></li><li id="toc-69"><a href="chapter_065.html">Chapter 65. The Whale as a Dish.</a></li><li id="toc-70"><a href="chapter_066.html">Chapter 66. The Shark Massacre.</a></li><li id="toc-71"><a href="chapter_067.html">Chapter 67. Cutting In.</a></li><li id="toc-72"><a href="chapter_068.html">Chapter 68. The Blanket.</a></li><li id="toc-73"><a href="chapter_069.html">Chapter 69. The Funeral.</a></li><li id="toc-74"><a href="chapter_070.html">Chapter 70. The Sphynx.</a></li><li id="toc-75"><a href="chapter_071.html">Chapter 71. The Jeroboam’s Story.</a></li><li id="toc-76"><a href="chapter_072.html">Chapter 72. The Monkey-Rope.</a></li><li id="toc-77"><a href="chapter_073.html">Chapter 73. Stubb and Flask Kill a Right Whale; and Then Have a Talk</a></li><li id="toc-78"><a href="chapter_074.html">Chapter 74. The Sperm Whale’s Head—Contrasted View.</a></li><li id="toc-79"><a href="chapter_075.html">Chapter 75. The Right Whale’s Head—Contrasted View.</a></li><li id="toc-80"><a href="chapter_076.html">Chapter 76. The Battering-Ram.</a></li><li id="toc-81"><a href="chapter_077.html">Chapter 77. The Great Heidelburgh Tun.</a></li><li id="toc-82"><a href="chapter_078.html">Chapter 78. Cistern and Buckets.</a></li><li id="toc-83"><a href="chapter_079.html">Chapter 79. The Prairie.</a></li><li id="toc-84"><a href="chapter_080.html">Chapter 80. The Nut.</a></li><li id="toc-85"><a href="chapter_081.html">Chapter 81. The Pequod Meets The Virgin.</a></li><li id="toc-86"><a href="chapter_082.html">Chapter 82. The Honour and Glory of Whaling.</a></li><li id="toc-87"><a href="chapter_083.html">Chapter 83. Jonah Historically Regarded.</a></li><li id="toc-88"><a href="chapter_084.html">Chapter 84. Pitchpoling.</a></li><li id="toc-89"><a href="chapter_085.html">Chapter 85. The Fountain.</a></li><li id="toc-90"><a href="chapter_086.html">Chapter 86. The Tail.</a></li><li id="toc-91"><a href="chapter_087.html">Chapter 87. The Grand Armada.</a></li><li id="toc-92"><a href="chapter_088.html">Chapter 88. Schools and Schoolmasters.</a></li><li id="toc-93"><a href="chapter_089.html">Chapter 89. Fast-Fish and Loose-Fish.</a></li><li id="toc-94"><a href="chapter_090.html">Chapter 90. Heads or Tails.</a></li><li id="toc-95"><a href="chapter_091.html">Chapter 91. The Pequod Meets The Rose-Bud.</a></li><li id="toc-96"><a href="chapter_092.html">Chapter 92. Ambergris.</a></li><li id="toc-97"><a href="chapter_093.html">Chapter 93. The Castaway.</a></li><li id="toc-98"><a href="chapter_094.html">Chapter 94. A Squeeze of the Hand.</a></li><li id="toc-99"><a href="chapter_095.html">Chapter 95. The Cassock.</a></li><li id="toc-100"><a href="chapter_096.html">Chapter 96. The Try-Works.</a></li><li id="toc-101"><a href="chapter_097.html">Chapter 97. The Lamp.</a></li><li id="toc-102"><a href="chapter_098.html">Chapter 98. Stowing Down and Clearing Up.</a></li><li id="toc-103"><a href="chapter_099.html">Chapter 99. The Doubloon.</a></li><li id="toc-104"><a href="chapter_100.html">Chapter 100. Leg and Arm.</a></li><li id="toc-105"><a href="chapter_101.html">Chapter 101. The Decanter.</a></li><li id="toc-106"><a href="chapter_102.html">Chapter 102. A Bower in the Arsacides.</a></li><li id="toc-107"><a href="chapter_103.html">Chapter 103. Measurement of The Whale’s Skeleton.</a></li><li id="toc-108"><a href="chapter_104.html">Chapter 104. The Fossil Whale.</a></li><li id="toc-109"><a href="chapter_105.html">Chapter 105. Does the Whale’s Magnitude Diminish?—Will He Perish?</a></li><li id="toc-110"><a href="chapter_106.html">Chapter 106. Ahab’s Leg.</a></li><li id="toc-111"><a href="chapter_107.html">Chapter 107. The Carpenter.</a></li><li id="toc-112"><a href="chapter_108.html">Chapter 108. Ahab and the Carpenter.</a></li><li id="toc-113"><a href="chapter_109.html">Chapter 109. Ahab and Starbuck in the Cabin.</a></li><li id="toc-114"><a href="chapter_110.html">Chapter 110. Queequeg in His Coffin.</a></li><li id="toc-115"><a href="chapter_111.html">Chapter 111. The Pacific.</a></li><li id="toc-116"><a href="chapter_112.html">Chapter 112. The Blacksmith.</a></li><li id="toc-117"><a href="chapter_113.html">Chapter 113. The Forge.</a></li><li id="toc-118"><a href="chapter_114.html">Chapter 114. The Gilder.</a></li><li id="toc-119"><a href="chapter_115.html">Chapter 115. The Pequod Meets The Bachelor.</a></li><li id="toc-120"><a href="chapter_116.html">Chapter 116. The Dying Whale.</a></li><li id="toc-121"><a href="chapter_117.html">Chapter 117. The Whale Watch.</a></li><li id="toc-122"><a href="chapter_118.html">Chapter 118. The Quadrant.</a></li><li id="toc-123"><a href="chapter_119.html">Chapter 119. The Candles.</a></li><li id="toc-124"><a href="chapter_120.html">Chapter 120. The Deck Towards the End of the First Night Watch.</a></li><li id="toc-125"><a href="chapter_121.html">Chapter 121. Midnight.—The Forecastle Bulwarks.</a></li><li id="toc-126"><a href="chapter_122.html">Chapter 122. Midnight Aloft.—Thunder and Lightning.</a></li><li id="toc-127"><a href="chapter_123.html">Chapter 123. The Musket.</a></li><li id="toc-128"><a href="chapter_124.html">Chapter 124. The Needle.</a></li><li id="toc-129"><a href="chapter_125.html">Chapter 125. The Log and Line.</a></li><li id="toc-130"><a href="chapter_126.html">Chapter 126. The Life-Buoy.</a></li><li id="toc-131"><a href="chapter_127.html">Chapter 127. The Deck.</a></li><li id="toc-132"><a href="chapter_128.html">Chapter 128. The Pequod Meets The Rachel.</a></li><li id="toc-133"><a href="chapter_129.html">Chapter 129. The Cabin.</a></li><li id="toc-134"><a href="chapter_130.html">Chapter 130. The Hat.</a></li><li id="toc-135"><a href="chapter_131.html">Chapter 131. The Pequod Meets The Delight.</a></li><li id="toc-136"><a href="chapter_132.html">Chapter 132. The Symphony.</a></li><li id="toc-137"><a href="chapter_133.html">Chapter 133. The Chase—First Day.</a></li><li id="toc-138"><a href="chapter_134.html">Chapter 134. The Chase—Second Day.</a></li><li id="toc-139"><a href="chapter_135.html">Chapter 135. The Chase.—Third Day.</a></li><li id="toc-140"><a href="chapter_136.html">Epilogue</a></li><li id="toc-141"><a href="copyright.html">Copyright Page</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        
+        
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" src="images/9780316000000.jpg" alt="Cover for Moby-Dick">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>Moby-Dick</dd><dt>Author</dt><dd>Herman Melville</dd><dt>Date</dt><dd>2012-01-13T01:13:00Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

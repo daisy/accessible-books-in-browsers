@@ -1,189 +1,189 @@
 WEBVTT
 
 1
-00:00:00.000 --> 00:00:01.776
+00:00:00.000 --> 00:00:01.750
 {"selector":{"type":"FragmentSelector","value":"dtb_65"}}
 
 2
-00:00:01.776 --> 00:00:22.727
+00:00:01.750 --> 00:00:22.670
 {"selector":{"type":"FragmentSelector","value":"dtb_66"}}
 
 3
-00:00:22.727 --> 00:00:33.202
+00:00:22.670 --> 00:00:33.100
 {"selector":{"type":"FragmentSelector","value":"dtb_69"}}
 
 4
-00:00:33.202 --> 00:00:40.516
+00:00:33.100 --> 00:00:40.370
 {"selector":{"type":"FragmentSelector","value":"dtb_70"}}
 
 5
-00:00:40.516 --> 00:00:57.626
+00:00:40.370 --> 00:00:57.450
 {"selector":{"type":"FragmentSelector","value":"dtb_71"}}
 
 6
-00:00:57.626 --> 00:01:04.052
+00:00:57.450 --> 00:01:03.850
 {"selector":{"type":"FragmentSelector","value":"dtb_73"}}
 
 7
-00:01:04.052 --> 00:01:13.874
+00:01:03.850 --> 00:01:13.643
 {"selector":{"type":"FragmentSelector","value":"dtb_74"}}
 
 8
-00:01:13.874 --> 00:01:21.842
+00:01:13.643 --> 00:01:21.563
 {"selector":{"type":"FragmentSelector","value":"dtb_75"}}
 
 9
-00:01:21.842 --> 00:01:33.205
+00:01:21.563 --> 00:01:32.893
 {"selector":{"type":"FragmentSelector","value":"dtb_76"}}
 
 10
-00:01:33.205 --> 00:01:40.101
+00:01:32.893 --> 00:01:39.743
 {"selector":{"type":"FragmentSelector","value":"dtb_77"}}
 
 11
-00:01:40.101 --> 00:01:41.407
+00:01:39.743 --> 00:01:41.023
 {"selector":{"type":"FragmentSelector","value":"dtb_78"}}
 
 12
-00:01:41.407 --> 00:01:45.221
+00:01:41.023 --> 00:01:44.792
 {"selector":{"type":"FragmentSelector","value":"dtb_80"}}
 
 13
-00:01:45.221 --> 00:01:52.744
+00:01:44.792 --> 00:01:52.282
 {"selector":{"type":"FragmentSelector","value":"dtb_81"}}
 
 14
-00:01:52.744 --> 00:02:01.835
+00:01:52.282 --> 00:02:01.332
 {"selector":{"type":"FragmentSelector","value":"dtb_82"}}
 
 15
-00:02:01.835 --> 00:02:08.313
+00:02:01.332 --> 00:02:07.762
 {"selector":{"type":"FragmentSelector","value":"dtb_83"}}
 
 16
-00:02:08.313 --> 00:02:13.851
+00:02:07.762 --> 00:02:13.272
 {"selector":{"type":"FragmentSelector","value":"dtb_84"}}
 
 17
-00:02:13.851 --> 00:02:15.027
+00:02:13.272 --> 00:02:14.410
 {"selector":{"type":"FragmentSelector","value":"dtb_85"}}
 
 18
-00:02:15.027 --> 00:02:19.781
+00:02:14.410 --> 00:02:19.130
 {"selector":{"type":"FragmentSelector","value":"dtb_87"}}
 
 19
-00:02:19.781 --> 00:02:24.771
+00:02:19.130 --> 00:02:24.070
 {"selector":{"type":"FragmentSelector","value":"dtb_88"}}
 
 20
-00:02:24.771 --> 00:02:37.283
+00:02:24.070 --> 00:02:36.550
 {"selector":{"type":"FragmentSelector","value":"dtb_89"}}
 
 21
-00:02:37.283 --> 00:02:51.938
+00:02:36.550 --> 00:02:51.160
 {"selector":{"type":"FragmentSelector","value":"dtb_90"}}
 
 22
-00:02:51.938 --> 00:02:53.113
+00:02:51.160 --> 00:02:52.292
 {"selector":{"type":"FragmentSelector","value":"dtb_91"}}
 
 23
-00:02:53.113 --> 00:02:59.357
+00:02:52.292 --> 00:02:58.489
 {"selector":{"type":"FragmentSelector","value":"dtb_93"}}
 
 24
-00:02:59.357 --> 00:03:21.430
+00:02:58.489 --> 00:03:20.519
 {"selector":{"type":"FragmentSelector","value":"dtb_94"}}
 
 25
-00:03:21.430 --> 00:03:27.099
+00:03:20.519 --> 00:03:26.159
 {"selector":{"type":"FragmentSelector","value":"dtb_95"}}
 
 26
-00:03:27.099 --> 00:03:33.943
+00:03:26.159 --> 00:03:32.959
 {"selector":{"type":"FragmentSelector","value":"dtb_96"}}
 
 27
-00:03:33.943 --> 00:03:40.500
+00:03:32.959 --> 00:03:39.479
 {"selector":{"type":"FragmentSelector","value":"dtb_97"}}
 
 28
-00:03:40.500 --> 00:03:42.642
+00:03:39.479 --> 00:03:41.569
 {"selector":{"type":"FragmentSelector","value":"dtb_98"}}
 
 29
-00:03:42.642 --> 00:03:54.789
+00:03:41.569 --> 00:03:53.688
 {"selector":{"type":"FragmentSelector","value":"dtb_100"}}
 
 30
-00:03:54.789 --> 00:04:00.274
+00:03:53.688 --> 00:03:59.138
 {"selector":{"type":"FragmentSelector","value":"dtb_101"}}
 
 31
-00:04:00.274 --> 00:04:06.387
+00:03:59.138 --> 00:04:05.208
 {"selector":{"type":"FragmentSelector","value":"dtb_102"}}
 
 32
-00:04:06.387 --> 00:04:32.405
+00:04:05.208 --> 00:04:31.178
 {"selector":{"type":"FragmentSelector","value":"dtb_103"}}
 
 33
-00:04:32.405 --> 00:04:34.181
+00:04:31.178 --> 00:04:32.909
 {"selector":{"type":"FragmentSelector","value":"dtb_106"}}
 
 34
-00:04:34.181 --> 00:04:45.753
+00:04:32.909 --> 00:04:44.449
 {"selector":{"type":"FragmentSelector","value":"dtb_109"}}
 
 35
-00:04:45.753 --> 00:04:59.729
+00:04:44.449 --> 00:04:58.397
 {"selector":{"type":"FragmentSelector","value":"dtb_110"}}
 
 36
-00:04:59.729 --> 00:05:07.827
+00:04:58.397 --> 00:05:06.467
 {"selector":{"type":"FragmentSelector","value":"dtb_111"}}
 
 37
-00:05:07.827 --> 00:05:09.603
+00:05:06.467 --> 00:05:08.197
 {"selector":{"type":"FragmentSelector","value":"dtb_112"}}
 
 38
-00:05:09.603 --> 00:05:26.217
+00:05:08.197 --> 00:05:24.777
 {"selector":{"type":"FragmentSelector","value":"dtb_114"}}
 
 39
-00:05:26.217 --> 00:05:28.882
+00:05:24.777 --> 00:05:27.397
 {"selector":{"type":"FragmentSelector","value":"dtb_117"}}
 
 40
-00:05:28.882 --> 00:05:54.011
+00:05:27.397 --> 00:05:52.487
 {"selector":{"type":"FragmentSelector","value":"dtb_121"}}
 
 41
-00:05:54.011 --> 00:05:56.206
+00:05:52.487 --> 00:05:54.637
 {"selector":{"type":"FragmentSelector","value":"dtb_124"}}
 
 42
-00:05:56.206 --> 00:06:09.476
+00:05:54.637 --> 00:06:07.877
 {"selector":{"type":"FragmentSelector","value":"dtb_126"}}
 
 43
-00:06:09.476 --> 00:06:34.945
+00:06:07.877 --> 00:06:33.307
 {"selector":{"type":"FragmentSelector","value":"dtb_129"}}
 
 44
-00:06:34.945 --> 00:06:36.957
+00:06:33.307 --> 00:06:35.277
 {"selector":{"type":"FragmentSelector","value":"dtb_133"}}
 
 45
-00:06:36.957 --> 00:06:47.380
+00:06:35.277 --> 00:06:45.657
 {"selector":{"type":"FragmentSelector","value":"dtb_136"}}
 
 46
-00:06:47.380 --> 00:06:48.581
+00:06:45.657 --> 00:06:46.817
 {"selector":{"type":"FragmentSelector","value":"dtb_137"}}
 
 47
-00:06:48.581 --> 00:06:59.892
+00:06:46.817 --> 00:06:58.077
 {"selector":{"type":"FragmentSelector","value":"dtb_139"}}

@@ -1,565 +1,490 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> সুন্দরবনের প্রাণী </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সুন্দরবনের প্রাণী</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
-    </script>
-  </head>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="7239a599-3299-4bb1-a727-47464bdaf383">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <main><section id="id_30"><h1 id="dtb_1202" xml:lang="bn-IN" tabindex="-1"> সুন্দরবনের প্রাণী <a href="#dtb_1202" rel="bookmark" class="webbook" title="Link to সুন্দরবনের প্রাণী" aria-label="Link to সুন্দরবনের প্রাণী"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_1203" xml:lang="bn-IN">
+					<span id="dtb_1204">বাংলাদেশের দক্ষিণে রয়েছে প্রকৃতির অপার সম্ভার সুন্দরবন। </span>
+					<span id="dtb_1205">সমুদ্রের কোল ঘেঁসে গড়ে উঠেছে এই বিশাল বন। </span>
+					<span id="dtb_1206">এখানে রয়েছে যেমন প্রচুর গাছপালা, কেওড়া ও সুন্দরী গাছের বন, তেমনি রয়েছে নানা প্রাণী, জীবজন্তু।</span>
+				</p><div id="dtb_1208"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-7.jpg" alt="" id="dtb_1209"></div><p id="dtb_1210" xml:lang="bn-IN">
+					<span id="dtb_1211">বিশ্বের কোনো কোনো প্রাণীর সঙ্গে জড়িয়ে থাকে দেশের নাম বা জায়গার নাম। </span>
+					<span id="dtb_1212">যেমন, ক্যাঙ্গারু বললেই মনে পড়ে যায় অস্ট্রেলিয়ার কথা। </span>
+					<span id="dtb_1213">সিংহ বললেই মনে ভেসে ওঠে আফ্রিকার কথা। </span>
+					<span id="dtb_1214">তেমনি বাংলাদেশের নামের সঙ্গে জড়িয়ে আছে রয়্যাল বেঙ্গল টাইগার বা রাজকীয় বাঘের নাম। </span>
+					<span id="dtb_1215">এই বাঘ থাকে সুন্দরবনে। </span>
+					<span id="dtb_1216">এ বাঘ দেখতে যেমন সুন্দর, তেমনি আবার ভয়ঙ্কর। </span>
+					<span id="dtb_1217">এর চালচলনও রাজার মতো। </span>
+					<span id="dtb_1218">সুন্দরবনের ভেজা স্যাঁতসেঁতে গোলপাতার বনে এ বাঘ ঘুরে বেড়ায়।</span>
+				</p><span title="১১" id="dtb_1219" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ১১">১১</span><p id="dtb_1220" xml:lang="bn-IN">
+					<span id="dtb_1221">শিকার করে জীবজন্তু, সুযোগ পেলে মানুষও খায়। </span>
+					<span id="dtb_1222">এক সময় সন্দুরবনে ছিল চিতাবাঘ ও গুলবাঘ। </span>
+					<span id="dtb_1223">কিন্তু এখন আর এসব বাঘ দেখা যায় না। </span>
+					<span id="dtb_1224">সুন্দরবনের রয়্যাল বেঙ্গল টাইগার বাংলদেশের অমূল্য সম্পদ। </span>
+					<span id="dtb_1225">এ বাঘকে বিলুপ্তির হাত থেকে আমাদের বাঁচাতে হবে।</span>
+				</p><p id="dtb_1226" xml:lang="bn-IN">
+					<span id="dtb_1227">সুন্দরবনে বাঘ ছাড়াও আছে নানা রকমের হরিণ। </span>
+					<span id="dtb_1228">কোনটার বড় বড় শিং, কোনটার গায়ে ফোটা ফোটা সাদা দাগ। </span>
+					<span id="dtb_1229">এদের বলে চিত্রা হরিণ। </span>
+					<span id="dtb_1230">এক সময় সুন্দরবনের প্রচুর গণ্ডার ছিল, ছিল হাতি, ছিল বুনো শুয়োর। </span>
+					<span id="dtb_1231">এখন এসব প্রাণী আর নেই। </span>
+					<span id="dtb_1232">তবে দেশের রাঙামাটি আর বান্দরবানের জঙ্গলে হাতি দেখতে পাওয়া যায়।</span>
+				</p><p id="dtb_1233" xml:lang="bn-IN">
+					<span id="dtb_1234">যে কোনো দেশের জন্যই জীবজন্তু পশুপাখি এক অমূল্য সম্পদ। </span>
+					<span id="dtb_1235">দেশের জলবায়ু আবহাওয়া গাছপালা বৃক্ষলতা ইত্যাদি প্রাকৃতিক পরিমণ্ডলেই সে দেশের প্রাণীকুল জীবনধারণ করে। </span>
+					<span id="dtb_1236">একটু লক্ষ করলেই দেখা যাবে পৃথিবীতে অপ্রয়োজনীয় প্রাণী বা বৃক্ষলতা বলতে কিছুই নেই। </span>
+					<span id="dtb_1237">একসময় আমাদের দেশে প্রচুর শকুন দেখা যেত। </span>
+					<span id="dtb_1238">শকুন দেখতে যে খুব সুন্দর পাখি তা কিন্তু নয়। </span>
+					<span id="dtb_1239">এরা উড়ে বেড়ায় আকাশের অনেক উপরে। </span>
+					<span id="dtb_1240">বাসা করে গাছের ডালে। </span>
+					<span id="dtb_1241">মানুষের পক্ষে যা ক্ষতিকর, সেইসব আবর্জনা শকুন খায় এবং পরিবেশকে পরিচ্ছন্ন রাখে। </span>
+					<span id="dtb_1242">কিন্তু শকুন এখন বাংলাদেশে বিলুপ্তপ্রায় পাখি।</span>
+				</p><p id="dtb_1243" xml:lang="bn-IN">
+					<span id="dtb_1244">প্রাণী বৃ্ক্ষলতা সব কিছুই প্রকৃতির দান। </span>
+					<span id="dtb_1245">তাকে ধ্বংস করতে নেই। </span>
+					<span id="dtb_1246">ধ্বংস করলে নেমে আসে নানা বিপর্যয় – বন্যা, খরা, ঝড় ইত্যাদি।</span>
+				</p><div id="dtb_1248"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-8.jpg" alt="" id="dtb_1249"></div><span title="১২" id="dtb_1250" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ১২">১২</span><div id="dtb_1252"><img src="images/Amar_Bangla_Boi_Class__5_style-12.1.jpg" alt="" id="dtb_1253"></div><p id="dtb_1254" xml:lang="bn-IN">
+					<span id="dtb_1255">পশুপাখি ও জীবজন্তু প্রাকৃতিক পরিবেশের সঙ্গে মিলে মিশে থাকে। </span>
+					<span id="dtb_1256">প্রকৃতিতে যদি বিপর্যয় ঘটে তবে এদের জীবনও বিপন্ন হয়। </span>
+					<span id="dtb_1257">সুন্দরবনের অনেক প্রাণী প্রাকৃতিক পরিবর্তনের ফলে বিলুপ্ত হয়ে গেছে। </span>
+					<span id="dtb_1258">যে সব প্রাণী আছে তাদের বিলুপ্তির হাত থেকে বাঁচাতে হবে।</span>
+				</p><span title="১৩" id="dtb_1259" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ১৩">১৩</span><section id="id_31"><h1 id="dtb_1260" xml:lang="bn-IN" tabindex="-1"> অনুশীলনী <a href="#dtb_1260" rel="bookmark" class="webbook" title="Link to অনুশীলনী" aria-label="Link to অনুশীলনী"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_1261" xml:lang="bn-IN">
+						<span id="dtb_1262">১. </span>
+						<span id="dtb_1263">শব্দগুলো পাঠ থেকে খুঁজে বের করি। </span>
+						<span id="dtb_1264">অর্থ বলি।</span>
+					</p><table id="dtb_1265"><colgroup><col id="dtb_1266" span="1"></colgroup><tbody id="dtb_1267"><tr id="dtb_1268"><td id="dtb_1269" colspan="1" rowspan="1">
+									<p id="dtb_1270" xml:lang="bn-IN">অপার</p>
+								</td><td id="dtb_1271" colspan="1" rowspan="1">
+									<p id="dtb_1272" xml:lang="bn-IN">সম্ভার</p>
+								</td><td id="dtb_1273" colspan="1" rowspan="1">
+									<p id="dtb_1274" xml:lang="bn-IN">রয়্যাল</p>
+								</td></tr><tr id="dtb_1275"><td id="dtb_1276" colspan="1" rowspan="1">
+									<p id="dtb_1277" xml:lang="bn-IN">ভয়ঙ্কর</p>
+								</td><td id="dtb_1278" colspan="1" rowspan="1">
+									<p id="dtb_1279" xml:lang="bn-IN">অমূল্য</p>
+								</td><td id="dtb_1280" colspan="1" rowspan="1">
+									<p id="dtb_1281" xml:lang="bn-IN">বিলুপ্ত</p>
+								</td></tr></tbody></table><p id="dtb_1282" xml:lang="bn-IN">
+						<span id="dtb_1283">২. </span>
+						<span id="dtb_1284">ঘরের ভিতরের শব্দগুলো খালি জায়গায় বসিয়ে বাক্য তৈরি করি।</span>
+					</p><table id="dtb_1285"><colgroup><col id="dtb_1286" span="1"></colgroup><tbody id="dtb_1287"><tr id="dtb_1288"><td id="dtb_1289" colspan="1" rowspan="1">
+									<p id="dtb_1290" xml:lang="bn-IN">অমূল্য</p>
+								</td><td id="dtb_1291" colspan="1" rowspan="1">
+									<p id="dtb_1292" xml:lang="bn-IN">অপার</p>
+								</td><td id="dtb_1293" colspan="1" rowspan="1">
+									<p id="dtb_1294" xml:lang="bn-IN">সম্ভার</p>
+								</td></tr><tr id="dtb_1295"><td id="dtb_1296" colspan="1" rowspan="1">
+									<p id="dtb_1297" xml:lang="bn-IN">রয়্যাল</p>
+								</td><td id="dtb_1298" colspan="1" rowspan="1">
+									<p id="dtb_1299" xml:lang="bn-IN">ভয়ঙ্কর</p>
+								</td><td id="dtb_1300" colspan="1" rowspan="1">
+									<p id="dtb_1301" xml:lang="bn-IN">বিলুপ্ত</p>
+								</td></tr></tbody></table><p id="dtb_1302" xml:lang="bn-IN">
+						<span id="dtb_1303">ক. </span>
+						<span id="dtb_1304">বাংলাদেশ [………………………………………………………..] </span>
+						<span id="dtb_1305">সৌন্দর্যে ভরপুর।</span>
+					</p><p id="dtb_1306" xml:lang="bn-IN">
+						<span id="dtb_1307">খ. </span>
+						<span id="dtb_1308">প্রকৃতির অপার [……………………………………………..] </span>
+						<span id="dtb_1309">সমুদ্রের নিচে রয়েছে। </span>
+					</p><p id="dtb_1310" xml:lang="bn-IN">
+						<span id="dtb_1311">গ. </span>
+						<span id="dtb_1312">বাংলাদেশের নামের সঙ্গে জড়িয়ে আছে [……………………………..] </span>
+						<span id="dtb_1313">বেঙ্গল টাইগার।</span>
+					</p><p id="dtb_1314" xml:lang="bn-IN">
+						<span id="dtb_1315">ঘ. </span>
+						<span id="dtb_1316">বাঘ দেখতে যেমন সুন্দর তেমনি আবার [………………………………</span>
+						<span id="dtb_1317">.]।</span>
+					</p><p id="dtb_1318" xml:lang="bn-IN">
+						<span id="dtb_1319">ঙ. </span>
+						<span id="dtb_1320">রয়্যাল বেঙ্গল টাইগার বাংলাদেশের […………………………………] সম্পদ।</span>
+					</p><p id="dtb_1321" xml:lang="bn-IN">
+						<span id="dtb_1322">চ. </span>
+						<span id="dtb_1323">শকুন বাংলাদেশে এখন [………………………………] প্রায় পাখি।</span>
+					</p><p id="dtb_1324" xml:lang="bn-IN">
+						<span id="dtb_1325">৩. </span>
+						<span id="dtb_1326">কথাগুলো বুঝে নিই।</span>
+					</p><table id="dtb_1327"><colgroup><col id="dtb_1328" span="1"></colgroup><tbody id="dtb_1329"><tr id="dtb_1330"><td id="dtb_1331" colspan="1" rowspan="1">
+									<p id="dtb_1332" xml:lang="bn-IN">অস্ট্রেলিয়া</p>
+								</td><td id="dtb_1333" colspan="1" rowspan="1">
+									<p id="dtb_1334" xml:lang="bn-IN">এশিয়া, ইউরোপ ও আফ্রিকার মতো একটি মহাদেশ।</p>
+								</td></tr><tr id="dtb_1335"><td id="dtb_1336" colspan="1" rowspan="1">
+									<p id="dtb_1337" xml:lang="bn-IN">ক্যাঙ্গারু</p>
+								</td><td id="dtb_1338" colspan="1" rowspan="1">
+									<p id="dtb_1339" xml:lang="bn-IN">
+										<span id="dtb_1340">একমাত্র অস্ট্রেলিয়াতেই পাওয়া যায় এমন একটি প্রাণী। </span>
+										<span id="dtb_1341">এদের চারটি পা, কিন্তু পেছনের দু-পা বড়ো আর সামনের দু-পা ছোট। </span>
+										<span id="dtb_1342">এর ফলে অন্যান্য চতুষ্পদ প্রাণীর মতো এরা হাঁটাচলা করতে পারে না, পেছনের দু-পায়ে ভর দিয়ে লাফিয়ে লাফিয়ে চলে। </span>
+										<span id="dtb_1343">ক্যাঙ্গারু তার বুকের নিচে একটা থলিতে বাচ্চা রাখে।</span>
+									</p>
+								</td></tr><tr id="dtb_1344"><td id="dtb_1345" colspan="1" rowspan="1">
+									<p id="dtb_1346" xml:lang="bn-IN">চিতাবাঘ</p>
+								</td><td id="dtb_1347" colspan="1" rowspan="1">
+									<p id="dtb_1348" xml:lang="bn-IN">
+										<span id="dtb_1349">এক প্রকার বাঘ। </span>
+										<span id="dtb_1350">অন্য বাঘের সঙ্গে চিতাবাঘের পার্থক্য। </span>
+										<span id="dtb_1351">চিতাবাঘ গাছে উঠতে পারে, অন্যান্য বাঘ পারে না। </span>
+										<span id="dtb_1352">চিতাবাঘ অন্যান্য বাঘের চেয়ে দ্রুত দৌঁড়াতে পারে ও গাছে উঠতে পারে।</span>
+									</p>
+								</td></tr><tr id="dtb_1353"><td id="dtb_1354" colspan="1" rowspan="1">
+									<p id="dtb_1355" xml:lang="bn-IN">গণ্ডার</p>
+								</td><td id="dtb_1356" colspan="1" rowspan="1">
+									<p id="dtb_1357" xml:lang="bn-IN">
+										<span id="dtb_1358">কালো ও ধূসর রঙের চতুষ্পদ প্রাণী, উচ্চতায় ও লম্বায় গরুর আকারের। </span>
+										<span id="dtb_1359">এদরে নাকের ওপরে শিং থাকে।</span>
+									</p>
+								</td></tr></tbody></table><span title="১৪" id="dtb_1360" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ১৪">১৪</span><p id="dtb_1361" xml:lang="bn-IN">
+						<span id="dtb_1362">৪. </span>
+						<span id="dtb_1363">নিচের প্রশ্নগুলোর উত্তর বলি ও লিখি।</span>
+					</p><p id="dtb_1364" xml:lang="bn-IN">
+						<span id="dtb_1365">ক. </span>
+						<span id="dtb_1366">ক্যাঙ্গারু ও সিংহ বললেই কোন কোন দেশের কথা মনে হয়?</span>
+					</p><p id="dtb_1367" xml:lang="bn-IN">
+						<span id="dtb_1368">খ. </span>
+						<span id="dtb_1369">বিভিন্ন ধরনের বাঘ সম্পর্কে তুমি যা জান লেখ।</span>
+					</p><p id="dtb_1370" xml:lang="bn-IN">
+						<span id="dtb_1371">গ. </span>
+						<span id="dtb_1372">দেশের জন্য পশুপাখি, জীবজন্তু কী উপকার করে তা নিজের ভাষায় লেখ।</span>
+					</p><p id="dtb_1373" xml:lang="bn-IN">
+						<span id="dtb_1374">ঘ. </span>
+						<span id="dtb_1375">শকুন কীভাবে মানুষের উপকার করে?</span>
+					</p><p id="dtb_1376" xml:lang="bn-IN">
+						<span id="dtb_1377">ঙ. </span>
+						<span id="dtb_1378">পশুপাখি জীবজন্তু না থাকলে প্রকৃতির কী বিপর্যয় ঘটবে বলে তোমার মনে হয়? </span>
+					</p><p id="dtb_1379" xml:lang="bn-IN">
+						<span id="dtb_1380">৫. </span>
+						<span id="dtb_1381">নিচের বাক্য দুটি পড়ি।</span>
+					</p><p id="dtb_1382" xml:lang="bn-IN">
+						<span id="dtb_1383">মানুষের পক্ষে যা ক্ষতিকর সেইসব আবর্জনা শকুন খেয়ে ফেলে। </span>
+						<span id="dtb_1384">সে সত্যিকার অর্থে মানুষের উপকার ছাড়া অপকার করে না।</span>
+					</p><p id="dtb_1385" xml:lang="bn-IN">
+						<span id="dtb_1386">উপরের বাক্য দুটিতে অনেকগুলো শব্দ ব্যবহৃত হয়েছে। </span>
+						<span id="dtb_1387">বাক্যে ব্যবহৃত প্রত্যেকটি শব্দই এক-একটি পদ :</span>
+					</p><p id="dtb_1388" xml:lang="bn-IN">
+						<span id="dtb_1389">শকুন [..........................................] </span>
+						<span id="dtb_1390">বিশেষ্য পদ</span>
+					</p><p id="dtb_1391" xml:lang="bn-IN">
+						<span id="dtb_1392">ক্ষতিকর [.......................................] </span>
+						<span id="dtb_1393">বিশেষণ পদ</span>
+					</p><p id="dtb_1394" xml:lang="bn-IN">
+						<span id="dtb_1395">সে [.............................................] </span>
+						<span id="dtb_1396">সর্বনাম পদ</span>
+					</p><p id="dtb_1397" xml:lang="bn-IN">
+						<span id="dtb_1398">খায় [..................................] </span>
+						<span id="dtb_1399">ক্রিয়া পদ</span>
+					</p><p id="dtb_1400" xml:lang="bn-IN">
+						<span id="dtb_1401">ছাড়া [..........................................] </span>
+						<span id="dtb_1402">অব্যয় পদ</span>
+					</p><p id="dtb_1403" xml:lang="bn-IN">পদ পাঁচ প্রকার : </p><p id="dtb_1404" xml:lang="bn-IN">বিশেষ্য, </p><p id="dtb_1405" xml:lang="bn-IN">বিশেষণ, </p><p id="dtb_1406" xml:lang="bn-IN">সর্বনাম, </p><p id="dtb_1407" xml:lang="bn-IN">ক্রিয়া, </p><p id="dtb_1408" xml:lang="bn-IN">অব্যয়। </p><p id="dtb_1409" xml:lang="bn-IN">নিচের বাক্যগুলোতে কী কী পদ আছে তা লেখ।</p><p id="dtb_1410" xml:lang="bn-IN">
+						<span id="dtb_1411">সুন্দরবনে বাঘ ছাড়াও আছে নানা রকমের হরিণ। </span>
+						<span id="dtb_1412">কোনটার বড় বড় শিং, কোনটার গায়ে ফোটা ফোটা সাদা দাগ। </span>
+						<span id="dtb_1413">এদের বলে চিত্রা হরিণ। </span>
+					</p><p id="dtb_1414" xml:lang="bn-IN">
+						<span id="dtb_1415">৬. </span>
+						<span id="dtb_1416">নিচের নির্দেশনা অনুযায়ী বাংলাদেশের যে কোনো একটি প্রাণী সম্পর্কে রচনা লিখি।</span>
+					</p><table id="dtb_1417"><colgroup><col id="dtb_1418" span="1"></colgroup><tbody id="dtb_1419"><tr id="dtb_1420"><td id="dtb_1421" colspan="1" rowspan="1">
+									<p id="dtb_1422" xml:lang="bn-IN">
+										<span id="dtb_1423">ক. </span>
+										<span id="dtb_1424">আকৃতি -</span>
+									</p>
+								</td></tr><tr id="dtb_1425"><td id="dtb_1426" colspan="1" rowspan="1">
+									<p id="dtb_1427" xml:lang="bn-IN">
+										<span id="dtb_1428">খ. </span>
+										<span id="dtb_1429">রং -</span>
+									</p>
+								</td></tr><tr id="dtb_1430"><td id="dtb_1431" colspan="1" rowspan="1">
+									<p id="dtb_1432" xml:lang="bn-IN">
+										<span id="dtb_1433">গ. </span>
+										<span id="dtb_1434">কোথায় দেখা যায় -</span>
+									</p>
+								</td></tr><tr id="dtb_1435"><td id="dtb_1436" colspan="1" rowspan="1">
+									<p id="dtb_1437" xml:lang="bn-IN">
+										<span id="dtb_1438">ঘ. </span>
+										<span id="dtb_1439">আবাস স্থল -</span>
+									</p>
+								</td></tr><tr id="dtb_1440"><td id="dtb_1441" colspan="1" rowspan="1">
+									<p id="dtb_1442" xml:lang="bn-IN">
+										<span id="dtb_1443">ঙ. </span>
+										<span id="dtb_1444">খাদ্যাভ্যাস -</span>
+									</p>
+								</td></tr></tbody></table><span title="১৫" id="dtb_1445" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ১৫">১৫</span><p id="dtb_1446" xml:lang="bn-IN">
+						<span id="dtb_1447">৭. </span>
+						<span id="dtb_1448">ঠিক উত্তরটিতে টিক () চিহ্ন দিই।</span>
+					</p><p id="dtb_1449" xml:lang="bn-IN">
+						<span id="dtb_1450">ক. </span>
+						<span id="dtb_1451">ক্যাঙ্গারু বললেই মনে পড়ে যে দেশের কথা –</span>
+					</p><p id="dtb_1452" xml:lang="bn-IN">
+						<span id="dtb_1453">১. </span>
+						<span id="dtb_1454">ভারত </span>
+					</p><p id="dtb_1455" xml:lang="bn-IN">
+						<span id="dtb_1456">২. </span>
+						<span id="dtb_1457">বাংলাদেশ</span>
+					</p><p id="dtb_1458" xml:lang="bn-IN">
+						<span id="dtb_1459">৩. </span>
+						<span id="dtb_1460">অস্ট্রেলিয়া </span>
+					</p><p id="dtb_1461" xml:lang="bn-IN">
+						<span id="dtb_1462">৪. </span>
+						<span id="dtb_1463">আফ্রিকা</span>
+					</p><p id="dtb_1464" xml:lang="bn-IN">
+						<span id="dtb_1465">খ. </span>
+						<span id="dtb_1466">আফ্রিকার কথা উঠলে কোন প্রাণীর কথা মনে হয়?</span>
+					</p><p id="dtb_1467" xml:lang="bn-IN">
+						<span id="dtb_1468">১. </span>
+						<span id="dtb_1469">সিংহ </span>
+					</p><p id="dtb_1470" xml:lang="bn-IN">
+						<span id="dtb_1471">২. </span>
+						<span id="dtb_1472">হাতি</span>
+					</p><p id="dtb_1473" xml:lang="bn-IN">
+						<span id="dtb_1474">৩. </span>
+						<span id="dtb_1475">বাঘ </span>
+					</p><p id="dtb_1476" xml:lang="bn-IN">
+						<span id="dtb_1477">৪. </span>
+						<span id="dtb_1478">উট</span>
+					</p><p id="dtb_1479" xml:lang="bn-IN">
+						<span id="dtb_1480">গ. </span>
+						<span id="dtb_1481">বাংলাদেশের কোন জঙ্গলে হাতি দেখতে পাওয়া যায়?</span>
+					</p><p id="dtb_1482" xml:lang="bn-IN">
+						<span id="dtb_1483">১. </span>
+						<span id="dtb_1484">সিলেট ও খুলনার </span>
+					</p><p id="dtb_1485" xml:lang="bn-IN">
+						<span id="dtb_1486">২. </span>
+						<span id="dtb_1487">ভাওয়াল ও মধুপুরের</span>
+					</p><p id="dtb_1488" xml:lang="bn-IN">
+						<span id="dtb_1489">৩. </span>
+						<span id="dtb_1490">রাঙামাটি ও বান্দরবানের </span>
+					</p><p id="dtb_1491" xml:lang="bn-IN">
+						<span id="dtb_1492">৪. </span>
+						<span id="dtb_1493">উপরের সবখানে</span>
+					</p><p id="dtb_1494" xml:lang="bn-IN">
+						<span id="dtb_1495">ঘ. </span>
+						<span id="dtb_1496">কোন পাখি ক্ষতিকর আবর্জনা খেয়ে পরিবেশ পরিচ্ছন্ন রাখে?</span>
+					</p><p id="dtb_1497" xml:lang="bn-IN">
+						<span id="dtb_1498">১. </span>
+						<span id="dtb_1499">ঈগল </span>
+					</p><p id="dtb_1500" xml:lang="bn-IN">
+						<span id="dtb_1501">২. </span>
+						<span id="dtb_1502">শকুন</span>
+					</p><p id="dtb_1503" xml:lang="bn-IN">
+						<span id="dtb_1504">৩. </span>
+						<span id="dtb_1505">চিল </span>
+					</p><p id="dtb_1506" xml:lang="bn-IN">
+						<span id="dtb_1507">৪. </span>
+						<span id="dtb_1508">কাক</span>
+					</p><p id="dtb_1509" xml:lang="bn-IN">
+						<span id="dtb_1510">ঙ. </span>
+						<span id="dtb_1511">কোন প্রাণীর গায়ে ফোঁটা ফোঁটা সাদা দাগ ও বড় শিং আছে?</span>
+					</p><p id="dtb_1512" xml:lang="bn-IN">
+						<span id="dtb_1513">১. </span>
+						<span id="dtb_1514">চিতা বাঘ </span>
+					</p><p id="dtb_1515" xml:lang="bn-IN">
+						<span id="dtb_1516">২. </span>
+						<span id="dtb_1517">চিত্রা হরিণ</span>
+					</p><p id="dtb_1518" xml:lang="bn-IN">
+						<span id="dtb_1519">৩. </span>
+						<span id="dtb_1520">ভাল্লুক </span>
+					</p><p id="dtb_1521" xml:lang="bn-IN">
+						<span id="dtb_1522">৪. </span>
+						<span id="dtb_1523">গণ্ডার</span>
+					</p><p id="dtb_1524" xml:lang="bn-IN">
+						<span id="dtb_1525">৮. </span>
+						<span id="dtb_1526">কর্ম-অনুশীলন।</span>
+					</p><p id="dtb_1527" xml:lang="bn-IN">
+						<span id="dtb_1528">আমি এমন প্রাণীদের একটি তালিকা তৈরি করি- যাদের নাম শুনেছি, কিন্তু চোখে দেখিনি। </span>
+						<span id="dtb_1529">পরে শ্রেণির সবার সাথে তা মিলিয়ে দেখি।</span>
+					</p><span title="১৬" id="dtb_1530" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ১৬">১৬</span></section></section></main>
+
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-14.html" rel="prev" title="Previous: সংকল্প" aria-label="Previous: সংকল্প">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-16.html" title="Next: হাতি আর শেয়ালের গল্প" aria-label="Next: হাতি আর শেয়ালের গল্প" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
         </div>
-      </section>
+        <ol><li id="toc-1"><a href="package-3.html#dtb_11">গণপ্রজাতন্ত্রী বাংলাদেশের জাতীয় পতাকা</a></li><li id="toc-2"><a href="package-4.html#dtb_16">পতাকা নির্মাণের নিয়মাবলি</a></li><li id="toc-3"><a href="package-5.html#dtb_27">ভবনের ব্যবহারের জন্য</a></li><li id="toc-4"><a href="package-6.html#dtb_32">জাতীয় সংগীত</a></li><li id="toc-5"><a href="package-7.html#dtb_52">গাওয়ার জন্য জাতীয় সংগীতের পূর্ণপাঠ</a></li><li id="toc-6"><a href="package-8.html#dtb_78">সোনার বাংলা, আমি তোমায় ভালোবাসি।।</a></li><li id="toc-7"><a href="package-9.html#dtb_82">আমার বাংলা বই</a><ol><li id="toc-7-1"><a href="package-9.html#dtb_83">পঞ্চম শ্রেণি</a></li></ol></li><li id="toc-8"><a href="package-10.html#dtb_113">প্রসঙ্গ–কথা</a></li><li id="toc-9"><a href="package-11.html#dtb_152">নির্দেশনা</a><ol><li id="toc-9-1"><a href="package-11.html#dtb_165">শোনা ও বলা</a></li><li id="toc-9-2"><a href="package-11.html#dtb_194">পড়া</a></li><li id="toc-9-3"><a href="package-11.html#dtb_221">লেখা</a><ol><li id="toc-9-3-1"><a href="package-11.html#dtb_238">পর্যায় ১ : নির্ধারিত পাঠের অর্থ উদ্ধারের পর্যায়</a></li><li id="toc-9-3-2"><a href="package-11.html#dtb_243">পর্যায় ২ : ভাষা শিখন সহায়ক কার্যক্রম পরিচালনা</a></li><li id="toc-9-3-3"><a href="package-11.html#dtb_248">পর্যায় ৩ : অর্জিত শিখন বাস্তবে প্রয়োগের সক্ষমতা উন্নয়নের পর্যায়</a></li><li id="toc-9-3-4"><a href="package-11.html#dtb_256">১. নির্ধারিত পাঠের অর্থ উদ্ধারের পর্যায়</a></li><li id="toc-9-3-5"><a href="package-11.html#dtb_297">২. ভাষা শিখন সহায়ক কর্মকান্ড পরিচালনা পর্যায়</a></li></ol></li><li id="toc-9-4"><a href="package-11.html#dtb_356">৩. অর্জিত শিখন বাস্তবে প্রয়োগের সক্ষমতা উন্নয়নের পর্যায়</a></li></ol></li><li id="toc-10"><a href="package-12.html#dtb_382">সূচিপত্র</a></li><li id="toc-11"><a href="package-13.html#dtb_569">এই দেশ এই মানুষ</a><ol><li id="toc-11-1"><a href="package-13.html#dtb_639">অনুশীলনী</a></li></ol></li><li id="toc-12"><a href="package-14.html#dtb_881">সংকল্প</a><ol><li id="toc-12-1"><a href="package-14.html#dtb_882">কাজী নজরুল ইসলাম</a><ol><li id="toc-12-1-1"><a href="package-14.html#dtb_906">অনুশীলনী</a></li><li id="toc-12-1-2"><a href="package-14.html#dtb_1187">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-13"><a href="package-15.html#dtb_1202">সুন্দরবনের প্রাণী</a><ol><li id="toc-13-1"><a href="package-15.html#dtb_1260">অনুশীলনী</a></li></ol></li><li id="toc-14"><a href="package-16.html#dtb_1531">হাতি আর শেয়ালের গল্প</a><ol><li id="toc-14-1"><a href="package-16.html#dtb_1621">অনুশীলনী</a></li></ol></li><li id="toc-15"><a href="package-17.html#dtb_1950">ফুটবল খেলোয়াড়</a><ol><li id="toc-15-1"><a href="package-17.html#dtb_1951">জসীম উদ্দীন</a><ol><li id="toc-15-1-1"><a href="package-17.html#dtb_1984">অনুশীলনী</a></li><li id="toc-15-1-2"><a href="package-17.html#dtb_2155">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-16"><a href="package-18.html#dtb_2170">বীরের রক্তে স্বাধীন এ দেশ</a><ol><li id="toc-16-1"><a href="package-18.html#dtb_2268">অনুশীলনী</a></li></ol></li><li id="toc-17"><a href="package-19.html#dtb_2486">ফেব্রুয়ারির গান</a><ol><li id="toc-17-1"><a href="package-19.html#dtb_2487">লুৎফর রহমান রিটন</a><ol><li id="toc-17-1-1"><a href="package-19.html#dtb_2516">অনুশীলনী</a></li><li id="toc-17-1-2"><a href="package-19.html#dtb_2704">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-18"><a href="package-20.html#dtb_2716">শখের মৃৎশিল্প</a><ol><li id="toc-18-1"><a href="package-20.html#dtb_2849">অনুশীলনী</a></li></ol></li><li id="toc-19"><a href="package-21.html#dtb_3151">শব্দদূষণ</a><ol><li id="toc-19-1"><a href="package-21.html#dtb_3152">সুকুমার বড়ুয়া</a><ol><li id="toc-19-1-1"><a href="package-21.html#dtb_3171">অনুশীলনী</a></li><li id="toc-19-1-2"><a href="package-21.html#dtb_3293">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-20"><a href="package-22.html#dtb_3303">স্মরণীয় যাঁরা চিরদিন</a><ol><li id="toc-20-1"><a href="package-22.html#dtb_3422">অনুশীলনী</a></li></ol></li><li id="toc-21"><a href="package-23.html#dtb_3649">স্বদেশ</a><ol><li id="toc-21-1"><a href="package-23.html#dtb_3650">আহসান হাবীব</a><ol><li id="toc-21-1-1"><a href="package-23.html#dtb_3694">অনুশীলনী</a></li><li id="toc-21-1-2"><a href="package-23.html#dtb_3931">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-22"><a href="package-24.html#dtb_3944">কাঞ্চনমালা আর কাঁকনমালা</a><ol><li id="toc-22-1"><a href="package-24.html#dtb_4097">অনুশীলনী</a></li></ol></li><li id="toc-23"><a href="package-25.html#dtb_4450">অবাক জলপান</a><ol><li id="toc-23-1"><a href="package-25.html#dtb_4451">সুকুমার রায়</a><ol><li id="toc-23-1-1"><a href="package-25.html#dtb_4459">প্রথম দৃশ্য</a></li><li id="toc-23-1-2"><a href="package-25.html#dtb_4562">দ্বিতীয় দৃশ্য</a></li><li id="toc-23-1-3"><a href="package-25.html#dtb_4652">অনুশীলনী</a></li><li id="toc-23-1-4"><a href="package-25.html#dtb_4857">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-24"><a href="package-26.html#dtb_4869">ঘাসফুল</a><ol><li id="toc-24-1"><a href="package-26.html#dtb_4870">জ্যোতিরিন্দ্র মৈত্র</a><ol><li id="toc-24-1-1"><a href="package-26.html#dtb_4889">অনুশীলনী</a></li><li id="toc-24-1-2"><a href="package-26.html#dtb_5014">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-25"><a href="package-27.html#dtb_5025">মাটির নিচে যে শহর</a><ol><li id="toc-25-1"><a href="package-27.html#dtb_5107">অনুশীলনী</a></li></ol></li><li id="toc-26"><a href="package-28.html#dtb_5286">শিক্ষাগুরুর মর্যাদা</a><ol><li id="toc-26-1"><a href="package-28.html#dtb_5287">কাজী কাদের নওয়াজ</a><ol><li id="toc-26-1-1"><a href="package-28.html#dtb_5344">অনুশীলনী</a></li><li id="toc-26-1-2"><a href="package-28.html#dtb_5494">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-27"><a href="package-29.html#dtb_5505">ভাবুক ছেলেটি</a><ol><li id="toc-27-1"><a href="package-29.html#dtb_5592">অনুশীলনী</a></li></ol></li><li id="toc-28"><a href="package-30.html#dtb_5843">দুই তীরে</a><ol><li id="toc-28-1"><a href="package-30.html#dtb_5878">অনুশীলনী</a><ol><li id="toc-28-1-1"><a href="package-30.html#dtb_6004">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-29"><a href="package-31.html#dtb_6018">বিদায় হজ</a><ol><li id="toc-29-1"><a href="package-31.html#dtb_6120">অনুশীলনী</a></li></ol></li><li id="toc-30"><a href="package-32.html#dtb_6347">দেখে এলাম নায়াগ্রা</a><ol><li id="toc-30-1"><a href="package-32.html#dtb_6417">অনুশীলনী</a></li></ol></li><li id="toc-31"><a href="package-33.html#dtb_6649">রৌদ্র লেখে জয়</a><ol><li id="toc-31-1"><a href="package-33.html#dtb_6650">শামসুর রাহমান</a><ol><li id="toc-31-1-1"><a href="package-33.html#dtb_6675">অনুশীলনী</a></li><li id="toc-31-1-2"><a href="package-33.html#dtb_6828">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-32"><a href="package-34.html#dtb_6841">মাওলানা আবদুল হামিদ খান খাসানী</a><ol><li id="toc-32-1"><a href="package-34.html#dtb_6950">অনুশীলনী</a></li></ol></li><li id="toc-33"><a href="package-35.html#dtb_7208">শহিদ তিতুমীর</a></li><li id="toc-34"><a href="package-36.html#dtb_7311">অনুশীলনী</a></li><li id="toc-35"><a href="package-37.html#dtb_7536">অপেক্ষা</a><ol><li id="toc-35-1"><a href="package-37.html#dtb_7537">সেলিনা হোসেন</a><ol><li id="toc-35-1-1"><a href="package-37.html#dtb_7727">অনুশীলনী</a></li><li id="toc-35-1-2"><a href="package-37.html#dtb_8052">লেখক-পরিচিতি</a></li></ol></li></ol></li><li id="toc-36"><a href="package-38.html#dtb_8066">শব্দের অর্থ জেনে নিই</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <main>
-      <section id="id_30">
-        <h1 id="dtb_1202" xml:lang="bn-IN"> সুন্দরবনের প্রাণী <a href="#dtb_1202" title="Link to heading সুন্দরবনের প্রাণী" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <p id="dtb_1203" xml:lang="bn-IN">
-          <span id="dtb_1204">বাংলাদেশের দক্ষিণে রয়েছে প্রকৃতির অপার সম্ভার সুন্দরবন। </span>
-          <span id="dtb_1205">সমুদ্রের কোল ঘেঁসে গড়ে উঠেছে এই বিশাল বন। </span>
-          <span id="dtb_1206">এখানে রয়েছে যেমন প্রচুর গাছপালা, কেওড়া ও সুন্দরী গাছের বন, তেমনি রয়েছে নানা প্রাণী, জীবজন্তু।</span>
-        </p>
-        <div id="dtb_1208"><img src="Amar_Bangla_Boi_Class__5_style-Pic-7.jpg" alt="" id="dtb_1209"></div>
-        <p id="dtb_1210" xml:lang="bn-IN">
-          <span id="dtb_1211">বিশ্বের কোনো কোনো প্রাণীর সঙ্গে জড়িয়ে থাকে দেশের নাম বা জায়গার নাম। </span>
-          <span id="dtb_1212">যেমন, ক্যাঙ্গারু বললেই মনে পড়ে যায় অস্ট্রেলিয়ার কথা। </span>
-          <span id="dtb_1213">সিংহ বললেই মনে ভেসে ওঠে আফ্রিকার কথা। </span>
-          <span id="dtb_1214">তেমনি বাংলাদেশের নামের সঙ্গে জড়িয়ে আছে রয়্যাল বেঙ্গল টাইগার বা রাজকীয় বাঘের নাম। </span>
-          <span id="dtb_1215">এই বাঘ থাকে সুন্দরবনে। </span>
-          <span id="dtb_1216">এ বাঘ দেখতে যেমন সুন্দর, তেমনি আবার ভয়ঙ্কর। </span>
-          <span id="dtb_1217">এর চালচলনও রাজার মতো। </span>
-          <span id="dtb_1218">সুন্দরবনের ভেজা স্যাঁতসেঁতে গোলপাতার বনে এ বাঘ ঘুরে বেড়ায়।</span>
-        </p><span title="১১" id="dtb_1219" class="epubtype_pagebreak"></span>
-        <p id="dtb_1220" xml:lang="bn-IN">
-          <span id="dtb_1221">শিকার করে জীবজন্তু, সুযোগ পেলে মানুষও খায়। </span>
-          <span id="dtb_1222">এক সময় সন্দুরবনে ছিল চিতাবাঘ ও গুলবাঘ। </span>
-          <span id="dtb_1223">কিন্তু এখন আর এসব বাঘ দেখা যায় না। </span>
-          <span id="dtb_1224">সুন্দরবনের রয়্যাল বেঙ্গল টাইগার বাংলদেশের অমূল্য সম্পদ। </span>
-          <span id="dtb_1225">এ বাঘকে বিলুপ্তির হাত থেকে আমাদের বাঁচাতে হবে।</span>
-        </p>
-        <p id="dtb_1226" xml:lang="bn-IN">
-          <span id="dtb_1227">সুন্দরবনে বাঘ ছাড়াও আছে নানা রকমের হরিণ। </span>
-          <span id="dtb_1228">কোনটার বড় বড় শিং, কোনটার গায়ে ফোটা ফোটা সাদা দাগ। </span>
-          <span id="dtb_1229">এদের বলে চিত্রা হরিণ। </span>
-          <span id="dtb_1230">এক সময় সুন্দরবনের প্রচুর গণ্ডার ছিল, ছিল হাতি, ছিল বুনো শুয়োর। </span>
-          <span id="dtb_1231">এখন এসব প্রাণী আর নেই। </span>
-          <span id="dtb_1232">তবে দেশের রাঙামাটি আর বান্দরবানের জঙ্গলে হাতি দেখতে পাওয়া যায়।</span>
-        </p>
-        <p id="dtb_1233" xml:lang="bn-IN">
-          <span id="dtb_1234">যে কোনো দেশের জন্যই জীবজন্তু পশুপাখি এক অমূল্য সম্পদ। </span>
-          <span id="dtb_1235">দেশের জলবায়ু আবহাওয়া গাছপালা বৃক্ষলতা ইত্যাদি প্রাকৃতিক পরিমণ্ডলেই সে দেশের প্রাণীকুল জীবনধারণ করে। </span>
-          <span id="dtb_1236">একটু লক্ষ করলেই দেখা যাবে পৃথিবীতে অপ্রয়োজনীয় প্রাণী বা বৃক্ষলতা বলতে কিছুই নেই। </span>
-          <span id="dtb_1237">একসময় আমাদের দেশে প্রচুর শকুন দেখা যেত। </span>
-          <span id="dtb_1238">শকুন দেখতে যে খুব সুন্দর পাখি তা কিন্তু নয়। </span>
-          <span id="dtb_1239">এরা উড়ে বেড়ায় আকাশের অনেক উপরে। </span>
-          <span id="dtb_1240">বাসা করে গাছের ডালে। </span>
-          <span id="dtb_1241">মানুষের পক্ষে যা ক্ষতিকর, সেইসব আবর্জনা শকুন খায় এবং পরিবেশকে পরিচ্ছন্ন রাখে। </span>
-          <span id="dtb_1242">কিন্তু শকুন এখন বাংলাদেশে বিলুপ্তপ্রায় পাখি।</span>
-        </p>
-        <p id="dtb_1243" xml:lang="bn-IN">
-          <span id="dtb_1244">প্রাণী বৃ্ক্ষলতা সব কিছুই প্রকৃতির দান। </span>
-          <span id="dtb_1245">তাকে ধ্বংস করতে নেই। </span>
-          <span id="dtb_1246">ধ্বংস করলে নেমে আসে নানা বিপর্যয় – বন্যা, খরা, ঝড় ইত্যাদি।</span>
-        </p>
-        <div id="dtb_1248"><img src="Amar_Bangla_Boi_Class__5_style-Pic-8.jpg" alt="" id="dtb_1249"></div><span title="১২" id="dtb_1250" class="epubtype_pagebreak"></span>
-        <div id="dtb_1252"><img src="Amar_Bangla_Boi_Class__5_style-12.1.jpg" alt="" id="dtb_1253"></div>
-        <p id="dtb_1254" xml:lang="bn-IN">
-          <span id="dtb_1255">পশুপাখি ও জীবজন্তু প্রাকৃতিক পরিবেশের সঙ্গে মিলে মিশে থাকে। </span>
-          <span id="dtb_1256">প্রকৃতিতে যদি বিপর্যয় ঘটে তবে এদের জীবনও বিপন্ন হয়। </span>
-          <span id="dtb_1257">সুন্দরবনের অনেক প্রাণী প্রাকৃতিক পরিবর্তনের ফলে বিলুপ্ত হয়ে গেছে। </span>
-          <span id="dtb_1258">যে সব প্রাণী আছে তাদের বিলুপ্তির হাত থেকে বাঁচাতে হবে।</span>
-        </p><span title="১৩" id="dtb_1259" class="epubtype_pagebreak"></span>
-        <section id="id_31">
-          <h1 id="dtb_1260" xml:lang="bn-IN"> অনুশীলনী <a href="#dtb_1260" title="Link to heading অনুশীলনী" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_1261" xml:lang="bn-IN">
-            <span id="dtb_1262">১. </span>
-            <span id="dtb_1263">শব্দগুলো পাঠ থেকে খুঁজে বের করি। </span>
-            <span id="dtb_1264">অর্থ বলি।</span>
-          </p>
-          <table id="dtb_1265">
-            <colgroup>
-              <col id="dtb_1266" span="1">
-            </colgroup>
-            <tbody id="dtb_1267">
-              <tr id="dtb_1268">
-                <td id="dtb_1269" colspan="1" rowspan="1">
-                  <p id="dtb_1270" xml:lang="bn-IN">অপার</p>
-                </td>
-                <td id="dtb_1271" colspan="1" rowspan="1">
-                  <p id="dtb_1272" xml:lang="bn-IN">সম্ভার</p>
-                </td>
-                <td id="dtb_1273" colspan="1" rowspan="1">
-                  <p id="dtb_1274" xml:lang="bn-IN">রয়্যাল</p>
-                </td>
-              </tr>
-              <tr id="dtb_1275">
-                <td id="dtb_1276" colspan="1" rowspan="1">
-                  <p id="dtb_1277" xml:lang="bn-IN">ভয়ঙ্কর</p>
-                </td>
-                <td id="dtb_1278" colspan="1" rowspan="1">
-                  <p id="dtb_1279" xml:lang="bn-IN">অমূল্য</p>
-                </td>
-                <td id="dtb_1280" colspan="1" rowspan="1">
-                  <p id="dtb_1281" xml:lang="bn-IN">বিলুপ্ত</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_1282" xml:lang="bn-IN">
-            <span id="dtb_1283">২. </span>
-            <span id="dtb_1284">ঘরের ভিতরের শব্দগুলো খালি জায়গায় বসিয়ে বাক্য তৈরি করি।</span>
-          </p>
-          <table id="dtb_1285">
-            <colgroup>
-              <col id="dtb_1286" span="1">
-            </colgroup>
-            <tbody id="dtb_1287">
-              <tr id="dtb_1288">
-                <td id="dtb_1289" colspan="1" rowspan="1">
-                  <p id="dtb_1290" xml:lang="bn-IN">অমূল্য</p>
-                </td>
-                <td id="dtb_1291" colspan="1" rowspan="1">
-                  <p id="dtb_1292" xml:lang="bn-IN">অপার</p>
-                </td>
-                <td id="dtb_1293" colspan="1" rowspan="1">
-                  <p id="dtb_1294" xml:lang="bn-IN">সম্ভার</p>
-                </td>
-              </tr>
-              <tr id="dtb_1295">
-                <td id="dtb_1296" colspan="1" rowspan="1">
-                  <p id="dtb_1297" xml:lang="bn-IN">রয়্যাল</p>
-                </td>
-                <td id="dtb_1298" colspan="1" rowspan="1">
-                  <p id="dtb_1299" xml:lang="bn-IN">ভয়ঙ্কর</p>
-                </td>
-                <td id="dtb_1300" colspan="1" rowspan="1">
-                  <p id="dtb_1301" xml:lang="bn-IN">বিলুপ্ত</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_1302" xml:lang="bn-IN">
-            <span id="dtb_1303">ক. </span>
-            <span id="dtb_1304">বাংলাদেশ [………………………………………………………..] </span>
-            <span id="dtb_1305">সৌন্দর্যে ভরপুর।</span>
-          </p>
-          <p id="dtb_1306" xml:lang="bn-IN">
-            <span id="dtb_1307">খ. </span>
-            <span id="dtb_1308">প্রকৃতির অপার [……………………………………………..] </span>
-            <span id="dtb_1309">সমুদ্রের নিচে রয়েছে। </span>
-          </p>
-          <p id="dtb_1310" xml:lang="bn-IN">
-            <span id="dtb_1311">গ. </span>
-            <span id="dtb_1312">বাংলাদেশের নামের সঙ্গে জড়িয়ে আছে [……………………………..] </span>
-            <span id="dtb_1313">বেঙ্গল টাইগার।</span>
-          </p>
-          <p id="dtb_1314" xml:lang="bn-IN">
-            <span id="dtb_1315">ঘ. </span>
-            <span id="dtb_1316">বাঘ দেখতে যেমন সুন্দর তেমনি আবার [………………………………</span>
-            <span id="dtb_1317">.]।</span>
-          </p>
-          <p id="dtb_1318" xml:lang="bn-IN">
-            <span id="dtb_1319">ঙ. </span>
-            <span id="dtb_1320">রয়্যাল বেঙ্গল টাইগার বাংলাদেশের […………………………………] সম্পদ।</span>
-          </p>
-          <p id="dtb_1321" xml:lang="bn-IN">
-            <span id="dtb_1322">চ. </span>
-            <span id="dtb_1323">শকুন বাংলাদেশে এখন [………………………………] প্রায় পাখি।</span>
-          </p>
-          <p id="dtb_1324" xml:lang="bn-IN">
-            <span id="dtb_1325">৩. </span>
-            <span id="dtb_1326">কথাগুলো বুঝে নিই।</span>
-          </p>
-          <table id="dtb_1327">
-            <colgroup>
-              <col id="dtb_1328" span="1">
-            </colgroup>
-            <tbody id="dtb_1329">
-              <tr id="dtb_1330">
-                <td id="dtb_1331" colspan="1" rowspan="1">
-                  <p id="dtb_1332" xml:lang="bn-IN">অস্ট্রেলিয়া</p>
-                </td>
-                <td id="dtb_1333" colspan="1" rowspan="1">
-                  <p id="dtb_1334" xml:lang="bn-IN">এশিয়া, ইউরোপ ও আফ্রিকার মতো একটি মহাদেশ।</p>
-                </td>
-              </tr>
-              <tr id="dtb_1335">
-                <td id="dtb_1336" colspan="1" rowspan="1">
-                  <p id="dtb_1337" xml:lang="bn-IN">ক্যাঙ্গারু</p>
-                </td>
-                <td id="dtb_1338" colspan="1" rowspan="1">
-                  <p id="dtb_1339" xml:lang="bn-IN">
-                    <span id="dtb_1340">একমাত্র অস্ট্রেলিয়াতেই পাওয়া যায় এমন একটি প্রাণী। </span>
-                    <span id="dtb_1341">এদের চারটি পা, কিন্তু পেছনের দু-পা বড়ো আর সামনের দু-পা ছোট। </span>
-                    <span id="dtb_1342">এর ফলে অন্যান্য চতুষ্পদ প্রাণীর মতো এরা হাঁটাচলা করতে পারে না, পেছনের দু-পায়ে ভর দিয়ে লাফিয়ে লাফিয়ে চলে। </span>
-                    <span id="dtb_1343">ক্যাঙ্গারু তার বুকের নিচে একটা থলিতে বাচ্চা রাখে।</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_1344">
-                <td id="dtb_1345" colspan="1" rowspan="1">
-                  <p id="dtb_1346" xml:lang="bn-IN">চিতাবাঘ</p>
-                </td>
-                <td id="dtb_1347" colspan="1" rowspan="1">
-                  <p id="dtb_1348" xml:lang="bn-IN">
-                    <span id="dtb_1349">এক প্রকার বাঘ। </span>
-                    <span id="dtb_1350">অন্য বাঘের সঙ্গে চিতাবাঘের পার্থক্য। </span>
-                    <span id="dtb_1351">চিতাবাঘ গাছে উঠতে পারে, অন্যান্য বাঘ পারে না। </span>
-                    <span id="dtb_1352">চিতাবাঘ অন্যান্য বাঘের চেয়ে দ্রুত দৌঁড়াতে পারে ও গাছে উঠতে পারে।</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_1353">
-                <td id="dtb_1354" colspan="1" rowspan="1">
-                  <p id="dtb_1355" xml:lang="bn-IN">গণ্ডার</p>
-                </td>
-                <td id="dtb_1356" colspan="1" rowspan="1">
-                  <p id="dtb_1357" xml:lang="bn-IN">
-                    <span id="dtb_1358">কালো ও ধূসর রঙের চতুষ্পদ প্রাণী, উচ্চতায় ও লম্বায় গরুর আকারের। </span>
-                    <span id="dtb_1359">এদরে নাকের ওপরে শিং থাকে।</span>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="১৪" id="dtb_1360" class="epubtype_pagebreak"></span>
-          <p id="dtb_1361" xml:lang="bn-IN">
-            <span id="dtb_1362">৪. </span>
-            <span id="dtb_1363">নিচের প্রশ্নগুলোর উত্তর বলি ও লিখি।</span>
-          </p>
-          <p id="dtb_1364" xml:lang="bn-IN">
-            <span id="dtb_1365">ক. </span>
-            <span id="dtb_1366">ক্যাঙ্গারু ও সিংহ বললেই কোন কোন দেশের কথা মনে হয়?</span>
-          </p>
-          <p id="dtb_1367" xml:lang="bn-IN">
-            <span id="dtb_1368">খ. </span>
-            <span id="dtb_1369">বিভিন্ন ধরনের বাঘ সম্পর্কে তুমি যা জান লেখ।</span>
-          </p>
-          <p id="dtb_1370" xml:lang="bn-IN">
-            <span id="dtb_1371">গ. </span>
-            <span id="dtb_1372">দেশের জন্য পশুপাখি, জীবজন্তু কী উপকার করে তা নিজের ভাষায় লেখ।</span>
-          </p>
-          <p id="dtb_1373" xml:lang="bn-IN">
-            <span id="dtb_1374">ঘ. </span>
-            <span id="dtb_1375">শকুন কীভাবে মানুষের উপকার করে?</span>
-          </p>
-          <p id="dtb_1376" xml:lang="bn-IN">
-            <span id="dtb_1377">ঙ. </span>
-            <span id="dtb_1378">পশুপাখি জীবজন্তু না থাকলে প্রকৃতির কী বিপর্যয় ঘটবে বলে তোমার মনে হয়? </span>
-          </p>
-          <p id="dtb_1379" xml:lang="bn-IN">
-            <span id="dtb_1380">৫. </span>
-            <span id="dtb_1381">নিচের বাক্য দুটি পড়ি।</span>
-          </p>
-          <p id="dtb_1382" xml:lang="bn-IN">
-            <span id="dtb_1383">মানুষের পক্ষে যা ক্ষতিকর সেইসব আবর্জনা শকুন খেয়ে ফেলে। </span>
-            <span id="dtb_1384">সে সত্যিকার অর্থে মানুষের উপকার ছাড়া অপকার করে না।</span>
-          </p>
-          <p id="dtb_1385" xml:lang="bn-IN">
-            <span id="dtb_1386">উপরের বাক্য দুটিতে অনেকগুলো শব্দ ব্যবহৃত হয়েছে। </span>
-            <span id="dtb_1387">বাক্যে ব্যবহৃত প্রত্যেকটি শব্দই এক-একটি পদ :</span>
-          </p>
-          <p id="dtb_1388" xml:lang="bn-IN">
-            <span id="dtb_1389">শকুন [..........................................] </span>
-            <span id="dtb_1390">বিশেষ্য পদ</span>
-          </p>
-          <p id="dtb_1391" xml:lang="bn-IN">
-            <span id="dtb_1392">ক্ষতিকর [.......................................] </span>
-            <span id="dtb_1393">বিশেষণ পদ</span>
-          </p>
-          <p id="dtb_1394" xml:lang="bn-IN">
-            <span id="dtb_1395">সে [.............................................] </span>
-            <span id="dtb_1396">সর্বনাম পদ</span>
-          </p>
-          <p id="dtb_1397" xml:lang="bn-IN">
-            <span id="dtb_1398">খায় [..................................] </span>
-            <span id="dtb_1399">ক্রিয়া পদ</span>
-          </p>
-          <p id="dtb_1400" xml:lang="bn-IN">
-            <span id="dtb_1401">ছাড়া [..........................................] </span>
-            <span id="dtb_1402">অব্যয় পদ</span>
-          </p>
-          <p id="dtb_1403" xml:lang="bn-IN">পদ পাঁচ প্রকার : </p>
-          <p id="dtb_1404" xml:lang="bn-IN">বিশেষ্য, </p>
-          <p id="dtb_1405" xml:lang="bn-IN">বিশেষণ, </p>
-          <p id="dtb_1406" xml:lang="bn-IN">সর্বনাম, </p>
-          <p id="dtb_1407" xml:lang="bn-IN">ক্রিয়া, </p>
-          <p id="dtb_1408" xml:lang="bn-IN">অব্যয়। </p>
-          <p id="dtb_1409" xml:lang="bn-IN">নিচের বাক্যগুলোতে কী কী পদ আছে তা লেখ।</p>
-          <p id="dtb_1410" xml:lang="bn-IN">
-            <span id="dtb_1411">সুন্দরবনে বাঘ ছাড়াও আছে নানা রকমের হরিণ। </span>
-            <span id="dtb_1412">কোনটার বড় বড় শিং, কোনটার গায়ে ফোটা ফোটা সাদা দাগ। </span>
-            <span id="dtb_1413">এদের বলে চিত্রা হরিণ। </span>
-          </p>
-          <p id="dtb_1414" xml:lang="bn-IN">
-            <span id="dtb_1415">৬. </span>
-            <span id="dtb_1416">নিচের নির্দেশনা অনুযায়ী বাংলাদেশের যে কোনো একটি প্রাণী সম্পর্কে রচনা লিখি।</span>
-          </p>
-          <table id="dtb_1417">
-            <colgroup>
-              <col id="dtb_1418" span="1">
-            </colgroup>
-            <tbody id="dtb_1419">
-              <tr id="dtb_1420">
-                <td id="dtb_1421" colspan="1" rowspan="1">
-                  <p id="dtb_1422" xml:lang="bn-IN">
-                    <span id="dtb_1423">ক. </span>
-                    <span id="dtb_1424">আকৃতি -</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_1425">
-                <td id="dtb_1426" colspan="1" rowspan="1">
-                  <p id="dtb_1427" xml:lang="bn-IN">
-                    <span id="dtb_1428">খ. </span>
-                    <span id="dtb_1429">রং -</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_1430">
-                <td id="dtb_1431" colspan="1" rowspan="1">
-                  <p id="dtb_1432" xml:lang="bn-IN">
-                    <span id="dtb_1433">গ. </span>
-                    <span id="dtb_1434">কোথায় দেখা যায় -</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_1435">
-                <td id="dtb_1436" colspan="1" rowspan="1">
-                  <p id="dtb_1437" xml:lang="bn-IN">
-                    <span id="dtb_1438">ঘ. </span>
-                    <span id="dtb_1439">আবাস স্থল -</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_1440">
-                <td id="dtb_1441" colspan="1" rowspan="1">
-                  <p id="dtb_1442" xml:lang="bn-IN">
-                    <span id="dtb_1443">ঙ. </span>
-                    <span id="dtb_1444">খাদ্যাভ্যাস -</span>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="১৫" id="dtb_1445" class="epubtype_pagebreak"></span>
-          <p id="dtb_1446" xml:lang="bn-IN">
-            <span id="dtb_1447">৭. </span>
-            <span id="dtb_1448">ঠিক উত্তরটিতে টিক () চিহ্ন দিই।</span>
-          </p>
-          <p id="dtb_1449" xml:lang="bn-IN">
-            <span id="dtb_1450">ক. </span>
-            <span id="dtb_1451">ক্যাঙ্গারু বললেই মনে পড়ে যে দেশের কথা –</span>
-          </p>
-          <p id="dtb_1452" xml:lang="bn-IN">
-            <span id="dtb_1453">১. </span>
-            <span id="dtb_1454">ভারত </span>
-          </p>
-          <p id="dtb_1455" xml:lang="bn-IN">
-            <span id="dtb_1456">২. </span>
-            <span id="dtb_1457">বাংলাদেশ</span>
-          </p>
-          <p id="dtb_1458" xml:lang="bn-IN">
-            <span id="dtb_1459">৩. </span>
-            <span id="dtb_1460">অস্ট্রেলিয়া </span>
-          </p>
-          <p id="dtb_1461" xml:lang="bn-IN">
-            <span id="dtb_1462">৪. </span>
-            <span id="dtb_1463">আফ্রিকা</span>
-          </p>
-          <p id="dtb_1464" xml:lang="bn-IN">
-            <span id="dtb_1465">খ. </span>
-            <span id="dtb_1466">আফ্রিকার কথা উঠলে কোন প্রাণীর কথা মনে হয়?</span>
-          </p>
-          <p id="dtb_1467" xml:lang="bn-IN">
-            <span id="dtb_1468">১. </span>
-            <span id="dtb_1469">সিংহ </span>
-          </p>
-          <p id="dtb_1470" xml:lang="bn-IN">
-            <span id="dtb_1471">২. </span>
-            <span id="dtb_1472">হাতি</span>
-          </p>
-          <p id="dtb_1473" xml:lang="bn-IN">
-            <span id="dtb_1474">৩. </span>
-            <span id="dtb_1475">বাঘ </span>
-          </p>
-          <p id="dtb_1476" xml:lang="bn-IN">
-            <span id="dtb_1477">৪. </span>
-            <span id="dtb_1478">উট</span>
-          </p>
-          <p id="dtb_1479" xml:lang="bn-IN">
-            <span id="dtb_1480">গ. </span>
-            <span id="dtb_1481">বাংলাদেশের কোন জঙ্গলে হাতি দেখতে পাওয়া যায়?</span>
-          </p>
-          <p id="dtb_1482" xml:lang="bn-IN">
-            <span id="dtb_1483">১. </span>
-            <span id="dtb_1484">সিলেট ও খুলনার </span>
-          </p>
-          <p id="dtb_1485" xml:lang="bn-IN">
-            <span id="dtb_1486">২. </span>
-            <span id="dtb_1487">ভাওয়াল ও মধুপুরের</span>
-          </p>
-          <p id="dtb_1488" xml:lang="bn-IN">
-            <span id="dtb_1489">৩. </span>
-            <span id="dtb_1490">রাঙামাটি ও বান্দরবানের </span>
-          </p>
-          <p id="dtb_1491" xml:lang="bn-IN">
-            <span id="dtb_1492">৪. </span>
-            <span id="dtb_1493">উপরের সবখানে</span>
-          </p>
-          <p id="dtb_1494" xml:lang="bn-IN">
-            <span id="dtb_1495">ঘ. </span>
-            <span id="dtb_1496">কোন পাখি ক্ষতিকর আবর্জনা খেয়ে পরিবেশ পরিচ্ছন্ন রাখে?</span>
-          </p>
-          <p id="dtb_1497" xml:lang="bn-IN">
-            <span id="dtb_1498">১. </span>
-            <span id="dtb_1499">ঈগল </span>
-          </p>
-          <p id="dtb_1500" xml:lang="bn-IN">
-            <span id="dtb_1501">২. </span>
-            <span id="dtb_1502">শকুন</span>
-          </p>
-          <p id="dtb_1503" xml:lang="bn-IN">
-            <span id="dtb_1504">৩. </span>
-            <span id="dtb_1505">চিল </span>
-          </p>
-          <p id="dtb_1506" xml:lang="bn-IN">
-            <span id="dtb_1507">৪. </span>
-            <span id="dtb_1508">কাক</span>
-          </p>
-          <p id="dtb_1509" xml:lang="bn-IN">
-            <span id="dtb_1510">ঙ. </span>
-            <span id="dtb_1511">কোন প্রাণীর গায়ে ফোঁটা ফোঁটা সাদা দাগ ও বড় শিং আছে?</span>
-          </p>
-          <p id="dtb_1512" xml:lang="bn-IN">
-            <span id="dtb_1513">১. </span>
-            <span id="dtb_1514">চিতা বাঘ </span>
-          </p>
-          <p id="dtb_1515" xml:lang="bn-IN">
-            <span id="dtb_1516">২. </span>
-            <span id="dtb_1517">চিত্রা হরিণ</span>
-          </p>
-          <p id="dtb_1518" xml:lang="bn-IN">
-            <span id="dtb_1519">৩. </span>
-            <span id="dtb_1520">ভাল্লুক </span>
-          </p>
-          <p id="dtb_1521" xml:lang="bn-IN">
-            <span id="dtb_1522">৪. </span>
-            <span id="dtb_1523">গণ্ডার</span>
-          </p>
-          <p id="dtb_1524" xml:lang="bn-IN">
-            <span id="dtb_1525">৮. </span>
-            <span id="dtb_1526">কর্ম-অনুশীলন।</span>
-          </p>
-          <p id="dtb_1527" xml:lang="bn-IN">
-            <span id="dtb_1528">আমি এমন প্রাণীদের একটি তালিকা তৈরি করি- যাদের নাম শুনেছি, কিন্তু চোখে দেখিনি। </span>
-            <span id="dtb_1529">পরে শ্রেণির সবার সাথে তা মিলিয়ে দেখি।</span>
-          </p><span title="১৬" id="dtb_1530" class="epubtype_pagebreak"></span>
-        </section>
-      </section>
-    </main>
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-15.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-15.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-14.html" title="Previous: সংকল্প" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-next-section" href="package-16.html" title="Next: হাতি আর শেয়ালের গল্প" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-    </div>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-15.mp3"><track default="" kind="metadata" src="vtt/package-15.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="১" label="১" data-href="package-12.html#dtb_568"></option><option value="২" label="২" data-href="package-13.html#dtb_592"></option><option value="৩" label="৩" data-href="package-13.html#dtb_617"></option><option value="৪" label="৪" data-href="package-13.html#dtb_638"></option><option value="৫" label="৫" data-href="package-13.html#dtb_747"></option><option value="৬" label="৬" data-href="package-13.html#dtb_880"></option><option value="৭" label="৭" data-href="package-14.html#dtb_905"></option><option value="৮" label="৮" data-href="package-14.html#dtb_957"></option><option value="৯" label="৯" data-href="package-14.html#dtb_1077"></option><option value="১০" label="১০" data-href="package-14.html#dtb_1201"></option><option value="১১" label="১১" data-href="package-15.html#dtb_1219"></option><option value="১২" label="১২" data-href="package-15.html#dtb_1250"></option><option value="১৩" label="১৩" data-href="package-15.html#dtb_1259"></option><option value="১৪" label="১৪" data-href="package-15.html#dtb_1360"></option><option value="১৫" label="১৫" data-href="package-15.html#dtb_1445"></option><option value="১৬" label="১৬" data-href="package-15.html#dtb_1530"></option><option value="১৭" label="১৭" data-href="package-16.html#dtb_1553"></option><option value="১৮" label="১৮" data-href="package-16.html#dtb_1606"></option><option value="১৯" label="১৯" data-href="package-16.html#dtb_1620"></option><option value="২০" label="২০" data-href="package-16.html#dtb_1740"></option><option value="২১" label="২১" data-href="package-16.html#dtb_1863"></option><option value="২২" label="২২" data-href="package-16.html#dtb_1949"></option><option value="২৩" label="২৩" data-href="package-17.html#dtb_1983"></option><option value="২৪" label="২৪" data-href="package-17.html#dtb_2063"></option><option value="২৫" label="২৫" data-href="package-17.html#dtb_2154"></option><option value="২৬" label="২৬" data-href="package-17.html#dtb_2169"></option><option value="২৭" label="২৭" data-href="package-18.html#dtb_2206"></option><option value="২৮" label="২৮" data-href="package-18.html#dtb_2237"></option><option value="২৯" label="২৯" data-href="package-18.html#dtb_2311"></option><option value="৩০" label="৩০" data-href="package-18.html#dtb_2390"></option><option value="৩১" label="৩১" data-href="package-18.html#dtb_2482"></option><option value="৩২" label="৩২" data-href="package-19.html#dtb_2515"></option><option value="৩৩" label="৩৩" data-href="package-19.html#dtb_2617"></option><option value="৩৪" label="৩৪" data-href="package-19.html#dtb_2715"></option><option value="৩৫" label="৩৫" data-href="package-20.html#dtb_2748"></option><option value="৩৬" label="৩৬" data-href="package-20.html#dtb_2793"></option><option value="৩৭" label="৩৭" data-href="package-20.html#dtb_2824"></option><option value="৩৮" label="৩৮" data-href="package-20.html#dtb_2902"></option><option value="৩৯" label="৩৯" data-href="package-20.html#dtb_3011"></option><option value="৪০" label="৪০" data-href="package-20.html#dtb_3085"></option><option value="৪১" label="৪১" data-href="package-20.html#dtb_3150"></option><option value="৪২" label="৪২" data-href="package-21.html#dtb_3170"></option><option value="৪৩" label="৪৩" data-href="package-21.html#dtb_3280"></option><option value="৪৪" label="৪৪" data-href="package-21.html#dtb_3302"></option><option value="৪৫" label="৪৫" data-href="package-22.html#dtb_3332"></option><option value="৪৬" label="৪৬" data-href="package-22.html#dtb_3368"></option><option value="৪৭" label="৪৭" data-href="package-22.html#dtb_3405"></option><option value="৪৮" label="৪৮" data-href="package-22.html#dtb_3481"></option><option value="৪৯" label="৪৯" data-href="package-22.html#dtb_3555"></option><option value="৫০" label="৫০" data-href="package-22.html#dtb_3648"></option><option value="৫১" label="৫১" data-href="package-23.html#dtb_3674"></option><option value="৫২" label="৫২" data-href="package-23.html#dtb_3693"></option><option value="৫৩" label="৫৩" data-href="package-23.html#dtb_3764"></option><option value="৫৪" label="৫৪" data-href="package-23.html#dtb_3812"></option><option value="৫৫" label="৫৫" data-href="package-23.html#dtb_3891"></option><option value="৫৬" label="৫৬" data-href="package-23.html#dtb_3943"></option><option value="৫৭" label="৫৭" data-href="package-24.html#dtb_3960"></option><option value="৫৮" label="৫৮" data-href="package-24.html#dtb_4004"></option><option value="৫৯" label="৫৯" data-href="package-24.html#dtb_4029"></option><option value="৬০" label="৬০" data-href="package-24.html#dtb_4058"></option><option value="৬১" label="৬১" data-href="package-24.html#dtb_4078"></option><option value="৬২" label="৬২" data-href="package-24.html#dtb_4182"></option><option value="৬৩" label="৬৩" data-href="package-24.html#dtb_4316"></option><option value="৬৪" label="৬৪" data-href="package-24.html#dtb_4449"></option><option value="৬৫" label="৬৫" data-href="package-25.html#dtb_4474"></option><option value="৬৬" label="৬৬" data-href="package-25.html#dtb_4527"></option><option value="৬৭" label="৬৭" data-href="package-25.html#dtb_4561"></option><option value="৬৮" label="৬৮" data-href="package-25.html#dtb_4607"></option><option value="৬৯" label="৬৯" data-href="package-25.html#dtb_4622"></option><option value="৭০" label="৭০" data-href="package-25.html#dtb_4651"></option><option value="৭১" label="৭১" data-href="package-25.html#dtb_4723"></option><option value="৭২" label="৭২" data-href="package-25.html#dtb_4818"></option><option value="৭৩" label="৭৩" data-href="package-25.html#dtb_4868"></option><option value="৭৪" label="৭৪" data-href="package-26.html#dtb_4888"></option><option value="৭৬" label="৭৬" data-href="package-26.html#dtb_4985"></option><option value="৭৬" label="৭৬" data-href="package-26.html#dtb_5024"></option><option value="৭৭" label="৭৭" data-href="package-27.html#dtb_5044"></option><option value="৭৮" label="৭৮" data-href="package-27.html#dtb_5071"></option><option value="৭৯" label="৭৯" data-href="package-27.html#dtb_5106"></option><option value="৮০" label="৮০" data-href="package-27.html#dtb_5190"></option><option value="৮১" label="৮১" data-href="package-27.html#dtb_5285"></option><option value="৮২" label="৮২" data-href="package-28.html#dtb_5311"></option><option value="৮৩" label="৮৩" data-href="package-28.html#dtb_5343"></option><option value="৮৪" label="৮৪" data-href="package-28.html#dtb_5441"></option><option value="৮৫" label="৮৫" data-href="package-28.html#dtb_5504"></option><option value="৮৬" label="৮৬" data-href="package-29.html#dtb_5539"></option><option value="৮৭" label="৮৭" data-href="package-29.html#dtb_5555"></option><option value="৮৮" label="৮৮" data-href="package-29.html#dtb_5591"></option><option value="৮৯" label="৮৯" data-href="package-29.html#dtb_5695"></option><option value="৯০" label="৯০" data-href="package-29.html#dtb_5795"></option><option value="৯১" label="৯১" data-href="package-29.html#dtb_5842"></option><option value="৯২" label="৯২" data-href="package-30.html#dtb_5868"></option><option value="৯৩" label="৯৩" data-href="package-30.html#dtb_5877"></option><option value="৯৪" label="৯৪" data-href="package-30.html#dtb_5963"></option><option value="৯৫" label="৯৫" data-href="package-30.html#dtb_6014"></option><option value="৯৬" label="৯৬" data-href="package-31.html#dtb_6035"></option><option value="৯৭" label="৯৭" data-href="package-31.html#dtb_6076"></option><option value="৯৮" label="৯৮" data-href="package-31.html#dtb_6119"></option><option value="৯৯" label="৯৯" data-href="package-31.html#dtb_6230"></option><option value="১০০" label="১০০" data-href="package-31.html#dtb_6300"></option><option value="১০১" label="১০১" data-href="package-31.html#dtb_6346"></option><option value="১০২" label="১০২" data-href="package-32.html#dtb_6372"></option><option value="১০৩" label="১০৩" data-href="package-32.html#dtb_6397"></option><option value="১০৪" label="১০৪" data-href="package-32.html#dtb_6480"></option><option value="১০৫" label="১০৫" data-href="package-32.html#dtb_6584"></option><option value="১০৬" label="১০৬" data-href="package-32.html#dtb_6648"></option><option value="১০৭" label="১০৭" data-href="package-33.html#dtb_6674"></option><option value="১০৮" label="১০৮" data-href="package-33.html#dtb_6751"></option><option value="১০৯" label="১০৯" data-href="package-33.html#dtb_6840"></option><option value="১১০" label="১১০" data-href="package-34.html#dtb_6880"></option><option value="১১১" label="১১১" data-href="package-34.html#dtb_6917"></option><option value="১১২" label="১১২" data-href="package-34.html#dtb_6949"></option><option value="১১৩" label="১১৩" data-href="package-34.html#dtb_7066"></option><option value="১১৪" label="১১৪" data-href="package-34.html#dtb_7141"></option><option value="১১৫" label="১১৫" data-href="package-34.html#dtb_7204"></option><option value="১১৬" label="১১৬" data-href="package-35.html#dtb_7240"></option><option value="১১৭" label="১১৭" data-href="package-35.html#dtb_7287"></option><option value="১১৮" label="১১৮" data-href="package-36.html#dtb_7383"></option><option value="১১৯" label="১১৯" data-href="package-36.html#dtb_7484"></option><option value="১২০" label="১২০" data-href="package-36.html#dtb_7535"></option><option value="১২১" label="১২১" data-href="package-37.html#dtb_7581"></option><option value="১২২" label="১২২" data-href="package-37.html#dtb_7594"></option><option value="১২৩" label="১২৩" data-href="package-37.html#dtb_7609"></option><option value="১২৪" label="১২৪" data-href="package-37.html#dtb_7660"></option><option value="১২৫" label="১২৫" data-href="package-37.html#dtb_7707"></option><option value="১২৬" label="১২৬" data-href="package-37.html#dtb_7716"></option><option value="১২৭" label="১২৭" data-href="package-37.html#dtb_7800"></option><option value="১২৮" label="১২৮" data-href="package-37.html#dtb_7891"></option><option value="১২৯" label="১২৯" data-href="package-37.html#dtb_8012"></option><option value="১৩০" label="১৩০" data-href="package-37.html#dtb_8065"></option><option value="১৩১" label="১৩১" data-href="package-38.html#dtb_8293"></option><option value="১৩২" label="১৩২" data-href="package-38.html#dtb_8502"></option><option value="১৩৩" label="১৩৩" data-href="package-38.html#dtb_8743"></option><option value="১৩৪" label="১৩৪" data-href="package-38.html#dtb_8995"></option></datalist>
+    </section>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
 
-  </body>
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>আমার বাংলা বই পঞ্চম শ্রেণি</dd><dt>Author</dt><dd>প্রণয়নে - ইপসা। সহযোগিতায় : এটুআই, প্রধানমন্ত্রীর কার্যালয়। বাস্তবায়নে: সমাজসেবা অধিদফতর।</dd><dt>Date</dt><dd>2022-02-11T21:36:13Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
 
-</html>
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

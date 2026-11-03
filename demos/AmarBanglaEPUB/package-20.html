@@ -1,672 +1,582 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> শখের মৃৎশিল্প </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শখের মৃৎশিল্প</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="7239a599-3299-4bb1-a727-47464bdaf383">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <main>
-      <section id="id_44">
-        <h1 id="dtb_2716" xml:lang="bn-IN"> শখের মৃৎশিল্প <a href="#dtb_2716" title="Link to heading শখের মৃৎশিল্প" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <p id="dtb_2717" xml:lang="bn-IN">
-          <span id="dtb_2718">গ্রামের নাম আনন্দপুর। </span>
-          <span id="dtb_2719">মামার বাড়ি। </span>
-          <span id="dtb_2720">কথায় আছে, মামার বাড়ি রসের হাঁড়ি। </span>
-          <span id="dtb_2721">আসলেই তাই পড়া নেই, বাধা নেই, যেখানে খুশি ঘুরে বেড়াও, যা খুশি খাও। </span>
-          <span id="dtb_2722">এই তো মামার বাড়ি। </span>
-          <span id="dtb_2723">গেল বছর পয়লা বৈশাখের ছুটিতে গিয়েছিলাম আনন্দপুর। </span>
-          <span id="dtb_2724">সেখানে পয়লা বৈশাখে মেলা বসে। </span>
-          <span id="dtb_2725">মামা বললেন, তোমাদের মেলা দেখাতে নিয়ে যাব।</span>
-        </p>
-        <div id="dtb_2727"><img src="Amar_Bangla_Boi_Class__5_style-Pic-26.jpg" alt="" id="dtb_2728"></div>
-        <p id="dtb_2729" xml:lang="bn-IN">
-          <span id="dtb_2730">আমরা ছিলাম চার জন-আমি, মামাতো বোন বৃষ্টি, সোহানা আর ছোটভাই তাজিন। </span>
-          <span id="dtb_2731">মেলা বসে সকালে। </span>
-          <span id="dtb_2732">আমরা একটু দেরি করেই গেলাম। </span>
-          <span id="dtb_2733">মামা বেশ মজার মানুষ। </span>
-          <span id="dtb_2734">কাঁধে ঝোলানো একটা ব্যাগ। </span>
-          <span id="dtb_2735">তাতে থাকে ছবি আঁকার জিনিস, </span>
-          <span xml:lang="bn-IN">
+<body>
+    <main><section id="id_44"><h1 id="dtb_2716" xml:lang="bn-IN" tabindex="-1"> শখের মৃৎশিল্প <a href="#dtb_2716" rel="bookmark" class="webbook" title="Link to শখের মৃৎশিল্প" aria-label="Link to শখের মৃৎশিল্প"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_2717" xml:lang="bn-IN">
+					<span id="dtb_2718">গ্রামের নাম আনন্দপুর। </span>
+					<span id="dtb_2719">মামার বাড়ি। </span>
+					<span id="dtb_2720">কথায় আছে, মামার বাড়ি রসের হাঁড়ি। </span>
+					<span id="dtb_2721">আসলেই তাই পড়া নেই, বাধা নেই, যেখানে খুশি ঘুরে বেড়াও, যা খুশি খাও। </span>
+					<span id="dtb_2722">এই তো মামার বাড়ি। </span>
+					<span id="dtb_2723">গেল বছর পয়লা বৈশাখের ছুটিতে গিয়েছিলাম আনন্দপুর। </span>
+					<span id="dtb_2724">সেখানে পয়লা বৈশাখে মেলা বসে। </span>
+					<span id="dtb_2725">মামা বললেন, তোমাদের মেলা দেখাতে নিয়ে যাব।</span>
+				</p><div id="dtb_2727"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-26.jpg" alt="" id="dtb_2728"></div><p id="dtb_2729" xml:lang="bn-IN">
+					<span id="dtb_2730">আমরা ছিলাম চার জন-আমি, মামাতো বোন বৃষ্টি, সোহানা আর ছোটভাই তাজিন। </span>
+					<span id="dtb_2731">মেলা বসে সকালে। </span>
+					<span id="dtb_2732">আমরা একটু দেরি করেই গেলাম। </span>
+					<span id="dtb_2733">মামা বেশ মজার মানুষ। </span>
+					<span id="dtb_2734">কাঁধে ঝোলানো একটা ব্যাগ। </span>
+					<span id="dtb_2735">তাতে থাকে ছবি আঁকার জিনিস, </span>
+					<span xml:lang="bn-IN">
 						<span id="dtb_2737">থাকে একটা বাঁশি। </span>
-          <span id="dtb_2738">পড়েন ঢাকার চারুকলা ইনস্টিটিউটে। </span>
-          <span id="dtb_2739">মেলার একটু কাছে পৌঁছতেই শুনতে পেলাম নাগরদোলার ক্যাঁচার ক্যাঁচর শব্দ। </span>
-          <span id="dtb_2740">দেখলাম বাঁশের তৈরি কুলো, ডালা, ঝুড়ি, চালুন, মাছ ধরার চাঁই, খালুই। </span>
-          <span id="dtb_2741">আরও কত কী! </span>
-          <span id="dtb_2742">বসেছে বাঙি, তরমুজ, মুড়ি-মুড়কি, জিলাপি আর বাতাসার দোকান সারি সারি। </span>
-          <span id="dtb_2743">আরেকটু এগুতেই দেখতে পেলাম কত রঙের, কত বর্ণের বিচিত্র সব মাটির হাঁড়ি। </span>
-          <span id="dtb_2744">ফুল, পাতা, মাছের ছবি আঁকা সে সবে। </span>
-          <span id="dtb_2745">রয়েছে মাটির ঘোড়া, হাতি, ষাঁড় আর নানা আকারের মাটির পুতুল। </span>
-          <span id="dtb_2746">আমার চোখ পড়ল কাজ করা অপূর্ব ‍সুন্দর মাটির হাঁড়ির দিকে। </span>
-          <span id="dtb_2747">মামাকে জিজ্ঞেস করলাম-এটা কিসের হাঁড়ি? </span>
-          </span>
-        </p><span title="৩৫" id="dtb_2748" class="epubtype_pagebreak"></span>
-        <p id="dtb_2749" xml:lang="bn-IN">
-          <span id="dtb_2750">মামা বললেন এটা শখের হাঁড়ি। </span>
-          <span id="dtb_2751">শখ করে পছন্দের জিনিস এই সুন্দর হাঁড়িতে রাখা হয়। </span>
-          <span id="dtb_2752">তাই এর নাম শখের হাঁড়ি। </span>
-          <span id="dtb_2753">তাছাড়া শখের যে কোনো জিনিসই তো সুন্দর। </span>
-        </p>
-        <p id="dtb_2754" xml:lang="bn-IN">
-          <span id="dtb_2755">আমরা দুটি শখের হাঁড়ি কিনলাম। </span>
-          <span id="dtb_2756">অবাক হলাম, পুতুলের পাশেই ঘোলা চোখে চেয়ে আছে এক চকচকে রুপালি ইলিশ। </span>
-          <span id="dtb_2757">পদ্মার তাজা ইলিশের মতোই। </span>
-          <span id="dtb_2758">তেমনি সাদা আঁশ, লাল ঠোঁট। </span>
-          <span id="dtb_2759">আমরা একটা মাটির ইলিশও কিনলাম। </span>
-          <span id="dtb_2760">মামা বলেলেন, ওই যে পুতুলগুলো দেখছ ওগুলো টেপা পুতুল। </span>
-          <span xml:lang="bn-IN">
+						<span id="dtb_2738">পড়েন ঢাকার চারুকলা ইনস্টিটিউটে। </span>
+						<span id="dtb_2739">মেলার একটু কাছে পৌঁছতেই শুনতে পেলাম নাগরদোলার ক্যাঁচার ক্যাঁচর শব্দ। </span>
+						<span id="dtb_2740">দেখলাম বাঁশের তৈরি কুলো, ডালা, ঝুড়ি, চালুন, মাছ ধরার চাঁই, খালুই। </span>
+						<span id="dtb_2741">আরও কত কী! </span>
+						<span id="dtb_2742">বসেছে বাঙি, তরমুজ, মুড়ি-মুড়কি, জিলাপি আর বাতাসার দোকান সারি সারি। </span>
+						<span id="dtb_2743">আরেকটু এগুতেই দেখতে পেলাম কত রঙের, কত বর্ণের বিচিত্র সব মাটির হাঁড়ি। </span>
+						<span id="dtb_2744">ফুল, পাতা, মাছের ছবি আঁকা সে সবে। </span>
+						<span id="dtb_2745">রয়েছে মাটির ঘোড়া, হাতি, ষাঁড় আর নানা আকারের মাটির পুতুল। </span>
+						<span id="dtb_2746">আমার চোখ পড়ল কাজ করা অপূর্ব ‍সুন্দর মাটির হাঁড়ির দিকে। </span>
+						<span id="dtb_2747">মামাকে জিজ্ঞেস করলাম-এটা কিসের হাঁড়ি? </span>
+					</span>
+				</p><span title="৩৫" id="dtb_2748" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৫">৩৫</span><p id="dtb_2749" xml:lang="bn-IN">
+					<span id="dtb_2750">মামা বললেন এটা শখের হাঁড়ি। </span>
+					<span id="dtb_2751">শখ করে পছন্দের জিনিস এই সুন্দর হাঁড়িতে রাখা হয়। </span>
+					<span id="dtb_2752">তাই এর নাম শখের হাঁড়ি। </span>
+					<span id="dtb_2753">তাছাড়া শখের যে কোনো জিনিসই তো সুন্দর। </span>
+				</p><p id="dtb_2754" xml:lang="bn-IN">
+					<span id="dtb_2755">আমরা দুটি শখের হাঁড়ি কিনলাম। </span>
+					<span id="dtb_2756">অবাক হলাম, পুতুলের পাশেই ঘোলা চোখে চেয়ে আছে এক চকচকে রুপালি ইলিশ। </span>
+					<span id="dtb_2757">পদ্মার তাজা ইলিশের মতোই। </span>
+					<span id="dtb_2758">তেমনি সাদা আঁশ, লাল ঠোঁট। </span>
+					<span id="dtb_2759">আমরা একটা মাটির ইলিশও কিনলাম। </span>
+					<span id="dtb_2760">মামা বলেলেন, ওই যে পুতুলগুলো দেখছ ওগুলো টেপা পুতুল। </span>
+					<span xml:lang="bn-IN">
 						<span id="dtb_2762">নরম এঁটেল মাটি টিপে টিপে এসব পুতুল বানানো হয়। </span>
-          <span id="dtb_2763">যেমন- বই জামাই, কৃষক, নথপরা ছোট্ট মেয়ে-নানা রকমের মাটির টেপা পতুল। </span>
-          <span id="dtb_2764">মেলার এক প্রান্তে বড় জায়গা জুড়ে এসব মাটির পুতুলের দোকান। </span>
-          <span id="dtb_2765">মামা বললেন, এগুলো হচ্ছে মাটির শিল্পকলা। </span>
-          <span id="dtb_2766">মামা ‍বুঝিয়ে বলেলেন – যখন কোনো কিছু সুন্দর করে আঁকি বা বানাই অথবা গাই, তখন তা হয় শিল্প। </span>
-          <span id="dtb_2767">আমাদের দেশের সবচেয়ে প্রাচীন শিল্প হচ্ছে মাটির শিল্প। </span>
-          <span id="dtb_2768">এ দেশের কুমোর সম্প্রদায় যুগ যুগ ধরে তৈরি করে আসছে মাটির জিনিস।</span>
-          </span>
-        </p>
-        <p id="dtb_2769" xml:lang="bn-IN">
-          <span id="dtb_2770">যেমন – কলস, হাঁড়ি, সরা, বাসনকোসন, পেয়ালা, সুরাই, মটকা, জালা, পিঠে তৈরির নানা ছাঁচ। </span>
-          <span id="dtb_2771">আরও কত কী!</span>
-        </p>
-        <div id="dtb_2773"><img src="Amar_Bangla_Boi_Class__5_style-Pic-27.jpg" alt="" id="dtb_2774"></div>
-        <p id="dtb_2775" xml:lang="bn-IN">
-          <span id="dtb_2776">মাটির তৈরি শিল্পকর্মকে আমরা বলি মাটির শিল্প বা মৃৎশিল্প। </span>
-          <span id="dtb_2777">এ শিল্পের প্রধান উপকরণ হলো মাটি। </span>
-          <span id="dtb_2778">তবে সব মাটি দিয়ে এ কাজ হয় না। </span>
-          <span id="dtb_2779">দরকার পরিষ্কার এঁটেল মাটি। </span>
-          <span id="dtb_2780">এধরনের মাটি বেশ আঠালো। </span>
-          <span id="dtb_2781">দোঁআশ মাটি তেমন আঠলো নয়। </span>
-          <span id="dtb_2782">আর বেলে মাটি তো ঝরঝরে- তাই </span>
-          <span xml:lang="bn-IN">
+						<span id="dtb_2763">যেমন- বই জামাই, কৃষক, নথপরা ছোট্ট মেয়ে-নানা রকমের মাটির টেপা পতুল। </span>
+						<span id="dtb_2764">মেলার এক প্রান্তে বড় জায়গা জুড়ে এসব মাটির পুতুলের দোকান। </span>
+						<span id="dtb_2765">মামা বললেন, এগুলো হচ্ছে মাটির শিল্পকলা। </span>
+						<span id="dtb_2766">মামা ‍বুঝিয়ে বলেলেন – যখন কোনো কিছু সুন্দর করে আঁকি বা বানাই অথবা গাই, তখন তা হয় শিল্প। </span>
+						<span id="dtb_2767">আমাদের দেশের সবচেয়ে প্রাচীন শিল্প হচ্ছে মাটির শিল্প। </span>
+						<span id="dtb_2768">এ দেশের কুমোর সম্প্রদায় যুগ যুগ ধরে তৈরি করে আসছে মাটির জিনিস।</span>
+					</span>
+				</p><p id="dtb_2769" xml:lang="bn-IN">
+					<span id="dtb_2770">যেমন – কলস, হাঁড়ি, সরা, বাসনকোসন, পেয়ালা, সুরাই, মটকা, জালা, পিঠে তৈরির নানা ছাঁচ। </span>
+					<span id="dtb_2771">আরও কত কী!</span>
+				</p><div id="dtb_2773"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-27.jpg" alt="" id="dtb_2774"></div><p id="dtb_2775" xml:lang="bn-IN">
+					<span id="dtb_2776">মাটির তৈরি শিল্পকর্মকে আমরা বলি মাটির শিল্প বা মৃৎশিল্প। </span>
+					<span id="dtb_2777">এ শিল্পের প্রধান উপকরণ হলো মাটি। </span>
+					<span id="dtb_2778">তবে সব মাটি দিয়ে এ কাজ হয় না। </span>
+					<span id="dtb_2779">দরকার পরিষ্কার এঁটেল মাটি। </span>
+					<span id="dtb_2780">এধরনের মাটি বেশ আঠালো। </span>
+					<span id="dtb_2781">দোঁআশ মাটি তেমন আঠলো নয়। </span>
+					<span id="dtb_2782">আর বেলে মাটি তো ঝরঝরে- তাই </span>
+					<span xml:lang="bn-IN">
 						<span id="dtb_2784">এগুলো দিয়ে মাটির শিল্প হয় না। </span>
-          <span id="dtb_2785">এঁটেল মাটি হলেই যে তা দিয়ে শিল্পের কাজ করা যাবে তাও নয়। </span>
-          <span id="dtb_2786">এর জন্য অনেক যত্ন আর শ্রম দরকার। </span>
-          <span id="dtb_2787">দরকার হাতের নৈপুণ্য ও কারিগরি জ্ঞান। </span>
-          <span id="dtb_2788">কুমোরদের কাছে এসব খুব সহজ। </span>
-          <span id="dtb_2789">কারণ তারা বংশ পরম্পরায় এ কাজ করে আসছে।</span>
-          </span>
-        </p>
-        <div id="dtb_2791"><img src="Amar_Bangla_Boi_Class__5_style-Pic-28.jpg" alt="" id="dtb_2792"></div><span title="৩৬" id="dtb_2793" class="epubtype_pagebreak"></span>
-        <div id="dtb_2795"><img src="Amar_Bangla_Boi_Class__5_style-Pic-29.jpg" alt="" id="dtb_2796"></div>
-        <p id="dtb_2797" xml:lang="bn-IN">
-          <span id="dtb_2798">আবার এ কাজের জন্য প্রয়োজন কিছু ছোটখাটো যন্ত্রপাতি ও সরঞ্জাম। </span>
-          <span id="dtb_2799">সবকিছুর আগে যেটা দরকার তা হলো একটা কাঠের চাকা। </span>
-          <span id="dtb_2800">এই চাকায় নরম মাটির তাল লাগিয়ে নেন কুমোররা। </span>
-          <span id="dtb_2801">তারপর চাকাটি জোরে ঘোরান। </span>
-          <span id="dtb_2802">আর হাত দিয়ে মাটির তাল ধরেন। </span>
-          <span id="dtb_2803">এভাবে নানা আকারের মাটির পাত্র ও নানা জিনিস তৈরি করেন কুমোররা।</span>
-        </p>
-        <p id="dtb_2804" xml:lang="bn-IN">
-          <span id="dtb_2805">মেলা থেকে সেদিন আমরা অনেক টেপা পুতুল, ঘোড়া, হাতি, ছোট কলস কিনলাম। </span>
-          <span id="dtb_2806">মামা বললেন, এত সুন্দর নকশা দেখছ, রং দেখছ এ সবই গ্রামের শিল্পীদের তৈরি। </span>
-          <span id="dtb_2807">নকশাগুলো তারা মন থেকে আঁকে। </span>
-          <span id="dtb_2808">আর রং তৈরি করে শিম, সেগুন পাতার রস, কাঁঠাল গাছের বাকল থেকে। </span>
-          <span id="dtb_2809">তবে আজকাল বাজার থেকে কেনা রংও লাগনো হয়। </span>
-          <span id="dtb_2810">মেলা থেকে কদমা, বাতাসা, মুড়কি আর খৈ কিনে শখের হাঁড়ি ভর্তি করে আমরা ফিরলাম। </span>
-          <span id="dtb_2811">খুব মজা হলো।</span>
-        </p>
-        <p id="dtb_2812" xml:lang="bn-IN">
-          <span id="dtb_2813">মামা বললেন, তোমাদের কাল কুমোরপাড়ায় নিয়ে যাব। </span>
-          <span id="dtb_2814">পরদিন আমরা দেখতে গেলাম কুমোরপাড়া। </span>
-          <span id="dtb_2815">আনন্দপুর গ্রামের উত্তর দিকে আট দশ ঘর বসতবাড়ি। </span>
-          <span id="dtb_2816">এই নিয়ে কুমোরপাড়া। </span>
-          <span id="dtb_2817">এখানে সবাই ব্যস্ত। </span>
-          <span id="dtb_2818">কেউ মাটির তাল চাক করে সাজিয়ে রাখছেন। </span>
-          <span id="dtb_2819">কেউ-বা কাঠের চাকায় মাটি লাগিয়ে নানা আকারের পাত্র বানাচ্ছেন। </span>
-          <span id="dtb_2820">কেউ-বা এগুলো সার সার করে শুকোতে দিচ্ছেন রোদে। </span>
-          <span id="dtb_2821">পাশেই রয়েছে মাটির জিনিস পোড়ানোর চুলা। </span>
-          <span id="dtb_2822">উঁচু ছোট্ট ঢিবির মতো এই চুলা। </span>
-          <span id="dtb_2823">মাটির পোড়া গন্ধ পাচ্ছি।</span>
-        </p><span title="৩৭" id="dtb_2824" class="epubtype_pagebreak"></span>
-        <p id="dtb_2825" xml:lang="bn-IN">
-          <span id="dtb_2826">আর ধোঁয়া বেরুচ্ছে। </span>
-          <span id="dtb_2827">ছোট ছোট ছেলেমেয়েরাও এ কাজ করছে। </span>
-          <span id="dtb_2828">মামা বললেন, হাঁড়ি কলসি ছাড়াও আমাদের দেশে এক সময় সুন্দর পোড়ামাটির ফলকের কাজ হতো। </span>
-          <span id="dtb_2829">এর অন্য নাম টেরাকোটা। </span>
-          <span id="dtb_2830">বাংলার অনেক পুরনো শিল্প এই টেরাকোটা। </span>
-          <span id="dtb_2831">নকশা করা মাটির ফলক ইটের মতো পুড়িয়ে তৈরি করা হতো এই টেরাকোটা। </span>
-          <span id="dtb_2832">শালবন বিহার, মহাস্থানগড়, পাহাড়পুর বৌদ্ধ বিহার ও দিনাজপুরের কান্তজির মন্দিরে এই টেরাকোটার কাজ রয়েছে। </span>
-          <span id="dtb_2833">মাটির ফলকে ছবি এঁকে শুকিয়ে পোড়ানোর পর এগুলো এমন সুন্দর হয়ে ওঠে! </span>
-          <span id="dtb_2834">ছোট ছোট ফলককে পাশাপাশি জোড়া দিয়ে বড় করা যায়। </span>
-          <span id="dtb_2835">পোড়ামাটির এই ফলক বাংলার প্রাচীন মৃৎশিল্প। </span>
-          <span id="dtb_2836">মামা বললেন, টেরাকোটা বা পোড়ামাটির এসব কাজ এ দেশে শুরু হয়েছে হাজার বছর আগে।</span>
-        </p>
-        <p id="dtb_2837" xml:lang="bn-IN">
-          <span id="dtb_2838">আজকাল কি পোড়ামাটির এই শিল্পচর্চা হয় না? </span>
-          <span id="dtb_2839">মামার কাছে জানতে চাইলাম আমরা। </span>
-          <span id="dtb_2840">মামা বললেন, আজকাল ওরকম টেরাকোটা হচ্ছে না বটে, তবে পোড়ামাটির নকশার কদর বেড়েছে। </span>
-          <span id="dtb_2841">সরকারী-বেসরকারী ভবনে আজকাল সৌন্দর্য বাড়ানোর জন্য নানা রকম নকশা করা মাটির ফলক ব্যবহৃত হচ্ছে। </span>
-          <span id="dtb_2842">আমাদের দেশের কুমোররা এসব তৈরি করছেন। </span>
-          <span id="dtb_2843">বললাম, </span>
-          <span xml:lang="bn-IN">আমরা এসব পোড়ামাটির কাজ দেখতে চাই।</span>
-        </p>
-        <p id="dtb_2845" xml:lang="bn-IN">
-          <span id="dtb_2846" class="normalized">মামা বললেন, </span>
-          <span xml:lang="bn-IN">সুযোগ মতো এক সময় তোমাদের শালবন বিহারে নিয়ে যাব।</span>
-        </p>
-        <p id="dtb_2848" xml:lang="bn-IN"> - সংগৃহীত</p>
-        <section id="id_45">
-          <h1 id="dtb_2849" xml:lang="bn-IN"> অনুশীলনী <a href="#dtb_2849" title="Link to heading অনুশীলনী" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_2850" xml:lang="bn-IN">
-            <span id="dtb_2851">১. </span>
-            <span id="dtb_2852">শব্দগুলো পাঠ থেকে খুঁজে বের করি। </span>
-            <span id="dtb_2853">অর্থ বলি।</span>
-          </p>
-          <table id="dtb_2854">
-            <colgroup>
-              <col id="dtb_2855" span="1">
-            </colgroup>
-            <tbody id="dtb_2856">
-              <tr id="dtb_2857">
-                <td id="dtb_2858" colspan="1" rowspan="1">
-                  <p id="dtb_2859" xml:lang="bn-IN">শখ</p>
-                </td>
-                <td id="dtb_2860" colspan="1" rowspan="1">
-                  <p id="dtb_2861" xml:lang="bn-IN">টেপা পুতুল</p>
-                </td>
-                <td id="dtb_2862" colspan="1" rowspan="1">
-                  <p id="dtb_2863" xml:lang="bn-IN">নকশা</p>
-                </td>
-                <td id="dtb_2864" colspan="1" rowspan="1">
-                  <p id="dtb_2865" xml:lang="bn-IN">শালবন বিহার</p>
-                </td>
-              </tr>
-              <tr id="dtb_2866">
-                <td id="dtb_2867" colspan="1" rowspan="1">
-                  <p id="dtb_2868" xml:lang="bn-IN">টেরাকোটা</p>
-                </td>
-                <td id="dtb_2869" colspan="1" rowspan="1">
-                  <p id="dtb_2870" xml:lang="bn-IN">মৃৎশিল্প</p>
-                </td>
-                <td id="dtb_2871" colspan="2" rowspan="1">
-                  <p id="dtb_2872" xml:lang="bn-IN">শখের হাঁড়ি</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_2873" xml:lang="bn-IN">
-            <span id="dtb_2874">২. </span>
-            <span id="dtb_2875">ঘরের ভিতরের শব্দগুলো খালি জায়গায় বসিয়ে বাক্য তৈরি করি।</span>
-          </p>
-          <table id="dtb_2876">
-            <colgroup>
-              <col id="dtb_2877" span="1">
-            </colgroup>
-            <tbody id="dtb_2878">
-              <tr id="dtb_2879">
-                <td id="dtb_2880" colspan="1" rowspan="1">
-                  <p id="dtb_2881" xml:lang="bn-IN">শখ</p>
-                </td>
-                <td id="dtb_2882" colspan="1" rowspan="1">
-                  <p id="dtb_2883" xml:lang="bn-IN">নকশা</p>
-                </td>
-                <td id="dtb_2884" colspan="1" rowspan="1">
-                  <p id="dtb_2885" xml:lang="bn-IN">মৃৎশিল্প</p>
-                </td>
-                <td id="dtb_2886" colspan="1" rowspan="1">
-                  <p id="dtb_2887" xml:lang="bn-IN">টেপা পুতুল</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_2888" xml:lang="bn-IN">
-            <span id="dtb_2889">ক. </span>
-            <span id="dtb_2890">এই যে […………………………….] </span>
-            <span id="dtb_2891">দেখছ, এসবই গ্রামের শিল্পীদের তৈরি।</span>
-          </p>
-          <p id="dtb_2892" xml:lang="bn-IN">
-            <span id="dtb_2893">খ. </span>
-            <span id="dtb_2894">মাটির পুতুল জমানো আমার একটি […………………………………………</span>
-            <span id="dtb_2895">..]।</span>
-          </p>
-          <p id="dtb_2896" xml:lang="bn-IN">
-            <span id="dtb_2897">গ. </span>
-            <span id="dtb_2898">মাটির তৈরি শিল্পকর্মকে [……………………………………………………] বলে।</span>
-          </p>
-          <p id="dtb_2899" xml:lang="bn-IN">
-            <span id="dtb_2900">ঘ. </span>
-            <span id="dtb_2901">আমরা মেলা থেকে অনেক […………………………………………………] কিনলাম।</span>
-          </p><span title="৩৮" id="dtb_2902" class="epubtype_pagebreak"></span>
-          <p id="dtb_2903" xml:lang="bn-IN">
-            <span id="dtb_2904">৩. </span>
-            <span id="dtb_2905">ঠিক উত্তরটিতে টিক () দিই।</span>
-          </p>
-          <p id="dtb_2906" xml:lang="bn-IN">
-            <span id="dtb_2907">ক. </span>
-            <span id="dtb_2908">আনন্দপুরে কখন মেলা বসে?</span>
-          </p>
-          <p id="dtb_2909" xml:lang="bn-IN">
-            <span id="dtb_2910">১. </span>
-            <span id="dtb_2911">ষোলই ডিসেম্বর </span>
-          </p>
-          <p id="dtb_2912" xml:lang="bn-IN">
-            <span id="dtb_2913">২. </span>
-            <span id="dtb_2914">পয়লা বৈশাখ</span>
-          </p>
-          <p id="dtb_2915" xml:lang="bn-IN">
-            <span id="dtb_2916">৩. </span>
-            <span id="dtb_2917">একুশে ফেব্রুয়ারি </span>
-          </p>
-          <p id="dtb_2918" xml:lang="bn-IN">
-            <span id="dtb_2919">৪. </span>
-            <span id="dtb_2920">পহেলা ফাল্গুন</span>
-          </p>
-          <p id="dtb_2921" xml:lang="bn-IN">
-            <span id="dtb_2922">খ. </span>
-            <span id="dtb_2923">মামা কোথায় পড়েন?</span>
-          </p>
-          <p id="dtb_2924" xml:lang="bn-IN">
-            <span id="dtb_2925">১. </span>
-            <span id="dtb_2926">ঢাকা কলেজে</span>
-          </p>
-          <p id="dtb_2927" xml:lang="bn-IN">
-            <span id="dtb_2928">২. </span>
-            <span id="dtb_2929">রাজশাহী বিশ্ববিদ্যালয়ে</span>
-          </p>
-          <p id="dtb_2930" xml:lang="bn-IN">
-            <span id="dtb_2931">৩. </span>
-            <span id="dtb_2932">ঢাকার চারুকলা ইনস্টিটিউটে </span>
-          </p>
-          <p id="dtb_2933" xml:lang="bn-IN">
-            <span id="dtb_2934">৪. </span>
-            <span id="dtb_2935">চট্টগ্রামের চারুকলা ইনস্টিটিউটে</span>
-          </p>
-          <p id="dtb_2936" xml:lang="bn-IN">
-            <span id="dtb_2937">গ. </span>
-            <span id="dtb_2938">মৃৎশিল্পের সবচেয়ে প্রাচীন উপাদান হচ্ছে –</span>
-          </p>
-          <p id="dtb_2939" xml:lang="bn-IN">
-            <span id="dtb_2940">১. </span>
-            <span id="dtb_2941">বাঁশ </span>
-          </p>
-          <p id="dtb_2942" xml:lang="bn-IN">
-            <span id="dtb_2943">২. </span>
-            <span id="dtb_2944">কাঠ</span>
-          </p>
-          <p id="dtb_2945" xml:lang="bn-IN">
-            <span id="dtb_2946">৩. </span>
-            <span id="dtb_2947">পানি </span>
-          </p>
-          <p id="dtb_2948" xml:lang="bn-IN">
-            <span id="dtb_2949">৪. </span>
-            <span id="dtb_2950">মাটি</span>
-          </p>
-          <p id="dtb_2951" xml:lang="bn-IN">
-            <span id="dtb_2952">ঘ. </span>
-            <span id="dtb_2953">আমাদের সবচেয়ে প্রাচীন শিল্প হচ্ছে-</span>
-          </p>
-          <p id="dtb_2954" xml:lang="bn-IN">
-            <span id="dtb_2955">১. </span>
-            <span id="dtb_2956">চারুশিল্প </span>
-          </p>
-          <p id="dtb_2957" xml:lang="bn-IN">
-            <span id="dtb_2958">২. </span>
-            <span id="dtb_2959">মৃৎশিল্প</span>
-          </p>
-          <p id="dtb_2960" xml:lang="bn-IN">
-            <span id="dtb_2961">৩. </span>
-            <span id="dtb_2962">কারু শিল্প </span>
-          </p>
-          <p id="dtb_2963" xml:lang="bn-IN">
-            <span id="dtb_2964">৪. </span>
-            <span id="dtb_2965">দারুশিল্প</span>
-          </p>
-          <p id="dtb_2966" xml:lang="bn-IN">
-            <span id="dtb_2967">ঙ. </span>
-            <span id="dtb_2968">কুমোর সম্প্রদায় কিসের কাজ করেন-</span>
-          </p>
-          <p id="dtb_2969" xml:lang="bn-IN">
-            <span id="dtb_2970">১. </span>
-            <span id="dtb_2971">বাঁশের কাজ </span>
-          </p>
-          <p id="dtb_2972" xml:lang="bn-IN">
-            <span id="dtb_2973">২. </span>
-            <span id="dtb_2974">কাঠের কাজ</span>
-          </p>
-          <p id="dtb_2975" xml:lang="bn-IN">
-            <span id="dtb_2976">৩. </span>
-            <span id="dtb_2977">পাকা বাড়ির কাজ </span>
-          </p>
-          <p id="dtb_2978" xml:lang="bn-IN">
-            <span id="dtb_2979">৪. </span>
-            <span id="dtb_2980">মাটির কাজ</span>
-          </p>
-          <p id="dtb_2981" xml:lang="bn-IN">
-            <span id="dtb_2982">চ. </span>
-            <span id="dtb_2983">গ্রামের শিল্পীরা রং তৈরি করেন-</span>
-          </p>
-          <p id="dtb_2984" xml:lang="bn-IN">
-            <span id="dtb_2985">১. </span>
-            <span id="dtb_2986">আম ও লাউ পাতা থেকে </span>
-          </p>
-          <p id="dtb_2987" xml:lang="bn-IN">
-            <span id="dtb_2988">২. </span>
-            <span id="dtb_2989">শিম ও কাঁঠাল গাছের বাকল থেকে</span>
-          </p>
-          <p id="dtb_2990" xml:lang="bn-IN">
-            <span id="dtb_2991">৩. </span>
-            <span id="dtb_2992">সরিষা ফুল থেকে </span>
-          </p>
-          <p id="dtb_2993" xml:lang="bn-IN">
-            <span id="dtb_2994">৪. </span>
-            <span id="dtb_2995">পান ও চুন থেকে</span>
-          </p>
-          <p id="dtb_2996" xml:lang="bn-IN">
-            <span id="dtb_2997">ছ. </span>
-            <span id="dtb_2998">পোড়া মাটির ফলকের অন্য নাম-</span>
-          </p>
-          <p id="dtb_2999" xml:lang="bn-IN">
-            <span id="dtb_3000">১. </span>
-            <span id="dtb_3001">টেপা পুতুল </span>
-          </p>
-          <p id="dtb_3002" xml:lang="bn-IN">
-            <span id="dtb_3003">২. </span>
-            <span id="dtb_3004">টেরাকোটা</span>
-          </p>
-          <p id="dtb_3005" xml:lang="bn-IN">
-            <span id="dtb_3006">৩. </span>
-            <span id="dtb_3007">শখের হাঁড়ি </span>
-          </p>
-          <p id="dtb_3008" xml:lang="bn-IN">
-            <span id="dtb_3009">৪. </span>
-            <span id="dtb_3010">মৃৎশিল্প</span>
-          </p><span title="৩৯" id="dtb_3011" class="epubtype_pagebreak"></span>
-          <p id="dtb_3012" xml:lang="bn-IN">
-            <span id="dtb_3013">৪. </span>
-            <span id="dtb_3014">নিচের প্রশ্নগুলোর উত্তর বলি ও লিখি।</span>
-          </p>
-          <p id="dtb_3015" xml:lang="bn-IN">
-            <span id="dtb_3016">ক. </span>
-            <span id="dtb_3017">মাটির শিল্প বলতে কী বুঝি?</span>
-          </p>
-          <p id="dtb_3018" xml:lang="bn-IN">
-            <span id="dtb_3019">খ. </span>
-            <span id="dtb_3020">বাংলাদেশের প্রাচীন শিল্পকর্ম কোনটি?</span>
-          </p>
-          <p id="dtb_3021" xml:lang="bn-IN">
-            <span id="dtb_3022">গ. </span>
-            <span id="dtb_3023">শখের হাঁড়ি কী রকম?</span>
-          </p>
-          <p id="dtb_3024" xml:lang="bn-IN">
-            <span id="dtb_3025">ঘ. </span>
-            <span id="dtb_3026">বৈশাখী মেলায় কী কী পাওয়া যায়?</span>
-          </p>
-          <p id="dtb_3027" xml:lang="bn-IN">
-            <span id="dtb_3028">ঙ. </span>
-            <span id="dtb_3029">মৃৎশিল্পের প্রধান উপাদান কী?</span>
-          </p>
-          <p id="dtb_3030" xml:lang="bn-IN">
-            <span id="dtb_3031">চ. </span>
-            <span id="dtb_3032">কয়েকটি মৃৎশিল্পের নাম বলি।</span>
-          </p>
-          <p id="dtb_3033" xml:lang="bn-IN">
-            <span id="dtb_3034">ছ. </span>
-            <span id="dtb_3035">টেরাকোটা কী?</span>
-          </p>
-          <p id="dtb_3036" xml:lang="bn-IN">
-            <span id="dtb_3037">জ. </span>
-            <span id="dtb_3038">বাংলাদেশের কোথায় পোড়ামাটির প্রাচীন শিল্প দেখতে পাওয়া যায়?</span>
-          </p>
-          <p id="dtb_3039" xml:lang="bn-IN">
-            <span id="dtb_3040">ঝ. </span>
-            <span id="dtb_3041">মাটির শিল্প কেন আমাদের ঐতিহ্য ও গৌরবের বিষয়?</span>
-          </p>
-          <p id="dtb_3042" xml:lang="bn-IN">
-            <span id="dtb_3043">ঞ. </span>
-            <span id="dtb_3044">মামার বাড়ি রসের হাঁড়ি-প্রচলিত এই কথাটি দিয়ে কী বোঝানো হয়?</span>
-          </p>
-          <p id="dtb_3045" xml:lang="bn-IN">
-            <span id="dtb_3046">৫. </span>
-            <span id="dtb_3047">নিচের অনুচ্ছেদটি পড়ি এবং প্রশ্নগুলোর উত্তর লিখি।</span>
-          </p>
-          <p id="dtb_3048" xml:lang="bn-IN">
-            <span id="dtb_3049">যখন কোনো কিছু সুন্দর করে আঁকি বা বানাই অথবা গাই, তখন তা হয় শিল্প। </span>
-            <span id="dtb_3050">শিল্পের এ কাজকে বলে শিল্পকলা। </span>
-            <span id="dtb_3051">আমাদের দেশের সবচেয়ে প্রাচীন শিল্প হচ্ছে মাটির শিল্প। </span>
-            <span id="dtb_3052">এ দেশের কুমোর সম্প্রদায় যুগ যুগ ধরে তৈরি করে আসছেন মাটির জিনিস, যেমন– কলস, হাঁড়ি, সরা, বাসনকোসন, পেয়ালা, সুরাই, মটকা, জালা, পিঠে তৈরির নানা ছাঁচ। </span>
-            <span id="dtb_3053">আরও কত কী! </span>
-            <span id="dtb_3054">মাটির তৈরি শিল্পকর্মকে আমরা বলি মাটির শিল্প বা মৃৎশিল্প। </span>
-            <span id="dtb_3055">এ শিল্পের প্রধান উপকরণ হলো মাটি। </span>
-            <span id="dtb_3056">মাটি হলেই যে তা দিয়ে শিল্পের কাজ করা যাবে তাও নয়। </span>
-            <span id="dtb_3057">এর জন্য অনেক যত্ন আর শ্রম দরকার। </span>
-            <span id="dtb_3058">দরকার হাতের নৈপুণ্য ও কারিগরি জ্ঞান। </span>
-            <span id="dtb_3059">কুমোরদের কাছে এসব খুব সহজ। </span>
-            <span id="dtb_3060">কারণ তাঁরা বংশ পরম্পরায় এ কাজ করে আসছেন।</span>
-          </p>
-          <p id="dtb_3061" xml:lang="bn-IN">
-            <span id="dtb_3062">ক. </span>
-            <span id="dtb_3063">শিল্পকলা বলতে কী বোঝ?</span>
-          </p>
-          <p id="dtb_3064" xml:lang="bn-IN">
-            <span id="dtb_3065">খ. </span>
-            <span id="dtb_3066">শিল্পের কাজের জন্য কী কী প্রয়োজন?</span>
-          </p>
-          <p id="dtb_3067" xml:lang="bn-IN">
-            <span id="dtb_3068">গ. </span>
-            <span id="dtb_3069">কেন কুমোরদের কাছে এসব কাজ সহজ?</span>
-          </p>
-          <p id="dtb_3070" xml:lang="bn-IN">
-            <span id="dtb_3071">৬. </span>
-            <span id="dtb_3072">নিচের প্রশ্নগুলো দিয়ে যা বুঝি তা লেখ।</span>
-          </p>
-          <p id="dtb_3073" xml:lang="bn-IN">
-            <span id="dtb_3074">ক. </span>
-            <span id="dtb_3075">মৃৎশিল্প </span>
-          </p>
-          <p id="dtb_3076" xml:lang="bn-IN">
-            <span id="dtb_3077">গ. </span>
-            <span id="dtb_3078">টেরাকোটা</span>
-          </p>
-          <p id="dtb_3079" xml:lang="bn-IN">
-            <span id="dtb_3080">খ. </span>
-            <span id="dtb_3081">শখের হাঁড়ি </span>
-          </p>
-          <p id="dtb_3082" xml:lang="bn-IN">
-            <span id="dtb_3083">ঘ. </span>
-            <span id="dtb_3084">টেপা পুতুল</span>
-          </p><span title="৪০" id="dtb_3085" class="epubtype_pagebreak"></span>
-          <p id="dtb_3086" xml:lang="bn-IN">
-            <span id="dtb_3087">৭. </span>
-            <span id="dtb_3088">নিচের কথাগুলো বুঝে নিই।</span>
-          </p>
-          <table id="dtb_3089">
-            <colgroup>
-              <col id="dtb_3090" span="1">
-            </colgroup>
-            <tbody id="dtb_3091">
-              <tr id="dtb_3092">
-                <td id="dtb_3093" colspan="1" rowspan="1">
-                  <p id="dtb_3094" xml:lang="bn-IN">কান্তজির মন্দির -</p>
-                </td>
-                <td id="dtb_3095" colspan="1" rowspan="1">
-                  <p id="dtb_3096" xml:lang="bn-IN">
-                    <span id="dtb_3097">১৯৫২ খ্রিষ্টাব্দে মহারাজা রামনাথ রায় দিনাজপুরের কান্তজির মন্দির নির্মাণ করেন। </span>
-                    <span id="dtb_3098">এ মন্দিরের গায়ে স্থাপিত অপূর্ব সুন্দর টেরাকোটা বাংলার মাটির শিল্পের প্রাচীন নিদর্শন।</span>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="dtb_3100"><img src="Amar_Bangla_Boi_Class__5_style-Pic-30.jpg" alt="" id="dtb_3101"></div>
-          <table id="dtb_3102">
-            <colgroup>
-              <col id="dtb_3103" span="1">
-            </colgroup>
-            <tbody id="dtb_3104">
-              <tr id="dtb_3105">
-                <td id="dtb_3106" colspan="1" rowspan="1">
-                  <p id="dtb_3107" xml:lang="bn-IN">পাহাড়পুর -</p>
-                </td>
-                <td id="dtb_3108" colspan="1" rowspan="1">
-                  <p id="dtb_3109" xml:lang="bn-IN">
-                    <span id="dtb_3110">নওগাঁ জেলার পাহাড়পুরে আবিষ্কৃত হয়েছে প্রাচীন বৌদ্ধ সভ্যতার নিদর্শন সোমপুর বিহার। </span>
-                    <span id="dtb_3111">এই সোমপুর বিহারের আশ-পাশের বড় বৌদ্ধ মন্দিরে পাওয়া গেছে অনেক সুন্দর টেরাকোটা। </span>
-                    <span id="dtb_3112">এগুলো অষ্টম শতকের অর্থাৎ আজ থেকে প্রায় বার শ বছর আগের তৈরি।</span>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="dtb_3114"><img src="Amar_Bangla_Boi_Class__5_style-Pic-31.jpg" alt="" id="dtb_3115"></div>
-          <table id="dtb_3116">
-            <colgroup>
-              <col id="dtb_3117" span="1">
-            </colgroup>
-            <tbody id="dtb_3118">
-              <tr id="dtb_3119">
-                <td id="dtb_3120" colspan="1" rowspan="1">
-                  <p id="dtb_3121" xml:lang="bn-IN">শালবন বিহার -</p>
-                </td>
-                <td id="dtb_3122" colspan="1" rowspan="1">
-                  <p id="dtb_3123" xml:lang="bn-IN">
-                    <span id="dtb_3124">কুমিল্লার ময়নামতিতে মাটি খুঁড়ে আবিষ্কৃত হয়েছে প্রাচীন বৌদ্ধ সভ্যতার নিদর্শন। </span>
-                    <span id="dtb_3125">অষ্টম শতকের এই পুরাকীর্তি বাংলাদেশের প্রাচীন সভ্যতার পরিচায়ক। </span>
-                    <span id="dtb_3126">শালবন বিহারে পাওয়া গেছে নানা ধরনের পোড়ামাটির ফলক।</span>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="dtb_3128"><img src="Amar_Bangla_Boi_Class__5_style-Pic-32.jpg" alt="" id="dtb_3129"></div>
-          <table id="dtb_3130">
-            <colgroup>
-              <col id="dtb_3131" span="1">
-            </colgroup>
-            <tbody id="dtb_3132">
-              <tr id="dtb_3133">
-                <td id="dtb_3134" colspan="1" rowspan="1">
-                  <p id="dtb_3135" xml:lang="bn-IN">মহাস্থানগড় -</p>
-                </td>
-                <td id="dtb_3136" colspan="1" rowspan="1">
-                  <p id="dtb_3137" xml:lang="bn-IN">
-                    <span id="dtb_3138">বগুড়া শহর থেকে ১২ কিলোমিটার উত্তরে করতোয়া নদীর তীরে অবস্থিত মহাস্থানগড়। </span>
-                    <span id="dtb_3139">যীশু খ্রিষ্টের জন্মের পূর্বে তৃতীয় থেকে পনের শতকে বাংলার এ প্রাচীন নগর গড়ে ওঠে। </span>
-                    <span id="dtb_3140">মহাস্থানগড়ে পাওয়া গেছে অনেক পোড়ামাটির ফলক, পাত্র, অলংকার ও মূর্তি।</span>
-                  </p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="dtb_3142"><img src="Amar_Bangla_Boi_Class__5_style-Pic-33.jpg" alt="" id="dtb_3143"></div>
-          <p id="dtb_3144" xml:lang="bn-IN">
-            <span id="dtb_3145">৮. </span>
-            <span id="dtb_3146">কর্ম-অনুশীলন।</span>
-          </p>
-          <p id="dtb_3147" xml:lang="bn-IN">আমার দেখা কুমোরপাড়ার সংক্ষিপ্ত বর্ণনা দিই।</p>
-          <p id="dtb_3148" xml:lang="bn-IN"> অথবা </p>
-          <p id="dtb_3149" xml:lang="bn-IN">আমার দেখা কোনো হস্তশিল্প বা হাতের কাজ সম্পর্কে লিখি।</p><span title="৪১" id="dtb_3150" class="epubtype_pagebreak"></span>
-        </section>
-      </section>
-    </main>
+						<span id="dtb_2785">এঁটেল মাটি হলেই যে তা দিয়ে শিল্পের কাজ করা যাবে তাও নয়। </span>
+						<span id="dtb_2786">এর জন্য অনেক যত্ন আর শ্রম দরকার। </span>
+						<span id="dtb_2787">দরকার হাতের নৈপুণ্য ও কারিগরি জ্ঞান। </span>
+						<span id="dtb_2788">কুমোরদের কাছে এসব খুব সহজ। </span>
+						<span id="dtb_2789">কারণ তারা বংশ পরম্পরায় এ কাজ করে আসছে।</span>
+					</span>
+				</p><div id="dtb_2791"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-28.jpg" alt="" id="dtb_2792"></div><span title="৩৬" id="dtb_2793" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৬">৩৬</span><div id="dtb_2795"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-29.jpg" alt="" id="dtb_2796"></div><p id="dtb_2797" xml:lang="bn-IN">
+					<span id="dtb_2798">আবার এ কাজের জন্য প্রয়োজন কিছু ছোটখাটো যন্ত্রপাতি ও সরঞ্জাম। </span>
+					<span id="dtb_2799">সবকিছুর আগে যেটা দরকার তা হলো একটা কাঠের চাকা। </span>
+					<span id="dtb_2800">এই চাকায় নরম মাটির তাল লাগিয়ে নেন কুমোররা। </span>
+					<span id="dtb_2801">তারপর চাকাটি জোরে ঘোরান। </span>
+					<span id="dtb_2802">আর হাত দিয়ে মাটির তাল ধরেন। </span>
+					<span id="dtb_2803">এভাবে নানা আকারের মাটির পাত্র ও নানা জিনিস তৈরি করেন কুমোররা।</span>
+				</p><p id="dtb_2804" xml:lang="bn-IN">
+					<span id="dtb_2805">মেলা থেকে সেদিন আমরা অনেক টেপা পুতুল, ঘোড়া, হাতি, ছোট কলস কিনলাম। </span>
+					<span id="dtb_2806">মামা বললেন, এত সুন্দর নকশা দেখছ, রং দেখছ এ সবই গ্রামের শিল্পীদের তৈরি। </span>
+					<span id="dtb_2807">নকশাগুলো তারা মন থেকে আঁকে। </span>
+					<span id="dtb_2808">আর রং তৈরি করে শিম, সেগুন পাতার রস, কাঁঠাল গাছের বাকল থেকে। </span>
+					<span id="dtb_2809">তবে আজকাল বাজার থেকে কেনা রংও লাগনো হয়। </span>
+					<span id="dtb_2810">মেলা থেকে কদমা, বাতাসা, মুড়কি আর খৈ কিনে শখের হাঁড়ি ভর্তি করে আমরা ফিরলাম। </span>
+					<span id="dtb_2811">খুব মজা হলো।</span>
+				</p><p id="dtb_2812" xml:lang="bn-IN">
+					<span id="dtb_2813">মামা বললেন, তোমাদের কাল কুমোরপাড়ায় নিয়ে যাব। </span>
+					<span id="dtb_2814">পরদিন আমরা দেখতে গেলাম কুমোরপাড়া। </span>
+					<span id="dtb_2815">আনন্দপুর গ্রামের উত্তর দিকে আট দশ ঘর বসতবাড়ি। </span>
+					<span id="dtb_2816">এই নিয়ে কুমোরপাড়া। </span>
+					<span id="dtb_2817">এখানে সবাই ব্যস্ত। </span>
+					<span id="dtb_2818">কেউ মাটির তাল চাক করে সাজিয়ে রাখছেন। </span>
+					<span id="dtb_2819">কেউ-বা কাঠের চাকায় মাটি লাগিয়ে নানা আকারের পাত্র বানাচ্ছেন। </span>
+					<span id="dtb_2820">কেউ-বা এগুলো সার সার করে শুকোতে দিচ্ছেন রোদে। </span>
+					<span id="dtb_2821">পাশেই রয়েছে মাটির জিনিস পোড়ানোর চুলা। </span>
+					<span id="dtb_2822">উঁচু ছোট্ট ঢিবির মতো এই চুলা। </span>
+					<span id="dtb_2823">মাটির পোড়া গন্ধ পাচ্ছি।</span>
+				</p><span title="৩৭" id="dtb_2824" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৭">৩৭</span><p id="dtb_2825" xml:lang="bn-IN">
+					<span id="dtb_2826">আর ধোঁয়া বেরুচ্ছে। </span>
+					<span id="dtb_2827">ছোট ছোট ছেলেমেয়েরাও এ কাজ করছে। </span>
+					<span id="dtb_2828">মামা বললেন, হাঁড়ি কলসি ছাড়াও আমাদের দেশে এক সময় সুন্দর পোড়ামাটির ফলকের কাজ হতো। </span>
+					<span id="dtb_2829">এর অন্য নাম টেরাকোটা। </span>
+					<span id="dtb_2830">বাংলার অনেক পুরনো শিল্প এই টেরাকোটা। </span>
+					<span id="dtb_2831">নকশা করা মাটির ফলক ইটের মতো পুড়িয়ে তৈরি করা হতো এই টেরাকোটা। </span>
+					<span id="dtb_2832">শালবন বিহার, মহাস্থানগড়, পাহাড়পুর বৌদ্ধ বিহার ও দিনাজপুরের কান্তজির মন্দিরে এই টেরাকোটার কাজ রয়েছে। </span>
+					<span id="dtb_2833">মাটির ফলকে ছবি এঁকে শুকিয়ে পোড়ানোর পর এগুলো এমন সুন্দর হয়ে ওঠে! </span>
+					<span id="dtb_2834">ছোট ছোট ফলককে পাশাপাশি জোড়া দিয়ে বড় করা যায়। </span>
+					<span id="dtb_2835">পোড়ামাটির এই ফলক বাংলার প্রাচীন মৃৎশিল্প। </span>
+					<span id="dtb_2836">মামা বললেন, টেরাকোটা বা পোড়ামাটির এসব কাজ এ দেশে শুরু হয়েছে হাজার বছর আগে।</span>
+				</p><p id="dtb_2837" xml:lang="bn-IN">
+					<span id="dtb_2838">আজকাল কি পোড়ামাটির এই শিল্পচর্চা হয় না? </span>
+					<span id="dtb_2839">মামার কাছে জানতে চাইলাম আমরা। </span>
+					<span id="dtb_2840">মামা বললেন, আজকাল ওরকম টেরাকোটা হচ্ছে না বটে, তবে পোড়ামাটির নকশার কদর বেড়েছে। </span>
+					<span id="dtb_2841">সরকারী-বেসরকারী ভবনে আজকাল সৌন্দর্য বাড়ানোর জন্য নানা রকম নকশা করা মাটির ফলক ব্যবহৃত হচ্ছে। </span>
+					<span id="dtb_2842">আমাদের দেশের কুমোররা এসব তৈরি করছেন। </span>
+					<span id="dtb_2843">বললাম, </span>
+					<span xml:lang="bn-IN">আমরা এসব পোড়ামাটির কাজ দেখতে চাই।</span>
+				</p><p id="dtb_2845" xml:lang="bn-IN">
+					<span id="dtb_2846" class="normalized">মামা বললেন, </span>
+					<span xml:lang="bn-IN">সুযোগ মতো এক সময় তোমাদের শালবন বিহারে নিয়ে যাব।</span>
+				</p><p id="dtb_2848" xml:lang="bn-IN"> - সংগৃহীত</p><section id="id_45"><h1 id="dtb_2849" xml:lang="bn-IN" tabindex="-1"> অনুশীলনী <a href="#dtb_2849" rel="bookmark" class="webbook" title="Link to অনুশীলনী" aria-label="Link to অনুশীলনী"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_2850" xml:lang="bn-IN">
+						<span id="dtb_2851">১. </span>
+						<span id="dtb_2852">শব্দগুলো পাঠ থেকে খুঁজে বের করি। </span>
+						<span id="dtb_2853">অর্থ বলি।</span>
+					</p><table id="dtb_2854"><colgroup><col id="dtb_2855" span="1"></colgroup><tbody id="dtb_2856"><tr id="dtb_2857"><td id="dtb_2858" colspan="1" rowspan="1">
+									<p id="dtb_2859" xml:lang="bn-IN">শখ</p>
+								</td><td id="dtb_2860" colspan="1" rowspan="1">
+									<p id="dtb_2861" xml:lang="bn-IN">টেপা পুতুল</p>
+								</td><td id="dtb_2862" colspan="1" rowspan="1">
+									<p id="dtb_2863" xml:lang="bn-IN">নকশা</p>
+								</td><td id="dtb_2864" colspan="1" rowspan="1">
+									<p id="dtb_2865" xml:lang="bn-IN">শালবন বিহার</p>
+								</td></tr><tr id="dtb_2866"><td id="dtb_2867" colspan="1" rowspan="1">
+									<p id="dtb_2868" xml:lang="bn-IN">টেরাকোটা</p>
+								</td><td id="dtb_2869" colspan="1" rowspan="1">
+									<p id="dtb_2870" xml:lang="bn-IN">মৃৎশিল্প</p>
+								</td><td id="dtb_2871" colspan="2" rowspan="1">
+									<p id="dtb_2872" xml:lang="bn-IN">শখের হাঁড়ি</p>
+								</td></tr></tbody></table><p id="dtb_2873" xml:lang="bn-IN">
+						<span id="dtb_2874">২. </span>
+						<span id="dtb_2875">ঘরের ভিতরের শব্দগুলো খালি জায়গায় বসিয়ে বাক্য তৈরি করি।</span>
+					</p><table id="dtb_2876"><colgroup><col id="dtb_2877" span="1"></colgroup><tbody id="dtb_2878"><tr id="dtb_2879"><td id="dtb_2880" colspan="1" rowspan="1">
+									<p id="dtb_2881" xml:lang="bn-IN">শখ</p>
+								</td><td id="dtb_2882" colspan="1" rowspan="1">
+									<p id="dtb_2883" xml:lang="bn-IN">নকশা</p>
+								</td><td id="dtb_2884" colspan="1" rowspan="1">
+									<p id="dtb_2885" xml:lang="bn-IN">মৃৎশিল্প</p>
+								</td><td id="dtb_2886" colspan="1" rowspan="1">
+									<p id="dtb_2887" xml:lang="bn-IN">টেপা পুতুল</p>
+								</td></tr></tbody></table><p id="dtb_2888" xml:lang="bn-IN">
+						<span id="dtb_2889">ক. </span>
+						<span id="dtb_2890">এই যে […………………………….] </span>
+						<span id="dtb_2891">দেখছ, এসবই গ্রামের শিল্পীদের তৈরি।</span>
+					</p><p id="dtb_2892" xml:lang="bn-IN">
+						<span id="dtb_2893">খ. </span>
+						<span id="dtb_2894">মাটির পুতুল জমানো আমার একটি […………………………………………</span>
+						<span id="dtb_2895">..]।</span>
+					</p><p id="dtb_2896" xml:lang="bn-IN">
+						<span id="dtb_2897">গ. </span>
+						<span id="dtb_2898">মাটির তৈরি শিল্পকর্মকে [……………………………………………………] বলে।</span>
+					</p><p id="dtb_2899" xml:lang="bn-IN">
+						<span id="dtb_2900">ঘ. </span>
+						<span id="dtb_2901">আমরা মেলা থেকে অনেক […………………………………………………] কিনলাম।</span>
+					</p><span title="৩৮" id="dtb_2902" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৮">৩৮</span><p id="dtb_2903" xml:lang="bn-IN">
+						<span id="dtb_2904">৩. </span>
+						<span id="dtb_2905">ঠিক উত্তরটিতে টিক () দিই।</span>
+					</p><p id="dtb_2906" xml:lang="bn-IN">
+						<span id="dtb_2907">ক. </span>
+						<span id="dtb_2908">আনন্দপুরে কখন মেলা বসে?</span>
+					</p><p id="dtb_2909" xml:lang="bn-IN">
+						<span id="dtb_2910">১. </span>
+						<span id="dtb_2911">ষোলই ডিসেম্বর </span>
+					</p><p id="dtb_2912" xml:lang="bn-IN">
+						<span id="dtb_2913">২. </span>
+						<span id="dtb_2914">পয়লা বৈশাখ</span>
+					</p><p id="dtb_2915" xml:lang="bn-IN">
+						<span id="dtb_2916">৩. </span>
+						<span id="dtb_2917">একুশে ফেব্রুয়ারি </span>
+					</p><p id="dtb_2918" xml:lang="bn-IN">
+						<span id="dtb_2919">৪. </span>
+						<span id="dtb_2920">পহেলা ফাল্গুন</span>
+					</p><p id="dtb_2921" xml:lang="bn-IN">
+						<span id="dtb_2922">খ. </span>
+						<span id="dtb_2923">মামা কোথায় পড়েন?</span>
+					</p><p id="dtb_2924" xml:lang="bn-IN">
+						<span id="dtb_2925">১. </span>
+						<span id="dtb_2926">ঢাকা কলেজে</span>
+					</p><p id="dtb_2927" xml:lang="bn-IN">
+						<span id="dtb_2928">২. </span>
+						<span id="dtb_2929">রাজশাহী বিশ্ববিদ্যালয়ে</span>
+					</p><p id="dtb_2930" xml:lang="bn-IN">
+						<span id="dtb_2931">৩. </span>
+						<span id="dtb_2932">ঢাকার চারুকলা ইনস্টিটিউটে </span>
+					</p><p id="dtb_2933" xml:lang="bn-IN">
+						<span id="dtb_2934">৪. </span>
+						<span id="dtb_2935">চট্টগ্রামের চারুকলা ইনস্টিটিউটে</span>
+					</p><p id="dtb_2936" xml:lang="bn-IN">
+						<span id="dtb_2937">গ. </span>
+						<span id="dtb_2938">মৃৎশিল্পের সবচেয়ে প্রাচীন উপাদান হচ্ছে –</span>
+					</p><p id="dtb_2939" xml:lang="bn-IN">
+						<span id="dtb_2940">১. </span>
+						<span id="dtb_2941">বাঁশ </span>
+					</p><p id="dtb_2942" xml:lang="bn-IN">
+						<span id="dtb_2943">২. </span>
+						<span id="dtb_2944">কাঠ</span>
+					</p><p id="dtb_2945" xml:lang="bn-IN">
+						<span id="dtb_2946">৩. </span>
+						<span id="dtb_2947">পানি </span>
+					</p><p id="dtb_2948" xml:lang="bn-IN">
+						<span id="dtb_2949">৪. </span>
+						<span id="dtb_2950">মাটি</span>
+					</p><p id="dtb_2951" xml:lang="bn-IN">
+						<span id="dtb_2952">ঘ. </span>
+						<span id="dtb_2953">আমাদের সবচেয়ে প্রাচীন শিল্প হচ্ছে-</span>
+					</p><p id="dtb_2954" xml:lang="bn-IN">
+						<span id="dtb_2955">১. </span>
+						<span id="dtb_2956">চারুশিল্প </span>
+					</p><p id="dtb_2957" xml:lang="bn-IN">
+						<span id="dtb_2958">২. </span>
+						<span id="dtb_2959">মৃৎশিল্প</span>
+					</p><p id="dtb_2960" xml:lang="bn-IN">
+						<span id="dtb_2961">৩. </span>
+						<span id="dtb_2962">কারু শিল্প </span>
+					</p><p id="dtb_2963" xml:lang="bn-IN">
+						<span id="dtb_2964">৪. </span>
+						<span id="dtb_2965">দারুশিল্প</span>
+					</p><p id="dtb_2966" xml:lang="bn-IN">
+						<span id="dtb_2967">ঙ. </span>
+						<span id="dtb_2968">কুমোর সম্প্রদায় কিসের কাজ করেন-</span>
+					</p><p id="dtb_2969" xml:lang="bn-IN">
+						<span id="dtb_2970">১. </span>
+						<span id="dtb_2971">বাঁশের কাজ </span>
+					</p><p id="dtb_2972" xml:lang="bn-IN">
+						<span id="dtb_2973">২. </span>
+						<span id="dtb_2974">কাঠের কাজ</span>
+					</p><p id="dtb_2975" xml:lang="bn-IN">
+						<span id="dtb_2976">৩. </span>
+						<span id="dtb_2977">পাকা বাড়ির কাজ </span>
+					</p><p id="dtb_2978" xml:lang="bn-IN">
+						<span id="dtb_2979">৪. </span>
+						<span id="dtb_2980">মাটির কাজ</span>
+					</p><p id="dtb_2981" xml:lang="bn-IN">
+						<span id="dtb_2982">চ. </span>
+						<span id="dtb_2983">গ্রামের শিল্পীরা রং তৈরি করেন-</span>
+					</p><p id="dtb_2984" xml:lang="bn-IN">
+						<span id="dtb_2985">১. </span>
+						<span id="dtb_2986">আম ও লাউ পাতা থেকে </span>
+					</p><p id="dtb_2987" xml:lang="bn-IN">
+						<span id="dtb_2988">২. </span>
+						<span id="dtb_2989">শিম ও কাঁঠাল গাছের বাকল থেকে</span>
+					</p><p id="dtb_2990" xml:lang="bn-IN">
+						<span id="dtb_2991">৩. </span>
+						<span id="dtb_2992">সরিষা ফুল থেকে </span>
+					</p><p id="dtb_2993" xml:lang="bn-IN">
+						<span id="dtb_2994">৪. </span>
+						<span id="dtb_2995">পান ও চুন থেকে</span>
+					</p><p id="dtb_2996" xml:lang="bn-IN">
+						<span id="dtb_2997">ছ. </span>
+						<span id="dtb_2998">পোড়া মাটির ফলকের অন্য নাম-</span>
+					</p><p id="dtb_2999" xml:lang="bn-IN">
+						<span id="dtb_3000">১. </span>
+						<span id="dtb_3001">টেপা পুতুল </span>
+					</p><p id="dtb_3002" xml:lang="bn-IN">
+						<span id="dtb_3003">২. </span>
+						<span id="dtb_3004">টেরাকোটা</span>
+					</p><p id="dtb_3005" xml:lang="bn-IN">
+						<span id="dtb_3006">৩. </span>
+						<span id="dtb_3007">শখের হাঁড়ি </span>
+					</p><p id="dtb_3008" xml:lang="bn-IN">
+						<span id="dtb_3009">৪. </span>
+						<span id="dtb_3010">মৃৎশিল্প</span>
+					</p><span title="৩৯" id="dtb_3011" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৯">৩৯</span><p id="dtb_3012" xml:lang="bn-IN">
+						<span id="dtb_3013">৪. </span>
+						<span id="dtb_3014">নিচের প্রশ্নগুলোর উত্তর বলি ও লিখি।</span>
+					</p><p id="dtb_3015" xml:lang="bn-IN">
+						<span id="dtb_3016">ক. </span>
+						<span id="dtb_3017">মাটির শিল্প বলতে কী বুঝি?</span>
+					</p><p id="dtb_3018" xml:lang="bn-IN">
+						<span id="dtb_3019">খ. </span>
+						<span id="dtb_3020">বাংলাদেশের প্রাচীন শিল্পকর্ম কোনটি?</span>
+					</p><p id="dtb_3021" xml:lang="bn-IN">
+						<span id="dtb_3022">গ. </span>
+						<span id="dtb_3023">শখের হাঁড়ি কী রকম?</span>
+					</p><p id="dtb_3024" xml:lang="bn-IN">
+						<span id="dtb_3025">ঘ. </span>
+						<span id="dtb_3026">বৈশাখী মেলায় কী কী পাওয়া যায়?</span>
+					</p><p id="dtb_3027" xml:lang="bn-IN">
+						<span id="dtb_3028">ঙ. </span>
+						<span id="dtb_3029">মৃৎশিল্পের প্রধান উপাদান কী?</span>
+					</p><p id="dtb_3030" xml:lang="bn-IN">
+						<span id="dtb_3031">চ. </span>
+						<span id="dtb_3032">কয়েকটি মৃৎশিল্পের নাম বলি।</span>
+					</p><p id="dtb_3033" xml:lang="bn-IN">
+						<span id="dtb_3034">ছ. </span>
+						<span id="dtb_3035">টেরাকোটা কী?</span>
+					</p><p id="dtb_3036" xml:lang="bn-IN">
+						<span id="dtb_3037">জ. </span>
+						<span id="dtb_3038">বাংলাদেশের কোথায় পোড়ামাটির প্রাচীন শিল্প দেখতে পাওয়া যায়?</span>
+					</p><p id="dtb_3039" xml:lang="bn-IN">
+						<span id="dtb_3040">ঝ. </span>
+						<span id="dtb_3041">মাটির শিল্প কেন আমাদের ঐতিহ্য ও গৌরবের বিষয়?</span>
+					</p><p id="dtb_3042" xml:lang="bn-IN">
+						<span id="dtb_3043">ঞ. </span>
+						<span id="dtb_3044">মামার বাড়ি রসের হাঁড়ি-প্রচলিত এই কথাটি দিয়ে কী বোঝানো হয়?</span>
+					</p><p id="dtb_3045" xml:lang="bn-IN">
+						<span id="dtb_3046">৫. </span>
+						<span id="dtb_3047">নিচের অনুচ্ছেদটি পড়ি এবং প্রশ্নগুলোর উত্তর লিখি।</span>
+					</p><p id="dtb_3048" xml:lang="bn-IN">
+						<span id="dtb_3049">যখন কোনো কিছু সুন্দর করে আঁকি বা বানাই অথবা গাই, তখন তা হয় শিল্প। </span>
+						<span id="dtb_3050">শিল্পের এ কাজকে বলে শিল্পকলা। </span>
+						<span id="dtb_3051">আমাদের দেশের সবচেয়ে প্রাচীন শিল্প হচ্ছে মাটির শিল্প। </span>
+						<span id="dtb_3052">এ দেশের কুমোর সম্প্রদায় যুগ যুগ ধরে তৈরি করে আসছেন মাটির জিনিস, যেমন– কলস, হাঁড়ি, সরা, বাসনকোসন, পেয়ালা, সুরাই, মটকা, জালা, পিঠে তৈরির নানা ছাঁচ। </span>
+						<span id="dtb_3053">আরও কত কী! </span>
+						<span id="dtb_3054">মাটির তৈরি শিল্পকর্মকে আমরা বলি মাটির শিল্প বা মৃৎশিল্প। </span>
+						<span id="dtb_3055">এ শিল্পের প্রধান উপকরণ হলো মাটি। </span>
+						<span id="dtb_3056">মাটি হলেই যে তা দিয়ে শিল্পের কাজ করা যাবে তাও নয়। </span>
+						<span id="dtb_3057">এর জন্য অনেক যত্ন আর শ্রম দরকার। </span>
+						<span id="dtb_3058">দরকার হাতের নৈপুণ্য ও কারিগরি জ্ঞান। </span>
+						<span id="dtb_3059">কুমোরদের কাছে এসব খুব সহজ। </span>
+						<span id="dtb_3060">কারণ তাঁরা বংশ পরম্পরায় এ কাজ করে আসছেন।</span>
+					</p><p id="dtb_3061" xml:lang="bn-IN">
+						<span id="dtb_3062">ক. </span>
+						<span id="dtb_3063">শিল্পকলা বলতে কী বোঝ?</span>
+					</p><p id="dtb_3064" xml:lang="bn-IN">
+						<span id="dtb_3065">খ. </span>
+						<span id="dtb_3066">শিল্পের কাজের জন্য কী কী প্রয়োজন?</span>
+					</p><p id="dtb_3067" xml:lang="bn-IN">
+						<span id="dtb_3068">গ. </span>
+						<span id="dtb_3069">কেন কুমোরদের কাছে এসব কাজ সহজ?</span>
+					</p><p id="dtb_3070" xml:lang="bn-IN">
+						<span id="dtb_3071">৬. </span>
+						<span id="dtb_3072">নিচের প্রশ্নগুলো দিয়ে যা বুঝি তা লেখ।</span>
+					</p><p id="dtb_3073" xml:lang="bn-IN">
+						<span id="dtb_3074">ক. </span>
+						<span id="dtb_3075">মৃৎশিল্প </span>
+					</p><p id="dtb_3076" xml:lang="bn-IN">
+						<span id="dtb_3077">গ. </span>
+						<span id="dtb_3078">টেরাকোটা</span>
+					</p><p id="dtb_3079" xml:lang="bn-IN">
+						<span id="dtb_3080">খ. </span>
+						<span id="dtb_3081">শখের হাঁড়ি </span>
+					</p><p id="dtb_3082" xml:lang="bn-IN">
+						<span id="dtb_3083">ঘ. </span>
+						<span id="dtb_3084">টেপা পুতুল</span>
+					</p><span title="৪০" id="dtb_3085" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৪০">৪০</span><p id="dtb_3086" xml:lang="bn-IN">
+						<span id="dtb_3087">৭. </span>
+						<span id="dtb_3088">নিচের কথাগুলো বুঝে নিই।</span>
+					</p><table id="dtb_3089"><colgroup><col id="dtb_3090" span="1"></colgroup><tbody id="dtb_3091"><tr id="dtb_3092"><td id="dtb_3093" colspan="1" rowspan="1">
+									<p id="dtb_3094" xml:lang="bn-IN">কান্তজির মন্দির -</p>
+								</td><td id="dtb_3095" colspan="1" rowspan="1">
+									<p id="dtb_3096" xml:lang="bn-IN">
+										<span id="dtb_3097">১৯৫২ খ্রিষ্টাব্দে মহারাজা রামনাথ রায় দিনাজপুরের কান্তজির মন্দির নির্মাণ করেন। </span>
+										<span id="dtb_3098">এ মন্দিরের গায়ে স্থাপিত অপূর্ব সুন্দর টেরাকোটা বাংলার মাটির শিল্পের প্রাচীন নিদর্শন।</span>
+									</p>
+								</td></tr></tbody></table><div id="dtb_3100"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-30.jpg" alt="" id="dtb_3101"></div><table id="dtb_3102"><colgroup><col id="dtb_3103" span="1"></colgroup><tbody id="dtb_3104"><tr id="dtb_3105"><td id="dtb_3106" colspan="1" rowspan="1">
+									<p id="dtb_3107" xml:lang="bn-IN">পাহাড়পুর -</p>
+								</td><td id="dtb_3108" colspan="1" rowspan="1">
+									<p id="dtb_3109" xml:lang="bn-IN">
+										<span id="dtb_3110">নওগাঁ জেলার পাহাড়পুরে আবিষ্কৃত হয়েছে প্রাচীন বৌদ্ধ সভ্যতার নিদর্শন সোমপুর বিহার। </span>
+										<span id="dtb_3111">এই সোমপুর বিহারের আশ-পাশের বড় বৌদ্ধ মন্দিরে পাওয়া গেছে অনেক সুন্দর টেরাকোটা। </span>
+										<span id="dtb_3112">এগুলো অষ্টম শতকের অর্থাৎ আজ থেকে প্রায় বার শ বছর আগের তৈরি।</span>
+									</p>
+								</td></tr></tbody></table><div id="dtb_3114"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-31.jpg" alt="" id="dtb_3115"></div><table id="dtb_3116"><colgroup><col id="dtb_3117" span="1"></colgroup><tbody id="dtb_3118"><tr id="dtb_3119"><td id="dtb_3120" colspan="1" rowspan="1">
+									<p id="dtb_3121" xml:lang="bn-IN">শালবন বিহার -</p>
+								</td><td id="dtb_3122" colspan="1" rowspan="1">
+									<p id="dtb_3123" xml:lang="bn-IN">
+										<span id="dtb_3124">কুমিল্লার ময়নামতিতে মাটি খুঁড়ে আবিষ্কৃত হয়েছে প্রাচীন বৌদ্ধ সভ্যতার নিদর্শন। </span>
+										<span id="dtb_3125">অষ্টম শতকের এই পুরাকীর্তি বাংলাদেশের প্রাচীন সভ্যতার পরিচায়ক। </span>
+										<span id="dtb_3126">শালবন বিহারে পাওয়া গেছে নানা ধরনের পোড়ামাটির ফলক।</span>
+									</p>
+								</td></tr></tbody></table><div id="dtb_3128"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-32.jpg" alt="" id="dtb_3129"></div><table id="dtb_3130"><colgroup><col id="dtb_3131" span="1"></colgroup><tbody id="dtb_3132"><tr id="dtb_3133"><td id="dtb_3134" colspan="1" rowspan="1">
+									<p id="dtb_3135" xml:lang="bn-IN">মহাস্থানগড় -</p>
+								</td><td id="dtb_3136" colspan="1" rowspan="1">
+									<p id="dtb_3137" xml:lang="bn-IN">
+										<span id="dtb_3138">বগুড়া শহর থেকে ১২ কিলোমিটার উত্তরে করতোয়া নদীর তীরে অবস্থিত মহাস্থানগড়। </span>
+										<span id="dtb_3139">যীশু খ্রিষ্টের জন্মের পূর্বে তৃতীয় থেকে পনের শতকে বাংলার এ প্রাচীন নগর গড়ে ওঠে। </span>
+										<span id="dtb_3140">মহাস্থানগড়ে পাওয়া গেছে অনেক পোড়ামাটির ফলক, পাত্র, অলংকার ও মূর্তি।</span>
+									</p>
+								</td></tr></tbody></table><div id="dtb_3142"><img src="images/Amar_Bangla_Boi_Class__5_style-Pic-33.jpg" alt="" id="dtb_3143"></div><p id="dtb_3144" xml:lang="bn-IN">
+						<span id="dtb_3145">৮. </span>
+						<span id="dtb_3146">কর্ম-অনুশীলন।</span>
+					</p><p id="dtb_3147" xml:lang="bn-IN">আমার দেখা কুমোরপাড়ার সংক্ষিপ্ত বর্ণনা দিই।</p><p id="dtb_3148" xml:lang="bn-IN"> অথবা </p><p id="dtb_3149" xml:lang="bn-IN">আমার দেখা কোনো হস্তশিল্প বা হাতের কাজ সম্পর্কে লিখি।</p><span title="৪১" id="dtb_3150" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৪১">৪১</span></section></section></main>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-20.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-20.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-19.html" title="Previous: ফেব্রুয়ারির গান" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-19.html" rel="prev" title="Previous: ফেব্রুয়ারির গান" aria-label="Previous: ফেব্রুয়ারির গান">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="package-21.html" title="Next: শব্দদূষণ" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-21.html" title="Next: শব্দদূষণ" aria-label="Next: শব্দদূষণ" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-1"><a href="package-3.html#dtb_11">গণপ্রজাতন্ত্রী বাংলাদেশের জাতীয় পতাকা</a></li><li id="toc-2"><a href="package-4.html#dtb_16">পতাকা নির্মাণের নিয়মাবলি</a></li><li id="toc-3"><a href="package-5.html#dtb_27">ভবনের ব্যবহারের জন্য</a></li><li id="toc-4"><a href="package-6.html#dtb_32">জাতীয় সংগীত</a></li><li id="toc-5"><a href="package-7.html#dtb_52">গাওয়ার জন্য জাতীয় সংগীতের পূর্ণপাঠ</a></li><li id="toc-6"><a href="package-8.html#dtb_78">সোনার বাংলা, আমি তোমায় ভালোবাসি।।</a></li><li id="toc-7"><a href="package-9.html#dtb_82">আমার বাংলা বই</a><ol><li id="toc-7-1"><a href="package-9.html#dtb_83">পঞ্চম শ্রেণি</a></li></ol></li><li id="toc-8"><a href="package-10.html#dtb_113">প্রসঙ্গ–কথা</a></li><li id="toc-9"><a href="package-11.html#dtb_152">নির্দেশনা</a><ol><li id="toc-9-1"><a href="package-11.html#dtb_165">শোনা ও বলা</a></li><li id="toc-9-2"><a href="package-11.html#dtb_194">পড়া</a></li><li id="toc-9-3"><a href="package-11.html#dtb_221">লেখা</a><ol><li id="toc-9-3-1"><a href="package-11.html#dtb_238">পর্যায় ১ : নির্ধারিত পাঠের অর্থ উদ্ধারের পর্যায়</a></li><li id="toc-9-3-2"><a href="package-11.html#dtb_243">পর্যায় ২ : ভাষা শিখন সহায়ক কার্যক্রম পরিচালনা</a></li><li id="toc-9-3-3"><a href="package-11.html#dtb_248">পর্যায় ৩ : অর্জিত শিখন বাস্তবে প্রয়োগের সক্ষমতা উন্নয়নের পর্যায়</a></li><li id="toc-9-3-4"><a href="package-11.html#dtb_256">১. নির্ধারিত পাঠের অর্থ উদ্ধারের পর্যায়</a></li><li id="toc-9-3-5"><a href="package-11.html#dtb_297">২. ভাষা শিখন সহায়ক কর্মকান্ড পরিচালনা পর্যায়</a></li></ol></li><li id="toc-9-4"><a href="package-11.html#dtb_356">৩. অর্জিত শিখন বাস্তবে প্রয়োগের সক্ষমতা উন্নয়নের পর্যায়</a></li></ol></li><li id="toc-10"><a href="package-12.html#dtb_382">সূচিপত্র</a></li><li id="toc-11"><a href="package-13.html#dtb_569">এই দেশ এই মানুষ</a><ol><li id="toc-11-1"><a href="package-13.html#dtb_639">অনুশীলনী</a></li></ol></li><li id="toc-12"><a href="package-14.html#dtb_881">সংকল্প</a><ol><li id="toc-12-1"><a href="package-14.html#dtb_882">কাজী নজরুল ইসলাম</a><ol><li id="toc-12-1-1"><a href="package-14.html#dtb_906">অনুশীলনী</a></li><li id="toc-12-1-2"><a href="package-14.html#dtb_1187">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-13"><a href="package-15.html#dtb_1202">সুন্দরবনের প্রাণী</a><ol><li id="toc-13-1"><a href="package-15.html#dtb_1260">অনুশীলনী</a></li></ol></li><li id="toc-14"><a href="package-16.html#dtb_1531">হাতি আর শেয়ালের গল্প</a><ol><li id="toc-14-1"><a href="package-16.html#dtb_1621">অনুশীলনী</a></li></ol></li><li id="toc-15"><a href="package-17.html#dtb_1950">ফুটবল খেলোয়াড়</a><ol><li id="toc-15-1"><a href="package-17.html#dtb_1951">জসীম উদ্দীন</a><ol><li id="toc-15-1-1"><a href="package-17.html#dtb_1984">অনুশীলনী</a></li><li id="toc-15-1-2"><a href="package-17.html#dtb_2155">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-16"><a href="package-18.html#dtb_2170">বীরের রক্তে স্বাধীন এ দেশ</a><ol><li id="toc-16-1"><a href="package-18.html#dtb_2268">অনুশীলনী</a></li></ol></li><li id="toc-17"><a href="package-19.html#dtb_2486">ফেব্রুয়ারির গান</a><ol><li id="toc-17-1"><a href="package-19.html#dtb_2487">লুৎফর রহমান রিটন</a><ol><li id="toc-17-1-1"><a href="package-19.html#dtb_2516">অনুশীলনী</a></li><li id="toc-17-1-2"><a href="package-19.html#dtb_2704">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-18"><a href="package-20.html#dtb_2716">শখের মৃৎশিল্প</a><ol><li id="toc-18-1"><a href="package-20.html#dtb_2849">অনুশীলনী</a></li></ol></li><li id="toc-19"><a href="package-21.html#dtb_3151">শব্দদূষণ</a><ol><li id="toc-19-1"><a href="package-21.html#dtb_3152">সুকুমার বড়ুয়া</a><ol><li id="toc-19-1-1"><a href="package-21.html#dtb_3171">অনুশীলনী</a></li><li id="toc-19-1-2"><a href="package-21.html#dtb_3293">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-20"><a href="package-22.html#dtb_3303">স্মরণীয় যাঁরা চিরদিন</a><ol><li id="toc-20-1"><a href="package-22.html#dtb_3422">অনুশীলনী</a></li></ol></li><li id="toc-21"><a href="package-23.html#dtb_3649">স্বদেশ</a><ol><li id="toc-21-1"><a href="package-23.html#dtb_3650">আহসান হাবীব</a><ol><li id="toc-21-1-1"><a href="package-23.html#dtb_3694">অনুশীলনী</a></li><li id="toc-21-1-2"><a href="package-23.html#dtb_3931">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-22"><a href="package-24.html#dtb_3944">কাঞ্চনমালা আর কাঁকনমালা</a><ol><li id="toc-22-1"><a href="package-24.html#dtb_4097">অনুশীলনী</a></li></ol></li><li id="toc-23"><a href="package-25.html#dtb_4450">অবাক জলপান</a><ol><li id="toc-23-1"><a href="package-25.html#dtb_4451">সুকুমার রায়</a><ol><li id="toc-23-1-1"><a href="package-25.html#dtb_4459">প্রথম দৃশ্য</a></li><li id="toc-23-1-2"><a href="package-25.html#dtb_4562">দ্বিতীয় দৃশ্য</a></li><li id="toc-23-1-3"><a href="package-25.html#dtb_4652">অনুশীলনী</a></li><li id="toc-23-1-4"><a href="package-25.html#dtb_4857">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-24"><a href="package-26.html#dtb_4869">ঘাসফুল</a><ol><li id="toc-24-1"><a href="package-26.html#dtb_4870">জ্যোতিরিন্দ্র মৈত্র</a><ol><li id="toc-24-1-1"><a href="package-26.html#dtb_4889">অনুশীলনী</a></li><li id="toc-24-1-2"><a href="package-26.html#dtb_5014">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-25"><a href="package-27.html#dtb_5025">মাটির নিচে যে শহর</a><ol><li id="toc-25-1"><a href="package-27.html#dtb_5107">অনুশীলনী</a></li></ol></li><li id="toc-26"><a href="package-28.html#dtb_5286">শিক্ষাগুরুর মর্যাদা</a><ol><li id="toc-26-1"><a href="package-28.html#dtb_5287">কাজী কাদের নওয়াজ</a><ol><li id="toc-26-1-1"><a href="package-28.html#dtb_5344">অনুশীলনী</a></li><li id="toc-26-1-2"><a href="package-28.html#dtb_5494">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-27"><a href="package-29.html#dtb_5505">ভাবুক ছেলেটি</a><ol><li id="toc-27-1"><a href="package-29.html#dtb_5592">অনুশীলনী</a></li></ol></li><li id="toc-28"><a href="package-30.html#dtb_5843">দুই তীরে</a><ol><li id="toc-28-1"><a href="package-30.html#dtb_5878">অনুশীলনী</a><ol><li id="toc-28-1-1"><a href="package-30.html#dtb_6004">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-29"><a href="package-31.html#dtb_6018">বিদায় হজ</a><ol><li id="toc-29-1"><a href="package-31.html#dtb_6120">অনুশীলনী</a></li></ol></li><li id="toc-30"><a href="package-32.html#dtb_6347">দেখে এলাম নায়াগ্রা</a><ol><li id="toc-30-1"><a href="package-32.html#dtb_6417">অনুশীলনী</a></li></ol></li><li id="toc-31"><a href="package-33.html#dtb_6649">রৌদ্র লেখে জয়</a><ol><li id="toc-31-1"><a href="package-33.html#dtb_6650">শামসুর রাহমান</a><ol><li id="toc-31-1-1"><a href="package-33.html#dtb_6675">অনুশীলনী</a></li><li id="toc-31-1-2"><a href="package-33.html#dtb_6828">কবি-পরিচিতি</a></li></ol></li></ol></li><li id="toc-32"><a href="package-34.html#dtb_6841">মাওলানা আবদুল হামিদ খান খাসানী</a><ol><li id="toc-32-1"><a href="package-34.html#dtb_6950">অনুশীলনী</a></li></ol></li><li id="toc-33"><a href="package-35.html#dtb_7208">শহিদ তিতুমীর</a></li><li id="toc-34"><a href="package-36.html#dtb_7311">অনুশীলনী</a></li><li id="toc-35"><a href="package-37.html#dtb_7536">অপেক্ষা</a><ol><li id="toc-35-1"><a href="package-37.html#dtb_7537">সেলিনা হোসেন</a><ol><li id="toc-35-1-1"><a href="package-37.html#dtb_7727">অনুশীলনী</a></li><li id="toc-35-1-2"><a href="package-37.html#dtb_8052">লেখক-পরিচিতি</a></li></ol></li></ol></li><li id="toc-36"><a href="package-38.html#dtb_8066">শব্দের অর্থ জেনে নিই</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-20.mp3"><track default="" kind="metadata" src="vtt/package-20.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="১" label="১" data-href="package-12.html#dtb_568"></option><option value="২" label="২" data-href="package-13.html#dtb_592"></option><option value="৩" label="৩" data-href="package-13.html#dtb_617"></option><option value="৪" label="৪" data-href="package-13.html#dtb_638"></option><option value="৫" label="৫" data-href="package-13.html#dtb_747"></option><option value="৬" label="৬" data-href="package-13.html#dtb_880"></option><option value="৭" label="৭" data-href="package-14.html#dtb_905"></option><option value="৮" label="৮" data-href="package-14.html#dtb_957"></option><option value="৯" label="৯" data-href="package-14.html#dtb_1077"></option><option value="১০" label="১০" data-href="package-14.html#dtb_1201"></option><option value="১১" label="১১" data-href="package-15.html#dtb_1219"></option><option value="১২" label="১২" data-href="package-15.html#dtb_1250"></option><option value="১৩" label="১৩" data-href="package-15.html#dtb_1259"></option><option value="১৪" label="১৪" data-href="package-15.html#dtb_1360"></option><option value="১৫" label="১৫" data-href="package-15.html#dtb_1445"></option><option value="১৬" label="১৬" data-href="package-15.html#dtb_1530"></option><option value="১৭" label="১৭" data-href="package-16.html#dtb_1553"></option><option value="১৮" label="১৮" data-href="package-16.html#dtb_1606"></option><option value="১৯" label="১৯" data-href="package-16.html#dtb_1620"></option><option value="২০" label="২০" data-href="package-16.html#dtb_1740"></option><option value="২১" label="২১" data-href="package-16.html#dtb_1863"></option><option value="২২" label="২২" data-href="package-16.html#dtb_1949"></option><option value="২৩" label="২৩" data-href="package-17.html#dtb_1983"></option><option value="২৪" label="২৪" data-href="package-17.html#dtb_2063"></option><option value="২৫" label="২৫" data-href="package-17.html#dtb_2154"></option><option value="২৬" label="২৬" data-href="package-17.html#dtb_2169"></option><option value="২৭" label="২৭" data-href="package-18.html#dtb_2206"></option><option value="২৮" label="২৮" data-href="package-18.html#dtb_2237"></option><option value="২৯" label="২৯" data-href="package-18.html#dtb_2311"></option><option value="৩০" label="৩০" data-href="package-18.html#dtb_2390"></option><option value="৩১" label="৩১" data-href="package-18.html#dtb_2482"></option><option value="৩২" label="৩২" data-href="package-19.html#dtb_2515"></option><option value="৩৩" label="৩৩" data-href="package-19.html#dtb_2617"></option><option value="৩৪" label="৩৪" data-href="package-19.html#dtb_2715"></option><option value="৩৫" label="৩৫" data-href="package-20.html#dtb_2748"></option><option value="৩৬" label="৩৬" data-href="package-20.html#dtb_2793"></option><option value="৩৭" label="৩৭" data-href="package-20.html#dtb_2824"></option><option value="৩৮" label="৩৮" data-href="package-20.html#dtb_2902"></option><option value="৩৯" label="৩৯" data-href="package-20.html#dtb_3011"></option><option value="৪০" label="৪০" data-href="package-20.html#dtb_3085"></option><option value="৪১" label="৪১" data-href="package-20.html#dtb_3150"></option><option value="৪২" label="৪২" data-href="package-21.html#dtb_3170"></option><option value="৪৩" label="৪৩" data-href="package-21.html#dtb_3280"></option><option value="৪৪" label="৪৪" data-href="package-21.html#dtb_3302"></option><option value="৪৫" label="৪৫" data-href="package-22.html#dtb_3332"></option><option value="৪৬" label="৪৬" data-href="package-22.html#dtb_3368"></option><option value="৪৭" label="৪৭" data-href="package-22.html#dtb_3405"></option><option value="৪৮" label="৪৮" data-href="package-22.html#dtb_3481"></option><option value="৪৯" label="৪৯" data-href="package-22.html#dtb_3555"></option><option value="৫০" label="৫০" data-href="package-22.html#dtb_3648"></option><option value="৫১" label="৫১" data-href="package-23.html#dtb_3674"></option><option value="৫২" label="৫২" data-href="package-23.html#dtb_3693"></option><option value="৫৩" label="৫৩" data-href="package-23.html#dtb_3764"></option><option value="৫৪" label="৫৪" data-href="package-23.html#dtb_3812"></option><option value="৫৫" label="৫৫" data-href="package-23.html#dtb_3891"></option><option value="৫৬" label="৫৬" data-href="package-23.html#dtb_3943"></option><option value="৫৭" label="৫৭" data-href="package-24.html#dtb_3960"></option><option value="৫৮" label="৫৮" data-href="package-24.html#dtb_4004"></option><option value="৫৯" label="৫৯" data-href="package-24.html#dtb_4029"></option><option value="৬০" label="৬০" data-href="package-24.html#dtb_4058"></option><option value="৬১" label="৬১" data-href="package-24.html#dtb_4078"></option><option value="৬২" label="৬২" data-href="package-24.html#dtb_4182"></option><option value="৬৩" label="৬৩" data-href="package-24.html#dtb_4316"></option><option value="৬৪" label="৬৪" data-href="package-24.html#dtb_4449"></option><option value="৬৫" label="৬৫" data-href="package-25.html#dtb_4474"></option><option value="৬৬" label="৬৬" data-href="package-25.html#dtb_4527"></option><option value="৬৭" label="৬৭" data-href="package-25.html#dtb_4561"></option><option value="৬৮" label="৬৮" data-href="package-25.html#dtb_4607"></option><option value="৬৯" label="৬৯" data-href="package-25.html#dtb_4622"></option><option value="৭০" label="৭০" data-href="package-25.html#dtb_4651"></option><option value="৭১" label="৭১" data-href="package-25.html#dtb_4723"></option><option value="৭২" label="৭২" data-href="package-25.html#dtb_4818"></option><option value="৭৩" label="৭৩" data-href="package-25.html#dtb_4868"></option><option value="৭৪" label="৭৪" data-href="package-26.html#dtb_4888"></option><option value="৭৬" label="৭৬" data-href="package-26.html#dtb_4985"></option><option value="৭৬" label="৭৬" data-href="package-26.html#dtb_5024"></option><option value="৭৭" label="৭৭" data-href="package-27.html#dtb_5044"></option><option value="৭৮" label="৭৮" data-href="package-27.html#dtb_5071"></option><option value="৭৯" label="৭৯" data-href="package-27.html#dtb_5106"></option><option value="৮০" label="৮০" data-href="package-27.html#dtb_5190"></option><option value="৮১" label="৮১" data-href="package-27.html#dtb_5285"></option><option value="৮২" label="৮২" data-href="package-28.html#dtb_5311"></option><option value="৮৩" label="৮৩" data-href="package-28.html#dtb_5343"></option><option value="৮৪" label="৮৪" data-href="package-28.html#dtb_5441"></option><option value="৮৫" label="৮৫" data-href="package-28.html#dtb_5504"></option><option value="৮৬" label="৮৬" data-href="package-29.html#dtb_5539"></option><option value="৮৭" label="৮৭" data-href="package-29.html#dtb_5555"></option><option value="৮৮" label="৮৮" data-href="package-29.html#dtb_5591"></option><option value="৮৯" label="৮৯" data-href="package-29.html#dtb_5695"></option><option value="৯০" label="৯০" data-href="package-29.html#dtb_5795"></option><option value="৯১" label="৯১" data-href="package-29.html#dtb_5842"></option><option value="৯২" label="৯২" data-href="package-30.html#dtb_5868"></option><option value="৯৩" label="৯৩" data-href="package-30.html#dtb_5877"></option><option value="৯৪" label="৯৪" data-href="package-30.html#dtb_5963"></option><option value="৯৫" label="৯৫" data-href="package-30.html#dtb_6014"></option><option value="৯৬" label="৯৬" data-href="package-31.html#dtb_6035"></option><option value="৯৭" label="৯৭" data-href="package-31.html#dtb_6076"></option><option value="৯৮" label="৯৮" data-href="package-31.html#dtb_6119"></option><option value="৯৯" label="৯৯" data-href="package-31.html#dtb_6230"></option><option value="১০০" label="১০০" data-href="package-31.html#dtb_6300"></option><option value="১০১" label="১০১" data-href="package-31.html#dtb_6346"></option><option value="১০২" label="১০২" data-href="package-32.html#dtb_6372"></option><option value="১০৩" label="১০৩" data-href="package-32.html#dtb_6397"></option><option value="১০৪" label="১০৪" data-href="package-32.html#dtb_6480"></option><option value="১০৫" label="১০৫" data-href="package-32.html#dtb_6584"></option><option value="১০৬" label="১০৬" data-href="package-32.html#dtb_6648"></option><option value="১০৭" label="১০৭" data-href="package-33.html#dtb_6674"></option><option value="১০৮" label="১০৮" data-href="package-33.html#dtb_6751"></option><option value="১০৯" label="১০৯" data-href="package-33.html#dtb_6840"></option><option value="১১০" label="১১০" data-href="package-34.html#dtb_6880"></option><option value="১১১" label="১১১" data-href="package-34.html#dtb_6917"></option><option value="১১২" label="১১২" data-href="package-34.html#dtb_6949"></option><option value="১১৩" label="১১৩" data-href="package-34.html#dtb_7066"></option><option value="১১৪" label="১১৪" data-href="package-34.html#dtb_7141"></option><option value="১১৫" label="১১৫" data-href="package-34.html#dtb_7204"></option><option value="১১৬" label="১১৬" data-href="package-35.html#dtb_7240"></option><option value="১১৭" label="১১৭" data-href="package-35.html#dtb_7287"></option><option value="১১৮" label="১১৮" data-href="package-36.html#dtb_7383"></option><option value="১১৯" label="১১৯" data-href="package-36.html#dtb_7484"></option><option value="১২০" label="১২০" data-href="package-36.html#dtb_7535"></option><option value="১২১" label="১২১" data-href="package-37.html#dtb_7581"></option><option value="১২২" label="১২২" data-href="package-37.html#dtb_7594"></option><option value="১২৩" label="১২৩" data-href="package-37.html#dtb_7609"></option><option value="১২৪" label="১২৪" data-href="package-37.html#dtb_7660"></option><option value="১২৫" label="১২৫" data-href="package-37.html#dtb_7707"></option><option value="১২৬" label="১২৬" data-href="package-37.html#dtb_7716"></option><option value="১২৭" label="১২৭" data-href="package-37.html#dtb_7800"></option><option value="১২৮" label="১২৮" data-href="package-37.html#dtb_7891"></option><option value="১২৯" label="১২৯" data-href="package-37.html#dtb_8012"></option><option value="১৩০" label="১৩০" data-href="package-37.html#dtb_8065"></option><option value="১৩১" label="১৩১" data-href="package-38.html#dtb_8293"></option><option value="১৩২" label="১৩২" data-href="package-38.html#dtb_8502"></option><option value="১৩৩" label="১৩৩" data-href="package-38.html#dtb_8743"></option><option value="১৩৪" label="১৩৪" data-href="package-38.html#dtb_8995"></option></datalist>
+    </section>
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>আমার বাংলা বই পঞ্চম শ্রেণি</dd><dt>Author</dt><dd>প্রণয়নে - ইপসা। সহযোগিতায় : এটুআই, প্রধানমন্ত্রীর কার্যালয়। বাস্তবায়নে: সমাজসেবা অধিদফতর।</dd><dt>Date</dt><dd>2022-02-11T21:36:13Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

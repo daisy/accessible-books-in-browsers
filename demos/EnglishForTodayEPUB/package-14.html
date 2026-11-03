@@ -1,780 +1,595 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> Unit Nine </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Nine</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="664feee6-fc43-4ace-af04-5efffd7bdc04">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <main>
-      <section id="id_64">
-        <h1 id="dtb_6759" xml:lang="bn-IN"> Unit Nine <a href="#dtb_6759" title="Link to heading Unit Nine" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <section id="id_65">
-          <h1 id="dtb_6760" xml:lang="bn-IN"> Unconventional jobs <a href="#dtb_6760" title="Link to heading Unconventional jobs" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <div id="dtb_6762"><img src="EngforToday-9-style-page_111.jpg" alt="" id="dtb_6763"></div>
-          <p id="dtb_6764" xml:lang="bn-IN">After we have studied this unit, we will be able to </p>
-          <ul id="dtb_6765">
-            <li id="dtb_6766">
-              <p id="dtb_6767" xml:lang="bn-IN">describe familiar objects.</p>
-            </li>
-            <li id="dtb_6768">
-              <p id="dtb_6769" xml:lang="bn-IN">read intensively and extensively. </p>
-            </li>
-            <li id="dtb_6770">
-              <p id="dtb_6771" xml:lang="bn-IN">participate in debate, discussion. </p>
-            </li>
-            <li id="dtb_6772">
-              <p id="dtb_6773" xml:lang="bn-IN">Write about jobs and situations.</p>
-            </li>
-            <li id="dtb_6774">
-              <p id="dtb_6775" xml:lang="bn-IN">read for skimming, scanning, and inferring.</p>
-            </li>
-          </ul>
-          <p id="dtb_6776" xml:lang="bn-IN">( Skimming= to read quickly to get the gist of a text</p>
-          <p id="dtb_6777" xml:lang="bn-IN">Scanning= to read quickly to get specific information</p>
-          <p id="dtb_6778" xml:lang="bn-IN">Inferring=to read text to be able to make logical conclusion)</p><span title="Page-112" id="dtb_6779" class="epubtype_pagebreak"></span>
-        </section>
-        <section id="id_66">
-          <h1 id="dtb_6780" xml:lang="bn-IN"> Lesson 1: Jobs around <a href="#dtb_6780" title="Link to heading Lesson 1: Jobs around" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_6781" xml:lang="bn-IN">
-            <span id="dtb_6782"> <em id="dtb_6783">A</em> <em id="dtb_6784">.</em> </span>
-            <span id="dtb_6785">
+<body>
+    <main><section id="id_64"><h1 id="dtb_6759" xml:lang="bn-IN" tabindex="-1"> Unit Nine <a href="#dtb_6759" rel="bookmark" class="webbook" title="Link to Unit Nine" aria-label="Link to Unit Nine"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><section id="id_65"><h1 id="dtb_6760" xml:lang="bn-IN" tabindex="-1"> Unconventional jobs <a href="#dtb_6760" rel="bookmark" class="webbook" title="Link to Unconventional jobs" aria-label="Link to Unconventional jobs"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><div id="dtb_6762"><img src="images/EngforToday-9-style-page_111.jpg" alt="" id="dtb_6763"></div><p id="dtb_6764" xml:lang="bn-IN">After we have studied this unit, we will be able to </p><ul id="dtb_6765"><li id="dtb_6766">
+							<p id="dtb_6767" xml:lang="bn-IN">describe familiar objects.</p>
+						</li><li id="dtb_6768">
+							<p id="dtb_6769" xml:lang="bn-IN">read intensively and extensively. </p>
+						</li><li id="dtb_6770">
+							<p id="dtb_6771" xml:lang="bn-IN">participate in debate, discussion. </p>
+						</li><li id="dtb_6772">
+							<p id="dtb_6773" xml:lang="bn-IN">Write about jobs and situations.</p>
+						</li><li id="dtb_6774">
+							<p id="dtb_6775" xml:lang="bn-IN">read for skimming, scanning, and inferring.</p>
+						</li></ul><p id="dtb_6776" xml:lang="bn-IN">( Skimming= to read quickly to get the gist of a text</p><p id="dtb_6777" xml:lang="bn-IN">Scanning= to read quickly to get specific information</p><p id="dtb_6778" xml:lang="bn-IN">Inferring=to read text to be able to make logical conclusion)</p><span title="Page-112" id="dtb_6779" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 112">112</span></section><section id="id_66"><h1 id="dtb_6780" xml:lang="bn-IN" tabindex="-1"> Lesson 1: Jobs around <a href="#dtb_6780" rel="bookmark" class="webbook" title="Link to Lesson 1: Jobs around" aria-label="Link to Lesson 1: Jobs around"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_6781" xml:lang="bn-IN">
+						<span id="dtb_6782"> <em id="dtb_6783">A</em> <em id="dtb_6784">.</em> </span>
+						<span id="dtb_6785">
 							<em id="dtb_6786">Many of us think that we must have a steady big job to be happy in life. Is </em> <em id="dtb_6787">that al</em> <em id="dtb_6788">ways true? Look at the picture </em> <em id="dtb_6789">and discuss in pairs what you see in it.</em> </span>
-          </p>
-          <div id="dtb_6791"><img src="EngforToday-9-style-page_112.jpg" alt="" id="dtb_6792"></div>
-          <p id="dtb_6793" xml:lang="bn-IN">
-            <span id="dtb_6794"> <em id="dtb_6795">B</em> <em id="dtb_6796">.</em> </span>
-            <span id="dtb_6797">
+					</p><div id="dtb_6791"><img src="images/EngforToday-9-style-page_112.jpg" alt="" id="dtb_6792"></div><p id="dtb_6793" xml:lang="bn-IN">
+						<span id="dtb_6794"> <em id="dtb_6795">B</em> <em id="dtb_6796">.</em> </span>
+						<span id="dtb_6797">
 							<em id="dtb_6798">Read the text. It is about a young entrepreneur, Sayeed Kamal Notice what he thinks about job and happiness. Then answer the questions that follow.</em> </span>
-          </p>
-          <p id="dtb_6799" xml:lang="bn-IN">
-            <span id="dtb_6800">I know you will wonder if I say the best thing that ever happened to me was when I lost my last job. </span>
-            <span id="dtb_6801">Yes, really!</span>
-          </p>
-          <p id="dtb_6802" xml:lang="bn-IN">
-            <span id="dtb_6803">I was a desk clerk in an office. </span>
-            <span id="dtb_6804">But believe me I never liked my job. </span>
-            <span id="dtb_6805">Nothing can be more boring than being stuck in an office all day with computers and telephone.</span>
-          </p>
-          <p id="dtb_6806" xml:lang="bn-IN">
-            <span id="dtb_6807">So after two years or so, I decided to leave my job though I had good salary there. </span>
-            <span id="dtb_6808">Now I'm an owner of a nursery. </span>
-            <span id="dtb_6809">Planting seeds, budding, grafting, taking care of saplings, cleaning the flower beds and spending time with trees are my full time job. </span>
-            <span id="dtb_6810">I start work very early. </span>
-            <span id="dtb_6811">In summer I usually leave home at 5:30 in the morning, but in winter not until about 7. </span>
-            <span id="dtb_6812">I've a small hut in my nursery. </span>
-            <span id="dtb_6813">There cannot be any more pleasure for me than when I see the moon from there or walk through the trees in the soft moonlit night. </span>
-            <span id="dtb_6814">The winter is just over. </span>
-            <span id="dtb_6815">So I'm cleaning up the winter flower garden. </span>
-            <span id="dtb_6816">Now I'm busy in producing more timber and medicinal plants which people will buy from July. </span>
-            <span id="dtb_6817">Every season is so different and I love them all. </span>
-            <span id="dtb_6818">When I compare my present days with the past, I simply can't understand how I could survive there in my previous job. </span>
-            <span id="dtb_6819">I love nature. </span>
-            <span id="dtb_6820">I just love working outside in the open air after all those months in a stuffy office. </span>
-            <span id="dtb_6821">Gadgets never attract me and perhaps never will.</span>
-          </p>
-          <p id="dtb_6822" xml:lang="bn-IN">
-            <span id="dtb_6823">I'm not married. </span>
-            <span id="dtb_6824">I do my own work, even cook my own food. </span>
-            <span id="dtb_6825">I try not to depend on others for the work which I myself can do. </span>
-            <span id="dtb_6826">Often my friends are annoyed with me. </span>
-            <span id="dtb_6827">They say, I should engage a maid for household chores. </span>
-            <span id="dtb_6828">They are not happy to see me in this `rustic life'. </span>
-            <span id="dtb_6829">They are professionals. </span>
-            <span id="dtb_6830">They earn a lot. </span>
-            <span id="dtb_6831">Maybe --- much more than what I do but I think I enjoy my work more.</span>
-          </p><span title="Page-113" id="dtb_6832" class="epubtype_pagebreak"></span>
-          <p id="dtb_6833" xml:lang="bn-IN">
-            <span id="dtb_6834">At weekends, I often go to the countryside. </span>
-            <span id="dtb_6835">Sometimes with my friends, sometimes alone. </span>
-            <span id="dtb_6836">I love collecting unknown saplings. </span>
-            <span id="dtb_6837">I have another hobby. </span>
-            <span id="dtb_6838">I love collecting stamps. </span>
-            <span id="dtb_6839">I have a Russian stamp during the period of Lenin. </span>
-            <span id="dtb_6840">I don't watch TV Almost everyone has a TV set these days. </span>
-            <span id="dtb_6841">But I don't have any. </span>
-            <span id="dtb_6842">How is that?</span>
-          </p>
-          <p id="dtb_6843" xml:lang="bn-IN">
-            <span id="dtb_6844">The only problem I face is I do not earn enough money in all seasons. </span>
-            <span id="dtb_6845">The winter and the rain are two busy seasons for me. </span>
-            <span id="dtb_6846">But it's OK. </span>
-            <span id="dtb_6847">Maybe I do not earn enough like many other people around me. </span>
-            <span id="dtb_6848">But I at least earn enough for my family, employees, and me to run a decent life. </span>
-            <span id="dtb_6849">I must say I'm a very happy man!</span>
-          </p>
-          <p id="dtb_6850" xml:lang="bn-IN">
-            <em id="dtb_6851">Questions</em>
-          </p>
-          <p id="dtb_6852" xml:lang="bn-IN">
-            <span id="dtb_6853">1. </span>
-            <span id="dtb_6854">What is the best thing that ever happened to this man?</span>
-          </p>
-          <p id="dtb_6855" xml:lang="bn-IN">
-            <span id="dtb_6856">2. </span>
-            <span id="dtb_6857">Why does Kamal like his job?</span>
-          </p>
-          <p id="dtb_6858" xml:lang="bn-IN">
-            <span id="dtb_6859">3. </span>
-            <span id="dtb_6860">What is the problem with his job?</span>
-          </p>
-          <p id="dtb_6861" xml:lang="bn-IN">
-            <span id="dtb_6862">4. </span>
-            <span id="dtb_6863">When does he earn most money?</span>
-          </p>
-          <p id="dtb_6864" xml:lang="bn-IN">
-            <span id="dtb_6865">5. </span>
-            <span id="dtb_6866">What attitude do you find here in Kamal when you read these lines `Maybe I do not earn enough like many other people around me. </span>
-            <span id="dtb_6867">But I at least earn enough for my family, employees, and me to run a decent life'?</span>
-          </p>
-          <p id="dtb_6868" xml:lang="bn-IN">
-            <span id="dtb_6869"> <em id="dtb_6870">C</em> <em id="dtb_6871">.</em> </span>
-            <span id="dtb_6872">
+					</p><p id="dtb_6799" xml:lang="bn-IN">
+						<span id="dtb_6800">I know you will wonder if I say the best thing that ever happened to me was when I lost my last job. </span>
+						<span id="dtb_6801">Yes, really!</span>
+					</p><p id="dtb_6802" xml:lang="bn-IN">
+						<span id="dtb_6803">I was a desk clerk in an office. </span>
+						<span id="dtb_6804">But believe me I never liked my job. </span>
+						<span id="dtb_6805">Nothing can be more boring than being stuck in an office all day with computers and telephone.</span>
+					</p><p id="dtb_6806" xml:lang="bn-IN">
+						<span id="dtb_6807">So after two years or so, I decided to leave my job though I had good salary there. </span>
+						<span id="dtb_6808">Now I'm an owner of a nursery. </span>
+						<span id="dtb_6809">Planting seeds, budding, grafting, taking care of saplings, cleaning the flower beds and spending time with trees are my full time job. </span>
+						<span id="dtb_6810">I start work very early. </span>
+						<span id="dtb_6811">In summer I usually leave home at 5:30 in the morning, but in winter not until about 7. </span>
+						<span id="dtb_6812">I've a small hut in my nursery. </span>
+						<span id="dtb_6813">There cannot be any more pleasure for me than when I see the moon from there or walk through the trees in the soft moonlit night. </span>
+						<span id="dtb_6814">The winter is just over. </span>
+						<span id="dtb_6815">So I'm cleaning up the winter flower garden. </span>
+						<span id="dtb_6816">Now I'm busy in producing more timber and medicinal plants which people will buy from July. </span>
+						<span id="dtb_6817">Every season is so different and I love them all. </span>
+						<span id="dtb_6818">When I compare my present days with the past, I simply can't understand how I could survive there in my previous job. </span>
+						<span id="dtb_6819">I love nature. </span>
+						<span id="dtb_6820">I just love working outside in the open air after all those months in a stuffy office. </span>
+						<span id="dtb_6821">Gadgets never attract me and perhaps never will.</span>
+					</p><p id="dtb_6822" xml:lang="bn-IN">
+						<span id="dtb_6823">I'm not married. </span>
+						<span id="dtb_6824">I do my own work, even cook my own food. </span>
+						<span id="dtb_6825">I try not to depend on others for the work which I myself can do. </span>
+						<span id="dtb_6826">Often my friends are annoyed with me. </span>
+						<span id="dtb_6827">They say, I should engage a maid for household chores. </span>
+						<span id="dtb_6828">They are not happy to see me in this `rustic life'. </span>
+						<span id="dtb_6829">They are professionals. </span>
+						<span id="dtb_6830">They earn a lot. </span>
+						<span id="dtb_6831">Maybe --- much more than what I do but I think I enjoy my work more.</span>
+					</p><span title="Page-113" id="dtb_6832" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 113">113</span><p id="dtb_6833" xml:lang="bn-IN">
+						<span id="dtb_6834">At weekends, I often go to the countryside. </span>
+						<span id="dtb_6835">Sometimes with my friends, sometimes alone. </span>
+						<span id="dtb_6836">I love collecting unknown saplings. </span>
+						<span id="dtb_6837">I have another hobby. </span>
+						<span id="dtb_6838">I love collecting stamps. </span>
+						<span id="dtb_6839">I have a Russian stamp during the period of Lenin. </span>
+						<span id="dtb_6840">I don't watch TV Almost everyone has a TV set these days. </span>
+						<span id="dtb_6841">But I don't have any. </span>
+						<span id="dtb_6842">How is that?</span>
+					</p><p id="dtb_6843" xml:lang="bn-IN">
+						<span id="dtb_6844">The only problem I face is I do not earn enough money in all seasons. </span>
+						<span id="dtb_6845">The winter and the rain are two busy seasons for me. </span>
+						<span id="dtb_6846">But it's OK. </span>
+						<span id="dtb_6847">Maybe I do not earn enough like many other people around me. </span>
+						<span id="dtb_6848">But I at least earn enough for my family, employees, and me to run a decent life. </span>
+						<span id="dtb_6849">I must say I'm a very happy man!</span>
+					</p><p id="dtb_6850" xml:lang="bn-IN">
+						<em id="dtb_6851">Questions</em>
+					</p><p id="dtb_6852" xml:lang="bn-IN">
+						<span id="dtb_6853">1. </span>
+						<span id="dtb_6854">What is the best thing that ever happened to this man?</span>
+					</p><p id="dtb_6855" xml:lang="bn-IN">
+						<span id="dtb_6856">2. </span>
+						<span id="dtb_6857">Why does Kamal like his job?</span>
+					</p><p id="dtb_6858" xml:lang="bn-IN">
+						<span id="dtb_6859">3. </span>
+						<span id="dtb_6860">What is the problem with his job?</span>
+					</p><p id="dtb_6861" xml:lang="bn-IN">
+						<span id="dtb_6862">4. </span>
+						<span id="dtb_6863">When does he earn most money?</span>
+					</p><p id="dtb_6864" xml:lang="bn-IN">
+						<span id="dtb_6865">5. </span>
+						<span id="dtb_6866">What attitude do you find here in Kamal when you read these lines `Maybe I do not earn enough like many other people around me. </span>
+						<span id="dtb_6867">But I at least earn enough for my family, employees, and me to run a decent life'?</span>
+					</p><p id="dtb_6868" xml:lang="bn-IN">
+						<span id="dtb_6869"> <em id="dtb_6870">C</em> <em id="dtb_6871">.</em> </span>
+						<span id="dtb_6872">
 							<em id="dtb_6873">Ask and answer questions about Kamal. Use the clues given. </em> </span>
-          </p>
-          <p id="dtb_6874" xml:lang="bn-IN">
-            <em id="dtb_6875">Example:</em>
-          </p>
-          <p id="dtb_6876" xml:lang="bn-IN">[dash] married?</p>
-          <p id="dtb_6877" xml:lang="bn-IN"> Q: Is he married?</p>
-          <p id="dtb_6878" xml:lang="bn-IN">
-            <span id="dtb_6879">A: No, he isn't. </span>
-            <span id="dtb_6880">He isn't married. </span>
-          </p>
-          <p id="dtb_6881" xml:lang="bn-IN">
-            <span id="dtb_6882">1. </span>
-            <span id="dtb_6883">[dash] happy?</span>
-          </p>
-          <p id="dtb_6884" xml:lang="bn-IN">
-            <span id="dtb_6885">2. </span>
-            <span id="dtb_6886">When [dash] leave home in summer? </span>
-          </p>
-          <p id="dtb_6887" xml:lang="bn-IN">
-            <span id="dtb_6888">3. </span>
-            <span id="dtb_6889">What [dash] plant after winter?</span>
-          </p>
-          <p id="dtb_6890" xml:lang="bn-IN">
-            <span id="dtb_6891">4. </span>
-            <span id="dtb_6892">What [dash] do at the weekend? </span>
-          </p>
-          <p id="dtb_6893" xml:lang="bn-IN">
-            <span id="dtb_6894">5. </span>
-            <span id="dtb_6895">What [dash] collect?</span>
-          </p><span title="Page-114" id="dtb_6896" class="epubtype_pagebreak"></span>
-          <ul id="dtb_6897">
-            <li id="dtb_6898">
-              <p id="dtb_6899" xml:lang="bn-IN">
-                <span id="dtb_6900">
+					</p><p id="dtb_6874" xml:lang="bn-IN">
+						<em id="dtb_6875">Example:</em>
+					</p><p id="dtb_6876" xml:lang="bn-IN">[dash] married?</p><p id="dtb_6877" xml:lang="bn-IN"> Q: Is he married?</p><p id="dtb_6878" xml:lang="bn-IN">
+						<span id="dtb_6879">A: No, he isn't. </span>
+						<span id="dtb_6880">He isn't married. </span>
+					</p><p id="dtb_6881" xml:lang="bn-IN">
+						<span id="dtb_6882">1. </span>
+						<span id="dtb_6883">[dash] happy?</span>
+					</p><p id="dtb_6884" xml:lang="bn-IN">
+						<span id="dtb_6885">2. </span>
+						<span id="dtb_6886">When [dash] leave home in summer? </span>
+					</p><p id="dtb_6887" xml:lang="bn-IN">
+						<span id="dtb_6888">3. </span>
+						<span id="dtb_6889">What [dash] plant after winter?</span>
+					</p><p id="dtb_6890" xml:lang="bn-IN">
+						<span id="dtb_6891">4. </span>
+						<span id="dtb_6892">What [dash] do at the weekend? </span>
+					</p><p id="dtb_6893" xml:lang="bn-IN">
+						<span id="dtb_6894">5. </span>
+						<span id="dtb_6895">What [dash] collect?</span>
+					</p><span title="Page-114" id="dtb_6896" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 114">114</span><ul id="dtb_6897"><li id="dtb_6898">
+							<p id="dtb_6899" xml:lang="bn-IN">
+								<span id="dtb_6900">
 									<em id="dtb_6901">C. Look at the following table. The left column shows some positive aspects of Sayeed Kamal's character. Add some more to the list. Also find out some aspects of Sayeed that you think unacceptable and write them in the right column.</em>
 								</span>
-              </p>
-            </li>
-          </ul>
-          <table id="dtb_6902">
-            <colgroup>
-              <col id="dtb_6903" span="1">
-            </colgroup>
-            <tbody id="dtb_6904">
-              <tr id="dtb_6905">
-                <td id="dtb_6906" colspan="1" rowspan="1">
-                  <p id="dtb_6907" xml:lang="bn-IN">
-                    <em id="dtb_6908">Good aspects of Sayeed</em>
-                  </p>
-                </td>
-                <td id="dtb_6909" colspan="1" rowspan="1">
-                  <p id="dtb_6910" xml:lang="bn-IN">
-                    <em id="dtb_6911">Unacceptable aspects of Sayeed</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_6912">
-                <td id="dtb_6913" colspan="1" rowspan="1">
-                  <ul id="dtb_6914">
-                    <li id="dtb_6915">
-                      <p id="dtb_6916" xml:lang="bn-IN">a. simple</p>
-                    </li>
-                  </ul>
-                </td>
-                <td id="dtb_6917" colspan="1" rowspan="1">
-                  <p id="dtb_6918" xml:lang="bn-IN">a. old fashioned</p>
-                </td>
-              </tr>
-              <tr id="dtb_6919">
-                <td id="dtb_6920" colspan="1" rowspan="1">
-                  <ul id="dtb_6921">
-                    <li id="dtb_6922">
-                      <p id="dtb_6923" xml:lang="bn-IN">b. diligent</p>
-                    </li>
-                  </ul>
-                </td>
-                <td id="dtb_6924" colspan="1" rowspan="1">
-                  <p id="dtb_6925" xml:lang="bn-IN">b.loner</p>
-                </td>
-              </tr>
-              <tr id="dtb_6926">
-                <td id="dtb_6927" colspan="1" rowspan="1">
-                  <ul id="dtb_6928">
-                    <li id="dtb_6929">
-                      <p id="dtb_6930" xml:lang="bn-IN">c. loves nature</p>
-                    </li>
-                  </ul>
-                </td>
-                <td id="dtb_6931" colspan="1" rowspan="1">
-                  <p id="dtb_6932" xml:lang="bn-IN">c.</p>
-                </td>
-              </tr>
-              <tr id="dtb_6933">
-                <td id="dtb_6934" colspan="1" rowspan="1">
-                  <ul id="dtb_6935">
-                    <li id="dtb_6936">
-                      <p id="dtb_6937" xml:lang="bn-IN">d. caring</p>
-                    </li>
-                  </ul>
-                </td>
-                <td id="dtb_6938" colspan="1" rowspan="1">
-                  <p id="dtb_6939" xml:lang="bn-IN">d.</p>
-                </td>
-              </tr>
-              <tr id="dtb_6940">
-                <td id="dtb_6941" colspan="1" rowspan="1">
-                  <p id="dtb_6942" xml:lang="bn-IN"> e.</p>
-                </td>
-                <td id="dtb_6943" colspan="1" rowspan="1">
-                  <p id="dtb_6944" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_6945">
-                <td id="dtb_6946" colspan="1" rowspan="1">
-                  <p id="dtb_6947" xml:lang="bn-IN"> f.</p>
-                </td>
-                <td id="dtb_6948" colspan="1" rowspan="1">
-                  <p id="dtb_6949" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_6950">
-                <td id="dtb_6951" colspan="1" rowspan="1">
-                  <p id="dtb_6952" xml:lang="bn-IN"> g.</p>
-                </td>
-                <td id="dtb_6953" colspan="1" rowspan="1">
-                  <p id="dtb_6954" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_6955" xml:lang="bn-IN">
-            <span id="dtb_6956"> <em id="dtb_6957">E</em> <em id="dtb_6958">.</em> </span>
-            <span id="dtb_6959">
+							</p> </li></ul><table id="dtb_6902"><colgroup><col id="dtb_6903" span="1"></colgroup><tbody id="dtb_6904"><tr id="dtb_6905"><td id="dtb_6906" colspan="1" rowspan="1">
+									<p id="dtb_6907" xml:lang="bn-IN">
+										<em id="dtb_6908">Good aspects of Sayeed</em>
+									</p> </td><td id="dtb_6909" colspan="1" rowspan="1">
+									<p id="dtb_6910" xml:lang="bn-IN">
+										<em id="dtb_6911">Unacceptable aspects of Sayeed</em>
+									</p> </td></tr><tr id="dtb_6912"><td id="dtb_6913" colspan="1" rowspan="1"> <ul id="dtb_6914"><li id="dtb_6915"><p id="dtb_6916" xml:lang="bn-IN">a. simple</p></li></ul> </td><td id="dtb_6917" colspan="1" rowspan="1">
+									<p id="dtb_6918" xml:lang="bn-IN">a. old fashioned</p>
+								</td></tr><tr id="dtb_6919"><td id="dtb_6920" colspan="1" rowspan="1"> <ul id="dtb_6921"><li id="dtb_6922"><p id="dtb_6923" xml:lang="bn-IN">b. diligent</p></li></ul> </td><td id="dtb_6924" colspan="1" rowspan="1">
+									<p id="dtb_6925" xml:lang="bn-IN">b.loner</p>
+								</td></tr><tr id="dtb_6926"><td id="dtb_6927" colspan="1" rowspan="1"> <ul id="dtb_6928"><li id="dtb_6929"><p id="dtb_6930" xml:lang="bn-IN">c. loves nature</p></li></ul> </td><td id="dtb_6931" colspan="1" rowspan="1">
+									<p id="dtb_6932" xml:lang="bn-IN">c.</p>
+								</td></tr><tr id="dtb_6933"><td id="dtb_6934" colspan="1" rowspan="1"> <ul id="dtb_6935"><li id="dtb_6936"><p id="dtb_6937" xml:lang="bn-IN">d. caring</p></li></ul> </td><td id="dtb_6938" colspan="1" rowspan="1">
+									<p id="dtb_6939" xml:lang="bn-IN">d.</p>
+								</td></tr><tr id="dtb_6940"><td id="dtb_6941" colspan="1" rowspan="1">
+									<p id="dtb_6942" xml:lang="bn-IN"> e.</p>
+								</td><td id="dtb_6943" colspan="1" rowspan="1">
+									<p id="dtb_6944" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_6945"><td id="dtb_6946" colspan="1" rowspan="1">
+									<p id="dtb_6947" xml:lang="bn-IN"> f.</p>
+								</td><td id="dtb_6948" colspan="1" rowspan="1">
+									<p id="dtb_6949" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_6950"><td id="dtb_6951" colspan="1" rowspan="1">
+									<p id="dtb_6952" xml:lang="bn-IN"> g.</p>
+								</td><td id="dtb_6953" colspan="1" rowspan="1">
+									<p id="dtb_6954" xml:lang="bn-IN">-</p>
+								</td></tr></tbody></table><p id="dtb_6955" xml:lang="bn-IN">
+						<span id="dtb_6956"> <em id="dtb_6957">E</em> <em id="dtb_6958">.</em> </span>
+						<span id="dtb_6959">
 							<em id="dtb_6960">Write a paragraph on Sayeed Kamal. Take your cues form D.</em> </span>
-          </p>
-          <p id="dtb_6961" xml:lang="bn-IN">
-            <span id="dtb_6962"> <em id="dtb_6963">F</em> <em id="dtb_6964">.</em> </span>
-            <span id="dtb_6965">
+					</p><p id="dtb_6961" xml:lang="bn-IN">
+						<span id="dtb_6962"> <em id="dtb_6963">F</em> <em id="dtb_6964">.</em> </span>
+						<span id="dtb_6965">
 							<em id="dtb_6966">`I must say I'm a very happy man!'--- Do you agree with Sayeed? Write why/why not?</em> </span>
-          </p><span title="Page-115" id="dtb_6967" class="epubtype_pagebreak"></span>
-        </section>
-        <section id="id_67">
-          <h1 id="dtb_6968" xml:lang="bn-IN"> Lesson 2: Weird jobs around <a href="#dtb_6968" title="Link to heading Lesson 2: Weird jobs around" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_6969" xml:lang="bn-IN">
-            <span id="dtb_6970"> <em id="dtb_6971">A</em> <em id="dtb_6972">.</em> </span>
-            <span id="dtb_6973">
+					</p><span title="Page-115" id="dtb_6967" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 115">115</span></section><section id="id_67"><h1 id="dtb_6968" xml:lang="bn-IN" tabindex="-1"> Lesson 2: Weird jobs around <a href="#dtb_6968" rel="bookmark" class="webbook" title="Link to Lesson 2: Weird jobs around" aria-label="Link to Lesson 2: Weird jobs around"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_6969" xml:lang="bn-IN">
+						<span id="dtb_6970"> <em id="dtb_6971">A</em> <em id="dtb_6972">.</em> </span>
+						<span id="dtb_6973">
 							<em id="dtb_6974">Look at the following pictures and discuss with your partner what you see</em> </span>
-          </p>
-          <p id="dtb_6975" xml:lang="bn-IN">
-            <em id="dtb_6976">in them.</em>
-          </p>
-          <div id="dtb_6978"><img src="EngforToday-9-style-page_115.jpg" alt="" id="dtb_6979"></div>
-          <p id="dtb_6980" xml:lang="bn-IN">
-            <span id="dtb_6981"> <em id="dtb_6982">B</em> <em id="dtb_6983">.</em> </span>
-            <span id="dtb_6984">
+					</p><p id="dtb_6975" xml:lang="bn-IN">
+						<em id="dtb_6976">in them.</em>
+					</p><div id="dtb_6978"><img src="images/EngforToday-9-style-page_115.jpg" alt="" id="dtb_6979"></div><p id="dtb_6980" xml:lang="bn-IN">
+						<span id="dtb_6981"> <em id="dtb_6982">B</em> <em id="dtb_6983">.</em> </span>
+						<span id="dtb_6984">
 							<em id="dtb_6985">Read the text and answer the following questions.</em> </span>
-          </p>
-          <p id="dtb_6986" xml:lang="bn-IN">
-            <span id="dtb_6987">What type of job do you want to have? </span>
-            <span id="dtb_6988">Is it a highly paid and high-profile conventional job liked by most people? </span>
-            <span id="dtb_6989">Yes, you can have it. </span>
-            <span id="dtb_6990">It is the question of your choice and important decisions that would help you to advance your life ahead. </span>
-            <span id="dtb_6991">But have you ever thought of other types of jobs out there--- cool, fun, exciting, even strange or weird jobs you never imagined to exist? </span>
-            <span id="dtb_6992">What are they? </span>
-            <span id="dtb_6993">Did you ever wonder who picks up the chewing gum left on a park bench or who assesses whether a piece of furniture is comfortable enough or who constructs glass eyeballs or who farms oysters in the middle of the ocean? </span>
-            <span id="dtb_6994">These are all wacky, odd, unexpected, wild, crazy, unconventional, strange or just plain weird jobs and careers. </span>
-            <span id="dtb_6995">They are not your traditional career choices, but somebody out there does all these things, gets paid for it, and enjoys life like anybody else.</span>
-          </p><span title="Page-116" id="dtb_6996" class="epubtype_pagebreak"></span>
-          <p id="dtb_6997" xml:lang="bn-IN">
-            <span id="dtb_6998">There are hundreds of such jobs to take if you want to travel the less taken ways of life. </span>
-            <span id="dtb_6999">You have to decide on several questions:</span>
-          </p>
-          <ul id="dtb_7000">
-            <li id="dtb_7001">
-              <p id="dtb_7002" xml:lang="bn-IN">What companies will recruit/hire me?</p>
-            </li>
-            <li id="dtb_7003">
-              <p id="dtb_7004" xml:lang="bn-IN">Do I actually make a paycheck?</p>
-            </li>
-            <li id="dtb_7005">
-              <p id="dtb_7006" xml:lang="bn-IN">What type of education/diploma will I need?</p>
-            </li>
-            <li id="dtb_7007">
-              <p id="dtb_7008" xml:lang="bn-IN">Can I make a living doing this?</p>
-            </li>
-          </ul>
-          <p id="dtb_7009" xml:lang="bn-IN">
-            <span id="dtb_7010">Your answers to these questions will help pave your career roadmap and help you decide if you are ready to take the challenge. </span>
-            <span id="dtb_7011">Decide if you want a change. </span>
-            <span id="dtb_7012">A lot of strange jobs also allow you to work part-time or freelance when it fits your schedule. </span>
-            <span id="dtb_7013">This way you can get a taste of freedom, a secondary income and build experience at the same time.</span>
-          </p>
-          <p id="dtb_7014" xml:lang="bn-IN">
-            <span id="dtb_7015">Do you have interests beyond writing memos and attending boring meetings? </span>
-            <span id="dtb_7016">If so, you may wonder how you can find a strange job. </span>
-            <span id="dtb_7017">Hobbies are a good place to start. </span>
-            <span id="dtb_7018">What do you do for fun? </span>
-            <span id="dtb_7019">Do you stuff animals, act like Charlie Chaplin, or make model cars? </span>
-            <span id="dtb_7020">You may enjoy it. </span>
-            <span id="dtb_7021">Someone out there works in that field and is making money off their hobby. </span>
-            <span id="dtb_7022">Maybe they are testing mountaineering equipment, developing fragrances, trying new brands of undergarments, or saving sea turtles. </span>
-            <span id="dtb_7023">And they are getting paid good wages.</span>
-          </p>
-          <p id="dtb_7024" xml:lang="bn-IN">
-            <em id="dtb_7025">Questions</em>
-          </p>
-          <p id="dtb_7026" xml:lang="bn-IN">
-            <span id="dtb_7027">1. </span>
-            <span id="dtb_7028">`But have you ever thought of other types of Jobs out there----?' </span>
-            <span id="dtb_7029">What does `other types of jobs' mean here?</span>
-          </p>
-          <p id="dtb_7030" xml:lang="bn-IN">
-            <span id="dtb_7031">2. </span>
-            <span id="dtb_7032">There are four particular strange and weird jobs mentioned in para one of the text. </span>
-            <span id="dtb_7033">Which one of them seems to be most weird to you and why?</span>
-          </p>
-          <p id="dtb_7034" xml:lang="bn-IN">
-            <span id="dtb_7035">3. </span>
-            <span id="dtb_7036">Before going for an unconventional and strange job the author has suggested several questions to decide on? </span>
-            <span id="dtb_7037">Rearrange them beginning from the most important to you to the least. </span>
-            <span id="dtb_7038">Add some more questions to the list that might be important to consider.</span>
-          </p>
-          <p id="dtb_7039" xml:lang="bn-IN">
-            <span id="dtb_7040">4. </span>
-            <span id="dtb_7041">What are some other part-time strange jobs mentioned in the text?</span>
-          </p>
-          <p id="dtb_7042" xml:lang="bn-IN">
-            <span id="dtb_7043">5. </span>
-            <span id="dtb_7044">What type of job is referred to by the expression `writing memos and attending boring meetings'? </span>
-            <span id="dtb_7045">Do you think the author's observation on the particular job is justified? </span>
-            <span id="dtb_7046">Why/Why not?</span>
-          </p><span title="Page-117" id="dtb_7047" class="epubtype_pagebreak"></span>
-          <p id="dtb_7048" xml:lang="bn-IN">
-            <span id="dtb_7049"> <em id="dtb_7050">C</em> <em id="dtb_7051">.</em> </span>
-            <span id="dtb_7052">
+					</p><p id="dtb_6986" xml:lang="bn-IN">
+						<span id="dtb_6987">What type of job do you want to have? </span>
+						<span id="dtb_6988">Is it a highly paid and high-profile conventional job liked by most people? </span>
+						<span id="dtb_6989">Yes, you can have it. </span>
+						<span id="dtb_6990">It is the question of your choice and important decisions that would help you to advance your life ahead. </span>
+						<span id="dtb_6991">But have you ever thought of other types of jobs out there--- cool, fun, exciting, even strange or weird jobs you never imagined to exist? </span>
+						<span id="dtb_6992">What are they? </span>
+						<span id="dtb_6993">Did you ever wonder who picks up the chewing gum left on a park bench or who assesses whether a piece of furniture is comfortable enough or who constructs glass eyeballs or who farms oysters in the middle of the ocean? </span>
+						<span id="dtb_6994">These are all wacky, odd, unexpected, wild, crazy, unconventional, strange or just plain weird jobs and careers. </span>
+						<span id="dtb_6995">They are not your traditional career choices, but somebody out there does all these things, gets paid for it, and enjoys life like anybody else.</span>
+					</p><span title="Page-116" id="dtb_6996" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 116">116</span><p id="dtb_6997" xml:lang="bn-IN">
+						<span id="dtb_6998">There are hundreds of such jobs to take if you want to travel the less taken ways of life. </span>
+						<span id="dtb_6999">You have to decide on several questions:</span>
+					</p><ul id="dtb_7000"><li id="dtb_7001">
+							<p id="dtb_7002" xml:lang="bn-IN">What companies will recruit/hire me?</p>
+						</li><li id="dtb_7003">
+							<p id="dtb_7004" xml:lang="bn-IN">Do I actually make a paycheck?</p>
+						</li><li id="dtb_7005">
+							<p id="dtb_7006" xml:lang="bn-IN">What type of education/diploma will I need?</p>
+						</li><li id="dtb_7007">
+							<p id="dtb_7008" xml:lang="bn-IN">Can I make a living doing this?</p>
+						</li></ul><p id="dtb_7009" xml:lang="bn-IN">
+						<span id="dtb_7010">Your answers to these questions will help pave your career roadmap and help you decide if you are ready to take the challenge. </span>
+						<span id="dtb_7011">Decide if you want a change. </span>
+						<span id="dtb_7012">A lot of strange jobs also allow you to work part-time or freelance when it fits your schedule. </span>
+						<span id="dtb_7013">This way you can get a taste of freedom, a secondary income and build experience at the same time.</span>
+					</p><p id="dtb_7014" xml:lang="bn-IN">
+						<span id="dtb_7015">Do you have interests beyond writing memos and attending boring meetings? </span>
+						<span id="dtb_7016">If so, you may wonder how you can find a strange job. </span>
+						<span id="dtb_7017">Hobbies are a good place to start. </span>
+						<span id="dtb_7018">What do you do for fun? </span>
+						<span id="dtb_7019">Do you stuff animals, act like Charlie Chaplin, or make model cars? </span>
+						<span id="dtb_7020">You may enjoy it. </span>
+						<span id="dtb_7021">Someone out there works in that field and is making money off their hobby. </span>
+						<span id="dtb_7022">Maybe they are testing mountaineering equipment, developing fragrances, trying new brands of undergarments, or saving sea turtles. </span>
+						<span id="dtb_7023">And they are getting paid good wages.</span>
+					</p><p id="dtb_7024" xml:lang="bn-IN">
+						<em id="dtb_7025">Questions</em>
+					</p><p id="dtb_7026" xml:lang="bn-IN">
+						<span id="dtb_7027">1. </span>
+						<span id="dtb_7028">`But have you ever thought of other types of Jobs out there----?' </span>
+						<span id="dtb_7029">What does `other types of jobs' mean here?</span>
+					</p><p id="dtb_7030" xml:lang="bn-IN">
+						<span id="dtb_7031">2. </span>
+						<span id="dtb_7032">There are four particular strange and weird jobs mentioned in para one of the text. </span>
+						<span id="dtb_7033">Which one of them seems to be most weird to you and why?</span>
+					</p><p id="dtb_7034" xml:lang="bn-IN">
+						<span id="dtb_7035">3. </span>
+						<span id="dtb_7036">Before going for an unconventional and strange job the author has suggested several questions to decide on? </span>
+						<span id="dtb_7037">Rearrange them beginning from the most important to you to the least. </span>
+						<span id="dtb_7038">Add some more questions to the list that might be important to consider.</span>
+					</p><p id="dtb_7039" xml:lang="bn-IN">
+						<span id="dtb_7040">4. </span>
+						<span id="dtb_7041">What are some other part-time strange jobs mentioned in the text?</span>
+					</p><p id="dtb_7042" xml:lang="bn-IN">
+						<span id="dtb_7043">5. </span>
+						<span id="dtb_7044">What type of job is referred to by the expression `writing memos and attending boring meetings'? </span>
+						<span id="dtb_7045">Do you think the author's observation on the particular job is justified? </span>
+						<span id="dtb_7046">Why/Why not?</span>
+					</p><span title="Page-117" id="dtb_7047" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 117">117</span><p id="dtb_7048" xml:lang="bn-IN">
+						<span id="dtb_7049"> <em id="dtb_7050">C</em> <em id="dtb_7051">.</em> </span>
+						<span id="dtb_7052">
 							<em id="dtb_7053">Look at the following dialogue and act it out in pairs.</em> </span>
-          </p>
-          <p id="dtb_7054" xml:lang="bn-IN">X : Have you heard of a job like picking up the chewing gums left on </p>
-          <p id="dtb_7055" xml:lang="bn-IN"> a park bench?</p>
-          <p id="dtb_7056" xml:lang="bn-IN">
-            <span id="dtb_7057">Y : Yes, I have. </span>
-            <span id="dtb_7058">I know one person who does that job.</span>
-          </p>
-          <p id="dtb_7059" xml:lang="bn-IN">X : What do you think of the job?</p>
-          <p id="dtb_7060" xml:lang="bn-IN">
-            <span id="dtb_7061">Y : Sounds rather funny/odd/crazy/wacky though. </span>
-            <span id="dtb_7062">But what's wrong? </span>
-          </p>
-          <p id="dtb_7063" xml:lang="bn-IN">
-            <span id="dtb_7064">You can go for it as long as you enjoy it. </span>
-            <span id="dtb_7065">And if it pays, I think it's fine.</span>
-          </p>
-          <p id="dtb_7066" xml:lang="bn-IN">
-            <em id="dtb_7067">Now make dialogues on the following:</em>
-          </p>
-          <p id="dtb_7068" xml:lang="bn-IN">1. assessing the comfort of a piece of furniture</p>
-          <p id="dtb_7069" xml:lang="bn-IN">2. farming oysters in the middle of the ocean</p>
-          <p id="dtb_7070" xml:lang="bn-IN">
-            <span id="dtb_7071"> <em id="dtb_7072">D</em> <em id="dtb_7073">.</em> </span>
-            <span id="dtb_7074">
+					</p><p id="dtb_7054" xml:lang="bn-IN">X : Have you heard of a job like picking up the chewing gums left on </p><p id="dtb_7055" xml:lang="bn-IN"> a park bench?</p><p id="dtb_7056" xml:lang="bn-IN">
+						<span id="dtb_7057">Y : Yes, I have. </span>
+						<span id="dtb_7058">I know one person who does that job.</span>
+					</p><p id="dtb_7059" xml:lang="bn-IN">X : What do you think of the job?</p><p id="dtb_7060" xml:lang="bn-IN">
+						<span id="dtb_7061">Y : Sounds rather funny/odd/crazy/wacky though. </span>
+						<span id="dtb_7062">But what's wrong? </span>
+					</p><p id="dtb_7063" xml:lang="bn-IN">
+						<span id="dtb_7064">You can go for it as long as you enjoy it. </span>
+						<span id="dtb_7065">And if it pays, I think it's fine.</span>
+					</p><p id="dtb_7066" xml:lang="bn-IN">
+						<em id="dtb_7067">Now make dialogues on the following:</em>
+					</p><p id="dtb_7068" xml:lang="bn-IN">1. assessing the comfort of a piece of furniture</p><p id="dtb_7069" xml:lang="bn-IN">2. farming oysters in the middle of the ocean</p><p id="dtb_7070" xml:lang="bn-IN">
+						<span id="dtb_7071"> <em id="dtb_7072">D</em> <em id="dtb_7073">.</em> </span>
+						<span id="dtb_7074">
 							<em id="dtb_7075">Arrange a debate in the class in favour of and against strange jobs.</em> </span>
-          </p>
-          <p id="dtb_7076" xml:lang="bn-IN">
-            <span id="dtb_7077"> <em id="dtb_7078">E</em> <em id="dtb_7079">.</em> </span>
-            <span id="dtb_7080">
+					</p><p id="dtb_7076" xml:lang="bn-IN">
+						<span id="dtb_7077"> <em id="dtb_7078">E</em> <em id="dtb_7079">.</em> </span>
+						<span id="dtb_7080">
 							<em id="dtb_7081">Work in pairs. Make a list of adjectives used in the text to describe strange jobs (at least 12). Are you familiar with all of them? If yes, use them in your own written sentences. Compare with your partner's.</em> </span>
-          </p>
-          <p id="dtb_7082" xml:lang="bn-IN">
-            <span id="dtb_7083">
+					</p><p id="dtb_7082" xml:lang="bn-IN">
+						<span id="dtb_7083">
 							<em id="dtb_7084">If no, try to guess their meaning from the context. Then consult a dictionary to get the meanings. Finally use them in your own sentences. </em>
 						</span>
-          </p>
-          <p id="dtb_7085" xml:lang="bn-IN">
-            <span id="dtb_7086"> <em id="dtb_7087">F</em> <em id="dtb_7088">.</em> </span>
-            <span id="dtb_7089">
+					</p><p id="dtb_7085" xml:lang="bn-IN">
+						<span id="dtb_7086"> <em id="dtb_7087">F</em> <em id="dtb_7088">.</em> </span>
+						<span id="dtb_7089">
 							<em id="dtb_7090">A number of strange jobs have been mentioned in the text. Do you know </em> <em id="dtb_7091">anyone</em> <em id="dtb_7092"> around you who does one of the jobs? If yes, write a paragraph on him/her.</em> </span>
-          </p>
-          <p id="dtb_7093" xml:lang="bn-IN">
-            <span id="dtb_7094">
+					</p><p id="dtb_7093" xml:lang="bn-IN">
+						<span id="dtb_7094">
 							<em id="dtb_7095">If no, first select a job. Then try to imagine who around you could successfully do that particular job. Write why you think so.</em>
 						</span>
-          </p><span title="Page-118" id="dtb_7096" class="epubtype_pagebreak"></span>
-        </section>
-        <section id="id_68">
-          <h1 id="dtb_7097" xml:lang="bn-IN"> Lesson 3: Floral career <a href="#dtb_7097" title="Link to heading Lesson 3: Floral career" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_7098" xml:lang="bn-IN">
-            <span id="dtb_7099"> <em id="dtb_7100">A</em> <em id="dtb_7101">.</em> </span>
-            <span id="dtb_7102">
+					</p><span title="Page-118" id="dtb_7096" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 118">118</span></section><section id="id_68"><h1 id="dtb_7097" xml:lang="bn-IN" tabindex="-1"> Lesson 3: Floral career <a href="#dtb_7097" rel="bookmark" class="webbook" title="Link to Lesson 3: Floral career" aria-label="Link to Lesson 3: Floral career"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_7098" xml:lang="bn-IN">
+						<span id="dtb_7099"> <em id="dtb_7100">A</em> <em id="dtb_7101">.</em> </span>
+						<span id="dtb_7102">
 							<em id="dtb_7103">Look at the pictures and say what you see in them. </em> </span>
-          </p>
-          <div id="dtb_7105"><img src="EngforToday-9-style-page_118.jpg" alt="" id="dtb_7106"></div>
-          <p id="dtb_7107" xml:lang="bn-IN">
-            <span id="dtb_7108"> <em id="dtb_7109">B</em> <em id="dtb_7110">.</em> </span>
-            <span id="dtb_7111">
+					</p><div id="dtb_7105"><img src="images/EngforToday-9-style-page_118.jpg" alt="" id="dtb_7106"></div><p id="dtb_7107" xml:lang="bn-IN">
+						<span id="dtb_7108"> <em id="dtb_7109">B</em> <em id="dtb_7110">.</em> </span>
+						<span id="dtb_7111">
 							<em id="dtb_7112">Work in pairs. Choose a job from the box below but don't tell your</em> </span>
-          </p>
-          <p id="dtb_7113" xml:lang="bn-IN">
-            <span id="dtb_7114">
+					</p><p id="dtb_7113" xml:lang="bn-IN">
+						<span id="dtb_7114">
 							<em id="dtb_7115">partner. Ask and answer the following Yes/No questions to find out what the job is.</em>
 						</span>
-          </p>
-          <table id="dtb_7116">
-            <colgroup>
-              <col id="dtb_7117" span="1">
-            </colgroup>
-            <tbody id="dtb_7118">
-              <tr id="dtb_7119">
-                <td id="dtb_7120" colspan="1" rowspan="1">
-                  <p id="dtb_7121" xml:lang="bn-IN">Architect</p>
-                </td>
-                <td id="dtb_7122" colspan="1" rowspan="1">
-                  <p id="dtb_7123" xml:lang="bn-IN">taxi</p>
-                </td>
-                <td id="dtb_7124" colspan="1" rowspan="1">
-                  <p id="dtb_7125" xml:lang="bn-IN">driver</p>
-                </td>
-                <td id="dtb_7126" colspan="1" rowspan="1">
-                  <p id="dtb_7127" xml:lang="bn-IN">dentist</p>
-                </td>
-              </tr>
-              <tr id="dtb_7128">
-                <td id="dtb_7129" colspan="1" rowspan="1">
-                  <p id="dtb_7130" xml:lang="bn-IN">farmer</p>
-                </td>
-                <td id="dtb_7131" colspan="1" rowspan="1">
-                  <p id="dtb_7132" xml:lang="bn-IN">lawyer</p>
-                </td>
-                <td id="dtb_7133" colspan="1" rowspan="1">
-                  <p id="dtb_7134" xml:lang="bn-IN">photographer</p>
-                </td>
-                <td id="dtb_7135" colspan="1" rowspan="1">
-                  <p id="dtb_7136" xml:lang="bn-IN">accountant</p>
-                </td>
-              </tr>
-              <tr id="dtb_7137">
-                <td id="dtb_7138" colspan="1" rowspan="1">
-                  <p id="dtb_7139" xml:lang="bn-IN">mechanic</p>
-                </td>
-                <td id="dtb_7140" colspan="1" rowspan="1">
-                  <p id="dtb_7141" xml:lang="bn-IN">soldier</p>
-                </td>
-                <td id="dtb_7142" colspan="1" rowspan="1">
-                  <p id="dtb_7143" xml:lang="bn-IN">hairdresser</p>
-                </td>
-                <td id="dtb_7144" colspan="1" rowspan="1">
-                  <p id="dtb_7145" xml:lang="bn-IN">chef</p>
-                </td>
-              </tr>
-              <tr id="dtb_7146">
-                <td id="dtb_7147" colspan="1" rowspan="1">
-                  <p id="dtb_7148" xml:lang="bn-IN">politician</p>
-                </td>
-                <td id="dtb_7149" colspan="1" rowspan="1">
-                  <p id="dtb_7150" xml:lang="bn-IN">nurse</p>
-                </td>
-                <td id="dtb_7151" colspan="1" rowspan="1">
-                  <p id="dtb_7152" xml:lang="bn-IN">plumber</p>
-                </td>
-                <td id="dtb_7153" colspan="1" rowspan="1">
-                  <p id="dtb_7154" xml:lang="bn-IN">florist</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_7155" xml:lang="bn-IN">
-            <em id="dtb_7156">Use these questions to help you.</em>
-          </p>
-          <table id="dtb_7157">
-            <colgroup>
-              <col id="dtb_7158" span="1">
-            </colgroup>
-            <tbody id="dtb_7159">
-              <tr id="dtb_7160">
-                <td id="dtb_7161" colspan="1" rowspan="1">
-                  <p id="dtb_7162" xml:lang="bn-IN">
-                    <em id="dtb_7163">Do you...?</em>
-                  </p>
-                </td>
-                <td id="dtb_7164" colspan="1" rowspan="1">
-                  <p id="dtb_7165" xml:lang="bn-IN">
-                    <em id="dtb_7166">Do you have to...?</em>
-                  </p>
-                </td>
-                <td id="dtb_7167" colspan="1" rowspan="1">
-                  <p id="dtb_7168" xml:lang="bn-IN">
-                    <em id="dtb_7169">Did you have to...?</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_7170">
-                <td id="dtb_7171" colspan="1" rowspan="1">
-                  <p id="dtb_7172" xml:lang="bn-IN">work inside</p>
-                </td>
-                <td id="dtb_7173" colspan="1" rowspan="1">
-                  <p id="dtb_7174" xml:lang="bn-IN">wear a uniform</p>
-                </td>
-                <td id="dtb_7175" colspan="1" rowspan="1">
-                  <p id="dtb_7176" xml:lang="bn-IN">study at college</p>
-                </td>
-              </tr>
-              <tr id="dtb_7177">
-                <td id="dtb_7178" colspan="1" rowspan="1">
-                  <p id="dtb_7179" xml:lang="bn-IN">earn a lot</p>
-                </td>
-                <td id="dtb_7180" colspan="1" rowspan="1">
-                  <p id="dtb_7181" xml:lang="bn-IN">work in shifts</p>
-                </td>
-                <td id="dtb_7182" colspan="1" rowspan="1">
-                  <p id="dtb_7183" xml:lang="bn-IN">do a lot of training</p>
-                </td>
-              </tr>
-              <tr id="dtb_7184">
-                <td id="dtb_7185" colspan="1" rowspan="1">
-                  <p id="dtb_7186" xml:lang="bn-IN">work with people</p>
-                </td>
-                <td id="dtb_7187" colspan="1" rowspan="1">
-                  <p id="dtb_7188" xml:lang="bn-IN">use your hands </p>
-                </td>
-                <td id="dtb_7189" colspan="1" rowspan="1">
-                  <p id="dtb_7190" xml:lang="bn-IN">do internship</p>
-                </td>
-              </tr>
-              <tr id="dtb_7191">
-                <td id="dtb_7192" colspan="1" rowspan="1">
-                  <p id="dtb_7193" xml:lang="bn-IN">use a computer</p>
-                </td>
-                <td id="dtb_7194" colspan="1" rowspan="1">
-                  <p id="dtb_7195" xml:lang="bn-IN">get up early</p>
-                </td>
-                <td id="dtb_7196" colspan="1" rowspan="1">
-                  <p id="dtb_7197" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_7198">
-                <td id="dtb_7199" colspan="1" rowspan="1">
-                  <p id="dtb_7200" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_7201" colspan="1" rowspan="1">
-                  <p id="dtb_7202" xml:lang="bn-IN">speak English </p>
-                </td>
-                <td id="dtb_7203" colspan="1" rowspan="1">
-                  <p id="dtb_7204" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_7205" xml:lang="bn-IN">
-            <span id="dtb_7206"> <em id="dtb_7207">C</em> <em id="dtb_7208">.</em> </span>
-            <span id="dtb_7209">
+					</p><table id="dtb_7116"><colgroup><col id="dtb_7117" span="1"></colgroup><tbody id="dtb_7118"><tr id="dtb_7119"><td id="dtb_7120" colspan="1" rowspan="1">
+									<p id="dtb_7121" xml:lang="bn-IN">Architect</p>
+								</td><td id="dtb_7122" colspan="1" rowspan="1">
+									<p id="dtb_7123" xml:lang="bn-IN">taxi</p>
+								</td><td id="dtb_7124" colspan="1" rowspan="1">
+									<p id="dtb_7125" xml:lang="bn-IN">driver</p>
+								</td><td id="dtb_7126" colspan="1" rowspan="1">
+									<p id="dtb_7127" xml:lang="bn-IN">dentist</p>
+								</td></tr><tr id="dtb_7128"><td id="dtb_7129" colspan="1" rowspan="1">
+									<p id="dtb_7130" xml:lang="bn-IN">farmer</p>
+								</td><td id="dtb_7131" colspan="1" rowspan="1">
+									<p id="dtb_7132" xml:lang="bn-IN">lawyer</p>
+								</td><td id="dtb_7133" colspan="1" rowspan="1">
+									<p id="dtb_7134" xml:lang="bn-IN">photographer</p>
+								</td><td id="dtb_7135" colspan="1" rowspan="1">
+									<p id="dtb_7136" xml:lang="bn-IN">accountant</p>
+								</td></tr><tr id="dtb_7137"><td id="dtb_7138" colspan="1" rowspan="1">
+									<p id="dtb_7139" xml:lang="bn-IN">mechanic</p>
+								</td><td id="dtb_7140" colspan="1" rowspan="1">
+									<p id="dtb_7141" xml:lang="bn-IN">soldier</p>
+								</td><td id="dtb_7142" colspan="1" rowspan="1">
+									<p id="dtb_7143" xml:lang="bn-IN">hairdresser</p>
+								</td><td id="dtb_7144" colspan="1" rowspan="1">
+									<p id="dtb_7145" xml:lang="bn-IN">chef</p>
+								</td></tr><tr id="dtb_7146"><td id="dtb_7147" colspan="1" rowspan="1">
+									<p id="dtb_7148" xml:lang="bn-IN">politician</p>
+								</td><td id="dtb_7149" colspan="1" rowspan="1">
+									<p id="dtb_7150" xml:lang="bn-IN">nurse</p>
+								</td><td id="dtb_7151" colspan="1" rowspan="1">
+									<p id="dtb_7152" xml:lang="bn-IN">plumber</p>
+								</td><td id="dtb_7153" colspan="1" rowspan="1">
+									<p id="dtb_7154" xml:lang="bn-IN">florist</p>
+								</td></tr></tbody></table><p id="dtb_7155" xml:lang="bn-IN">
+						<em id="dtb_7156">Use these questions to help you.</em>
+					</p><table id="dtb_7157"><colgroup><col id="dtb_7158" span="1"></colgroup><tbody id="dtb_7159"><tr id="dtb_7160"><td id="dtb_7161" colspan="1" rowspan="1">
+									<p id="dtb_7162" xml:lang="bn-IN">
+										<em id="dtb_7163">Do you...?</em>
+									</p> </td><td id="dtb_7164" colspan="1" rowspan="1">
+									<p id="dtb_7165" xml:lang="bn-IN">
+										<em id="dtb_7166">Do you have to...?</em>
+									</p> </td><td id="dtb_7167" colspan="1" rowspan="1">
+									<p id="dtb_7168" xml:lang="bn-IN">
+										<em id="dtb_7169">Did you have to...?</em>
+									</p> </td></tr><tr id="dtb_7170"><td id="dtb_7171" colspan="1" rowspan="1">
+									<p id="dtb_7172" xml:lang="bn-IN">work inside</p>
+								</td><td id="dtb_7173" colspan="1" rowspan="1">
+									<p id="dtb_7174" xml:lang="bn-IN">wear a uniform</p>
+								</td><td id="dtb_7175" colspan="1" rowspan="1">
+									<p id="dtb_7176" xml:lang="bn-IN">study at college</p>
+								</td></tr><tr id="dtb_7177"><td id="dtb_7178" colspan="1" rowspan="1">
+									<p id="dtb_7179" xml:lang="bn-IN">earn a lot</p>
+								</td><td id="dtb_7180" colspan="1" rowspan="1">
+									<p id="dtb_7181" xml:lang="bn-IN">work in shifts</p>
+								</td><td id="dtb_7182" colspan="1" rowspan="1">
+									<p id="dtb_7183" xml:lang="bn-IN">do a lot of training</p>
+								</td></tr><tr id="dtb_7184"><td id="dtb_7185" colspan="1" rowspan="1">
+									<p id="dtb_7186" xml:lang="bn-IN">work with people</p>
+								</td><td id="dtb_7187" colspan="1" rowspan="1">
+									<p id="dtb_7188" xml:lang="bn-IN">use your hands </p>
+								</td><td id="dtb_7189" colspan="1" rowspan="1">
+									<p id="dtb_7190" xml:lang="bn-IN">do internship</p>
+								</td></tr><tr id="dtb_7191"><td id="dtb_7192" colspan="1" rowspan="1">
+									<p id="dtb_7193" xml:lang="bn-IN">use a computer</p>
+								</td><td id="dtb_7194" colspan="1" rowspan="1">
+									<p id="dtb_7195" xml:lang="bn-IN">get up early</p>
+								</td><td id="dtb_7196" colspan="1" rowspan="1">
+									<p id="dtb_7197" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_7198"><td id="dtb_7199" colspan="1" rowspan="1">
+									<p id="dtb_7200" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_7201" colspan="1" rowspan="1">
+									<p id="dtb_7202" xml:lang="bn-IN">speak English </p>
+								</td><td id="dtb_7203" colspan="1" rowspan="1">
+									<p id="dtb_7204" xml:lang="bn-IN">-</p>
+								</td></tr></tbody></table><p id="dtb_7205" xml:lang="bn-IN">
+						<span id="dtb_7206"> <em id="dtb_7207">C</em> <em id="dtb_7208">.</em> </span>
+						<span id="dtb_7209">
 							<em id="dtb_7210">Read the text and answer the following questions.</em> </span>
-          </p>
-          <p id="dtb_7211" xml:lang="bn-IN">
-            <span id="dtb_7212">Have you ever thought of a very delicate career? </span>
-            <span id="dtb_7213">Have you dreamt of a rosy environment full of colour and fragrance? </span>
-            <span id="dtb_7214">How much would you love it if you were placed in a house full of flowers to deal all day? </span>
-            <span id="dtb_7215">I'm just going to give you some clues for a way of business, a job.</span>
-          </p><span title="Page-119" id="dtb_7216" class="epubtype_pagebreak"></span>
-          <p id="dtb_7217" xml:lang="bn-IN">
-            <span id="dtb_7218">Yes. </span>
-            <span id="dtb_7219">Daisies, violets, tulips, marigolds, dahlias, bellies, jasmines, roses and all those things of beauty can also earn you a living if you handle them professionally. </span>
-            <span id="dtb_7220">In fact, a florist's career is rather a good choice as an unconventional job for many around the world. </span>
-            <span id="dtb_7221">Wherever you see eye-catching floral displays, you actually see the professional performance of a floral designer. </span>
-            <span id="dtb_7222">They are also known as florists and they create superb arrangements with flowers. </span>
-            <span id="dtb_7223">Using both real and artificial flowers with other greeneries, florists prepare flower displays for a variety of events such as weddings, birthdays, anniversaries, marriage days, Valentine's day, official receptions and even funerals. </span>
-            <span id="dtb_7224">Every flower is with its distinct colour, design, significance and meaning which flower designers have to know well. </span>
-            <span id="dtb_7225">There are conventions and significance associated with flowers. </span>
-            <span id="dtb_7226">We know that conventionally roses are meant for romance and anniversaries and tulips for birthdays.</span>
-          </p>
-          <p id="dtb_7227" xml:lang="bn-IN">
-            <span id="dtb_7228">Although formal education or a diploma is not always essential, florists must have a good taste, good eye for colours, shapes and proportion. </span>
-            <span id="dtb_7229">They have to have good sense for selecting flowers, ribbons and other accessories to make beautiful arrangements. </span>
-            <span id="dtb_7230">Professional florists are knowledgeable about not only flowers but also designs and techniques. </span>
-            <span id="dtb_7231">Most florists learn the trade mainly through apprenticeship in a previous flower farming job and also by attending formal floral schools and courses. </span>
-            <span id="dtb_7232">However, a true passion for flowers and a bit of aesthetic sense are all that can make a florist's career successful.</span>
-          </p>
-          <p id="dtb_7233" xml:lang="bn-IN">
-            <span id="dtb_7234">Flower designers earn fairly handsome money. </span>
-            <span id="dtb_7235">But the bonus is that they belong to a fresh fun job. </span>
-            <span id="dtb_7236">They work in flowers all day long in a nice atmosphere with fresh air, pleasant smells and vivid colours around. </span>
-            <span id="dtb_7237">But there is a disadvantage too, if you are inclined to see so. </span>
-            <span id="dtb_7238">Florists deal with flowers, but miss their honey!</span>
-          </p>
-          <p id="dtb_7239" xml:lang="bn-IN">
-            <em id="dtb_7240">Questions</em>
-          </p>
-          <p id="dtb_7241" xml:lang="bn-IN">
-            <span id="dtb_7242">1. </span>
-            <span id="dtb_7243">How is the career of a florist?</span>
-          </p>
-          <p id="dtb_7244" xml:lang="bn-IN">
-            <span id="dtb_7245">2. </span>
-            <span id="dtb_7246">What qualities do you need to have for a florist's job?</span>
-          </p>
-          <p id="dtb_7247" xml:lang="bn-IN">
-            <span id="dtb_7248">3. </span>
-            <span id="dtb_7249">How does most florists learn the trade?</span>
-          </p>
-          <p id="dtb_7250" xml:lang="bn-IN">
-            <span id="dtb_7251">4. </span>
-            <span id="dtb_7252">What is the extra advantage of a florist's job?</span>
-          </p>
-          <p id="dtb_7253" xml:lang="bn-IN">
-            <span id="dtb_7254"> <em id="dtb_7255">D</em> <em id="dtb_7256">.</em> </span>
-            <span id="dtb_7257">
+					</p><p id="dtb_7211" xml:lang="bn-IN">
+						<span id="dtb_7212">Have you ever thought of a very delicate career? </span>
+						<span id="dtb_7213">Have you dreamt of a rosy environment full of colour and fragrance? </span>
+						<span id="dtb_7214">How much would you love it if you were placed in a house full of flowers to deal all day? </span>
+						<span id="dtb_7215">I'm just going to give you some clues for a way of business, a job.</span>
+					</p><span title="Page-119" id="dtb_7216" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 119">119</span><p id="dtb_7217" xml:lang="bn-IN">
+						<span id="dtb_7218">Yes. </span>
+						<span id="dtb_7219">Daisies, violets, tulips, marigolds, dahlias, bellies, jasmines, roses and all those things of beauty can also earn you a living if you handle them professionally. </span>
+						<span id="dtb_7220">In fact, a florist's career is rather a good choice as an unconventional job for many around the world. </span>
+						<span id="dtb_7221">Wherever you see eye-catching floral displays, you actually see the professional performance of a floral designer. </span>
+						<span id="dtb_7222">They are also known as florists and they create superb arrangements with flowers. </span>
+						<span id="dtb_7223">Using both real and artificial flowers with other greeneries, florists prepare flower displays for a variety of events such as weddings, birthdays, anniversaries, marriage days, Valentine's day, official receptions and even funerals. </span>
+						<span id="dtb_7224">Every flower is with its distinct colour, design, significance and meaning which flower designers have to know well. </span>
+						<span id="dtb_7225">There are conventions and significance associated with flowers. </span>
+						<span id="dtb_7226">We know that conventionally roses are meant for romance and anniversaries and tulips for birthdays.</span>
+					</p><p id="dtb_7227" xml:lang="bn-IN">
+						<span id="dtb_7228">Although formal education or a diploma is not always essential, florists must have a good taste, good eye for colours, shapes and proportion. </span>
+						<span id="dtb_7229">They have to have good sense for selecting flowers, ribbons and other accessories to make beautiful arrangements. </span>
+						<span id="dtb_7230">Professional florists are knowledgeable about not only flowers but also designs and techniques. </span>
+						<span id="dtb_7231">Most florists learn the trade mainly through apprenticeship in a previous flower farming job and also by attending formal floral schools and courses. </span>
+						<span id="dtb_7232">However, a true passion for flowers and a bit of aesthetic sense are all that can make a florist's career successful.</span>
+					</p><p id="dtb_7233" xml:lang="bn-IN">
+						<span id="dtb_7234">Flower designers earn fairly handsome money. </span>
+						<span id="dtb_7235">But the bonus is that they belong to a fresh fun job. </span>
+						<span id="dtb_7236">They work in flowers all day long in a nice atmosphere with fresh air, pleasant smells and vivid colours around. </span>
+						<span id="dtb_7237">But there is a disadvantage too, if you are inclined to see so. </span>
+						<span id="dtb_7238">Florists deal with flowers, but miss their honey!</span>
+					</p><p id="dtb_7239" xml:lang="bn-IN">
+						<em id="dtb_7240">Questions</em>
+					</p><p id="dtb_7241" xml:lang="bn-IN">
+						<span id="dtb_7242">1. </span>
+						<span id="dtb_7243">How is the career of a florist?</span>
+					</p><p id="dtb_7244" xml:lang="bn-IN">
+						<span id="dtb_7245">2. </span>
+						<span id="dtb_7246">What qualities do you need to have for a florist's job?</span>
+					</p><p id="dtb_7247" xml:lang="bn-IN">
+						<span id="dtb_7248">3. </span>
+						<span id="dtb_7249">How does most florists learn the trade?</span>
+					</p><p id="dtb_7250" xml:lang="bn-IN">
+						<span id="dtb_7251">4. </span>
+						<span id="dtb_7252">What is the extra advantage of a florist's job?</span>
+					</p><p id="dtb_7253" xml:lang="bn-IN">
+						<span id="dtb_7254"> <em id="dtb_7255">D</em> <em id="dtb_7256">.</em> </span>
+						<span id="dtb_7257">
 							<em id="dtb_7258">Suppose you have met a florist in a flower shop. Write an imaginary interview with him/her.</em> </span>
-          </p>
-          <p id="dtb_7259" xml:lang="bn-IN">
-            <span id="dtb_7260"> <em id="dtb_7261">E</em> <em id="dtb_7262">.</em> </span>
-            <span id="dtb_7263">
+					</p><p id="dtb_7259" xml:lang="bn-IN">
+						<span id="dtb_7260"> <em id="dtb_7261">E</em> <em id="dtb_7262">.</em> </span>
+						<span id="dtb_7263">
 							<em id="dtb_7264">Write a short paragraph giving reasons why you like or dislike the job of</em> </span>
-          </p>
-          <p id="dtb_7265" xml:lang="bn-IN">
-            <em id="dtb_7266">a florist.</em>
-          </p><span title="Page-120" id="dtb_7267" class="epubtype_pagebreak"></span>
-        </section>
-      </section>
-    </main>
+					</p><p id="dtb_7265" xml:lang="bn-IN">
+						<em id="dtb_7266">a florist.</em>
+					</p><span title="Page-120" id="dtb_7267" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 120">120</span></section></section></main>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-14.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-14.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-13.html" title="Previous: Unit Eight" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-13.html" rel="prev" title="Previous: Unit Eight" aria-label="Previous: Unit Eight">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="package-15.html" title="Next: Unit Ten" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-15.html" title="Next: Unit Ten" aria-label="Next: Unit Ten" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-1"><a href="package-2.html#dtb_6">English For Today</a><ol><li id="toc-1-1"><a href="package-2.html#dtb_7">Classes 9-10</a></li></ol></li><li id="toc-2"><a href="package-3.html#dtb_17">ENGLISH FOR TODAY</a><ol><li id="toc-2-1"><a href="package-3.html#dtb_18">Classes 9-10</a></li></ol></li><li id="toc-3"><a href="package-4.html#dtb_66">Preface</a></li><li id="toc-4"><a href="package-5.html#dtb_96">Contents</a></li><li id="toc-5"><a href="package-6.html#dtb_215">Unit One</a><ol><li id="toc-5-1"><a href="package-6.html#dtb_216">Good citizens</a></li><li id="toc-5-2"><a href="package-6.html#dtb_221">Learning outcomes</a></li><li id="toc-5-3"><a href="package-6.html#dtb_424">Lesson 2: Knowledge, skills and attitudes</a></li><li id="toc-5-4"><a href="package-6.html#dtb_560">Lesson 3: Good character</a></li><li id="toc-5-5"><a href="package-6.html#dtb_744">Lesson 4: Responsibilities</a></li></ol></li><li id="toc-6"><a href="package-7.html#dtb_875">Unit Two</a><ol><li id="toc-6-1"><a href="package-7.html#dtb_876">Pastimes</a></li><li id="toc-6-2"><a href="package-7.html#dtb_892">Lesson 1: Have you any favourite pastime?</a></li></ol></li><li id="toc-7"><a href="package-8.html#dtb_1691">Unit Three</a><ol><li id="toc-7-1"><a href="package-8.html#dtb_1692">Events and festivals</a><ol><li id="toc-7-1-1"><a href="package-8.html#dtb_1697">Learning outcomes</a></li></ol></li><li id="toc-7-2"><a href="package-8.html#dtb_2153">Lesson 4 : International Mother Language Day – 2</a></li><li id="toc-7-3"><a href="package-8.html#dtb_2268">Lesson 5 : Independence Day</a></li><li id="toc-7-4"><a href="package-8.html#dtb_2398">Lesson 6: Pahela Boishakh</a></li></ol></li><li id="toc-8"><a href="package-9.html#dtb_2526">Unit Four</a><ol><li id="toc-8-1"><a href="package-9.html#dtb_2527">Are we aware?</a><ol><li id="toc-8-1-1"><a href="package-9.html#dtb_2533">Learning outcomes</a></li></ol></li><li id="toc-8-2"><a href="package-9.html#dtb_2547">Lesson 1: The ferry boat</a><ol><li id="toc-8-2-1"><a href="package-9.html#dtb_2614">Questions</a></li></ol></li><li id="toc-8-3"><a href="package-9.html#dtb_2705">Lesson 2: Are we too many?</a><ol><li id="toc-8-3-1"><a href="package-9.html#dtb_2763">Questions</a></li></ol></li><li id="toc-8-4"><a href="package-9.html#dtb_2934">Lesson 3: Our food and shelter</a></li><li id="toc-8-5"><a href="package-9.html#dtb_3067">Lesson 4: The story of Lipi</a><ol><li id="toc-8-5-1"><a href="package-9.html#dtb_3103">Question 1</a></li><li id="toc-8-5-2"><a href="package-9.html#dtb_3128">Question 2</a></li></ol></li><li id="toc-8-6"><a href="package-9.html#dtb_3175">Lesson 5: Let's become skilled workforce</a></li></ol></li><li id="toc-9"><a href="package-10.html#dtb_3322">Unit Five</a><ol><li id="toc-9-1"><a href="package-10.html#dtb_3323">Climate change</a><ol><li id="toc-9-1-1"><a href="package-10.html#dtb_3328">Learning outcomes</a></li></ol></li><li id="toc-9-2"><a href="package-10.html#dtb_3346">Lesson 1: The greed of the roaring rivers</a></li><li id="toc-9-3"><a href="package-10.html#dtb_3509">Lesson 2: Environmental pollution</a></li><li id="toc-9-4"><a href="package-10.html#dtb_3726">Lesson 3: Man and climate</a></li><li id="toc-9-5"><a href="package-10.html#dtb_3888">Lesson 4: Putting our fish in hot water!</a></li></ol></li><li id="toc-10"><a href="package-11.html#dtb_4147">Unit Six</a><ol><li id="toc-10-1"><a href="package-11.html#dtb_4148">Our Neighbours</a><ol><li id="toc-10-1-1"><a href="package-11.html#dtb_4153">Learning outcomes</a></li></ol></li><li id="toc-10-2"><a href="package-11.html#dtb_4167">Lesson 1: Nepal, the land of Everest</a></li><li id="toc-10-3"><a href="package-11.html#dtb_4417">Lesson 2: Sri Lanka: The pearl of the Indian Ocean</a></li><li id="toc-10-4"><a href="package-11.html#dtb_4684">Lesson 3: The Maldives</a></li><li id="toc-10-5"><a href="package-11.html#dtb_4852">Lesson 4: India: Unity within diversity</a></li><li id="toc-10-6"><a href="package-11.html#dtb_5007">Lesson 5: Bhutan: The land of happiness</a></li></ol></li><li id="toc-11"><a href="package-12.html#dtb_5113">Unit Seven</a><ol><li id="toc-11-1"><a href="package-12.html#dtb_5114">People who stand out</a></li><li id="toc-11-2"><a href="package-12.html#dtb_5131">Lesson l: Zainul Abedin, the great artist</a></li><li id="toc-11-3"><a href="package-12.html#dtb_5300">Lesson 2: The art of silence</a></li><li id="toc-11-4"><a href="package-12.html#dtb_5580">Lesson 4: The beginning</a></li><li id="toc-11-5"><a href="package-12.html#dtb_5671">Lesson 5: The missionary</a></li><li id="toc-11-6"><a href="package-12.html#dtb_5779">Lesson 6: Love for humanity</a></li><li id="toc-11-7"><a href="package-12.html#dtb_5978">Lesson 8: Jobs' childhood</a></li></ol></li><li id="toc-12"><a href="package-13.html#dtb_6072">Unit Eight</a><ol><li id="toc-12-1"><a href="package-13.html#dtb_6073">World heritage</a></li><li id="toc-12-2"><a href="package-13.html#dtb_6088">Lesson 1: The Shat Gambuj Mosque</a></li><li id="toc-12-3"><a href="package-13.html#dtb_6214">Lesson 2: The Somapura Mahavihara</a></li><li id="toc-12-4"><a href="package-13.html#dtb_6399">Lesson 3: The Statue of Liberty</a></li><li id="toc-12-5"><a href="package-13.html#dtb_6585">Lesson 4: Lake Baikal</a></li></ol></li><li id="toc-13"><a href="package-14.html#dtb_6759">Unit Nine</a><ol><li id="toc-13-1"><a href="package-14.html#dtb_6760">Unconventional jobs</a></li><li id="toc-13-2"><a href="package-14.html#dtb_6780">Lesson 1: Jobs around</a></li><li id="toc-13-3"><a href="package-14.html#dtb_6968">Lesson 2: Weird jobs around</a></li><li id="toc-13-4"><a href="package-14.html#dtb_7097">Lesson 3: Floral career</a></li></ol></li><li id="toc-14"><a href="package-15.html#dtb_7268">Unit Ten</a><ol><li id="toc-14-1"><a href="package-15.html#dtb_7269">Dreams</a><ol><li id="toc-14-1-1"><a href="package-15.html#dtb_7273">Learning outcomes</a></li></ol></li><li id="toc-14-2"><a href="package-15.html#dtb_7287">Lesson 1: I have a dream</a></li><li id="toc-14-3"><a href="package-15.html#dtb_7397">Lesson 2: What I dream to be</a></li><li id="toc-14-4"><a href="package-15.html#dtb_7572">Lesson 3: They had dreams 1</a></li><li id="toc-14-5"><a href="package-15.html#dtb_7737">Lesson 4: They had dreams 2</a></li></ol></li><li id="toc-15"><a href="package-16.html#dtb_7872">Unit Eleven</a><ol><li id="toc-15-1"><a href="package-16.html#dtb_7873">Renewable energy</a></li><li id="toc-15-2"><a href="package-16.html#dtb_7888">Lesson 1: Renewable energy sources -1</a></li><li id="toc-15-3"><a href="package-16.html#dtb_8103">Lesson 2: Renewable energy sources -2</a></li><li id="toc-15-4"><a href="package-16.html#dtb_8387">Lesson 3: Renewable energy sources-3</a></li></ol></li><li id="toc-16"><a href="package-17.html#dtb_8590">Unit Twelve</a><ol><li id="toc-16-1"><a href="package-17.html#dtb_8591">Roots</a></li><li id="toc-16-2"><a href="package-17.html#dtb_8614">Lesson 1: My roots</a></li><li id="toc-16-3"><a href="package-17.html#dtb_8776">Lesson 2: My roots -2</a></li><li id="toc-16-4"><a href="package-17.html#dtb_9013">Lesson 4: In search of identity</a></li></ol></li><li id="toc-17"><a href="package-18.html#dtb_9192">Unit Thirteen</a><ol><li id="toc-17-1"><a href="package-18.html#dtb_9193">Media and modes of e-communications</a></li><li id="toc-17-2"><a href="package-18.html#dtb_9212">Lesson 1: Media and models of e-communications</a></li><li id="toc-17-3"><a href="package-18.html#dtb_9502">Lesson 2: Social network services</a></li><li id="toc-17-4"><a href="package-18.html#dtb_9735">Lesson 3: E-learning</a></li></ol></li><li id="toc-18"><a href="package-19.html#dtb_9836">Unit Fourteen</a><ol><li id="toc-18-1"><a href="package-19.html#dtb_9837">Pleasure and purpose</a></li><li id="toc-18-2"><a href="package-19.html#dtb_9852">Lesson 1: Books</a></li><li id="toc-18-3"><a href="package-19.html#dtb_9971">Lesson 3: The Sands of Dee</a></li><li id="toc-18-4"><a href="package-19.html#dtb_10036">Lesson 4: Time, You Old Gipsy Man</a></li><li id="toc-18-5"><a href="package-19.html#dtb_10109">Lesson 5: Stopping by Woods on a Snowing Evening</a></li><li id="toc-18-6"><a href="package-19.html#dtb_10177">Lesson 6: The Purple Jar-1</a></li><li id="toc-18-7"><a href="package-19.html#dtb_10258">Lesson 7: The Purple Jar-2</a></li><li id="toc-18-8"><a href="package-19.html#dtb_10355">Lesson 8: The Purple Jar-3</a></li><li id="toc-18-9"><a href="package-19.html#dtb_10486">Lesson 9: A Pound of Flesh</a></li><li id="toc-18-10"><a href="package-19.html#dtb_10617">Lesson 10: The three caskets</a></li><li id="toc-18-11"><a href="package-19.html#dtb_10695">Lesson 11: the trial</a></li><li id="toc-18-12"><a href="package-19.html#dtb_10774">Lessons 9, 10 &amp; 11 are adapted horn The Merchant of Vinice by William Shakespeare.</a></li></ol></li><li id="toc-19"><a href="package-20.html#dtb_10792">Sample Question</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-14.mp3"><track default="" kind="metadata" src="vtt/package-14.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="1" label="1" data-href="package-6.html#dtb_217"></option><option value="2" label="2" data-href="package-6.html#dtb_232"></option><option value="3" label="3" data-href="package-6.html#dtb_282"></option><option value="4" label="4" data-href="package-6.html#dtb_342"></option><option value="5" label="5" data-href="package-6.html#dtb_386"></option><option value="6" label="6" data-href="package-6.html#dtb_446"></option><option value="7" label="7" data-href="package-6.html#dtb_503"></option><option value="8" label="8" data-href="package-6.html#dtb_593"></option><option value="9" label="9" data-href="package-6.html#dtb_683"></option><option value="10" label="10" data-href="package-6.html#dtb_743"></option><option value="11" label="11" data-href="package-6.html#dtb_793"></option><option value="12" label="12" data-href="package-6.html#dtb_860"></option><option value="13" label="13" data-href="package-6.html#dtb_874"></option><option value="14" label="14" data-href="package-7.html#dtb_891"></option><option value="l5" label="l5" data-href="package-7.html#dtb_953"></option><option value="16" label="16" data-href="package-7.html#dtb_1017"></option><option value="17" label="17" data-href="package-7.html#dtb_1145"></option><option value="18" label="18" data-href="package-7.html#dtb_1201"></option><option value="19" label="19" data-href="package-7.html#dtb_1259"></option><option value="20" label="20" data-href="package-7.html#dtb_1319"></option><option value="21" label="21" data-href="package-7.html#dtb_1416"></option><option value="22" label="22" data-href="package-7.html#dtb_1451"></option><option value="23" label="23" data-href="package-7.html#dtb_1574"></option><option value="Pae-24" label="Pae-24" data-href="package-7.html#dtb_1637"></option><option value="25" label="25" data-href="package-7.html#dtb_1673"></option><option value="26" label="26" data-href="package-8.html#dtb_1693"></option><option value="27" label="27" data-href="package-8.html#dtb_1706"></option><option value="28" label="28" data-href="package-8.html#dtb_1838"></option><option value="29" label="29" data-href="package-8.html#dtb_1920"></option><option value="30" label="30" data-href="package-8.html#dtb_2004"></option><option value="31" label="31" data-href="package-8.html#dtb_2094"></option><option value="32" label="32" data-href="package-8.html#dtb_2191"></option><option value="33" label="33" data-href="package-8.html#dtb_2296"></option><option value="34" label="34" data-href="package-8.html#dtb_2375"></option><option value="35" label="35" data-href="package-8.html#dtb_2417"></option><option value="36" label="36" data-href="package-8.html#dtb_2475"></option><option value="37" label="37" data-href="package-8.html#dtb_2525"></option><option value="38" label="38" data-href="package-9.html#dtb_2546"></option><option value="39" label="39" data-href="package-9.html#dtb_2598"></option><option value="40" label="40" data-href="package-9.html#dtb_2664"></option><option value="41" label="41" data-href="package-9.html#dtb_2727"></option><option value="42" label="42" data-href="package-9.html#dtb_2811"></option><option value="43" label="43" data-href="package-9.html#dtb_2933"></option><option value="44" label="44" data-href="package-9.html#dtb_2995"></option><option value="45" label="45" data-href="package-9.html#dtb_3054"></option><option value="46" label="46" data-href="package-9.html#dtb_3118"></option><option value="47" label="47" data-href="package-9.html#dtb_3174"></option><option value="48" label="48" data-href="package-9.html#dtb_3248"></option><option value="49" label="49" data-href="package-10.html#dtb_3324"></option><option value="50" label="50" data-href="package-10.html#dtb_3345"></option><option value="51" label="51" data-href="package-10.html#dtb_3391"></option><option value="52" label="52" data-href="package-10.html#dtb_3458"></option><option value="53" label="53" data-href="package-10.html#dtb_3547"></option><option value="54" label="54" data-href="package-10.html#dtb_3574"></option><option value="55" label="55" data-href="package-10.html#dtb_3614"></option><option value="56" label="56" data-href="package-10.html#dtb_3725"></option><option value="57" label="57" data-href="package-10.html#dtb_3764"></option><option value="58" label="58" data-href="package-10.html#dtb_3859"></option><option value="59" label="59" data-href="package-10.html#dtb_3913"></option><option value="60" label="60" data-href="package-10.html#dtb_3975"></option><option value="61" label="61" data-href="package-10.html#dtb_4032"></option><option value="62" label="62" data-href="package-10.html#dtb_4104"></option><option value="63" label="63" data-href="package-11.html#dtb_4149"></option><option value="64" label="64" data-href="package-11.html#dtb_4166"></option><option value="65" label="65" data-href="package-11.html#dtb_4206"></option><option value="66" label="66" data-href="package-11.html#dtb_4256"></option><option value="67" label="67" data-href="package-11.html#dtb_4311"></option><option value="68" label="68" data-href="package-11.html#dtb_4371"></option><option value="69" label="69" data-href="package-11.html#dtb_4409"></option><option value="70" label="70" data-href="package-11.html#dtb_4463"></option><option value="71" label="71" data-href="package-11.html#dtb_4508"></option><option value="72" label="72" data-href="package-11.html#dtb_4622"></option><option value="73" label="73" data-href="package-11.html#dtb_4671"></option><option value="74" label="74" data-href="package-11.html#dtb_4721"></option><option value="75" label="75" data-href="package-11.html#dtb_4751"></option><option value="76" label="76" data-href="package-11.html#dtb_4842"></option><option value="77" label="77" data-href="package-11.html#dtb_4884"></option><option value="78" label="78" data-href="package-11.html#dtb_4943"></option><option value="79" label="79" data-href="package-11.html#dtb_5019"></option><option value="80" label="80" data-href="package-11.html#dtb_5049"></option><option value="81" label="81" data-href="package-11.html#dtb_5089"></option><option value="82" label="82" data-href="package-11.html#dtb_5112"></option><option value="83" label="83" data-href="package-12.html#dtb_5130"></option><option value="84" label="84" data-href="package-12.html#dtb_5163"></option><option value="85" label="85" data-href="package-12.html#dtb_5209"></option><option value="86" label="86" data-href="package-12.html#dtb_5265"></option><option value="87" label="87" data-href="package-12.html#dtb_5322"></option><option value="88" label="88" data-href="package-12.html#dtb_5358"></option><option value="89" label="89" data-href="package-12.html#dtb_5402"></option><option value="90" label="90" data-href="package-12.html#dtb_5468"></option><option value="91" label="91" data-href="package-12.html#dtb_5553"></option><option value="92" label="92" data-href="package-12.html#dtb_5611"></option><option value="93" label="93" data-href="package-12.html#dtb_5670"></option><option value="94" label="94" data-href="package-12.html#dtb_5722"></option><option value="95" label="95" data-href="package-12.html#dtb_5807"></option><option value="96" label="96" data-href="package-12.html#dtb_5836"></option><option value="97" label="97" data-href="package-12.html#dtb_5909"></option><option value="98" label="98" data-href="package-12.html#dtb_5950"></option><option value="99" label="99" data-href="package-12.html#dtb_6005"></option><option value="100" label="100" data-href="package-12.html#dtb_6071"></option><option value="101" label="101" data-href="package-13.html#dtb_6087"></option><option value="102" label="102" data-href="package-13.html#dtb_6134"></option><option value="103" label="103" data-href="package-13.html#dtb_6194"></option><option value="104" label="104" data-href="package-13.html#dtb_6235"></option><option value="105" label="105" data-href="package-13.html#dtb_6265"></option><option value="106" label="106" data-href="package-13.html#dtb_6350"></option><option value="107" label="107" data-href="package-13.html#dtb_6434"></option><option value="108" label="108" data-href="package-13.html#dtb_6551"></option><option value="109" label="109" data-href="package-13.html#dtb_6609"></option><option value="110" label="110" data-href="package-13.html#dtb_6674"></option><option value="111" label="111" data-href="package-13.html#dtb_6758"></option><option value="112" label="112" data-href="package-14.html#dtb_6779"></option><option value="113" label="113" data-href="package-14.html#dtb_6832"></option><option value="114" label="114" data-href="package-14.html#dtb_6896"></option><option value="115" label="115" data-href="package-14.html#dtb_6967"></option><option value="116" label="116" data-href="package-14.html#dtb_6996"></option><option value="117" label="117" data-href="package-14.html#dtb_7047"></option><option value="118" label="118" data-href="package-14.html#dtb_7096"></option><option value="119" label="119" data-href="package-14.html#dtb_7216"></option><option value="120" label="120" data-href="package-14.html#dtb_7267"></option><option value="121" label="121" data-href="package-15.html#dtb_7286"></option><option value="122" label="122" data-href="package-15.html#dtb_7345"></option><option value="123" label="123" data-href="package-15.html#dtb_7432"></option><option value="124" label="124" data-href="package-15.html#dtb_7531"></option><option value="125" label="125" data-href="package-15.html#dtb_7612"></option><option value="126" label="126" data-href="package-15.html#dtb_7674"></option><option value="127" label="127" data-href="package-15.html#dtb_7761"></option><option value="128" label="128" data-href="package-15.html#dtb_7821"></option><option value="129" label="129" data-href="package-15.html#dtb_7871"></option><option value="130" label="130" data-href="package-16.html#dtb_7887"></option><option value="131" label="131" data-href="package-16.html#dtb_7944"></option><option value="132" label="132" data-href="package-16.html#dtb_8036"></option><option value="133" label="133" data-href="package-16.html#dtb_8077"></option><option value="134" label="134" data-href="package-16.html#dtb_8168"></option><option value="135" label="135" data-href="package-16.html#dtb_8205"></option><option value="136" label="136" data-href="package-16.html#dtb_8294"></option><option value="137" label="137" data-href="package-16.html#dtb_8386"></option><option value="138" label="138" data-href="package-16.html#dtb_8432"></option><option value="139" label="139" data-href="package-16.html#dtb_8508"></option><option value="139" label="139" data-href="package-16.html#dtb_8589"></option><option value="141" label="141" data-href="package-17.html#dtb_8613"></option><option value="142" label="142" data-href="package-17.html#dtb_8644"></option><option value="143" label="143" data-href="package-17.html#dtb_8673"></option><option value="144" label="144" data-href="package-17.html#dtb_8775"></option><option value="145" label="145" data-href="package-17.html#dtb_8815"></option><option value="146" label="146" data-href="package-17.html#dtb_8862"></option><option value="147" label="147" data-href="package-17.html#dtb_8931"></option><option value="148" label="148" data-href="package-17.html#dtb_8977"></option><option value="149" label="149" data-href="package-17.html#dtb_9026"></option><option value="150" label="150" data-href="package-17.html#dtb_9082"></option><option value="151" label="151" data-href="package-17.html#dtb_9123"></option><option value="152" label="152" data-href="package-17.html#dtb_9168"></option><option value="153" label="153" data-href="package-17.html#dtb_9191"></option><option value="154" label="154" data-href="package-18.html#dtb_9211"></option><option value="155" label="155" data-href="package-18.html#dtb_9277"></option><option value="156" label="156" data-href="package-18.html#dtb_9330"></option><option value="157" label="157" data-href="package-18.html#dtb_9393"></option><option value="158" label="158" data-href="package-18.html#dtb_9545"></option><option value="159" label="159" data-href="package-18.html#dtb_9618"></option><option value="160" label="160" data-href="package-18.html#dtb_9715"></option><option value="161" label="161" data-href="package-18.html#dtb_9745"></option><option value="162" label="162" data-href="package-18.html#dtb_9785"></option><option value="163" label="163" data-href="package-18.html#dtb_9835"></option><option value="164" label="164" data-href="package-19.html#dtb_9851"></option><option value="165" label="165" data-href="package-19.html#dtb_9895"></option><option value="166" label="166" data-href="package-19.html#dtb_9940"></option><option value="167" label="167" data-href="package-19.html#dtb_9981"></option><option value="168" label="168" data-href="package-19.html#dtb_10035"></option><option value="169" label="169" data-href="package-19.html#dtb_10081"></option><option value="170" label="170" data-href="package-19.html#dtb_10134"></option><option value="171" label="171" data-href="package-19.html#dtb_10191"></option><option value="172" label="172" data-href="package-19.html#dtb_10246"></option><option value="173" label="173" data-href="package-19.html#dtb_10295"></option><option value="174" label="174" data-href="package-19.html#dtb_10354"></option><option value="175" label="175" data-href="package-19.html#dtb_10392"></option><option value="176" label="176" data-href="package-19.html#dtb_10513"></option><option value="177" label="177" data-href="package-19.html#dtb_10570"></option><option value="178" label="178" data-href="package-19.html#dtb_10641"></option><option value="179" label="179" data-href="package-19.html#dtb_10712"></option><option value="180" label="180" data-href="package-19.html#dtb_10745"></option><option value="181" label="181" data-href="package-19.html#dtb_10791"></option><option value="182" label="182" data-href="package-20.html#dtb_10842"></option><option value="183" label="183" data-href="package-20.html#dtb_10879"></option><option value="184" label="184" data-href="package-20.html#dtb_10927"></option><option value="185" label="185" data-href="package-20.html#dtb_11007"></option><option value="186" label="186" data-href="package-20.html#dtb_11068"></option><option value="187" label="187" data-href="package-20.html#dtb_11103"></option><option value="188" label="188" data-href="package-20.html#dtb_11160"></option><option value="189" label="189" data-href="package-20.html#dtb_11197"></option><option value="190" label="190" data-href="package-20.html#dtb_11232"></option><option value="191" label="191" data-href="package-20.html#dtb_11288"></option><option value="192" label="192" data-href="package-20.html#dtb_11333"></option></datalist>
+    </section>
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>English For Today Classes 9-10</dd><dt>Author</dt><dd>Created By: YPSA. In cooperation with A2i, Prime Minister Office</dd><dt>Date</dt><dd>2022-02-11T23:26:17Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

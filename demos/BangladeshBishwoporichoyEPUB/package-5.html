@@ -1,236 +1,260 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> নির্দেশনা </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নির্দেশনা</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
-    </script>
-  </head>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="aeed20c9-e8c5-4154-9764-2d29718320db">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <main><section id="id_7"><h1 id="dtb_65" xml:lang="bn-IN" tabindex="-1"> নির্দেশনা <a href="#dtb_65" rel="bookmark" class="webbook" title="Link to নির্দেশনা" aria-label="Link to নির্দেশনা"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_66" xml:lang="bn-IN">
+					<span id="dtb_67">‘বাংলাদেশ ও বিশ্বপরিচয়’ পাঠ্যপুস্তক শিশুদের পারিপার্শ্বিক জগৎ সম্পর্কে অবহিত করার লক্ষ্যে প্রণয়ন করা হয়েছে। </span>
+					<span id="dtb_68">শিক্ষার্থীরা যাতে এই বিষয়টির মাধ্যমে মূল্যবোধ, জ্ঞান ও দক্ষতা অর্জন করতে পারে সেদিকে লক্ষ্য রেখেই শিক্ষাক্রম তৈরি করা হয়েছে। </span>
+				</p><p id="dtb_69" xml:lang="bn-IN">-বাংলাদেশের সংস্কৃতি, মুক্তিযুদ্ধ, ধর্ম ও রাজনৈতিক ভূখন্ড সম্পর্কিত পাঠ শিক্ষার্থীদের মূল্যবোধ গঠনে সহায়ক হবে। </p><p id="dtb_70" xml:lang="bn-IN">-ভুগোল, ইতিহাস, ও সমাজ পরিচিতি শিক্ষার্থীদের এ বিষয়গুলোতে জ্ঞান অর্জনে সাহায্য করবে। </p><p id="dtb_71" xml:lang="bn-IN">-একই সাথে সামাজিক আচরণ ও প্রাকৃতিক অবস্থা সম্পর্কিত তথ্য-সংগঠন ও বস্তুনিষ্ঠ বিশ্লেষণ করার মাধ্যমে শিক্ষার্থীরা অনুসন্ধান ও গবেষণা করার দক্ষতা অর্জন করবে।</p><p id="dtb_72" xml:lang="bn-IN">
+					<span id="dtb_73">‘বাংলাদেশ ও বিশ্বপরিচয়’ পাঠ্যপুস্তকটির সাথে শিক্ষার্থীরা এখন পরিচিত। </span>
+					<span id="dtb_74">কিন্তু তারা এখনও পঠনে সাবলীলতা অর্জন করেনি এবং পাঠ্যপুস্তকের অনুশীলনী করতে অভ্যস্ত নয়। </span>
+					<span id="dtb_75">তাই পাঠ্যপুস্তকটিকে শিশুদের জীবন উপযোগী করতে শিক্ষকের সহায়তা আবশ্যক। </span>
+					<span id="dtb_76">এজন্য বইটির সকল পাঠ ও নির্দেশিত কাজ শিক্ষার্থীদের জন্য আকর্ষনীয়, বয়স উপযোগী এবং ব্যবহারযোগ্য করতে যথাসাধ্য চেষ্টা করা হয়েছে। </span>
+					<span id="dtb_77">শিক্ষার্থীদের বিষয়ভিত্তিক শব্দের জ্ঞান বৃদ্ধির লক্ষ্যে বইয়ের শেষে শব্দভান্ডার দেওয়া হয়েছে ।</span>
+				</p><section id="id_8"><h1 id="dtb_78" xml:lang="en-US" tabindex="-1"> অধ্যায় <a href="#dtb_78" rel="bookmark" class="webbook" title="Link to অধ্যায়" aria-label="Link to অধ্যায়"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_79" xml:lang="bn-IN">
+						<span id="dtb_80">এই পাঠ্যপুস্তকে ১৬টি অধ্যায় আছে। </span>
+						<span id="dtb_81">অধ্যায়গুলোকে সমাজ, ব্যক্তির আচরণ, ভূগোল, ও সংস্কৃতি ইত্যাদি বিষয়বস্তুতে বিভাজন করা হয়েছে। </span>
+						<span id="dtb_82">শিক্ষাক্রমে, বাংলাদেশ ও বিশ্বপরিচয় বিষয়টির জন্য প্রতিটি অধ্যায়ে নির্দিষ্ট অর্জন উপযোগী যোগ্যতা নির্ধারিত রয়েছে। </span>
+						<span id="dtb_83">এই অর্জন উপযোগী যোগ্যতাগুলো সামনে রেখেই প্রতিটি অধ্যায়ের বিষয়বস্তু সাজানো হয়েছে। </span>
+						<span id="dtb_84">এ ব্যাপারে শিক্ষক সংস্করণে বিশদ বর্ণনা দেওয়া হয়েছে।</span>
+					</p><section id="id_9"><h1 id="dtb_85" xml:lang="bn-IN" tabindex="-1"> বিষয়বস্তু <a href="#dtb_85" rel="bookmark" class="webbook" title="Link to বিষয়বস্তু" aria-label="Link to বিষয়বস্তু"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_86" xml:lang="bn-IN">
+							<span id="dtb_87">প্রতিটি অধ্যায়কে ২ থেকে ৫টি বিষয়বস্তুতে ভাগ করা হয়েছে। </span>
+							<span id="dtb_88">প্রতিটি বিষয়বস্তুতে একটি বিশেষ দিককে নির্দিষ্ট করে গুরুত্ব দেওয়া হয়েছে। </span>
+							<span id="dtb_89">প্রতিটি বিষয়বস্তুকে দুটি পৃষ্ঠায় বিস্তৃত করা হয়েছে, যেখানে পাঠ উপস্থাপন করা হয়েছে বাম দিকের পৃষ্ঠায় এবং নির্ধারিত কাজ ও প্রশ্ন দেওয়া হয়েছে ডান দিকের পৃষ্ঠায়। </span>
+							<span id="dtb_90">এর ফলে শিক্ষক সহজেই পাঠের সাথে শিখন কার্যক্রমকে সমন্বয় করতে পারবেন এবং শিক্ষার্থীরাও সহজেই নির্দেশিত কাজের জন্য প্রয়োজনীয় পাঠ পাশের পৃষ্ঠায় খুঁজে পাবে ।</span>
+						</p></section><section id="id_10"><h1 id="dtb_91" xml:lang="en-US" tabindex="-1"> পাঠ <a href="#dtb_91" rel="bookmark" class="webbook" title="Link to পাঠ" aria-label="Link to পাঠ"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_92" xml:lang="bn-IN">
+							<span id="dtb_93">১৬টি অধ্যায়ের প্রত্যেক বিষয়বস্তুকে একাধিক পাঠে বিভাজন করা হয়েছে।</span>
+							<span id="dtb_94">যেকোনো বিষয়বস্তুর প্রথম পাঠে শিক্ষক সেই বিষয়টির মূল পাঠ্যাংশ বই থেকে পড়াবেন ও বলার কাজ (এসো বলি) করাবেন এবং দ্বিতীয় পাঠে লেখার কাজ (এসো লিখি) সংযোজনের কাজ (আরও কিছু করি) এবং যাচাই (যাচাই করি) এর কাজ করাবেন। </span>
+							<span id="dtb_95">শিক্ষাক্রমে, বাংলাদেশ ও বিশ্বপরিচয় অধ্যায়ভিত্তিক শিখনফল দেওয়া আছে। </span>
+							<span id="dtb_96">এই শিখনফলগুলো শিক্ষক সংস্করণে প্রতিটি পাঠের সাথে নির্দিষ্ট করে দেওয়া হয়েছে। </span>
+							<span id="dtb_97">এর মাধ্যমে শিক্ষক প্রতিটি শিখনফল অর্জন হচ্ছে কি না তা লক্ষ রাখতে পারবেন।</span>
+						</p></section></section><section id="id_11"><h1 id="dtb_98" xml:lang="en-US" tabindex="-1"> নির্ধারিত কাজ <a href="#dtb_98" rel="bookmark" class="webbook" title="Link to নির্ধারিত কাজ" aria-label="Link to নির্ধারিত কাজ"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_99" xml:lang="bn-IN">
+						<span id="dtb_100">বইটিতে মূল পাঠ্যাংশের পাশাপাশি প্রশ্ন ও কাজের সমান গুরুত্ব দেওয়া হয়েছে, কারণ এসবকিছুই শিখন প্রক্রিয়ার একটি অপরিহায অংশ। </span>
+						<span id="dtb_101">শিক্ষার্থীরা শুধু পড়ে এবং মুখস্থ করার উপর নির্ভর করে শিখতে পারে না। </span>
+						<span id="dtb_102">তারা প্রশ্নোত্তর, তথ্য-সংগঠন এবং অনুসন্ধানের মাধ্যমে শেখে। </span>
+					</p><p id="dtb_103" xml:lang="bn-IN">
+						<span id="dtb_104">শিক্ষকের জন্য পরামর্শ থাকবে, শিক্ষার্থীদের প্রাথমিক ধারণা বা জ্ঞানের উপর ভিত্তি করে পাঠ শুরু করে প্রয়োজনমতো চারপাশের উদাহরণ ব্যবহার করবেন। </span>
+						<span id="dtb_105">প্রতিটি বিষয়বস্তুর উপর প্রশ্ন ও কাজ ক্রমান্বয়ে সহজ থেকে কঠিন করা হয়েছে এবং এর মাধ্যমে নিম্নলিখিত দক্ষতাগুলোর অনুশীলন ও বিকাশ হবে।</span>
+					</p><p id="dtb_106" xml:lang="bn-IN">
+						<em id="dtb_107">এসো বলি:</em>
+					</p><p id="dtb_108" xml:lang="bn-IN">
+						<span id="dtb_109">বলার কাজে নিজস্ব ধারণা প্রকাশ করতে এবং অনেকটা অনানুষ্ঠানিকভাবে এ দক্ষতা অর্জন করতে শিক্ষার্থীদের অনুপ্রাণিত করা হবে। </span>
+						<span id="dtb_110">‘এসো বলি’-তে শিক্ষার্থীদের শ্রেণির কাজে সবার সাথে আলোচনায় অংশগ্রহণ করতে উৎসাহিত করা হবে এবং শিক্ষকের কাজ হবে শিক্ষার্থীদের উত্তর বোর্ডে লিখে দেওয়া। </span>
+						<span id="dtb_111">বোর্ডের লেখা দেখে শিক্ষার্থীরা সঠিক বানান শিখতে পারবে যা তাদের লেখার কাজে সহায়তা করবে।</span>
+					</p><p id="dtb_112" xml:lang="bn-IN">
+						<em id="dtb_113">এসো লিখি:</em>
+					</p><p id="dtb_114" xml:lang="bn-IN">
+						<span id="dtb_115">লেখার কাজ ক্রমান্বয়ে সহজ থেকে কঠিন করা হয়েছে। </span>
+						<span id="dtb_116">যেমন, শিক্ষার্থীরা প্রথমে তালিকা তৈরি করবে, এরপর তথ্য বিভাজন ও শ্রেণিকরণের কাজ করবে এবং আরও পরে বাক্য সম্পন্ন করার কাজ করবে।</span>
+					</p><p id="dtb_117" xml:lang="bn-IN"> <em id="dtb_118">আরও </em> <em id="dtb_119">কিছু</em> <em id="dtb_120"> করি:</em> </p><p id="dtb_121" xml:lang="bn-IN">
+						<span id="dtb_122">এই অংশের মাধ্যমে শিক্ষার্থীদের বিষয়বস্তুর উপর জ্ঞান আরও বৃদ্ধি পাবে, যেমন-অঙ্কন বা গবেষণার মাধ্যমে শিক্ষার্থীরা বিষয়ের আরও গভীরে যাবে। </span>
+						<span id="dtb_123">যদিও ‘আরও কিছু করি’র কাজগুলো পরিকল্পনা ও পরিচালনা করতে কিছু সময় বেশি লাগবে, তারপরও এগুলো শিক্ষার্থীদের জন্য স্মরণীয় শিখন অভিজ্ঞতা হয়ে থাকবে।</span>
+					</p><p id="dtb_124" xml:lang="bn-IN">
+						<em id="dtb_125">যাচাই করি:</em>
+					</p><p id="dtb_126" xml:lang="bn-IN">
+						<span id="dtb_127">গাঠনিক মূল্যায়নের জন্য প্রতিটি বিষয়বস্তুর শেষে যাচাই করি দেওয়া হয়েছে। </span>
+						<span id="dtb_128">এখানে আছে বহুনির্বাচনি প্রশ্ন, শূন্যস্থান পূরণ, মিলকরণ এবং সংক্ষিপ্ত প্রশ্ন-উত্তর।</span>
+					</p><p id="dtb_129" xml:lang="bn-IN">
+						<span id="dtb_130">শিক্ষার্থীদের কাজে বৈচিত্র্য আনার জন্য বিভিণ্ন ধরনের দলীয়, জোড়ায় ও একক কাজ সংযোজন করা হয়েছে। </span>
+						<span id="dtb_131">শিক্ষক সিদ্ধান্ত নেবেন, কোন কাজের জন্য কী উপায়ে শিক্ষার্থীদের দলে ভাগ করা হবে। </span>
+						<span id="dtb_132">এর ফলে শিক্ষার্থীরা আগে থেকেই বুঝতে পারবে কোন কাজের জন্য কীভাবে প্রস্তুতি নিতে হবে ও দলে ভাগ হতে হবে। </span>
+					</p><p id="dtb_133" xml:lang="bn-IN"> <em id="dtb_134">দক্ষতা </em> <em id="dtb_135">ম্যাট্রিক:</em> </p><p id="dtb_136" xml:lang="bn-IN">প্রতিটি বিষয়ের নির্ধারিত কাজের মাধ্যমে শিক্ষার্থীরা কী ধরনের দক্ষতা অর্জন করবে তা পাঠ্যপুস্তকের ‘দক্ষতা ম্যাট্রিক্সে’ উল্লেখ করা হয়েছে।</p><p id="dtb_137" xml:lang="bn-IN">
+						<em id="dtb_138">মূল্যায়ন </em>
+					</p><p id="dtb_139" xml:lang="bn-IN">সর্বোপরি, শব্দভান্ডারের আগে শিক্ষার্থীদের সামষ্টিক মূল্যায়নের সহায়তার জন্যে পাঠ্যপুস্তকের শেষে অধ্যায়ভিত্তিক কিছু নমুনা প্রশ্ন সংযোজন করা হয়েছে।</p></section></section></main>
+
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-4.html" rel="prev" title="Previous: প্রসঙ্গ কথা" aria-label="Previous: প্রসঙ্গ কথা">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-6.html" title="Next: দক্ষতা ম্যাট্রিক্স" aria-label="Next: দক্ষতা ম্যাট্রিক্স" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
         </div>
-      </section>
+        <ol><li id="toc-1"><a href="package-3.html#dtb_8">বাংলাদেশ ও বিশ্ব পরিচয়</a><ol><li id="toc-1-1"><a href="package-3.html#dtb_9">চতুর্থ শ্রেণি</a></li></ol></li><li id="toc-2"><a href="package-4.html#dtb_42">প্রসঙ্গ কথা</a></li><li id="toc-3"><a href="package-5.html#dtb_65">নির্দেশনা</a><ol><li id="toc-3-1"><a href="package-5.html#dtb_78">অধ্যায়</a><ol><li id="toc-3-1-1"><a href="package-5.html#dtb_85">বিষয়বস্তু</a></li><li id="toc-3-1-2"><a href="package-5.html#dtb_91">পাঠ</a></li></ol></li><li id="toc-3-2"><a href="package-5.html#dtb_98">নির্ধারিত কাজ</a></li></ol></li><li id="toc-4"><a href="package-6.html#dtb_140">দক্ষতা ম্যাট্রিক্স</a></li><li id="toc-5"><a href="package-7.html#dtb_536">সূচিপত্র</a></li><li id="toc-6"><a href="package-8.html#dtb_679">অধ্যায় ১</a><ol><li id="toc-6-1"><a href="package-8.html#dtb_680">আমাদের পরিবেশ ও সমাজ</a><ol><li id="toc-6-1-1"><a href="package-8.html#dtb_681">১। প্রাকৃতিক পরিবেশের বৈচিত্র্য</a></li></ol></li><li id="toc-6-2"><a href="package-8.html#dtb_769">২ সামাজিক পরিবেশের উপর প্রকৃতির প্রভাব</a></li></ol></li><li id="toc-7"><a href="package-9.html#dtb_847">অধ্যায় ২</a><ol><li id="toc-7-1"><a href="package-9.html#dtb_848">সমাজে পরস্পরের সহযোগিতা</a><ol><li id="toc-7-1-1"><a href="package-9.html#dtb_849">১। নারী ও পুরুষ</a></li></ol></li><li id="toc-7-2"><a href="package-9.html#dtb_961">২। সামাজিক বিভিন্নতা ও বিশেষ চাহিদাসম্পন্ন শিশু</a></li></ol></li><li id="toc-8"><a href="package-10.html#dtb_1070">অধ্যায় ৩</a><ol><li id="toc-8-1"><a href="package-10.html#dtb_1071">বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী</a><ol><li id="toc-8-1-1"><a href="package-10.html#dtb_1072">১। চাকমা</a></li></ol></li><li id="toc-8-2"><a href="package-10.html#dtb_1172">২ মারমা</a></li><li id="toc-8-3"><a href="package-10.html#dtb_1267">৩। সাঁওতাল</a></li><li id="toc-8-4"><a href="package-10.html#dtb_1384">৪ মণিপুরি</a></li></ol></li><li id="toc-9"><a href="package-11.html#dtb_1484">অধ্যায় ৪</a><ol><li id="toc-9-1"><a href="package-11.html#dtb_1485">নাগরিক অধিকার</a><ol><li id="toc-9-1-1"><a href="package-11.html#dtb_1486">১. সামাজিক অধিকার</a></li></ol></li><li id="toc-9-2"><a href="package-11.html#dtb_1629">২। রাজনৈতিক অধিকার</a></li><li id="toc-9-3"><a href="package-11.html#dtb_1756">৩। অর্থনৈতিক অধিকার</a></li></ol></li><li id="toc-10"><a href="package-12.html#dtb_1902">অধ্যায় ৫</a><ol><li id="toc-10-1"><a href="package-12.html#dtb_1903">মূল্যবোধ ও আচরণ</a><ol><li id="toc-10-1-1"><a href="package-12.html#dtb_1904">১ ভালো হওয়া ও ভালো কাজ করা</a></li></ol></li><li id="toc-10-2"><a href="package-12.html#dtb_2041">২। একটি ঘটনা পড়ি</a></li></ol></li><li id="toc-11"><a href="package-13.html#dtb_2227">অধ্যায় ৬</a><ol><li id="toc-11-1"><a href="package-13.html#dtb_2228">পরমতসহিষ্ণুতা</a><ol><li id="toc-11-1-1"><a href="package-13.html#dtb_2229">১। অধিকাংশের মত গ্রহণ</a></li></ol></li><li id="toc-11-2"><a href="package-13.html#dtb_2351">২ একটি ঘটনা</a></li></ol></li><li id="toc-12"><a href="package-14.html#dtb_2446">অধ্যায় ৭</a><ol><li id="toc-12-1"><a href="package-14.html#dtb_2447">কাজের মর্যাদা</a><ol><li id="toc-12-1-1"><a href="package-14.html#dtb_2448">১. শ্রমজীবী</a></li></ol></li><li id="toc-12-2"><a href="package-14.html#dtb_2566">২ চাকুরিজীবী</a></li><li id="toc-12-3"><a href="package-14.html#dtb_2686">৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা</a></li></ol></li><li id="toc-13"><a href="package-15.html#dtb_2778">অধ্যায় ৮</a><ol><li id="toc-13-1"><a href="package-15.html#dtb_2779">সামাজিক এবং রাষ্ট্রীয় সম্পদ</a><ol><li id="toc-13-1-1"><a href="package-15.html#dtb_2780">১ সামাজিক সম্পদ</a></li></ol></li><li id="toc-13-2"><a href="package-15.html#dtb_2893">২ রাষ্ট্রীয় সম্পদ</a></li><li id="toc-13-3"><a href="package-15.html#dtb_3015">৩ আরও কিছু রাষ্ট্রীয় সম্পদ</a></li></ol></li><li id="toc-14"><a href="package-16.html#dtb_3134">অধ্যায় ৯</a><ol><li id="toc-14-1"><a href="package-16.html#dtb_3135">এলাকার উন্নয়ন</a><ol><li id="toc-14-1-1"><a href="package-16.html#dtb_3136">১ গ্রামাঞ্চল</a></li></ol></li><li id="toc-14-2"><a href="package-16.html#dtb_3230">২ শহরাঞ্চল</a></li></ol></li><li id="toc-15"><a href="package-17.html#dtb_3310">অধ্যায় ১০</a><ol><li id="toc-15-1"><a href="package-17.html#dtb_3311">এশিয়া মহাদেশ</a><ol><li id="toc-15-1-1"><a href="package-17.html#dtb_3312">১. বৃহত্তম মহাদেশ</a></li></ol></li><li id="toc-15-2"><a href="package-17.html#dtb_3414">২ এশিয়ার বিভিন্ন সম্পদ</a></li></ol></li><li id="toc-16"><a href="package-18.html#dtb_3465">অধ্যায় ১১</a><ol><li id="toc-16-1"><a href="package-18.html#dtb_3466">বাংলাদেশের ভূপ্রকৃতি</a><ol><li id="toc-16-1-1"><a href="package-18.html#dtb_3467">১ ভূপ্রকৃতি</a></li></ol></li><li id="toc-16-2"><a href="package-18.html#dtb_3550">২ জলবায়ু</a></li><li id="toc-16-3"><a href="package-18.html#dtb_3656">৩ বঙ্গোপসাগর</a></li><li id="toc-16-4"><a href="package-18.html#dtb_3769">৪ দর্শনীয় পাহাড়ি এলাকা</a></li></ol></li><li id="toc-17"><a href="package-19.html#dtb_3876">অধ্যায় ১২</a><ol><li id="toc-17-1"><a href="package-19.html#dtb_3877">দুর্যোগ মোকাবেলা</a><ol><li id="toc-17-1-1"><a href="package-19.html#dtb_3878">১ বন্যা</a></li></ol></li><li id="toc-17-2"><a href="package-19.html#dtb_3948">২ ঘূর্ণিঝড়</a></li><li id="toc-17-3"><a href="package-19.html#dtb_4012">৩ আগুন</a></li></ol></li><li id="toc-18"><a href="package-20.html#dtb_4145">অধ্যায় ১৩</a><ol><li id="toc-18-1"><a href="package-20.html#dtb_4146">বাংলাদেশের জনসংখ্যা</a><ol><li id="toc-18-1-1"><a href="package-20.html#dtb_4147">১ বাংলাদেশের জনসংখ্যা বৃদ্ধির ধারা</a></li></ol></li><li id="toc-18-2"><a href="package-20.html#dtb_4282">২ জনসংখ্যা বৃদ্ধির কারণ</a></li></ol></li><li id="toc-19"><a href="package-21.html#dtb_4401">অধ্যায় ১৪</a><ol><li id="toc-19-1"><a href="package-21.html#dtb_4402">আমাদের ইতিহাস</a><ol><li id="toc-19-1-1"><a href="package-21.html#dtb_4403">১ প্রাচীন যুগ</a></li></ol></li><li id="toc-19-2"><a href="package-21.html#dtb_4533">২ মধ্যযুগ</a></li></ol></li><li id="toc-20"><a href="package-22.html#dtb_4637">অধ্যায় ১৫</a><ol><li id="toc-20-1"><a href="package-22.html#dtb_4638">আমাদের মুক্তিযুদ্ধ</a><ol><li id="toc-20-1-1"><a href="package-22.html#dtb_4639">১ ভাষা আন্দোলন: ১৯৫২</a></li></ol></li><li id="toc-20-2"><a href="package-22.html#dtb_4694">২ গণ অভ্যুস্থান : ১৯৬৯</a></li><li id="toc-20-3"><a href="package-22.html#dtb_4759">৩ ১৯৭১ সালের মুক্তিযুদ্ধ</a></li></ol></li><li id="toc-21"><a href="package-23.html#dtb_4827">অধ্যায় ১৬</a><ol><li id="toc-21-1"><a href="package-23.html#dtb_4828">আমাদের সংস্কৃতি</a><ol><li id="toc-21-1-1"><a href="package-23.html#dtb_4829">১ ভাষা ও পোশাক</a></li></ol></li><li id="toc-21-2"><a href="package-23.html#dtb_4909">২ খাবার</a></li><li id="toc-21-3"><a href="package-23.html#dtb_4980">৩ আচার অনুষ্ঠান ও সংগীত</a></li></ol></li><li id="toc-22"><a href="package-24.html#dtb_5044">নমুনা প্রশ্ন</a><ol><li id="toc-22-1"><a href="package-24.html#dtb_5045">অধ্যায় ১ : আমাদের পরিবেশ ও সমাজ</a><ol><li id="toc-22-1-1"><a href="package-24.html#dtb_5066">অধ্যায় ২ : সমাজে পরস্পরের সহযোগিতা</a></li><li id="toc-22-1-2"><a href="package-24.html#dtb_5087">অধ্যায় ৩: বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী</a></li><li id="toc-22-1-3"><a href="package-24.html#dtb_5108">অধ্যায় ৪ : নাগরিক অধিকার</a></li><li id="toc-22-1-4"><a href="package-24.html#dtb_5130">অধ্যায় ৫: মূল্যবোধ ও আচরণ</a></li><li id="toc-22-1-5"><a href="package-24.html#dtb_5151">অধ্যায় ৬: পরমতসহিষ্ণুতা</a></li><li id="toc-22-1-6"><a href="package-24.html#dtb_5172">অধ্যায় ৭ : কাজের মর্যাদা</a></li><li id="toc-22-1-7"><a href="package-24.html#dtb_5193">অধ্যায় ৮ : সামাজিক এবং রাষ্ট্রীয় সম্পদ</a></li><li id="toc-22-1-8"><a href="package-24.html#dtb_5215">অধ্যায় ৯ : এলাকার উন্নয়ন</a></li><li id="toc-22-1-9"><a href="package-24.html#dtb_5236">অধ্যায় ১০ : এশিয়া মহাদেশ</a></li><li id="toc-22-1-10"><a href="package-24.html#dtb_5257">অধ্যায় ১১ : বাংলাদেশের ভূপ্রকৃতি</a></li><li id="toc-22-1-11"><a href="package-24.html#dtb_5278">অধ্যায় ১২ : দুর্যোগ মোকাবেলা</a></li><li id="toc-22-1-12"><a href="package-24.html#dtb_5299">অধ্যায় ১৩ : বাংলাদেশের জনসংখ্যা</a></li><li id="toc-22-1-13"><a href="package-24.html#dtb_5320">অধ্যায় ১৪ : আমাদের ইতিহাস</a></li><li id="toc-22-1-14"><a href="package-24.html#dtb_5341">অধ্যায় ১৫ : আমাদের মুক্তিযুদ্ধ</a></li><li id="toc-22-1-15"><a href="package-24.html#dtb_5360">অধ্যায় ১৬ : আমাদের সংস্কৃতি</a></li></ol></li></ol></li><li id="toc-23"><a href="package-25.html#dtb_5382">শব্দ ভান্ডার</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <main>
-      <section id="id_7">
-        <h1 id="dtb_65" xml:lang="bn-IN"> নির্দেশনা <a href="#dtb_65" title="Link to heading নির্দেশনা" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <p id="dtb_66" xml:lang="bn-IN">
-          <span id="dtb_67">‘বাংলাদেশ ও বিশ্বপরিচয়’ পাঠ্যপুস্তক শিশুদের পারিপার্শ্বিক জগৎ সম্পর্কে অবহিত করার লক্ষ্যে প্রণয়ন করা হয়েছে। </span>
-          <span id="dtb_68">শিক্ষার্থীরা যাতে এই বিষয়টির মাধ্যমে মূল্যবোধ, জ্ঞান ও দক্ষতা অর্জন করতে পারে সেদিকে লক্ষ্য রেখেই শিক্ষাক্রম তৈরি করা হয়েছে। </span>
-        </p>
-        <p id="dtb_69" xml:lang="bn-IN">-বাংলাদেশের সংস্কৃতি, মুক্তিযুদ্ধ, ধর্ম ও রাজনৈতিক ভূখন্ড সম্পর্কিত পাঠ শিক্ষার্থীদের মূল্যবোধ গঠনে সহায়ক হবে। </p>
-        <p id="dtb_70" xml:lang="bn-IN">-ভুগোল, ইতিহাস, ও সমাজ পরিচিতি শিক্ষার্থীদের এ বিষয়গুলোতে জ্ঞান অর্জনে সাহায্য করবে। </p>
-        <p id="dtb_71" xml:lang="bn-IN">-একই সাথে সামাজিক আচরণ ও প্রাকৃতিক অবস্থা সম্পর্কিত তথ্য-সংগঠন ও বস্তুনিষ্ঠ বিশ্লেষণ করার মাধ্যমে শিক্ষার্থীরা অনুসন্ধান ও গবেষণা করার দক্ষতা অর্জন করবে।</p>
-        <p id="dtb_72" xml:lang="bn-IN">
-          <span id="dtb_73">‘বাংলাদেশ ও বিশ্বপরিচয়’ পাঠ্যপুস্তকটির সাথে শিক্ষার্থীরা এখন পরিচিত। </span>
-          <span id="dtb_74">কিন্তু তারা এখনও পঠনে সাবলীলতা অর্জন করেনি এবং পাঠ্যপুস্তকের অনুশীলনী করতে অভ্যস্ত নয়। </span>
-          <span id="dtb_75">তাই পাঠ্যপুস্তকটিকে শিশুদের জীবন উপযোগী করতে শিক্ষকের সহায়তা আবশ্যক। </span>
-          <span id="dtb_76">এজন্য বইটির সকল পাঠ ও নির্দেশিত কাজ শিক্ষার্থীদের জন্য আকর্ষনীয়, বয়স উপযোগী এবং ব্যবহারযোগ্য করতে যথাসাধ্য চেষ্টা করা হয়েছে। </span>
-          <span id="dtb_77">শিক্ষার্থীদের বিষয়ভিত্তিক শব্দের জ্ঞান বৃদ্ধির লক্ষ্যে বইয়ের শেষে শব্দভান্ডার দেওয়া হয়েছে ।</span>
-        </p>
-        <section id="id_8">
-          <h1 id="dtb_78" xml:lang="en-US"> অধ্যায় <a href="#dtb_78" title="Link to heading অধ্যায়" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_79" xml:lang="bn-IN">
-            <span id="dtb_80">এই পাঠ্যপুস্তকে ১৬টি অধ্যায় আছে। </span>
-            <span id="dtb_81">অধ্যায়গুলোকে সমাজ, ব্যক্তির আচরণ, ভূগোল, ও সংস্কৃতি ইত্যাদি বিষয়বস্তুতে বিভাজন করা হয়েছে। </span>
-            <span id="dtb_82">শিক্ষাক্রমে, বাংলাদেশ ও বিশ্বপরিচয় বিষয়টির জন্য প্রতিটি অধ্যায়ে নির্দিষ্ট অর্জন উপযোগী যোগ্যতা নির্ধারিত রয়েছে। </span>
-            <span id="dtb_83">এই অর্জন উপযোগী যোগ্যতাগুলো সামনে রেখেই প্রতিটি অধ্যায়ের বিষয়বস্তু সাজানো হয়েছে। </span>
-            <span id="dtb_84">এ ব্যাপারে শিক্ষক সংস্করণে বিশদ বর্ণনা দেওয়া হয়েছে।</span>
-          </p>
-          <section id="id_9">
-            <h1 id="dtb_85" xml:lang="bn-IN"> বিষয়বস্তু <a href="#dtb_85" title="Link to heading বিষয়বস্তু" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                  <g transform="rotate(135 12 12)">
-                    <g fill="none">
-                      <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                    </g>
-                  </g>
-                </svg></a></h1>
-            <p id="dtb_86" xml:lang="bn-IN">
-              <span id="dtb_87">প্রতিটি অধ্যায়কে ২ থেকে ৫টি বিষয়বস্তুতে ভাগ করা হয়েছে। </span>
-              <span id="dtb_88">প্রতিটি বিষয়বস্তুতে একটি বিশেষ দিককে নির্দিষ্ট করে গুরুত্ব দেওয়া হয়েছে। </span>
-              <span id="dtb_89">প্রতিটি বিষয়বস্তুকে দুটি পৃষ্ঠায় বিস্তৃত করা হয়েছে, যেখানে পাঠ উপস্থাপন করা হয়েছে বাম দিকের পৃষ্ঠায় এবং নির্ধারিত কাজ ও প্রশ্ন দেওয়া হয়েছে ডান দিকের পৃষ্ঠায়। </span>
-              <span id="dtb_90">এর ফলে শিক্ষক সহজেই পাঠের সাথে শিখন কার্যক্রমকে সমন্বয় করতে পারবেন এবং শিক্ষার্থীরাও সহজেই নির্দেশিত কাজের জন্য প্রয়োজনীয় পাঠ পাশের পৃষ্ঠায় খুঁজে পাবে ।</span>
-            </p>
-          </section>
-          <section id="id_10">
-            <h1 id="dtb_91" xml:lang="en-US"> পাঠ <a href="#dtb_91" title="Link to heading পাঠ" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                  <g transform="rotate(135 12 12)">
-                    <g fill="none">
-                      <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                    </g>
-                  </g>
-                </svg></a></h1>
-            <p id="dtb_92" xml:lang="bn-IN">
-              <span id="dtb_93">১৬টি অধ্যায়ের প্রত্যেক বিষয়বস্তুকে একাধিক পাঠে বিভাজন করা হয়েছে।</span>
-              <span id="dtb_94">যেকোনো বিষয়বস্তুর প্রথম পাঠে শিক্ষক সেই বিষয়টির মূল পাঠ্যাংশ বই থেকে পড়াবেন ও বলার কাজ (এসো বলি) করাবেন এবং দ্বিতীয় পাঠে লেখার কাজ (এসো লিখি) সংযোজনের কাজ (আরও কিছু করি) এবং যাচাই (যাচাই করি) এর কাজ করাবেন। </span>
-              <span id="dtb_95">শিক্ষাক্রমে, বাংলাদেশ ও বিশ্বপরিচয় অধ্যায়ভিত্তিক শিখনফল দেওয়া আছে। </span>
-              <span id="dtb_96">এই শিখনফলগুলো শিক্ষক সংস্করণে প্রতিটি পাঠের সাথে নির্দিষ্ট করে দেওয়া হয়েছে। </span>
-              <span id="dtb_97">এর মাধ্যমে শিক্ষক প্রতিটি শিখনফল অর্জন হচ্ছে কি না তা লক্ষ রাখতে পারবেন।</span>
-            </p>
-          </section>
-        </section>
-        <section id="id_11">
-          <h1 id="dtb_98" xml:lang="en-US"> নির্ধারিত কাজ <a href="#dtb_98" title="Link to heading নির্ধারিত কাজ" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_99" xml:lang="bn-IN">
-            <span id="dtb_100">বইটিতে মূল পাঠ্যাংশের পাশাপাশি প্রশ্ন ও কাজের সমান গুরুত্ব দেওয়া হয়েছে, কারণ এসবকিছুই শিখন প্রক্রিয়ার একটি অপরিহায অংশ। </span>
-            <span id="dtb_101">শিক্ষার্থীরা শুধু পড়ে এবং মুখস্থ করার উপর নির্ভর করে শিখতে পারে না। </span>
-            <span id="dtb_102">তারা প্রশ্নোত্তর, তথ্য-সংগঠন এবং অনুসন্ধানের মাধ্যমে শেখে। </span>
-          </p>
-          <p id="dtb_103" xml:lang="bn-IN">
-            <span id="dtb_104">শিক্ষকের জন্য পরামর্শ থাকবে, শিক্ষার্থীদের প্রাথমিক ধারণা বা জ্ঞানের উপর ভিত্তি করে পাঠ শুরু করে প্রয়োজনমতো চারপাশের উদাহরণ ব্যবহার করবেন। </span>
-            <span id="dtb_105">প্রতিটি বিষয়বস্তুর উপর প্রশ্ন ও কাজ ক্রমান্বয়ে সহজ থেকে কঠিন করা হয়েছে এবং এর মাধ্যমে নিম্নলিখিত দক্ষতাগুলোর অনুশীলন ও বিকাশ হবে।</span>
-          </p>
-          <p id="dtb_106" xml:lang="bn-IN">
-            <em id="dtb_107">এসো বলি:</em>
-          </p>
-          <p id="dtb_108" xml:lang="bn-IN">
-            <span id="dtb_109">বলার কাজে নিজস্ব ধারণা প্রকাশ করতে এবং অনেকটা অনানুষ্ঠানিকভাবে এ দক্ষতা অর্জন করতে শিক্ষার্থীদের অনুপ্রাণিত করা হবে। </span>
-            <span id="dtb_110">‘এসো বলি’-তে শিক্ষার্থীদের শ্রেণির কাজে সবার সাথে আলোচনায় অংশগ্রহণ করতে উৎসাহিত করা হবে এবং শিক্ষকের কাজ হবে শিক্ষার্থীদের উত্তর বোর্ডে লিখে দেওয়া। </span>
-            <span id="dtb_111">বোর্ডের লেখা দেখে শিক্ষার্থীরা সঠিক বানান শিখতে পারবে যা তাদের লেখার কাজে সহায়তা করবে।</span>
-          </p>
-          <p id="dtb_112" xml:lang="bn-IN">
-            <em id="dtb_113">এসো লিখি:</em>
-          </p>
-          <p id="dtb_114" xml:lang="bn-IN">
-            <span id="dtb_115">লেখার কাজ ক্রমান্বয়ে সহজ থেকে কঠিন করা হয়েছে। </span>
-            <span id="dtb_116">যেমন, শিক্ষার্থীরা প্রথমে তালিকা তৈরি করবে, এরপর তথ্য বিভাজন ও শ্রেণিকরণের কাজ করবে এবং আরও পরে বাক্য সম্পন্ন করার কাজ করবে।</span>
-          </p>
-          <p id="dtb_117" xml:lang="bn-IN"> <em id="dtb_118">আরও </em> <em id="dtb_119">কিছু</em> <em id="dtb_120"> করি:</em> </p>
-          <p id="dtb_121" xml:lang="bn-IN">
-            <span id="dtb_122">এই অংশের মাধ্যমে শিক্ষার্থীদের বিষয়বস্তুর উপর জ্ঞান আরও বৃদ্ধি পাবে, যেমন-অঙ্কন বা গবেষণার মাধ্যমে শিক্ষার্থীরা বিষয়ের আরও গভীরে যাবে। </span>
-            <span id="dtb_123">যদিও ‘আরও কিছু করি’র কাজগুলো পরিকল্পনা ও পরিচালনা করতে কিছু সময় বেশি লাগবে, তারপরও এগুলো শিক্ষার্থীদের জন্য স্মরণীয় শিখন অভিজ্ঞতা হয়ে থাকবে।</span>
-          </p>
-          <p id="dtb_124" xml:lang="bn-IN">
-            <em id="dtb_125">যাচাই করি:</em>
-          </p>
-          <p id="dtb_126" xml:lang="bn-IN">
-            <span id="dtb_127">গাঠনিক মূল্যায়নের জন্য প্রতিটি বিষয়বস্তুর শেষে যাচাই করি দেওয়া হয়েছে। </span>
-            <span id="dtb_128">এখানে আছে বহুনির্বাচনি প্রশ্ন, শূন্যস্থান পূরণ, মিলকরণ এবং সংক্ষিপ্ত প্রশ্ন-উত্তর।</span>
-          </p>
-          <p id="dtb_129" xml:lang="bn-IN">
-            <span id="dtb_130">শিক্ষার্থীদের কাজে বৈচিত্র্য আনার জন্য বিভিণ্ন ধরনের দলীয়, জোড়ায় ও একক কাজ সংযোজন করা হয়েছে। </span>
-            <span id="dtb_131">শিক্ষক সিদ্ধান্ত নেবেন, কোন কাজের জন্য কী উপায়ে শিক্ষার্থীদের দলে ভাগ করা হবে। </span>
-            <span id="dtb_132">এর ফলে শিক্ষার্থীরা আগে থেকেই বুঝতে পারবে কোন কাজের জন্য কীভাবে প্রস্তুতি নিতে হবে ও দলে ভাগ হতে হবে। </span>
-          </p>
-          <p id="dtb_133" xml:lang="bn-IN"> <em id="dtb_134">দক্ষতা </em> <em id="dtb_135">ম্যাট্রিক:</em> </p>
-          <p id="dtb_136" xml:lang="bn-IN">প্রতিটি বিষয়ের নির্ধারিত কাজের মাধ্যমে শিক্ষার্থীরা কী ধরনের দক্ষতা অর্জন করবে তা পাঠ্যপুস্তকের ‘দক্ষতা ম্যাট্রিক্সে’ উল্লেখ করা হয়েছে।</p>
-          <p id="dtb_137" xml:lang="bn-IN">
-            <em id="dtb_138">মূল্যায়ন </em>
-          </p>
-          <p id="dtb_139" xml:lang="bn-IN">সর্বোপরি, শব্দভান্ডারের আগে শিক্ষার্থীদের সামষ্টিক মূল্যায়নের সহায়তার জন্যে পাঠ্যপুস্তকের শেষে অধ্যায়ভিত্তিক কিছু নমুনা প্রশ্ন সংযোজন করা হয়েছে।</p>
-        </section>
-      </section>
-    </main>
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-5.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-5.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-4.html" title="Previous: প্রসঙ্গ কথা" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-next-section" href="package-6.html" title="Next: দক্ষতা ম্যাট্রিক্স" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-    </div>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-5.mp3"><track default="" kind="metadata" src="vtt/package-5.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="১" label="১" data-href="package-6.html#dtb_535"></option><option value="২" label="২" data-href="package-7.html#dtb_678"></option><option value="৩" label="৩" data-href="package-8.html#dtb_704"></option><option value="৪" label="৪" data-href="package-8.html#dtb_768"></option><option value="৫" label="৫" data-href="package-8.html#dtb_791"></option><option value="৬" label="৬" data-href="package-8.html#dtb_846"></option><option value="৭" label="৭" data-href="package-9.html#dtb_872"></option><option value="৮" label="৮" data-href="package-9.html#dtb_960"></option><option value="৯" label="৯" data-href="package-9.html#dtb_998"></option><option value="১০" label="১০" data-href="package-9.html#dtb_1069"></option><option value="১১" label="১১" data-href="package-10.html#dtb_1110"></option><option value="১২" label="১২" data-href="package-10.html#dtb_1171"></option><option value="১৩" label="১৩" data-href="package-10.html#dtb_1201"></option><option value="১৪" label="১৪" data-href="package-10.html#dtb_1266"></option><option value="১৫" label="১৫" data-href="package-10.html#dtb_1336"></option><option value="১৬" label="১৬" data-href="package-10.html#dtb_1383"></option><option value="১৭" label="১৭" data-href="package-10.html#dtb_1413"></option><option value="১৮" label="১৮" data-href="package-10.html#dtb_1483"></option><option value="১৯" label="১৯" data-href="package-11.html#dtb_1537"></option><option value="২০" label="২০" data-href="package-11.html#dtb_1628"></option><option value="২১" label="২১" data-href="package-11.html#dtb_1691"></option><option value="২২" label="২২" data-href="package-11.html#dtb_1755"></option><option value="২৩" label="২৩" data-href="package-11.html#dtb_1787"></option><option value="২৪" label="২৪" data-href="package-11.html#dtb_1901"></option><option value="২৫" label="২৫" data-href="package-12.html#dtb_1966"></option><option value="২৬" label="২৬" data-href="package-12.html#dtb_2040"></option><option value="২৭" label="২৭" data-href="package-12.html#dtb_2129"></option><option value="২৮" label="২৮" data-href="package-12.html#dtb_2226"></option><option value="২৯" label="২৯" data-href="package-13.html#dtb_2287"></option><option value="৩০" label="৩০" data-href="package-13.html#dtb_2350"></option><option value="৩১" label="৩১" data-href="package-13.html#dtb_2382"></option><option value="৩২" label="৩২" data-href="package-13.html#dtb_2445"></option><option value="৩৩" label="৩৩" data-href="package-14.html#dtb_2482"></option><option value="৩৪" label="৩৪" data-href="package-14.html#dtb_2565"></option><option value="৩৫" label="৩৫" data-href="package-14.html#dtb_2594"></option><option value="৩৬" label="৩৬" data-href="package-14.html#dtb_2685"></option><option value="৩৭" label="৩৭" data-href="package-14.html#dtb_2717"></option><option value="৩৮" label="৩৮" data-href="package-14.html#dtb_2777"></option><option value="৩৯" label="৩৯" data-href="package-15.html#dtb_2811"></option><option value="৪০" label="৪০" data-href="package-15.html#dtb_2892"></option><option value="৪১" label="৪১" data-href="package-15.html#dtb_2923"></option><option value="৪২" label="৪২" data-href="package-15.html#dtb_3014"></option><option value="৪৩" label="৪৩" data-href="package-15.html#dtb_3053"></option><option value="৪৪" label="৪৪" data-href="package-15.html#dtb_3133"></option><option value="৪৫" label="৪৫" data-href="package-16.html#dtb_3179"></option><option value="৪৬" label="৪৬" data-href="package-16.html#dtb_3229"></option><option value="৪৭" label="৪৭" data-href="package-16.html#dtb_3272"></option><option value="৪৮" label="৪৮" data-href="package-16.html#dtb_3309"></option><option value="৪৯" label="৪৯" data-href="package-17.html#dtb_3340"></option><option value="৫০" label="৫০" data-href="package-17.html#dtb_3413"></option><option value="৫১" label="৫১" data-href="package-17.html#dtb_3437"></option><option value="৫২" label="৫২" data-href="package-17.html#dtb_3464"></option><option value="৫৩" label="৫৩" data-href="package-18.html#dtb_3492"></option><option value="৫৪" label="৫৪" data-href="package-18.html#dtb_3549"></option><option value="৫৫" label="৫৫" data-href="package-18.html#dtb_3576"></option><option value="৫৬" label="৫৬" data-href="package-18.html#dtb_3655"></option><option value="৫৭" label="৫৭" data-href="package-18.html#dtb_3694"></option><option value="৫৮" label="৫৮" data-href="package-18.html#dtb_3768"></option><option value="৫৯" label="৫৯" data-href="package-18.html#dtb_3804"></option><option value="৬০" label="৬০" data-href="package-18.html#dtb_3875"></option><option value="৬১" label="৬১" data-href="package-19.html#dtb_3914"></option><option value="৬২" label="৬২" data-href="package-19.html#dtb_3947"></option><option value="৬৩" label="৬৩" data-href="package-19.html#dtb_3980"></option><option value="৬৪" label="৬৪" data-href="package-19.html#dtb_4011"></option><option value="৬৫" label="৬৫" data-href="package-19.html#dtb_4058"></option><option value="৬৬" label="৬৬" data-href="package-19.html#dtb_4144"></option><option value="৬৭" label="৬৭" data-href="package-20.html#dtb_4216"></option><option value="৬৮" label="৬৮" data-href="package-20.html#dtb_4281"></option><option value="৬৯" label="৬৯" data-href="package-20.html#dtb_4335"></option><option value="৭০" label="৭০" data-href="package-20.html#dtb_4400"></option><option value="৭১" label="৭১" data-href="package-21.html#dtb_4444"></option><option value="৭২" label="৭২" data-href="package-21.html#dtb_4532"></option><option value="৭৩" label="৭৩" data-href="package-21.html#dtb_4570"></option><option value="৭৪" label="৭৪" data-href="package-21.html#dtb_4636"></option><option value="৭৫" label="৭৫" data-href="package-22.html#dtb_4659"></option><option value="৭৬" label="৭৬" data-href="package-22.html#dtb_4693"></option><option value="৭৭" label="৭৭" data-href="package-22.html#dtb_4718"></option><option value="৭৮" label="৭৮" data-href="package-22.html#dtb_4758"></option><option value="৭৯" label="৭৯" data-href="package-22.html#dtb_4787"></option><option value="৮০" label="৮০" data-href="package-22.html#dtb_4826"></option><option value="৮১" label="৮১" data-href="package-23.html#dtb_4853"></option><option value="৮২" label="৮২" data-href="package-23.html#dtb_4908"></option><option value="৮৩" label="৮৩" data-href="package-23.html#dtb_4928"></option><option value="৮৪" label="৮৪" data-href="package-23.html#dtb_4979"></option><option value="৮৫" label="৮৫" data-href="package-23.html#dtb_4998"></option><option value="৮৬" label="৮৬" data-href="package-23.html#dtb_5043"></option><option value="৮৭" label="৮৭" data-href="package-24.html#dtb_5129"></option><option value="৮৮" label="৮৮" data-href="package-24.html#dtb_5214"></option><option value="৮৯" label="৮৯" data-href="package-24.html#dtb_5298"></option><option value="৯০" label="৯০" data-href="package-24.html#dtb_5381"></option></datalist>
+    </section>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
 
-  </body>
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>Bangladesg</dd><dt>Author</dt><dd>YPSA</dd><dt>Date</dt><dd>2022-02-11T21:36:37Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
 
-</html>
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

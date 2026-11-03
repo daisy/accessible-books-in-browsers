@@ -1,0 +1,113 @@
+/* webbook's settings */
+#webbook-settings:popover-open {
+    margin: 0;
+    inset: 0 0 0 auto;
+    width: min(400px, 92vw);
+    height: 100dvh;
+    padding: 0;
+    border-radius: 5px 0 0 5px;
+    overflow-y: auto;
+
+    h2 {
+        margin: 0;
+        padding: 1rem 3.75rem 1rem 1.5rem;
+        border-bottom: var(--webbook-panel-border);
+    }
+    fieldset {
+        border: none;
+        padding: 1.5rem;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    /* each control group: label left, control right */
+    fieldset > div {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        column-gap: 1rem;
+        row-gap: .25rem;
+    }
+    /* range groups span full width with value + reset below */
+    fieldset > div:has(input[type=range]) {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        input[type=range] {
+            grid-column: 1 / -1;
+        }
+    }
+    /* highlight color: two rows inside one div */
+    #webbook-color {
+        grid-template-columns: 1fr auto;
+        row-gap: .5rem;
+    }
+    label {
+        font-size: var(--size-step-0);
+    }
+    select {
+        background: var(--theme-bg);
+        color: var(--theme-fg);
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: .2rem .4rem;
+        font-size: var(--size-step-0);
+    }
+    input[type=color] {
+        border: 1px solid gray;
+        border-radius: 4px;
+        width: 2.5rem;
+        height: 1.75rem;
+        padding: 0;
+        cursor: pointer;
+    }
+    input[type=checkbox] {
+        width: 1.25rem;
+        height: 1.25rem;
+        justify-self: end;
+        cursor: pointer;
+    }
+    input[type=range] {
+        accent-color: var(--theme-fg);
+    }
+    input:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+    }
+    button {
+        background: none;
+        color: var(--theme-fg);
+        border: 1px solid gray;
+        border-radius: 4px;
+        padding: .2rem .6rem;
+        font-size: var(--size-step-0);
+        cursor: pointer;
+    }
+    p {
+        margin: 0;
+        font-size: var(--size-step-0);
+        text-align: right;
+        color: var(--webbook-muted-fg);
+    }
+}
+#webbook-settings:popover-open > .webbook-popover-close {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--theme-bg);
+}
+/* small screens */
+@media(max-width: 45rem) {
+    #webbook-settings:popover-open {
+        width: 100vw;
+        border-radius: 0;
+    }
+    /* every popover already goes full-screen on mobile, so there's no visible backdrop
+       behind it left to blur — the setting would be meaningless clutter here */
+    #webbook-settings fieldset > div:has(#webbook-dialog-blur-toggle) {
+        display: none;
+    }
+}

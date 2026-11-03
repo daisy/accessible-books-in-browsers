@@ -1,0 +1,82 @@
+/* webbook's about panel */
+#webbook-info:popover-open {
+    margin: 0;
+    inset: 0 0 0 auto;
+    width: min(340px, 92vw);
+    height: 100dvh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-radius: 5px 0 0 5px;
+
+    #webbook-cover {
+        width: 100%;
+        aspect-ratio: 2/3;
+        object-fit: cover;
+        display: block;
+        flex-shrink: 0;
+        border-bottom: var(--webbook-panel-border);
+    }
+    .webbook-info-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    h2 {
+        margin: 0;
+    }
+    dl {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: .25rem 1.5rem;
+        margin: 0;
+    }
+    dt {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--webbook-muted-fg);
+        padding-top: .15em;
+    }
+    dd {
+        margin: 0;
+        font-size: var(--size-step-0);
+    }
+    dt:not(:first-child) {
+        margin-top: .75rem;
+    }
+    #webbook-progress {
+        h3 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--webbook-muted-fg);
+            margin: 0 0 .75rem;
+        }
+        p {
+            margin: 0;
+            font-size: var(--size-step-0);
+        }
+        progress {
+            width: 100%;
+            height: .4rem;
+            margin: .5rem 0;
+            accent-color: var(--theme-fg);
+        }
+        #webbook-progress-count {
+            color: var(--webbook-muted-fg);
+            font-size: 0.75rem;
+        }
+    }
+}
+/* small screens */
+@media(max-width: 45rem) {
+    #webbook-info:popover-open {
+        width: 100vw;
+        border-radius: 0;
+    }
+}

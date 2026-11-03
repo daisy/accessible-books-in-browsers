@@ -1,0 +1,25 @@
+/* spine nav arrows — fixed in the viewport margins */
+#webbook-spine-nav {
+    position: fixed;
+    top: 45vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    a {
+        pointer-events: auto;
+        color: var(--theme-fg);
+    }
+    #webbook-next-document {
+        margin-left: auto;
+    }
+}
+#webbook-spine-nav.visible,
+#webbook-spine-nav:focus-within {
+    opacity: 1;
+}

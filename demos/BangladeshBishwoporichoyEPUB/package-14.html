@@ -1,547 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> অধ্যায় ৭ </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অধ্যায় ৭</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="aeed20c9-e8c5-4154-9764-2d29718320db">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <main>
-      <section id="id_41">
-        <h1 id="dtb_2446" xml:lang="en-US"> অধ্যায় ৭ <a href="#dtb_2446" title="Link to heading অধ্যায় ৭" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <section id="id_42">
-          <h1 id="dtb_2447" xml:lang="en-US"> কাজের মর্যাদা <a href="#dtb_2447" title="Link to heading কাজের মর্যাদা" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <section id="id_43">
-            <h1 id="dtb_2448" xml:lang="en-US">
-              <span id="dtb_2449"> ১. </span>
-              <span id="dtb_2450">শ্রমজীবী </span>
-              <a href="#dtb_2448" title="Link to heading ১. 
-							শ্রমজীবী" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                  <g transform="rotate(135 12 12)">
-                    <g fill="none">
-                      <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                    </g>
-                  </g>
-                </svg></a>
-            </h1>
-            <p id="dtb_2451" xml:lang="bn-IN">
-              <span id="dtb_2452">সমাজের নানা প্রয়োজনে বিভিন্ন ধরনের পেশার মানুষ রয়েছে। </span>
-              <span id="dtb_2453">প্রত্যেক পেশার মানুষ শ্রম দিয়ে থাকেন। </span>
-              <span id="dtb_2454">এই শ্রমজীবীগণ আমাদের দৈনন্দিন জীবনযাপনে সাহায্য করে। </span>
-              <span id="dtb_2455">তাই সব ধরনের পেশাকে আমাদের মর্যাদা দিতে হবে। </span>
-              <span id="dtb_2456">এই অধ্যায়ের শুরুতে আমরা বিভিন্ন শ্রমজীবীর পেশা সম্পর্কে জানব। </span>
-            </p>
-            <p id="dtb_2457" xml:lang="bn-IN">
-              <em id="dtb_2458">কারখানার শ্রমিক</em>
-            </p>
-            <p id="dtb_2459" xml:lang="bn-IN">
-              <span id="dtb_2460">পাশের ছবিতে একটি কারখানায় পোশাক শ্রমিকদের দেখা যাচ্ছে। </span>
-              <span id="dtb_2461">তারা দীর্ঘ সময় কাজ করে রপ্তানির জন্য পোশাক তৈরি করেন। </span>
-              <span id="dtb_2462">এটি আমাদের একটি অন্যতম গুরুত্বপূর্ণ শিল্প।</span>
-            </p>
-            <div id="dtb_2464"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-29.jpg" alt="" id="dtb_2465"></div>
-            <p id="dtb_2466" xml:lang="bn-IN">
-              <em id="dtb_2467">পরিচ্ছন্নতাকর্মী</em>
-            </p>
-            <p id="dtb_2468" xml:lang="bn-IN">পরিচ্ছন্নতাকর্মীগণ বিদ্যালয়, অফিস, হাসপাতাল এবং রাস্তা পরিষ্কার করে পরিবেশ পরিচ্ছন্ন ও নিরাপদ রাখেন।</p>
-            <div id="dtb_2470"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-30.jpg" alt="" id="dtb_2471"></div>
-            <p id="dtb_2472" xml:lang="bn-IN">
-              <em id="dtb_2473">পরিবহন শ্রমিক </em>
-            </p>
-            <p id="dtb_2474" xml:lang="bn-IN">
-              <span id="dtb_2475">এন স্থান থেকে অন্য স্থানে চলাচলের জন্য এবং মালামাল পরিবহনের জন্য আমরা যানবাহন ব্যবহার করি। </span>
-              <span id="dtb_2476">যেমন নৌকা, রিকশা, বাস, রেলগাড়ি, ট্রাক এবং ট্যাক্সি। </span>
-              <span id="dtb_2477">এ সকল যানবাহনের জন্য চালকের প্রয়োজন। </span>
-              <span id="dtb_2478">এই পেশাগুলোর সাথে জড়িত লোকজন হলো পরিবহন শ্রমিক। </span>
-            </p>
-            <div id="dtb_2480"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-31.jpg" alt="" id="dtb_2481"></div><span title="৩৩" id="dtb_2482" class="epubtype_pagebreak"></span>
-            <p id="dtb_2483" xml:lang="bn-IN">
-              <span id="dtb_2484"> <em id="dtb_2485">ক</em> <em id="dtb_2486">।</em> <em id="dtb_2487"> এসো বলি </em> </span>
-            </p>
-            <p id="dtb_2488" xml:lang="bn-IN">তোমার এলাকায় কর্মরত শ্রমিকদের নিয়ে শিক্ষকের সহায়তা শ্রেণিতে আলোচনা কর। </p>
-            <ul id="dtb_2489">
-              <li id="dtb_2490">
-                <p id="dtb_2491" xml:lang="bn-IN">তারা কী ধরনের কাজ করছেন : বহন, নির্মাণ বা অন্য কিছু? </p>
-              </li>
-              <li id="dtb_2492">
-                <p id="dtb_2493" xml:lang="bn-IN">কোন কোন কাজে পুরুষের সাথে নারীরাও অংশগ্রহণ করেন? </p>
-              </li>
-              <li id="dtb_2494">
-                <p id="dtb_2495" xml:lang="bn-IN">এই পেশাগুলো আমাদের জন্য কেন প্রয়োজন? </p>
-              </li>
-            </ul>
-            <p id="dtb_2496" xml:lang="bn-IN">
-              <span id="dtb_2497"> <em id="dtb_2498">খ</em> <em id="dtb_2499">।</em> <em id="dtb_2500"> এসো লিখি </em> </span>
-            </p>
-            <p id="dtb_2501" xml:lang="bn-IN">
-              <span id="dtb_2502">নিচের ছকের পেশাগুলো সম্পর্কে আলোচনা কর। </span>
-              <span id="dtb_2503">তারা কোথায় এবং কী কাজ করেন তা লেখ। </span>
-              <span id="dtb_2504">এ ধরনের আরও একটি পেশা সম্পর্কে লেখ। </span>
-              <span id="dtb_2505">কাজিটি জোড়ায় কর।</span>
-            </p>
-            <table id="dtb_2506">
-              <colgroup>
-                <col id="dtb_2507" span="1">
-              </colgroup>
-              <tbody id="dtb_2508">
-                <tr id="dtb_2509">
-                  <td id="dtb_2510" colspan="1" rowspan="1">
-                    <p id="dtb_2511" xml:lang="bn-IN">
-                      <em id="dtb_2512">পেশা</em>
-                    </p>
-                  </td>
-                  <td id="dtb_2513" colspan="1" rowspan="1">
-                    <p id="dtb_2514" xml:lang="bn-IN">
-                      <em id="dtb_2515">কাজের স্থান</em>
-                    </p>
-                  </td>
-                  <td id="dtb_2516" colspan="1" rowspan="1">
-                    <p id="dtb_2517" xml:lang="bn-IN">
-                      <em id="dtb_2518">কাজের ফলাফল</em>
-                    </p>
-                  </td>
-                </tr>
-                <tr id="dtb_2519">
-                  <td id="dtb_2520" colspan="1" rowspan="1">
-                    <p id="dtb_2521" xml:lang="bn-IN">কারখানা শ্রমিক </p>
-                  </td>
-                  <td id="dtb_2522" colspan="1" rowspan="1">
-                    <p id="dtb_2523" xml:lang="bn-IN">-</p>
-                  </td>
-                  <td id="dtb_2524" colspan="1" rowspan="1">
-                    <p id="dtb_2525" xml:lang="bn-IN">-</p>
-                  </td>
-                </tr>
-                <tr id="dtb_2526">
-                  <td id="dtb_2527" colspan="1" rowspan="1">
-                    <p id="dtb_2528" xml:lang="bn-IN">পরিচ্ছন্নতাকর্মী </p>
-                  </td>
-                  <td id="dtb_2529" colspan="1" rowspan="1">
-                    <p id="dtb_2530" xml:lang="bn-IN">-</p>
-                  </td>
-                  <td id="dtb_2531" colspan="1" rowspan="1">
-                    <p id="dtb_2532" xml:lang="bn-IN">-</p>
-                  </td>
-                </tr>
-                <tr id="dtb_2533">
-                  <td id="dtb_2534" colspan="1" rowspan="1">
-                    <p id="dtb_2535" xml:lang="bn-IN">পরিবহন শ্রমিক </p>
-                  </td>
-                  <td id="dtb_2536" colspan="1" rowspan="1">
-                    <p id="dtb_2537" xml:lang="bn-IN">-</p>
-                  </td>
-                  <td id="dtb_2538" colspan="1" rowspan="1">
-                    <p id="dtb_2539" xml:lang="bn-IN">-</p>
-                  </td>
-                </tr>
-                <tr id="dtb_2540">
-                  <td id="dtb_2541" colspan="1" rowspan="1">
-                    <p id="dtb_2542" xml:lang="bn-IN">-</p>
-                  </td>
-                  <td id="dtb_2543" colspan="1" rowspan="1">
-                    <p id="dtb_2544" xml:lang="bn-IN">-</p>
-                  </td>
-                  <td id="dtb_2545" colspan="1" rowspan="1">
-                    <p id="dtb_2546" xml:lang="bn-IN">-</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <p id="dtb_2547" xml:lang="bn-IN">
-              <span id="dtb_2548"> <em id="dtb_2549">গ</em> <em id="dtb_2550">।</em> <em id="dtb_2551"> আরও </em> <em id="dtb_2552">কিছু</em> <em id="dtb_2553"> করি</em> </span>
-            </p>
-            <p id="dtb_2554" xml:lang="bn-IN">
-              <span id="dtb_2555">কয়েকটি দলে ভাগ হয়ে যাও। </span>
-              <span id="dtb_2556">প্রতিটি দল চিন্তা করে বের কর, কোন পেশায় কাজ করা সবচেয়ে কঠিন। </span>
-              <span id="dtb_2557">এরপর তা শ্রেণিতে উপস্থাপন কর কোন দলটি সবচেয়ে ভালো উপস্থাপন করেছে, সকলে মিলে তা নির্বাচন কর। </span>
-            </p>
-            <p id="dtb_2558" xml:lang="bn-IN">
-              <span id="dtb_2559"> <em id="dtb_2560">ঘ</em> <em id="dtb_2561">।</em> <em id="dtb_2562"> যাচাই করি</em> </span>
-            </p>
-            <p id="dtb_2563" xml:lang="bn-IN">বাক্যটি সম্পূর্ণ কর : </p>
-            <p id="dtb_2564" xml:lang="bn-IN">আমাদের শ্রমিকদের সম্মান করা উচিত কারণ …………………..। </p><span title="৩৪" id="dtb_2565" class="epubtype_pagebreak"></span>
-          </section>
-        </section>
-        <section id="id_44">
-          <h1 id="dtb_2566" xml:lang="en-US"> ২ চাকুরিজীবী <a href="#dtb_2566" title="Link to heading ২ চাকুরিজীবী" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_2567" xml:lang="bn-IN">এ ধরনের পেশার সাথে যারা জড়িত তারা সাধারণত অফিসে কাজ করেন।</p>
-          <p id="dtb_2568" xml:lang="bn-IN">
-            <em id="dtb_2569">অফিস কর্মী</em>
-          </p>
-          <p id="dtb_2570" xml:lang="bn-IN">
-            <span id="dtb_2571">একজন অফিস কর্মী সাধারণত অফিসে বিভিন্ন ধরনের কাজ করেন। </span>
-            <span id="dtb_2572">মানুষের বিভিন্ন প্রয়োজনে তথ্য সরবরাহ করে সাহায্য করেন। </span>
-            <span id="dtb_2573">অফিসের নানা কাজে তারা প্রয়োজনে কম্পিউটার ও ইন্টারনেট ব্যবহার করে থাকেন।</span>
-          </p>
-          <div id="dtb_2575"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-32.jpg" alt="" id="dtb_2576"></div>
-          <p id="dtb_2577" xml:lang="bn-IN">
-            <em id="dtb_2578">ব্যবসায়ী ও বিক্রয় ব্যবস্থাপনা</em>
-          </p>
-          <p id="dtb_2579" xml:lang="bn-IN">
-            <span id="dtb_2580">ব্যবসায়ীরা পণ্য বেচাকেনার সাথে জড়িত। </span>
-            <span id="dtb_2581">স্থানীয়ভাবে আমরা দেখি ব্যবসায়ীরা দোকানে বা মার্কেটে পণ্য ক্রয়-বিক্রয় করেন। </span>
-            <span id="dtb_2582">এছাড়াও তারা পণ্য আমদানি ও রপ্তানি করেন।</span>
-          </p>
-          <div id="dtb_2584"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-33.jpg" alt="" id="dtb_2585"></div>
-          <p id="dtb_2586" xml:lang="bn-IN">
-            <em id="dtb_2587">অন্যান্য পেশাজীবী </em>
-          </p>
-          <p id="dtb_2588" xml:lang="bn-IN">
-            <span id="dtb_2589">আমাদের সমাজে এছাড়াও আরও অনেক গুরুত্বপূর্ণ পেশা আছে। </span>
-            <span id="dtb_2590">যেমন, শিক্ষক আমাদের শিক্ষাদান করেন। </span>
-            <span id="dtb_2591">প্রকৌশলী দালান, সড়ক ও সেতু তৈরি করেন। </span>
-            <span id="dtb_2592">ফার্মাসিস্ট আমাদের সুস্থ রাখতে ওষুধ তৈরি করেন। </span>
-            <span id="dtb_2593">ডাক্তার আমাদের চিকিৎসা সেবা দান করেন। </span>
-          </p><span title="৩৫" id="dtb_2594" class="epubtype_pagebreak"></span>
-          <p id="dtb_2595" xml:lang="bn-IN">
-            <span id="dtb_2596"> <em id="dtb_2597">ক</em> <em id="dtb_2598">।</em> <em id="dtb_2599"> এসো বলি </em> </span>
-          </p>
-          <p id="dtb_2600" xml:lang="bn-IN">কী কী পেশাগত কাজ সম্পর্কে তুমি জান তা শিক্ষকের সাথে আলোচনা কর। </p>
-          <ul id="dtb_2601">
-            <li id="dtb_2602">
-              <p id="dtb_2603" xml:lang="bn-IN">এসব পেশার মানুষ কাজের সময় কি বিশেষ কোনো পোশাক পরেন? </p>
-            </li>
-            <li id="dtb_2604">
-              <p id="dtb_2605" xml:lang="bn-IN">তারা কি কম্পিউটারে কাজ করেন? </p>
-            </li>
-            <li id="dtb_2606">
-              <p id="dtb_2607" xml:lang="bn-IN">এসব পেশায় কাজ করতে তাদের কোনো বিশেষ পরীক্ষা দিতে হয়? </p>
-            </li>
-          </ul>
-          <p id="dtb_2608" xml:lang="bn-IN">
-            <span id="dtb_2609"> <em id="dtb_2610">খ</em> <em id="dtb_2611">।</em> <em id="dtb_2612"> এসো লিখি</em> </span>
-          </p>
-          <p id="dtb_2613" xml:lang="bn-IN">নিচের দেওয়া প্রতিষ্ঠানগুলোতে কোন কোন পেশাজীবী কাজ করেন তা লেখ। </p>
-          <p id="dtb_2614" xml:lang="bn-IN">কাজটি জোড়ায় কর। </p>
-          <table id="dtb_2615">
-            <colgroup>
-              <col id="dtb_2616" span="1">
-            </colgroup>
-            <tbody id="dtb_2617">
-              <tr id="dtb_2618">
-                <td id="dtb_2619" colspan="1" rowspan="1">
-                  <p id="dtb_2620" xml:lang="bn-IN">
-                    <em id="dtb_2621">বিদ্যালয়</em>
-                  </p>
-                </td>
-                <td id="dtb_2622" colspan="1" rowspan="1">
-                  <p id="dtb_2623" xml:lang="bn-IN">
-                    <em id="dtb_2624">হাসপাতাল</em>
-                  </p>
-                </td>
-                <td id="dtb_2625" colspan="1" rowspan="1">
-                  <p id="dtb_2626" xml:lang="bn-IN">
-                    <em id="dtb_2627">অফিস</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_2628">
-                <td id="dtb_2629" colspan="1" rowspan="1">
-                  <p id="dtb_2630" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2631" colspan="1" rowspan="1">
-                  <p id="dtb_2632" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2633" colspan="1" rowspan="1">
-                  <p id="dtb_2634" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_2635">
-                <td id="dtb_2636" colspan="1" rowspan="1">
-                  <p id="dtb_2637" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2638" colspan="1" rowspan="1">
-                  <p id="dtb_2639" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2640" colspan="1" rowspan="1">
-                  <p id="dtb_2641" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_2642">
-                <td id="dtb_2643" colspan="1" rowspan="1">
-                  <p id="dtb_2644" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2645" colspan="1" rowspan="1">
-                  <p id="dtb_2646" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2647" colspan="1" rowspan="1">
-                  <p id="dtb_2648" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_2649">
-                <td id="dtb_2650" colspan="1" rowspan="1">
-                  <p id="dtb_2651" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2652" colspan="1" rowspan="1">
-                  <p id="dtb_2653" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_2654" colspan="1" rowspan="1">
-                  <p id="dtb_2655" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_2656" xml:lang="bn-IN">
-            <span id="dtb_2657"> <em id="dtb_2658">গ</em> <em id="dtb_2659">।</em> <em id="dtb_2660"> আরও কিছু করি </em> </span>
-          </p>
-          <p id="dtb_2661" xml:lang="bn-IN">তুমি বড় হয়ে কোন পেশা বেছে নিতে চাও? </p>
-          <p id="dtb_2662" xml:lang="bn-IN">তোমার বাছাই করা পেশায় কাজ করতে কী কী যোগ্যতা লাগবে? </p>
-          <p id="dtb_2663" xml:lang="bn-IN">তোমার বাছাই করা পেশায় তুমি কোথায় কাজ করবে?</p>
-          <p id="dtb_2664" xml:lang="bn-IN">
-            <span id="dtb_2665"> <em id="dtb_2666"> ঘ</em> <em id="dtb_2667">।</em> <em id="dtb_2668"> যাচাই করি</em> </span>
-          </p>
-          <p id="dtb_2669" xml:lang="bn-IN">কর্মস্থলের সাথে বিভিন্ন পেশার মিল কর। </p>
-          <table id="dtb_2670">
-            <tbody id="dtb_2671">
-              <tr id="dtb_2672">
-                <td id="dtb_2673" colspan="1" rowspan="1">
-                  <p id="dtb_2674" xml:lang="bn-IN">ডাক্তার </p>
-                  <p id="dtb_2675" xml:lang="bn-IN">বিক্রেতা </p>
-                  <p id="dtb_2676" xml:lang="bn-IN">ব্যবস্থাপক </p>
-                  <p id="dtb_2677" xml:lang="bn-IN">শিক্ষক </p>
-                  <p id="dtb_2678" xml:lang="bn-IN">বিজ্ঞানী </p>
-                </td>
-                <td id="dtb_2679" colspan="1" rowspan="1">
-                  <p id="dtb_2680" xml:lang="bn-IN">দোকান </p>
-                  <p id="dtb_2681" xml:lang="bn-IN">বিদ্যালয় </p>
-                  <p id="dtb_2682" xml:lang="bn-IN">গবেষণাগার </p>
-                  <p id="dtb_2683" xml:lang="bn-IN">হাসপাতাল </p>
-                  <p id="dtb_2684" xml:lang="bn-IN">অফিস </p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="৩৬" id="dtb_2685" class="epubtype_pagebreak"></span>
-        </section>
-        <section id="id_45">
-          <h1 id="dtb_2686" xml:lang="en-US"> ৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা <a href="#dtb_2686" title="Link to heading ৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_2687" xml:lang="bn-IN">
-            <span id="dtb_2688">সমাজের শান্তি-শৃঙ্খলা বজায় রাখতে প্রত্যেক নাগরিককে আইন মেনে চলতে হয়। </span>
-            <span id="dtb_2689">কেউ আইন অমান্য করে অপরাধমূলক কাজ করলে বিচারের সম্মুখীন হতে হয়। </span>
-            <span id="dtb_2690">আইন রক্ষার সাথে জড়িত বিভিন্ন পেশা সম্বন্ধে এখানে আলোচনা করা হলো।</span>
-          </p>
-          <div id="dtb_2692"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-35.jpg" alt="" id="dtb_2693"></div>
-          <p id="dtb_2694" xml:lang="bn-IN">
-            <em id="dtb_2695">পুলিশ </em>
-          </p>
-          <p id="dtb_2696" xml:lang="bn-IN">
-            <span id="dtb_2697">দেশের আইন–শৃঙ্খলা রক্ষায় পুলিশবাহিনী কাজ করেন। </span>
-            <span id="dtb_2698">অপরাধীকে ধরে বিচারের সম্মুখীন করা তাদের প্রধান দায়িত্ব। </span>
-            <span id="dtb_2699">ট্রাফিক পুলিশ শহরে সুষ্ঠুভাবে যানবাহন চলাচলে গুরুত্বপূর্ণ ভূমিকা পালন করেন। </span>
-            <span id="dtb_2700">নিরাপদ চলাচলে তারা মানুষকে সাহায্য করেন।</span>
-          </p>
-          <p id="dtb_2701" xml:lang="bn-IN">
-            <em id="dtb_2702">আইনজীবী </em>
-          </p>
-          <p id="dtb_2703" xml:lang="bn-IN">
-            <span id="dtb_2704">বিচার কাজে আইনজীবীরা গুরুত্বপূর্ণ ভূমিকা রাখেন। </span>
-            <span id="dtb_2705">তারা জনগণকে আইনি সহায়তা প্রদান করেন। </span>
-            <span id="dtb_2706">বিচারের সম্মুখীন অভিযুক্ত ব্যক্তিদের পক্ষে আদালতে মামলা পরিচালনা করেন। </span>
-            <span id="dtb_2707">আইনের ব্যাখ্যা দিয়ে তারা আদালতকে সাহায্য করেন। </span>
-          </p>
-          <p id="dtb_2708" xml:lang="bn-IN">
-            <em id="dtb_2709">বিচারক</em>
-          </p>
-          <p id="dtb_2710" xml:lang="bn-IN">
-            <span id="dtb_2711">যারা আইন অমান্য করেন, অপরাধমূলক কাজ করেন এবং সমাজের শান্তি শৃঙ্খলা বিনষ্ট করেন, পুলিশ তাদের ধরে বিচারের সম্মুখীন করেন। </span>
-            <span id="dtb_2712">বিচারক বাদী এবং বিবাদী উভয় পক্ষের কথা শোনেন। </span>
-            <span id="dtb_2713">তারা বিজ্ঞতা ও বিচক্ষণতার মাধ্যমে দোষীদের শনাক্ত করেন এবং আইন অনুযায়ী শাস্তি প্রদান করেন।</span>
-          </p>
-          <div id="dtb_2715"><img src="Bangladesh_O_Bishoporichoy_Class_4_style-Pic-36.jpg" alt="" id="dtb_2716"></div><span title="৩৭" id="dtb_2717" class="epubtype_pagebreak"></span>
-          <p id="dtb_2718" xml:lang="bn-IN">
-            <span id="dtb_2719"> <em id="dtb_2720">ক</em> <em id="dtb_2721">।</em> </span>
-            <span id="dtb_2722">
+<body>
+    <main><section id="id_41"><h1 id="dtb_2446" xml:lang="en-US" tabindex="-1"> অধ্যায় ৭ <a href="#dtb_2446" rel="bookmark" class="webbook" title="Link to অধ্যায় ৭" aria-label="Link to অধ্যায় ৭"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><section id="id_42"><h1 id="dtb_2447" xml:lang="en-US" tabindex="-1"> কাজের মর্যাদা <a href="#dtb_2447" rel="bookmark" class="webbook" title="Link to কাজের মর্যাদা" aria-label="Link to কাজের মর্যাদা"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><section id="id_43"><h1 id="dtb_2448" xml:lang="en-US" tabindex="-1">
+							<span id="dtb_2449"> ১. </span>
+							<span id="dtb_2450">শ্রমজীবী </span>
+						<a href="#dtb_2448" rel="bookmark" class="webbook" title="Link to ১. 
+							শ্রমজীবী" aria-label="Link to ১. 
+							শ্রমজীবী"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_2451" xml:lang="bn-IN">
+							<span id="dtb_2452">সমাজের নানা প্রয়োজনে বিভিন্ন ধরনের পেশার মানুষ রয়েছে। </span>
+							<span id="dtb_2453">প্রত্যেক পেশার মানুষ শ্রম দিয়ে থাকেন। </span>
+							<span id="dtb_2454">এই শ্রমজীবীগণ আমাদের দৈনন্দিন জীবনযাপনে সাহায্য করে। </span>
+							<span id="dtb_2455">তাই সব ধরনের পেশাকে আমাদের মর্যাদা দিতে হবে। </span>
+							<span id="dtb_2456">এই অধ্যায়ের শুরুতে আমরা বিভিন্ন শ্রমজীবীর পেশা সম্পর্কে জানব। </span>
+						</p><p id="dtb_2457" xml:lang="bn-IN">
+							<em id="dtb_2458">কারখানার শ্রমিক</em>
+						</p><p id="dtb_2459" xml:lang="bn-IN">
+							<span id="dtb_2460">পাশের ছবিতে একটি কারখানায় পোশাক শ্রমিকদের দেখা যাচ্ছে। </span>
+							<span id="dtb_2461">তারা দীর্ঘ সময় কাজ করে রপ্তানির জন্য পোশাক তৈরি করেন। </span>
+							<span id="dtb_2462">এটি আমাদের একটি অন্যতম গুরুত্বপূর্ণ শিল্প।</span>
+						</p><div id="dtb_2464"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-29.jpg" alt="" id="dtb_2465"></div><p id="dtb_2466" xml:lang="bn-IN">
+							<em id="dtb_2467">পরিচ্ছন্নতাকর্মী</em>
+						</p><p id="dtb_2468" xml:lang="bn-IN">পরিচ্ছন্নতাকর্মীগণ বিদ্যালয়, অফিস, হাসপাতাল এবং রাস্তা পরিষ্কার করে পরিবেশ পরিচ্ছন্ন ও নিরাপদ রাখেন।</p><div id="dtb_2470"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-30.jpg" alt="" id="dtb_2471"></div><p id="dtb_2472" xml:lang="bn-IN">
+							<em id="dtb_2473">পরিবহন শ্রমিক </em>
+						</p><p id="dtb_2474" xml:lang="bn-IN">
+							<span id="dtb_2475">এন স্থান থেকে অন্য স্থানে চলাচলের জন্য এবং মালামাল পরিবহনের জন্য আমরা যানবাহন ব্যবহার করি। </span>
+							<span id="dtb_2476">যেমন নৌকা, রিকশা, বাস, রেলগাড়ি, ট্রাক এবং ট্যাক্সি। </span>
+							<span id="dtb_2477">এ সকল যানবাহনের জন্য চালকের প্রয়োজন। </span>
+							<span id="dtb_2478">এই পেশাগুলোর সাথে জড়িত লোকজন হলো পরিবহন শ্রমিক। </span>
+						</p><div id="dtb_2480"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-31.jpg" alt="" id="dtb_2481"></div><span title="৩৩" id="dtb_2482" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৩">৩৩</span><p id="dtb_2483" xml:lang="bn-IN">
+							<span id="dtb_2484"> <em id="dtb_2485">ক</em> <em id="dtb_2486">।</em> <em id="dtb_2487"> এসো বলি </em> </span>
+						</p><p id="dtb_2488" xml:lang="bn-IN">তোমার এলাকায় কর্মরত শ্রমিকদের নিয়ে শিক্ষকের সহায়তা শ্রেণিতে আলোচনা কর। </p><ul id="dtb_2489"><li id="dtb_2490">
+								<p id="dtb_2491" xml:lang="bn-IN">তারা কী ধরনের কাজ করছেন : বহন, নির্মাণ বা অন্য কিছু? </p>
+							</li><li id="dtb_2492">
+								<p id="dtb_2493" xml:lang="bn-IN">কোন কোন কাজে পুরুষের সাথে নারীরাও অংশগ্রহণ করেন? </p>
+							</li><li id="dtb_2494">
+								<p id="dtb_2495" xml:lang="bn-IN">এই পেশাগুলো আমাদের জন্য কেন প্রয়োজন? </p>
+							</li></ul><p id="dtb_2496" xml:lang="bn-IN">
+							<span id="dtb_2497"> <em id="dtb_2498">খ</em> <em id="dtb_2499">।</em> <em id="dtb_2500"> এসো লিখি </em> </span>
+						</p><p id="dtb_2501" xml:lang="bn-IN">
+							<span id="dtb_2502">নিচের ছকের পেশাগুলো সম্পর্কে আলোচনা কর। </span>
+							<span id="dtb_2503">তারা কোথায় এবং কী কাজ করেন তা লেখ। </span>
+							<span id="dtb_2504">এ ধরনের আরও একটি পেশা সম্পর্কে লেখ। </span>
+							<span id="dtb_2505">কাজিটি জোড়ায় কর।</span>
+						</p><table id="dtb_2506"><colgroup><col id="dtb_2507" span="1"></colgroup><tbody id="dtb_2508"><tr id="dtb_2509"><td id="dtb_2510" colspan="1" rowspan="1">
+										<p id="dtb_2511" xml:lang="bn-IN">
+											<em id="dtb_2512">পেশা</em>
+										</p> </td><td id="dtb_2513" colspan="1" rowspan="1">
+										<p id="dtb_2514" xml:lang="bn-IN">
+											<em id="dtb_2515">কাজের স্থান</em>
+										</p> </td><td id="dtb_2516" colspan="1" rowspan="1">
+										<p id="dtb_2517" xml:lang="bn-IN">
+											<em id="dtb_2518">কাজের ফলাফল</em>
+										</p> </td></tr><tr id="dtb_2519"><td id="dtb_2520" colspan="1" rowspan="1">
+										<p id="dtb_2521" xml:lang="bn-IN">কারখানা শ্রমিক </p>
+									</td><td id="dtb_2522" colspan="1" rowspan="1">
+										<p id="dtb_2523" xml:lang="bn-IN">-</p>
+									</td><td id="dtb_2524" colspan="1" rowspan="1">
+										<p id="dtb_2525" xml:lang="bn-IN">-</p>
+									</td></tr><tr id="dtb_2526"><td id="dtb_2527" colspan="1" rowspan="1">
+										<p id="dtb_2528" xml:lang="bn-IN">পরিচ্ছন্নতাকর্মী </p>
+									</td><td id="dtb_2529" colspan="1" rowspan="1">
+										<p id="dtb_2530" xml:lang="bn-IN">-</p>
+									</td><td id="dtb_2531" colspan="1" rowspan="1">
+										<p id="dtb_2532" xml:lang="bn-IN">-</p>
+									</td></tr><tr id="dtb_2533"><td id="dtb_2534" colspan="1" rowspan="1">
+										<p id="dtb_2535" xml:lang="bn-IN">পরিবহন শ্রমিক </p>
+									</td><td id="dtb_2536" colspan="1" rowspan="1">
+										<p id="dtb_2537" xml:lang="bn-IN">-</p>
+									</td><td id="dtb_2538" colspan="1" rowspan="1">
+										<p id="dtb_2539" xml:lang="bn-IN">-</p>
+									</td></tr><tr id="dtb_2540"><td id="dtb_2541" colspan="1" rowspan="1">
+										<p id="dtb_2542" xml:lang="bn-IN">-</p>
+									</td><td id="dtb_2543" colspan="1" rowspan="1">
+										<p id="dtb_2544" xml:lang="bn-IN">-</p>
+									</td><td id="dtb_2545" colspan="1" rowspan="1">
+										<p id="dtb_2546" xml:lang="bn-IN">-</p>
+									</td></tr></tbody></table><p id="dtb_2547" xml:lang="bn-IN">
+							<span id="dtb_2548"> <em id="dtb_2549">গ</em> <em id="dtb_2550">।</em> <em id="dtb_2551"> আরও </em> <em id="dtb_2552">কিছু</em> <em id="dtb_2553"> করি</em> </span>
+						</p><p id="dtb_2554" xml:lang="bn-IN">
+							<span id="dtb_2555">কয়েকটি দলে ভাগ হয়ে যাও। </span>
+							<span id="dtb_2556">প্রতিটি দল চিন্তা করে বের কর, কোন পেশায় কাজ করা সবচেয়ে কঠিন। </span>
+							<span id="dtb_2557">এরপর তা শ্রেণিতে উপস্থাপন কর কোন দলটি সবচেয়ে ভালো উপস্থাপন করেছে, সকলে মিলে তা নির্বাচন কর। </span>
+						</p><p id="dtb_2558" xml:lang="bn-IN">
+							<span id="dtb_2559"> <em id="dtb_2560">ঘ</em> <em id="dtb_2561">।</em> <em id="dtb_2562"> যাচাই করি</em> </span>
+						</p><p id="dtb_2563" xml:lang="bn-IN">বাক্যটি সম্পূর্ণ কর : </p><p id="dtb_2564" xml:lang="bn-IN">আমাদের শ্রমিকদের সম্মান করা উচিত কারণ …………………..। </p><span title="৩৪" id="dtb_2565" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৪">৩৪</span></section></section><section id="id_44"><h1 id="dtb_2566" xml:lang="en-US" tabindex="-1"> ২ চাকুরিজীবী <a href="#dtb_2566" rel="bookmark" class="webbook" title="Link to ২ চাকুরিজীবী" aria-label="Link to ২ চাকুরিজীবী"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_2567" xml:lang="bn-IN">এ ধরনের পেশার সাথে যারা জড়িত তারা সাধারণত অফিসে কাজ করেন।</p><p id="dtb_2568" xml:lang="bn-IN">
+						<em id="dtb_2569">অফিস কর্মী</em>
+					</p><p id="dtb_2570" xml:lang="bn-IN">
+						<span id="dtb_2571">একজন অফিস কর্মী সাধারণত অফিসে বিভিন্ন ধরনের কাজ করেন। </span>
+						<span id="dtb_2572">মানুষের বিভিন্ন প্রয়োজনে তথ্য সরবরাহ করে সাহায্য করেন। </span>
+						<span id="dtb_2573">অফিসের নানা কাজে তারা প্রয়োজনে কম্পিউটার ও ইন্টারনেট ব্যবহার করে থাকেন।</span>
+					</p><div id="dtb_2575"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-32.jpg" alt="" id="dtb_2576"></div><p id="dtb_2577" xml:lang="bn-IN">
+						<em id="dtb_2578">ব্যবসায়ী ও বিক্রয় ব্যবস্থাপনা</em>
+					</p><p id="dtb_2579" xml:lang="bn-IN">
+						<span id="dtb_2580">ব্যবসায়ীরা পণ্য বেচাকেনার সাথে জড়িত। </span>
+						<span id="dtb_2581">স্থানীয়ভাবে আমরা দেখি ব্যবসায়ীরা দোকানে বা মার্কেটে পণ্য ক্রয়-বিক্রয় করেন। </span>
+						<span id="dtb_2582">এছাড়াও তারা পণ্য আমদানি ও রপ্তানি করেন।</span>
+					</p><div id="dtb_2584"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-33.jpg" alt="" id="dtb_2585"></div><p id="dtb_2586" xml:lang="bn-IN">
+						<em id="dtb_2587">অন্যান্য পেশাজীবী </em>
+					</p><p id="dtb_2588" xml:lang="bn-IN">
+						<span id="dtb_2589">আমাদের সমাজে এছাড়াও আরও অনেক গুরুত্বপূর্ণ পেশা আছে। </span>
+						<span id="dtb_2590">যেমন, শিক্ষক আমাদের শিক্ষাদান করেন। </span>
+						<span id="dtb_2591">প্রকৌশলী দালান, সড়ক ও সেতু তৈরি করেন। </span>
+						<span id="dtb_2592">ফার্মাসিস্ট আমাদের সুস্থ রাখতে ওষুধ তৈরি করেন। </span>
+						<span id="dtb_2593">ডাক্তার আমাদের চিকিৎসা সেবা দান করেন। </span>
+					</p><span title="৩৫" id="dtb_2594" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৫">৩৫</span><p id="dtb_2595" xml:lang="bn-IN">
+						<span id="dtb_2596"> <em id="dtb_2597">ক</em> <em id="dtb_2598">।</em> <em id="dtb_2599"> এসো বলি </em> </span>
+					</p><p id="dtb_2600" xml:lang="bn-IN">কী কী পেশাগত কাজ সম্পর্কে তুমি জান তা শিক্ষকের সাথে আলোচনা কর। </p><ul id="dtb_2601"><li id="dtb_2602">
+							<p id="dtb_2603" xml:lang="bn-IN">এসব পেশার মানুষ কাজের সময় কি বিশেষ কোনো পোশাক পরেন? </p>
+						</li><li id="dtb_2604">
+							<p id="dtb_2605" xml:lang="bn-IN">তারা কি কম্পিউটারে কাজ করেন? </p>
+						</li><li id="dtb_2606">
+							<p id="dtb_2607" xml:lang="bn-IN">এসব পেশায় কাজ করতে তাদের কোনো বিশেষ পরীক্ষা দিতে হয়? </p>
+						</li></ul><p id="dtb_2608" xml:lang="bn-IN">
+						<span id="dtb_2609"> <em id="dtb_2610">খ</em> <em id="dtb_2611">।</em> <em id="dtb_2612"> এসো লিখি</em> </span>
+					</p><p id="dtb_2613" xml:lang="bn-IN">নিচের দেওয়া প্রতিষ্ঠানগুলোতে কোন কোন পেশাজীবী কাজ করেন তা লেখ। </p><p id="dtb_2614" xml:lang="bn-IN">কাজটি জোড়ায় কর। </p><table id="dtb_2615"><colgroup><col id="dtb_2616" span="1"></colgroup><tbody id="dtb_2617"><tr id="dtb_2618"><td id="dtb_2619" colspan="1" rowspan="1">
+									<p id="dtb_2620" xml:lang="bn-IN">
+										<em id="dtb_2621">বিদ্যালয়</em>
+									</p> </td><td id="dtb_2622" colspan="1" rowspan="1">
+									<p id="dtb_2623" xml:lang="bn-IN">
+										<em id="dtb_2624">হাসপাতাল</em>
+									</p> </td><td id="dtb_2625" colspan="1" rowspan="1">
+									<p id="dtb_2626" xml:lang="bn-IN">
+										<em id="dtb_2627">অফিস</em>
+									</p> </td></tr><tr id="dtb_2628"><td id="dtb_2629" colspan="1" rowspan="1">
+									<p id="dtb_2630" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2631" colspan="1" rowspan="1">
+									<p id="dtb_2632" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2633" colspan="1" rowspan="1">
+									<p id="dtb_2634" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_2635"><td id="dtb_2636" colspan="1" rowspan="1">
+									<p id="dtb_2637" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2638" colspan="1" rowspan="1">
+									<p id="dtb_2639" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2640" colspan="1" rowspan="1">
+									<p id="dtb_2641" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_2642"><td id="dtb_2643" colspan="1" rowspan="1">
+									<p id="dtb_2644" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2645" colspan="1" rowspan="1">
+									<p id="dtb_2646" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2647" colspan="1" rowspan="1">
+									<p id="dtb_2648" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_2649"><td id="dtb_2650" colspan="1" rowspan="1">
+									<p id="dtb_2651" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2652" colspan="1" rowspan="1">
+									<p id="dtb_2653" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_2654" colspan="1" rowspan="1">
+									<p id="dtb_2655" xml:lang="bn-IN">-</p>
+								</td></tr></tbody></table><p id="dtb_2656" xml:lang="bn-IN">
+						<span id="dtb_2657"> <em id="dtb_2658">গ</em> <em id="dtb_2659">।</em> <em id="dtb_2660"> আরও কিছু করি </em> </span>
+					</p><p id="dtb_2661" xml:lang="bn-IN">তুমি বড় হয়ে কোন পেশা বেছে নিতে চাও? </p><p id="dtb_2662" xml:lang="bn-IN">তোমার বাছাই করা পেশায় কাজ করতে কী কী যোগ্যতা লাগবে? </p><p id="dtb_2663" xml:lang="bn-IN">তোমার বাছাই করা পেশায় তুমি কোথায় কাজ করবে?</p><p id="dtb_2664" xml:lang="bn-IN">
+						<span id="dtb_2665"> <em id="dtb_2666"> ঘ</em> <em id="dtb_2667">।</em> <em id="dtb_2668"> যাচাই করি</em> </span>
+					</p><p id="dtb_2669" xml:lang="bn-IN">কর্মস্থলের সাথে বিভিন্ন পেশার মিল কর। </p><table id="dtb_2670"><tbody id="dtb_2671"><tr id="dtb_2672"><td id="dtb_2673" colspan="1" rowspan="1"> <p id="dtb_2674" xml:lang="bn-IN">ডাক্তার </p> <p id="dtb_2675" xml:lang="bn-IN">বিক্রেতা </p> <p id="dtb_2676" xml:lang="bn-IN">ব্যবস্থাপক </p> <p id="dtb_2677" xml:lang="bn-IN">শিক্ষক </p> <p id="dtb_2678" xml:lang="bn-IN">বিজ্ঞানী </p> </td><td id="dtb_2679" colspan="1" rowspan="1"> <p id="dtb_2680" xml:lang="bn-IN">দোকান </p> <p id="dtb_2681" xml:lang="bn-IN">বিদ্যালয় </p> <p id="dtb_2682" xml:lang="bn-IN">গবেষণাগার </p> <p id="dtb_2683" xml:lang="bn-IN">হাসপাতাল </p> <p id="dtb_2684" xml:lang="bn-IN">অফিস </p> </td></tr></tbody></table><span title="৩৬" id="dtb_2685" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৬">৩৬</span></section><section id="id_45"><h1 id="dtb_2686" xml:lang="en-US" tabindex="-1"> ৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা <a href="#dtb_2686" rel="bookmark" class="webbook" title="Link to ৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা" aria-label="Link to ৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_2687" xml:lang="bn-IN">
+						<span id="dtb_2688">সমাজের শান্তি-শৃঙ্খলা বজায় রাখতে প্রত্যেক নাগরিককে আইন মেনে চলতে হয়। </span>
+						<span id="dtb_2689">কেউ আইন অমান্য করে অপরাধমূলক কাজ করলে বিচারের সম্মুখীন হতে হয়। </span>
+						<span id="dtb_2690">আইন রক্ষার সাথে জড়িত বিভিন্ন পেশা সম্বন্ধে এখানে আলোচনা করা হলো।</span>
+					</p><div id="dtb_2692"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-35.jpg" alt="" id="dtb_2693"></div><p id="dtb_2694" xml:lang="bn-IN">
+						<em id="dtb_2695">পুলিশ </em>
+					</p><p id="dtb_2696" xml:lang="bn-IN">
+						<span id="dtb_2697">দেশের আইন–শৃঙ্খলা রক্ষায় পুলিশবাহিনী কাজ করেন। </span>
+						<span id="dtb_2698">অপরাধীকে ধরে বিচারের সম্মুখীন করা তাদের প্রধান দায়িত্ব। </span>
+						<span id="dtb_2699">ট্রাফিক পুলিশ শহরে সুষ্ঠুভাবে যানবাহন চলাচলে গুরুত্বপূর্ণ ভূমিকা পালন করেন। </span>
+						<span id="dtb_2700">নিরাপদ চলাচলে তারা মানুষকে সাহায্য করেন।</span>
+					</p><p id="dtb_2701" xml:lang="bn-IN">
+						<em id="dtb_2702">আইনজীবী </em>
+					</p><p id="dtb_2703" xml:lang="bn-IN">
+						<span id="dtb_2704">বিচার কাজে আইনজীবীরা গুরুত্বপূর্ণ ভূমিকা রাখেন। </span>
+						<span id="dtb_2705">তারা জনগণকে আইনি সহায়তা প্রদান করেন। </span>
+						<span id="dtb_2706">বিচারের সম্মুখীন অভিযুক্ত ব্যক্তিদের পক্ষে আদালতে মামলা পরিচালনা করেন। </span>
+						<span id="dtb_2707">আইনের ব্যাখ্যা দিয়ে তারা আদালতকে সাহায্য করেন। </span>
+					</p><p id="dtb_2708" xml:lang="bn-IN">
+						<em id="dtb_2709">বিচারক</em>
+					</p><p id="dtb_2710" xml:lang="bn-IN">
+						<span id="dtb_2711">যারা আইন অমান্য করেন, অপরাধমূলক কাজ করেন এবং সমাজের শান্তি শৃঙ্খলা বিনষ্ট করেন, পুলিশ তাদের ধরে বিচারের সম্মুখীন করেন। </span>
+						<span id="dtb_2712">বিচারক বাদী এবং বিবাদী উভয় পক্ষের কথা শোনেন। </span>
+						<span id="dtb_2713">তারা বিজ্ঞতা ও বিচক্ষণতার মাধ্যমে দোষীদের শনাক্ত করেন এবং আইন অনুযায়ী শাস্তি প্রদান করেন।</span>
+					</p><div id="dtb_2715"><img src="images/Bangladesh_O_Bishoporichoy_Class_4_style-Pic-36.jpg" alt="" id="dtb_2716"></div><span title="৩৭" id="dtb_2717" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৭">৩৭</span><p id="dtb_2718" xml:lang="bn-IN">
+						<span id="dtb_2719"> <em id="dtb_2720">ক</em> <em id="dtb_2721">।</em> </span>
+						<span id="dtb_2722">
 							<em id="dtb_2723">এসো</em> <em id="dtb_2724"> বলি </em> </span>
-          </p>
-          <p id="dtb_2725" xml:lang="bn-IN">পুলিশ সম্পর্কে নিচের প্রশ্নগুলো শিক্ষকের সহায়তায় শ্রেণিতে আলোচনা কর। </p>
-          <ul id="dtb_2726">
-            <li id="dtb_2727">
-              <p id="dtb_2728" xml:lang="bn-IN">তারা কী ধরনের পোশাক পরেন।</p>
-            </li>
-            <li id="dtb_2729">
-              <p id="dtb_2730" xml:lang="bn-IN">তারা কী ধরনের কাজ করেন।</p>
-            </li>
-            <li id="dtb_2731">
-              <p id="dtb_2732" xml:lang="bn-IN">পুলিশে কাজ করতে হলে তোমাকে কী ধরনের মূল্যবোধ অর্জন করতে হবে? </p>
-            </li>
-          </ul>
-          <p id="dtb_2733" xml:lang="bn-IN">
-            <span id="dtb_2734"> <em id="dtb_2735">খ</em> <em id="dtb_2736">।</em> <em id="dtb_2737"> এসো লিখি </em> </span>
-          </p>
-          <p id="dtb_2738" xml:lang="bn-IN">
-            <span id="dtb_2739">কেউ যদি দোকানে চুরি করতে গিয়ে ধরা পড়েন তবে পুলিশ, আইনজীবী ও বিচারকের ভূমিকা কী হবে? </span>
-            <span id="dtb_2740">নিচের ছকে লেখ। </span>
-          </p>
-          <table id="dtb_2741">
-            <tbody id="dtb_2742">
-              <tr id="dtb_2743">
-                <td id="dtb_2744" colspan="1" rowspan="1">
-                  <p id="dtb_2745" xml:lang="bn-IN">
-                    <em id="dtb_2746">পুশিল </em>
-                  </p>
-                </td>
-                <td id="dtb_2747" colspan="1" rowspan="1">
-                  <p id="dtb_2748" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_2749">
-                <td id="dtb_2750" colspan="1" rowspan="1">
-                  <p id="dtb_2751" xml:lang="bn-IN">
-                    <em id="dtb_2752">আইনজীবী </em>
-                  </p>
-                </td>
-                <td id="dtb_2753" colspan="1" rowspan="1">
-                  <p id="dtb_2754" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-              <tr id="dtb_2755">
-                <td id="dtb_2756" colspan="1" rowspan="1">
-                  <p id="dtb_2757" xml:lang="bn-IN">
-                    <em id="dtb_2758">বিচারক </em>
-                  </p>
-                </td>
-                <td id="dtb_2759" colspan="1" rowspan="1">
-                  <p id="dtb_2760" xml:lang="bn-IN">-</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_2761" xml:lang="bn-IN">
-            <span id="dtb_2762"> <em id="dtb_2763">গ</em> <em id="dtb_2764">।</em> <em id="dtb_2765"> আরও কিছু করি </em> </span>
-          </p>
-          <p id="dtb_2766" xml:lang="bn-IN">
-            <span id="dtb_2767">‘এসো লিখি’–তে উল্লিখিত ঘটনাটি অভিনয় কর। </span>
-            <span id="dtb_2768">একজন অপরাধী, একজন আসামিপক্ষের আইনজীবী, একজন আসামির বিপক্ষের আইনজীবী এবং একজন বিচারকের ভূমিকায় অভিনয় কর। </span>
-            <span id="dtb_2769">প্রতিটি পক্ষ, আদালতে কী কী স্বাক্ষ্য প্রদান ও যুক্তি দিলেন লেখ। </span>
-          </p>
-          <p id="dtb_2770" xml:lang="bn-IN">
-            <span id="dtb_2771"> <em id="dtb_2772">ঘ</em> <em id="dtb_2773">।</em> <em id="dtb_2774"> যাচাই করি </em> </span>
-          </p>
-          <p id="dtb_2775" xml:lang="bn-IN">বাক্যটি সম্পূর্ণ কর : </p>
-          <p id="dtb_2776" xml:lang="bn-IN">আইন পেশায় আমাদের এমন মানুষ দরকার যেন ……...................................</p><span title="৩৮" id="dtb_2777" class="epubtype_pagebreak"></span>
-        </section>
-      </section>
-    </main>
+					</p><p id="dtb_2725" xml:lang="bn-IN">পুলিশ সম্পর্কে নিচের প্রশ্নগুলো শিক্ষকের সহায়তায় শ্রেণিতে আলোচনা কর। </p><ul id="dtb_2726"><li id="dtb_2727">
+							<p id="dtb_2728" xml:lang="bn-IN">তারা কী ধরনের পোশাক পরেন।</p>
+						</li><li id="dtb_2729">
+							<p id="dtb_2730" xml:lang="bn-IN">তারা কী ধরনের কাজ করেন।</p>
+						</li><li id="dtb_2731">
+							<p id="dtb_2732" xml:lang="bn-IN">পুলিশে কাজ করতে হলে তোমাকে কী ধরনের মূল্যবোধ অর্জন করতে হবে? </p>
+						</li></ul><p id="dtb_2733" xml:lang="bn-IN">
+						<span id="dtb_2734"> <em id="dtb_2735">খ</em> <em id="dtb_2736">।</em> <em id="dtb_2737"> এসো লিখি </em> </span>
+					</p><p id="dtb_2738" xml:lang="bn-IN">
+						<span id="dtb_2739">কেউ যদি দোকানে চুরি করতে গিয়ে ধরা পড়েন তবে পুলিশ, আইনজীবী ও বিচারকের ভূমিকা কী হবে? </span>
+						<span id="dtb_2740">নিচের ছকে লেখ। </span>
+					</p><table id="dtb_2741"><tbody id="dtb_2742"><tr id="dtb_2743"><td id="dtb_2744" colspan="1" rowspan="1">
+									<p id="dtb_2745" xml:lang="bn-IN">
+										<em id="dtb_2746">পুশিল </em>
+									</p> </td><td id="dtb_2747" colspan="1" rowspan="1">
+									<p id="dtb_2748" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_2749"><td id="dtb_2750" colspan="1" rowspan="1">
+									<p id="dtb_2751" xml:lang="bn-IN">
+										<em id="dtb_2752">আইনজীবী </em>
+									</p> </td><td id="dtb_2753" colspan="1" rowspan="1">
+									<p id="dtb_2754" xml:lang="bn-IN">-</p>
+								</td></tr><tr id="dtb_2755"><td id="dtb_2756" colspan="1" rowspan="1">
+									<p id="dtb_2757" xml:lang="bn-IN">
+										<em id="dtb_2758">বিচারক </em>
+									</p> </td><td id="dtb_2759" colspan="1" rowspan="1">
+									<p id="dtb_2760" xml:lang="bn-IN">-</p>
+								</td></tr></tbody></table><p id="dtb_2761" xml:lang="bn-IN">
+						<span id="dtb_2762"> <em id="dtb_2763">গ</em> <em id="dtb_2764">।</em> <em id="dtb_2765"> আরও কিছু করি </em> </span>
+					</p><p id="dtb_2766" xml:lang="bn-IN">
+						<span id="dtb_2767">‘এসো লিখি’–তে উল্লিখিত ঘটনাটি অভিনয় কর। </span>
+						<span id="dtb_2768">একজন অপরাধী, একজন আসামিপক্ষের আইনজীবী, একজন আসামির বিপক্ষের আইনজীবী এবং একজন বিচারকের ভূমিকায় অভিনয় কর। </span>
+						<span id="dtb_2769">প্রতিটি পক্ষ, আদালতে কী কী স্বাক্ষ্য প্রদান ও যুক্তি দিলেন লেখ। </span>
+					</p><p id="dtb_2770" xml:lang="bn-IN">
+						<span id="dtb_2771"> <em id="dtb_2772">ঘ</em> <em id="dtb_2773">।</em> <em id="dtb_2774"> যাচাই করি </em> </span>
+					</p><p id="dtb_2775" xml:lang="bn-IN">বাক্যটি সম্পূর্ণ কর : </p><p id="dtb_2776" xml:lang="bn-IN">আইন পেশায় আমাদের এমন মানুষ দরকার যেন ……...................................</p><span title="৩৮" id="dtb_2777" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page ৩৮">৩৮</span></section></section></main>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-14.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-14.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-13.html" title="Previous: অধ্যায় ৬" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-13.html" rel="prev" title="Previous: অধ্যায় ৬" aria-label="Previous: অধ্যায় ৬">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="package-15.html" title="Next: অধ্যায় ৮" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-15.html" title="Next: অধ্যায় ৮" aria-label="Next: অধ্যায় ৮" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-1"><a href="package-3.html#dtb_8">বাংলাদেশ ও বিশ্ব পরিচয়</a><ol><li id="toc-1-1"><a href="package-3.html#dtb_9">চতুর্থ শ্রেণি</a></li></ol></li><li id="toc-2"><a href="package-4.html#dtb_42">প্রসঙ্গ কথা</a></li><li id="toc-3"><a href="package-5.html#dtb_65">নির্দেশনা</a><ol><li id="toc-3-1"><a href="package-5.html#dtb_78">অধ্যায়</a><ol><li id="toc-3-1-1"><a href="package-5.html#dtb_85">বিষয়বস্তু</a></li><li id="toc-3-1-2"><a href="package-5.html#dtb_91">পাঠ</a></li></ol></li><li id="toc-3-2"><a href="package-5.html#dtb_98">নির্ধারিত কাজ</a></li></ol></li><li id="toc-4"><a href="package-6.html#dtb_140">দক্ষতা ম্যাট্রিক্স</a></li><li id="toc-5"><a href="package-7.html#dtb_536">সূচিপত্র</a></li><li id="toc-6"><a href="package-8.html#dtb_679">অধ্যায় ১</a><ol><li id="toc-6-1"><a href="package-8.html#dtb_680">আমাদের পরিবেশ ও সমাজ</a><ol><li id="toc-6-1-1"><a href="package-8.html#dtb_681">১। প্রাকৃতিক পরিবেশের বৈচিত্র্য</a></li></ol></li><li id="toc-6-2"><a href="package-8.html#dtb_769">২ সামাজিক পরিবেশের উপর প্রকৃতির প্রভাব</a></li></ol></li><li id="toc-7"><a href="package-9.html#dtb_847">অধ্যায় ২</a><ol><li id="toc-7-1"><a href="package-9.html#dtb_848">সমাজে পরস্পরের সহযোগিতা</a><ol><li id="toc-7-1-1"><a href="package-9.html#dtb_849">১। নারী ও পুরুষ</a></li></ol></li><li id="toc-7-2"><a href="package-9.html#dtb_961">২। সামাজিক বিভিন্নতা ও বিশেষ চাহিদাসম্পন্ন শিশু</a></li></ol></li><li id="toc-8"><a href="package-10.html#dtb_1070">অধ্যায় ৩</a><ol><li id="toc-8-1"><a href="package-10.html#dtb_1071">বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী</a><ol><li id="toc-8-1-1"><a href="package-10.html#dtb_1072">১। চাকমা</a></li></ol></li><li id="toc-8-2"><a href="package-10.html#dtb_1172">২ মারমা</a></li><li id="toc-8-3"><a href="package-10.html#dtb_1267">৩। সাঁওতাল</a></li><li id="toc-8-4"><a href="package-10.html#dtb_1384">৪ মণিপুরি</a></li></ol></li><li id="toc-9"><a href="package-11.html#dtb_1484">অধ্যায় ৪</a><ol><li id="toc-9-1"><a href="package-11.html#dtb_1485">নাগরিক অধিকার</a><ol><li id="toc-9-1-1"><a href="package-11.html#dtb_1486">১. সামাজিক অধিকার</a></li></ol></li><li id="toc-9-2"><a href="package-11.html#dtb_1629">২। রাজনৈতিক অধিকার</a></li><li id="toc-9-3"><a href="package-11.html#dtb_1756">৩। অর্থনৈতিক অধিকার</a></li></ol></li><li id="toc-10"><a href="package-12.html#dtb_1902">অধ্যায় ৫</a><ol><li id="toc-10-1"><a href="package-12.html#dtb_1903">মূল্যবোধ ও আচরণ</a><ol><li id="toc-10-1-1"><a href="package-12.html#dtb_1904">১ ভালো হওয়া ও ভালো কাজ করা</a></li></ol></li><li id="toc-10-2"><a href="package-12.html#dtb_2041">২। একটি ঘটনা পড়ি</a></li></ol></li><li id="toc-11"><a href="package-13.html#dtb_2227">অধ্যায় ৬</a><ol><li id="toc-11-1"><a href="package-13.html#dtb_2228">পরমতসহিষ্ণুতা</a><ol><li id="toc-11-1-1"><a href="package-13.html#dtb_2229">১। অধিকাংশের মত গ্রহণ</a></li></ol></li><li id="toc-11-2"><a href="package-13.html#dtb_2351">২ একটি ঘটনা</a></li></ol></li><li id="toc-12"><a href="package-14.html#dtb_2446">অধ্যায় ৭</a><ol><li id="toc-12-1"><a href="package-14.html#dtb_2447">কাজের মর্যাদা</a><ol><li id="toc-12-1-1"><a href="package-14.html#dtb_2448">১. শ্রমজীবী</a></li></ol></li><li id="toc-12-2"><a href="package-14.html#dtb_2566">২ চাকুরিজীবী</a></li><li id="toc-12-3"><a href="package-14.html#dtb_2686">৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা</a></li></ol></li><li id="toc-13"><a href="package-15.html#dtb_2778">অধ্যায় ৮</a><ol><li id="toc-13-1"><a href="package-15.html#dtb_2779">সামাজিক এবং রাষ্ট্রীয় সম্পদ</a><ol><li id="toc-13-1-1"><a href="package-15.html#dtb_2780">১ সামাজিক সম্পদ</a></li></ol></li><li id="toc-13-2"><a href="package-15.html#dtb_2893">২ রাষ্ট্রীয় সম্পদ</a></li><li id="toc-13-3"><a href="package-15.html#dtb_3015">৩ আরও কিছু রাষ্ট্রীয় সম্পদ</a></li></ol></li><li id="toc-14"><a href="package-16.html#dtb_3134">অধ্যায় ৯</a><ol><li id="toc-14-1"><a href="package-16.html#dtb_3135">এলাকার উন্নয়ন</a><ol><li id="toc-14-1-1"><a href="package-16.html#dtb_3136">১ গ্রামাঞ্চল</a></li></ol></li><li id="toc-14-2"><a href="package-16.html#dtb_3230">২ শহরাঞ্চল</a></li></ol></li><li id="toc-15"><a href="package-17.html#dtb_3310">অধ্যায় ১০</a><ol><li id="toc-15-1"><a href="package-17.html#dtb_3311">এশিয়া মহাদেশ</a><ol><li id="toc-15-1-1"><a href="package-17.html#dtb_3312">১. বৃহত্তম মহাদেশ</a></li></ol></li><li id="toc-15-2"><a href="package-17.html#dtb_3414">২ এশিয়ার বিভিন্ন সম্পদ</a></li></ol></li><li id="toc-16"><a href="package-18.html#dtb_3465">অধ্যায় ১১</a><ol><li id="toc-16-1"><a href="package-18.html#dtb_3466">বাংলাদেশের ভূপ্রকৃতি</a><ol><li id="toc-16-1-1"><a href="package-18.html#dtb_3467">১ ভূপ্রকৃতি</a></li></ol></li><li id="toc-16-2"><a href="package-18.html#dtb_3550">২ জলবায়ু</a></li><li id="toc-16-3"><a href="package-18.html#dtb_3656">৩ বঙ্গোপসাগর</a></li><li id="toc-16-4"><a href="package-18.html#dtb_3769">৪ দর্শনীয় পাহাড়ি এলাকা</a></li></ol></li><li id="toc-17"><a href="package-19.html#dtb_3876">অধ্যায় ১২</a><ol><li id="toc-17-1"><a href="package-19.html#dtb_3877">দুর্যোগ মোকাবেলা</a><ol><li id="toc-17-1-1"><a href="package-19.html#dtb_3878">১ বন্যা</a></li></ol></li><li id="toc-17-2"><a href="package-19.html#dtb_3948">২ ঘূর্ণিঝড়</a></li><li id="toc-17-3"><a href="package-19.html#dtb_4012">৩ আগুন</a></li></ol></li><li id="toc-18"><a href="package-20.html#dtb_4145">অধ্যায় ১৩</a><ol><li id="toc-18-1"><a href="package-20.html#dtb_4146">বাংলাদেশের জনসংখ্যা</a><ol><li id="toc-18-1-1"><a href="package-20.html#dtb_4147">১ বাংলাদেশের জনসংখ্যা বৃদ্ধির ধারা</a></li></ol></li><li id="toc-18-2"><a href="package-20.html#dtb_4282">২ জনসংখ্যা বৃদ্ধির কারণ</a></li></ol></li><li id="toc-19"><a href="package-21.html#dtb_4401">অধ্যায় ১৪</a><ol><li id="toc-19-1"><a href="package-21.html#dtb_4402">আমাদের ইতিহাস</a><ol><li id="toc-19-1-1"><a href="package-21.html#dtb_4403">১ প্রাচীন যুগ</a></li></ol></li><li id="toc-19-2"><a href="package-21.html#dtb_4533">২ মধ্যযুগ</a></li></ol></li><li id="toc-20"><a href="package-22.html#dtb_4637">অধ্যায় ১৫</a><ol><li id="toc-20-1"><a href="package-22.html#dtb_4638">আমাদের মুক্তিযুদ্ধ</a><ol><li id="toc-20-1-1"><a href="package-22.html#dtb_4639">১ ভাষা আন্দোলন: ১৯৫২</a></li></ol></li><li id="toc-20-2"><a href="package-22.html#dtb_4694">২ গণ অভ্যুস্থান : ১৯৬৯</a></li><li id="toc-20-3"><a href="package-22.html#dtb_4759">৩ ১৯৭১ সালের মুক্তিযুদ্ধ</a></li></ol></li><li id="toc-21"><a href="package-23.html#dtb_4827">অধ্যায় ১৬</a><ol><li id="toc-21-1"><a href="package-23.html#dtb_4828">আমাদের সংস্কৃতি</a><ol><li id="toc-21-1-1"><a href="package-23.html#dtb_4829">১ ভাষা ও পোশাক</a></li></ol></li><li id="toc-21-2"><a href="package-23.html#dtb_4909">২ খাবার</a></li><li id="toc-21-3"><a href="package-23.html#dtb_4980">৩ আচার অনুষ্ঠান ও সংগীত</a></li></ol></li><li id="toc-22"><a href="package-24.html#dtb_5044">নমুনা প্রশ্ন</a><ol><li id="toc-22-1"><a href="package-24.html#dtb_5045">অধ্যায় ১ : আমাদের পরিবেশ ও সমাজ</a><ol><li id="toc-22-1-1"><a href="package-24.html#dtb_5066">অধ্যায় ২ : সমাজে পরস্পরের সহযোগিতা</a></li><li id="toc-22-1-2"><a href="package-24.html#dtb_5087">অধ্যায় ৩: বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী</a></li><li id="toc-22-1-3"><a href="package-24.html#dtb_5108">অধ্যায় ৪ : নাগরিক অধিকার</a></li><li id="toc-22-1-4"><a href="package-24.html#dtb_5130">অধ্যায় ৫: মূল্যবোধ ও আচরণ</a></li><li id="toc-22-1-5"><a href="package-24.html#dtb_5151">অধ্যায় ৬: পরমতসহিষ্ণুতা</a></li><li id="toc-22-1-6"><a href="package-24.html#dtb_5172">অধ্যায় ৭ : কাজের মর্যাদা</a></li><li id="toc-22-1-7"><a href="package-24.html#dtb_5193">অধ্যায় ৮ : সামাজিক এবং রাষ্ট্রীয় সম্পদ</a></li><li id="toc-22-1-8"><a href="package-24.html#dtb_5215">অধ্যায় ৯ : এলাকার উন্নয়ন</a></li><li id="toc-22-1-9"><a href="package-24.html#dtb_5236">অধ্যায় ১০ : এশিয়া মহাদেশ</a></li><li id="toc-22-1-10"><a href="package-24.html#dtb_5257">অধ্যায় ১১ : বাংলাদেশের ভূপ্রকৃতি</a></li><li id="toc-22-1-11"><a href="package-24.html#dtb_5278">অধ্যায় ১২ : দুর্যোগ মোকাবেলা</a></li><li id="toc-22-1-12"><a href="package-24.html#dtb_5299">অধ্যায় ১৩ : বাংলাদেশের জনসংখ্যা</a></li><li id="toc-22-1-13"><a href="package-24.html#dtb_5320">অধ্যায় ১৪ : আমাদের ইতিহাস</a></li><li id="toc-22-1-14"><a href="package-24.html#dtb_5341">অধ্যায় ১৫ : আমাদের মুক্তিযুদ্ধ</a></li><li id="toc-22-1-15"><a href="package-24.html#dtb_5360">অধ্যায় ১৬ : আমাদের সংস্কৃতি</a></li></ol></li></ol></li><li id="toc-23"><a href="package-25.html#dtb_5382">শব্দ ভান্ডার</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-14.mp3"><track default="" kind="metadata" src="vtt/package-14.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="১" label="১" data-href="package-6.html#dtb_535"></option><option value="২" label="২" data-href="package-7.html#dtb_678"></option><option value="৩" label="৩" data-href="package-8.html#dtb_704"></option><option value="৪" label="৪" data-href="package-8.html#dtb_768"></option><option value="৫" label="৫" data-href="package-8.html#dtb_791"></option><option value="৬" label="৬" data-href="package-8.html#dtb_846"></option><option value="৭" label="৭" data-href="package-9.html#dtb_872"></option><option value="৮" label="৮" data-href="package-9.html#dtb_960"></option><option value="৯" label="৯" data-href="package-9.html#dtb_998"></option><option value="১০" label="১০" data-href="package-9.html#dtb_1069"></option><option value="১১" label="১১" data-href="package-10.html#dtb_1110"></option><option value="১২" label="১২" data-href="package-10.html#dtb_1171"></option><option value="১৩" label="১৩" data-href="package-10.html#dtb_1201"></option><option value="১৪" label="১৪" data-href="package-10.html#dtb_1266"></option><option value="১৫" label="১৫" data-href="package-10.html#dtb_1336"></option><option value="১৬" label="১৬" data-href="package-10.html#dtb_1383"></option><option value="১৭" label="১৭" data-href="package-10.html#dtb_1413"></option><option value="১৮" label="১৮" data-href="package-10.html#dtb_1483"></option><option value="১৯" label="১৯" data-href="package-11.html#dtb_1537"></option><option value="২০" label="২০" data-href="package-11.html#dtb_1628"></option><option value="২১" label="২১" data-href="package-11.html#dtb_1691"></option><option value="২২" label="২২" data-href="package-11.html#dtb_1755"></option><option value="২৩" label="২৩" data-href="package-11.html#dtb_1787"></option><option value="২৪" label="২৪" data-href="package-11.html#dtb_1901"></option><option value="২৫" label="২৫" data-href="package-12.html#dtb_1966"></option><option value="২৬" label="২৬" data-href="package-12.html#dtb_2040"></option><option value="২৭" label="২৭" data-href="package-12.html#dtb_2129"></option><option value="২৮" label="২৮" data-href="package-12.html#dtb_2226"></option><option value="২৯" label="২৯" data-href="package-13.html#dtb_2287"></option><option value="৩০" label="৩০" data-href="package-13.html#dtb_2350"></option><option value="৩১" label="৩১" data-href="package-13.html#dtb_2382"></option><option value="৩২" label="৩২" data-href="package-13.html#dtb_2445"></option><option value="৩৩" label="৩৩" data-href="package-14.html#dtb_2482"></option><option value="৩৪" label="৩৪" data-href="package-14.html#dtb_2565"></option><option value="৩৫" label="৩৫" data-href="package-14.html#dtb_2594"></option><option value="৩৬" label="৩৬" data-href="package-14.html#dtb_2685"></option><option value="৩৭" label="৩৭" data-href="package-14.html#dtb_2717"></option><option value="৩৮" label="৩৮" data-href="package-14.html#dtb_2777"></option><option value="৩৯" label="৩৯" data-href="package-15.html#dtb_2811"></option><option value="৪০" label="৪০" data-href="package-15.html#dtb_2892"></option><option value="৪১" label="৪১" data-href="package-15.html#dtb_2923"></option><option value="৪২" label="৪২" data-href="package-15.html#dtb_3014"></option><option value="৪৩" label="৪৩" data-href="package-15.html#dtb_3053"></option><option value="৪৪" label="৪৪" data-href="package-15.html#dtb_3133"></option><option value="৪৫" label="৪৫" data-href="package-16.html#dtb_3179"></option><option value="৪৬" label="৪৬" data-href="package-16.html#dtb_3229"></option><option value="৪৭" label="৪৭" data-href="package-16.html#dtb_3272"></option><option value="৪৮" label="৪৮" data-href="package-16.html#dtb_3309"></option><option value="৪৯" label="৪৯" data-href="package-17.html#dtb_3340"></option><option value="৫০" label="৫০" data-href="package-17.html#dtb_3413"></option><option value="৫১" label="৫১" data-href="package-17.html#dtb_3437"></option><option value="৫২" label="৫২" data-href="package-17.html#dtb_3464"></option><option value="৫৩" label="৫৩" data-href="package-18.html#dtb_3492"></option><option value="৫৪" label="৫৪" data-href="package-18.html#dtb_3549"></option><option value="৫৫" label="৫৫" data-href="package-18.html#dtb_3576"></option><option value="৫৬" label="৫৬" data-href="package-18.html#dtb_3655"></option><option value="৫৭" label="৫৭" data-href="package-18.html#dtb_3694"></option><option value="৫৮" label="৫৮" data-href="package-18.html#dtb_3768"></option><option value="৫৯" label="৫৯" data-href="package-18.html#dtb_3804"></option><option value="৬০" label="৬০" data-href="package-18.html#dtb_3875"></option><option value="৬১" label="৬১" data-href="package-19.html#dtb_3914"></option><option value="৬২" label="৬২" data-href="package-19.html#dtb_3947"></option><option value="৬৩" label="৬৩" data-href="package-19.html#dtb_3980"></option><option value="৬৪" label="৬৪" data-href="package-19.html#dtb_4011"></option><option value="৬৫" label="৬৫" data-href="package-19.html#dtb_4058"></option><option value="৬৬" label="৬৬" data-href="package-19.html#dtb_4144"></option><option value="৬৭" label="৬৭" data-href="package-20.html#dtb_4216"></option><option value="৬৮" label="৬৮" data-href="package-20.html#dtb_4281"></option><option value="৬৯" label="৬৯" data-href="package-20.html#dtb_4335"></option><option value="৭০" label="৭০" data-href="package-20.html#dtb_4400"></option><option value="৭১" label="৭১" data-href="package-21.html#dtb_4444"></option><option value="৭২" label="৭২" data-href="package-21.html#dtb_4532"></option><option value="৭৩" label="৭৩" data-href="package-21.html#dtb_4570"></option><option value="৭৪" label="৭৪" data-href="package-21.html#dtb_4636"></option><option value="৭৫" label="৭৫" data-href="package-22.html#dtb_4659"></option><option value="৭৬" label="৭৬" data-href="package-22.html#dtb_4693"></option><option value="৭৭" label="৭৭" data-href="package-22.html#dtb_4718"></option><option value="৭৮" label="৭৮" data-href="package-22.html#dtb_4758"></option><option value="৭৯" label="৭৯" data-href="package-22.html#dtb_4787"></option><option value="৮০" label="৮০" data-href="package-22.html#dtb_4826"></option><option value="৮১" label="৮১" data-href="package-23.html#dtb_4853"></option><option value="৮২" label="৮২" data-href="package-23.html#dtb_4908"></option><option value="৮৩" label="৮৩" data-href="package-23.html#dtb_4928"></option><option value="৮৪" label="৮৪" data-href="package-23.html#dtb_4979"></option><option value="৮৫" label="৮৫" data-href="package-23.html#dtb_4998"></option><option value="৮৬" label="৮৬" data-href="package-23.html#dtb_5043"></option><option value="৮৭" label="৮৭" data-href="package-24.html#dtb_5129"></option><option value="৮৮" label="৮৮" data-href="package-24.html#dtb_5214"></option><option value="৮৯" label="৮৯" data-href="package-24.html#dtb_5298"></option><option value="৯০" label="৯০" data-href="package-24.html#dtb_5381"></option></datalist>
+    </section>
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>Bangladesg</dd><dt>Author</dt><dd>YPSA</dd><dt>Date</dt><dd>2022-02-11T21:36:37Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

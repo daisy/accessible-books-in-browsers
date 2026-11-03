@@ -1,522 +1,570 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <title>
-      Moby-Dick</title>
-    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-
+<html lang="en-US" data-webbook-contract="0"><head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXTRACTS (Supplied by a Sub-Sub-Librarian).</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="urn:isbn:9780316000000">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
+<body>
     <main>
+<section class="frontmatter-rw Epigraph-rw epubtype_frontmatter epubtype_epigraph">
+<header>
+<h1 id="h-0" tabindex="-1">EXTRACTS (Supplied by a Sub-Sub-Librarian).<a href="#h-0" rel="bookmark" class="webbook" title="Link to EXTRACTS (Supplied by a Sub-Sub-Librarian)." aria-label="Link to EXTRACTS (Supplied by a Sub-Sub-Librarian)."><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1></header>
+<p>It will be seen that this mere painstaking burrower and grub-worm of a poor devil of a Sub-Sub appears to have gone through the long Vaticans and street-stalls of the earth, picking up whatever random allusions to whales he could anyways find in any book whatsoever, sacred or profane. Therefore you must not, in every case at least, take the higgledy-piggledy whale statements, however authentic, in these extracts, for veritable gospel cetology. Far from it. As touching the ancient authors generally, as well as the poets here appearing, these extracts are solely valuable or entertaining, as affording a glancing bird’s eye view of what has been promiscuously said, thought, fancied, and sung of Leviathan, by many nations and generations, including our own.</p>
+<p>So fare thee well, poor devil of a Sub-Sub, whose commentator I am. Thou belongest to that hopeless, sallow tribe which no wine of this world will ever warm; and for whom even Pale Sherry would be too rosy-strong; but with whom one sometimes loves to sit, and feel poor-devilish, too; and grow convivial upon tears; and say to them bluntly, with full eyes and empty glasses, and in not altogether unpleasant sadness—Give it up, Sub-Subs! For by how much the more pains ye take to please the world, by so much the more shall ye for ever go thankless! Would that I could clear out Hampton Court and the Tuileries for ye! But gulp down your tears and hie aloft to the royal-mast with your hearts; for your friends who have gone before are clearing out the seven-storied heavens, and making refugees of long-pampered Gabriel, Michael, and Raphael, against your coming. Here ye strike but splintered hearts together—there, ye shall strike unsplinterable glasses!</p>
+<h2 id="h-1" tabindex="-1">Extracts.<a href="#h-1" rel="bookmark" class="webbook" title="Link to Extracts." aria-label="Link to Extracts."><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h2>
+<div class="block-rw extract-rw">
+<p>“And God created great whales.”</p>
+<p class="source-rw">—GENESIS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Leviathan maketh a path to shine after him; One would think the deep to be hoary.”</p>
+<p class="source-rw">—JOB.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Now the Lord had prepared a great fish to swallow up Jonah.”</p>
+<p class="source-rw">—JONAH.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“There go the ships; there is that Leviathan whom thou hast made to play therein.”</p>
+<p class="source-rw">—PSALMS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“In that day, the Lord with his sore, and great, and strong sword, shall punish Leviathan the piercing serpent, even Leviathan that crooked serpent; and he shall slay the dragon that is in the sea.”</p>
+<p class="source-rw">—ISAIAH</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“And what thing soever besides cometh within the chaos of this monster’s mouth, be it beast, boat, or stone, down it goes all incontinently that foul great swallow of his, and perisheth in the bottomless gulf of his paunch.”</p>
+<p class="source-rw">—HOLLAND’S PLUTARCH’S MORALS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The Indian Sea breedeth the most and the biggest fishes that are: among which the Whales and Whirlpooles called Balaene, take up as much in length as four acres or arpens of land.”</p>
+<p class="source-rw">—HOLLAND’S PLINY.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Scarcely had we proceeded two days on the sea, when about sunrise a great many Whales and other monsters of the sea, appeared. Among the former, one was of a most monstrous size.... This came towards us, open-mouthed, raising the waves on all sides, and beating the sea before him into a foam.”</p>
+<p class="source-rw">—TOOKE’S LUCIAN. “THE TRUE HISTORY.”</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“He visited this country also with a view of catching horse-whales, which had bones of very great value for their teeth, of which he brought some to the king.... The best whales were catched in his own country, of which some were forty-eight, some fifty yards long. He said that he was one of six who had killed sixty in two days.”</p>
+<p class="source-rw">—OTHER OR OTHER’S VERBAL NARRATIVE TAKEN DOWN FROM HIS MOUTH BY KING ALFRED, A.D. 890.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“And whereas all the other things, whether beast or vessel, that enter into the dreadful gulf of this monster’s (whale’s) mouth, are immediately lost and swallowed up, the sea-gudgeon retires into it in great security, and there sleeps.”</p>
+<p class="source-rw">—MONTAIGNE. —APOLOGY FOR RAIMOND SEBOND.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Let us fly, let us fly! Old Nick take me if is not Leviathan described by the noble prophet Moses in the life of patient Job.”</p>
+<p class="source-rw">—RABELAIS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“This whale’s liver was two cartloads.”</p>
+<p class="source-rw">—STOWE’S ANNALS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The great Leviathan that maketh the seas to seethe like boiling pan.”</p>
+<p class="source-rw">—LORD BACON’S VERSION OF THE PSALMS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Touching that monstrous bulk of the whale or ork we have received nothing certain. They grow exceeding fat, insomuch that an incredible quantity of oil will be extracted out of one whale.”</p>
+<p class="source-rw">—IBID. “HISTORY OF LIFE AND DEATH.”</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The sovereignest thing on earth is parmacetti for an inward bruise.”</p>
+<p class="source-rw">—KING HENRY.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Very like a whale.”</p>
+<p class="source-rw">—HAMLET.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“Which to secure, no skill of leach’s art</p>
+<p>Mote him availle, but to returne againe</p>
+<p>To his wound’s worker, that with lowly dart,</p>
+<p>Dinting his breast, had bred his restless paine,</p>
+<p>Like as the wounded whale to shore flies thro’ the maine."</p>
+<p class="source-rw">—THE FAERIE QUEEN.</p></div>
+<div class="block-rw extract-rw">
+<p>“Immense as whales, the motion of whose vast bodies can in a peaceful calm trouble the ocean til it boil.”</p>
+<p class="source-rw">—SIR WILLIAM DAVENANT. PREFACE TO GONDIBERT.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“What spermacetti is, men might justly doubt, since the learned Hosmannus in his work of thirty years, saith plainly, Nescio quid sit.”</p>
+<p class="source-rw">—SIR T. BROWNE. OF SPERMA CETI AND THE SPERMA CETI WHALE. VIDE HIS V. E.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“Like Spencer’s Talus with his modern flail</p>
+<p>He threatens ruin with his ponderous tail.</p>
+<p>   ...</p>
+<p>Their fixed jav’lins in his side he wears,</p>
+<p>And on his back a grove of pikes appears."</p>
+<p class="source-rw">—WALLER’S BATTLE OF THE SUMMER ISLANDS.</p></div>
+<div class="block-rw extract-rw">
+<p>“By art is created that great Leviathan, called a Commonwealth or State—(in Latin, Civitas) which is but an artificial man.” </p>
+<p class="source-rw">—OPENING SENTENCE OF HOBBES’S LEVIATHAN.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Silly Mansoul swallowed it without chewing, as if it had been a sprat in the mouth of a whale.”</p>
+<p class="source-rw">—PILGRIM’S PROGRESS.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“That sea beast</p>
+<p>Leviathan, which God of all his works</p>
+<p>Created hugest that swim the ocean stream.” </p>
+     
+     <p class="source-rw">—PARADISE LOST.</p>
+     </div>
+     <div class="block-rw extract-verse-rw">
+     
+<p>—-"There Leviathan,</p>
+<p>Hugest of living creatures, in the deep</p>
+<p>Stretched like a promontory sleeps or swims,</p>
+<p>And seems a moving land; and at his gills</p>
+<p>Draws in, and at his breath spouts out a sea.”</p>
+<p class="source-rw">—IBID.</p></div>
+<div class="block-rw extract-rw">
+<p>“The mighty whales which swim in a sea of water, and have a sea of oil swimming in them.”</p>
+<p class="source-rw">—FULLLER’S PROFANE AND HOLY STATE.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“So close behind some promontory lie</p>
+<p>The huge Leviathan to attend their prey,</p>
+<p>And give no chance, but swallow in the fry,</p>
+<p>Which through their gaping jaws mistake the way."</p>
+<p class="source-rw">     —DRYDEN’S ANNUS MIRABILIS.</p></div>
+<div class="block-rw extract-rw">
+<p>“While the whale is floating at the stern of the ship, they cut off his head, and tow it with a boat as near the shore as it will come; but it will be aground in twelve or thirteen feet water.”</p>
+<p class="source-rw">—THOMAS EDGE’S TEN VOYAGES TO SPITZBERGEN, IN PURCHAS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“In their way they saw many whales sporting in the ocean, and in wantonness fuzzing up the water through their pipes and vents, which nature has placed on their shoulders.”</p>
+<p class="source-rw">—SIR T. HERBERT’S VOYAGES INTO ASIA AND AFRICA. HARRIS COLL.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Here they saw such huge troops of whales, that they were forced to proceed with a great deal of caution for fear they should run their ship upon them.”</p>
+<p class="source-rw">—SCHOUTEN’S SIXTH CIRCUMNAVIGATION.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“We set sail from the Elbe, wind N.E. in the ship called The Jonas-in-the-Whale.... Some say the whale can’t open his mouth, but that is a fable.... They frequently climb up the masts to see whether they can see a whale, for the first discoverer has a ducat for his pains.... I was told of a whale taken near Shetland, that had above a barrel of herrings in his belly.... One of our harpooneers told me that he caught once a whale in Spitzbergen that was white all over.”</p>
+<p class="source-rw">—A VOYAGE TO GREENLAND, A.D. 1671 HARRIS COLL.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Several whales have come in upon this coast (Fife) Anno 1652, one eighty feet in length of the whale-bone kind came in, which (as I was informed), besides a vast quantity of oil, did afford 500 weight of baleen. The jaws of it stand for a gate in the garden of Pitferren.”</p>
+<p class="source-rw">—SIBBALD’S FIFE AND KINROSS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Myself have agreed to try whether I can master and kill this Sperma-ceti whale, for I could never hear of any of that sort that was killed by any man, such is his fierceness and swiftness.”</p>
+<p class="source-rw">—RICHARD STRAFFORD’S LETTER FROM THE BERMUDAS. PHIL. TRANS. A.D. 1668.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Whales in the sea God’s voice obey.”</p>
+<p class="source-rw">—N. E. PRIMER.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“We saw also abundance of large whales, there being more in those southern seas, as I may say, by a hundred to one; than we have to the northward of us.”</p>
+<p class="source-rw">—CAPTAIN COWLEY’S VOYAGE ROUND THE GLOBE, A.D. 1729.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“... and the breath of the whale is frequently attended with such an insupportable smell, as to bring on a disorder of the brain.”</p>
+<p class="source-rw">—ULLOA’S SOUTH AMERICA.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“To fifty chosen sylphs of special note,</p>
+<p>We trust the important charge, the petticoat.</p>
+<p>Oft have we known that seven-fold fence to fail,</p>
+<p>Tho’ stuffed with hoops and armed with ribs of whale."</p>
+<p class="source-rw">     —RAPE OF THE LOCK.</p></div>
+<div class="block-rw extract-rw">
+<p>“If we compare land animals in respect to magnitude, with those that take up their abode in the deep, we shall find they will appear contemptible in the comparison. The whale is doubtless the largest animal in creation.”</p>
+<p class="source-rw">—GOLDSMITH, NAT. HIST.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“If you should write a fable for little fishes, you would make them speak like great wales.”</p>
+<p class="source-rw">—GOLDSMITH TO JOHNSON.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“In the afternoon we saw what was supposed to be a rock, but it was found to be a dead whale, which some Asiatics had killed, and were then towing ashore. They seemed to endeavor to conceal themselves behind the whale, in order to avoid being seen by us.”</p>
+<p class="source-rw">—COOK’S VOYAGES.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The larger whales, they seldom venture to attack. They stand in so great dread of some of them, that when out at sea they are afraid to mention even their names, and carry dung, lime-stone, juniper-wood, and some other articles of the same nature in their boats, in order to terrify and prevent their too near approach.”</p>
+<p class="source-rw">—UNO VON TROIL’S LETTERS ON BANKS’S AND SOLANDER’S VOYAGE TO ICELAND IN 1772.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The Spermacetti Whale found by the Nantuckois, is an active, fierce animal, and requires vast address and boldness in the fishermen.”</p>
+<p class="source-rw">—THOMAS JEFFERSON’S WHALE MEMORIAL TO THE FRENCH MINISTER IN 1778.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“And pray, sir, what in the world is equal to it?”</p>
+<p class="source-rw">—EDMUND BURKE’S REFERENCE IN PARLIAMENT TO THE NANTUCKET WHALE-FISHERY.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Spain</p>
+<p class="source-rw">—a great whale stranded on the shores of Europe.” —EDMUND BURKE. (SOMEWHERE.)</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“A tenth branch of the king’s ordinary revenue, said to be grounded on the consideration of his guarding and protecting the seas from pirates and robbers, is the right to royal fish, which are whale and sturgeon. And these, when either thrown ashore or caught near the coast, are the property of the king.”</p>
+<p class="source-rw">—BLACKSTONE.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“Soon to the sport of death the crews repair:</p>
+<p>Rodmond unerring o’er his head suspends</p>
+<p>The barbed steel, and every turn attends."</p>
+<p class="source-rw">—FALCONER’S SHIPWRECK.</p>
 
-      <section class="frontmatter-rw Epigraph-rw epubtype_frontmatter epubtype_epigraph">
-        <header>
-          <h1 id="h-0">EXTRACTS (Supplied by a Sub-Sub-Librarian).<a href="#h-0" title="Link to heading EXTRACTS (Supplied by a Sub-Sub-Librarian)." class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-        </header>
-        <p>It will be seen that this mere painstaking burrower and grub-worm of a poor devil of a Sub-Sub appears to have gone through the long Vaticans and street-stalls of the earth, picking up whatever random allusions to whales he could anyways find in any book whatsoever, sacred or profane. Therefore you must not, in every case at least, take the higgledy-piggledy whale statements, however authentic, in these extracts, for veritable gospel cetology. Far from it. As touching the ancient authors generally, as well as the poets here appearing, these extracts are solely valuable or entertaining, as affording a glancing bird’s eye view of what has been promiscuously said, thought, fancied, and sung of Leviathan, by many nations and generations, including our own.</p>
-        <p>So fare thee well, poor devil of a Sub-Sub, whose commentator I am. Thou belongest to that hopeless, sallow tribe which no wine of this world will ever warm; and for whom even Pale Sherry would be too rosy-strong; but with whom one sometimes loves to sit, and feel poor-devilish, too; and grow convivial upon tears; and say to them bluntly, with full eyes and empty glasses, and in not altogether unpleasant sadness—Give it up, Sub-Subs! For by how much the more pains ye take to please the world, by so much the more shall ye for ever go thankless! Would that I could clear out Hampton Court and the Tuileries for ye! But gulp down your tears and hie aloft to the royal-mast with your hearts; for your friends who have gone before are clearing out the seven-storied heavens, and making refugees of long-pampered Gabriel, Michael, and Raphael, against your coming. Here ye strike but splintered hearts together—there, ye shall strike unsplinterable glasses!</p>
-        <h2 id="h-0">Extracts.<a href="#h-0" title="Link to heading Extracts." class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h2>
-        <div class="block-rw extract-rw">
-          <p>“And God created great whales.”</p>
-          <p class="source-rw">—GENESIS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Leviathan maketh a path to shine after him; One would think the deep to be hoary.”</p>
-          <p class="source-rw">—JOB.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Now the Lord had prepared a great fish to swallow up Jonah.”</p>
-          <p class="source-rw">—JONAH.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“There go the ships; there is that Leviathan whom thou hast made to play therein.”</p>
-          <p class="source-rw">—PSALMS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“In that day, the Lord with his sore, and great, and strong sword, shall punish Leviathan the piercing serpent, even Leviathan that crooked serpent; and he shall slay the dragon that is in the sea.”</p>
-          <p class="source-rw">—ISAIAH</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“And what thing soever besides cometh within the chaos of this monster’s mouth, be it beast, boat, or stone, down it goes all incontinently that foul great swallow of his, and perisheth in the bottomless gulf of his paunch.”</p>
-          <p class="source-rw">—HOLLAND’S PLUTARCH’S MORALS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The Indian Sea breedeth the most and the biggest fishes that are: among which the Whales and Whirlpooles called Balaene, take up as much in length as four acres or arpens of land.”</p>
-          <p class="source-rw">—HOLLAND’S PLINY.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Scarcely had we proceeded two days on the sea, when about sunrise a great many Whales and other monsters of the sea, appeared. Among the former, one was of a most monstrous size.... This came towards us, open-mouthed, raising the waves on all sides, and beating the sea before him into a foam.”</p>
-          <p class="source-rw">—TOOKE’S LUCIAN. “THE TRUE HISTORY.”</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“He visited this country also with a view of catching horse-whales, which had bones of very great value for their teeth, of which he brought some to the king.... The best whales were catched in his own country, of which some were forty-eight, some fifty yards long. He said that he was one of six who had killed sixty in two days.”</p>
-          <p class="source-rw">—OTHER OR OTHER’S VERBAL NARRATIVE TAKEN DOWN FROM HIS MOUTH BY KING ALFRED, A.D. 890.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“And whereas all the other things, whether beast or vessel, that enter into the dreadful gulf of this monster’s (whale’s) mouth, are immediately lost and swallowed up, the sea-gudgeon retires into it in great security, and there sleeps.”</p>
-          <p class="source-rw">—MONTAIGNE. —APOLOGY FOR RAIMOND SEBOND.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Let us fly, let us fly! Old Nick take me if is not Leviathan described by the noble prophet Moses in the life of patient Job.”</p>
-          <p class="source-rw">—RABELAIS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“This whale’s liver was two cartloads.”</p>
-          <p class="source-rw">—STOWE’S ANNALS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The great Leviathan that maketh the seas to seethe like boiling pan.”</p>
-          <p class="source-rw">—LORD BACON’S VERSION OF THE PSALMS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Touching that monstrous bulk of the whale or ork we have received nothing certain. They grow exceeding fat, insomuch that an incredible quantity of oil will be extracted out of one whale.”</p>
-          <p class="source-rw">—IBID. “HISTORY OF LIFE AND DEATH.”</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The sovereignest thing on earth is parmacetti for an inward bruise.”</p>
-          <p class="source-rw">—KING HENRY.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Very like a whale.”</p>
-          <p class="source-rw">—HAMLET.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“Which to secure, no skill of leach’s art</p>
-          <p>Mote him availle, but to returne againe</p>
-          <p>To his wound’s worker, that with lowly dart,</p>
-          <p>Dinting his breast, had bred his restless paine,</p>
-          <p>Like as the wounded whale to shore flies thro’ the maine."</p>
-          <p class="source-rw">—THE FAERIE QUEEN.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Immense as whales, the motion of whose vast bodies can in a peaceful calm trouble the ocean til it boil.”</p>
-          <p class="source-rw">—SIR WILLIAM DAVENANT. PREFACE TO GONDIBERT.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“What spermacetti is, men might justly doubt, since the learned Hosmannus in his work of thirty years, saith plainly, Nescio quid sit.”</p>
-          <p class="source-rw">—SIR T. BROWNE. OF SPERMA CETI AND THE SPERMA CETI WHALE. VIDE HIS V. E.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“Like Spencer’s Talus with his modern flail</p>
-          <p>He threatens ruin with his ponderous tail.</p>
-          <p> ...</p>
-          <p>Their fixed jav’lins in his side he wears,</p>
-          <p>And on his back a grove of pikes appears."</p>
-          <p class="source-rw">—WALLER’S BATTLE OF THE SUMMER ISLANDS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“By art is created that great Leviathan, called a Commonwealth or State—(in Latin, Civitas) which is but an artificial man.” </p>
-          <p class="source-rw">—OPENING SENTENCE OF HOBBES’S LEVIATHAN.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Silly Mansoul swallowed it without chewing, as if it had been a sprat in the mouth of a whale.”</p>
-          <p class="source-rw">—PILGRIM’S PROGRESS.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“That sea beast</p>
-          <p>Leviathan, which God of all his works</p>
-          <p>Created hugest that swim the ocean stream.” </p>
+</div>
+<div class="block-rw extract-verse-rw">
 
-          <p class="source-rw">—PARADISE LOST.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
+<p>“Bright shone the roofs, the domes, the spires,</p>
+<p>And rockets blew self driven,</p>
+<p>To hang their momentary fire</p>
+<p>Around the vault of heaven.</p>
+<p>“So fire with water to compare,</p>
+<p>The ocean serves on high,</p>
+<p>Up-spouted by a whale in air,</p>
+<p>To express unwieldy joy.” </p>
+     
+<p class="source-rw">—COWPER, ON THE QUEEN’S VISIT TO LONDON.</p></div>
+<div class="block-rw extract-rw">
+<p>“Ten or fifteen gallons of blood are thrown out of the heart at a stroke, with immense velocity.”</p>
+<p class="source-rw">—JOHN HUNTER’S ACCOUNT OF THE DISSECTION OF A WHALE. (A SMALL SIZED ONE.)</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The aorta of a whale is larger in the bore than the main pipe of the water-works at London Bridge, and the water roaring in its passage through that pipe is inferior in impetus and velocity to the blood gushing from the whale’s heart.”</p>
+<p class="source-rw">—PALEY’S THEOLOGY.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The whale is a mammiferous animal without hind feet.”</p>
+<p class="source-rw">—BARON CUVIER.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“In 40 degrees south, we saw Spermacetti Whales, but did not take any till the first of May, the sea being then covered with them.”</p>
+<p class="source-rw">—COLNETT’S VOYAGE FOR THE PURPOSE OF EXTENDING THE SPERMACETI WHALE FISHERY.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“In the free element beneath me swam,</p>
+<p>Floundered and dived, in play, in chace, in battle,</p>
+<p>Fishes of every colour, form, and kind;</p>
+<p>Which language cannot paint, and mariner</p>
+<p>Had never seen; from dread Leviathan</p>
+<p>To insect millions peopling every wave:</p>
+<p>Gather’d in shoals immense, like floating islands,</p>
+<p>Led by mysterious instincts through that waste</p>
+<p>And trackless region, though on every side</p>
+<p>Assaulted by voracious enemies,</p>
+<p>Whales, sharks, and monsters, arm’d in front or jaw,</p>
+<p>With swords, saws, spiral horns, or hooked fangs."</p>
+<p class="source-rw"> —MONTGOMERY’S WORLD BEFORE THE FLOOD.</p>
+</div>
 
-          <p>—-"There Leviathan,</p>
-          <p>Hugest of living creatures, in the deep</p>
-          <p>Stretched like a promontory sleeps or swims,</p>
-          <p>And seems a moving land; and at his gills</p>
-          <p>Draws in, and at his breath spouts out a sea.”</p>
-          <p class="source-rw">—IBID.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The mighty whales which swim in a sea of water, and have a sea of oil swimming in them.”</p>
-          <p class="source-rw">—FULLLER’S PROFANE AND HOLY STATE.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“So close behind some promontory lie</p>
-          <p>The huge Leviathan to attend their prey,</p>
-          <p>And give no chance, but swallow in the fry,</p>
-          <p>Which through their gaping jaws mistake the way."</p>
-          <p class="source-rw"> —DRYDEN’S ANNUS MIRABILIS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“While the whale is floating at the stern of the ship, they cut off his head, and tow it with a boat as near the shore as it will come; but it will be aground in twelve or thirteen feet water.”</p>
-          <p class="source-rw">—THOMAS EDGE’S TEN VOYAGES TO SPITZBERGEN, IN PURCHAS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“In their way they saw many whales sporting in the ocean, and in wantonness fuzzing up the water through their pipes and vents, which nature has placed on their shoulders.”</p>
-          <p class="source-rw">—SIR T. HERBERT’S VOYAGES INTO ASIA AND AFRICA. HARRIS COLL.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Here they saw such huge troops of whales, that they were forced to proceed with a great deal of caution for fear they should run their ship upon them.”</p>
-          <p class="source-rw">—SCHOUTEN’S SIXTH CIRCUMNAVIGATION.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“We set sail from the Elbe, wind N.E. in the ship called The Jonas-in-the-Whale.... Some say the whale can’t open his mouth, but that is a fable.... They frequently climb up the masts to see whether they can see a whale, for the first discoverer has a ducat for his pains.... I was told of a whale taken near Shetland, that had above a barrel of herrings in his belly.... One of our harpooneers told me that he caught once a whale in Spitzbergen that was white all over.”</p>
-          <p class="source-rw">—A VOYAGE TO GREENLAND, A.D. 1671 HARRIS COLL.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Several whales have come in upon this coast (Fife) Anno 1652, one eighty feet in length of the whale-bone kind came in, which (as I was informed), besides a vast quantity of oil, did afford 500 weight of baleen. The jaws of it stand for a gate in the garden of Pitferren.”</p>
-          <p class="source-rw">—SIBBALD’S FIFE AND KINROSS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Myself have agreed to try whether I can master and kill this Sperma-ceti whale, for I could never hear of any of that sort that was killed by any man, such is his fierceness and swiftness.”</p>
-          <p class="source-rw">—RICHARD STRAFFORD’S LETTER FROM THE BERMUDAS. PHIL. TRANS. A.D. 1668.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Whales in the sea God’s voice obey.”</p>
-          <p class="source-rw">—N. E. PRIMER.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“We saw also abundance of large whales, there being more in those southern seas, as I may say, by a hundred to one; than we have to the northward of us.”</p>
-          <p class="source-rw">—CAPTAIN COWLEY’S VOYAGE ROUND THE GLOBE, A.D. 1729.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“... and the breath of the whale is frequently attended with such an insupportable smell, as to bring on a disorder of the brain.”</p>
-          <p class="source-rw">—ULLOA’S SOUTH AMERICA.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“To fifty chosen sylphs of special note,</p>
-          <p>We trust the important charge, the petticoat.</p>
-          <p>Oft have we known that seven-fold fence to fail,</p>
-          <p>Tho’ stuffed with hoops and armed with ribs of whale."</p>
-          <p class="source-rw"> —RAPE OF THE LOCK.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“If we compare land animals in respect to magnitude, with those that take up their abode in the deep, we shall find they will appear contemptible in the comparison. The whale is doubtless the largest animal in creation.”</p>
-          <p class="source-rw">—GOLDSMITH, NAT. HIST.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“If you should write a fable for little fishes, you would make them speak like great wales.”</p>
-          <p class="source-rw">—GOLDSMITH TO JOHNSON.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“In the afternoon we saw what was supposed to be a rock, but it was found to be a dead whale, which some Asiatics had killed, and were then towing ashore. They seemed to endeavor to conceal themselves behind the whale, in order to avoid being seen by us.”</p>
-          <p class="source-rw">—COOK’S VOYAGES.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The larger whales, they seldom venture to attack. They stand in so great dread of some of them, that when out at sea they are afraid to mention even their names, and carry dung, lime-stone, juniper-wood, and some other articles of the same nature in their boats, in order to terrify and prevent their too near approach.”</p>
-          <p class="source-rw">—UNO VON TROIL’S LETTERS ON BANKS’S AND SOLANDER’S VOYAGE TO ICELAND IN 1772.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The Spermacetti Whale found by the Nantuckois, is an active, fierce animal, and requires vast address and boldness in the fishermen.”</p>
-          <p class="source-rw">—THOMAS JEFFERSON’S WHALE MEMORIAL TO THE FRENCH MINISTER IN 1778.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“And pray, sir, what in the world is equal to it?”</p>
-          <p class="source-rw">—EDMUND BURKE’S REFERENCE IN PARLIAMENT TO THE NANTUCKET WHALE-FISHERY.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Spain</p>
-          <p class="source-rw">—a great whale stranded on the shores of Europe.” —EDMUND BURKE. (SOMEWHERE.)</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“A tenth branch of the king’s ordinary revenue, said to be grounded on the consideration of his guarding and protecting the seas from pirates and robbers, is the right to royal fish, which are whale and sturgeon. And these, when either thrown ashore or caught near the coast, are the property of the king.”</p>
-          <p class="source-rw">—BLACKSTONE.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“Soon to the sport of death the crews repair:</p>
-          <p>Rodmond unerring o’er his head suspends</p>
-          <p>The barbed steel, and every turn attends."</p>
-          <p class="source-rw">—FALCONER’S SHIPWRECK.</p>
+<div class="block-rw extract-verse-rw">
 
-        </div>
-        <div class="block-rw extract-verse-rw">
+<p>“Io!  Paean!  Io! sing.</p>
+<p>To the finny people’s king.</p>
+<p>Not a mightier whale than this</p>
+<p>In the vast Atlantic is;</p>
+<p>Not a fatter fish than he,</p>
+<p>Flounders round the Polar Sea."</p>
+    <p class="source-rw">—CHARLES LAMB’S TRIUMPH OF THE WHALE.</p></div>
+<div class="block-rw extract-rw">
+<p>“In the year 1690 some persons were on a high hill observing the whales spouting and sporting with each other, when one observed: there</p>
+<p class="source-rw">—pointing to the sea—is a green pasture where our children’s grand-children will go for bread.” —OBED MACY’S HISTORY OF NANTUCKET.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“I built a cottage for Susan and myself and made a gateway in the form of a Gothic Arch, by setting up a whale’s jaw bones.”</p>
+<p class="source-rw">—HAWTHORNE’S TWICE TOLD TALES.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“She came to bespeak a monument for her first love, who had been killed by a whale in the Pacific ocean, no less than forty years ago.”</p>
+<p class="source-rw">—IBID.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“No, Sir, ‘tis a Right Whale,” answered Tom; “I saw his sprout; he threw up a pair of as pretty rainbows as a Christian would wish to look at. He’s a raal oil-butt, that fellow!”</p>
+<p class="source-rw">—COOPER’S PILOT.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The papers were brought in, and we saw in the Berlin Gazette that whales had been introduced on the stage there.”</p>
+<p class="source-rw">—ECKERMANN’S CONVERSATIONS WITH GOETHE.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“My God! Mr. Chace, what is the matter?” I answered, “we have been stove by a whale.”</p>
+<p class="source-rw">—"NARRATIVE OF THE SHIPWRECK OF THE WHALE SHIP ESSEX OF NANTUCKET, WHICH WAS ATTACKED AND FINALLY DESTROYED BY A LARGE SPERM WHALE IN THE PACIFIC OCEAN.” BY OWEN CHACE OF NANTUCKET, FIRST MATE OF SAID VESSEL. NEW YORK, 1821.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“A mariner sat in the shrouds one night,</p>
+<p>The wind was piping free;</p>
+<p>Now bright, now dimmed, was the moonlight pale,</p>
+<p>And the phospher gleamed in the wake of the whale,</p>
+<p>As it floundered in the sea."</p>
+<p class="source-rw">—ELIZABETH OAKES SMITH.</p></div>
 
-          <p>“Bright shone the roofs, the domes, the spires,</p>
-          <p>And rockets blew self driven,</p>
-          <p>To hang their momentary fire</p>
-          <p>Around the vault of heaven.</p>
-          <p>“So fire with water to compare,</p>
-          <p>The ocean serves on high,</p>
-          <p>Up-spouted by a whale in air,</p>
-          <p>To express unwieldy joy.” </p>
+<div class="block-rw extract-rw">
+<p>“The quantity of line withdrawn from the boats engaged in the capture of this one whale, amounted altogether to 10,440 yards or nearly six English miles....</p>
+<p>“Sometimes the whale shakes its tremendous tail in the air, which, cracking like a whip, resounds to the distance of three or four miles.”</p>
+<p class="source-rw">—SCORESBY.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Mad with the agonies he endures from these fresh attacks, the infuriated Sperm Whale rolls over and over; he rears his enormous head, and with wide expanded jaws snaps at everything around him; he rushes at the boats with his head; they are propelled before him with vast swiftness, and sometimes utterly destroyed.... It is a matter of great astonishment that the consideration of the habits of so interesting, and, in a commercial point of view, so important an animal (as the Sperm Whale) should have been so entirely neglected, or should have excited so little curiosity among the numerous, and many of them competent observers, that of late years, must have possessed the most abundant and the most convenient opportunities of witnessing their habitudes.”</p>
+<p class="source-rw">—THOMAS BEALE’S HISTORY OF THE SPERM WHALE, 1839.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The Cachalot" (Sperm Whale) “is not only better armed than the True Whale" (Greenland or Right Whale) “in possessing a formidable weapon at either extremity of its body, but also more frequently displays a disposition to employ these weapons offensively and in manner at once so artful, bold, and mischievous, as to lead to its being regarded as the most dangerous to attack of all the known species of the whale tribe.”</p>
+<p class="source-rw">—FREDERICK DEBELL BENNETT’S WHALING VOYAGE ROUND THE GLOBE, 1840.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>October 13.  “There she blows,” was sung out from the mast-head.</p>
+<p>“Where away?” demanded the captain.</p>
+<p>“Three points off the lee bow, sir."</p>
+<p>“Raise up your wheel.  Steady!”  “Steady, sir."</p>
+<p>“Mast-head ahoy!  Do you see that whale now?"</p>
+<p>“Ay ay, sir!  A shoal of Sperm Whales!  There she blows!  There she breaches!”</p>
+<p>“Sing out! sing out every time!”</p>
+<p>“Ay Ay, sir!  There she blows! there—there—THAR she blows—bowes—bo-o-os!”</p>
+<p>“How far off?"</p>
+<p>“Two miles and a half."</p>
+<p>“Thunder and lightning! so near!  Call all hands."</p>
+<p class="source-rw">—J. ROSS BROWNE’S ETCHINGS OF A WHALING CRUIZE.  1846.</p></div>
+<div class="block-rw extract-rw">
+<p>“The Whale-ship Globe, on board of which vessel occurred the horrid transactions we are about to relate, belonged to the island of Nantucket.”</p>
+<p class="source-rw">—"NARRATIVE OF THE GLOBE,” BY LAY AND HUSSEY SURVIVORS. A.D. 1828.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>Being once pursued by a whale which he had wounded, he parried the assault for some time with a lance; but the furious monster at length rushed on the boat; himself and comrades only being preserved by leaping into the water when they saw the onset was inevitable.”</p>
+<p class="source-rw">—MISSIONARY JOURNAL OF TYERMAN AND BENNETT.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Nantucket itself,” said Mr. Webster, “is a very striking and peculiar portion of the National interest. There is a population of eight or nine thousand persons living here in the sea, adding largely every year to the National wealth by the boldest and most persevering industry.”</p>
+<p class="source-rw">—REPORT OF DANIEL WEBSTER’S SPEECH IN THE U. S. SENATE, ON THE APPLICATION FOR THE ERECTION OF A BREAKWATER AT NANTUCKET. 1828.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The whale fell directly over him, and probably killed him in a moment.”</p>
+<p class="source-rw">—"THE WHALE AND HIS CAPTORS, OR THE WHALEMAN’S ADVENTURES AND THE WHALE’S BIOGRAPHY, GATHERED ON THE HOMEWARD CRUISE OF THE COMMODORE PREBLE.” BY REV. HENRY T. CHEEVER.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“If you make the least damn bit of noise,” replied Samuel, “I will send you to hell.”</p>
+<p class="source-rw">—LIFE OF SAMUEL COMSTOCK (THE MUTINEER), BY HIS BROTHER, WILLIAM COMSTOCK. ANOTHER VERSION OF THE WHALE-SHIP GLOBE NARRATIVE.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The voyages of the Dutch and English to the Northern Ocean, in order, if possible, to discover a passage through it to India, though they failed of their main object, laid-open the haunts of the whale.”</p>
+<p class="source-rw">—MCCULLOCH’S COMMERCIAL DICTIONARY.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“These things are reciprocal; the ball rebounds, only to bound forward again; for now in laying open the haunts of the whale, the whalemen seem to have indirectly hit upon new clews to that same mystic North-West Passage.”</p>
+<p class="source-rw">—FROM “SOMETHING" UNPUBLISHED.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“It is impossible to meet a whale-ship on the ocean without being struck by her near appearance. The vessel under short sail, with look-outs at the mast-heads, eagerly scanning the wide expanse around them, has a totally different air from those engaged in regular voyage.”</p>
+<p class="source-rw">—CURRENTS AND WHALING. U.S. EX. EX.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Pedestrians in the vicinity of London and elsewhere may recollect having seen large curved bones set upright in the earth, either to form arches over gateways, or entrances to alcoves, and they may perhaps have been told that these were the ribs of whales.”</p>
+<p class="source-rw">—TALES OF A WHALE VOYAGER TO THE ARCTIC OCEAN.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“It was not till the boats returned from the pursuit of these whales, that the whites saw their ship in bloody possession of the savages enrolled among the crew.”</p>
+<p class="source-rw">—NEWSPAPER ACCOUNT OF THE TAKING AND RETAKING OF THE WHALE-SHIP HOBOMACK.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“It is generally well known that out of the crews of Whaling vessels (American) few ever return in the ships on board of which they departed.”</p>
+<p class="source-rw">—CRUISE IN A WHALE BOAT.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“Suddenly a mighty mass emerged from the water, and shot up perpendicularly into the air. It was the while.”</p>
+<p class="source-rw">—MIRIAM COFFIN OR THE WHALE FISHERMAN.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“The Whale is harpooned to be sure; but bethink you, how you would manage a powerful unbroken colt, with the mere appliance of a rope tied to the root of his tail.”</p>
+<p class="source-rw">—A CHAPTER ON WHALING IN RIBS AND TRUCKS.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“On one occasion I saw two of these monsters (whales) probably male and female, slowly swimming, one after the other, within less than a stone’s throw of the shore" (Terra Del Fuego), “over which the beech tree extended its branches.”</p>
+<p class="source-rw">—DARWIN’S VOYAGE OF A NATURALIST.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“‘Stern all!’ exclaimed the mate, as upon turning his head, he saw the distended jaws of a large Sperm Whale close to the head of the boat, threatening it with instant destruction; —‘Stern all, for your lives!’” </p>
+<p class="source-rw">—WHARTON THE WHALE KILLER.</p>
+</div>
+<div class="block-rw extract-rw">
+<p>“So be cheery, my lads, let your hearts never fail, While the bold harpooneer is striking the whale!”</p>
+<p class="source-rw">—NANTUCKET SONG.</p>
+</div>
+<div class="block-rw extract-verse-rw">
+<p>“Oh, the rare old Whale, mid storm and gale</p>
+<p>In his ocean home will be</p>
+<p>A giant in might, where might is right,</p>
+<p>And King of the boundless sea."</p>
+<p class="source-rw">—WHALE SONG.</p></div></section></main>
 
-          <p class="source-rw">—COWPER, ON THE QUEEN’S VISIT TO LONDON.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Ten or fifteen gallons of blood are thrown out of the heart at a stroke, with immense velocity.”</p>
-          <p class="source-rw">—JOHN HUNTER’S ACCOUNT OF THE DISSECTION OF A WHALE. (A SMALL SIZED ONE.)</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The aorta of a whale is larger in the bore than the main pipe of the water-works at London Bridge, and the water roaring in its passage through that pipe is inferior in impetus and velocity to the blood gushing from the whale’s heart.”</p>
-          <p class="source-rw">—PALEY’S THEOLOGY.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The whale is a mammiferous animal without hind feet.”</p>
-          <p class="source-rw">—BARON CUVIER.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“In 40 degrees south, we saw Spermacetti Whales, but did not take any till the first of May, the sea being then covered with them.”</p>
-          <p class="source-rw">—COLNETT’S VOYAGE FOR THE PURPOSE OF EXTENDING THE SPERMACETI WHALE FISHERY.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“In the free element beneath me swam,</p>
-          <p>Floundered and dived, in play, in chace, in battle,</p>
-          <p>Fishes of every colour, form, and kind;</p>
-          <p>Which language cannot paint, and mariner</p>
-          <p>Had never seen; from dread Leviathan</p>
-          <p>To insect millions peopling every wave:</p>
-          <p>Gather’d in shoals immense, like floating islands,</p>
-          <p>Led by mysterious instincts through that waste</p>
-          <p>And trackless region, though on every side</p>
-          <p>Assaulted by voracious enemies,</p>
-          <p>Whales, sharks, and monsters, arm’d in front or jaw,</p>
-          <p>With swords, saws, spiral horns, or hooked fangs."</p>
-          <p class="source-rw"> —MONTGOMERY’S WORLD BEFORE THE FLOOD.</p>
-        </div>
-
-        <div class="block-rw extract-verse-rw">
-
-          <p>“Io! Paean! Io! sing.</p>
-          <p>To the finny people’s king.</p>
-          <p>Not a mightier whale than this</p>
-          <p>In the vast Atlantic is;</p>
-          <p>Not a fatter fish than he,</p>
-          <p>Flounders round the Polar Sea."</p>
-          <p class="source-rw">—CHARLES LAMB’S TRIUMPH OF THE WHALE.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“In the year 1690 some persons were on a high hill observing the whales spouting and sporting with each other, when one observed: there</p>
-          <p class="source-rw">—pointing to the sea—is a green pasture where our children’s grand-children will go for bread.” —OBED MACY’S HISTORY OF NANTUCKET.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“I built a cottage for Susan and myself and made a gateway in the form of a Gothic Arch, by setting up a whale’s jaw bones.”</p>
-          <p class="source-rw">—HAWTHORNE’S TWICE TOLD TALES.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“She came to bespeak a monument for her first love, who had been killed by a whale in the Pacific ocean, no less than forty years ago.”</p>
-          <p class="source-rw">—IBID.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“No, Sir, ‘tis a Right Whale,” answered Tom; “I saw his sprout; he threw up a pair of as pretty rainbows as a Christian would wish to look at. He’s a raal oil-butt, that fellow!”</p>
-          <p class="source-rw">—COOPER’S PILOT.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The papers were brought in, and we saw in the Berlin Gazette that whales had been introduced on the stage there.”</p>
-          <p class="source-rw">—ECKERMANN’S CONVERSATIONS WITH GOETHE.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“My God! Mr. Chace, what is the matter?” I answered, “we have been stove by a whale.”</p>
-          <p class="source-rw">—"NARRATIVE OF THE SHIPWRECK OF THE WHALE SHIP ESSEX OF NANTUCKET, WHICH WAS ATTACKED AND FINALLY DESTROYED BY A LARGE SPERM WHALE IN THE PACIFIC OCEAN.” BY OWEN CHACE OF NANTUCKET, FIRST MATE OF SAID VESSEL. NEW YORK, 1821.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“A mariner sat in the shrouds one night,</p>
-          <p>The wind was piping free;</p>
-          <p>Now bright, now dimmed, was the moonlight pale,</p>
-          <p>And the phospher gleamed in the wake of the whale,</p>
-          <p>As it floundered in the sea."</p>
-          <p class="source-rw">—ELIZABETH OAKES SMITH.</p>
-        </div>
-
-        <div class="block-rw extract-rw">
-          <p>“The quantity of line withdrawn from the boats engaged in the capture of this one whale, amounted altogether to 10,440 yards or nearly six English miles....</p>
-          <p>“Sometimes the whale shakes its tremendous tail in the air, which, cracking like a whip, resounds to the distance of three or four miles.”</p>
-          <p class="source-rw">—SCORESBY.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Mad with the agonies he endures from these fresh attacks, the infuriated Sperm Whale rolls over and over; he rears his enormous head, and with wide expanded jaws snaps at everything around him; he rushes at the boats with his head; they are propelled before him with vast swiftness, and sometimes utterly destroyed.... It is a matter of great astonishment that the consideration of the habits of so interesting, and, in a commercial point of view, so important an animal (as the Sperm Whale) should have been so entirely neglected, or should have excited so little curiosity among the numerous, and many of them competent observers, that of late years, must have possessed the most abundant and the most convenient opportunities of witnessing their habitudes.”</p>
-          <p class="source-rw">—THOMAS BEALE’S HISTORY OF THE SPERM WHALE, 1839.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The Cachalot" (Sperm Whale) “is not only better armed than the True Whale" (Greenland or Right Whale) “in possessing a formidable weapon at either extremity of its body, but also more frequently displays a disposition to employ these weapons offensively and in manner at once so artful, bold, and mischievous, as to lead to its being regarded as the most dangerous to attack of all the known species of the whale tribe.”</p>
-          <p class="source-rw">—FREDERICK DEBELL BENNETT’S WHALING VOYAGE ROUND THE GLOBE, 1840.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>October 13. “There she blows,” was sung out from the mast-head.</p>
-          <p>“Where away?” demanded the captain.</p>
-          <p>“Three points off the lee bow, sir."</p>
-          <p>“Raise up your wheel. Steady!” “Steady, sir."</p>
-          <p>“Mast-head ahoy! Do you see that whale now?"</p>
-          <p>“Ay ay, sir! A shoal of Sperm Whales! There she blows! There she breaches!”</p>
-          <p>“Sing out! sing out every time!”</p>
-          <p>“Ay Ay, sir! There she blows! there—there—THAR she blows—bowes—bo-o-os!”</p>
-          <p>“How far off?"</p>
-          <p>“Two miles and a half."</p>
-          <p>“Thunder and lightning! so near! Call all hands."</p>
-          <p class="source-rw">—J. ROSS BROWNE’S ETCHINGS OF A WHALING CRUIZE. 1846.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The Whale-ship Globe, on board of which vessel occurred the horrid transactions we are about to relate, belonged to the island of Nantucket.”</p>
-          <p class="source-rw">—"NARRATIVE OF THE GLOBE,” BY LAY AND HUSSEY SURVIVORS. A.D. 1828.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>Being once pursued by a whale which he had wounded, he parried the assault for some time with a lance; but the furious monster at length rushed on the boat; himself and comrades only being preserved by leaping into the water when they saw the onset was inevitable.”</p>
-          <p class="source-rw">—MISSIONARY JOURNAL OF TYERMAN AND BENNETT.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Nantucket itself,” said Mr. Webster, “is a very striking and peculiar portion of the National interest. There is a population of eight or nine thousand persons living here in the sea, adding largely every year to the National wealth by the boldest and most persevering industry.”</p>
-          <p class="source-rw">—REPORT OF DANIEL WEBSTER’S SPEECH IN THE U. S. SENATE, ON THE APPLICATION FOR THE ERECTION OF A BREAKWATER AT NANTUCKET. 1828.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The whale fell directly over him, and probably killed him in a moment.”</p>
-          <p class="source-rw">—"THE WHALE AND HIS CAPTORS, OR THE WHALEMAN’S ADVENTURES AND THE WHALE’S BIOGRAPHY, GATHERED ON THE HOMEWARD CRUISE OF THE COMMODORE PREBLE.” BY REV. HENRY T. CHEEVER.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“If you make the least damn bit of noise,” replied Samuel, “I will send you to hell.”</p>
-          <p class="source-rw">—LIFE OF SAMUEL COMSTOCK (THE MUTINEER), BY HIS BROTHER, WILLIAM COMSTOCK. ANOTHER VERSION OF THE WHALE-SHIP GLOBE NARRATIVE.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The voyages of the Dutch and English to the Northern Ocean, in order, if possible, to discover a passage through it to India, though they failed of their main object, laid-open the haunts of the whale.”</p>
-          <p class="source-rw">—MCCULLOCH’S COMMERCIAL DICTIONARY.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“These things are reciprocal; the ball rebounds, only to bound forward again; for now in laying open the haunts of the whale, the whalemen seem to have indirectly hit upon new clews to that same mystic North-West Passage.”</p>
-          <p class="source-rw">—FROM “SOMETHING" UNPUBLISHED.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“It is impossible to meet a whale-ship on the ocean without being struck by her near appearance. The vessel under short sail, with look-outs at the mast-heads, eagerly scanning the wide expanse around them, has a totally different air from those engaged in regular voyage.”</p>
-          <p class="source-rw">—CURRENTS AND WHALING. U.S. EX. EX.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Pedestrians in the vicinity of London and elsewhere may recollect having seen large curved bones set upright in the earth, either to form arches over gateways, or entrances to alcoves, and they may perhaps have been told that these were the ribs of whales.”</p>
-          <p class="source-rw">—TALES OF A WHALE VOYAGER TO THE ARCTIC OCEAN.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“It was not till the boats returned from the pursuit of these whales, that the whites saw their ship in bloody possession of the savages enrolled among the crew.”</p>
-          <p class="source-rw">—NEWSPAPER ACCOUNT OF THE TAKING AND RETAKING OF THE WHALE-SHIP HOBOMACK.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“It is generally well known that out of the crews of Whaling vessels (American) few ever return in the ships on board of which they departed.”</p>
-          <p class="source-rw">—CRUISE IN A WHALE BOAT.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“Suddenly a mighty mass emerged from the water, and shot up perpendicularly into the air. It was the while.”</p>
-          <p class="source-rw">—MIRIAM COFFIN OR THE WHALE FISHERMAN.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“The Whale is harpooned to be sure; but bethink you, how you would manage a powerful unbroken colt, with the mere appliance of a rope tied to the root of his tail.”</p>
-          <p class="source-rw">—A CHAPTER ON WHALING IN RIBS AND TRUCKS.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“On one occasion I saw two of these monsters (whales) probably male and female, slowly swimming, one after the other, within less than a stone’s throw of the shore" (Terra Del Fuego), “over which the beech tree extended its branches.”</p>
-          <p class="source-rw">—DARWIN’S VOYAGE OF A NATURALIST.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“‘Stern all!’ exclaimed the mate, as upon turning his head, he saw the distended jaws of a large Sperm Whale close to the head of the boat, threatening it with instant destruction; —‘Stern all, for your lives!’” </p>
-          <p class="source-rw">—WHARTON THE WHALE KILLER.</p>
-        </div>
-        <div class="block-rw extract-rw">
-          <p>“So be cheery, my lads, let your hearts never fail, While the bold harpooneer is striking the whale!”</p>
-          <p class="source-rw">—NANTUCKET SONG.</p>
-        </div>
-        <div class="block-rw extract-verse-rw">
-          <p>“Oh, the rare old Whale, mid storm and gale</p>
-          <p>In his ocean home will be</p>
-          <p>A giant in might, where might is right,</p>
-          <p>And King of the boundless sea."</p>
-          <p class="source-rw">—WHALE SONG.</p>
-        </div>
-      </section>
-    </main>
-
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="introduction_001.html" title="Previous: ETYMOLOGY." class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="introduction_001.html" rel="prev" title="Previous: ETYMOLOGY." aria-label="Previous: ETYMOLOGY.">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="chapter_001.html" title="Next: Chapter 1. Loomings." class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="chapter_001.html" title="Next: Chapter 1. Loomings." aria-label="Next: Chapter 1. Loomings." class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-2"><a href="preface_001.html">Original Transcriber’s Notes:</a></li><li id="toc-3"><a href="introduction_001.html">ETYMOLOGY.</a></li><li id="toc-4"><a href="epigraph_001.html" aria-current="page">EXTRACTS (Supplied by a Sub-Sub-Librarian).</a></li><li id="toc-5"><a href="chapter_001.html">Chapter 1. Loomings.</a></li><li id="toc-6"><a href="chapter_002.html">Chapter 2. The Carpet-Bag.</a></li><li id="toc-7"><a href="chapter_003.html">Chapter 3. The Spouter-Inn.</a></li><li id="toc-8"><a href="chapter_004.html">Chapter 4. The Counterpane.</a></li><li id="toc-9"><a href="chapter_005.html">Chapter 5. Breakfast.</a></li><li id="toc-10"><a href="chapter_006.html">Chapter 6. The Street.</a></li><li id="toc-11"><a href="chapter_007.html">Chapter 7. The Chapel.</a></li><li id="toc-12"><a href="chapter_008.html">Chapter 8. The Pulpit.</a></li><li id="toc-13"><a href="chapter_009.html">Chapter 9. The Sermon.</a></li><li id="toc-14"><a href="chapter_010.html">Chapter 10. A Bosom Friend.</a></li><li id="toc-15"><a href="chapter_011.html">Chapter 11. Nightgown.</a></li><li id="toc-16"><a href="chapter_012.html">Chapter 12. Biographical.</a></li><li id="toc-17"><a href="chapter_013.html">Chapter 13. Wheelbarrow.</a></li><li id="toc-18"><a href="chapter_014.html">Chapter 14. Nantucket.</a></li><li id="toc-19"><a href="chapter_015.html">Chapter 15. Chowder.</a></li><li id="toc-20"><a href="chapter_016.html">Chapter 16. The Ship.</a></li><li id="toc-21"><a href="chapter_017.html">Chapter 17. The Ramadan.</a></li><li id="toc-22"><a href="chapter_018.html">Chapter 18. His Mark.</a></li><li id="toc-23"><a href="chapter_019.html">Chapter 19. The Prophet.</a></li><li id="toc-24"><a href="chapter_020.html">Chapter 20. All Astir.</a></li><li id="toc-25"><a href="chapter_021.html">Chapter 21. Going Aboard.</a></li><li id="toc-26"><a href="chapter_022.html">Chapter 22. Merry Christmas.</a></li><li id="toc-27"><a href="chapter_023.html">Chapter 23. The Lee Shore.</a></li><li id="toc-28"><a href="chapter_024.html">Chapter 24. The Advocate.</a></li><li id="toc-29"><a href="chapter_025.html">Chapter 25. Postscript.</a></li><li id="toc-30"><a href="chapter_026.html">Chapter 26. Knights and Squires.</a></li><li id="toc-31"><a href="chapter_027.html">Chapter 27. Knights and Squires.</a></li><li id="toc-32"><a href="chapter_028.html">Chapter 28. Ahab.</a></li><li id="toc-33"><a href="chapter_029.html">Chapter 29. Enter Ahab; to Him, Stubb.</a></li><li id="toc-34"><a href="chapter_030.html">Chapter 30. The Pipe.</a></li><li id="toc-35"><a href="chapter_031.html">Chapter 31. Queen Mab.</a></li><li id="toc-36"><a href="chapter_032.html">Chapter 32. Cetology.</a></li><li id="toc-37"><a href="chapter_033.html">Chapter 33. The Specksnyder.</a></li><li id="toc-38"><a href="chapter_034.html">Chapter 34. The Cabin-Table.</a></li><li id="toc-39"><a href="chapter_035.html">Chapter 35. The Mast-Head.</a></li><li id="toc-40"><a href="chapter_036.html">Chapter 36. The Quarter-Deck.</a></li><li id="toc-41"><a href="chapter_037.html">Chapter 37. Sunset.</a></li><li id="toc-42"><a href="chapter_038.html">Chapter 38. Dusk.</a></li><li id="toc-43"><a href="chapter_039.html">Chapter 39. First Night Watch.</a></li><li id="toc-44"><a href="chapter_040.html">Chapter 40. Midnight, Forecastle.</a></li><li id="toc-45"><a href="chapter_041.html">Chapter 41. Moby Dick.</a></li><li id="toc-46"><a href="chapter_042.html">Chapter 42. The Whiteness of The Whale.</a></li><li id="toc-47"><a href="chapter_043.html">Chapter 43. Hark!</a></li><li id="toc-48"><a href="chapter_044.html">Chapter 44. The Chart.</a></li><li id="toc-49"><a href="chapter_045.html">Chapter 45. The Affidavit.</a></li><li id="toc-50"><a href="chapter_046.html">Chapter 46. Surmises.</a></li><li id="toc-51"><a href="chapter_047.html">Chapter 47. The Mat-Maker.</a></li><li id="toc-52"><a href="chapter_048.html">Chapter 48. The First Lowering.</a></li><li id="toc-53"><a href="chapter_049.html">Chapter 49. The Hyena.</a></li><li id="toc-54"><a href="chapter_050.html">Chapter 50. Ahab’s Boat and Crew. Fedallah.</a></li><li id="toc-55"><a href="chapter_051.html">Chapter 51. The Spirit-Spout.</a></li><li id="toc-56"><a href="chapter_052.html">Chapter 52. The Albatross.</a></li><li id="toc-57"><a href="chapter_053.html">Chapter 53. The Gam.</a></li><li id="toc-58"><a href="chapter_054.html">Chapter 54. The Town-Ho’s Story.</a></li><li id="toc-59"><a href="chapter_055.html">Chapter 55. Of the Monstrous Pictures of Whales.</a></li><li id="toc-60"><a href="chapter_056.html">Chapter 56. Of the Less Erroneous Pictures of Whales, and the True</a></li><li id="toc-61"><a href="chapter_057.html">Chapter 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in</a></li><li id="toc-62"><a href="chapter_058.html">Chapter 58. Brit.</a></li><li id="toc-63"><a href="chapter_059.html">Chapter 59. Squid.</a></li><li id="toc-64"><a href="chapter_060.html">Chapter 60. The Line.</a></li><li id="toc-65"><a href="chapter_061.html">Chapter 61. Stubb Kills a Whale.</a></li><li id="toc-66"><a href="chapter_062.html">Chapter 62. The Dart.</a></li><li id="toc-67"><a href="chapter_063.html">Chapter 63. The Crotch.</a></li><li id="toc-68"><a href="chapter_064.html">Chapter 64. Stubb’s Supper.</a></li><li id="toc-69"><a href="chapter_065.html">Chapter 65. The Whale as a Dish.</a></li><li id="toc-70"><a href="chapter_066.html">Chapter 66. The Shark Massacre.</a></li><li id="toc-71"><a href="chapter_067.html">Chapter 67. Cutting In.</a></li><li id="toc-72"><a href="chapter_068.html">Chapter 68. The Blanket.</a></li><li id="toc-73"><a href="chapter_069.html">Chapter 69. The Funeral.</a></li><li id="toc-74"><a href="chapter_070.html">Chapter 70. The Sphynx.</a></li><li id="toc-75"><a href="chapter_071.html">Chapter 71. The Jeroboam’s Story.</a></li><li id="toc-76"><a href="chapter_072.html">Chapter 72. The Monkey-Rope.</a></li><li id="toc-77"><a href="chapter_073.html">Chapter 73. Stubb and Flask Kill a Right Whale; and Then Have a Talk</a></li><li id="toc-78"><a href="chapter_074.html">Chapter 74. The Sperm Whale’s Head—Contrasted View.</a></li><li id="toc-79"><a href="chapter_075.html">Chapter 75. The Right Whale’s Head—Contrasted View.</a></li><li id="toc-80"><a href="chapter_076.html">Chapter 76. The Battering-Ram.</a></li><li id="toc-81"><a href="chapter_077.html">Chapter 77. The Great Heidelburgh Tun.</a></li><li id="toc-82"><a href="chapter_078.html">Chapter 78. Cistern and Buckets.</a></li><li id="toc-83"><a href="chapter_079.html">Chapter 79. The Prairie.</a></li><li id="toc-84"><a href="chapter_080.html">Chapter 80. The Nut.</a></li><li id="toc-85"><a href="chapter_081.html">Chapter 81. The Pequod Meets The Virgin.</a></li><li id="toc-86"><a href="chapter_082.html">Chapter 82. The Honour and Glory of Whaling.</a></li><li id="toc-87"><a href="chapter_083.html">Chapter 83. Jonah Historically Regarded.</a></li><li id="toc-88"><a href="chapter_084.html">Chapter 84. Pitchpoling.</a></li><li id="toc-89"><a href="chapter_085.html">Chapter 85. The Fountain.</a></li><li id="toc-90"><a href="chapter_086.html">Chapter 86. The Tail.</a></li><li id="toc-91"><a href="chapter_087.html">Chapter 87. The Grand Armada.</a></li><li id="toc-92"><a href="chapter_088.html">Chapter 88. Schools and Schoolmasters.</a></li><li id="toc-93"><a href="chapter_089.html">Chapter 89. Fast-Fish and Loose-Fish.</a></li><li id="toc-94"><a href="chapter_090.html">Chapter 90. Heads or Tails.</a></li><li id="toc-95"><a href="chapter_091.html">Chapter 91. The Pequod Meets The Rose-Bud.</a></li><li id="toc-96"><a href="chapter_092.html">Chapter 92. Ambergris.</a></li><li id="toc-97"><a href="chapter_093.html">Chapter 93. The Castaway.</a></li><li id="toc-98"><a href="chapter_094.html">Chapter 94. A Squeeze of the Hand.</a></li><li id="toc-99"><a href="chapter_095.html">Chapter 95. The Cassock.</a></li><li id="toc-100"><a href="chapter_096.html">Chapter 96. The Try-Works.</a></li><li id="toc-101"><a href="chapter_097.html">Chapter 97. The Lamp.</a></li><li id="toc-102"><a href="chapter_098.html">Chapter 98. Stowing Down and Clearing Up.</a></li><li id="toc-103"><a href="chapter_099.html">Chapter 99. The Doubloon.</a></li><li id="toc-104"><a href="chapter_100.html">Chapter 100. Leg and Arm.</a></li><li id="toc-105"><a href="chapter_101.html">Chapter 101. The Decanter.</a></li><li id="toc-106"><a href="chapter_102.html">Chapter 102. A Bower in the Arsacides.</a></li><li id="toc-107"><a href="chapter_103.html">Chapter 103. Measurement of The Whale’s Skeleton.</a></li><li id="toc-108"><a href="chapter_104.html">Chapter 104. The Fossil Whale.</a></li><li id="toc-109"><a href="chapter_105.html">Chapter 105. Does the Whale’s Magnitude Diminish?—Will He Perish?</a></li><li id="toc-110"><a href="chapter_106.html">Chapter 106. Ahab’s Leg.</a></li><li id="toc-111"><a href="chapter_107.html">Chapter 107. The Carpenter.</a></li><li id="toc-112"><a href="chapter_108.html">Chapter 108. Ahab and the Carpenter.</a></li><li id="toc-113"><a href="chapter_109.html">Chapter 109. Ahab and Starbuck in the Cabin.</a></li><li id="toc-114"><a href="chapter_110.html">Chapter 110. Queequeg in His Coffin.</a></li><li id="toc-115"><a href="chapter_111.html">Chapter 111. The Pacific.</a></li><li id="toc-116"><a href="chapter_112.html">Chapter 112. The Blacksmith.</a></li><li id="toc-117"><a href="chapter_113.html">Chapter 113. The Forge.</a></li><li id="toc-118"><a href="chapter_114.html">Chapter 114. The Gilder.</a></li><li id="toc-119"><a href="chapter_115.html">Chapter 115. The Pequod Meets The Bachelor.</a></li><li id="toc-120"><a href="chapter_116.html">Chapter 116. The Dying Whale.</a></li><li id="toc-121"><a href="chapter_117.html">Chapter 117. The Whale Watch.</a></li><li id="toc-122"><a href="chapter_118.html">Chapter 118. The Quadrant.</a></li><li id="toc-123"><a href="chapter_119.html">Chapter 119. The Candles.</a></li><li id="toc-124"><a href="chapter_120.html">Chapter 120. The Deck Towards the End of the First Night Watch.</a></li><li id="toc-125"><a href="chapter_121.html">Chapter 121. Midnight.—The Forecastle Bulwarks.</a></li><li id="toc-126"><a href="chapter_122.html">Chapter 122. Midnight Aloft.—Thunder and Lightning.</a></li><li id="toc-127"><a href="chapter_123.html">Chapter 123. The Musket.</a></li><li id="toc-128"><a href="chapter_124.html">Chapter 124. The Needle.</a></li><li id="toc-129"><a href="chapter_125.html">Chapter 125. The Log and Line.</a></li><li id="toc-130"><a href="chapter_126.html">Chapter 126. The Life-Buoy.</a></li><li id="toc-131"><a href="chapter_127.html">Chapter 127. The Deck.</a></li><li id="toc-132"><a href="chapter_128.html">Chapter 128. The Pequod Meets The Rachel.</a></li><li id="toc-133"><a href="chapter_129.html">Chapter 129. The Cabin.</a></li><li id="toc-134"><a href="chapter_130.html">Chapter 130. The Hat.</a></li><li id="toc-135"><a href="chapter_131.html">Chapter 131. The Pequod Meets The Delight.</a></li><li id="toc-136"><a href="chapter_132.html">Chapter 132. The Symphony.</a></li><li id="toc-137"><a href="chapter_133.html">Chapter 133. The Chase—First Day.</a></li><li id="toc-138"><a href="chapter_134.html">Chapter 134. The Chase—Second Day.</a></li><li id="toc-139"><a href="chapter_135.html">Chapter 135. The Chase.—Third Day.</a></li><li id="toc-140"><a href="chapter_136.html">Epilogue</a></li><li id="toc-141"><a href="copyright.html">Copyright Page</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        
+        
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" src="images/9780316000000.jpg" alt="Cover for Moby-Dick">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>Moby-Dick</dd><dt>Author</dt><dd>Herman Melville</dd><dt>Date</dt><dd>2012-01-13T01:13:00Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

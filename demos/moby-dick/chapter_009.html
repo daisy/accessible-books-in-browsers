@@ -1,165 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <title>
-      Moby-Dick</title>
-    <link rel="stylesheet" href="css/stylesheet.css" type="text/css">
-    <meta charset="utf-8">
-
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-
+<html lang="en-US" data-webbook-contract="0"><head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 9. The Sermon.</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="urn:isbn:9780316000000">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
+<body>
     <main>
+<section class="body-rw Chapter-rw epubtype_bodymatter epubtype_chapter">
+<header>
+<h1 id="h-0" tabindex="-1">Chapter 9. The Sermon.<a href="#h-0" rel="bookmark" class="webbook" title="Link to Chapter 9. The Sermon." aria-label="Link to Chapter 9. The Sermon."><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1></header>
+<p>Father Mapple rose, and in a mild voice of unassuming authority ordered the scattered people to condense. “Starboard gangway, there! side away to larboard—larboard gangway to starboard! Midships! midships!”</p>
+<p>There was a low rumbling of heavy sea-boots among the benches, and a still slighter shuffling of women’s shoes, and all was quiet again, and every eye on the preacher.</p>
+<p>He paused a little; then kneeling in the pulpit’s bows, folded his large brown hands across his chest, uplifted his closed eyes, and offered a prayer so deeply devout that he seemed kneeling and praying at the bottom of the sea.</p>
+<p>This ended, in prolonged solemn tones, like the continual tolling of a bell in a ship that is foundering at sea in a fog—in such tones he commenced reading the following hymn; but changing his manner towards the concluding stanzas, burst forth with a pealing exultation and joy—</p>
+<div class="block-rw extract-verse-rw">
+     “The ribs and terrors in the whale,
+     Arched over me a dismal gloom,
+     While all God’s sun-lit waves rolled by,
+     And lift me deepening down to doom.
+     “I saw the opening maw of hell,
+     With endless pains and sorrows there;
+     Which none but they that feel can tell—
+     Oh, I was plunging to despair.
+     “In black distress, I called my God,
+     When I could scarce believe him mine,
+     He bowed his ear to my complaints—
+     No more the whale did me confine.
+     “With speed he flew to my relief,
+     As on a radiant dolphin borne;
+     Awful, yet bright, as lightning shone
+     The face of my Deliverer God.
+     “My song for ever shall record
+     That terrible, that joyful hour;
+     I give the glory to my God,
+     His all the mercy and the power."</div>
+<p>Nearly all joined in singing this hymn, which swelled high above the howling of the storm. A brief pause ensued; the preacher slowly turned over the leaves of the Bible, and at last, folding his hand down upon the proper page, said: “Beloved shipmates, clinch the last verse of the first chapter of Jonah—‘And God had prepared a great fish to swallow up Jonah.’”</p>
+<p>“Shipmates, this book, containing only four chapters—four yarns—is one of the smallest strands in the mighty cable of the Scriptures. Yet what depths of the soul does Jonah’s deep sealine sound! what a pregnant lesson to us is this prophet! What a noble thing is that canticle in the fish’s belly! How billow-like and boisterously grand! We feel the floods surging over us; we sound with him to the kelpy bottom of the waters; sea-weed and all the slime of the sea is about us! But WHAT is this lesson that the book of Jonah teaches? Shipmates, it is a two-stranded lesson; a lesson to us all as sinful men, and a lesson to me as a pilot of the living God. As sinful men, it is a lesson to us all, because it is a story of the sin, hard-heartedness, suddenly awakened fears, the swift punishment, repentance, prayers, and finally the deliverance and joy of Jonah. As with all sinners among men, the sin of this son of Amittai was in his wilful disobedience of the command of God—never mind now what that command was, or how conveyed—which he found a hard command. But all the things that God would have us do are hard for us to do—remember that—and hence, he oftener commands us than endeavors to persuade. And if we obey God, we must disobey ourselves; and it is in this disobeying ourselves, wherein the hardness of obeying God consists.</p>
+<p>“With this sin of disobedience in him, Jonah still further flouts at God, by seeking to flee from Him. He thinks that a ship made by men will carry him into countries where God does not reign, but only the Captains of this earth. He skulks about the wharves of Joppa, and seeks a ship that’s bound for Tarshish. There lurks, perhaps, a hitherto unheeded meaning here. By all accounts Tarshish could have been no other city than the modern Cadiz. That’s the opinion of learned men. And where is Cadiz, shipmates? Cadiz is in Spain; as far by water, from Joppa, as Jonah could possibly have sailed in those ancient days, when the Atlantic was an almost unknown sea. Because Joppa, the modern Jaffa, shipmates, is on the most easterly coast of the Mediterranean, the Syrian; and Tarshish or Cadiz more than two thousand miles to the westward from that, just outside the Straits of Gibraltar. See ye not then, shipmates, that Jonah sought to flee world-wide from God? Miserable man! Oh! most contemptible and worthy of all scorn; with slouched hat and guilty eye, skulking from his God; prowling among the shipping like a vile burglar hastening to cross the seas. So disordered, self-condemning is his look, that had there been policemen in those days, Jonah, on the mere suspicion of something wrong, had been arrested ere he touched a deck. How plainly he’s a fugitive! no baggage, not a hat-box, valise, or carpet-bag,—no friends accompany him to the wharf with their adieux. At last, after much dodging search, he finds the Tarshish ship receiving the last items of her cargo; and as he steps on board to see its Captain in the cabin, all the sailors for the moment desist from hoisting in the goods, to mark the stranger’s evil eye. Jonah sees this; but in vain he tries to look all ease and confidence; in vain essays his wretched smile. Strong intuitions of the man assure the mariners he can be no innocent. In their gamesome but still serious way, one whispers to the other—"Jack, he’s robbed a widow;" or, “Joe, do you mark him; he’s a bigamist;" or, “Harry lad, I guess he’s the adulterer that broke jail in old Gomorrah, or belike, one of the missing murderers from Sodom.” Another runs to read the bill that’s stuck against the spile upon the wharf to which the ship is moored, offering five hundred gold coins for the apprehension of a parricide, and containing a description of his person. He reads, and looks from Jonah to the bill; while all his sympathetic shipmates now crowd round Jonah, prepared to lay their hands upon him. Frighted Jonah trembles, and summoning all his boldness to his face, only looks so much the more a coward. He will not confess himself suspected; but that itself is strong suspicion. So he makes the best of it; and when the sailors find him not to be the man that is advertised, they let him pass, and he descends into the cabin.</p>
+<p>“‘Who’s there?’ cries the Captain at his busy desk, hurriedly making out his papers for the Customs—‘Who’s there?’ Oh! how that harmless question mangles Jonah! For the instant he almost turns to flee again. But he rallies. ‘I seek a passage in this ship to Tarshish; how soon sail ye, sir?’ Thus far the busy Captain had not looked up to Jonah, though the man now stands before him; but no sooner does he hear that hollow voice, than he darts a scrutinizing glance. ‘We sail with the next coming tide,’ at last he slowly answered, still intently eyeing him. ‘No sooner, sir?’—‘Soon enough for any honest man that goes a passenger.’ Ha! Jonah, that’s another stab. But he swiftly calls away the Captain from that scent. ‘I’ll sail with ye,’—he says,—‘the passage money how much is that?—I’ll pay now.’ For it is particularly written, shipmates, as if it were a thing not to be overlooked in this history, ‘that he paid the fare thereof’ ere the craft did sail. And taken with the context, this is full of meaning.</p>
+<p>“Now Jonah’s Captain, shipmates, was one whose discernment detects crime in any, but whose cupidity exposes it only in the penniless. In this world, shipmates, sin that pays its way can travel freely, and without a passport; whereas Virtue, if a pauper, is stopped at all frontiers. So Jonah’s Captain prepares to test the length of Jonah’s purse, ere he judge him openly. He charges him thrice the usual sum; and it’s assented to. Then the Captain knows that Jonah is a fugitive; but at the same time resolves to help a flight that paves its rear with gold. Yet when Jonah fairly takes out his purse, prudent suspicions still molest the Captain. He rings every coin to find a counterfeit. Not a forger, any way, he mutters; and Jonah is put down for his passage. ‘Point out my state-room, Sir,’ says Jonah now, ‘I’m travel-weary; I need sleep.’ ‘Thou lookest like it,’ says the Captain, ‘there’s thy room.’ Jonah enters, and would lock the door, but the lock contains no key. Hearing him foolishly fumbling there, the Captain laughs lowly to himself, and mutters something about the doors of convicts’ cells being never allowed to be locked within. All dressed and dusty as he is, Jonah throws himself into his berth, and finds the little state-room ceiling almost resting on his forehead. The air is close, and Jonah gasps. Then, in that contracted hole, sunk, too, beneath the ship’s water-line, Jonah feels the heralding presentiment of that stifling hour, when the whale shall hold him in the smallest of his bowels’ wards.</p>
+<p>“Screwed at its axis against the side, a swinging lamp slightly oscillates in Jonah’s room; and the ship, heeling over towards the wharf with the weight of the last bales received, the lamp, flame and all, though in slight motion, still maintains a permanent obliquity with reference to the room; though, in truth, infallibly straight itself, it but made obvious the false, lying levels among which it hung. The lamp alarms and frightens Jonah; as lying in his berth his tormented eyes roll round the place, and this thus far successful fugitive finds no refuge for his restless glance. But that contradiction in the lamp more and more appals him. The floor, the ceiling, and the side, are all awry. ‘Oh! so my conscience hangs in me!’ he groans, ‘straight upwards, so it burns; but the chambers of my soul are all in crookedness!'</p>
+<p>“Like one who after a night of drunken revelry hies to his bed, still reeling, but with conscience yet pricking him, as the plungings of the Roman race-horse but so much the more strike his steel tags into him; as one who in that miserable plight still turns and turns in giddy anguish, praying God for annihilation until the fit be passed; and at last amid the whirl of woe he feels, a deep stupor steals over him, as over the man who bleeds to death, for conscience is the wound, and there’s naught to staunch it; so, after sore wrestlings in his berth, Jonah’s prodigy of ponderous misery drags him drowning down to sleep.</p>
+<p>“And now the time of tide has come; the ship casts off her cables; and from the deserted wharf the uncheered ship for Tarshish, all careening, glides to sea. That ship, my friends, was the first of recorded smugglers! the contraband was Jonah. But the sea rebels; he will not bear the wicked burden. A dreadful storm comes on, the ship is like to break. But now when the boatswain calls all hands to lighten her; when boxes, bales, and jars are clattering overboard; when the wind is shrieking, and the men are yelling, and every plank thunders with trampling feet right over Jonah’s head; in all this raging tumult, Jonah sleeps his hideous sleep. He sees no black sky and raging sea, feels not the reeling timbers, and little hears he or heeds he the far rush of the mighty whale, which even now with open mouth is cleaving the seas after him. Aye, shipmates, Jonah was gone down into the sides of the ship—a berth in the cabin as I have taken it, and was fast asleep. But the frightened master comes to him, and shrieks in his dead ear, ‘What meanest thou, O, sleeper! arise!’ Startled from his lethargy by that direful cry, Jonah staggers to his feet, and stumbling to the deck, grasps a shroud, to look out upon the sea. But at that moment he is sprung upon by a panther billow leaping over the bulwarks. Wave after wave thus leaps into the ship, and finding no speedy vent runs roaring fore and aft, till the mariners come nigh to drowning while yet afloat. And ever, as the white moon shows her affrighted face from the steep gullies in the blackness overhead, aghast Jonah sees the rearing bowsprit pointing high upward, but soon beat downward again towards the tormented deep.</p>
+<p>“Terrors upon terrors run shouting through his soul. In all his cringing attitudes, the God-fugitive is now too plainly known. The sailors mark him; more and more certain grow their suspicions of him, and at last, fully to test the truth, by referring the whole matter to high Heaven, they fall to casting lots, to see for whose cause this great tempest was upon them. The lot is Jonah’s; that discovered, then how furiously they mob him with their questions. ‘What is thine occupation? Whence comest thou? Thy country? What people? But mark now, my shipmates, the behavior of poor Jonah. The eager mariners but ask him who he is, and where from; whereas, they not only receive an answer to those questions, but likewise another answer to a question not put by them, but the unsolicited answer is forced from Jonah by the hard hand of God that is upon him.</p>
+<p>“‘I am a Hebrew,’ he cries—and then—‘I fear the Lord the God of Heaven who hath made the sea and the dry land!’ Fear him, O Jonah? Aye, well mightest thou fear the Lord God THEN! Straightway, he now goes on to make a full confession; whereupon the mariners became more and more appalled, but still are pitiful. For when Jonah, not yet supplicating God for mercy, since he but too well knew the darkness of his deserts,—when wretched Jonah cries out to them to take him and cast him forth into the sea, for he knew that for HIS sake this great tempest was upon them; they mercifully turn from him, and seek by other means to save the ship. But all in vain; the indignant gale howls louder; then, with one hand raised invokingly to God, with the other they not unreluctantly lay hold of Jonah.</p>
+<p>“And now behold Jonah taken up as an anchor and dropped into the sea; when instantly an oily calmness floats out from the east, and the sea is still, as Jonah carries down the gale with him, leaving smooth water behind. He goes down in the whirling heart of such a masterless commotion that he scarce heeds the moment when he drops seething into the yawning jaws awaiting him; and the whale shoots-to all his ivory teeth, like so many white bolts, upon his prison. Then Jonah prayed unto the Lord out of the fish’s belly. But observe his prayer, and learn a weighty lesson. For sinful as he is, Jonah does not weep and wail for direct deliverance. He feels that his dreadful punishment is just. He leaves all his deliverance to God, contenting himself with this, that spite of all his pains and pangs, he will still look towards His holy temple. And here, shipmates, is true and faithful repentance; not clamorous for pardon, but grateful for punishment. And how pleasing to God was this conduct in Jonah, is shown in the eventual deliverance of him from the sea and the whale. Shipmates, I do not place Jonah before you to be copied for his sin but I do place him before you as a model for repentance. Sin not; but if you do, take heed to repent of it like Jonah.”</p>
+<p>While he was speaking these words, the howling of the shrieking, slanting storm without seemed to add new power to the preacher, who, when describing Jonah’s sea-storm, seemed tossed by a storm himself. His deep chest heaved as with a ground-swell; his tossed arms seemed the warring elements at work; and the thunders that rolled away from off his swarthy brow, and the light leaping from his eye, made all his simple hearers look on him with a quick fear that was strange to them.</p>
+<p>There now came a lull in his look, as he silently turned over the leaves of the Book once more; and, at last, standing motionless, with closed eyes, for the moment, seemed communing with God and himself.</p>
+<p>But again he leaned over towards the people, and bowing his head lowly, with an aspect of the deepest yet manliest humility, he spake these words:</p>
+<p>“Shipmates, God has laid but one hand upon you; both his hands press upon me. I have read ye by what murky light may be mine the lesson that Jonah teaches to all sinners; and therefore to ye, and still more to me, for I am a greater sinner than ye. And now how gladly would I come down from this mast-head and sit on the hatches there where you sit, and listen as you listen, while some one of you reads ME that other and more awful lesson which Jonah teaches to ME, as a pilot of the living God. How being an anointed pilot-prophet, or speaker of true things, and bidden by the Lord to sound those unwelcome truths in the ears of a wicked Nineveh, Jonah, appalled at the hostility he should raise, fled from his mission, and sought to escape his duty and his God by taking ship at Joppa. But God is everywhere; Tarshish he never reached. As we have seen, God came upon him in the whale, and swallowed him down to living gulfs of doom, and with swift slantings tore him along 'into the midst of the seas,’ where the eddying depths sucked him ten thousand fathoms down, and 'the weeds were wrapped about his head,’ and all the watery world of woe bowled over him. Yet even then beyond the reach of any plummet—'out of the belly of hell'—when the whale grounded upon the ocean’s utmost bones, even then, God heard the engulphed, repenting prophet when he cried. Then God spake unto the fish; and from the shuddering cold and blackness of the sea, the whale came breeching up towards the warm and pleasant sun, and all the delights of air and earth; and 'vomited out Jonah upon the dry land;’ when the word of the Lord came a second time; and Jonah, bruised and beaten—his ears, like two sea-shells, still multitudinously murmuring of the ocean—Jonah did the Almighty’s bidding. And what was that, shipmates? To preach the Truth to the face of Falsehood! That was it!</p>
+<p>“This, shipmates, this is that other lesson; and woe to that pilot of the living God who slights it. Woe to him whom this world charms from Gospel duty! Woe to him who seeks to pour oil upon the waters when God has brewed them into a gale! Woe to him who seeks to please rather than to appal! Woe to him whose good name is more to him than goodness! Woe to him who, in this world, courts not dishonour! Woe to him who would not be true, even though to be false were salvation! Yea, woe to him who, as the great Pilot Paul has it, while preaching to others is himself a castaway!”</p>
+<p>He dropped and fell away from himself for a moment; then lifting his face to them again, showed a deep joy in his eyes, as he cried out with a heavenly enthusiasm,—"But oh! shipmates! on the starboard hand of every woe, there is a sure delight; and higher the top of that delight, than the bottom of the woe is deep. Is not the main-truck higher than the kelson is low? Delight is to him—a far, far upward, and inward delight—who against the proud gods and commodores of this earth, ever stands forth his own inexorable self. Delight is to him whose strong arms yet support him, when the ship of this base treacherous world has gone down beneath him. Delight is to him, who gives no quarter in the truth, and kills, burns, and destroys all sin though he pluck it out from under the robes of Senators and Judges. Delight,—top-gallant delight is to him, who acknowledges no law or lord, but the Lord his God, and is only a patriot to heaven. Delight is to him, whom all the waves of the billows of the seas of the boisterous mob can never shake from this sure Keel of the Ages. And eternal delight and deliciousness will be his, who coming to lay him down, can say with his final breath—O Father!—chiefly known to me by Thy rod—mortal or immortal, here I die. I have striven to be Thine, more than to be this world’s, or mine own. Yet this is nothing: I leave eternity to Thee; for what is man that he should live out the lifetime of his God?”</p>
+<p>He said no more, but slowly waving a benediction, covered his face with his hands, and so remained kneeling, till all the people had departed, and he was left alone in the place.</p>
+</section></main>
 
-      <section class="body-rw Chapter-rw epubtype_bodymatter epubtype_chapter">
-        <header>
-          <h1 id="h-0">Chapter 9. The Sermon.<a href="#h-0" title="Link to heading Chapter 9. The Sermon." class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-        </header>
-        <p>Father Mapple rose, and in a mild voice of unassuming authority ordered the scattered people to condense. “Starboard gangway, there! side away to larboard—larboard gangway to starboard! Midships! midships!”</p>
-        <p>There was a low rumbling of heavy sea-boots among the benches, and a still slighter shuffling of women’s shoes, and all was quiet again, and every eye on the preacher.</p>
-        <p>He paused a little; then kneeling in the pulpit’s bows, folded his large brown hands across his chest, uplifted his closed eyes, and offered a prayer so deeply devout that he seemed kneeling and praying at the bottom of the sea.</p>
-        <p>This ended, in prolonged solemn tones, like the continual tolling of a bell in a ship that is foundering at sea in a fog—in such tones he commenced reading the following hymn; but changing his manner towards the concluding stanzas, burst forth with a pealing exultation and joy—</p>
-        <div class="block-rw extract-verse-rw">
-          “The ribs and terrors in the whale,
-          Arched over me a dismal gloom,
-          While all God’s sun-lit waves rolled by,
-          And lift me deepening down to doom.
-          “I saw the opening maw of hell,
-          With endless pains and sorrows there;
-          Which none but they that feel can tell—
-          Oh, I was plunging to despair.
-          “In black distress, I called my God,
-          When I could scarce believe him mine,
-          He bowed his ear to my complaints—
-          No more the whale did me confine.
-          “With speed he flew to my relief,
-          As on a radiant dolphin borne;
-          Awful, yet bright, as lightning shone
-          The face of my Deliverer God.
-          “My song for ever shall record
-          That terrible, that joyful hour;
-          I give the glory to my God,
-          His all the mercy and the power."</div>
-        <p>Nearly all joined in singing this hymn, which swelled high above the howling of the storm. A brief pause ensued; the preacher slowly turned over the leaves of the Bible, and at last, folding his hand down upon the proper page, said: “Beloved shipmates, clinch the last verse of the first chapter of Jonah—‘And God had prepared a great fish to swallow up Jonah.’”</p>
-        <p>“Shipmates, this book, containing only four chapters—four yarns—is one of the smallest strands in the mighty cable of the Scriptures. Yet what depths of the soul does Jonah’s deep sealine sound! what a pregnant lesson to us is this prophet! What a noble thing is that canticle in the fish’s belly! How billow-like and boisterously grand! We feel the floods surging over us; we sound with him to the kelpy bottom of the waters; sea-weed and all the slime of the sea is about us! But WHAT is this lesson that the book of Jonah teaches? Shipmates, it is a two-stranded lesson; a lesson to us all as sinful men, and a lesson to me as a pilot of the living God. As sinful men, it is a lesson to us all, because it is a story of the sin, hard-heartedness, suddenly awakened fears, the swift punishment, repentance, prayers, and finally the deliverance and joy of Jonah. As with all sinners among men, the sin of this son of Amittai was in his wilful disobedience of the command of God—never mind now what that command was, or how conveyed—which he found a hard command. But all the things that God would have us do are hard for us to do—remember that—and hence, he oftener commands us than endeavors to persuade. And if we obey God, we must disobey ourselves; and it is in this disobeying ourselves, wherein the hardness of obeying God consists.</p>
-        <p>“With this sin of disobedience in him, Jonah still further flouts at God, by seeking to flee from Him. He thinks that a ship made by men will carry him into countries where God does not reign, but only the Captains of this earth. He skulks about the wharves of Joppa, and seeks a ship that’s bound for Tarshish. There lurks, perhaps, a hitherto unheeded meaning here. By all accounts Tarshish could have been no other city than the modern Cadiz. That’s the opinion of learned men. And where is Cadiz, shipmates? Cadiz is in Spain; as far by water, from Joppa, as Jonah could possibly have sailed in those ancient days, when the Atlantic was an almost unknown sea. Because Joppa, the modern Jaffa, shipmates, is on the most easterly coast of the Mediterranean, the Syrian; and Tarshish or Cadiz more than two thousand miles to the westward from that, just outside the Straits of Gibraltar. See ye not then, shipmates, that Jonah sought to flee world-wide from God? Miserable man! Oh! most contemptible and worthy of all scorn; with slouched hat and guilty eye, skulking from his God; prowling among the shipping like a vile burglar hastening to cross the seas. So disordered, self-condemning is his look, that had there been policemen in those days, Jonah, on the mere suspicion of something wrong, had been arrested ere he touched a deck. How plainly he’s a fugitive! no baggage, not a hat-box, valise, or carpet-bag,—no friends accompany him to the wharf with their adieux. At last, after much dodging search, he finds the Tarshish ship receiving the last items of her cargo; and as he steps on board to see its Captain in the cabin, all the sailors for the moment desist from hoisting in the goods, to mark the stranger’s evil eye. Jonah sees this; but in vain he tries to look all ease and confidence; in vain essays his wretched smile. Strong intuitions of the man assure the mariners he can be no innocent. In their gamesome but still serious way, one whispers to the other—"Jack, he’s robbed a widow;" or, “Joe, do you mark him; he’s a bigamist;" or, “Harry lad, I guess he’s the adulterer that broke jail in old Gomorrah, or belike, one of the missing murderers from Sodom.” Another runs to read the bill that’s stuck against the spile upon the wharf to which the ship is moored, offering five hundred gold coins for the apprehension of a parricide, and containing a description of his person. He reads, and looks from Jonah to the bill; while all his sympathetic shipmates now crowd round Jonah, prepared to lay their hands upon him. Frighted Jonah trembles, and summoning all his boldness to his face, only looks so much the more a coward. He will not confess himself suspected; but that itself is strong suspicion. So he makes the best of it; and when the sailors find him not to be the man that is advertised, they let him pass, and he descends into the cabin.</p>
-        <p>“‘Who’s there?’ cries the Captain at his busy desk, hurriedly making out his papers for the Customs—‘Who’s there?’ Oh! how that harmless question mangles Jonah! For the instant he almost turns to flee again. But he rallies. ‘I seek a passage in this ship to Tarshish; how soon sail ye, sir?’ Thus far the busy Captain had not looked up to Jonah, though the man now stands before him; but no sooner does he hear that hollow voice, than he darts a scrutinizing glance. ‘We sail with the next coming tide,’ at last he slowly answered, still intently eyeing him. ‘No sooner, sir?’—‘Soon enough for any honest man that goes a passenger.’ Ha! Jonah, that’s another stab. But he swiftly calls away the Captain from that scent. ‘I’ll sail with ye,’—he says,—‘the passage money how much is that?—I’ll pay now.’ For it is particularly written, shipmates, as if it were a thing not to be overlooked in this history, ‘that he paid the fare thereof’ ere the craft did sail. And taken with the context, this is full of meaning.</p>
-        <p>“Now Jonah’s Captain, shipmates, was one whose discernment detects crime in any, but whose cupidity exposes it only in the penniless. In this world, shipmates, sin that pays its way can travel freely, and without a passport; whereas Virtue, if a pauper, is stopped at all frontiers. So Jonah’s Captain prepares to test the length of Jonah’s purse, ere he judge him openly. He charges him thrice the usual sum; and it’s assented to. Then the Captain knows that Jonah is a fugitive; but at the same time resolves to help a flight that paves its rear with gold. Yet when Jonah fairly takes out his purse, prudent suspicions still molest the Captain. He rings every coin to find a counterfeit. Not a forger, any way, he mutters; and Jonah is put down for his passage. ‘Point out my state-room, Sir,’ says Jonah now, ‘I’m travel-weary; I need sleep.’ ‘Thou lookest like it,’ says the Captain, ‘there’s thy room.’ Jonah enters, and would lock the door, but the lock contains no key. Hearing him foolishly fumbling there, the Captain laughs lowly to himself, and mutters something about the doors of convicts’ cells being never allowed to be locked within. All dressed and dusty as he is, Jonah throws himself into his berth, and finds the little state-room ceiling almost resting on his forehead. The air is close, and Jonah gasps. Then, in that contracted hole, sunk, too, beneath the ship’s water-line, Jonah feels the heralding presentiment of that stifling hour, when the whale shall hold him in the smallest of his bowels’ wards.</p>
-        <p>“Screwed at its axis against the side, a swinging lamp slightly oscillates in Jonah’s room; and the ship, heeling over towards the wharf with the weight of the last bales received, the lamp, flame and all, though in slight motion, still maintains a permanent obliquity with reference to the room; though, in truth, infallibly straight itself, it but made obvious the false, lying levels among which it hung. The lamp alarms and frightens Jonah; as lying in his berth his tormented eyes roll round the place, and this thus far successful fugitive finds no refuge for his restless glance. But that contradiction in the lamp more and more appals him. The floor, the ceiling, and the side, are all awry. ‘Oh! so my conscience hangs in me!’ he groans, ‘straight upwards, so it burns; but the chambers of my soul are all in crookedness!'</p>
-        <p>“Like one who after a night of drunken revelry hies to his bed, still reeling, but with conscience yet pricking him, as the plungings of the Roman race-horse but so much the more strike his steel tags into him; as one who in that miserable plight still turns and turns in giddy anguish, praying God for annihilation until the fit be passed; and at last amid the whirl of woe he feels, a deep stupor steals over him, as over the man who bleeds to death, for conscience is the wound, and there’s naught to staunch it; so, after sore wrestlings in his berth, Jonah’s prodigy of ponderous misery drags him drowning down to sleep.</p>
-        <p>“And now the time of tide has come; the ship casts off her cables; and from the deserted wharf the uncheered ship for Tarshish, all careening, glides to sea. That ship, my friends, was the first of recorded smugglers! the contraband was Jonah. But the sea rebels; he will not bear the wicked burden. A dreadful storm comes on, the ship is like to break. But now when the boatswain calls all hands to lighten her; when boxes, bales, and jars are clattering overboard; when the wind is shrieking, and the men are yelling, and every plank thunders with trampling feet right over Jonah’s head; in all this raging tumult, Jonah sleeps his hideous sleep. He sees no black sky and raging sea, feels not the reeling timbers, and little hears he or heeds he the far rush of the mighty whale, which even now with open mouth is cleaving the seas after him. Aye, shipmates, Jonah was gone down into the sides of the ship—a berth in the cabin as I have taken it, and was fast asleep. But the frightened master comes to him, and shrieks in his dead ear, ‘What meanest thou, O, sleeper! arise!’ Startled from his lethargy by that direful cry, Jonah staggers to his feet, and stumbling to the deck, grasps a shroud, to look out upon the sea. But at that moment he is sprung upon by a panther billow leaping over the bulwarks. Wave after wave thus leaps into the ship, and finding no speedy vent runs roaring fore and aft, till the mariners come nigh to drowning while yet afloat. And ever, as the white moon shows her affrighted face from the steep gullies in the blackness overhead, aghast Jonah sees the rearing bowsprit pointing high upward, but soon beat downward again towards the tormented deep.</p>
-        <p>“Terrors upon terrors run shouting through his soul. In all his cringing attitudes, the God-fugitive is now too plainly known. The sailors mark him; more and more certain grow their suspicions of him, and at last, fully to test the truth, by referring the whole matter to high Heaven, they fall to casting lots, to see for whose cause this great tempest was upon them. The lot is Jonah’s; that discovered, then how furiously they mob him with their questions. ‘What is thine occupation? Whence comest thou? Thy country? What people? But mark now, my shipmates, the behavior of poor Jonah. The eager mariners but ask him who he is, and where from; whereas, they not only receive an answer to those questions, but likewise another answer to a question not put by them, but the unsolicited answer is forced from Jonah by the hard hand of God that is upon him.</p>
-        <p>“‘I am a Hebrew,’ he cries—and then—‘I fear the Lord the God of Heaven who hath made the sea and the dry land!’ Fear him, O Jonah? Aye, well mightest thou fear the Lord God THEN! Straightway, he now goes on to make a full confession; whereupon the mariners became more and more appalled, but still are pitiful. For when Jonah, not yet supplicating God for mercy, since he but too well knew the darkness of his deserts,—when wretched Jonah cries out to them to take him and cast him forth into the sea, for he knew that for HIS sake this great tempest was upon them; they mercifully turn from him, and seek by other means to save the ship. But all in vain; the indignant gale howls louder; then, with one hand raised invokingly to God, with the other they not unreluctantly lay hold of Jonah.</p>
-        <p>“And now behold Jonah taken up as an anchor and dropped into the sea; when instantly an oily calmness floats out from the east, and the sea is still, as Jonah carries down the gale with him, leaving smooth water behind. He goes down in the whirling heart of such a masterless commotion that he scarce heeds the moment when he drops seething into the yawning jaws awaiting him; and the whale shoots-to all his ivory teeth, like so many white bolts, upon his prison. Then Jonah prayed unto the Lord out of the fish’s belly. But observe his prayer, and learn a weighty lesson. For sinful as he is, Jonah does not weep and wail for direct deliverance. He feels that his dreadful punishment is just. He leaves all his deliverance to God, contenting himself with this, that spite of all his pains and pangs, he will still look towards His holy temple. And here, shipmates, is true and faithful repentance; not clamorous for pardon, but grateful for punishment. And how pleasing to God was this conduct in Jonah, is shown in the eventual deliverance of him from the sea and the whale. Shipmates, I do not place Jonah before you to be copied for his sin but I do place him before you as a model for repentance. Sin not; but if you do, take heed to repent of it like Jonah.”</p>
-        <p>While he was speaking these words, the howling of the shrieking, slanting storm without seemed to add new power to the preacher, who, when describing Jonah’s sea-storm, seemed tossed by a storm himself. His deep chest heaved as with a ground-swell; his tossed arms seemed the warring elements at work; and the thunders that rolled away from off his swarthy brow, and the light leaping from his eye, made all his simple hearers look on him with a quick fear that was strange to them.</p>
-        <p>There now came a lull in his look, as he silently turned over the leaves of the Book once more; and, at last, standing motionless, with closed eyes, for the moment, seemed communing with God and himself.</p>
-        <p>But again he leaned over towards the people, and bowing his head lowly, with an aspect of the deepest yet manliest humility, he spake these words:</p>
-        <p>“Shipmates, God has laid but one hand upon you; both his hands press upon me. I have read ye by what murky light may be mine the lesson that Jonah teaches to all sinners; and therefore to ye, and still more to me, for I am a greater sinner than ye. And now how gladly would I come down from this mast-head and sit on the hatches there where you sit, and listen as you listen, while some one of you reads ME that other and more awful lesson which Jonah teaches to ME, as a pilot of the living God. How being an anointed pilot-prophet, or speaker of true things, and bidden by the Lord to sound those unwelcome truths in the ears of a wicked Nineveh, Jonah, appalled at the hostility he should raise, fled from his mission, and sought to escape his duty and his God by taking ship at Joppa. But God is everywhere; Tarshish he never reached. As we have seen, God came upon him in the whale, and swallowed him down to living gulfs of doom, and with swift slantings tore him along 'into the midst of the seas,’ where the eddying depths sucked him ten thousand fathoms down, and 'the weeds were wrapped about his head,’ and all the watery world of woe bowled over him. Yet even then beyond the reach of any plummet—'out of the belly of hell'—when the whale grounded upon the ocean’s utmost bones, even then, God heard the engulphed, repenting prophet when he cried. Then God spake unto the fish; and from the shuddering cold and blackness of the sea, the whale came breeching up towards the warm and pleasant sun, and all the delights of air and earth; and 'vomited out Jonah upon the dry land;’ when the word of the Lord came a second time; and Jonah, bruised and beaten—his ears, like two sea-shells, still multitudinously murmuring of the ocean—Jonah did the Almighty’s bidding. And what was that, shipmates? To preach the Truth to the face of Falsehood! That was it!</p>
-        <p>“This, shipmates, this is that other lesson; and woe to that pilot of the living God who slights it. Woe to him whom this world charms from Gospel duty! Woe to him who seeks to pour oil upon the waters when God has brewed them into a gale! Woe to him who seeks to please rather than to appal! Woe to him whose good name is more to him than goodness! Woe to him who, in this world, courts not dishonour! Woe to him who would not be true, even though to be false were salvation! Yea, woe to him who, as the great Pilot Paul has it, while preaching to others is himself a castaway!”</p>
-        <p>He dropped and fell away from himself for a moment; then lifting his face to them again, showed a deep joy in his eyes, as he cried out with a heavenly enthusiasm,—"But oh! shipmates! on the starboard hand of every woe, there is a sure delight; and higher the top of that delight, than the bottom of the woe is deep. Is not the main-truck higher than the kelson is low? Delight is to him—a far, far upward, and inward delight—who against the proud gods and commodores of this earth, ever stands forth his own inexorable self. Delight is to him whose strong arms yet support him, when the ship of this base treacherous world has gone down beneath him. Delight is to him, who gives no quarter in the truth, and kills, burns, and destroys all sin though he pluck it out from under the robes of Senators and Judges. Delight,—top-gallant delight is to him, who acknowledges no law or lord, but the Lord his God, and is only a patriot to heaven. Delight is to him, whom all the waves of the billows of the seas of the boisterous mob can never shake from this sure Keel of the Ages. And eternal delight and deliciousness will be his, who coming to lay him down, can say with his final breath—O Father!—chiefly known to me by Thy rod—mortal or immortal, here I die. I have striven to be Thine, more than to be this world’s, or mine own. Yet this is nothing: I leave eternity to Thee; for what is man that he should live out the lifetime of his God?”</p>
-        <p>He said no more, but slowly waving a benediction, covered his face with his hands, and so remained kneeling, till all the people had departed, and he was left alone in the place.</p>
-      </section>
-    </main>
-
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="chapter_008.html" title="Previous: Chapter 8. The Pulpit." class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="chapter_008.html" rel="prev" title="Previous: Chapter 8. The Pulpit." aria-label="Previous: Chapter 8. The Pulpit.">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="chapter_010.html" title="Next: Chapter 10. A Bosom Friend." class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="chapter_010.html" title="Next: Chapter 10. A Bosom Friend." aria-label="Next: Chapter 10. A Bosom Friend." class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-2"><a href="preface_001.html">Original Transcriber’s Notes:</a></li><li id="toc-3"><a href="introduction_001.html">ETYMOLOGY.</a></li><li id="toc-4"><a href="epigraph_001.html">EXTRACTS (Supplied by a Sub-Sub-Librarian).</a></li><li id="toc-5"><a href="chapter_001.html">Chapter 1. Loomings.</a></li><li id="toc-6"><a href="chapter_002.html">Chapter 2. The Carpet-Bag.</a></li><li id="toc-7"><a href="chapter_003.html">Chapter 3. The Spouter-Inn.</a></li><li id="toc-8"><a href="chapter_004.html">Chapter 4. The Counterpane.</a></li><li id="toc-9"><a href="chapter_005.html">Chapter 5. Breakfast.</a></li><li id="toc-10"><a href="chapter_006.html">Chapter 6. The Street.</a></li><li id="toc-11"><a href="chapter_007.html">Chapter 7. The Chapel.</a></li><li id="toc-12"><a href="chapter_008.html">Chapter 8. The Pulpit.</a></li><li id="toc-13"><a href="chapter_009.html" aria-current="page">Chapter 9. The Sermon.</a></li><li id="toc-14"><a href="chapter_010.html">Chapter 10. A Bosom Friend.</a></li><li id="toc-15"><a href="chapter_011.html">Chapter 11. Nightgown.</a></li><li id="toc-16"><a href="chapter_012.html">Chapter 12. Biographical.</a></li><li id="toc-17"><a href="chapter_013.html">Chapter 13. Wheelbarrow.</a></li><li id="toc-18"><a href="chapter_014.html">Chapter 14. Nantucket.</a></li><li id="toc-19"><a href="chapter_015.html">Chapter 15. Chowder.</a></li><li id="toc-20"><a href="chapter_016.html">Chapter 16. The Ship.</a></li><li id="toc-21"><a href="chapter_017.html">Chapter 17. The Ramadan.</a></li><li id="toc-22"><a href="chapter_018.html">Chapter 18. His Mark.</a></li><li id="toc-23"><a href="chapter_019.html">Chapter 19. The Prophet.</a></li><li id="toc-24"><a href="chapter_020.html">Chapter 20. All Astir.</a></li><li id="toc-25"><a href="chapter_021.html">Chapter 21. Going Aboard.</a></li><li id="toc-26"><a href="chapter_022.html">Chapter 22. Merry Christmas.</a></li><li id="toc-27"><a href="chapter_023.html">Chapter 23. The Lee Shore.</a></li><li id="toc-28"><a href="chapter_024.html">Chapter 24. The Advocate.</a></li><li id="toc-29"><a href="chapter_025.html">Chapter 25. Postscript.</a></li><li id="toc-30"><a href="chapter_026.html">Chapter 26. Knights and Squires.</a></li><li id="toc-31"><a href="chapter_027.html">Chapter 27. Knights and Squires.</a></li><li id="toc-32"><a href="chapter_028.html">Chapter 28. Ahab.</a></li><li id="toc-33"><a href="chapter_029.html">Chapter 29. Enter Ahab; to Him, Stubb.</a></li><li id="toc-34"><a href="chapter_030.html">Chapter 30. The Pipe.</a></li><li id="toc-35"><a href="chapter_031.html">Chapter 31. Queen Mab.</a></li><li id="toc-36"><a href="chapter_032.html">Chapter 32. Cetology.</a></li><li id="toc-37"><a href="chapter_033.html">Chapter 33. The Specksnyder.</a></li><li id="toc-38"><a href="chapter_034.html">Chapter 34. The Cabin-Table.</a></li><li id="toc-39"><a href="chapter_035.html">Chapter 35. The Mast-Head.</a></li><li id="toc-40"><a href="chapter_036.html">Chapter 36. The Quarter-Deck.</a></li><li id="toc-41"><a href="chapter_037.html">Chapter 37. Sunset.</a></li><li id="toc-42"><a href="chapter_038.html">Chapter 38. Dusk.</a></li><li id="toc-43"><a href="chapter_039.html">Chapter 39. First Night Watch.</a></li><li id="toc-44"><a href="chapter_040.html">Chapter 40. Midnight, Forecastle.</a></li><li id="toc-45"><a href="chapter_041.html">Chapter 41. Moby Dick.</a></li><li id="toc-46"><a href="chapter_042.html">Chapter 42. The Whiteness of The Whale.</a></li><li id="toc-47"><a href="chapter_043.html">Chapter 43. Hark!</a></li><li id="toc-48"><a href="chapter_044.html">Chapter 44. The Chart.</a></li><li id="toc-49"><a href="chapter_045.html">Chapter 45. The Affidavit.</a></li><li id="toc-50"><a href="chapter_046.html">Chapter 46. Surmises.</a></li><li id="toc-51"><a href="chapter_047.html">Chapter 47. The Mat-Maker.</a></li><li id="toc-52"><a href="chapter_048.html">Chapter 48. The First Lowering.</a></li><li id="toc-53"><a href="chapter_049.html">Chapter 49. The Hyena.</a></li><li id="toc-54"><a href="chapter_050.html">Chapter 50. Ahab’s Boat and Crew. Fedallah.</a></li><li id="toc-55"><a href="chapter_051.html">Chapter 51. The Spirit-Spout.</a></li><li id="toc-56"><a href="chapter_052.html">Chapter 52. The Albatross.</a></li><li id="toc-57"><a href="chapter_053.html">Chapter 53. The Gam.</a></li><li id="toc-58"><a href="chapter_054.html">Chapter 54. The Town-Ho’s Story.</a></li><li id="toc-59"><a href="chapter_055.html">Chapter 55. Of the Monstrous Pictures of Whales.</a></li><li id="toc-60"><a href="chapter_056.html">Chapter 56. Of the Less Erroneous Pictures of Whales, and the True</a></li><li id="toc-61"><a href="chapter_057.html">Chapter 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in</a></li><li id="toc-62"><a href="chapter_058.html">Chapter 58. Brit.</a></li><li id="toc-63"><a href="chapter_059.html">Chapter 59. Squid.</a></li><li id="toc-64"><a href="chapter_060.html">Chapter 60. The Line.</a></li><li id="toc-65"><a href="chapter_061.html">Chapter 61. Stubb Kills a Whale.</a></li><li id="toc-66"><a href="chapter_062.html">Chapter 62. The Dart.</a></li><li id="toc-67"><a href="chapter_063.html">Chapter 63. The Crotch.</a></li><li id="toc-68"><a href="chapter_064.html">Chapter 64. Stubb’s Supper.</a></li><li id="toc-69"><a href="chapter_065.html">Chapter 65. The Whale as a Dish.</a></li><li id="toc-70"><a href="chapter_066.html">Chapter 66. The Shark Massacre.</a></li><li id="toc-71"><a href="chapter_067.html">Chapter 67. Cutting In.</a></li><li id="toc-72"><a href="chapter_068.html">Chapter 68. The Blanket.</a></li><li id="toc-73"><a href="chapter_069.html">Chapter 69. The Funeral.</a></li><li id="toc-74"><a href="chapter_070.html">Chapter 70. The Sphynx.</a></li><li id="toc-75"><a href="chapter_071.html">Chapter 71. The Jeroboam’s Story.</a></li><li id="toc-76"><a href="chapter_072.html">Chapter 72. The Monkey-Rope.</a></li><li id="toc-77"><a href="chapter_073.html">Chapter 73. Stubb and Flask Kill a Right Whale; and Then Have a Talk</a></li><li id="toc-78"><a href="chapter_074.html">Chapter 74. The Sperm Whale’s Head—Contrasted View.</a></li><li id="toc-79"><a href="chapter_075.html">Chapter 75. The Right Whale’s Head—Contrasted View.</a></li><li id="toc-80"><a href="chapter_076.html">Chapter 76. The Battering-Ram.</a></li><li id="toc-81"><a href="chapter_077.html">Chapter 77. The Great Heidelburgh Tun.</a></li><li id="toc-82"><a href="chapter_078.html">Chapter 78. Cistern and Buckets.</a></li><li id="toc-83"><a href="chapter_079.html">Chapter 79. The Prairie.</a></li><li id="toc-84"><a href="chapter_080.html">Chapter 80. The Nut.</a></li><li id="toc-85"><a href="chapter_081.html">Chapter 81. The Pequod Meets The Virgin.</a></li><li id="toc-86"><a href="chapter_082.html">Chapter 82. The Honour and Glory of Whaling.</a></li><li id="toc-87"><a href="chapter_083.html">Chapter 83. Jonah Historically Regarded.</a></li><li id="toc-88"><a href="chapter_084.html">Chapter 84. Pitchpoling.</a></li><li id="toc-89"><a href="chapter_085.html">Chapter 85. The Fountain.</a></li><li id="toc-90"><a href="chapter_086.html">Chapter 86. The Tail.</a></li><li id="toc-91"><a href="chapter_087.html">Chapter 87. The Grand Armada.</a></li><li id="toc-92"><a href="chapter_088.html">Chapter 88. Schools and Schoolmasters.</a></li><li id="toc-93"><a href="chapter_089.html">Chapter 89. Fast-Fish and Loose-Fish.</a></li><li id="toc-94"><a href="chapter_090.html">Chapter 90. Heads or Tails.</a></li><li id="toc-95"><a href="chapter_091.html">Chapter 91. The Pequod Meets The Rose-Bud.</a></li><li id="toc-96"><a href="chapter_092.html">Chapter 92. Ambergris.</a></li><li id="toc-97"><a href="chapter_093.html">Chapter 93. The Castaway.</a></li><li id="toc-98"><a href="chapter_094.html">Chapter 94. A Squeeze of the Hand.</a></li><li id="toc-99"><a href="chapter_095.html">Chapter 95. The Cassock.</a></li><li id="toc-100"><a href="chapter_096.html">Chapter 96. The Try-Works.</a></li><li id="toc-101"><a href="chapter_097.html">Chapter 97. The Lamp.</a></li><li id="toc-102"><a href="chapter_098.html">Chapter 98. Stowing Down and Clearing Up.</a></li><li id="toc-103"><a href="chapter_099.html">Chapter 99. The Doubloon.</a></li><li id="toc-104"><a href="chapter_100.html">Chapter 100. Leg and Arm.</a></li><li id="toc-105"><a href="chapter_101.html">Chapter 101. The Decanter.</a></li><li id="toc-106"><a href="chapter_102.html">Chapter 102. A Bower in the Arsacides.</a></li><li id="toc-107"><a href="chapter_103.html">Chapter 103. Measurement of The Whale’s Skeleton.</a></li><li id="toc-108"><a href="chapter_104.html">Chapter 104. The Fossil Whale.</a></li><li id="toc-109"><a href="chapter_105.html">Chapter 105. Does the Whale’s Magnitude Diminish?—Will He Perish?</a></li><li id="toc-110"><a href="chapter_106.html">Chapter 106. Ahab’s Leg.</a></li><li id="toc-111"><a href="chapter_107.html">Chapter 107. The Carpenter.</a></li><li id="toc-112"><a href="chapter_108.html">Chapter 108. Ahab and the Carpenter.</a></li><li id="toc-113"><a href="chapter_109.html">Chapter 109. Ahab and Starbuck in the Cabin.</a></li><li id="toc-114"><a href="chapter_110.html">Chapter 110. Queequeg in His Coffin.</a></li><li id="toc-115"><a href="chapter_111.html">Chapter 111. The Pacific.</a></li><li id="toc-116"><a href="chapter_112.html">Chapter 112. The Blacksmith.</a></li><li id="toc-117"><a href="chapter_113.html">Chapter 113. The Forge.</a></li><li id="toc-118"><a href="chapter_114.html">Chapter 114. The Gilder.</a></li><li id="toc-119"><a href="chapter_115.html">Chapter 115. The Pequod Meets The Bachelor.</a></li><li id="toc-120"><a href="chapter_116.html">Chapter 116. The Dying Whale.</a></li><li id="toc-121"><a href="chapter_117.html">Chapter 117. The Whale Watch.</a></li><li id="toc-122"><a href="chapter_118.html">Chapter 118. The Quadrant.</a></li><li id="toc-123"><a href="chapter_119.html">Chapter 119. The Candles.</a></li><li id="toc-124"><a href="chapter_120.html">Chapter 120. The Deck Towards the End of the First Night Watch.</a></li><li id="toc-125"><a href="chapter_121.html">Chapter 121. Midnight.—The Forecastle Bulwarks.</a></li><li id="toc-126"><a href="chapter_122.html">Chapter 122. Midnight Aloft.—Thunder and Lightning.</a></li><li id="toc-127"><a href="chapter_123.html">Chapter 123. The Musket.</a></li><li id="toc-128"><a href="chapter_124.html">Chapter 124. The Needle.</a></li><li id="toc-129"><a href="chapter_125.html">Chapter 125. The Log and Line.</a></li><li id="toc-130"><a href="chapter_126.html">Chapter 126. The Life-Buoy.</a></li><li id="toc-131"><a href="chapter_127.html">Chapter 127. The Deck.</a></li><li id="toc-132"><a href="chapter_128.html">Chapter 128. The Pequod Meets The Rachel.</a></li><li id="toc-133"><a href="chapter_129.html">Chapter 129. The Cabin.</a></li><li id="toc-134"><a href="chapter_130.html">Chapter 130. The Hat.</a></li><li id="toc-135"><a href="chapter_131.html">Chapter 131. The Pequod Meets The Delight.</a></li><li id="toc-136"><a href="chapter_132.html">Chapter 132. The Symphony.</a></li><li id="toc-137"><a href="chapter_133.html">Chapter 133. The Chase—First Day.</a></li><li id="toc-138"><a href="chapter_134.html">Chapter 134. The Chase—Second Day.</a></li><li id="toc-139"><a href="chapter_135.html">Chapter 135. The Chase.—Third Day.</a></li><li id="toc-140"><a href="chapter_136.html">Epilogue</a></li><li id="toc-141"><a href="copyright.html">Copyright Page</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        
+        
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" src="images/9780316000000.jpg" alt="Cover for Moby-Dick">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>Moby-Dick</dd><dt>Author</dt><dd>Herman Melville</dd><dt>Date</dt><dd>2012-01-13T01:13:00Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

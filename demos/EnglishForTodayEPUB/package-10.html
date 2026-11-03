@@ -1,1133 +1,734 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
+<html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <title> Unit Five </title>
-    <link rel="stylesheet" type="text/css" href="../src/styles/theme.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/layout.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/collapsible-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/playback-toolbar.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/settings-panel.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/content.css">
-    <link rel="stylesheet" type="text/css" href="../src/styles/nav.css">
-
-
-    <link rel="alternate" href="#abinb-audio" type="audio/mpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Five</title>
     <script>
-      document.documentElement.classList.add('abinb-js');
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+            } catch { }
+        })();
     </script>
-  </head>
+    <meta name="webbook-book-id" content="664feee6-fc43-4ace-af04-5efffd7bdc04">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
 
-  <body class="center">
-    <div class="abinb-toolbar-wrapper" id="abinb-top-toolbar-area">
-      <section id="abinb-nav-toolbar" class="abinb-toolbar" aria-label="Navigation Sidebar">
-        <a id="abinb-toc-link" href="nav.html" title="Table of Contents" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-            <g fill="none">
-              <path d="M3.5 16.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 17h13.503H7.5zm-4-6.5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3zm4 .5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.993L7.5 11h13.503H7.5zm-4-6.492a1.5 1.5 0 1 1 0 2.999a1.5 1.5 0 0 1 0-3zM7.5 5h13.503a1 1 0 0 1 .117 1.993l-.117.007H7.5a1 1 0 0 1-.116-1.994l.116-.006h13.503H7.5z" fill="currentColor"></path>
-            </g>
-          </svg>
-        </a>
-        <a id="abinb-about-link" href="about.html" title="About this publication" class="abinb-lightup">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:book-information-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15zM12.25 8a1 1 0 1 0 0-2a1 1 0 0 0 0 2zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
-        </a>
-      </section>
-      <section id="abinb-app-toolbar" class="abinb-toolbar" aria-label="Application toolbar">
-        <div id="abinb-help" class="abinb-lightup">
-          <a href="../src/help/" title="View help" target="_blank" rel="help">
-            <svg aria-hidden="true" role="img" class="abinb-iconify" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" width="2em" height="2em">
-              <g fill="none">
-                <path d="M12 2c5.523 0 10 4.478 10 10s-4.477 10-10 10S2 17.522 2 12S6.477 2 12 2zm0 13.5a1 1 0 1 0 0 2a1 1 0 0 0 0-2zm0-8.75A2.75 2.75 0 0 0 9.25 9.5a.75.75 0 0 0 1.493.102l.007-.102a1.25 1.25 0 1 1 2.5 0c0 .539-.135.805-.645 1.332l-.135.138c-.878.878-1.22 1.447-1.22 2.53a.75.75 0 0 0 1.5 0c0-.539.135-.805.645-1.332l.135-.138c.878-.878 1.22-1.447 1.22-2.53A2.75 2.75 0 0 0 12 6.75z" fill="currentColor"></path>
-              </g>
-            </svg>
-          </a>
-        </div>
-      </section>
-    </div>
-
-    <main>
-      <section id="id_35">
-        <h1 id="dtb_3322" xml:lang="bn-IN"> Unit Five <a href="#dtb_3322" title="Link to heading Unit Five" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-              <g transform="rotate(135 12 12)">
-                <g fill="none">
-                  <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                </g>
-              </g>
-            </svg></a></h1>
-        <section id="id_36">
-          <h1 id="dtb_3323" xml:lang="bn-IN"> Climate change <a href="#dtb_3323" title="Link to heading Climate change" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1><span title="Page-49" id="dtb_3324" class="epubtype_pagebreak"></span>
-          <div id="dtb_3326"><img src="EngforToday-9-style-page_49_image.jpg" alt="" id="dtb_3327"></div>
-          <section id="id_37">
-            <h1 id="dtb_3328" xml:lang="bn-IN"> Learning outcomes <a href="#dtb_3328" title="Link to heading Learning outcomes" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                  <g transform="rotate(135 12 12)">
-                    <g fill="none">
-                      <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                    </g>
-                  </g>
-                </svg></a></h1>
-            <p id="dtb_3329" xml:lang="bn-IN">After we have studied this unit, we will be able to </p>
-            <ul id="dtb_3330">
-              <li id="dtb_3331">
-                <p id="dtb_3332" xml:lang="bn-IN">comprehend and summarize texts.</p>
-              </li>
-              <li id="dtb_3333">
-                <p id="dtb_3334" xml:lang="bn-IN">ask and answer questions.</p>
-              </li>
-              <li id="dtb_3335">
-                <p id="dtb_3336" xml:lang="bn-IN">take part in debates on given topics.</p>
-              </li>
-              <li id="dtb_3337">
-                <p id="dtb_3338" xml:lang="bn-IN">take part in role playing and making dialogues.</p>
-              </li>
-              <li id="dtb_3339">
-                <p id="dtb_3340" xml:lang="bn-IN">draft and deliver lectures on given topics.</p>
-              </li>
-              <li id="dtb_3341">
-                <p id="dtb_3342" xml:lang="bn-IN">write letters to newspaper highlighting certain problems. </p>
-              </li>
-              <li id="dtb_3343">
-                <p id="dtb_3344" xml:lang="bn-IN">write slogans for posters.</p>
-              </li>
-            </ul><span title="Page-50" id="dtb_3345" class="epubtype_pagebreak"></span>
-          </section>
-        </section>
-        <section id="id_38">
-          <h1 id="dtb_3346" xml:lang="bn-IN"> Lesson 1: The greed of the roaring rivers <a href="#dtb_3346" title="Link to heading Lesson 1: The greed of the roaring rivers" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_3347" xml:lang="bn-IN">
-            <span id="dtb_3348"> <em id="dtb_3349">A</em> <em id="dtb_3350">.</em> </span>
-            <span id="dtb_3351">
+<body>
+    <main><section id="id_35"><h1 id="dtb_3322" xml:lang="bn-IN" tabindex="-1"> Unit Five <a href="#dtb_3322" rel="bookmark" class="webbook" title="Link to Unit Five" aria-label="Link to Unit Five"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><section id="id_36"><h1 id="dtb_3323" xml:lang="bn-IN" tabindex="-1"> Climate change <a href="#dtb_3323" rel="bookmark" class="webbook" title="Link to Climate change" aria-label="Link to Climate change"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><span title="Page-49" id="dtb_3324" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 49">49</span><div id="dtb_3326"><img src="images/EngforToday-9-style-page_49_image.jpg" alt="" id="dtb_3327"></div><section id="id_37"><h1 id="dtb_3328" xml:lang="bn-IN" tabindex="-1"> Learning outcomes <a href="#dtb_3328" rel="bookmark" class="webbook" title="Link to Learning outcomes" aria-label="Link to Learning outcomes"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_3329" xml:lang="bn-IN">After we have studied this unit, we will be able to </p><ul id="dtb_3330"><li id="dtb_3331">
+								<p id="dtb_3332" xml:lang="bn-IN">comprehend and summarize texts.</p>
+							</li><li id="dtb_3333">
+								<p id="dtb_3334" xml:lang="bn-IN">ask and answer questions.</p>
+							</li><li id="dtb_3335">
+								<p id="dtb_3336" xml:lang="bn-IN">take part in debates on given topics.</p>
+							</li><li id="dtb_3337">
+								<p id="dtb_3338" xml:lang="bn-IN">take part in role playing and making dialogues.</p>
+							</li><li id="dtb_3339">
+								<p id="dtb_3340" xml:lang="bn-IN">draft and deliver lectures on given topics.</p>
+							</li><li id="dtb_3341">
+								<p id="dtb_3342" xml:lang="bn-IN">write letters to newspaper highlighting certain problems. </p>
+							</li><li id="dtb_3343">
+								<p id="dtb_3344" xml:lang="bn-IN">write slogans for posters.</p>
+							</li></ul><span title="Page-50" id="dtb_3345" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 50">50</span></section></section><section id="id_38"><h1 id="dtb_3346" xml:lang="bn-IN" tabindex="-1"> Lesson 1: The greed of the roaring rivers <a href="#dtb_3346" rel="bookmark" class="webbook" title="Link to Lesson 1: The greed of the roaring rivers" aria-label="Link to Lesson 1: The greed of the roaring rivers"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_3347" xml:lang="bn-IN">
+						<span id="dtb_3348"> <em id="dtb_3349">A</em> <em id="dtb_3350">.</em> </span>
+						<span id="dtb_3351">
 							<em id="dtb_3352">Read the following text and answer the questions.</em> </span>
-          </p>
-          <p id="dtb_3353" xml:lang="bn-IN">
-            <span id="dtb_3354">
+					</p><p id="dtb_3353" xml:lang="bn-IN">
+						<span id="dtb_3354">
 							<span id="dtb_3355" class="normalized">
 								<em id="dtb_3356">
 									<em id="dtb_3357">Meherjan</em>
 								</em>lives in a slum on the Sirajgonj Town Protection Embankment. </span> </span>
-            <span id="dtb_3358">Her polythene-roofed shelter looks like a cage. </span>
-            <span id="dtb_3359">She is nearly 45 but looks more than age. </span>
-            <span id="dtb_3360">In front of her shelter, she is trying to make a fire to cook the day's only meal. </span>
-            <span id="dtb_3361">Her weak hands, day's only meal. </span>
-            <span id="dtb_3362">Her weak hands tremble as she adds some fallen leaves and straw to the fire. </span>
-            <span id="dtb_3363">The whispering wind from the river Jamuna makes the fire unsteady. </span>
-            <span id="dtb_3364">The dancing of the flames reminds Meherjan of the turmoil in her life.</span>
-          </p>
-          <div id="dtb_3366"><img src="EngforToday-9-style-page_50_image.jpg" alt="" id="dtb_3367"></div>
-          <p id="dtb_3368" xml:lang="bn-IN">
-            <span id="dtb_3369">Not long ago Meherjan had everything--- a family, cultivable land and cattle. </span>
-            <span id="dtb_3370">The erosion of the Jamuna consumed all her landed property gradually. </span>
-            <span id="dtb_3371">It finally claimed her only shelter during the last monsoon. </span>
-            <span id="dtb_3372">It took the river only a day to demolish Meher's house, trees, vegetable garden and the bamboo bush. </span>
-            <span id="dtb_3373">She had a happy family once. </span>
-            <span id="dtb_3374">Over the years, she lost her husband and her family to diseases that cruel Hunger and poverty brought to the family. </span>
-            <span id="dtb_3375">Now, she is the only one left to live on with the loss and the pain. </span>
-            <span id="dtb_3376">The greedy Jamuna has shattered her dreams and happiness.</span>
-          </p>
-          <p id="dtb_3377" xml:lang="bn-IN">
-            <span id="dtb_3378">There are thousand others waiting to share the same fate like Meherjan. </span>
-            <span id="dtb_3379">Bangladesh is a land of rivers that affect its people. </span>
-            <span id="dtb_3380">Erosion is a harsh reality for the people living along the river banks. </span>
-            <span id="dtb_3381">During each monsoon many more villages are threatened by the roaring of rivers like the Jamuna the Padma and the Meghna. </span>
-            <span id="dtb_3382">It is estimated that river, erosion makes at least 100,000 people homeless every year in Bangladesh. </span>
-            <span id="dtb_3383">In fact, river erosion is one of the main dangers caused by climate change. </span>
-            <span id="dtb_3384">If we can't take prompt actions to adapt to climate change, there will be thousands of more Meherjans in our towns and villages every year.</span>
-          </p>
-          <p id="dtb_3385" xml:lang="bn-IN">
-            <span id="dtb_3386"> <em id="dtb_3387">B</em> <em id="dtb_3388">.</em> </span>
-            <span id="dtb_3389">
+						<span id="dtb_3358">Her polythene-roofed shelter looks like a cage. </span>
+						<span id="dtb_3359">She is nearly 45 but looks more than age. </span>
+						<span id="dtb_3360">In front of her shelter, she is trying to make a fire to cook the day's only meal. </span>
+						<span id="dtb_3361">Her weak hands, day's only meal. </span>
+						<span id="dtb_3362">Her weak hands tremble as she adds some fallen leaves and straw to the fire. </span>
+						<span id="dtb_3363">The whispering wind from the river Jamuna makes the fire unsteady. </span>
+						<span id="dtb_3364">The dancing of the flames reminds Meherjan of the turmoil in her life.</span>
+					</p><div id="dtb_3366"><img src="images/EngforToday-9-style-page_50_image.jpg" alt="" id="dtb_3367"></div><p id="dtb_3368" xml:lang="bn-IN">
+						<span id="dtb_3369">Not long ago Meherjan had everything--- a family, cultivable land and cattle. </span>
+						<span id="dtb_3370">The erosion of the Jamuna consumed all her landed property gradually. </span>
+						<span id="dtb_3371">It finally claimed her only shelter during the last monsoon. </span>
+						<span id="dtb_3372">It took the river only a day to demolish Meher's house, trees, vegetable garden and the bamboo bush. </span>
+						<span id="dtb_3373">She had a happy family once. </span>
+						<span id="dtb_3374">Over the years, she lost her husband and her family to diseases that cruel Hunger and poverty brought to the family. </span>
+						<span id="dtb_3375">Now, she is the only one left to live on with the loss and the pain. </span>
+						<span id="dtb_3376">The greedy Jamuna has shattered her dreams and happiness.</span>
+					</p><p id="dtb_3377" xml:lang="bn-IN">
+						<span id="dtb_3378">There are thousand others waiting to share the same fate like Meherjan. </span>
+						<span id="dtb_3379">Bangladesh is a land of rivers that affect its people. </span>
+						<span id="dtb_3380">Erosion is a harsh reality for the people living along the river banks. </span>
+						<span id="dtb_3381">During each monsoon many more villages are threatened by the roaring of rivers like the Jamuna the Padma and the Meghna. </span>
+						<span id="dtb_3382">It is estimated that river, erosion makes at least 100,000 people homeless every year in Bangladesh. </span>
+						<span id="dtb_3383">In fact, river erosion is one of the main dangers caused by climate change. </span>
+						<span id="dtb_3384">If we can't take prompt actions to adapt to climate change, there will be thousands of more Meherjans in our towns and villages every year.</span>
+					</p><p id="dtb_3385" xml:lang="bn-IN">
+						<span id="dtb_3386"> <em id="dtb_3387">B</em> <em id="dtb_3388">.</em> </span>
+						<span id="dtb_3389">
 							<em id="dtb_3390">For each phrase below choose the meaning that is closest to the meaning used in the text above.</em> </span>
-          </p><span title="Page-51 " id="dtb_3391" class="epubtype_pagebreak"></span>
-          <p id="dtb_3392" xml:lang="bn-IN">
-            <span id="dtb_3393">1. </span>
-            <span id="dtb_3394">In paragraph 3 ‘roaring rivers’ mean</span>
-          </p>
-          <p id="dtb_3395" xml:lang="bn-IN">a. rivers that flow strongly making wild sounds </p>
-          <p id="dtb_3396" xml:lang="bn-IN">
-            <span id="dtb_3397">b. </span>
-            <span id="dtb_3398">rivers having many rowing boats in them</span>
-          </p>
-          <p id="dtb_3399" xml:lang="bn-IN">
-            <span id="dtb_3400">c. </span>
-            <span id="dtb_3401">rivers that make people cry out </span>
-          </p>
-          <p id="dtb_3402" xml:lang="bn-IN">
-            <span id="dtb_3403">d. </span>
-            <span id="dtb_3404">rivers that have noisy fishes </span>
-          </p>
-          <p id="dtb_3405" xml:lang="bn-IN">2. landed property </p>
-          <p id="dtb_3406" xml:lang="bn-IN">
-            <span id="dtb_3407"> a. </span>
-            <span id="dtb_3408">a rented piece of land</span>
-          </p>
-          <p id="dtb_3409" xml:lang="bn-IN">
-            <span id="dtb_3410">b. </span>
-            <span id="dtb_3411">a piece of land on the bank of a river</span>
-          </p>
-          <p id="dtb_3412" xml:lang="bn-IN">
-            <span id="dtb_3413">c. </span>
-            <span id="dtb_3414">Property in the form of a source of income to its owner </span>
-          </p>
-          <p id="dtb_3415" xml:lang="bn-IN">
-            <span id="dtb_3416">d. </span>
-            <span id="dtb_3417">property used only as an agricultural farm</span>
-          </p>
-          <p id="dtb_3418" xml:lang="bn-IN">3. whispering wind</p>
-          <p id="dtb_3419" xml:lang="bn-IN">
-            <span id="dtb_3420">a. </span>
-            <span id="dtb_3421">wind that blows from across the river </span>
-          </p>
-          <p id="dtb_3422" xml:lang="bn-IN">
-            <span id="dtb_3423">b. </span>
-            <span id="dtb_3424">wind that blows with a hissing sound </span>
-          </p>
-          <p id="dtb_3425" xml:lang="bn-IN">c. wind that helps someone make a fire </p>
-          <p id="dtb_3426" xml:lang="bn-IN">
-            <span id="dtb_3427">d. </span>
-            <span id="dtb_3428">wind that blows in summer</span>
-          </p>
-          <p id="dtb_3429" xml:lang="bn-IN">4 . dancing of the flame</p>
-          <p id="dtb_3430" xml:lang="bn-IN">
-            <span id="dtb_3431">a. </span>
-            <span id="dtb_3432">a traditional form of folk dance</span>
-          </p>
-          <p id="dtb_3433" xml:lang="bn-IN">b. a flame that makes people dance around it</p>
-          <p id="dtb_3434" xml:lang="bn-IN">c. a flame that is made unstable by the blast of air </p>
-          <p id="dtb_3435" xml:lang="bn-IN">d. a flame made by people to remember their pasts </p>
-          <p id="dtb_3436" xml:lang="bn-IN">
-            <span id="dtb_3437"> <em id="dtb_3438">C</em> <em id="dtb_3439">.</em> </span>
-            <span id="dtb_3440">
+					</p><span title="Page-51 " id="dtb_3391" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 51">51</span><p id="dtb_3392" xml:lang="bn-IN">
+						<span id="dtb_3393">1. </span>
+						<span id="dtb_3394">In paragraph 3 ‘roaring rivers’ mean</span>
+					</p><p id="dtb_3395" xml:lang="bn-IN">a. rivers that flow strongly making wild sounds </p><p id="dtb_3396" xml:lang="bn-IN">
+						<span id="dtb_3397">b. </span>
+						<span id="dtb_3398">rivers having many rowing boats in them</span>
+					</p><p id="dtb_3399" xml:lang="bn-IN">
+						<span id="dtb_3400">c. </span>
+						<span id="dtb_3401">rivers that make people cry out </span>
+					</p><p id="dtb_3402" xml:lang="bn-IN">
+						<span id="dtb_3403">d. </span>
+						<span id="dtb_3404">rivers that have noisy fishes </span>
+					</p><p id="dtb_3405" xml:lang="bn-IN">2. landed property </p><p id="dtb_3406" xml:lang="bn-IN">
+						<span id="dtb_3407"> a. </span>
+						<span id="dtb_3408">a rented piece of land</span>
+					</p><p id="dtb_3409" xml:lang="bn-IN">
+						<span id="dtb_3410">b. </span>
+						<span id="dtb_3411">a piece of land on the bank of a river</span>
+					</p><p id="dtb_3412" xml:lang="bn-IN">
+						<span id="dtb_3413">c. </span>
+						<span id="dtb_3414">Property in the form of a source of income to its owner </span>
+					</p><p id="dtb_3415" xml:lang="bn-IN">
+						<span id="dtb_3416">d. </span>
+						<span id="dtb_3417">property used only as an agricultural farm</span>
+					</p><p id="dtb_3418" xml:lang="bn-IN">3. whispering wind</p><p id="dtb_3419" xml:lang="bn-IN">
+						<span id="dtb_3420">a. </span>
+						<span id="dtb_3421">wind that blows from across the river </span>
+					</p><p id="dtb_3422" xml:lang="bn-IN">
+						<span id="dtb_3423">b. </span>
+						<span id="dtb_3424">wind that blows with a hissing sound </span>
+					</p><p id="dtb_3425" xml:lang="bn-IN">c. wind that helps someone make a fire </p><p id="dtb_3426" xml:lang="bn-IN">
+						<span id="dtb_3427">d. </span>
+						<span id="dtb_3428">wind that blows in summer</span>
+					</p><p id="dtb_3429" xml:lang="bn-IN">4 . dancing of the flame</p><p id="dtb_3430" xml:lang="bn-IN">
+						<span id="dtb_3431">a. </span>
+						<span id="dtb_3432">a traditional form of folk dance</span>
+					</p><p id="dtb_3433" xml:lang="bn-IN">b. a flame that makes people dance around it</p><p id="dtb_3434" xml:lang="bn-IN">c. a flame that is made unstable by the blast of air </p><p id="dtb_3435" xml:lang="bn-IN">d. a flame made by people to remember their pasts </p><p id="dtb_3436" xml:lang="bn-IN">
+						<span id="dtb_3437"> <em id="dtb_3438">C</em> <em id="dtb_3439">.</em> </span>
+						<span id="dtb_3440">
 							<em id="dtb_3441">Ask and answer the following questions in pairs. </em> </span>
-          </p>
-          <p id="dtb_3442" xml:lang="bn-IN">
-            <span id="dtb_3443">a. </span>
-            <span id="dtb_3444">What does Meherjan use to make fire for cooking her meals?</span>
-          </p>
-          <p id="dtb_3445" xml:lang="bn-IN">
-            <span id="dtb_3446">b. </span>
-            <span id="dtb_3447">What property did Meherjan lose due to river erosion?</span>
-          </p>
-          <p id="dtb_3448" xml:lang="bn-IN">
-            <span id="dtb_3449">c. </span>
-            <span id="dtb_3450">What do you know about Meherjan's family?</span>
-          </p>
-          <p id="dtb_3451" xml:lang="bn-IN">
-            <span id="dtb_3452">d. </span>
-            <span id="dtb_3453">In which season does river erosion most likely occur?</span>
-          </p>
-          <p id="dtb_3454" xml:lang="bn-IN">
-            <span id="dtb_3455">e. </span>
-            <span id="dtb_3456">Why is the phrase ‘greedy Jamuna’ used to describe the river? </span>
-            <span id="dtb_3457">What greed do you notice in the description?</span>
-          </p><span title="Page-52" id="dtb_3458" class="epubtype_pagebreak"></span>
-          <p id="dtb_3459" xml:lang="bn-IN">
-            <span id="dtb_3460"> <em id="dtb_3461">D</em> <em id="dtb_3462">.</em> </span>
-            <span id="dtb_3463">
+					</p><p id="dtb_3442" xml:lang="bn-IN">
+						<span id="dtb_3443">a. </span>
+						<span id="dtb_3444">What does Meherjan use to make fire for cooking her meals?</span>
+					</p><p id="dtb_3445" xml:lang="bn-IN">
+						<span id="dtb_3446">b. </span>
+						<span id="dtb_3447">What property did Meherjan lose due to river erosion?</span>
+					</p><p id="dtb_3448" xml:lang="bn-IN">
+						<span id="dtb_3449">c. </span>
+						<span id="dtb_3450">What do you know about Meherjan's family?</span>
+					</p><p id="dtb_3451" xml:lang="bn-IN">
+						<span id="dtb_3452">d. </span>
+						<span id="dtb_3453">In which season does river erosion most likely occur?</span>
+					</p><p id="dtb_3454" xml:lang="bn-IN">
+						<span id="dtb_3455">e. </span>
+						<span id="dtb_3456">Why is the phrase ‘greedy Jamuna’ used to describe the river? </span>
+						<span id="dtb_3457">What greed do you notice in the description?</span>
+					</p><span title="Page-52" id="dtb_3458" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 52">52</span><p id="dtb_3459" xml:lang="bn-IN">
+						<span id="dtb_3460"> <em id="dtb_3461">D</em> <em id="dtb_3462">.</em> </span>
+						<span id="dtb_3463">
 							<em id="dtb_3464">Compl</em> <em id="dtb_3465">ete the summary of </em> <em id="dtb_3466">Meherjan's life with words/phrases from the box. </em> </span>
-          </p>
-          <p id="dtb_3467" xml:lang="bn-IN">
-            <span id="dtb_3468">Meherjan is a typical (1) [dash] woman who lives in a slum. </span>
-            <span id="dtb_3469">She lost her shelter and properties (2) [dash] the erosion of the river Jamuna. </span>
-            <span id="dtb_3470">She also lost her family. </span>
-            <span id="dtb_3471">Her husband had died of diseases caused by poverty and (3) [dash] Now, she is only a (4) [dash] Like Meherjan there are erosion is still erosion (5) [dash] of river erosion. </span>
-            <span id="dtb_3472">Rive erosion is still posing (6) [dash] to the lives and properties of thousands of people. </span>
-            <span id="dtb_3473">People living (7) [dash] the rivers are the most likely victims of river erosion. </span>
-            <span id="dtb_3474">Each year about (8) [dash] people become homeless due to river erosion in Bangladesh. </span>
-            <span id="dtb_3475">Meherjan's life is just one (9) [dash] of how climate change (10) [dash] the lives of thousands of people.</span>
-          </p>
-          <table id="dtb_3476">
-            <colgroup>
-              <col id="dtb_3477" span="1">
-            </colgroup>
-            <tbody id="dtb_3478">
-              <tr id="dtb_3479">
-                <td id="dtb_3480" colspan="1" rowspan="1">
-                  <p id="dtb_3481" xml:lang="bn-IN">Victims</p>
-                </td>
-                <td id="dtb_3482" colspan="1" rowspan="1">
-                  <p id="dtb_3483" xml:lang="bn-IN">affects</p>
-                </td>
-                <td id="dtb_3484" colspan="1" rowspan="1">
-                  <p id="dtb_3485" xml:lang="bn-IN">close to</p>
-                </td>
-                <td id="dtb_3486" colspan="1" rowspan="1">
-                  <p id="dtb_3487" xml:lang="bn-IN">slum dweller</p>
-                </td>
-                <td id="dtb_3488" colspan="1" rowspan="1">
-                  <p id="dtb_3489" xml:lang="bn-IN">homeless</p>
-                </td>
-              </tr>
-              <tr id="dtb_3490">
-                <td id="dtb_3491" colspan="1" rowspan="1">
-                  <p id="dtb_3492" xml:lang="bn-IN">threats</p>
-                </td>
-                <td id="dtb_3493" colspan="1" rowspan="1">
-                  <p id="dtb_3494" xml:lang="bn-IN">example</p>
-                </td>
-                <td id="dtb_3495" colspan="1" rowspan="1">
-                  <p id="dtb_3496" xml:lang="bn-IN">due to</p>
-                </td>
-                <td id="dtb_3497" colspan="1" rowspan="1">
-                  <p id="dtb_3498" xml:lang="bn-IN">shortage of food</p>
-                </td>
-                <td id="dtb_3499" colspan="1" rowspan="1">
-                  <p id="dtb_3500" xml:lang="bn-IN">one lakh</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_3501" xml:lang="bn-IN">
-            <span id="dtb_3502"> <em id="dtb_3503">E</em> <em id="dtb_3504">.</em> </span>
-            <span id="dtb_3505">
+					</p><p id="dtb_3467" xml:lang="bn-IN">
+						<span id="dtb_3468">Meherjan is a typical (1) [dash] woman who lives in a slum. </span>
+						<span id="dtb_3469">She lost her shelter and properties (2) [dash] the erosion of the river Jamuna. </span>
+						<span id="dtb_3470">She also lost her family. </span>
+						<span id="dtb_3471">Her husband had died of diseases caused by poverty and (3) [dash] Now, she is only a (4) [dash] Like Meherjan there are erosion is still erosion (5) [dash] of river erosion. </span>
+						<span id="dtb_3472">Rive erosion is still posing (6) [dash] to the lives and properties of thousands of people. </span>
+						<span id="dtb_3473">People living (7) [dash] the rivers are the most likely victims of river erosion. </span>
+						<span id="dtb_3474">Each year about (8) [dash] people become homeless due to river erosion in Bangladesh. </span>
+						<span id="dtb_3475">Meherjan's life is just one (9) [dash] of how climate change (10) [dash] the lives of thousands of people.</span>
+					</p><table id="dtb_3476"><colgroup><col id="dtb_3477" span="1"></colgroup><tbody id="dtb_3478"><tr id="dtb_3479"><td id="dtb_3480" colspan="1" rowspan="1">
+									<p id="dtb_3481" xml:lang="bn-IN">Victims</p>
+								</td><td id="dtb_3482" colspan="1" rowspan="1">
+									<p id="dtb_3483" xml:lang="bn-IN">affects</p>
+								</td><td id="dtb_3484" colspan="1" rowspan="1">
+									<p id="dtb_3485" xml:lang="bn-IN">close to</p>
+								</td><td id="dtb_3486" colspan="1" rowspan="1">
+									<p id="dtb_3487" xml:lang="bn-IN">slum dweller</p>
+								</td><td id="dtb_3488" colspan="1" rowspan="1">
+									<p id="dtb_3489" xml:lang="bn-IN">homeless</p>
+								</td></tr><tr id="dtb_3490"><td id="dtb_3491" colspan="1" rowspan="1">
+									<p id="dtb_3492" xml:lang="bn-IN">threats</p>
+								</td><td id="dtb_3493" colspan="1" rowspan="1">
+									<p id="dtb_3494" xml:lang="bn-IN">example</p>
+								</td><td id="dtb_3495" colspan="1" rowspan="1">
+									<p id="dtb_3496" xml:lang="bn-IN">due to</p>
+								</td><td id="dtb_3497" colspan="1" rowspan="1">
+									<p id="dtb_3498" xml:lang="bn-IN">shortage of food</p>
+								</td><td id="dtb_3499" colspan="1" rowspan="1">
+									<p id="dtb_3500" xml:lang="bn-IN">one lakh</p>
+								</td></tr></tbody></table><p id="dtb_3501" xml:lang="bn-IN">
+						<span id="dtb_3502"> <em id="dtb_3503">E</em> <em id="dtb_3504">.</em> </span>
+						<span id="dtb_3505">
 							<em id="dtb_3506">Debate: Get into two groups of 3/4. Decide which group will speak for/against the motion. In your group, first, discuss and note down five/six points to support/ oppose the statement given below. Then select the speakers from each group to start the debate.</em> </span>
-          </p>
-          <p id="dtb_3507" xml:lang="bn-IN">
-            <em id="dtb_3508">Statement: </em>Humans can't do anything to control the course of nature.
-          </p>
-        </section>
-        <section id="id_39">
-          <h1 id="dtb_3509" xml:lang="bn-IN"> Lesson 2: Environmental pollution <a href="#dtb_3509" title="Link to heading Lesson 2: Environmental pollution" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_3510" xml:lang="bn-IN">
-            <span id="dtb_3511"> <em id="dtb_3512">A</em> <em id="dtb_3513">.</em> </span>
-            <span id="dtb_3514">
+					</p><p id="dtb_3507" xml:lang="bn-IN">
+						<em id="dtb_3508">Statement: </em>Humans can't do anything to control the course of nature. </p></section><section id="id_39"><h1 id="dtb_3509" xml:lang="bn-IN" tabindex="-1"> Lesson 2: Environmental pollution <a href="#dtb_3509" rel="bookmark" class="webbook" title="Link to Lesson 2: Environmental pollution" aria-label="Link to Lesson 2: Environmental pollution"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_3510" xml:lang="bn-IN">
+						<span id="dtb_3511"> <em id="dtb_3512">A</em> <em id="dtb_3513">.</em> </span>
+						<span id="dtb_3514">
 							<em id="dtb_3515">Look at the pictures below and discuss the questions.</em> </span>
-          </p>
-          <p id="dtb_3516" xml:lang="bn-IN">
-            <span id="dtb_3517">1. </span>
-            <span id="dtb_3518">What do you see in each picture?</span>
-          </p>
-          <p id="dtb_3519" xml:lang="bn-IN">
-            <span id="dtb_3520">2. </span>
-            <span id="dtb_3521">What are some of the common sources of environmental pollution'?</span>
-          </p>
-          <p id="dtb_3522" xml:lang="bn-IN">
-            <span id="dtb_3523">3. </span>
-            <span id="dtb_3524">Which of these sources are most threatening for your environment? </span>
-          </p>
-          <div id="dtb_3526"><img src="EngforToday-9-style-page_52_image.jpg" alt="" id="dtb_3527"></div>
-          <table id="dtb_3528">
-            <colgroup>
-              <col id="dtb_3529" span="1">
-            </colgroup>
-            <tbody id="dtb_3530">
-              <tr id="dtb_3531">
-                <td id="dtb_3532" colspan="1" rowspan="1">
-                  <p id="dtb_3533" xml:lang="bn-IN">Picture 1</p>
-                </td>
-                <td id="dtb_3534" colspan="1" rowspan="1">
-                  <p id="dtb_3535" xml:lang="bn-IN">Picture 2</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div id="dtb_3537"><img src="EngforToday-9-style-page_53_image.jpg" alt="" id="dtb_3538"></div>
-          <table id="dtb_3539">
-            <colgroup>
-              <col id="dtb_3540" span="1">
-            </colgroup>
-            <tbody id="dtb_3541">
-              <tr id="dtb_3542">
-                <td id="dtb_3543" colspan="1" rowspan="1">
-                  <p id="dtb_3544" xml:lang="bn-IN">Picture 3</p>
-                </td>
-                <td id="dtb_3545" colspan="1" rowspan="1">
-                  <p id="dtb_3546" xml:lang="bn-IN">Picture 4</p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="Page-53" id="dtb_3547" class="epubtype_pagebreak"></span>
-          <p id="dtb_3548" xml:lang="bn-IN">
-            <span id="dtb_3549"> <em id="dtb_3550">B</em> <em id="dtb_3551">.</em> </span>
-            <span id="dtb_3552">
+					</p><p id="dtb_3516" xml:lang="bn-IN">
+						<span id="dtb_3517">1. </span>
+						<span id="dtb_3518">What do you see in each picture?</span>
+					</p><p id="dtb_3519" xml:lang="bn-IN">
+						<span id="dtb_3520">2. </span>
+						<span id="dtb_3521">What are some of the common sources of environmental pollution'?</span>
+					</p><p id="dtb_3522" xml:lang="bn-IN">
+						<span id="dtb_3523">3. </span>
+						<span id="dtb_3524">Which of these sources are most threatening for your environment? </span>
+					</p><div id="dtb_3526"><img src="images/EngforToday-9-style-page_52_image.jpg" alt="" id="dtb_3527"></div><table id="dtb_3528"><colgroup><col id="dtb_3529" span="1"></colgroup><tbody id="dtb_3530"><tr id="dtb_3531"><td id="dtb_3532" colspan="1" rowspan="1">
+									<p id="dtb_3533" xml:lang="bn-IN">Picture 1</p>
+								</td><td id="dtb_3534" colspan="1" rowspan="1">
+									<p id="dtb_3535" xml:lang="bn-IN">Picture 2</p>
+								</td></tr></tbody></table><div id="dtb_3537"><img src="images/EngforToday-9-style-page_53_image.jpg" alt="" id="dtb_3538"></div><table id="dtb_3539"><colgroup><col id="dtb_3540" span="1"></colgroup><tbody id="dtb_3541"><tr id="dtb_3542"><td id="dtb_3543" colspan="1" rowspan="1">
+									<p id="dtb_3544" xml:lang="bn-IN">Picture 3</p>
+								</td><td id="dtb_3545" colspan="1" rowspan="1">
+									<p id="dtb_3546" xml:lang="bn-IN">Picture 4</p>
+								</td></tr></tbody></table><span title="Page-53" id="dtb_3547" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 53">53</span><p id="dtb_3548" xml:lang="bn-IN">
+						<span id="dtb_3549"> <em id="dtb_3550">B</em> <em id="dtb_3551">.</em> </span>
+						<span id="dtb_3552">
 							<em id="dtb_3553">Now read the following passage to know more about environmental pollution in Bangladesh.</em> </span>
-          </p>
-          <p id="dtb_3554" xml:lang="bn-IN">
-            <span id="dtb_3555">Bangladesh is now apparently in the grip of all sorts of pollution like air pollution, soil Pollution and water pollution. </span>
-            <span id="dtb_3556">The dwellers of the urban areas are the worst suffers of such pollution. </span>
-            <span id="dtb_3557">The indiscriminate industrialization process in Bangladesh over the past decades has created significant environmental problems. </span>
-            <span id="dtb_3558">We will now read about some of the most common types of environmental pollutions and ways of coping with them. </span>
-          </p>
-          <p id="dtb_3559" xml:lang="bn-IN">
-            <em id="dtb_3560">Air pollution</em>
-          </p>
-          <p id="dtb_3561" xml:lang="bn-IN">
-            <span id="dtb_3562">Air pollution comes from a wide variety of sources. </span>
-            <span id="dtb_3563">In Bangladesh poisonous exhaust industrial plants, brick kilns, old or poorly-serviced vehicles and dust from roads and construction sites are some of the major sources of air pollution.</span>
-          </p>
-          <p id="dtb_3564" xml:lang="bn-IN">
-            <span id="dtb_3565">we can minimise this type of pollution by making less use of motor vehicles and avoiding the use of vehicles older than 20 years. </span>
-            <span id="dtb_3566">We may also use proper lubricants to lessen the level of emission and pollutants. </span>
-            <span id="dtb_3567">We can encourage people to use Compressed Natural Gas (CNG) or Liquid Petroleum Gas (LPG) for fuelling their cars .The government may relocate hazardous industries like brick kilns to areas away human habitations.</span>
-          </p>
-          <p id="dtb_3568" xml:lang="bn-IN">
-            <em id="dtb_3569">Water pollution</em>
-          </p>
-          <p id="dtb_3570" xml:lang="bn-IN">
-            <span id="dtb_3571">Water pollution can occur in oceans, rivers, lakes, ponds and underground reservoirs. </span>
-            <span id="dtb_3572">As different water sources flow together, the pollution can spread easily and quickly. </span>
-            <span id="dtb_3573">Causes of water pollution include:</span>
-          </p><span title="Page-54" id="dtb_3574" class="epubtype_pagebreak"></span>
-          <ul id="dtb_3575">
-            <li id="dtb_3576">
-              <p id="dtb_3577" xml:lang="bn-IN">increased sediment from soil</p>
-            </li>
-            <li id="dtb_3578">
-              <p id="dtb_3579" xml:lang="bn-IN">erosion</p>
-            </li>
-            <li id="dtb_3580">
-              <p id="dtb_3581" xml:lang="bn-IN">improper waste disposal and littering</p>
-            </li>
-            <li id="dtb_3582">
-              <p id="dtb_3583" xml:lang="bn-IN">leakage of soil pollution into water supplies</p>
-            </li>
-            <li id="dtb_3584">
-              <p id="dtb_3585" xml:lang="bn-IN">organic materials that decay in water supplies etc.</p>
-            </li>
-          </ul>
-          <p id="dtb_3586" xml:lang="bn-IN">
-            <span id="dtb_3587">In fact, polluting the land means polluting the water. </span>
-            <span id="dtb_3588">Throwing away a toxic substance on the ground near a water space means it eventually reaches a body of water. </span>
-            <span id="dtb_3589">As a result, the water is polluted. </span>
-            <span id="dtb_3590">Industrial wastes must not be disposed in rivers or lakes. </span>
-            <span id="dtb_3591">We need to be more careful about disposing household wastes too. </span>
-            <span id="dtb_3592">Use of pesticides means that when it rains on the lawn or garden, chemicals wash into the water bodies. </span>
-            <span id="dtb_3593">Therefore, we must be aware of the dangers of using pesticides as they may pollute our rivers, canals and lakes.</span>
-          </p>
-          <p id="dtb_3594" xml:lang="bn-IN">
-            <em id="dtb_3595">Soil pollution</em>
-          </p>
-          <p id="dtb_3596" xml:lang="bn-IN">
-            <span id="dtb_3597">Among the most significant causes of soil pollution is the enormous volume of industrial waste which is being produced every day but not disposed properly. </span>
-            <span id="dtb_3598">The mismanagement of household wastes, particularly the polythene shopping bags, has caused serious threat to the soil, and the drainage system. </span>
-            <span id="dtb_3599">Another cause for soil pollution is the use of agricultural pesticides, fertilizers etc. </span>
-            <span id="dtb_3600">Sometimes fuel leakages from automobiles may get washed away by rain and seep into the nearby soil.</span>
-          </p>
-          <p id="dtb_3601" xml:lang="bn-IN">
-            <span id="dtb_3602">Pesticides and fertilizers are useful for plant growth but their overuse has led to soil pollution. </span>
-            <span id="dtb_3603">Natural fertilizers and compost can be used instead of their chemical alternatives. </span>
-            <span id="dtb_3604">Recycling is another way to reduce and control soil pollution. </span>
-            <span id="dtb_3605">Recycling papers, plastics and other materials reduces the volume of refuse in landfills. </span>
-            <span id="dtb_3606">De- forestation also causes erosion, pollution and the loss of fertility in the topsoil. </span>
-            <span id="dtb_3607">Planting trees and re-forestation help prevent soil erosion and pollution.</span>
-          </p>
-          <p id="dtb_3608" xml:lang="bn-IN">
-            <span id="dtb_3609"> <em id="dtb_3610">C</em> <em id="dtb_3611">.</em> </span>
-            <span id="dtb_3612">
+					</p><p id="dtb_3554" xml:lang="bn-IN">
+						<span id="dtb_3555">Bangladesh is now apparently in the grip of all sorts of pollution like air pollution, soil Pollution and water pollution. </span>
+						<span id="dtb_3556">The dwellers of the urban areas are the worst suffers of such pollution. </span>
+						<span id="dtb_3557">The indiscriminate industrialization process in Bangladesh over the past decades has created significant environmental problems. </span>
+						<span id="dtb_3558">We will now read about some of the most common types of environmental pollutions and ways of coping with them. </span>
+					</p><p id="dtb_3559" xml:lang="bn-IN">
+						<em id="dtb_3560">Air pollution</em>
+					</p><p id="dtb_3561" xml:lang="bn-IN">
+						<span id="dtb_3562">Air pollution comes from a wide variety of sources. </span>
+						<span id="dtb_3563">In Bangladesh poisonous exhaust industrial plants, brick kilns, old or poorly-serviced vehicles and dust from roads and construction sites are some of the major sources of air pollution.</span>
+					</p><p id="dtb_3564" xml:lang="bn-IN">
+						<span id="dtb_3565">we can minimise this type of pollution by making less use of motor vehicles and avoiding the use of vehicles older than 20 years. </span>
+						<span id="dtb_3566">We may also use proper lubricants to lessen the level of emission and pollutants. </span>
+						<span id="dtb_3567">We can encourage people to use Compressed Natural Gas (CNG) or Liquid Petroleum Gas (LPG) for fuelling their cars .The government may relocate hazardous industries like brick kilns to areas away human habitations.</span>
+					</p><p id="dtb_3568" xml:lang="bn-IN">
+						<em id="dtb_3569">Water pollution</em>
+					</p><p id="dtb_3570" xml:lang="bn-IN">
+						<span id="dtb_3571">Water pollution can occur in oceans, rivers, lakes, ponds and underground reservoirs. </span>
+						<span id="dtb_3572">As different water sources flow together, the pollution can spread easily and quickly. </span>
+						<span id="dtb_3573">Causes of water pollution include:</span>
+					</p><span title="Page-54" id="dtb_3574" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 54">54</span><ul id="dtb_3575"><li id="dtb_3576">
+							<p id="dtb_3577" xml:lang="bn-IN">increased sediment from soil</p>
+						</li><li id="dtb_3578">
+							<p id="dtb_3579" xml:lang="bn-IN">erosion</p>
+						</li><li id="dtb_3580">
+							<p id="dtb_3581" xml:lang="bn-IN">improper waste disposal and littering</p>
+						</li><li id="dtb_3582">
+							<p id="dtb_3583" xml:lang="bn-IN">leakage of soil pollution into water supplies</p>
+						</li><li id="dtb_3584">
+							<p id="dtb_3585" xml:lang="bn-IN">organic materials that decay in water supplies etc.</p>
+						</li></ul><p id="dtb_3586" xml:lang="bn-IN">
+						<span id="dtb_3587">In fact, polluting the land means polluting the water. </span>
+						<span id="dtb_3588">Throwing away a toxic substance on the ground near a water space means it eventually reaches a body of water. </span>
+						<span id="dtb_3589">As a result, the water is polluted. </span>
+						<span id="dtb_3590">Industrial wastes must not be disposed in rivers or lakes. </span>
+						<span id="dtb_3591">We need to be more careful about disposing household wastes too. </span>
+						<span id="dtb_3592">Use of pesticides means that when it rains on the lawn or garden, chemicals wash into the water bodies. </span>
+						<span id="dtb_3593">Therefore, we must be aware of the dangers of using pesticides as they may pollute our rivers, canals and lakes.</span>
+					</p><p id="dtb_3594" xml:lang="bn-IN">
+						<em id="dtb_3595">Soil pollution</em>
+					</p><p id="dtb_3596" xml:lang="bn-IN">
+						<span id="dtb_3597">Among the most significant causes of soil pollution is the enormous volume of industrial waste which is being produced every day but not disposed properly. </span>
+						<span id="dtb_3598">The mismanagement of household wastes, particularly the polythene shopping bags, has caused serious threat to the soil, and the drainage system. </span>
+						<span id="dtb_3599">Another cause for soil pollution is the use of agricultural pesticides, fertilizers etc. </span>
+						<span id="dtb_3600">Sometimes fuel leakages from automobiles may get washed away by rain and seep into the nearby soil.</span>
+					</p><p id="dtb_3601" xml:lang="bn-IN">
+						<span id="dtb_3602">Pesticides and fertilizers are useful for plant growth but their overuse has led to soil pollution. </span>
+						<span id="dtb_3603">Natural fertilizers and compost can be used instead of their chemical alternatives. </span>
+						<span id="dtb_3604">Recycling is another way to reduce and control soil pollution. </span>
+						<span id="dtb_3605">Recycling papers, plastics and other materials reduces the volume of refuse in landfills. </span>
+						<span id="dtb_3606">De- forestation also causes erosion, pollution and the loss of fertility in the topsoil. </span>
+						<span id="dtb_3607">Planting trees and re-forestation help prevent soil erosion and pollution.</span>
+					</p><p id="dtb_3608" xml:lang="bn-IN">
+						<span id="dtb_3609"> <em id="dtb_3610">C</em> <em id="dtb_3611">.</em> </span>
+						<span id="dtb_3612">
 							<em id="dtb_3613">From your reading of the above text complete each blank space in the table with no more than two words and/or numbers.</em> </span>
-          </p><span title="Page-55" id="dtb_3614" class="epubtype_pagebreak"></span>
-          <table id="dtb_3615">
-            <colgroup>
-              <col id="dtb_3616" span="1">
-            </colgroup>
-            <tbody id="dtb_3617">
-              <tr id="dtb_3618">
-                <td id="dtb_3619" colspan="1" rowspan="1">
-                  <p id="dtb_3620" xml:lang="bn-IN">
-                    <em id="dtb_3621">Pollution</em>
-                  </p>
-                </td>
-                <td id="dtb_3622" colspan="1" rowspan="1">
-                  <p id="dtb_3623" xml:lang="bn-IN">
-                    <em id="dtb_3624">Causes</em>
-                  </p>
-                </td>
-                <td id="dtb_3625" colspan="1" rowspan="1">
-                  <p id="dtb_3626" xml:lang="bn-IN">
-                    <em id="dtb_3627">Suggestions</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_3628">
-                <td id="dtb_3629" colspan="1" rowspan="1">
-                  <p id="dtb_3630" xml:lang="bn-IN">Air</p>
-                  <p id="dtb_3631" xml:lang="bn-IN"> pollution</p>
-                </td>
-                <td id="dtb_3632" colspan="1" rowspan="1">
-                  <ul id="dtb_3633">
-                    <li id="dtb_3634">
-                      <p id="dtb_3635" xml:lang="bn-IN">Toxic smokes from</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3636" xml:lang="bn-IN">[ dash] plants</p>
-                  <ul id="dtb_3637">
-                    <li id="dtb_3638">
-                      <p id="dtb_3639" xml:lang="bn-IN">Vehicles which are old</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3640" xml:lang="bn-IN"> and poorly [dash]</p>
-                  <ul id="dtb_3641">
-                    <li id="dtb_3642">
-                      <p id="dtb_3643" xml:lang="bn-IN">Smoke from the [dash] fields</p>
-                    </li>
-                  </ul>
-                </td>
-                <td id="dtb_3644" colspan="1" rowspan="1">
-                  <ul id="dtb_3645">
-                    <li id="dtb_3646">
-                      <p id="dtb_3647" xml:lang="bn-IN">Don't drive motorcars</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3648" xml:lang="bn-IN"> which are older than</p>
-                  <p id="dtb_3649" xml:lang="bn-IN"> [dash] Years.</p>
-                  <ul id="dtb_3650">
-                    <li id="dtb_3651">
-                      <p id="dtb_3652" xml:lang="bn-IN">Use car lubricants of good quality to keep the [dash]</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3653" xml:lang="bn-IN"> level</p>
-                </td>
-              </tr>
-              <tr id="dtb_3654">
-                <td id="dtb_3655" colspan="1" rowspan="1">
-                  <p id="dtb_3656" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_3657" colspan="1" rowspan="1">
-                  <p id="dtb_3658" xml:lang="bn-IN">-</p>
-                </td>
-                <td id="dtb_3659" colspan="1" rowspan="1">
-                  <p id="dtb_3660" xml:lang="bn-IN">minimum.</p>
-                  <ul id="dtb_3661">
-                    <li id="dtb_3662">
-                      <p id="dtb_3663" xml:lang="bn-IN">Use CNG or LP gas as car</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3664" xml:lang="bn-IN">[dash]</p>
-                </td>
-              </tr>
-              <tr id="dtb_3665">
-                <td id="dtb_3666" colspan="1" rowspan="1">
-                  <p id="dtb_3667" xml:lang="bn-IN">Soil Pollution</p>
-                </td>
-                <td id="dtb_3668" colspan="1" rowspan="1">
-                  <ul id="dtb_3669">
-                    <li id="dtb_3670">
-                      <p id="dtb_3671" xml:lang="bn-IN"> Industrial wastes not</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3672" xml:lang="bn-IN">[dash] properly.</p>
-                  <ul id="dtb_3673">
-                    <li id="dtb_3674">
-                      <p id="dtb_3675" xml:lang="bn-IN">Use of [dash]</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3676" xml:lang="bn-IN">Shopping bags</p>
-                  <ul id="dtb_3677">
-                    <li id="dtb_3678">
-                      <p id="dtb_3679" xml:lang="bn-IN">Use of agricultural</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3680" xml:lang="bn-IN">pesticides and [dash] </p>
-                </td>
-                <td id="dtb_3681" colspan="1" rowspan="1">
-                  <ul id="dtb_3682">
-                    <li id="dtb_3683">
-                      <p id="dtb_3684" xml:lang="bn-IN">Use compost for </p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3685" xml:lang="bn-IN">agricultural purpose</p>
-                  <ul id="dtb_3686">
-                    <li id="dtb_3687">
-                      <p id="dtb_3688" xml:lang="bn-IN">[dash] paper,</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3689" xml:lang="bn-IN">plastics, and other</p>
-                  <p id="dtb_3690" xml:lang="bn-IN">materials.</p>
-                  <ul id="dtb_3691">
-                    <li id="dtb_3692">
-                      <p id="dtb_3693" xml:lang="bn-IN">Plant more trees to help</p>
-                    </li>
-                  </ul>
-                  <p id="dtb_3694" xml:lang="bn-IN">prevent loss of fertility in </p>
-                  <p id="dtb_3695" xml:lang="bn-IN">the [dash]</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_3696" xml:lang="bn-IN">
-            <span id="dtb_3697"> <em id="dtb_3698">D</em> <em id="dtb_3699">.</em> </span>
-            <span id="dtb_3700">
+					</p><span title="Page-55" id="dtb_3614" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 55">55</span><table id="dtb_3615"><colgroup><col id="dtb_3616" span="1"></colgroup><tbody id="dtb_3617"><tr id="dtb_3618"><td id="dtb_3619" colspan="1" rowspan="1">
+									<p id="dtb_3620" xml:lang="bn-IN">
+										<em id="dtb_3621">Pollution</em>
+									</p> </td><td id="dtb_3622" colspan="1" rowspan="1">
+									<p id="dtb_3623" xml:lang="bn-IN">
+										<em id="dtb_3624">Causes</em>
+									</p> </td><td id="dtb_3625" colspan="1" rowspan="1">
+									<p id="dtb_3626" xml:lang="bn-IN">
+										<em id="dtb_3627">Suggestions</em>
+									</p> </td></tr><tr id="dtb_3628"><td id="dtb_3629" colspan="1" rowspan="1"> <p id="dtb_3630" xml:lang="bn-IN">Air</p> <p id="dtb_3631" xml:lang="bn-IN"> pollution</p> </td><td id="dtb_3632" colspan="1" rowspan="1"> <ul id="dtb_3633"><li id="dtb_3634"><p id="dtb_3635" xml:lang="bn-IN">Toxic smokes from</p></li></ul> <p id="dtb_3636" xml:lang="bn-IN">[ dash] plants</p> <ul id="dtb_3637"><li id="dtb_3638"><p id="dtb_3639" xml:lang="bn-IN">Vehicles which are old</p></li></ul> <p id="dtb_3640" xml:lang="bn-IN"> and poorly [dash]</p> <ul id="dtb_3641"><li id="dtb_3642"><p id="dtb_3643" xml:lang="bn-IN">Smoke from the [dash] fields</p></li></ul> </td><td id="dtb_3644" colspan="1" rowspan="1"> <ul id="dtb_3645"><li id="dtb_3646"><p id="dtb_3647" xml:lang="bn-IN">Don't drive motorcars</p></li></ul> <p id="dtb_3648" xml:lang="bn-IN"> which are older than</p> <p id="dtb_3649" xml:lang="bn-IN"> [dash] Years.</p> <ul id="dtb_3650"><li id="dtb_3651"><p id="dtb_3652" xml:lang="bn-IN">Use car lubricants of good quality to keep the [dash]</p></li></ul> <p id="dtb_3653" xml:lang="bn-IN"> level</p> </td></tr><tr id="dtb_3654"><td id="dtb_3655" colspan="1" rowspan="1">
+									<p id="dtb_3656" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_3657" colspan="1" rowspan="1">
+									<p id="dtb_3658" xml:lang="bn-IN">-</p>
+								</td><td id="dtb_3659" colspan="1" rowspan="1"> <p id="dtb_3660" xml:lang="bn-IN">minimum.</p> <ul id="dtb_3661"><li id="dtb_3662"><p id="dtb_3663" xml:lang="bn-IN">Use CNG or LP gas as car</p></li></ul> <p id="dtb_3664" xml:lang="bn-IN">[dash]</p> </td></tr><tr id="dtb_3665"><td id="dtb_3666" colspan="1" rowspan="1">
+									<p id="dtb_3667" xml:lang="bn-IN">Soil Pollution</p>
+								</td><td id="dtb_3668" colspan="1" rowspan="1"> <ul id="dtb_3669"><li id="dtb_3670"><p id="dtb_3671" xml:lang="bn-IN"> Industrial wastes not</p></li></ul> <p id="dtb_3672" xml:lang="bn-IN">[dash] properly.</p> <ul id="dtb_3673"><li id="dtb_3674"><p id="dtb_3675" xml:lang="bn-IN">Use of [dash]</p></li></ul> <p id="dtb_3676" xml:lang="bn-IN">Shopping bags</p> <ul id="dtb_3677"><li id="dtb_3678"><p id="dtb_3679" xml:lang="bn-IN">Use of agricultural</p></li></ul> <p id="dtb_3680" xml:lang="bn-IN">pesticides and [dash] </p> </td><td id="dtb_3681" colspan="1" rowspan="1"> <ul id="dtb_3682"><li id="dtb_3683"><p id="dtb_3684" xml:lang="bn-IN">Use compost for </p></li></ul> <p id="dtb_3685" xml:lang="bn-IN">agricultural purpose</p> <ul id="dtb_3686"><li id="dtb_3687"><p id="dtb_3688" xml:lang="bn-IN">[dash] paper,</p></li></ul> <p id="dtb_3689" xml:lang="bn-IN">plastics, and other</p> <p id="dtb_3690" xml:lang="bn-IN">materials.</p> <ul id="dtb_3691"><li id="dtb_3692"><p id="dtb_3693" xml:lang="bn-IN">Plant more trees to help</p></li></ul> <p id="dtb_3694" xml:lang="bn-IN">prevent loss of fertility in </p> <p id="dtb_3695" xml:lang="bn-IN">the [dash]</p> </td></tr></tbody></table><p id="dtb_3696" xml:lang="bn-IN">
+						<span id="dtb_3697"> <em id="dtb_3698">D</em> <em id="dtb_3699">.</em> </span>
+						<span id="dtb_3700">
 							<em id="dtb_3701">In groups of four, prepare a lecture of 1</em> <em id="dtb_3702">0</em> <em id="dtb_3703">0 words on the topic below. First, work together to prepare a draft of the lecture. When the draft is complete, select a group member to deliver the lecture to the rest of the class.</em> </span>
-          </p>
-          <p id="dtb_3704" xml:lang="bn-IN">
-            <em id="dtb_3705">Topic: </em>Polluting the land means polluting the water
-          </p>
-          <p id="dtb_3706" xml:lang="bn-IN">
-            <span id="dtb_3707"> <em id="dtb_3708">E</em> <em id="dtb_3709">.</em> </span>
-            <span id="dtb_3710">
+					</p><p id="dtb_3704" xml:lang="bn-IN">
+						<em id="dtb_3705">Topic: </em>Polluting the land means polluting the water</p><p id="dtb_3706" xml:lang="bn-IN">
+						<span id="dtb_3707"> <em id="dtb_3708">E</em> <em id="dtb_3709">.</em> </span>
+						<span id="dtb_3710">
 							<em id="dtb_3711">Look at the three posters below. What messages do they give? Which one do you like most? Tell your friend, why you like it.</em> </span>
-          </p>
-          <div id="dtb_3713"><img src="EngforToday-9-style-page_55_image.jpg" alt="" id="dtb_3714"></div>
-          <table id="dtb_3715">
-            <colgroup>
-              <col id="dtb_3716" span="1">
-            </colgroup>
-            <tbody id="dtb_3717">
-              <tr id="dtb_3718">
-                <td id="dtb_3719" colspan="1" rowspan="1">
-                  <p id="dtb_3720" xml:lang="bn-IN">Poster 1</p>
-                </td>
-                <td id="dtb_3721" colspan="1" rowspan="1">
-                  <p id="dtb_3722" xml:lang="bn-IN">Poster 2</p>
-                </td>
-                <td id="dtb_3723" colspan="1" rowspan="1">
-                  <p id="dtb_3724" xml:lang="bn-IN">Poster 3</p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="Page-56" id="dtb_3725" class="epubtype_pagebreak"></span>
-        </section>
-        <section id="id_40">
-          <h1 id="dtb_3726" xml:lang="bn-IN"> Lesson 3: Man and climate <a href="#dtb_3726" title="Link to heading Lesson 3: Man and climate" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_3727" xml:lang="bn-IN">
-            <span id="dtb_3728"> <em id="dtb_3729">A</em> <em id="dtb_3730">.</em> </span>
-            <span id="dtb_3731">
+					</p><div id="dtb_3713"><img src="images/EngforToday-9-style-page_55_image.jpg" alt="" id="dtb_3714"></div><table id="dtb_3715"><colgroup><col id="dtb_3716" span="1"></colgroup><tbody id="dtb_3717"><tr id="dtb_3718"><td id="dtb_3719" colspan="1" rowspan="1">
+									<p id="dtb_3720" xml:lang="bn-IN">Poster 1</p>
+								</td><td id="dtb_3721" colspan="1" rowspan="1">
+									<p id="dtb_3722" xml:lang="bn-IN">Poster 2</p>
+								</td><td id="dtb_3723" colspan="1" rowspan="1">
+									<p id="dtb_3724" xml:lang="bn-IN">Poster 3</p>
+								</td></tr></tbody></table><span title="Page-56" id="dtb_3725" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 56">56</span></section><section id="id_40"><h1 id="dtb_3726" xml:lang="bn-IN" tabindex="-1"> Lesson 3: Man and climate <a href="#dtb_3726" rel="bookmark" class="webbook" title="Link to Lesson 3: Man and climate" aria-label="Link to Lesson 3: Man and climate"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_3727" xml:lang="bn-IN">
+						<span id="dtb_3728"> <em id="dtb_3729">A</em> <em id="dtb_3730">.</em> </span>
+						<span id="dtb_3731">
 							<em id="dtb_3732">Discuss the questions in pairs.</em> </span>
-          </p>
-          <p id="dtb_3733" xml:lang="bn-IN">
-            <span id="dtb_3734">1. </span>
-            <span id="dtb_3735">Can man influence the climate? </span>
-            <span id="dtb_3736">If the answer is yes, explain how?</span>
-          </p>
-          <p id="dtb_3737" xml:lang="bn-IN">
-            <span id="dtb_3738">2. </span>
-            <span id="dtb_3739">Which human activities are responsible for increasing carbon dioxide in </span>
-          </p>
-          <p id="dtb_3740" xml:lang="bn-IN">the atmosphere?</p>
-          <ol id="dtb_3741" start="1">
-            <li id="dtb_3742">
-              <p id="dtb_3743" xml:lang="bn-IN">How can trees help save our environment?</p>
-            </li>
-          </ol>
-          <p id="dtb_3744" xml:lang="bn-IN">
-            <em id="dtb_3745">Now read the text below and find answers to the above questions.</em>
-          </p>
-          <p id="dtb_3746" xml:lang="bn-IN">
-            <span id="dtb_3747">Humans can neither change the sun's radiation nor the earth's orbit around the sun. </span>
-            <span id="dtb_3748">But they can control the increase in the amount of greenhouse gases and its effect on the atmosphere. </span>
-            <span id="dtb_3749">Only during the last hundred years the carbon dioxide concentration has been raised alarmingly in the atmosphere and we humans car be held responsible for this.</span>
-          </p>
-          <p id="dtb_3750" xml:lang="bn-IN">
-            <span id="dtb_3751">The main cause of the increase in carbon dioxide level in the atmosphere is the burning of fossil fuels. </span>
-            <span id="dtb_3752">Since the end of the 19th century, industrial activities increased rapidly giving rise to many factories. </span>
-            <span id="dtb_3753">These factories required energy, which was produced through the combustion of coal. </span>
-            <span id="dtb_3754">Besides coal, other source of energy such as mineral oil and natural gas were also burned to heat our houses, move cars and airplanes or to produce electricity. </span>
-            <span id="dtb_3755">Nowadays, about 8 million barrels of crude oil are burned daily. </span>
-            <span id="dtb_3756">Every time a fossil raw material ' burned, it releases carbon dioxide into the air.</span>
-          </p>
-          <p id="dtb_3757" xml:lang="bn-IN">
-            <span id="dtb_3758">Therefore, it is clear that more and more greenhouse gases like carbon dioxide are being generated worldwide by humans. </span>
-            <span id="dtb_3759">Moreover, we are also strengthening the greenhouse effect by deforestation, which means cutting down trees. </span>
-            <span id="dtb_3760">Every year enormous areas of forests are destroyed by people to obtain wood and to clear regions for mining and to create pasture. </span>
-            <span id="dtb_3761">This loss of the forest causes dual problems. </span>
-            <span id="dtb_3762">Trees that are burned down release a large volumes of carbon dioxide gas into the air. </span>
-            <span id="dtb_3763">On the other hand, an important carbon dioxide storehouse is destroyed with the forests as forests absorb a lot of carbon dioxide from the air and deliver oxygen instead.</span>
-          </p><span title="Page-57" id="dtb_3764" class="epubtype_pagebreak"></span>
-          <p id="dtb_3765" xml:lang="bn-IN">
-            <span id="dtb_3766"> <em id="dtb_3767">B</em> <em id="dtb_3768">.</em> </span>
-            <span id="dtb_3769">
+					</p><p id="dtb_3733" xml:lang="bn-IN">
+						<span id="dtb_3734">1. </span>
+						<span id="dtb_3735">Can man influence the climate? </span>
+						<span id="dtb_3736">If the answer is yes, explain how?</span>
+					</p><p id="dtb_3737" xml:lang="bn-IN">
+						<span id="dtb_3738">2. </span>
+						<span id="dtb_3739">Which human activities are responsible for increasing carbon dioxide in </span>
+					</p><p id="dtb_3740" xml:lang="bn-IN">the atmosphere?</p><ol id="dtb_3741" start="1"><li id="dtb_3742">
+							<p id="dtb_3743" xml:lang="bn-IN">How can trees help save our environment?</p>
+						</li></ol><p id="dtb_3744" xml:lang="bn-IN">
+						<em id="dtb_3745">Now read the text below and find answers to the above questions.</em>
+					</p><p id="dtb_3746" xml:lang="bn-IN">
+						<span id="dtb_3747">Humans can neither change the sun's radiation nor the earth's orbit around the sun. </span>
+						<span id="dtb_3748">But they can control the increase in the amount of greenhouse gases and its effect on the atmosphere. </span>
+						<span id="dtb_3749">Only during the last hundred years the carbon dioxide concentration has been raised alarmingly in the atmosphere and we humans car be held responsible for this.</span>
+					</p><p id="dtb_3750" xml:lang="bn-IN">
+						<span id="dtb_3751">The main cause of the increase in carbon dioxide level in the atmosphere is the burning of fossil fuels. </span>
+						<span id="dtb_3752">Since the end of the 19th century, industrial activities increased rapidly giving rise to many factories. </span>
+						<span id="dtb_3753">These factories required energy, which was produced through the combustion of coal. </span>
+						<span id="dtb_3754">Besides coal, other source of energy such as mineral oil and natural gas were also burned to heat our houses, move cars and airplanes or to produce electricity. </span>
+						<span id="dtb_3755">Nowadays, about 8 million barrels of crude oil are burned daily. </span>
+						<span id="dtb_3756">Every time a fossil raw material ' burned, it releases carbon dioxide into the air.</span>
+					</p><p id="dtb_3757" xml:lang="bn-IN">
+						<span id="dtb_3758">Therefore, it is clear that more and more greenhouse gases like carbon dioxide are being generated worldwide by humans. </span>
+						<span id="dtb_3759">Moreover, we are also strengthening the greenhouse effect by deforestation, which means cutting down trees. </span>
+						<span id="dtb_3760">Every year enormous areas of forests are destroyed by people to obtain wood and to clear regions for mining and to create pasture. </span>
+						<span id="dtb_3761">This loss of the forest causes dual problems. </span>
+						<span id="dtb_3762">Trees that are burned down release a large volumes of carbon dioxide gas into the air. </span>
+						<span id="dtb_3763">On the other hand, an important carbon dioxide storehouse is destroyed with the forests as forests absorb a lot of carbon dioxide from the air and deliver oxygen instead.</span>
+					</p><span title="Page-57" id="dtb_3764" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 57">57</span><p id="dtb_3765" xml:lang="bn-IN">
+						<span id="dtb_3766"> <em id="dtb_3767">B</em> <em id="dtb_3768">.</em> </span>
+						<span id="dtb_3769">
 							<em id="dtb_3770">Read the statements below and say if they are true/false. If false, give the correct information.</em> </span>
-          </p>
-          <p id="dtb_3771" xml:lang="bn-IN">
-            <span id="dtb_3772">1. </span>
-            <span id="dtb_3773">Fossil fuels are burned at an alarming rate due to industrialization.</span>
-          </p>
-          <p id="dtb_3774" xml:lang="bn-IN">
-            <span id="dtb_3775">2. </span>
-            <span id="dtb_3776">Coal is the only fuel used for generating energy.</span>
-          </p>
-          <p id="dtb_3777" xml:lang="bn-IN">
-            <span id="dtb_3778">3. </span>
-            <span id="dtb_3779">At present, nearly 85 million barrels of crude oil are used weekly.</span>
-          </p>
-          <p id="dtb_3780" xml:lang="bn-IN">
-            <span id="dtb_3781">4. </span>
-            <span id="dtb_3782">Deforestation is caused by nature.</span>
-          </p>
-          <p id="dtb_3783" xml:lang="bn-IN">
-            <span id="dtb_3784">5. </span>
-            <span id="dtb_3785">Forests help consume carbon dioxide gases from the air.</span>
-          </p>
-          <p id="dtb_3786" xml:lang="bn-IN">
-            <span id="dtb_3787"> <em id="dtb_3788">C</em> <em id="dtb_3789">.</em> </span>
-            <span id="dtb_3790">
+					</p><p id="dtb_3771" xml:lang="bn-IN">
+						<span id="dtb_3772">1. </span>
+						<span id="dtb_3773">Fossil fuels are burned at an alarming rate due to industrialization.</span>
+					</p><p id="dtb_3774" xml:lang="bn-IN">
+						<span id="dtb_3775">2. </span>
+						<span id="dtb_3776">Coal is the only fuel used for generating energy.</span>
+					</p><p id="dtb_3777" xml:lang="bn-IN">
+						<span id="dtb_3778">3. </span>
+						<span id="dtb_3779">At present, nearly 85 million barrels of crude oil are used weekly.</span>
+					</p><p id="dtb_3780" xml:lang="bn-IN">
+						<span id="dtb_3781">4. </span>
+						<span id="dtb_3782">Deforestation is caused by nature.</span>
+					</p><p id="dtb_3783" xml:lang="bn-IN">
+						<span id="dtb_3784">5. </span>
+						<span id="dtb_3785">Forests help consume carbon dioxide gases from the air.</span>
+					</p><p id="dtb_3786" xml:lang="bn-IN">
+						<span id="dtb_3787"> <em id="dtb_3788">C</em> <em id="dtb_3789">.</em> </span>
+						<span id="dtb_3790">
 							<em id="dtb_3791">Match the meanings in column B and the words/phrases in column A. </em> </span>
-          </p>
-          <table id="dtb_3792">
-            <colgroup>
-              <col id="dtb_3793" span="1">
-            </colgroup>
-            <tbody id="dtb_3794">
-              <tr id="dtb_3795">
-                <td id="dtb_3796" colspan="1" rowspan="1">
-                  <p id="dtb_3797" xml:lang="bn-IN">
-                    <em id="dtb_3798">A</em>
-                  </p>
-                </td>
-                <td id="dtb_3799" colspan="1" rowspan="1">
-                  <p id="dtb_3800" xml:lang="bn-IN">
-                    <em id="dtb_3801">B</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_3802">
-                <td id="dtb_3803" colspan="1" rowspan="1">
-                  <p id="dtb_3804" xml:lang="bn-IN"><span id="dtb_3805">1. </span><span id="dtb_3806">Sun's radiation a.</span></p>
-                  <p id="dtb_3807" xml:lang="bn-IN"><span id="dtb_3808">2. </span><span id="dtb_3809">Fossil fuels</span></p>
-                  <p id="dtb_3810" xml:lang="bn-IN"><span id="dtb_3811">3 . </span><span id="dtb_3812">Combustion of coals</span></p>
-                  <p id="dtb_3813" xml:lang="bn-IN"><span id="dtb_3814">4. </span><span id="dtb_3815">Crude oil</span></p>
-                  <p id="dtb_3816" xml:lang="bn-IN"><span id="dtb_3817">5. </span><span id="dtb_3818">Raw materials</span></p>
-                  <p id="dtb_3819" xml:lang="bn-IN"><span id="dtb_3820">6. </span><span id="dtb_3821">Deforestation</span></p>
-                  <p id="dtb_3822" xml:lang="bn-IN">7. photosynthesis </p>
-                </td>
-                <td id="dtb_3823" colspan="1" rowspan="1">
-                  <p id="dtb_3824" xml:lang="bn-IN"><span id="dtb_3825">a. </span><span id="dtb_3826">energy that is transmitted from sun in </span></p>
-                  <p id="dtb_3827" xml:lang="bn-IN"> the form of rays or waves or particles</p>
-                  <p id="dtb_3828" xml:lang="bn-IN"><span id="dtb_3829">b. </span><span id="dtb_3830">the process used by plants to convert </span></p>
-                  <p id="dtb_3831" xml:lang="bn-IN"> light energy captured from the sun to </p>
-                  <p id="dtb_3832" xml:lang="bn-IN"> chemical energy</p>
-                  <p id="dtb_3833" xml:lang="bn-IN"><span id="dtb_3834">c. </span><span id="dtb_3835">a basic material or substance used in the </span></p>
-                  <p id="dtb_3836" xml:lang="bn-IN"> production or manufacturing of goods</p>
-                  <p id="dtb_3837" xml:lang="bn-IN"><span id="dtb_3838">d. </span><span id="dtb_3839">non-renewable sources of energy that </span></p>
-                  <p id="dtb_3840" xml:lang="bn-IN"> comes from the remains of plants and </p>
-                  <p id="dtb_3841" xml:lang="bn-IN"> animals</p>
-                  <p id="dtb_3842" xml:lang="bn-IN"><span id="dtb_3843">e. </span><span id="dtb_3844">intentional destructions or removal of </span></p>
-                  <p id="dtb_3845" xml:lang="bn-IN"> trees and other vegetation’s for </p>
-                  <p id="dtb_3846" xml:lang="bn-IN"> agricultural, commercial, housing or </p>
-                  <p id="dtb_3847" xml:lang="bn-IN"> firewood use</p>
-                  <p id="dtb_3848" xml:lang="bn-IN"><span id="dtb_3849">f. </span><span id="dtb_3850">a naturally occurring, unrefined </span></p>
-                  <p id="dtb_3851" xml:lang="bn-IN"> petroleum product that can be refined to </p>
-                  <p id="dtb_3852" xml:lang="bn-IN"> produce usable products such as diesel, </p>
-                  <p id="dtb_3853" xml:lang="bn-IN"> gasoline, heating oil, jet fuel, kerosene </p>
-                  <p id="dtb_3854" xml:lang="bn-IN"> etc.</p>
-                  <p id="dtb_3855" xml:lang="bn-IN"><span id="dtb_3856"> g. </span><span id="dtb_3857">burning of coal usually in industrial </span></p>
-                  <p id="dtb_3858" xml:lang="bn-IN"> plants.</p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="Page-58" id="dtb_3859" class="epubtype_pagebreak"></span>
-          <p id="dtb_3860" xml:lang="bn-IN">
-            <span id="dtb_3861"> <em id="dtb_3862">D</em> <em id="dtb_3863">.</em> </span>
-            <span id="dtb_3864">
+					</p><table id="dtb_3792"><colgroup><col id="dtb_3793" span="1"></colgroup><tbody id="dtb_3794"><tr id="dtb_3795"><td id="dtb_3796" colspan="1" rowspan="1">
+									<p id="dtb_3797" xml:lang="bn-IN">
+										<em id="dtb_3798">A</em>
+									</p> </td><td id="dtb_3799" colspan="1" rowspan="1">
+									<p id="dtb_3800" xml:lang="bn-IN">
+										<em id="dtb_3801">B</em>
+									</p> </td></tr><tr id="dtb_3802"><td id="dtb_3803" colspan="1" rowspan="1"> <p id="dtb_3804" xml:lang="bn-IN"><span id="dtb_3805">1. </span><span id="dtb_3806">Sun's radiation a.</span></p> <p id="dtb_3807" xml:lang="bn-IN"><span id="dtb_3808">2. </span><span id="dtb_3809">Fossil fuels</span></p> <p id="dtb_3810" xml:lang="bn-IN"><span id="dtb_3811">3 . </span><span id="dtb_3812">Combustion of coals</span></p> <p id="dtb_3813" xml:lang="bn-IN"><span id="dtb_3814">4. </span><span id="dtb_3815">Crude oil</span></p> <p id="dtb_3816" xml:lang="bn-IN"><span id="dtb_3817">5. </span><span id="dtb_3818">Raw materials</span></p> <p id="dtb_3819" xml:lang="bn-IN"><span id="dtb_3820">6. </span><span id="dtb_3821">Deforestation</span></p> <p id="dtb_3822" xml:lang="bn-IN">7. photosynthesis </p> </td><td id="dtb_3823" colspan="1" rowspan="1"> <p id="dtb_3824" xml:lang="bn-IN"><span id="dtb_3825">a. </span><span id="dtb_3826">energy that is transmitted from sun in </span></p> <p id="dtb_3827" xml:lang="bn-IN"> the form of rays or waves or particles</p> <p id="dtb_3828" xml:lang="bn-IN"><span id="dtb_3829">b. </span><span id="dtb_3830">the process used by plants to convert </span></p> <p id="dtb_3831" xml:lang="bn-IN"> light energy captured from the sun to </p> <p id="dtb_3832" xml:lang="bn-IN"> chemical energy</p> <p id="dtb_3833" xml:lang="bn-IN"><span id="dtb_3834">c. </span><span id="dtb_3835">a basic material or substance used in the </span></p> <p id="dtb_3836" xml:lang="bn-IN"> production or manufacturing of goods</p> <p id="dtb_3837" xml:lang="bn-IN"><span id="dtb_3838">d. </span><span id="dtb_3839">non-renewable sources of energy that </span></p> <p id="dtb_3840" xml:lang="bn-IN"> comes from the remains of plants and </p> <p id="dtb_3841" xml:lang="bn-IN"> animals</p> <p id="dtb_3842" xml:lang="bn-IN"><span id="dtb_3843">e. </span><span id="dtb_3844">intentional destructions or removal of </span></p> <p id="dtb_3845" xml:lang="bn-IN"> trees and other vegetation’s for </p> <p id="dtb_3846" xml:lang="bn-IN"> agricultural, commercial, housing or </p> <p id="dtb_3847" xml:lang="bn-IN"> firewood use</p> <p id="dtb_3848" xml:lang="bn-IN"><span id="dtb_3849">f. </span><span id="dtb_3850">a naturally occurring, unrefined </span></p> <p id="dtb_3851" xml:lang="bn-IN"> petroleum product that can be refined to </p> <p id="dtb_3852" xml:lang="bn-IN"> produce usable products such as diesel, </p> <p id="dtb_3853" xml:lang="bn-IN"> gasoline, heating oil, jet fuel, kerosene </p> <p id="dtb_3854" xml:lang="bn-IN"> etc.</p> <p id="dtb_3855" xml:lang="bn-IN"><span id="dtb_3856"> g. </span><span id="dtb_3857">burning of coal usually in industrial </span></p> <p id="dtb_3858" xml:lang="bn-IN"> plants.</p> </td></tr></tbody></table><span title="Page-58" id="dtb_3859" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 58">58</span><p id="dtb_3860" xml:lang="bn-IN">
+						<span id="dtb_3861"> <em id="dtb_3862">D</em> <em id="dtb_3863">.</em> </span>
+						<span id="dtb_3864">
 							<em id="dtb_3865">Write a letter to the Editor of a newspaper expressing your concern about growing deforestation in your area. Describe how deforestation is changing you</em> <em id="dtb_3866">r</em> <em id="dtb_3867"> environment. Also suggest what actions could be taken to stop cutting down trees. Follow the clues below.</em> </span>
-          </p>
-          <ul id="dtb_3868">
-            <li id="dtb_3869">
-              <p id="dtb_3870" xml:lang="bn-IN">dangers caused by deforestation</p>
-            </li>
-            <li id="dtb_3871">
-              <p id="dtb_3872" xml:lang="bn-IN">increase of carbon dioxide in the atmosphere</p>
-            </li>
-            <li id="dtb_3873">
-              <p id="dtb_3874" xml:lang="bn-IN">the greenhouse effect</p>
-            </li>
-            <li id="dtb_3875">
-              <p id="dtb_3876" xml:lang="bn-IN">making people aware of the adverse effect of deforestation</p>
-            </li>
-            <li id="dtb_3877">
-              <p id="dtb_3878" xml:lang="bn-IN">making an action plan to stop deforestation</p>
-            </li>
-          </ul>
-          <p id="dtb_3879" xml:lang="bn-IN">
-            <span id="dtb_3880"> <em id="dtb_3881">E</em> <em id="dtb_3882">.</em> </span>
-            <span id="dtb_3883">
+					</p><ul id="dtb_3868"><li id="dtb_3869">
+							<p id="dtb_3870" xml:lang="bn-IN">dangers caused by deforestation</p>
+						</li><li id="dtb_3871">
+							<p id="dtb_3872" xml:lang="bn-IN">increase of carbon dioxide in the atmosphere</p>
+						</li><li id="dtb_3873">
+							<p id="dtb_3874" xml:lang="bn-IN">the greenhouse effect</p>
+						</li><li id="dtb_3875">
+							<p id="dtb_3876" xml:lang="bn-IN">making people aware of the adverse effect of deforestation</p>
+						</li><li id="dtb_3877">
+							<p id="dtb_3878" xml:lang="bn-IN">making an action plan to stop deforestation</p>
+						</li></ul><p id="dtb_3879" xml:lang="bn-IN">
+						<span id="dtb_3880"> <em id="dtb_3881">E</em> <em id="dtb_3882">.</em> </span>
+						<span id="dtb_3883">
 							<em id="dtb_3884">Look at these posters below. They are made to make people aware of the dangers of deforestation. In groups, design a poster to show the dangers caused by deforestation. Then write a slogan for the poster.</em> </span>
-          </p>
-          <div id="dtb_3886"><img src="EngforToday-9-style-page_58_image_1.jpg" alt="" id="dtb_3887"></div>
-        </section>
-        <section id="id_41">
-          <h1 id="dtb_3888" xml:lang="bn-IN"> Lesson 4: Putting our fish in hot water! <a href="#dtb_3888" title="Link to heading Lesson 4: Putting our fish in hot water!" class="abinb-selflink"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="iconify">
-                <g transform="rotate(135 12 12)">
-                  <g fill="none">
-                    <path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2zM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7z" fill="currentColor"></path>
-                  </g>
-                </g>
-              </svg></a></h1>
-          <p id="dtb_3889" xml:lang="bn-IN">
-            <span id="dtb_3890"> <em id="dtb_3891">A</em> <em id="dtb_3892">.</em> </span>
-            <span id="dtb_3893">
+					</p><div id="dtb_3886"><img src="images/EngforToday-9-style-page_58_image_1.jpg" alt="" id="dtb_3887"></div></section><section id="id_41"><h1 id="dtb_3888" xml:lang="bn-IN" tabindex="-1"> Lesson 4: Putting our fish in hot water! <a href="#dtb_3888" rel="bookmark" class="webbook" title="Link to Lesson 4: Putting our fish in hot water!" aria-label="Link to Lesson 4: Putting our fish in hot water!"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1><p id="dtb_3889" xml:lang="bn-IN">
+						<span id="dtb_3890"> <em id="dtb_3891">A</em> <em id="dtb_3892">.</em> </span>
+						<span id="dtb_3893">
 							<em id="dtb_3894">Spend one minute thinking</em> <em id="dtb_3895">about your life as a fish. In pairs, talk to another</em> </span>
-          </p>
-          <p id="dtb_3896" xml:lang="bn-IN">
-            <em id="dtb_3897">"fish" about your life as a fish</em>.
-          </p>
-          <p id="dtb_3898" xml:lang="bn-IN">
-            <span id="dtb_3899"> <em id="dtb_3900">B</em> <em id="dtb_3901">.</em> </span>
-            <span id="dtb_3902">
+					</p><p id="dtb_3896" xml:lang="bn-IN">
+						<em id="dtb_3897">"fish" about your life as a fish</em>.</p><p id="dtb_3898" xml:lang="bn-IN">
+						<span id="dtb_3899"> <em id="dtb_3900">B</em> <em id="dtb_3901">.</em> </span>
+						<span id="dtb_3902">
 							<em id="dtb_3903">Do you agree with the following statements on fish and fishing? </em> </span>
-          </p>
-          <p id="dtb_3904" xml:lang="bn-IN">
-            <em id="dtb_3905"> Discuss with your Partner(s).</em>
-          </p>
-          <p id="dtb_3906" xml:lang="bn-IN">
-            <span id="dtb_3907">a. </span>
-            <span id="dtb_3908">Fish will never disappear. </span>
-            <span id="dtb_3909">There will always be enough fish to feed the world.</span>
-          </p>
-          <div id="dtb_3911"><img src="EngforToday-9-style-page_58_image_2.jpg" alt="" id="dtb_3912"></div><span title="Page-59" id="dtb_3913" class="epubtype_pagebreak"></span>
-          <p id="dtb_3914" xml:lang="bn-IN">
-            <span id="dtb_3915">b. </span>
-            <span id="dtb_3916">In many ways, people are the same as fish.</span>
-          </p>
-          <p id="dtb_3917" xml:lang="bn-IN">
-            <span id="dtb_3918">c. </span>
-            <span id="dtb_3919">The hobby of fishing should be banned to help protect fish population.</span>
-          </p>
-          <p id="dtb_3920" xml:lang="bn-IN">
-            <span id="dtb_3921"> <em id="dtb_3922">C</em> <em id="dtb_3923">.</em> </span>
-            <span id="dtb_3924">
+					</p><p id="dtb_3904" xml:lang="bn-IN">
+						<em id="dtb_3905"> Discuss with your Partner(s).</em>
+					</p><p id="dtb_3906" xml:lang="bn-IN">
+						<span id="dtb_3907">a. </span>
+						<span id="dtb_3908">Fish will never disappear. </span>
+						<span id="dtb_3909">There will always be enough fish to feed the world.</span>
+					</p><div id="dtb_3911"><img src="images/EngforToday-9-style-page_58_image_2.jpg" alt="" id="dtb_3912"></div><span title="Page-59" id="dtb_3913" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 59">59</span><p id="dtb_3914" xml:lang="bn-IN">
+						<span id="dtb_3915">b. </span>
+						<span id="dtb_3916">In many ways, people are the same as fish.</span>
+					</p><p id="dtb_3917" xml:lang="bn-IN">
+						<span id="dtb_3918">c. </span>
+						<span id="dtb_3919">The hobby of fishing should be banned to help protect fish population.</span>
+					</p><p id="dtb_3920" xml:lang="bn-IN">
+						<span id="dtb_3921"> <em id="dtb_3922">C</em> <em id="dtb_3923">.</em> </span>
+						<span id="dtb_3924">
 							<em id="dtb_3925">Read the text below and say if the statements that follow are true/false. If false, give the correct information.</em> </span>
-          </p>
-          <p id="dtb_3926" xml:lang="bn-IN">
-            <span id="dtb_3927">Fish population is in serious danger from global warming. </span>
-            <span id="dtb_3928">Climate change is increasing the water temperature in rivers, lakes and seas. </span>
-            <span id="dtb_3929">This means there is less food and oxygen available for fish. </span>
-            <span id="dtb_3930">It also means the fish may not grow fully and may have fewer offspring. </span>
-            <span id="dtb_3931">Some fishes will become extinct if temperatures rise even by one or two degrees.</span>
-          </p>
-          <p id="dtb_3932" xml:lang="bn-IN">
-            <span id="dtb_3933">Climate change increases the pressure on fish population. </span>
-            <span id="dtb_3934">Fishes are one of the world's most valuable biological assets. </span>
-            <span id="dtb_3935">Forty percent of people in the world eat fish as their main source of protein. </span>
-            <span id="dtb_3936">If we fail to reduce greenhouse gas emissions, we will increase the pressures on fish. </span>
-            <span id="dtb_3937">As a result, people who depend on fish will suffer from hunger and poverty.</span>
-          </p>
-          <p id="dtb_3938" xml:lang="bn-IN">
-            <em id="dtb_3939">Statements:</em>
-          </p>
-          <p id="dtb_3940" xml:lang="bn-IN">
-            <span id="dtb_3941">1. </span>
-            <span id="dtb_3942">Global warming will kill all the fishes within ten years.</span>
-          </p>
-          <p id="dtb_3943" xml:lang="bn-IN">
-            <span id="dtb_3944">2. </span>
-            <span id="dtb_3945">Some fishes cannot reproduce if the water is too warm.</span>
-          </p>
-          <p id="dtb_3946" xml:lang="bn-IN">
-            <span id="dtb_3947">3. </span>
-            <span id="dtb_3948">A two degree rise in temperature will make some species extinct.</span>
-          </p>
-          <p id="dtb_3949" xml:lang="bn-IN">
-            <span id="dtb_3950">4. </span>
-            <span id="dtb_3951">Fishes are valuable economic investments.</span>
-          </p>
-          <p id="dtb_3952" xml:lang="bn-IN">
-            <span id="dtb_3953">5. </span>
-            <span id="dtb_3954">Nearly 14% of people depend on fish for their basic food needs.</span>
-          </p>
-          <p id="dtb_3955" xml:lang="bn-IN">
-            <span id="dtb_3956">6. </span>
-            <span id="dtb_3957">People will suffer a lot if greater pressure is put on fish.</span>
-          </p>
-          <p id="dtb_3958" xml:lang="bn-IN">
-            <span id="dtb_3959"> <em id="dtb_3960">D</em> <em id="dtb_3961">.</em> </span>
-            <span id="dtb_3962">
+					</p><p id="dtb_3926" xml:lang="bn-IN">
+						<span id="dtb_3927">Fish population is in serious danger from global warming. </span>
+						<span id="dtb_3928">Climate change is increasing the water temperature in rivers, lakes and seas. </span>
+						<span id="dtb_3929">This means there is less food and oxygen available for fish. </span>
+						<span id="dtb_3930">It also means the fish may not grow fully and may have fewer offspring. </span>
+						<span id="dtb_3931">Some fishes will become extinct if temperatures rise even by one or two degrees.</span>
+					</p><p id="dtb_3932" xml:lang="bn-IN">
+						<span id="dtb_3933">Climate change increases the pressure on fish population. </span>
+						<span id="dtb_3934">Fishes are one of the world's most valuable biological assets. </span>
+						<span id="dtb_3935">Forty percent of people in the world eat fish as their main source of protein. </span>
+						<span id="dtb_3936">If we fail to reduce greenhouse gas emissions, we will increase the pressures on fish. </span>
+						<span id="dtb_3937">As a result, people who depend on fish will suffer from hunger and poverty.</span>
+					</p><p id="dtb_3938" xml:lang="bn-IN">
+						<em id="dtb_3939">Statements:</em>
+					</p><p id="dtb_3940" xml:lang="bn-IN">
+						<span id="dtb_3941">1. </span>
+						<span id="dtb_3942">Global warming will kill all the fishes within ten years.</span>
+					</p><p id="dtb_3943" xml:lang="bn-IN">
+						<span id="dtb_3944">2. </span>
+						<span id="dtb_3945">Some fishes cannot reproduce if the water is too warm.</span>
+					</p><p id="dtb_3946" xml:lang="bn-IN">
+						<span id="dtb_3947">3. </span>
+						<span id="dtb_3948">A two degree rise in temperature will make some species extinct.</span>
+					</p><p id="dtb_3949" xml:lang="bn-IN">
+						<span id="dtb_3950">4. </span>
+						<span id="dtb_3951">Fishes are valuable economic investments.</span>
+					</p><p id="dtb_3952" xml:lang="bn-IN">
+						<span id="dtb_3953">5. </span>
+						<span id="dtb_3954">Nearly 14% of people depend on fish for their basic food needs.</span>
+					</p><p id="dtb_3955" xml:lang="bn-IN">
+						<span id="dtb_3956">6. </span>
+						<span id="dtb_3957">People will suffer a lot if greater pressure is put on fish.</span>
+					</p><p id="dtb_3958" xml:lang="bn-IN">
+						<span id="dtb_3959"> <em id="dtb_3960">D</em> <em id="dtb_3961">.</em> </span>
+						<span id="dtb_3962">
 							<em id="dtb_3963">Role play: Student A is a fish. Student B is a fisherman. First write a dialogue between the two. Then act it out. Change roles and repeat the role- play </em> </span>
-          </p>
-          <p id="dtb_3964" xml:lang="bn-IN">
-            <em id="dtb_3965">Role A - A FISH</em>
-          </p>
-          <p id="dtb_3966" xml:lang="bn-IN">
-            <span id="dtb_3967">I am a fish. </span>
-            <span id="dtb_3968">I know things are getting serious. </span>
-            <span id="dtb_3969">Ice is melting, rivers are drying up and millions of my cousins have disappeared because of over-fishing. </span>
-            <span id="dtb_3970">
+					</p><p id="dtb_3964" xml:lang="bn-IN">
+						<em id="dtb_3965">Role A - A FISH</em>
+					</p><p id="dtb_3966" xml:lang="bn-IN">
+						<span id="dtb_3967">I am a fish. </span>
+						<span id="dtb_3968">I know things are getting serious. </span>
+						<span id="dtb_3969">Ice is melting, rivers are drying up and millions of my cousins have disappeared because of over-fishing. </span>
+						<span id="dtb_3970">
 							<span id="dtb_3971" class="normalized">I </span>
-            <a href="http://heard.it/" rel="external" id="dtb_3972">heard it</a> <span id="dtb_3973" class="normalized">is because of humans' carelessness and greed. </span></span>
-            <span id="dtb_3974">Let the humans know what is really happening in the oceans and rivers.</span>
-          </p><span title="Page-60" id="dtb_3975" class="epubtype_pagebreak"></span>
-          <p id="dtb_3976" xml:lang="bn-IN"></p>
-          <p id="dtb_3977" xml:lang="bn-IN">
-            <em id="dtb_3978">Role B - A FISHERMAN</em>
-          </p>
-          <p id="dtb_3979" xml:lang="bn-IN">
-            <span id="dtb_3980">I am not worried about my future. </span>
-            <span id="dtb_3981">I have seen no change in the number of fish I catch each year. </span>
-            <span id="dtb_3982">There will always be plenty of fish. </span>
-            <span id="dtb_3983">The oceans are too big to be changed by global warming. </span>
-            <span id="dtb_3984">I think that scientists produce reports just to become famous.</span>
-          </p>
-          <p id="dtb_3985" xml:lang="bn-IN">
-            <span id="dtb_3986"> <em id="dtb_3987">E</em> <em id="dtb_3988">.</em> </span>
-            <span id="dtb_3989">
+							<a href="http://heard.it/" rel="external" id="dtb_3972">heard it</a> <span id="dtb_3973" class="normalized">is because of humans' carelessness and greed. </span></span>
+						<span id="dtb_3974">Let the humans know what is really happening in the oceans and rivers.</span>
+					</p><span title="Page-60" id="dtb_3975" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 60">60</span><p id="dtb_3976" xml:lang="bn-IN"></p><p id="dtb_3977" xml:lang="bn-IN">
+						<em id="dtb_3978">Role B - A FISHERMAN</em>
+					</p><p id="dtb_3979" xml:lang="bn-IN">
+						<span id="dtb_3980">I am not worried about my future. </span>
+						<span id="dtb_3981">I have seen no change in the number of fish I catch each year. </span>
+						<span id="dtb_3982">There will always be plenty of fish. </span>
+						<span id="dtb_3983">The oceans are too big to be changed by global warming. </span>
+						<span id="dtb_3984">I think that scientists produce reports just to become famous.</span>
+					</p><p id="dtb_3985" xml:lang="bn-IN">
+						<span id="dtb_3986"> <em id="dtb_3987">E</em> <em id="dtb_3988">.</em> </span>
+						<span id="dtb_3989">
 							<em id="dtb_3990">You are a nature lover. Write a letter to the organizers of the National Climate Change Conference in Bangladesh. Tell them about how global warming is changing your environment. Also suggest what they can do to help save fish population.</em> </span>
-          </p>
-          <p id="dtb_3991" xml:lang="bn-IN">
-            <em id="dtb_3992">Lesson 5: A friend of the Earth</em>
-          </p>
-          <p id="dtb_3993" xml:lang="bn-IN">
-            <span id="dtb_3994"> <em id="dtb_3995">A</em> <em id="dtb_3996">.</em> </span>
-            <span id="dtb_3997">
+					</p><p id="dtb_3991" xml:lang="bn-IN">
+						<em id="dtb_3992">Lesson 5: A friend of the Earth</em>
+					</p><p id="dtb_3993" xml:lang="bn-IN">
+						<span id="dtb_3994"> <em id="dtb_3995">A</em> <em id="dtb_3996">.</em> </span>
+						<span id="dtb_3997">
 							<em id="dtb_3998">Discuss the questions in pairs.</em> </span>
-          </p>
-          <p id="dtb_3999" xml:lang="bn-IN">
-            <span id="dtb_4000">1. </span>
-            <span id="dtb_4001">Do you throw away empty cans and bottles'?</span>
-          </p>
-          <p id="dtb_4002" xml:lang="bn-IN">
-            <span id="dtb_4003">2. </span>
-            <span id="dtb_4004">What do you do with your old newspapers?</span>
-          </p>
-          <p id="dtb_4005" xml:lang="bn-IN">
-            <span id="dtb_4006">3. </span>
-            <span id="dtb_4007">What happens to the garbage after you throw it away?</span>
-          </p>
-          <div id="dtb_4009"><img src="EngforToday-9-style-page_60.jpg" alt="" id="dtb_4010"></div>
-          <p id="dtb_4011" xml:lang="bn-IN">
-            <span id="dtb_4012"> <em id="dtb_4013">B</em> <em id="dtb_4014">.</em> </span>
-            <span id="dtb_4015">
+					</p><p id="dtb_3999" xml:lang="bn-IN">
+						<span id="dtb_4000">1. </span>
+						<span id="dtb_4001">Do you throw away empty cans and bottles'?</span>
+					</p><p id="dtb_4002" xml:lang="bn-IN">
+						<span id="dtb_4003">2. </span>
+						<span id="dtb_4004">What do you do with your old newspapers?</span>
+					</p><p id="dtb_4005" xml:lang="bn-IN">
+						<span id="dtb_4006">3. </span>
+						<span id="dtb_4007">What happens to the garbage after you throw it away?</span>
+					</p><div id="dtb_4009"><img src="images/EngforToday-9-style-page_60.jpg" alt="" id="dtb_4010"></div><p id="dtb_4011" xml:lang="bn-IN">
+						<span id="dtb_4012"> <em id="dtb_4013">B</em> <em id="dtb_4014">.</em> </span>
+						<span id="dtb_4015">
 							<em id="dtb_4016">Read the following text carefully to know about how we can save our environment.</em> </span>
-          </p>
-          <p id="dtb_4017" xml:lang="bn-IN">
-            <em id="dtb_4018">LET'S SAVE OUR PLANET!</em>
-          </p>
-          <p id="dtb_4019" xml:lang="bn-IN">
-            <span id="dtb_4020">Everyone must play a part in protecting the environment. </span>
-            <span id="dtb_4021">There are many things you can do on your own every day to help save the planet. </span>
-            <span id="dtb_4022">Here are some suggestions. </span>
-          </p>
-          <p id="dtb_4023" xml:lang="bn-IN">
-            <em id="dtb_4024">REDUCE!</em>
-          </p>
-          <p id="dtb_4025" xml:lang="bn-IN">
-            <span id="dtb_4026">Really, the best thing we can do for the planet is to use its resources properly. </span>
-            <span id="dtb_4027">Our consumer society is mainly responsible for the environmental crisis. </span>
-            <span id="dtb_4028">Here are some questions you can ask yourself before buying something, "Do I really need this?" </span>
-            <span id="dtb_4029">or "Is there another product which would do the same thing but more sustainable?" </span>
-            <span id="dtb_4030">Or ask the question, "Will this last a long time?" </span>
-            <span id="dtb_4031">Some other questions may be, "Do I know how this item was made, how it will be used and how it will be disposed of?”</span>
-          </p><span title="Page-61 " id="dtb_4032" class="epubtype_pagebreak"></span>
-          <p id="dtb_4033" xml:lang="bn-IN">
-            <em id="dtb_4034">REUSE!</em>
-          </p>
-          <p id="dtb_4035" xml:lang="bn-IN">
-            <span id="dtb_4036">What do you think of using your own ceramic cup or mug at your school or local club? </span>
-            <span id="dtb_4037">It means there are no plastic cups to throw away. </span>
-            <span id="dtb_4038">You can wash it and reuse it every day. </span>
-            <span id="dtb_4039">Unfortunately, we are encouraged to buy a new "improved" item even if the one we have can be repaired or reused. </span>
-            <span id="dtb_4040">When we buy things, we should buy items which are durable; we should use them properly, and have them repaired when necessary. </span>
-            <span id="dtb_4041">If we practise this, many things can not only last a life-time, but also be passed on for future use. </span>
-            <span id="dtb_4042">However, If something is truly unusable for its original purposes, try to be more creative and think of how else it might be used. </span>
-            <span id="dtb_4043">When you're done with it, think of whether someone else might be able to use it. </span>
-            <span id="dtb_4044">You can donate some of the things to the poor. </span>
-            <span id="dtb_4045">You may also sell some of your used items through personal ads in a local newspaper.</span>
-          </p>
-          <p id="dtb_4046" xml:lang="bn-IN">
-            <em id="dtb_4047">RECYCLE!</em>
-          </p>
-          <p id="dtb_4048" xml:lang="bn-IN">
-            <span id="dtb_4049">Rather than throwing an item out when neither you nor anyone else can make use of it, have it recycled. </span>
-            <span id="dtb_4050">And while recycling is not possible, it is better to send goods to a landfill or have them burned up. </span>
-            <span id="dtb_4051">Find out what types of materials can be recycled in your area. </span>
-            <span id="dtb_4052">Clean and sort the materials before putting them out in the bin. </span>
-            <span id="dtb_4053">Recycling your drink and food cans means there will be less trash in a resource recovery facility or landfill. </span>
-            <span id="dtb_4054">Moreover, a company can use the old cans to make new ones.</span>
-          </p>
-          <p id="dtb_4055" xml:lang="bn-IN">
-            <span id="dtb_4056"> <em id="dtb_4057">C</em> <em id="dtb_4058">.</em> </span>
-            <span id="dtb_4059">
+					</p><p id="dtb_4017" xml:lang="bn-IN">
+						<em id="dtb_4018">LET'S SAVE OUR PLANET!</em>
+					</p><p id="dtb_4019" xml:lang="bn-IN">
+						<span id="dtb_4020">Everyone must play a part in protecting the environment. </span>
+						<span id="dtb_4021">There are many things you can do on your own every day to help save the planet. </span>
+						<span id="dtb_4022">Here are some suggestions. </span>
+					</p><p id="dtb_4023" xml:lang="bn-IN">
+						<em id="dtb_4024">REDUCE!</em>
+					</p><p id="dtb_4025" xml:lang="bn-IN">
+						<span id="dtb_4026">Really, the best thing we can do for the planet is to use its resources properly. </span>
+						<span id="dtb_4027">Our consumer society is mainly responsible for the environmental crisis. </span>
+						<span id="dtb_4028">Here are some questions you can ask yourself before buying something, "Do I really need this?" </span>
+						<span id="dtb_4029">or "Is there another product which would do the same thing but more sustainable?" </span>
+						<span id="dtb_4030">Or ask the question, "Will this last a long time?" </span>
+						<span id="dtb_4031">Some other questions may be, "Do I know how this item was made, how it will be used and how it will be disposed of?”</span>
+					</p><span title="Page-61 " id="dtb_4032" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 61">61</span><p id="dtb_4033" xml:lang="bn-IN">
+						<em id="dtb_4034">REUSE!</em>
+					</p><p id="dtb_4035" xml:lang="bn-IN">
+						<span id="dtb_4036">What do you think of using your own ceramic cup or mug at your school or local club? </span>
+						<span id="dtb_4037">It means there are no plastic cups to throw away. </span>
+						<span id="dtb_4038">You can wash it and reuse it every day. </span>
+						<span id="dtb_4039">Unfortunately, we are encouraged to buy a new "improved" item even if the one we have can be repaired or reused. </span>
+						<span id="dtb_4040">When we buy things, we should buy items which are durable; we should use them properly, and have them repaired when necessary. </span>
+						<span id="dtb_4041">If we practise this, many things can not only last a life-time, but also be passed on for future use. </span>
+						<span id="dtb_4042">However, If something is truly unusable for its original purposes, try to be more creative and think of how else it might be used. </span>
+						<span id="dtb_4043">When you're done with it, think of whether someone else might be able to use it. </span>
+						<span id="dtb_4044">You can donate some of the things to the poor. </span>
+						<span id="dtb_4045">You may also sell some of your used items through personal ads in a local newspaper.</span>
+					</p><p id="dtb_4046" xml:lang="bn-IN">
+						<em id="dtb_4047">RECYCLE!</em>
+					</p><p id="dtb_4048" xml:lang="bn-IN">
+						<span id="dtb_4049">Rather than throwing an item out when neither you nor anyone else can make use of it, have it recycled. </span>
+						<span id="dtb_4050">And while recycling is not possible, it is better to send goods to a landfill or have them burned up. </span>
+						<span id="dtb_4051">Find out what types of materials can be recycled in your area. </span>
+						<span id="dtb_4052">Clean and sort the materials before putting them out in the bin. </span>
+						<span id="dtb_4053">Recycling your drink and food cans means there will be less trash in a resource recovery facility or landfill. </span>
+						<span id="dtb_4054">Moreover, a company can use the old cans to make new ones.</span>
+					</p><p id="dtb_4055" xml:lang="bn-IN">
+						<span id="dtb_4056"> <em id="dtb_4057">C</em> <em id="dtb_4058">.</em> </span>
+						<span id="dtb_4059">
 							<em id="dtb_4060">Now ask and answer these questions in pairs.</em> </span>
-          </p>
-          <p id="dtb_4061" xml:lang="bn-IN">
-            <span id="dtb_4062">1. </span>
-            <span id="dtb_4063">How can you cut down your shopping list?</span>
-          </p>
-          <p id="dtb_4064" xml:lang="bn-IN">
-            <span id="dtb_4065">2. </span>
-            <span id="dtb_4066">What can you do to reuse things?</span>
-          </p>
-          <p id="dtb_4067" xml:lang="bn-IN">
-            <span id="dtb_4068">3. </span>
-            <span id="dtb_4069">What kind of household goods, clothes and toys, can be donated?</span>
-          </p>
-          <p id="dtb_4070" xml:lang="bn-IN">
-            <span id="dtb_4071">4. </span>
-            <span id="dtb_4072">How can you sell your used items?</span>
-          </p>
-          <p id="dtb_4073" xml:lang="bn-IN">
-            <span id="dtb_4074">5. </span>
-            <span id="dtb_4075">How recycling may help save our environment?</span>
-          </p>
-          <p id="dtb_4076" xml:lang="bn-IN">
-            <span id="dtb_4077"> <em id="dtb_4078">D</em> <em id="dtb_4079">.</em> </span>
-            <span id="dtb_4080">
+					</p><p id="dtb_4061" xml:lang="bn-IN">
+						<span id="dtb_4062">1. </span>
+						<span id="dtb_4063">How can you cut down your shopping list?</span>
+					</p><p id="dtb_4064" xml:lang="bn-IN">
+						<span id="dtb_4065">2. </span>
+						<span id="dtb_4066">What can you do to reuse things?</span>
+					</p><p id="dtb_4067" xml:lang="bn-IN">
+						<span id="dtb_4068">3. </span>
+						<span id="dtb_4069">What kind of household goods, clothes and toys, can be donated?</span>
+					</p><p id="dtb_4070" xml:lang="bn-IN">
+						<span id="dtb_4071">4. </span>
+						<span id="dtb_4072">How can you sell your used items?</span>
+					</p><p id="dtb_4073" xml:lang="bn-IN">
+						<span id="dtb_4074">5. </span>
+						<span id="dtb_4075">How recycling may help save our environment?</span>
+					</p><p id="dtb_4076" xml:lang="bn-IN">
+						<span id="dtb_4077"> <em id="dtb_4078">D</em> <em id="dtb_4079">.</em> </span>
+						<span id="dtb_4080">
 							<em id="dtb_4081">Complete the blank spaces in table below.</em> </span>
-          </p>
-          <table id="dtb_4082">
-            <colgroup>
-              <col id="dtb_4083" span="1">
-            </colgroup>
-            <tbody id="dtb_4084">
-              <tr id="dtb_4085">
-                <td id="dtb_4086" colspan="1" rowspan="1"></td>
-                <td id="dtb_4087" colspan="1" rowspan="1">
-                  <p id="dtb_4088" xml:lang="bn-IN">
-                    <em id="dtb_4089">What is it</em>
-                  </p>
-                </td>
-                <td id="dtb_4090" colspan="1" rowspan="1">
-                  <p id="dtb_4091" xml:lang="bn-IN">
-                    <em id="dtb_4092">Examples</em>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_4093">
-                <td id="dtb_4094" colspan="1" rowspan="1">
-                  <p id="dtb_4095" xml:lang="bn-IN">Reduce </p>
-                </td>
-                <td id="dtb_4096" colspan="1" rowspan="1">
-                  <p id="dtb_4097" xml:lang="bn-IN">To create less wastes, so</p>
-                  <p id="dtb_4098" xml:lang="bn-IN">that there is less items that</p>
-                  <p id="dtb_4099" xml:lang="bn-IN">must be recycled or</p>
-                  <p id="dtb_4100" xml:lang="bn-IN">[dash] away.</p>
-                </td>
-                <td id="dtb_4101" colspan="1" rowspan="1">
-                  <p id="dtb_4102" xml:lang="bn-IN">Using a towel for drying hair</p>
-                  <p id="dtb_4103" xml:lang="bn-IN">instead of using an electric hair- dryer</p>
-                </td>
-              </tr>
-            </tbody>
-          </table><span title="Page-62" id="dtb_4104" class="epubtype_pagebreak"></span>
-          <p id="dtb_4105" xml:lang="bn-IN"></p>
-          <table id="dtb_4106">
-            <colgroup>
-              <col id="dtb_4107" span="1">
-            </colgroup>
-            <tbody id="dtb_4108">
-              <tr id="dtb_4109">
-                <td id="dtb_4110" colspan="1" rowspan="1">
-                  <p id="dtb_4111" xml:lang="bn-IN">Reuse</p>
-                </td>
-                <td id="dtb_4112" colspan="1" rowspan="1">
-                  <p id="dtb_4113" xml:lang="bn-IN">
-                    <span id="dtb_4114">To buy things that can be used again and again, or to find out another way of.</span>
-                    <span id="dtb_4115">[dash] that item.</span>
-                  </p>
-                </td>
-                <td id="dtb_4116" colspan="1" rowspan="1">
-                  <p id="dtb_4117" xml:lang="bn-IN">
-                    <span id="dtb_4118">Using your own ceramic cup at your school or club means there are no [dash] cups to throw away. </span>
-                    <span id="dtb_4119">You can [dash] it and reuse it every day.</span>
-                  </p>
-                </td>
-              </tr>
-              <tr id="dtb_4120">
-                <td id="dtb_4121" colspan="1" rowspan="1">
-                  <p id="dtb_4122" xml:lang="bn-IN">Recycle</p>
-                </td>
-                <td id="dtb_4123" colspan="1" rowspan="1">
-                  <p id="dtb_4124" xml:lang="bn-IN">Instead of throwing an item in the garbage, to give it to a person or company who will [dash] it, or make</p>
-                  <p id="dtb_4125" xml:lang="bn-IN">something else with it.</p>
-                </td>
-                <td id="dtb_4126" colspan="1" rowspan="1">
-                  <p id="dtb_4127" xml:lang="bn-IN">Giving/selling used plastic bottles to someone to make something else from them.</p>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p id="dtb_4128" xml:lang="bn-IN">
-            <span id="dtb_4129"> <em id="dtb_4130">E</em> <em id="dtb_4131">.</em> </span>
-            <span id="dtb_4132">
+					</p><table id="dtb_4082"><colgroup><col id="dtb_4083" span="1"></colgroup><tbody id="dtb_4084"><tr id="dtb_4085"><td id="dtb_4086" colspan="1" rowspan="1"></td><td id="dtb_4087" colspan="1" rowspan="1">
+									<p id="dtb_4088" xml:lang="bn-IN">
+										<em id="dtb_4089">What is it</em>
+									</p> </td><td id="dtb_4090" colspan="1" rowspan="1">
+									<p id="dtb_4091" xml:lang="bn-IN">
+										<em id="dtb_4092">Examples</em>
+									</p> </td></tr><tr id="dtb_4093"><td id="dtb_4094" colspan="1" rowspan="1">
+									<p id="dtb_4095" xml:lang="bn-IN">Reduce </p>
+								</td><td id="dtb_4096" colspan="1" rowspan="1"> <p id="dtb_4097" xml:lang="bn-IN">To create less wastes, so</p> <p id="dtb_4098" xml:lang="bn-IN">that there is less items that</p> <p id="dtb_4099" xml:lang="bn-IN">must be recycled or</p> <p id="dtb_4100" xml:lang="bn-IN">[dash] away.</p> </td><td id="dtb_4101" colspan="1" rowspan="1"> <p id="dtb_4102" xml:lang="bn-IN">Using a towel for drying hair</p> <p id="dtb_4103" xml:lang="bn-IN">instead of using an electric hair- dryer</p> </td></tr></tbody></table><span title="Page-62" id="dtb_4104" class="epubtype_pagebreak" role="doc-pagebreak" aria-label="Page 62">62</span><p id="dtb_4105" xml:lang="bn-IN"></p><table id="dtb_4106"><colgroup><col id="dtb_4107" span="1"></colgroup><tbody id="dtb_4108"><tr id="dtb_4109"><td id="dtb_4110" colspan="1" rowspan="1">
+									<p id="dtb_4111" xml:lang="bn-IN">Reuse</p>
+								</td><td id="dtb_4112" colspan="1" rowspan="1">
+									<p id="dtb_4113" xml:lang="bn-IN">
+										<span id="dtb_4114">To buy things that can be used again and again, or to find out another way of.</span>
+										<span id="dtb_4115">[dash] that item.</span>
+									</p>
+								</td><td id="dtb_4116" colspan="1" rowspan="1">
+									<p id="dtb_4117" xml:lang="bn-IN">
+										<span id="dtb_4118">Using your own ceramic cup at your school or club means there are no [dash] cups to throw away. </span>
+										<span id="dtb_4119">You can [dash] it and reuse it every day.</span>
+									</p>
+								</td></tr><tr id="dtb_4120"><td id="dtb_4121" colspan="1" rowspan="1">
+									<p id="dtb_4122" xml:lang="bn-IN">Recycle</p>
+								</td><td id="dtb_4123" colspan="1" rowspan="1"> <p id="dtb_4124" xml:lang="bn-IN">Instead of throwing an item in the garbage, to give it to a person or company who will [dash] it, or make</p> <p id="dtb_4125" xml:lang="bn-IN">something else with it.</p> </td><td id="dtb_4126" colspan="1" rowspan="1">
+									<p id="dtb_4127" xml:lang="bn-IN">Giving/selling used plastic bottles to someone to make something else from them.</p>
+								</td></tr></tbody></table><p id="dtb_4128" xml:lang="bn-IN">
+						<span id="dtb_4129"> <em id="dtb_4130">E</em> <em id="dtb_4131">.</em> </span>
+						<span id="dtb_4132">
 							<em id="dtb_4133">To do this exercise, you will need information about recycling in your local community. If you don't know, ask your teacher to help you learn what you can recycle from your home. Then choose one item from the box to talk about it following the model below.</em> </span>
-          </p>
-          <p id="dtb_4134" xml:lang="bn-IN">A: What are you going to do with these old magazines? </p>
-          <p id="dtb_4135" xml:lang="bn-IN">B: I don't know what to do with these.</p>
-          <p id="dtb_4136" xml:lang="bn-IN">A: Why don't you reuse/recycle them? </p>
-          <p id="dtb_4137" xml:lang="bn-IN">B: How can I do that?</p>
-          <p id="dtb_4138" xml:lang="bn-IN">
-            <span id="dtb_4139">A: It's easy. </span>
-            <span id="dtb_4140">Take it to a shop that buys old newspapers and magazines for </span>
-          </p>
-          <p id="dtb_4141" xml:lang="bn-IN">recycling.</p>
-          <p id="dtb_4142" xml:lang="bn-IN">
-            <em id="dtb_4143">Household items</em>
-          </p>
-          <p id="dtb_4144" xml:lang="bn-IN">glass bottles and jars, containers and toys,</p>
-          <p id="dtb_4145" xml:lang="bn-IN">aluminum foils or trays, aerosol cans, box </p>
-          <p id="dtb_4146" xml:lang="bn-IN">boards, magazines and catalogues, old CDs</p>
-        </section>
-      </section>
-    </main>
+					</p><p id="dtb_4134" xml:lang="bn-IN">A: What are you going to do with these old magazines? </p><p id="dtb_4135" xml:lang="bn-IN">B: I don't know what to do with these.</p><p id="dtb_4136" xml:lang="bn-IN">A: Why don't you reuse/recycle them? </p><p id="dtb_4137" xml:lang="bn-IN">B: How can I do that?</p><p id="dtb_4138" xml:lang="bn-IN">
+						<span id="dtb_4139">A: It's easy. </span>
+						<span id="dtb_4140">Take it to a shop that buys old newspapers and magazines for </span>
+					</p><p id="dtb_4141" xml:lang="bn-IN">recycling.</p><p id="dtb_4142" xml:lang="bn-IN">
+						<em id="dtb_4143">Household items</em>
+					</p><p id="dtb_4144" xml:lang="bn-IN">glass bottles and jars, containers and toys,</p><p id="dtb_4145" xml:lang="bn-IN">aluminum foils or trays, aerosol cans, box </p><p id="dtb_4146" xml:lang="bn-IN">boards, magazines and catalogues, old CDs</p></section></section></main>
 
-    <div class="abinb-toolbar-wrapper" id="abinb-bottom-toolbar-area">
-      <section id="abinb-playback-toolbar" class="abinb-toolbar" aria-label="Playback toolbar">
-        <audio src="audio/package-10.mp3" controls="" id="abinb-audio">
-          <track default="" kind="metadata" src="vtt/package-10.vtt">
-        </audio>
-      </section>
-      <section role="contentinfo" aria-label="Previous and next links" id="abinb-document-links" class="abinb-toolbar">
-        <a id="abinb-previous-section" href="package-9.html" title="Previous: Unit Four" class="abinb-lightup" rel="prev">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-left-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="package-9.html" rel="prev" title="Previous: Unit Four" aria-label="Previous: Unit Four">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
         </a>
-        <a id="abinb-next-section" href="package-11.html" title="Next: Unit Six" class="abinb-lightup" rel="next">
-          <svg aria-hidden="true" role="img" class="abinb-iconify iconify--fluent" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" data-icon="fluent:chevron-right-24-filled" width="2em" height="2em">
-            <g fill="none">
-              <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0z" fill="currentColor">
-              </path>
-            </g>
-          </svg>
+        <a id="webbook-next-document" href="package-11.html" title="Next: Unit Six" aria-label="Next: Unit Six" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
         </a>
-      </section>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <ol><li id="toc-1"><a href="package-2.html#dtb_6">English For Today</a><ol><li id="toc-1-1"><a href="package-2.html#dtb_7">Classes 9-10</a></li></ol></li><li id="toc-2"><a href="package-3.html#dtb_17">ENGLISH FOR TODAY</a><ol><li id="toc-2-1"><a href="package-3.html#dtb_18">Classes 9-10</a></li></ol></li><li id="toc-3"><a href="package-4.html#dtb_66">Preface</a></li><li id="toc-4"><a href="package-5.html#dtb_96">Contents</a></li><li id="toc-5"><a href="package-6.html#dtb_215">Unit One</a><ol><li id="toc-5-1"><a href="package-6.html#dtb_216">Good citizens</a></li><li id="toc-5-2"><a href="package-6.html#dtb_221">Learning outcomes</a></li><li id="toc-5-3"><a href="package-6.html#dtb_424">Lesson 2: Knowledge, skills and attitudes</a></li><li id="toc-5-4"><a href="package-6.html#dtb_560">Lesson 3: Good character</a></li><li id="toc-5-5"><a href="package-6.html#dtb_744">Lesson 4: Responsibilities</a></li></ol></li><li id="toc-6"><a href="package-7.html#dtb_875">Unit Two</a><ol><li id="toc-6-1"><a href="package-7.html#dtb_876">Pastimes</a></li><li id="toc-6-2"><a href="package-7.html#dtb_892">Lesson 1: Have you any favourite pastime?</a></li></ol></li><li id="toc-7"><a href="package-8.html#dtb_1691">Unit Three</a><ol><li id="toc-7-1"><a href="package-8.html#dtb_1692">Events and festivals</a><ol><li id="toc-7-1-1"><a href="package-8.html#dtb_1697">Learning outcomes</a></li></ol></li><li id="toc-7-2"><a href="package-8.html#dtb_2153">Lesson 4 : International Mother Language Day – 2</a></li><li id="toc-7-3"><a href="package-8.html#dtb_2268">Lesson 5 : Independence Day</a></li><li id="toc-7-4"><a href="package-8.html#dtb_2398">Lesson 6: Pahela Boishakh</a></li></ol></li><li id="toc-8"><a href="package-9.html#dtb_2526">Unit Four</a><ol><li id="toc-8-1"><a href="package-9.html#dtb_2527">Are we aware?</a><ol><li id="toc-8-1-1"><a href="package-9.html#dtb_2533">Learning outcomes</a></li></ol></li><li id="toc-8-2"><a href="package-9.html#dtb_2547">Lesson 1: The ferry boat</a><ol><li id="toc-8-2-1"><a href="package-9.html#dtb_2614">Questions</a></li></ol></li><li id="toc-8-3"><a href="package-9.html#dtb_2705">Lesson 2: Are we too many?</a><ol><li id="toc-8-3-1"><a href="package-9.html#dtb_2763">Questions</a></li></ol></li><li id="toc-8-4"><a href="package-9.html#dtb_2934">Lesson 3: Our food and shelter</a></li><li id="toc-8-5"><a href="package-9.html#dtb_3067">Lesson 4: The story of Lipi</a><ol><li id="toc-8-5-1"><a href="package-9.html#dtb_3103">Question 1</a></li><li id="toc-8-5-2"><a href="package-9.html#dtb_3128">Question 2</a></li></ol></li><li id="toc-8-6"><a href="package-9.html#dtb_3175">Lesson 5: Let's become skilled workforce</a></li></ol></li><li id="toc-9"><a href="package-10.html#dtb_3322">Unit Five</a><ol><li id="toc-9-1"><a href="package-10.html#dtb_3323">Climate change</a><ol><li id="toc-9-1-1"><a href="package-10.html#dtb_3328">Learning outcomes</a></li></ol></li><li id="toc-9-2"><a href="package-10.html#dtb_3346">Lesson 1: The greed of the roaring rivers</a></li><li id="toc-9-3"><a href="package-10.html#dtb_3509">Lesson 2: Environmental pollution</a></li><li id="toc-9-4"><a href="package-10.html#dtb_3726">Lesson 3: Man and climate</a></li><li id="toc-9-5"><a href="package-10.html#dtb_3888">Lesson 4: Putting our fish in hot water!</a></li></ol></li><li id="toc-10"><a href="package-11.html#dtb_4147">Unit Six</a><ol><li id="toc-10-1"><a href="package-11.html#dtb_4148">Our Neighbours</a><ol><li id="toc-10-1-1"><a href="package-11.html#dtb_4153">Learning outcomes</a></li></ol></li><li id="toc-10-2"><a href="package-11.html#dtb_4167">Lesson 1: Nepal, the land of Everest</a></li><li id="toc-10-3"><a href="package-11.html#dtb_4417">Lesson 2: Sri Lanka: The pearl of the Indian Ocean</a></li><li id="toc-10-4"><a href="package-11.html#dtb_4684">Lesson 3: The Maldives</a></li><li id="toc-10-5"><a href="package-11.html#dtb_4852">Lesson 4: India: Unity within diversity</a></li><li id="toc-10-6"><a href="package-11.html#dtb_5007">Lesson 5: Bhutan: The land of happiness</a></li></ol></li><li id="toc-11"><a href="package-12.html#dtb_5113">Unit Seven</a><ol><li id="toc-11-1"><a href="package-12.html#dtb_5114">People who stand out</a></li><li id="toc-11-2"><a href="package-12.html#dtb_5131">Lesson l: Zainul Abedin, the great artist</a></li><li id="toc-11-3"><a href="package-12.html#dtb_5300">Lesson 2: The art of silence</a></li><li id="toc-11-4"><a href="package-12.html#dtb_5580">Lesson 4: The beginning</a></li><li id="toc-11-5"><a href="package-12.html#dtb_5671">Lesson 5: The missionary</a></li><li id="toc-11-6"><a href="package-12.html#dtb_5779">Lesson 6: Love for humanity</a></li><li id="toc-11-7"><a href="package-12.html#dtb_5978">Lesson 8: Jobs' childhood</a></li></ol></li><li id="toc-12"><a href="package-13.html#dtb_6072">Unit Eight</a><ol><li id="toc-12-1"><a href="package-13.html#dtb_6073">World heritage</a></li><li id="toc-12-2"><a href="package-13.html#dtb_6088">Lesson 1: The Shat Gambuj Mosque</a></li><li id="toc-12-3"><a href="package-13.html#dtb_6214">Lesson 2: The Somapura Mahavihara</a></li><li id="toc-12-4"><a href="package-13.html#dtb_6399">Lesson 3: The Statue of Liberty</a></li><li id="toc-12-5"><a href="package-13.html#dtb_6585">Lesson 4: Lake Baikal</a></li></ol></li><li id="toc-13"><a href="package-14.html#dtb_6759">Unit Nine</a><ol><li id="toc-13-1"><a href="package-14.html#dtb_6760">Unconventional jobs</a></li><li id="toc-13-2"><a href="package-14.html#dtb_6780">Lesson 1: Jobs around</a></li><li id="toc-13-3"><a href="package-14.html#dtb_6968">Lesson 2: Weird jobs around</a></li><li id="toc-13-4"><a href="package-14.html#dtb_7097">Lesson 3: Floral career</a></li></ol></li><li id="toc-14"><a href="package-15.html#dtb_7268">Unit Ten</a><ol><li id="toc-14-1"><a href="package-15.html#dtb_7269">Dreams</a><ol><li id="toc-14-1-1"><a href="package-15.html#dtb_7273">Learning outcomes</a></li></ol></li><li id="toc-14-2"><a href="package-15.html#dtb_7287">Lesson 1: I have a dream</a></li><li id="toc-14-3"><a href="package-15.html#dtb_7397">Lesson 2: What I dream to be</a></li><li id="toc-14-4"><a href="package-15.html#dtb_7572">Lesson 3: They had dreams 1</a></li><li id="toc-14-5"><a href="package-15.html#dtb_7737">Lesson 4: They had dreams 2</a></li></ol></li><li id="toc-15"><a href="package-16.html#dtb_7872">Unit Eleven</a><ol><li id="toc-15-1"><a href="package-16.html#dtb_7873">Renewable energy</a></li><li id="toc-15-2"><a href="package-16.html#dtb_7888">Lesson 1: Renewable energy sources -1</a></li><li id="toc-15-3"><a href="package-16.html#dtb_8103">Lesson 2: Renewable energy sources -2</a></li><li id="toc-15-4"><a href="package-16.html#dtb_8387">Lesson 3: Renewable energy sources-3</a></li></ol></li><li id="toc-16"><a href="package-17.html#dtb_8590">Unit Twelve</a><ol><li id="toc-16-1"><a href="package-17.html#dtb_8591">Roots</a></li><li id="toc-16-2"><a href="package-17.html#dtb_8614">Lesson 1: My roots</a></li><li id="toc-16-3"><a href="package-17.html#dtb_8776">Lesson 2: My roots -2</a></li><li id="toc-16-4"><a href="package-17.html#dtb_9013">Lesson 4: In search of identity</a></li></ol></li><li id="toc-17"><a href="package-18.html#dtb_9192">Unit Thirteen</a><ol><li id="toc-17-1"><a href="package-18.html#dtb_9193">Media and modes of e-communications</a></li><li id="toc-17-2"><a href="package-18.html#dtb_9212">Lesson 1: Media and models of e-communications</a></li><li id="toc-17-3"><a href="package-18.html#dtb_9502">Lesson 2: Social network services</a></li><li id="toc-17-4"><a href="package-18.html#dtb_9735">Lesson 3: E-learning</a></li></ol></li><li id="toc-18"><a href="package-19.html#dtb_9836">Unit Fourteen</a><ol><li id="toc-18-1"><a href="package-19.html#dtb_9837">Pleasure and purpose</a></li><li id="toc-18-2"><a href="package-19.html#dtb_9852">Lesson 1: Books</a></li><li id="toc-18-3"><a href="package-19.html#dtb_9971">Lesson 3: The Sands of Dee</a></li><li id="toc-18-4"><a href="package-19.html#dtb_10036">Lesson 4: Time, You Old Gipsy Man</a></li><li id="toc-18-5"><a href="package-19.html#dtb_10109">Lesson 5: Stopping by Woods on a Snowing Evening</a></li><li id="toc-18-6"><a href="package-19.html#dtb_10177">Lesson 6: The Purple Jar-1</a></li><li id="toc-18-7"><a href="package-19.html#dtb_10258">Lesson 7: The Purple Jar-2</a></li><li id="toc-18-8"><a href="package-19.html#dtb_10355">Lesson 8: The Purple Jar-3</a></li><li id="toc-18-9"><a href="package-19.html#dtb_10486">Lesson 9: A Pound of Flesh</a></li><li id="toc-18-10"><a href="package-19.html#dtb_10617">Lesson 10: The three caskets</a></li><li id="toc-18-11"><a href="package-19.html#dtb_10695">Lesson 11: the trial</a></li><li id="toc-18-12"><a href="package-19.html#dtb_10774">Lessons 9, 10 &amp; 11 are adapted horn The Merchant of Vinice by William Shakespeare.</a></li></ol></li><li id="toc-19"><a href="package-20.html#dtb_10792">Sample Question</a></li></ol>
+    </nav>
+
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-menu" title="Go to page" aria-label="Go to page">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m11.256 13 .238-1.5h1.481l-.237 1.5h-1.482Z" fill="currentColor"></path><path d="M17.75 2.001a2.25 2.25 0 0 1 2.245 2.096L20 4.25v15.498a2.25 2.25 0 0 1-2.096 2.245l-.154.005H6.25a2.25 2.25 0 0 1-2.245-2.096L4 19.75V4.251a2.25 2.25 0 0 1 2.096-2.245l.154-.005h11.5Zm-5.355 13.16a.75.75 0 1 0 1.482.234l.142-.895h.731a.75.75 0 0 0 0-1.5h-.494l.238-1.5h.756a.75.75 0 0 0 0-1.5h-.519l.162-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259h-1.48l.161-1.025a.75.75 0 1 0-1.481-.234l-.2 1.259H9.25a.75.75 0 1 0 0 1.5h.725L9.738 13H8.75a.75.75 0 1 0 0 1.5h.75l-.105.66a.75.75 0 0 0 1.482.235l.142-.895H12.5l-.105.66Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Skip past <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
     </div>
 
-    <script type="module" id="abinb-initApp">
-      import {
-        setupUi
-      } from '../src/js/app.js';
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
 
-      (async () => {
-        try {
-          // TODO parameterize this path
-          let searchIndex = new URL('idx.json', document.location);
-          let searchData = new URL('data.json', document.location);
-          await setupUi(
-            searchIndex,
-            searchData
-          );
-        } catch (err) {
-          console.error(err);
-        } finally {
-          document.documentElement.classList.remove("abinb-js");
-        }
-      })();
-    </script>
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/package-10.mp3"><track default="" kind="metadata" src="vtt/package-10.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+        </div>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
 
-  </body>
+    <section popover="" id="webbook-menu" class="webbook" aria-label="Go to page">
+        <label for="goto-page">Go to page</label>
+        <input type="text" list="pages" id="goto-page">
+        <button type="button" id="webbook-goto-page-go" title="Go" aria-label="Go">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.001c5.524 0 10 4.477 10 10s-4.476 10-10 10c-5.522 0-10-4.477-10-10s4.478-10 10-10Zm.781 5.469-.084-.073a.75.75 0 0 0-.883-.007l-.094.08-.072.084a.75.75 0 0 0-.007.883l.08.094 2.719 2.72H7.75l-.102.006a.75.75 0 0 0-.641.642L7 12l.007.102a.75.75 0 0 0 .641.641l.102.007h6.69l-2.72 2.72-.073.085a.75.75 0 0 0 1.05 1.05l.083-.073 4.002-4 .072-.085a.75.75 0 0 0 .008-.882l-.08-.094-4-4.001-.085-.073.084.073Z" fill="currentColor"></path></svg>
+        </button>
+        <datalist id="pages"><option value="1" label="1" data-href="package-6.html#dtb_217"></option><option value="2" label="2" data-href="package-6.html#dtb_232"></option><option value="3" label="3" data-href="package-6.html#dtb_282"></option><option value="4" label="4" data-href="package-6.html#dtb_342"></option><option value="5" label="5" data-href="package-6.html#dtb_386"></option><option value="6" label="6" data-href="package-6.html#dtb_446"></option><option value="7" label="7" data-href="package-6.html#dtb_503"></option><option value="8" label="8" data-href="package-6.html#dtb_593"></option><option value="9" label="9" data-href="package-6.html#dtb_683"></option><option value="10" label="10" data-href="package-6.html#dtb_743"></option><option value="11" label="11" data-href="package-6.html#dtb_793"></option><option value="12" label="12" data-href="package-6.html#dtb_860"></option><option value="13" label="13" data-href="package-6.html#dtb_874"></option><option value="14" label="14" data-href="package-7.html#dtb_891"></option><option value="l5" label="l5" data-href="package-7.html#dtb_953"></option><option value="16" label="16" data-href="package-7.html#dtb_1017"></option><option value="17" label="17" data-href="package-7.html#dtb_1145"></option><option value="18" label="18" data-href="package-7.html#dtb_1201"></option><option value="19" label="19" data-href="package-7.html#dtb_1259"></option><option value="20" label="20" data-href="package-7.html#dtb_1319"></option><option value="21" label="21" data-href="package-7.html#dtb_1416"></option><option value="22" label="22" data-href="package-7.html#dtb_1451"></option><option value="23" label="23" data-href="package-7.html#dtb_1574"></option><option value="Pae-24" label="Pae-24" data-href="package-7.html#dtb_1637"></option><option value="25" label="25" data-href="package-7.html#dtb_1673"></option><option value="26" label="26" data-href="package-8.html#dtb_1693"></option><option value="27" label="27" data-href="package-8.html#dtb_1706"></option><option value="28" label="28" data-href="package-8.html#dtb_1838"></option><option value="29" label="29" data-href="package-8.html#dtb_1920"></option><option value="30" label="30" data-href="package-8.html#dtb_2004"></option><option value="31" label="31" data-href="package-8.html#dtb_2094"></option><option value="32" label="32" data-href="package-8.html#dtb_2191"></option><option value="33" label="33" data-href="package-8.html#dtb_2296"></option><option value="34" label="34" data-href="package-8.html#dtb_2375"></option><option value="35" label="35" data-href="package-8.html#dtb_2417"></option><option value="36" label="36" data-href="package-8.html#dtb_2475"></option><option value="37" label="37" data-href="package-8.html#dtb_2525"></option><option value="38" label="38" data-href="package-9.html#dtb_2546"></option><option value="39" label="39" data-href="package-9.html#dtb_2598"></option><option value="40" label="40" data-href="package-9.html#dtb_2664"></option><option value="41" label="41" data-href="package-9.html#dtb_2727"></option><option value="42" label="42" data-href="package-9.html#dtb_2811"></option><option value="43" label="43" data-href="package-9.html#dtb_2933"></option><option value="44" label="44" data-href="package-9.html#dtb_2995"></option><option value="45" label="45" data-href="package-9.html#dtb_3054"></option><option value="46" label="46" data-href="package-9.html#dtb_3118"></option><option value="47" label="47" data-href="package-9.html#dtb_3174"></option><option value="48" label="48" data-href="package-9.html#dtb_3248"></option><option value="49" label="49" data-href="package-10.html#dtb_3324"></option><option value="50" label="50" data-href="package-10.html#dtb_3345"></option><option value="51" label="51" data-href="package-10.html#dtb_3391"></option><option value="52" label="52" data-href="package-10.html#dtb_3458"></option><option value="53" label="53" data-href="package-10.html#dtb_3547"></option><option value="54" label="54" data-href="package-10.html#dtb_3574"></option><option value="55" label="55" data-href="package-10.html#dtb_3614"></option><option value="56" label="56" data-href="package-10.html#dtb_3725"></option><option value="57" label="57" data-href="package-10.html#dtb_3764"></option><option value="58" label="58" data-href="package-10.html#dtb_3859"></option><option value="59" label="59" data-href="package-10.html#dtb_3913"></option><option value="60" label="60" data-href="package-10.html#dtb_3975"></option><option value="61" label="61" data-href="package-10.html#dtb_4032"></option><option value="62" label="62" data-href="package-10.html#dtb_4104"></option><option value="63" label="63" data-href="package-11.html#dtb_4149"></option><option value="64" label="64" data-href="package-11.html#dtb_4166"></option><option value="65" label="65" data-href="package-11.html#dtb_4206"></option><option value="66" label="66" data-href="package-11.html#dtb_4256"></option><option value="67" label="67" data-href="package-11.html#dtb_4311"></option><option value="68" label="68" data-href="package-11.html#dtb_4371"></option><option value="69" label="69" data-href="package-11.html#dtb_4409"></option><option value="70" label="70" data-href="package-11.html#dtb_4463"></option><option value="71" label="71" data-href="package-11.html#dtb_4508"></option><option value="72" label="72" data-href="package-11.html#dtb_4622"></option><option value="73" label="73" data-href="package-11.html#dtb_4671"></option><option value="74" label="74" data-href="package-11.html#dtb_4721"></option><option value="75" label="75" data-href="package-11.html#dtb_4751"></option><option value="76" label="76" data-href="package-11.html#dtb_4842"></option><option value="77" label="77" data-href="package-11.html#dtb_4884"></option><option value="78" label="78" data-href="package-11.html#dtb_4943"></option><option value="79" label="79" data-href="package-11.html#dtb_5019"></option><option value="80" label="80" data-href="package-11.html#dtb_5049"></option><option value="81" label="81" data-href="package-11.html#dtb_5089"></option><option value="82" label="82" data-href="package-11.html#dtb_5112"></option><option value="83" label="83" data-href="package-12.html#dtb_5130"></option><option value="84" label="84" data-href="package-12.html#dtb_5163"></option><option value="85" label="85" data-href="package-12.html#dtb_5209"></option><option value="86" label="86" data-href="package-12.html#dtb_5265"></option><option value="87" label="87" data-href="package-12.html#dtb_5322"></option><option value="88" label="88" data-href="package-12.html#dtb_5358"></option><option value="89" label="89" data-href="package-12.html#dtb_5402"></option><option value="90" label="90" data-href="package-12.html#dtb_5468"></option><option value="91" label="91" data-href="package-12.html#dtb_5553"></option><option value="92" label="92" data-href="package-12.html#dtb_5611"></option><option value="93" label="93" data-href="package-12.html#dtb_5670"></option><option value="94" label="94" data-href="package-12.html#dtb_5722"></option><option value="95" label="95" data-href="package-12.html#dtb_5807"></option><option value="96" label="96" data-href="package-12.html#dtb_5836"></option><option value="97" label="97" data-href="package-12.html#dtb_5909"></option><option value="98" label="98" data-href="package-12.html#dtb_5950"></option><option value="99" label="99" data-href="package-12.html#dtb_6005"></option><option value="100" label="100" data-href="package-12.html#dtb_6071"></option><option value="101" label="101" data-href="package-13.html#dtb_6087"></option><option value="102" label="102" data-href="package-13.html#dtb_6134"></option><option value="103" label="103" data-href="package-13.html#dtb_6194"></option><option value="104" label="104" data-href="package-13.html#dtb_6235"></option><option value="105" label="105" data-href="package-13.html#dtb_6265"></option><option value="106" label="106" data-href="package-13.html#dtb_6350"></option><option value="107" label="107" data-href="package-13.html#dtb_6434"></option><option value="108" label="108" data-href="package-13.html#dtb_6551"></option><option value="109" label="109" data-href="package-13.html#dtb_6609"></option><option value="110" label="110" data-href="package-13.html#dtb_6674"></option><option value="111" label="111" data-href="package-13.html#dtb_6758"></option><option value="112" label="112" data-href="package-14.html#dtb_6779"></option><option value="113" label="113" data-href="package-14.html#dtb_6832"></option><option value="114" label="114" data-href="package-14.html#dtb_6896"></option><option value="115" label="115" data-href="package-14.html#dtb_6967"></option><option value="116" label="116" data-href="package-14.html#dtb_6996"></option><option value="117" label="117" data-href="package-14.html#dtb_7047"></option><option value="118" label="118" data-href="package-14.html#dtb_7096"></option><option value="119" label="119" data-href="package-14.html#dtb_7216"></option><option value="120" label="120" data-href="package-14.html#dtb_7267"></option><option value="121" label="121" data-href="package-15.html#dtb_7286"></option><option value="122" label="122" data-href="package-15.html#dtb_7345"></option><option value="123" label="123" data-href="package-15.html#dtb_7432"></option><option value="124" label="124" data-href="package-15.html#dtb_7531"></option><option value="125" label="125" data-href="package-15.html#dtb_7612"></option><option value="126" label="126" data-href="package-15.html#dtb_7674"></option><option value="127" label="127" data-href="package-15.html#dtb_7761"></option><option value="128" label="128" data-href="package-15.html#dtb_7821"></option><option value="129" label="129" data-href="package-15.html#dtb_7871"></option><option value="130" label="130" data-href="package-16.html#dtb_7887"></option><option value="131" label="131" data-href="package-16.html#dtb_7944"></option><option value="132" label="132" data-href="package-16.html#dtb_8036"></option><option value="133" label="133" data-href="package-16.html#dtb_8077"></option><option value="134" label="134" data-href="package-16.html#dtb_8168"></option><option value="135" label="135" data-href="package-16.html#dtb_8205"></option><option value="136" label="136" data-href="package-16.html#dtb_8294"></option><option value="137" label="137" data-href="package-16.html#dtb_8386"></option><option value="138" label="138" data-href="package-16.html#dtb_8432"></option><option value="139" label="139" data-href="package-16.html#dtb_8508"></option><option value="139" label="139" data-href="package-16.html#dtb_8589"></option><option value="141" label="141" data-href="package-17.html#dtb_8613"></option><option value="142" label="142" data-href="package-17.html#dtb_8644"></option><option value="143" label="143" data-href="package-17.html#dtb_8673"></option><option value="144" label="144" data-href="package-17.html#dtb_8775"></option><option value="145" label="145" data-href="package-17.html#dtb_8815"></option><option value="146" label="146" data-href="package-17.html#dtb_8862"></option><option value="147" label="147" data-href="package-17.html#dtb_8931"></option><option value="148" label="148" data-href="package-17.html#dtb_8977"></option><option value="149" label="149" data-href="package-17.html#dtb_9026"></option><option value="150" label="150" data-href="package-17.html#dtb_9082"></option><option value="151" label="151" data-href="package-17.html#dtb_9123"></option><option value="152" label="152" data-href="package-17.html#dtb_9168"></option><option value="153" label="153" data-href="package-17.html#dtb_9191"></option><option value="154" label="154" data-href="package-18.html#dtb_9211"></option><option value="155" label="155" data-href="package-18.html#dtb_9277"></option><option value="156" label="156" data-href="package-18.html#dtb_9330"></option><option value="157" label="157" data-href="package-18.html#dtb_9393"></option><option value="158" label="158" data-href="package-18.html#dtb_9545"></option><option value="159" label="159" data-href="package-18.html#dtb_9618"></option><option value="160" label="160" data-href="package-18.html#dtb_9715"></option><option value="161" label="161" data-href="package-18.html#dtb_9745"></option><option value="162" label="162" data-href="package-18.html#dtb_9785"></option><option value="163" label="163" data-href="package-18.html#dtb_9835"></option><option value="164" label="164" data-href="package-19.html#dtb_9851"></option><option value="165" label="165" data-href="package-19.html#dtb_9895"></option><option value="166" label="166" data-href="package-19.html#dtb_9940"></option><option value="167" label="167" data-href="package-19.html#dtb_9981"></option><option value="168" label="168" data-href="package-19.html#dtb_10035"></option><option value="169" label="169" data-href="package-19.html#dtb_10081"></option><option value="170" label="170" data-href="package-19.html#dtb_10134"></option><option value="171" label="171" data-href="package-19.html#dtb_10191"></option><option value="172" label="172" data-href="package-19.html#dtb_10246"></option><option value="173" label="173" data-href="package-19.html#dtb_10295"></option><option value="174" label="174" data-href="package-19.html#dtb_10354"></option><option value="175" label="175" data-href="package-19.html#dtb_10392"></option><option value="176" label="176" data-href="package-19.html#dtb_10513"></option><option value="177" label="177" data-href="package-19.html#dtb_10570"></option><option value="178" label="178" data-href="package-19.html#dtb_10641"></option><option value="179" label="179" data-href="package-19.html#dtb_10712"></option><option value="180" label="180" data-href="package-19.html#dtb_10745"></option><option value="181" label="181" data-href="package-19.html#dtb_10791"></option><option value="182" label="182" data-href="package-20.html#dtb_10842"></option><option value="183" label="183" data-href="package-20.html#dtb_10879"></option><option value="184" label="184" data-href="package-20.html#dtb_10927"></option><option value="185" label="185" data-href="package-20.html#dtb_11007"></option><option value="186" label="186" data-href="package-20.html#dtb_11068"></option><option value="187" label="187" data-href="package-20.html#dtb_11103"></option><option value="188" label="188" data-href="package-20.html#dtb_11160"></option><option value="189" label="189" data-href="package-20.html#dtb_11197"></option><option value="190" label="190" data-href="package-20.html#dtb_11232"></option><option value="191" label="191" data-href="package-20.html#dtb_11288"></option><option value="192" label="192" data-href="package-20.html#dtb_11333"></option></datalist>
+    </section>
 
-</html>
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>English For Today Classes 9-10</dd><dt>Author</dt><dd>Created By: YPSA. In cooperation with A2i, Prime Minister Office</dd><dt>Date</dt><dd>2022-02-11T23:26:17Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label"></p>
+                <progress id="webbook-reading-progress" max="100" value="0"></progress>
+                <p id="webbook-progress-count"></p>
+            </section>
+        </div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <fieldset>
+            <legend class="sr-only">Reading settings</legend>
+            <div id="webbook-color">
+                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+                <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+                <label for="webbook-color-picker">Custom color</label>
+                <input type="color" id="webbook-color-picker" disabled="">
+            </div>
+            <div id="webbook-font-size">
+                <label for="webbook-font-size-range">Font size</label>
+                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-font-size-value">100%</p>
+                <button type="button" id="webbook-reset-font-size">Reset</button>
+            </div>
+            <div id="webbook-font-family">
+                <label for="webbook-font-family-options">Font</label>
+                <select id="webbook-font-family-options">
+                    <option value="system-ui">System UI</option>
+                    <option value="sans-serif">Sans-serif</option>
+                    <option value="serif">Serif</option>
+                </select>
+            </div>
+            <div id="webbook-appearance">
+                <label for="webbook-appearance-options">Appearance</label>
+                <select id="webbook-appearance-options">
+                    <option value="auto">Auto (system)</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                </select>
+            </div>
+            <div>
+                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+                <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+            </div>
+            <div>
+                <label for="webbook-caption-mode-toggle">Caption mode</label>
+                <input type="checkbox" id="webbook-caption-mode-toggle">
+            </div>
+            <div id="webbook-rate">
+                <label for="webbook-rate-range">Playback rate</label>
+                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+                <p id="webbook-rate-value">100%</p>
+                <button type="button" id="webbook-reset-rate">Reset</button>
+            </div>
+            <div>
+                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+                <input type="checkbox" id="webbook-skip-footnote-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-note-toggle">Skip notes</label>
+                <input type="checkbox" id="webbook-skip-note-toggle">
+            </div>
+            <div>
+                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+                <input type="checkbox" id="webbook-skip-sidebar-toggle">
+            </div>
+            <div>
+                <label for="webbook-resume-toggle">Resume last position on open</label>
+                <input type="checkbox" id="webbook-resume-toggle" checked="">
+            </div>
+        </fieldset>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>
