@@ -37,6 +37,8 @@ export type SitePage = {
 export type SiteModel = {
     // Keys saved reading positions (`webbook-book-id`). The EPUB's identifier unless overridden.
     bookId: string;
+    // Whether page titles came from headings (SiteModelOptions.headingTitles applied)
+    headingTitles: boolean;
     metadata: BookMetadata;
     pageList: PageListEntry[];
     pages: SitePage[];
@@ -50,6 +52,9 @@ const select = xpath.useNamespaces({
 
 export type SiteModelOptions = {
     identifier?: string;
+    // When every content document's <title> is the book title, title each page by its first
+    // heading that isn't the book title
+    headingTitles?: boolean;
 };
 
 function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): SiteModel {
@@ -67,6 +72,9 @@ function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): SiteModel {
     });
 
     const metadata = buildMetadata(epub.metadata);
+    const bookTitle = collapseWhitespace(metadata.title);
+    const useHeadingTitles = options.headingTitles === true
+        && epub.spine.every(item => collapseWhitespace(item.title ?? '') === bookTitle);
     const pages = epub.spine.map((spineItem, index) => {
         const sourcePath = normalizeSourcePath(spineItem.path);
         const outputFilename = sourceToOutput.get(sourcePath);
@@ -74,8 +82,13 @@ function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): SiteModel {
             throw new Error(`No output filename assigned for ${sourcePath}`);
         }
 
+        const headingTitle = useHeadingTitles
+            ? spineItem.headings?.find(heading => collapseWhitespace(heading) !== bookTitle)
+            : undefined;
         const title = navTitleBySource.get(sourcePath)
             || (index === 0 ? metadata.title : '')
+            || headingTitle
+            || spineItem.title
             || path.basename(sourcePath, path.extname(sourcePath));
 
         return {
@@ -90,6 +103,7 @@ function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): SiteModel {
 
     return {
         bookId: options.identifier ?? metadata.identifier,
+        headingTitles: useHeadingTitles,
         metadata,
         pageList: buildPageList(epub.nav['page-list'], sourceToOutput),
         pages,
@@ -234,6 +248,10 @@ function directChildElements(parent: Element, localName: string): Element[] {
     return Array.from(parent.childNodes)
         .filter((node): node is Element => node.nodeType === 1)
         .filter(element => element.localName === localName);
+}
+
+function collapseWhitespace(value: string): string {
+    return value.replace(/\s+/g, ' ').trim();
 }
 
 export {

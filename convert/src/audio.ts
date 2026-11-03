@@ -1,4 +1,5 @@
 import ffmpeg from 'fluent-ffmpeg';
+import fs from 'fs-extra';
 import path from 'path';
 import tmp from 'tmp';
 import winston from 'winston';
@@ -90,11 +91,13 @@ async function mergeAudioSegments(mediaSegments: MediaSegment[], outFilename: st
     winston.info(`Merging audio clips into ${outFilename}`);
     await configureFfmpeg();
 
-    const ext = path.extname(outFilename);
+    // Segments are cut to WAV and encoded once at the end. Cutting them to the output format and
+    // joining the files byte for byte added each segment's encoder padding to the audio but not to
+    // the cue timings, so narration drifted ahead of the audio over a long page.
     tmp.setGracefulCleanup();
     const tmpDirname = tmp.dirSync({ unsafeCleanup: true }).name;
     const audioTmpFilenames = mediaSegments.map((audio, idx) => {
-        const audioTmpFilename = path.join(tmpDirname, `${idx}${ext}`);
+        const audioTmpFilename = path.join(tmpDirname, `${idx}.wav`);
         audio.tmpFilename = audioTmpFilename;
         return audioTmpFilename;
     });
@@ -109,10 +112,12 @@ async function mergeAudioSegments(mediaSegments: MediaSegment[], outFilename: st
         }
     }
 
-    const concatFiles = `concat:${audioTmpFilenames.join('|')}`;
+    const concatListFilename = path.join(tmpDirname, 'segments.txt');
+    await fs.writeFile(concatListFilename, audioTmpFilenames.map(filename => `file '${filename.replace(/'/g, "'\\''")}'`).join('\n'));
     await new Promise<void>((resolve, reject) => {
         ffmpeg()
-            .input(concatFiles)
+            .input(concatListFilename)
+            .inputOptions(['-f concat', '-safe 0'])
             .audioChannels(2)
             .output(outFilename)
             .on('progress', progress => {

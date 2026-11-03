@@ -14,6 +14,7 @@ declare module 'fluent-ffmpeg' {
             audioChannels(channels: number): FfmpegCommand;
             audioFilters(filters: string): FfmpegCommand;
             input(filename: string): FfmpegCommand;
+            inputOptions(options: string[]): FfmpegCommand;
             on(event: 'end', listener: () => void): FfmpegCommand;
             on(event: 'error', listener: (err: Error) => void): FfmpegCommand;
             on(event: 'progress', listener: (progress: Progress) => void): FfmpegCommand;

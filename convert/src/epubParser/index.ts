@@ -25,8 +25,13 @@ async function parse(inputFilename: string, options: EpubParseOptions = {}): Pro
         warn: options.warn
     });
 
+    const spine = await Promise.all(packageObj.spine.map(async item => ({
+        ...item,
+        ...await readDocumentTitles(item.path)
+    })));
+
     return {
-        spine: packageObj.spine,
+        spine,
         metadata: packageObj.metadata,
         navFilename: packageObj.navFilename,
         packageFilename: opfFilename,
@@ -44,6 +49,20 @@ async function setupBasedir(inputFilename: string): Promise<string> {
 
     winston.verbose('Extracting EPUB');
     return unzip(inputFilename);
+}
+
+async function readDocumentTitles(filename: string): Promise<{ title: string, headings: string[] }> {
+    const doc = await fileio.parse(filename, true);
+    const title = doc.getElementsByTagName('title')[0];
+    const headings = Array.from(doc.getElementsByTagName('*') as ArrayLike<Element>)
+        .filter(elm => /^h[1-6]$/.test(elm.localName ?? ''))
+        .map(collapsedText)
+        .filter(Boolean);
+    return { title: title ? collapsedText(title) : '', headings };
+}
+
+function collapsedText(node: Node): string {
+    return (node.textContent ?? '').replace(/\s+/g, ' ').trim();
 }
 
 async function calculatePackageDocPath(epubDir: string): Promise<string> {

@@ -11,6 +11,7 @@ import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath }
 import { transformContent } from './content-transform.js';
 
 export type ConvertOptions = {
+    headingTitles?: boolean;
     identifier?: string;
     includeNonLinear?: boolean;
 };
@@ -30,7 +31,12 @@ async function convert(input: string, output: string, template: string, options:
             includeNonLinear: options.includeNonLinear,
             warn: message => winston.warn(message)
         });
-        const site = buildSiteModel(epub, { identifier: options.identifier });
+        const site = buildSiteModel(epub, { identifier: options.identifier, headingTitles: options.headingTitles });
+        if (options.headingTitles) {
+            winston.info(site.headingTitles
+                ? 'Every page is titled with the book title, so pages are titled by their first other heading'
+                : 'Pages have their own titles, so --heading-titles has no effect');
+        }
         if (options.identifier) {
             winston.info(`Using book ID ${options.identifier} (EPUB identifier: ${site.metadata.identifier || 'none'})`);
         }

@@ -148,8 +148,11 @@ function renderSpineLink(doc: Document, selector: string, target: SitePage | und
         return;
     }
 
+    link.removeAttribute('hidden');
     link.setAttribute('href', target.outputFilename);
+    link.setAttribute('rel', label === 'Previous' ? 'prev' : 'next');
     link.setAttribute('title', `${label}: ${target.title}`);
+    link.setAttribute('aria-label', `${label}: ${target.title}`);
 }
 
 function renderAudio(doc: Document, audioAssets: PageAudioAssets | null): void {
