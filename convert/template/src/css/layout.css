@@ -9,6 +9,8 @@ body {
         "topbar topbar topbar"
         "prev main next"
         "toolbar toolbar toolbar";
+    /* without this, a short page stretches every row to fill the viewport, toolbar rows included */
+    grid-template-rows: auto 1fr auto;
 }
 [hidden] {
     display: none !important;

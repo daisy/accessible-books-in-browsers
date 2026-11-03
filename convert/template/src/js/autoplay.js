@@ -18,7 +18,12 @@ export function clearAutoplayRequest() {
 
 export function requestAutoplayForForwardSpineLink(link) {
     if (!link?.matches?.('#webbook-spine-nav a[rel=next][href]')) return;
-    const target = normalizeAutoplayUrl(link.href);
+    requestAutoplayForLink(link);
+}
+
+// For any link to another page of this book, e.g. from the table of contents during playback
+export function requestAutoplayForLink(link) {
+    const target = normalizeAutoplayUrl(link?.href);
     if (!target) return;
     localStorage.setItem(AUTOPLAY_STORAGE_KEY, 'true');
     localStorage.setItem(AUTOPLAY_TARGET_STORAGE_KEY, target);

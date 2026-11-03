@@ -3,9 +3,16 @@ import { elmForCue } from './cue-selector.js';
 const NARRATION_HIGHLIGHT_NAME = 'narration';
 
 let currentNarrationHighlight = null;
+let lastNarratedElm = null;
+
+// The element narration most recently reached, kept through pauses and gaps between phrases
+export function lastNarratedElement() {
+    return lastNarratedElm?.isConnected ? lastNarratedElm : null;
+}
 
 export function highlightElm(elm) {
     clearNarrationHighlight();
+    lastNarratedElm = elm;
 
     const highlights = customHighlightRegistry();
     if (highlights) {
@@ -86,17 +93,29 @@ export function syncHashToElement(elm) {
     history.replaceState(null, '', target);
 }
 
-// Read side: on load, if the URL already has a hash (a deep link, a TOC/footnote jump that
-// landed here, or a resumed position), seek playback to the cue matching that element so
-// narration continues from the right place instead of the very start of the page.
-export function seekToHashTarget(audio, track) {
-    const id = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
-    if (!id) return;
+// Read side: when the URL's hash points somewhere (a deep link, a TOC/footnote jump, or a
+// resumed position), seek playback to the cue for that element so narration continues from the
+// right place instead of the very start of the page. Returns whether it seeked.
+export function seekToHashTarget(audio, track, hash = window.location.hash) {
+    const id = decodeURIComponent((hash || '').replace(/^#/, ''));
+    if (!id) return false;
     const target = document.getElementById(id);
-    if (!target) return;
+    if (!target) return false;
 
-    const cues = Array.from(track.cues || []);
-    const cue = cues.find(c => elmForCue(c) === target)
-        || cues.find(c => { const e = elmForCue(c); return e && e.contains(target); });
-    if (cue) audio.currentTime = cue.startTime;
+    const cue = cueForTarget(target, Array.from(track.cues || []));
+    if (!cue) return false;
+    audio.currentTime = cue.startTime;
+    return true;
+}
+
+// Links often point at a container (a section, or a heading's wrapper) rather than at a narrated
+// element, so this falls back from an exact match to the first narrated element inside the
+// target, then to a narrated element around it, then to the first one after it.
+function cueForTarget(target, cues) {
+    const cueElms = cues.map(cue => ({ cue, elm: elmForCue(cue) })).filter(({ elm }) => elm);
+    const match = cueElms.find(({ elm }) => elm === target)
+        || cueElms.find(({ elm }) => target.contains(elm))
+        || cueElms.find(({ elm }) => elm.contains(target))
+        || cueElms.find(({ elm }) => target.compareDocumentPosition(elm) & Node.DOCUMENT_POSITION_FOLLOWING);
+    return match?.cue ?? null;
 }

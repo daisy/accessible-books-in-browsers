@@ -1,5 +1,8 @@
 import { selectElm } from './cue-selector.js';
 import { isAnyPopoverOpen } from './dom-utils.js';
+import { highlightElm } from './narration-position.js';
+import { showCaptionForCue } from './caption-mode.js';
+import { cancelSkipPreroll, canPlay } from './skippability.js';
 
 // Escapability: offer a Skip past button for the enclosing structure during playback.
 const ESCAPABLE_STRUCTURE_RULES = [
@@ -27,12 +30,13 @@ function matchesStructureRule(elm, rule) {
     return rule.tags.includes(elm.tagName) || rule.classes.some(c => elm.classList.contains(c));
 }
 
-function getEscapeTime(ancestor, track, fromIdx) {
+// The first phrase after the structure that the reader's skip settings don't skip
+function getEscapeTarget(ancestor, track, fromIdx) {
     const cues = Array.from(track.cues);
     for (let i = fromIdx + 1; i < cues.length; i++) {
         try {
             const elm = selectElm(JSON.parse(cues[i].text).selector);
-            if (elm && !ancestor.contains(elm)) return cues[i].startTime;
+            if (elm && !ancestor.contains(elm) && canPlay(elm)) return { cue: cues[i], elm, track };
         } catch { /* skip malformed cue */ }
     }
     return null;
@@ -42,6 +46,7 @@ let escapeBtn;
 let escapeStatus;
 let escapeLabelEl;
 let currentEscapableStructure = null;
+let escapeTarget = null;
 
 function showEscape(structure, escapeTime, announce) {
     const label = structure.label;
@@ -63,13 +68,34 @@ export function hideEscape() {
     if (escapeLabelEl) escapeLabelEl.textContent = '';
     if (escapeStatus) escapeStatus.textContent = '';
     currentEscapableStructure = null;
+    escapeTarget = null;
 }
 
+// Moves narration, the highlight and the view to the phrase after the structure straight away,
+// rather than when that phrase starts playing, which never happens while paused
 function activateEscape() {
-    const t = parseFloat(escapeBtn.dataset.escapeTime);
+    const target = escapeTarget;
+    const structure = currentEscapableStructure;
     const audio = document.querySelector('audio');
-    if (!isNaN(t) && audio) audio.currentTime = t;
+    if (!target || !audio) {
+        hideEscape();
+        return;
+    }
+    // Focus follows only from where skipping is about the text: the Skip past button (which is
+    // about to disappear), the book text, or nowhere. From a toolbar control it stays put.
+    const active = document.activeElement;
+    const moveFocus = !active || active === document.body || escapeBtn.contains(active)
+        || Boolean(structure?.contains(active)) || Boolean(document.querySelector('main')?.contains(active));
+
+    cancelSkipPreroll(audio);
+    audio.currentTime = target.cue.startTime;
     hideEscape();
+    highlightElm(target.elm);
+    showCaptionForCue(target.cue, target.track);
+    if (moveFocus) {
+        if (!target.elm.hasAttribute('tabindex')) target.elm.setAttribute('tabindex', '-1');
+        target.elm.focus({ preventScroll: true });
+    }
 }
 
 export function canActivateCurrentEscape() {
@@ -90,14 +116,15 @@ export function handleEscapableStructure(elm, track, activeCueIdx) {
         hideEscape();
         return;
     }
-    const escapeTime = getEscapeTime(escapableStructure.elm, track, activeCueIdx);
-    if (escapeTime === null) {
+    const target = getEscapeTarget(escapableStructure.elm, track, activeCueIdx);
+    if (!target) {
         hideEscape();
         return;
     }
     const isNew = escapableStructure.elm !== currentEscapableStructure;
     currentEscapableStructure = escapableStructure.elm;
-    showEscape(escapableStructure, escapeTime, isNew);
+    escapeTarget = target;
+    showEscape(escapableStructure, target.cue.startTime, isNew);
 }
 
 export function initEscapability() {

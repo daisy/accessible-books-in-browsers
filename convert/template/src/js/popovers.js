@@ -1,3 +1,5 @@
+import { lastNarratedElement } from './narration-position.js';
+
 const WEBBOOK_POPOVER_IDS = ['webbook-toc-nav', 'webbook-menu', 'webbook-settings', 'webbook-info', 'webbook-search'];
 const POPOVER_CLOSE_LABELS = {
     'webbook-toc-nav': 'Close table of contents',
@@ -37,11 +39,88 @@ function focusInitialPopoverControl(popover, id) {
     if (firstFocusable) firstFocusable.focus();
 }
 
+// A link to another page closes the table of contents by loading that page; a link within this
+// page has to close it here, then move focus to where the link went so keyboard and screen reader
+// users continue from there rather than from the table of contents button
+export function initTocInPageLinks() {
+    const toc = document.querySelector('#webbook-toc-nav');
+    if (!toc) return;
+    toc.addEventListener('click', e => {
+        const link = e.target instanceof Element ? e.target.closest('a[href]') : null;
+        if (!link || link.closest('.webbook-popover-close')) return;
+        let url;
+        try { url = new URL(link.href, window.location.href); } catch { return; }
+        const here = new URL(window.location.href);
+        if (url.origin !== here.origin || url.pathname !== here.pathname) return;
+
+        toc.hidePopover?.();
+        const target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null;
+        if (!target) return;
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+    });
+}
+
+// The converter marks a TOC link as the current page only when it points at the page itself. In
+// books whose TOC links all point at sections within pages, none would be marked, so mark the
+// section the reader is in: the last entry on this page that starts at or before where they are.
+function markCurrentTocEntry() {
+    const links = Array.from(document.querySelectorAll('#webbook-cover-link, #webbook-toc-nav ol a[href]'));
+    const here = pagePath(window.location.href);
+    const pageLinks = links.filter(link => pagePath(link.href) === here);
+    if (!pageLinks.length) return;
+
+    const isReached = readingPositionTest();
+    let current = pageLinks.find(link => !new URL(link.href).hash) ?? pageLinks[0];
+    for (const link of pageLinks) {
+        const id = decodeURIComponent(new URL(link.href).hash.slice(1));
+        const target = id ? document.getElementById(id) : null;
+        if (target && isReached(target)) current = link;
+    }
+    links.forEach(link => link.removeAttribute('aria-current'));
+    current.setAttribute('aria-current', 'page');
+}
+
+function pagePath(href) {
+    try {
+        return new URL(href, window.location.href).pathname.replace(/\/index\.html$/, '/');
+    } catch {
+        return '';
+    }
+}
+
+// Whether a section start is at or before where the reader is. That's the phrase being narrated,
+// if audio is playing or that phrase is on screen. Otherwise it's what's on screen, since a reader
+// who scrolled away while paused is reading there: a section counts once its start has scrolled
+// up to just below the top toolbar.
+function readingPositionTest() {
+    const audio = document.querySelector('audio');
+    const narrated = lastNarratedElement();
+    if (narrated && ((audio && !audio.paused) || isOnScreen(narrated))) {
+        return target => target === narrated || target.contains(narrated)
+            || Boolean(target.compareDocumentPosition(narrated) & Node.DOCUMENT_POSITION_FOLLOWING);
+    }
+    const toolbarBottom = document.querySelector('#webbook-top-toolbar')?.getBoundingClientRect().bottom ?? 0;
+    const readingLine = Math.max(0, toolbarBottom) + 48;
+    return target => target.getBoundingClientRect().top <= readingLine;
+}
+
+function isOnScreen(elm) {
+    const rect = elm.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight;
+}
+
 // Track open state on toolbar buttons when their popovers toggle
 export function initPopoverToggleTracking() {
     WEBBOOK_POPOVER_IDS.forEach(id => {
         const popover = document.querySelector(`#${id}`);
         if (!popover) return;
+        // Before opening, while the page is still what's on screen rather than the popover
+        if (id === 'webbook-toc-nav' || id === 'webbook-info') {
+            popover.addEventListener('beforetoggle', e => {
+                if (e.newState === 'open') markCurrentTocEntry();
+            });
+        }
         popover.addEventListener('toggle', e => {
             const btn = document.querySelector(`button[popovertarget="${id}"]:not(.webbook-popover-close)`);
             if (!btn) return;

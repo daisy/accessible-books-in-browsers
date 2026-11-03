@@ -3,8 +3,11 @@ import { highlightElm, syncHashToElement, seekToHashTarget } from './narration-p
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
 import { showCaptionForCue, refreshCaptionItemsFromTrack } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
-import { handleCuePlayability, restoreSkipMute, cancelSkipPreroll } from './skippability.js';
-import { requestAutoplayForForwardSpineLink, clearAutoplayRequest, consumeAutoplayRequest } from './autoplay.js';
+import { handleCuePlayability, restoreSkipMute, cancelSkipPreroll, canPlay } from './skippability.js';
+import { requestAutoplayForForwardSpineLink, requestAutoplayForLink, clearAutoplayRequest, consumeAutoplayRequest, normalizeAutoplayUrl } from './autoplay.js';
+import { keyboardShortcutsEnabled } from './settings.js';
+import { isAnyPopoverOpen, isTextEntryTarget } from './dom-utils.js';
+import { consumePageEntry, adjacentPageLink, stepAcrossPageBoundary } from './page-entry.js';
 
 const PLAY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>`;
 const PAUSE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
@@ -24,6 +27,7 @@ function clearNarrationHighlight() {
 
 export function initPlayer() {
     const shouldAutoplayThisPage = consumeAutoplayRequest();
+    const startsPartway = Boolean(window.location.hash) || consumePageEntry() !== null;
 
     const audio = document.querySelector('audio');
     if (!audio) return;
@@ -44,7 +48,8 @@ export function initPlayer() {
     const playPauseBtn = document.querySelector('#webbook-audio-playpause');
     const nextPhraseBtn = document.querySelector('#webbook-next-phrase');
     const seekRange = document.querySelector('#webbook-seek');
-    const seekTicks = document.querySelector('#webbook-seek-ticks');
+    // Books converted from older templates link the slider to a tick-mark datalist; the ticks only add noise
+    seekRange?.removeAttribute('list');
     const timeDisplay = document.querySelector('#webbook-time');
 
     function setSeekValueText(time) {
@@ -62,12 +67,11 @@ export function initPlayer() {
         playPauseBtn.setAttribute('aria-label', paused ? 'Play' : 'Pause');
     }
     updatePlayPause();
-    if (playPauseBtn) {
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused || audio.ended) audio.play();
-            else audio.pause();
-        });
+    function togglePlayback() {
+        if (audio.paused || audio.ended) audio.play();
+        else audio.pause();
     }
+    playPauseBtn?.addEventListener('click', togglePlayback);
     audio.addEventListener('play', updatePlayPause);
     audio.addEventListener('pause', updatePlayPause);
 
@@ -89,7 +93,6 @@ export function initPlayer() {
             cancelSkipPreroll(audio);
             audio.currentTime = seekRange.value;
             setSeekValueText(seekRange.value);
-            activeCueIdx = cueIndexAtOrBefore(audio.currentTime, Array.from(metadataTrack.cues || []));
             updatePhraseButtons();
         });
         setSeekValueText(seekRange.value);
@@ -102,36 +105,52 @@ export function initPlayer() {
         }
         if (timeDisplay) timeDisplay.textContent = formatTime(audio.currentTime);
     });
+    // Anything can move the audio (caption mode, resume, a hash link, skipping), so the phrase
+    // buttons always work from where the audio is rather than from the last phrase they stepped to
+    audio.addEventListener('seeked', updatePhraseButtons);
 
-    let activeCueIdx = -1;
     function updatePhraseButtons() {
         const cues = Array.from(metadataTrack.cues || []);
-        const hasCues = cues.length > 0;
-        const currentIdx = activeCueIdx >= 0 ? activeCueIdx : cueIndexAtOrBefore(audio.currentTime, cues);
-        if (previousPhraseBtn) previousPhraseBtn.disabled = !hasCues || currentIdx <= 0;
-        if (nextPhraseBtn) nextPhraseBtn.disabled = !hasCues || currentIdx >= cues.length - 1;
+        const currentIdx = cueIndexAtOrBefore(audio.currentTime, cues);
+        if (previousPhraseBtn) {
+            previousPhraseBtn.disabled = playableCueIndex(cues, currentIdx, -1) < 0 && !adjacentPageLink(-1);
+        }
+        if (nextPhraseBtn) {
+            nextPhraseBtn.disabled = playableCueIndex(cues, currentIdx, 1) < 0 && !adjacentPageLink(1);
+        }
     }
 
-    function stepCue(delta) {
-        const track = metadataTrack;
-        if (!track?.cues?.length) return false;
-
-        const cues = Array.from(track.cues);
-        const currentIdx = activeCueIdx >= 0 ? activeCueIdx : cueIndexAtOrBefore(audio.currentTime, cues);
-        let idx;
-        if (delta < 0) {
-            if (currentIdx <= 0) return false;
-            idx = currentIdx - 1;
-        } else {
-            if (currentIdx >= cues.length - 1) return false;
-            idx = currentIdx < 0 ? 0 : currentIdx + 1;
+    // The next phrase in the given direction that isn't skipped by the reader's skip settings.
+    // Landing on a skipped one would let skipping carry playback straight back past it.
+    function playableCueIndex(cues, fromIdx, delta) {
+        for (let i = fromIdx + delta; i >= 0 && i < cues.length; i += delta) {
+            const elm = elmForCue(cues[i]);
+            if (!elm || canPlay(elm)) return i;
         }
+        return -1;
+    }
 
-        cancelSkipPreroll(audio);
-        audio.currentTime = cues[idx].startTime;
-        activeCueIdx = idx;
-        updatePhraseButtons();
+    // Previous/next phrase, continuing onto the neighboring page past either end of this one
+    function stepPhrase(delta) {
+        const cues = Array.from(metadataTrack.cues || []);
+        if (!cues.length) return false;
+
+        const idx = playableCueIndex(cues, cueIndexAtOrBefore(audio.currentTime, cues), delta);
+        if (idx < 0) return stepAcrossPageBoundary(delta);
+
+        seekToCue(cues[idx]);
         return true;
+    }
+    phraseStepper = stepPhrase;
+
+    function seekToCue(cue) {
+        cancelSkipPreroll(audio);
+        audio.currentTime = cue.startTime;
+        updatePhraseButtons();
+        // Shown now rather than on cuechange, which a paused element may not fire
+        const elm = elmForCue(cue);
+        if (elm) highlightElm(elm);
+        showCaptionForCue(cue, metadataTrack);
     }
 
     function cueIndexAtOrBefore(time, cues) {
@@ -142,22 +161,26 @@ export function initPlayer() {
         return cues.length - 1;
     }
 
-    // Populate tick marks from VTT cues once track is loaded
-    function populateTicks() {
-        if (!seekTicks || !metadataTrack.cues) return;
-        seekTicks.innerHTML = '';
-        Array.from(metadataTrack.cues).forEach(cue => {
-            const opt = document.createElement('option');
-            opt.value = cue.startTime;
-            seekTicks.appendChild(opt);
-        });
-    }
     function handleTrackReady() {
-        populateTicks();
         refreshCaptionItemsFromTrack(metadataTrack);
         seekToHashTarget(audio, metadataTrack);
         applyResumeAudioTimeIfMatching(audio);
+        seekToPageEntry();
         updatePhraseButtons();
+        // Started here rather than with the autoplay attribute, so a page opened partway through
+        // doesn't play its first moments before seeking there
+        if (shouldAutoplayThisPage && startsPartway) audio.play().catch(() => {});
+    }
+
+    // Arriving from a phrase step across the page boundary
+    function seekToPageEntry() {
+        const entry = consumePageEntry();
+        if (!entry) return;
+        const cues = Array.from(metadataTrack.cues || []);
+        const idx = entry === 'last'
+            ? playableCueIndex(cues, cues.length, -1)
+            : playableCueIndex(cues, -1, 1);
+        if (idx >= 0) seekToCue(cues[idx]);
     }
     if (trackEl.readyState >= 2) {
         handleTrackReady();
@@ -165,22 +188,50 @@ export function initPlayer() {
         trackEl.addEventListener('load', handleTrackReady);
     }
 
-    // Autoplay on navigation
-    if (shouldAutoplayThisPage) {
-        audio.autoplay = true;
+    // Keep playing after arriving from a page that was playing. play() rather than the autoplay
+    // attribute, which is ignored once the audio has loaded, and a cached page loads it before
+    // this runs.
+    if (shouldAutoplayThisPage && !startsPartway) audio.play().catch(() => {});
+
+    // Following a link moves narration with it: a link within this page seeks the audio, and a
+    // link to another page of the book during playback keeps playing there
+    function seekToHash(hash) {
+        cancelSkipPreroll(audio);
+        if (seekToHashTarget(audio, metadataTrack, hash)) updatePhraseButtons();
     }
+    document.addEventListener('click', e => {
+        if (e.defaultPrevented || e.button !== 0 || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        const link = e.target instanceof Element ? e.target.closest('a[href]') : null;
+        if (!link || (link.target && link.target !== '_self')) return;
+        let url;
+        try { url = new URL(link.href, window.location.href); } catch { return; }
+        if (url.origin !== window.location.origin) return;
+
+        if (normalizeAutoplayUrl(url.href) === normalizeAutoplayUrl(window.location.href)) {
+            // A link to the hash the URL already has fires no hashchange, so seek here as well
+            if (url.hash) seekToHash(url.hash);
+        } else if (link.matches('#webbook-spine-nav a')) {
+            // the spine links have their own autoplay rules
+        } else if (!audio.paused && !audio.ended) {
+            requestAutoplayForLink(link);
+        }
+    });
+    // Back/forward between positions on this page
+    window.addEventListener('hashchange', () => seekToHash(window.location.hash));
 
     const nextSpineLink = document.querySelector('#webbook-spine-nav a[rel=next][href]');
     nextSpineLink?.addEventListener('click', () => {
         if (!audio.paused && !audio.ended) {
             requestAutoplayForForwardSpineLink(nextSpineLink);
-        } else {
+        } else if (!audio.ended) {
+            // Not when the audio has ended: that is the page finishing, and its 'ended' handler
+            // has just asked for the next page to keep playing
             clearAutoplayRequest();
         }
     });
 
-    previousPhraseBtn?.addEventListener('click', () => stepCue(-1));
-    nextPhraseBtn?.addEventListener('click', () => stepCue(1));
+    previousPhraseBtn?.addEventListener('click', () => stepPhrase(-1));
+    nextPhraseBtn?.addEventListener('click', () => stepPhrase(1));
     updatePhraseButtons();
 
     // VTT cue-driven narration highlight
@@ -190,7 +241,7 @@ export function initPlayer() {
         const activeCues = Array.from(track.activeCues || []);
         if (activeCues.length > 0) {
             const cue = activeCues[activeCues.length - 1];
-            activeCueIdx = Array.from(track.cues || []).indexOf(cue);
+            const activeCueIdx = Array.from(track.cues || []).indexOf(cue);
             updatePhraseButtons();
             const elm = elmForCue(cue);
             if (!elm) return;
@@ -218,18 +269,30 @@ export function initPlayer() {
         }
     });
 
-    // Keyboard shortcuts when the seek slider has focus
-    if (seekRange) {
-        seekRange.addEventListener('keydown', e => {
-            if (e.key === '[' || e.key === ']') {
-                e.preventDefault();
-                stepCue(e.key === '[' ? -1 : 1);
-            } else if (e.shiftKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
-                e.preventDefault();
-                const delta = e.key === 'ArrowRight' ? 10 : -10;
-                audio.currentTime = Math.max(0, Math.min(audio.duration, audio.currentTime + delta));
-            }
-            // plain arrow keys: default range step behavior
-        });
-    }
+    // [ and ] step by phrase and \ plays and pauses, anywhere outside a text field or open popover,
+    // unless the reader turned keyboard shortcuts off. Matched by physical key (e.code), not by
+    // character: on layouts where these characters need AltGr, which arrives as Ctrl+Alt and so
+    // can't be told apart from a modified shortcut, the same keys still work unmodified.
+    // NVDA and JAWS don't use these keys on their own in browse mode.
+    const shortcutActions = {
+        BracketLeft: () => stepPhrase(-1),
+        BracketRight: () => stepPhrase(1),
+        Backslash: togglePlayback
+    };
+    document.addEventListener('keydown', e => {
+        const action = shortcutActions[e.code];
+        if (!action) return;
+        if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        if (!keyboardShortcutsEnabled() || isTextEntryTarget(e.target) || isAnyPopoverOpen()) return;
+        e.preventDefault();
+        action();
+    });
+}
+
+let phraseStepper = null;
+
+// Previous/next phrase for other parts of the UI (caption mode's arrow keys). Returns false on a
+// page without narration, where there are no phrases to step through.
+export function stepPhrase(delta) {
+    return phraseStepper ? phraseStepper(delta) : false;
 }

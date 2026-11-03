@@ -15,6 +15,7 @@ body.webbook-caption-mode main {
     background: var(--theme-bg);
     color: var(--theme-fg);
     text-align: center;
+    overflow-y: auto;
     pointer-events: none;
 }
 body.webbook-caption-mode #webbook-caption-view {
@@ -22,16 +23,11 @@ body.webbook-caption-mode #webbook-caption-view {
     flex-direction: column;
     gap: 1rem;
 }
-#webbook-caption-count {
-    margin: 0;
-    color: var(--webbook-muted-fg);
-    font-size: .85rem;
-    font-variant-numeric: tabular-nums;
-}
 #webbook-caption-text {
     max-width: 42rem;
     margin: 0;
-    font-size: 2rem;
+    font-family: var(--webbook-main-font-family, system-ui);
+    font-size: calc(2rem * var(--webbook-font-scale, 1));
     line-height: 1.25;
 }
 @media(max-width: 45rem) {
@@ -39,6 +35,6 @@ body.webbook-caption-mode #webbook-caption-view {
         padding: 3rem 1rem;
     }
     #webbook-caption-text {
-        font-size: 1.5rem;
+        font-size: calc(1.5rem * var(--webbook-font-scale, 1));
     }
 }

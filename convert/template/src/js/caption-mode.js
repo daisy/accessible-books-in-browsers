@@ -1,11 +1,19 @@
 import { elmForCue } from './cue-selector.js';
 import { canPlay, cancelSkipPreroll } from './skippability.js';
 import { highlightElm } from './narration-position.js';
-import { requestAutoplayForForwardSpineLink, clearAutoplayRequest } from './autoplay.js';
+import { consumePageEntry, stepAcrossPageBoundary } from './page-entry.js';
+import { stepPhrase } from './player.js';
 import { isInteractiveTarget, isAnyPopoverOpen } from './dom-utils.js';
 
+// Caption mode is remembered per book. The shared key is what the inline script in each page's
+// <head> reads to apply caption mode before first paint; that script can't change, so the shared
+// key is kept equal to the setting of the book being read.
 const CAPTION_STORAGE_KEY = 'webbook-caption-mode';
-const CAPTION_ENTRY_STORAGE_KEY = 'webbook-caption-entry';
+
+function bookCaptionStorageKey() {
+    const bookId = document.querySelector('meta[name="webbook-book-id"]')?.content?.trim();
+    return bookId ? `${CAPTION_STORAGE_KEY}:${bookId}` : CAPTION_STORAGE_KEY;
+}
 const CAPTION_CANDIDATE_SELECTOR = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption, caption, th, td, .epubtype_pagebreak';
 
 export let captionModeEnabled = false;
@@ -14,13 +22,16 @@ let captionItems = [];
 let captionIndex = -1;
 let captionView = null;
 let captionText = null;
-let captionCount = null;
 
 export function initCaptionMode() {
     ensureCaptionView();
     const toggle = document.querySelector('#webbook-caption-mode-toggle');
-    captionModeEnabled = localStorage.getItem(CAPTION_STORAGE_KEY) === 'true';
-    captionBoundaryEntry = consumeCaptionBoundaryEntry();
+    // A book with no choice of its own starts with the setting last used in any book
+    const bookSetting = localStorage.getItem(bookCaptionStorageKey());
+    captionModeEnabled = (bookSetting ?? localStorage.getItem(CAPTION_STORAGE_KEY)) === 'true';
+    localStorage.setItem(bookCaptionStorageKey(), String(captionModeEnabled));
+    localStorage.setItem(CAPTION_STORAGE_KEY, String(captionModeEnabled));
+    captionBoundaryEntry = consumePageEntry();
     if (toggle) {
         toggle.checked = captionModeEnabled;
         toggle.addEventListener('change', () => setCaptionMode(toggle.checked));
@@ -37,22 +48,21 @@ function ensureCaptionView() {
     captionView.setAttribute('aria-label', 'Caption mode');
     captionView.hidden = true;
 
-    captionCount = document.createElement('p');
-    captionCount.id = 'webbook-caption-count';
-    captionCount.setAttribute('aria-hidden', 'true');
-
     captionText = document.createElement('p');
     captionText.id = 'webbook-caption-text';
     captionText.setAttribute('role', 'status');
     captionText.setAttribute('aria-live', 'polite');
 
-    captionView.append(captionCount, captionText);
+    captionView.append(captionText);
     document.body.append(captionView);
 }
 
 function setCaptionMode(enabled, options = {}) {
     captionModeEnabled = enabled;
-    if (options.persist !== false) localStorage.setItem(CAPTION_STORAGE_KEY, String(enabled));
+    if (options.persist !== false) {
+        localStorage.setItem(bookCaptionStorageKey(), String(enabled));
+        localStorage.setItem(CAPTION_STORAGE_KEY, String(enabled));
+    }
 
     document.documentElement.classList.toggle('webbook-caption-mode', enabled);
     document.body.classList.toggle('webbook-caption-mode', enabled);
@@ -74,14 +84,8 @@ function setCaptionMode(enabled, options = {}) {
 
 function clearCaption() {
     if (captionText) captionText.textContent = '';
-    if (captionCount) captionCount.textContent = '';
 }
 
-function consumeCaptionBoundaryEntry() {
-    const entry = localStorage.getItem(CAPTION_ENTRY_STORAGE_KEY);
-    localStorage.removeItem(CAPTION_ENTRY_STORAGE_KEY);
-    return entry === 'first' || entry === 'last' ? entry : null;
-}
 
 function getReaderAudio() {
     return document.querySelector('audio');
@@ -112,10 +116,11 @@ export function refreshCaptionItemsFromTrack(track) {
 function captionItemsForTrack(track) {
     if (!track?.cues?.length) return [];
     return Array.from(track.cues)
+        // Kept even when there's no text to show, so the caption clears instead of leaving the
+        // previous phrase on screen while this one plays
         .map(cue => {
             const elm = elmForCue(cue);
-            if (!elm || !captionTextForElement(elm)) return null;
-            return { elm, cue };
+            return elm ? { elm, cue } : null;
         })
         .filter(Boolean);
 }
@@ -133,7 +138,11 @@ function captionTextForElement(elm) {
         const label = elm.getAttribute('aria-label');
         if (label) return label.trim();
     }
-    return (elm.textContent || '').replace(/\s+/g, ' ').trim();
+    const text = (elm.textContent || '').replace(/\s+/g, ' ').trim();
+    if (text) return text;
+    // Narration of an image reads its description
+    const images = elm.tagName === 'IMG' ? [elm] : Array.from(elm.querySelectorAll('img'));
+    return images.map(img => (img.getAttribute('alt') || '').trim()).filter(Boolean).join(' ');
 }
 
 function playableCaptionItems() {
@@ -211,17 +220,14 @@ export function showCaptionForCue(cue, track) {
 }
 
 function showCaptionItem(item) {
-    if (!captionModeEnabled || !captionText || !captionCount) return;
+    if (!captionModeEnabled || !captionText) return;
     if (!item) {
         clearCaption();
         return;
     }
 
     captionIndex = captionItems.indexOf(item);
-    const visibleItems = playableCaptionItems();
-    const visibleIndex = visibleItems.indexOf(item);
     captionText.textContent = captionTextForElement(item.elm);
-    captionCount.textContent = visibleIndex >= 0 ? `${visibleIndex + 1} of ${visibleItems.length}` : '';
 }
 
 function handleCaptionKeydown(e) {
@@ -230,14 +236,17 @@ function handleCaptionKeydown(e) {
     if (isInteractiveTarget(e.target) || isAnyPopoverOpen()) return;
 
     e.preventDefault();
-    stepCaption((e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1);
+    const delta = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
+    // The arrows are caption mode's keys for previous/next phrase; on a page without narration
+    // there are no phrases, so they step through the page's text instead
+    if (!stepPhrase(delta)) stepCaption(delta);
 }
 
 function stepCaption(delta) {
     if (!captionItems.length) refreshCaptionItems();
     const nextIndex = findNextCaptionIndex(captionIndex, delta);
     if (nextIndex < 0) {
-        navigateCaptionBoundary(delta);
+        stepAcrossPageBoundary(delta);
         return;
     }
 
@@ -255,19 +264,6 @@ function syncAudioToCaptionItem(item) {
     }
 }
 
-function navigateCaptionBoundary(delta) {
-    const link = document.querySelector(`#webbook-spine-nav a[rel=${delta > 0 ? 'next' : 'prev'}][href]`);
-    if (!link) return;
-
-    localStorage.setItem(CAPTION_ENTRY_STORAGE_KEY, delta > 0 ? 'first' : 'last');
-    const audio = getReaderAudio();
-    if (delta > 0 && hasUsableAudio(audio) && !audio.paused && !audio.ended) {
-        requestAutoplayForForwardSpineLink(link);
-    } else {
-        clearAutoplayRequest();
-    }
-    link.click();
-}
 
 function findNextCaptionIndex(fromIndex, delta) {
     let index = fromIndex < 0 ? (delta > 0 ? -1 : 0) : fromIndex;

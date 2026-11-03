@@ -1,4 +1,37 @@
 let darkModeMediaQueryListener = null;
+const KEYBOARD_SHORTCUTS_STORAGE_KEY = 'webbook-keyboard-shortcuts';
+
+// WCAG 2.1.4: shortcuts made of a single character key must be possible to turn off. Read at
+// keypress time so the setting applies without a reload.
+export function keyboardShortcutsEnabled() {
+    return localStorage.getItem(KEYBOARD_SHORTCUTS_STORAGE_KEY) !== 'false';
+}
+
+// The UI creates this setting itself, so books converted before it existed get it too
+function initKeyboardShortcuts() {
+    const fieldset = document.querySelector('#webbook-settings fieldset');
+    if (!fieldset) return;
+
+    let toggle = document.querySelector('#webbook-keyboard-shortcuts-toggle');
+    if (!toggle) {
+        const row = document.createElement('div');
+        const label = document.createElement('label');
+        label.htmlFor = 'webbook-keyboard-shortcuts-toggle';
+        label.textContent = 'Keyboard shortcuts';
+        toggle = document.createElement('input');
+        toggle.type = 'checkbox';
+        toggle.id = 'webbook-keyboard-shortcuts-toggle';
+        row.append(label, toggle);
+        const captionRow = document.querySelector('#webbook-caption-mode-toggle')?.closest('div');
+        if (captionRow?.parentElement === fieldset) captionRow.after(row);
+        else fieldset.append(row);
+    }
+
+    toggle.checked = keyboardShortcutsEnabled();
+    toggle.addEventListener('change', () => {
+        localStorage.setItem(KEYBOARD_SHORTCUTS_STORAGE_KEY, String(toggle.checked));
+    });
+}
 
 function initPageNavigation() {
     const input = document.querySelector('#goto-page');
@@ -90,6 +123,8 @@ function applyFontSize(size) {
     const normalizedSize = Number.isFinite(numericSize) ? numericSize : 100;
     localStorage.setItem('webbook-font-size', String(normalizedSize));
     document.documentElement.style.setProperty('--webbook-main-font-size', `${normalizedSize}%`);
+    // Unitless form for text outside <main> that scales from its own base size, like caption mode
+    document.documentElement.style.setProperty('--webbook-font-scale', String(normalizedSize / 100));
 
     const range = document.querySelector('#webbook-font-size-range');
     if (range) range.setAttribute('aria-valuetext', `${normalizedSize}%`);
@@ -198,4 +233,5 @@ export function initSettings() {
     initFontSize();
     initFontFamily();
     initRate();
+    initKeyboardShortcuts();
 }

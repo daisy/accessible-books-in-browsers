@@ -57,12 +57,20 @@ These demos were created using this [conversion script](https://github.com/daisy
 | Shortcut | Where it works | What it does |
 |---|---|---|
 | `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, sidebar, footnote, endnote, or note during narration playback |
-| `[` | Seek slider must have focus | Jump to the previous narration cue |
-| `]` | Seek slider must have focus | Jump to the next narration cue |
-| `Shift` + `←` | Seek slider must have focus | Seek back 10 seconds |
-| `Shift` + `→` | Seek slider must have focus | Seek forward 10 seconds |
-| `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Step to the previous/next caption item |
+| `[` | Anywhere outside a text field or open popover | Previous phrase, continuing onto the previous page from the first phrase of a page |
+| `]` | Anywhere outside a text field or open popover | Next phrase, continuing onto the next page from the last phrase of a page |
+| `\` | Anywhere outside a text field or open popover | Play / pause |
+| `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
 
-None of these use modifier-key combinations like `Ctrl`+`Alt`+*key*. An earlier version of this reader did, and screen reader users reported those combinations clashing with their own assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). Shortcuts here are deliberately either unmodified single keys or scoped to only fire when a specific control already has focus.
+None of these use modifier-key combinations like `Ctrl`+`Alt`+*key*. An earlier version of this reader did, and screen reader users reported those combinations clashing with their own assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). Shortcuts here are deliberately unmodified single keys. The seek slider uses the browser's standard slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`).
+
+More about `[`, `]` and `\`:
+
+- **Screen readers:** the keys were chosen because NVDA and JAWS don't use them on their own in browse mode, so they don't take away a screen reader command. In browse mode a screen reader may still keep them from reaching the page; they work in focus mode, and the hardware play/pause and previous/next track keys work in either mode.
+- **Keyboard layouts:** they're matched by the physical key, not the character it types. On a US keyboard they're the three keys to the right of `P`. On other layouts the same physical keys work even though they type different characters (on a German keyboard, `Ü`, `+` and `#`), so they never need `AltGr`.
+- **With `Shift` or another modifier** they do nothing, leaving those combinations free for later shortcuts.
+- **Turning them off:** the "Keyboard shortcuts" setting turns all three off, as WCAG 2.1.4 (Character Key Shortcuts) requires.
+
+The hardware media keys are separate from these: play/pause plays and pauses, and previous/next track move to the previous or next page.
 
 
