@@ -11,12 +11,23 @@
     opacity: 0;
     transition: opacity 0.4s;
 
+    /* Kept off the screen edges: with VoiceOver on, iOS puts the page's scroll bar along the right
+       edge, and touching there found the scroll bar instead of the next-page arrow */
     a {
         pointer-events: auto;
         color: var(--theme-fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+        min-height: 3rem;
+    }
+    #webbook-previous-document {
+        margin-left: max(.75rem, env(safe-area-inset-left));
     }
     #webbook-next-document {
         margin-left: auto;
+        margin-right: max(.75rem, env(safe-area-inset-right));
     }
 }
 #webbook-spine-nav.visible,

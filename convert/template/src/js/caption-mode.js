@@ -40,6 +40,17 @@ export function initCaptionMode() {
     document.addEventListener('keydown', handleCaptionKeydown);
 }
 
+// A page loaded in place of the last one: its captions come from its own text and track
+export function startCaptionModeForPage() {
+    captionItems = [];
+    captionIndex = -1;
+    captionBoundaryEntry = consumePageEntry();
+    if (!captionModeEnabled) return;
+    // The new page's content is in the same <main>, which caption mode keeps hidden
+    refreshCaptionItems();
+    showCaptionForCurrentState();
+}
+
 function ensureCaptionView() {
     if (captionView) return;
     captionView = document.createElement('section');
