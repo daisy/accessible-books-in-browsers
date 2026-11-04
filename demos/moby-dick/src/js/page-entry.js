@@ -18,6 +18,11 @@ export function consumePageEntry() {
     return pageEntry;
 }
 
+// A page loaded in place starts over: it reads the entry left for it like a newly loaded page
+export function resetPageEntry() {
+    pageEntry = undefined;
+}
+
 export function adjacentPageLink(delta) {
     return document.querySelector(`#webbook-spine-nav a[rel=${delta > 0 ? 'next' : 'prev'}][href]`);
 }

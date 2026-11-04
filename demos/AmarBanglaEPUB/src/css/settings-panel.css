@@ -50,20 +50,21 @@
         color: var(--theme-fg);
         border: 1px solid gray;
         border-radius: 4px;
+        min-height: 2.75rem;
         padding: .2rem .4rem;
         font-size: var(--size-step-0);
     }
     input[type=color] {
         border: 1px solid gray;
         border-radius: 4px;
-        width: 2.5rem;
-        height: 1.75rem;
+        width: 2.75rem;
+        height: 2.75rem;
         padding: 0;
         cursor: pointer;
     }
     input[type=checkbox] {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1.5rem;
+        height: 1.5rem;
         justify-self: end;
         cursor: pointer;
     }
@@ -79,7 +80,8 @@
         color: var(--theme-fg);
         border: 1px solid gray;
         border-radius: 4px;
-        padding: .2rem .6rem;
+        min-height: 2.75rem;
+        padding: .2rem .75rem;
         font-size: var(--size-step-0);
         cursor: pointer;
     }
@@ -102,7 +104,12 @@
 /* small screens */
 @media(max-width: 45rem) {
     #webbook-settings:popover-open {
-        width: 100vw;
+        inset: 0;
+        width: auto;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        border: none;
         border-radius: 0;
     }
     /* every popover already goes full-screen on mobile, so there's no visible backdrop

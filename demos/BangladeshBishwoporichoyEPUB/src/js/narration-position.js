@@ -11,15 +11,20 @@ export function lastNarratedElement() {
 }
 
 export function highlightElm(elm) {
-    clearNarrationHighlight();
     lastNarratedElm = elm;
 
     const highlights = customHighlightRegistry();
     if (highlights) {
         const range = document.createRange();
         range.selectNodeContents(elm);
-        currentNarrationHighlight = new Highlight(range);
-        highlights.set(NARRATION_HIGHLIGHT_NAME, currentNarrationHighlight);
+        // One registered highlight whose range is swapped, rather than a new highlight per phrase:
+        // Safari doesn't fully repaint a removed highlight and leaves a sliver of it behind
+        if (!currentNarrationHighlight || highlights.get(NARRATION_HIGHLIGHT_NAME) !== currentNarrationHighlight) {
+            currentNarrationHighlight = new Highlight();
+            highlights.set(NARRATION_HIGHLIGHT_NAME, currentNarrationHighlight);
+        }
+        currentNarrationHighlight.clear();
+        currentNarrationHighlight.add(range);
     }
     const rect = elm.getBoundingClientRect();
     const viewport = readingViewport();
@@ -29,16 +34,10 @@ export function highlightElm(elm) {
 }
 
 export function clearNarrationHighlight() {
+    currentNarrationHighlight?.clear();
     const highlights = customHighlightRegistry();
     const registeredHighlight = highlights?.get?.(NARRATION_HIGHLIGHT_NAME);
-
-    if (currentNarrationHighlight && currentNarrationHighlight !== registeredHighlight) {
-        currentNarrationHighlight.clear?.();
-    }
-    registeredHighlight?.clear?.();
-    currentNarrationHighlight = null;
-
-    highlights?.delete(NARRATION_HIGHLIGHT_NAME);
+    if (registeredHighlight && registeredHighlight !== currentNarrationHighlight) registeredHighlight.clear?.();
 }
 
 function customHighlightRegistry() {
@@ -90,7 +89,7 @@ export function syncHashToElement(elm) {
     if (!elm?.id) return;
     const target = `#${elm.id}`;
     if (window.location.hash === target) return;
-    history.replaceState(null, '', target);
+    history.replaceState(history.state, '', target);
 }
 
 // Read side: when the URL's hash points somewhere (a deep link, a TOC/footnote jump, or a

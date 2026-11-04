@@ -88,8 +88,13 @@ export function initResumePosition() {
         }
     }
 
-    writeResumePosition(bookId, { page: currentPageFilename() });
+    recordPageVisit();
     return false;
+}
+
+// The position saved for an earlier page doesn't apply to this one
+export function recordPageVisit() {
+    writeResumePosition(getBookId(), { page: currentPageFilename(), elementId: undefined, audioTime: undefined });
 }
 
 // Called on each narration cuechange alongside syncHashToElement — same low frequency,

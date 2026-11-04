@@ -1,3 +1,4 @@
+import { navigateTo } from './in-place-navigation.js';
 let darkModeMediaQueryListener = null;
 const KEYBOARD_SHORTCUTS_STORAGE_KEY = 'webbook-keyboard-shortcuts';
 
@@ -48,7 +49,7 @@ function initPageNavigation() {
         }
 
         input.removeAttribute('aria-invalid');
-        window.location.href = href;
+        navigateTo(href);
     };
 
     button.addEventListener('click', goToPage);
@@ -57,7 +58,13 @@ function initPageNavigation() {
         e.preventDefault();
         goToPage();
     });
-    input.addEventListener('input', () => input.removeAttribute('aria-invalid'));
+    input.addEventListener('input', e => {
+        input.removeAttribute('aria-invalid');
+        // Picking a suggestion goes straight there. Typing doesn't, since "1" may be the start of
+        // "12"; a pick arrives as replacement text, or with no inputType where that isn't reported.
+        const picked = e.inputType === 'insertReplacementText' || e.inputType === undefined;
+        if (picked && findPageOption(input.value, datalist)) goToPage();
+    });
 }
 
 function findPageOption(value, datalist) {

@@ -6,6 +6,7 @@ import { initSkippability } from './skippability.js';
 import { initCaptionMode } from './caption-mode.js';
 import { initPlayer } from './player.js';
 import { initToolbarAutoHide } from './toolbar.js';
+import { initInPlaceNavigation } from './in-place-navigation.js';
 
 initEscapability();
 initResumePosition();
@@ -18,6 +19,8 @@ initResumeSetting();
 initCaptionMode();
 initPlayer();
 initToolbarAutoHide();
+// Last, so its click handler runs after the others have seen the click
+initInPlaceNavigation();
 
 import('./media-session.js')
     .then(({ initMediaSessionControls }) => initMediaSessionControls())

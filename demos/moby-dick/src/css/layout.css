@@ -32,10 +32,18 @@ main {
     grid-area: main;
     max-width: 45rem;
     margin: auto;
-    padding-bottom: 5rem;
+    /* clear of the fixed bottom toolbar */
+    padding-bottom: 9rem;
     font-family: var(--webbook-main-font-family, system-ui);
     font-size: var(--webbook-main-font-size, 100%);
+    /* book content must not widen the page past the screen: on a phone that zooms the page */
+    min-width: 0;
+    overflow-wrap: anywhere;
 
+    img, svg, video {
+        max-width: 100%;
+        height: auto;
+    }
 
     /* the anchor links at chapter headings — hidden until hover/focus so headings
        don't read as link-cluttered by default; :focus-within also reveals it when
