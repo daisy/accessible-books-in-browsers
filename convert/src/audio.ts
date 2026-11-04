@@ -33,10 +33,14 @@ const select = xpath.useNamespaces({
 
 const AUDIO_SEGMENT_CONCURRENCY = 4;
 
-async function createAudioForPage(page: SitePage, outputPaths: OutputPaths): Promise<PageAudioAssets | null> {
+async function createAudioForPage(
+    page: SitePage,
+    outputPaths: OutputPaths,
+    suppliedMediaSegments?: MediaSegment[]
+): Promise<PageAudioAssets | null> {
     if (!page.moPath) return null;
 
-    const mediaSegments = await getMediaSegments(page);
+    const mediaSegments = suppliedMediaSegments ?? await getMediaSegments(page);
     if (mediaSegments.length === 0) {
         winston.warn(`No media segments found for ${page.sourcePath}`);
         return null;

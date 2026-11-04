@@ -8,7 +8,11 @@ import { validateTemplateContract } from './template-contract.js';
 
 export type RenderOptions = {
     coverHref: string;
+    // Output filenames of the pages that have narration
+    narratedPages: Set<string>;
 };
+
+const NARRATED_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"/></svg>';
 
 class TemplateRenderer {
     private readonly templateDocument: Document;
@@ -40,7 +44,7 @@ class TemplateRenderer {
         const main = requireElement(doc, 'main');
         main.innerHTML = content.bodyHtml;
 
-        renderToc(doc, site, page);
+        renderToc(doc, site, page, options.narratedPages);
         renderSpineNav(doc, site, page);
         renderAudio(doc, audio);
         renderPageList(doc, site);
@@ -63,7 +67,7 @@ function documentTitle(site: SiteModel, page: SitePage, content: TransformedCont
     return `${pageTitle} – ${bookTitle}`;
 }
 
-function renderToc(doc: Document, site: SiteModel, currentPage: SitePage): void {
+function renderToc(doc: Document, site: SiteModel, currentPage: SitePage, narratedPages: Set<string>): void {
     const nav = requireElement(doc, '#webbook-toc-nav');
     renderCoverLink(doc, site, currentPage);
 
@@ -77,6 +81,31 @@ function renderToc(doc: Document, site: SiteModel, currentPage: SitePage): void 
     clearElement(tocList);
     const coverHref = site.pages[0]?.outputFilename;
     renderTocEntries(doc, tocList, site.toc, currentPage, coverHref, []);
+    markNarratedEntries(doc, nav, narratedPages);
+}
+
+// Only in a book that's narrated in part: where every entry is narrated, or none, there's
+// nothing to tell apart. Screen readers hear "narrated" in the link's name, so the visual
+// key is hidden from them.
+function markNarratedEntries(doc: Document, nav: Element, narratedPages: Set<string>): void {
+    const links = Array.from(nav.querySelectorAll('ol a[href]'));
+    const isNarrated = (link: Element) => narratedPages.has((link.getAttribute('href') ?? '').split('#')[0]);
+    const narratedLinks = links.filter(isNarrated);
+    if (narratedLinks.length === 0 || narratedLinks.length === links.length) return;
+
+    narratedLinks.forEach(link => {
+        link.setAttribute('data-webbook-narrated', '');
+        const mark = doc.createElement('span');
+        mark.className = 'webbook-narrated-mark';
+        mark.innerHTML = `${NARRATED_ICON}<span class="sr-only">, narrated</span>`;
+        link.appendChild(mark);
+    });
+
+    const key = doc.createElement('p');
+    key.id = 'webbook-toc-narration-key';
+    key.setAttribute('aria-hidden', 'true');
+    key.innerHTML = `${NARRATED_ICON} Narrated`;
+    nav.querySelector('ol')?.before(key);
 }
 
 function renderTocEntries(

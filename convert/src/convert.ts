@@ -6,7 +6,7 @@ import * as logger from './logger/index.js';
 import { ImageAssetRegistry, copyImageAssets, copyUiAssets } from './assets.js';
 import { TemplateRenderer } from './template.js';
 import { buildSiteModel } from './model.js';
-import { createAudioForPage } from './audio.js';
+import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
 import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath } from './output.js';
 import { transformContent } from './content-transform.js';
 
@@ -48,12 +48,23 @@ async function convert(input: string, output: string, template: string, options:
 
         await copyUiAssets(template, outputPaths);
 
+        // Read ahead, so every page's table of contents can mark the narrated pages
+        const mediaSegmentsByPage = new Map<string, MediaSegment[]>();
+        for (const page of site.pages) {
+            mediaSegmentsByPage.set(page.outputFilename, page.moPath ? await getMediaSegments(page) : []);
+        }
+        const narratedPages = new Set(site.pages
+            .filter(page => (mediaSegmentsByPage.get(page.outputFilename) ?? []).length > 0)
+            .map(page => page.outputFilename));
+
         for (const page of site.pages) {
             winston.info(`Rendering ${page.outputFilename}`);
+            const mediaSegments = mediaSegmentsByPage.get(page.outputFilename) ?? [];
             const content = await transformContent(page, site, imageRegistry);
-            const audio = await createAudioForPage(page, outputPaths);
+            const audio = await createAudioForPage(page, outputPaths, mediaSegments);
             const html = renderer.renderPage(site, page, content, audio, {
-                coverHref: coverAsset?.href ?? ''
+                coverHref: coverAsset?.href ?? '',
+                narratedPages
             });
             await fs.writeFile(outputPath(outputPaths, page.outputFilename), html);
         }
