@@ -4,6 +4,7 @@ import { highlightElm } from './narration-position.js';
 import { consumePageEntry, stepAcrossPageBoundary } from './page-entry.js';
 import { stepPhrase } from './player.js';
 import { isInteractiveTarget, isAnyPopoverOpen } from './dom-utils.js';
+import { registerAction, announceReaderAction } from './reader-actions.js';
 
 // Caption mode is remembered per book. The shared key is what the inline script in each page's
 // <head> reads to apply caption mode before first paint; that script can't change, so the shared
@@ -38,6 +39,12 @@ export function initCaptionMode() {
     }
     setCaptionMode(captionModeEnabled, { persist: false });
     document.addEventListener('keydown', handleCaptionKeydown);
+    registerAction({ id: 'toggle-caption-mode', label: 'Caption mode on or off', group: 'Reading',
+        isAvailable: () => Boolean(toggle && !toggle.disabled),
+        run: () => {
+            toggle.click();
+            announceReaderAction(`Caption mode ${toggle.checked ? 'on' : 'off'}.`);
+        } });
 }
 
 // A page loaded in place of the last one: its captions come from its own text and track

@@ -1,5 +1,5 @@
 import { selectElm } from './cue-selector.js';
-import { isAnyPopoverOpen } from './dom-utils.js';
+import { registerAction } from './reader-actions.js';
 import { highlightElm } from './narration-position.js';
 import { showCaptionForCue } from './caption-mode.js';
 import { cancelSkipPreroll, canPlay } from './skippability.js';
@@ -136,16 +136,6 @@ export function initEscapability() {
         escapeBtn.addEventListener('click', activateEscape);
     }
 
-    // Single-keystroke escape for non-visual users: plain Escape, not a modifier combo — this
-    // project already removed its old Ctrl+Alt+* shortcuts specifically because they clashed
-    // with JAWS/NVDA's own commands, and a new shortcut must not repeat that. Only acts while
-    // the escape pill is actually showing, so Escape's native behavior (closing an open
-    // popover) is completely unaffected the rest of the time.
-    document.addEventListener('keydown', e => {
-        if (e.key !== 'Escape' || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-        if (!escapeBtn || escapeBtn.hidden || escapeBtn.disabled) return;
-        if (isAnyPopoverOpen()) return;
-        e.preventDefault();
-        activateCurrentEscape();
-    });
+    registerAction({ id: 'skip-past', label: 'Skip past table, list or note', group: 'Narration',
+        defaultKeys: [{ code: 'Escape' }], run: activateCurrentEscape, isAvailable: canActivateCurrentEscape });
 }

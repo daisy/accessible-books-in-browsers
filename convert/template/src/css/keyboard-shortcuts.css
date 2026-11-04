@@ -1,0 +1,113 @@
+#webbook-keyboard-shortcuts:popover-open {
+    box-sizing: border-box;
+    margin: 0;
+    inset: 0 0 0 auto;
+    width: min(34rem, 92vw);
+    height: 100dvh;
+    max-height: none;
+    padding: 0 1.5rem 2rem;
+    border-radius: 5px 0 0 5px;
+    overflow-y: auto;
+    color: var(--theme-fg);
+
+    h2 {
+        margin: 0 -1.5rem 1rem;
+        padding: 1rem 3.75rem 1rem 1.5rem;
+        border-bottom: var(--webbook-panel-border);
+    }
+    h3 {
+        font-size: var(--size-step-1);
+        margin: 1.5rem 0 .5rem;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1rem;
+    }
+    li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: .5rem 1rem;
+        padding-block: .75rem;
+        border-bottom: var(--webbook-panel-border);
+        overflow-wrap: anywhere;
+    }
+    .webbook-shortcut-label {
+        font-weight: 600;
+    }
+    .webbook-shortcut-keys {
+        min-width: 0;
+        text-align: right;
+    }
+    kbd {
+        font: inherit;
+    }
+    .webbook-shortcut-controls {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+    }
+    button {
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+        max-width: 100%;
+        padding: .2rem .75rem;
+        background: none;
+        color: var(--theme-fg);
+        border: 1px solid gray;
+        border-radius: 4px;
+        font-size: var(--size-step-0);
+        white-space: normal;
+        overflow-wrap: anywhere;
+        cursor: pointer;
+    }
+    p {
+        grid-column: 1 / -1;
+        margin: 0;
+        color: var(--theme-fg);
+        font-size: var(--size-step-0);
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+    .webbook-shortcut-instructions {
+        margin-bottom: 1rem;
+        color: var(--webbook-muted-fg);
+    }
+    .webbook-shortcut-conflict-warning {
+        padding: .5rem;
+        border-inline-start: .25rem solid var(--webbook-focus-color);
+    }
+    .webbook-shortcut-warning {
+        font-size: .875rem;
+    }
+    #webbook-shortcut-status:empty {
+        display: block;
+        height: 0;
+    }
+    :is(button):focus-visible {
+        outline: 2px solid var(--webbook-focus-color);
+        outline-offset: 3px;
+    }
+}
+
+@media(max-width: 45rem) {
+    #webbook-keyboard-shortcuts:popover-open {
+        inset: 0;
+        width: auto;
+        height: auto;
+        max-width: none;
+        border: none;
+        border-radius: 0;
+    }
+}
+
+@media(max-width: 22rem) {
+    #webbook-keyboard-shortcuts:popover-open li {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    #webbook-keyboard-shortcuts:popover-open .webbook-shortcut-keys {
+        text-align: left;
+    }
+}

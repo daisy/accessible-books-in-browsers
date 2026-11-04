@@ -1,4 +1,5 @@
 import { lastNarratedElement } from './narration-position.js';
+import { registerAction } from './reader-actions.js';
 
 const WEBBOOK_POPOVER_IDS = ['webbook-toc-nav', 'webbook-menu', 'webbook-settings', 'webbook-info', 'webbook-search'];
 const POPOVER_CLOSE_LABELS = {
@@ -9,6 +10,26 @@ const POPOVER_CLOSE_LABELS = {
     'webbook-search': 'Close search'
 };
 const CLOSE_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"/></svg>';
+
+export function initPopoverActions() {
+    for (const [id, label, popoverId] of [
+        ['open-toc', 'Table of contents', 'webbook-toc-nav'],
+        ['open-settings', 'Settings', 'webbook-settings'],
+        ['open-goto-page', 'Go to page', 'webbook-menu'],
+        ['open-search', 'Search', 'webbook-search'],
+        ['open-about', 'About this publication', 'webbook-info']
+    ]) {
+        registerAction({ id, label, group: 'Panels',
+            isAvailable: () => typeof document.getElementById(popoverId)?.showPopover === 'function',
+            run: () => {
+                const popover = document.getElementById(popoverId);
+                // Establish the same focus-return point as opening the panel from its toolbar.
+                document.querySelector(`button[popovertarget="${popoverId}"]:not(.webbook-popover-close)`)?.focus({ preventScroll: true });
+                popover.showPopover();
+                focusInitialPopoverControl(popover, popoverId);
+            } });
+    }
+}
 
 export function initPopoverCloseButtons() {
     WEBBOOK_POPOVER_IDS.forEach(id => {

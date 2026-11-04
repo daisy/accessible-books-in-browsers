@@ -2,7 +2,7 @@
 #webbook-settings:popover-open {
     margin: 0;
     inset: 0 0 0 auto;
-    width: min(400px, 92vw);
+    width: min(34rem, 92vw);
     height: 100dvh;
     padding: 0;
     border-radius: 5px 0 0 5px;
@@ -100,6 +100,11 @@
     align-items: center;
     justify-content: center;
     background: var(--theme-bg);
+}
+
+#webbook-settings .webbook-keyboard-shortcuts-row button {
+    width: 100%;
+    grid-column: 1 / -1;
 }
 /* small screens */
 @media(max-width: 45rem) {

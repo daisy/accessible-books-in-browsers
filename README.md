@@ -62,14 +62,18 @@ These demos were created using this [conversion script](https://github.com/daisy
 | `\` | Anywhere outside a text field or open popover | Play / pause |
 | `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
 
-None of these use modifier-key combinations like `Ctrl`+`Alt`+*key*. An earlier version of this reader did, and screen reader users reported those combinations clashing with their own assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). Shortcuts here are deliberately unmodified single keys. The seek slider uses the browser's standard slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`).
+The defaults use unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The seek slider uses the browser's standard slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`).
+
+Open **Settings**, then choose **Change keyboard shortcuts** to open the shortcut editor. Choose **Change** next to an action and press its new key, with any modifiers. Escape cancels a change. If another action already uses the key, the editor shows and announces a warning before asking you to confirm the move. **Remove** clears an action's shortcut; **Restore default** restores one action, and **Reset to defaults** restores the table above. Choices are shared across books on the same website and remembered when you return.
+
+You can also assign shortcuts for previous/next page, opening panels, narration speed, text size and caption mode. These actions have no keys until you assign them. Escape stays reserved for **Skip past**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when an unmodified key is also a screen reader browse-mode command. Caption mode's arrow keys remain fixed.
 
 More about `[`, `]` and `\`:
 
 - **Screen readers:** the keys were chosen because NVDA and JAWS don't use them on their own in browse mode, so they don't take away a screen reader command. In browse mode a screen reader may still keep them from reaching the page; they work in focus mode, and the hardware play/pause and previous/next track keys work in either mode.
 - **Keyboard layouts:** they're matched by the physical key, not the character it types. On a US keyboard they're the three keys to the right of `P`. On other layouts the same physical keys work even though they type different characters (on a German keyboard, `Ü`, `+` and `#`), so they never need `AltGr`.
-- **With `Shift` or another modifier** they do nothing, leaving those combinations free for later shortcuts.
-- **Turning them off:** the "Keyboard shortcuts" setting turns all three off, as WCAG 2.1.4 (Character Key Shortcuts) requires.
+- **With `Shift` or another modifier** they do nothing unless you assign that exact combination.
+- **Turning them off:** the "Keyboard shortcuts" setting disables all assigned shortcuts, including Skip past, as WCAG 2.1.4 (Character Key Shortcuts) requires. You can still edit shortcuts while they are off. Caption mode's arrow keys and the standard keys for controls keep working.
 
 The hardware media keys are separate from these: play/pause plays and pauses, and previous/next track move to the previous or next page.
 

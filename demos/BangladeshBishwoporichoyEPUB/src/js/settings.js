@@ -1,11 +1,17 @@
 import { navigateTo } from './in-place-navigation.js';
+import { registerAction, announceReaderAction } from './reader-actions.js';
 let darkModeMediaQueryListener = null;
 const KEYBOARD_SHORTCUTS_STORAGE_KEY = 'webbook-keyboard-shortcuts';
+let shortcutsEnabled = true;
+let shortcutsStorageUnavailable = false;
 
 // WCAG 2.1.4: shortcuts made of a single character key must be possible to turn off. Read at
 // keypress time so the setting applies without a reload.
 export function keyboardShortcutsEnabled() {
-    return localStorage.getItem(KEYBOARD_SHORTCUTS_STORAGE_KEY) !== 'false';
+    if (!shortcutsStorageUnavailable) {
+        try { shortcutsEnabled = localStorage.getItem(KEYBOARD_SHORTCUTS_STORAGE_KEY) !== 'false'; } catch { shortcutsStorageUnavailable = true; }
+    }
+    return shortcutsEnabled;
 }
 
 // The UI creates this setting itself, so books converted before it existed get it too
@@ -30,7 +36,11 @@ function initKeyboardShortcuts() {
 
     toggle.checked = keyboardShortcutsEnabled();
     toggle.addEventListener('change', () => {
-        localStorage.setItem(KEYBOARD_SHORTCUTS_STORAGE_KEY, String(toggle.checked));
+        shortcutsEnabled = toggle.checked;
+        try {
+            localStorage.setItem(KEYBOARD_SHORTCUTS_STORAGE_KEY, String(toggle.checked));
+            shortcutsStorageUnavailable = false;
+        } catch { shortcutsStorageUnavailable = true; }
     });
 }
 
@@ -232,6 +242,28 @@ function applyRate(rate) {
     if (audio) audio.playbackRate = parseInt(rate, 10) / 100;
 }
 
+function initSettingActions() {
+    for (const [id, label, selector, delta, announcement] of [
+        ['rate-down', 'Slower', '#webbook-rate-range', -10, 'Narration speed'],
+        ['rate-up', 'Faster', '#webbook-rate-range', 10, 'Narration speed'],
+        ['font-smaller', 'Smaller text', '#webbook-font-size-range', -10, 'Text size'],
+        ['font-larger', 'Larger text', '#webbook-font-size-range', 10, 'Text size']
+    ]) {
+        const nextValue = range => Math.max(Number(range.min || 50), Math.min(Number(range.max || 200), Number(range.value) + delta));
+        registerAction({ id, label, group: id.startsWith('rate-') ? 'Narration' : 'Reading',
+            isAvailable: () => {
+                const range = document.querySelector(selector);
+                return Boolean(range && !range.disabled && nextValue(range) !== Number(range.value));
+            },
+            run: () => {
+                const range = document.querySelector(selector);
+                range.value = String(nextValue(range));
+                range.dispatchEvent(new Event('input', { bubbles: true }));
+                announceReaderAction(`${announcement} ${range.value} percent.`);
+            } });
+    }
+}
+
 export function initSettings() {
     initPageNavigation();
     initAppearance();
@@ -241,4 +273,5 @@ export function initSettings() {
     initFontFamily();
     initRate();
     initKeyboardShortcuts();
+    initSettingActions();
 }

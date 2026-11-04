@@ -6,9 +6,8 @@ import { handleEscapableStructure, hideEscape } from './escapability.js';
 import { handleCuePlayability, restoreSkipMute, cancelSkipPreroll, canPlay } from './skippability.js';
 import { playOrOfferToContinue } from './continue-playing.js';
 import { requestAutoplayForForwardSpineLink, requestAutoplayForLink, clearAutoplayRequest, consumeAutoplayRequest, normalizeAutoplayUrl } from './autoplay.js';
-import { keyboardShortcutsEnabled } from './settings.js';
-import { isAnyPopoverOpen, isTextEntryTarget } from './dom-utils.js';
 import { consumePageEntry, adjacentPageLink, stepAcrossPageBoundary } from './page-entry.js';
+import { registerAction } from './reader-actions.js';
 
 const PLAY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>`;
 const PAUSE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
@@ -33,6 +32,19 @@ let controlsReady = false;
 const ui = {};
 
 export function initPlayer() {
+    registerAction({ id: 'play-pause', label: 'Play or pause', group: 'Narration',
+        defaultKeys: [{ code: 'Backslash' }], run: togglePlayback, isAvailable: () => Boolean(metadataTrack) });
+    for (const [id, label, code, delta] of [
+        ['previous-phrase', 'Previous phrase', 'BracketLeft', -1],
+        ['next-phrase', 'Next phrase', 'BracketRight', 1]
+    ]) {
+        registerAction({ id, label, group: 'Narration', defaultKeys: [{ code }],
+            run: () => stepPhrase(delta),
+            isAvailable: () => {
+                const cues = pageCues();
+                return Boolean(cues.length && (playableCueIndex(cues, cueIndexAtOrBefore(audio.currentTime, cues), delta) >= 0 || adjacentPageLink(delta)));
+            } });
+    }
     initDocumentListeners();
     startPlayerForPage();
 }
@@ -173,25 +185,6 @@ function initDocumentListeners() {
     });
     // Back/forward between positions on this page
     window.addEventListener('hashchange', () => seekToHash(window.location.hash));
-
-    // [ and ] step by phrase and \ plays and pauses, anywhere outside a text field or open popover,
-    // unless the reader turned keyboard shortcuts off. Matched by physical key (e.code), not by
-    // character: on layouts where these characters need AltGr, which arrives as Ctrl+Alt and so
-    // can't be told apart from a modified shortcut, the same keys still work unmodified.
-    // NVDA and JAWS don't use these keys on their own in browse mode.
-    const shortcutActions = {
-        BracketLeft: () => stepPhrase(-1),
-        BracketRight: () => stepPhrase(1),
-        Backslash: togglePlayback
-    };
-    document.addEventListener('keydown', e => {
-        const action = shortcutActions[e.code];
-        if (!action || !audio) return;
-        if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-        if (!keyboardShortcutsEnabled() || isTextEntryTarget(e.target) || isAnyPopoverOpen()) return;
-        e.preventDefault();
-        action();
-    });
 }
 
 function resetTimeline() {
@@ -224,7 +217,7 @@ function updatePlayPause() {
 
 function togglePlayback() {
     if (!metadataTrack) return;
-    if (audio.paused || audio.ended) audio.play();
+    if (audio.paused || audio.ended) playOrOfferToContinue(audio);
     else audio.pause();
 }
 
