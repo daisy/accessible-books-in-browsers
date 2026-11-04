@@ -92,19 +92,28 @@ case folding, display direction and screen-reader pronunciation.
 | `[` | Anywhere outside a text field or open popover | Previous phrase, continuing onto the previous page from the first phrase of a page |
 | `]` | Anywhere outside a text field or open popover | Next phrase, continuing onto the next page from the last phrase of a page |
 | `\` | Anywhere outside a text field or open popover | Play / pause |
+| `Shift`+`[` / `Shift`+`]` | Anywhere outside a text field or open popover | Previous / next page |
+| `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
+| `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |
+| `Alt`+`Shift`+`F` | Anywhere outside a text field or open popover | Open search |
+| `Alt`+`Shift`+`G` | Anywhere outside a text field or open popover | Open Go to page |
+| `Alt`+`Shift`+`S` | Anywhere outside a text field or open popover | Open Settings |
+| `Alt`+`Shift`+`O` | Anywhere outside a text field or open popover | Open About this publication |
+| `Alt`+`Shift`+`,` / `Alt`+`Shift`+`.` | Anywhere outside a text field or open popover | Narration slower / faster |
+| `Alt`+`Shift`+`-` / `Alt`+`Shift`+`=` | Anywhere outside a text field or open popover | Smaller / larger text |
 | `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
 
-The defaults use unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The seek slider uses the browser's standard slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`).
+The narration keys are unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The seek slider uses the browser's standard slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`).
 
 Open **Settings**, then choose **Change keyboard shortcuts** to open the shortcut editor. Choose **Change** next to an action and press its new key, with any modifiers. Escape cancels a change. If another action already uses the key, the editor shows and announces a warning before asking you to confirm the move. **Remove** clears an action's shortcut; **Restore default** restores one action, and **Reset to defaults** restores the table above. Choices are shared across books on the same website and remembered when you return.
 
-You can also assign shortcuts for previous/next page, opening panels, narration speed, text size and caption mode. These actions have no keys until you assign them. Escape stays reserved for **Skip past**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when an unmodified key is also a screen reader browse-mode command. Caption mode's arrow keys remain fixed.
+On a Mac, `Alt` is `Option`. Escape closes an open panel. The panel, speed and text size keys use `Alt`+`Shift` because NVDA, JAWS, Narrator and VoiceOver don't use it with letters or punctuation, and Chrome, Edge and Safari don't use these letters with it; `Shift`+`,` and `Shift`+`.` would have clashed with NVDA's and JAWS's browse-mode commands. Escape stays reserved for **Skip past**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when a key is also a screen reader browse-mode command (an unmodified letter or some punctuation, or `Shift`+`,` and `Shift`+`.`). Caption mode's arrow keys remain fixed.
 
 More about `[`, `]` and `\`:
 
 - **Screen readers:** the keys were chosen because NVDA and JAWS don't use them on their own in browse mode, so they don't take away a screen reader command. In browse mode a screen reader may still keep them from reaching the page; they work in focus mode, and the hardware play/pause and previous/next track keys work in either mode.
 - **Keyboard layouts:** they're matched by the physical key, not the character it types. On a US keyboard they're the three keys to the right of `P`. On other layouts the same physical keys work even though they type different characters (on a German keyboard, `Ü`, `+` and `#`), so they never need `AltGr`.
-- **With `Shift` or another modifier** they do nothing unless you assign that exact combination.
+- **With `Shift`**, `[` and `]` move by page and `\` turns caption mode on or off. With any other modifier they do nothing unless you assign that exact combination.
 - **Turning them off:** the "Keyboard shortcuts" setting disables all assigned shortcuts, including Skip past, as WCAG 2.1.4 (Character Key Shortcuts) requires. You can still edit shortcuts while they are off. Caption mode's arrow keys and the standard keys for controls keep working.
 
 The hardware media keys are separate from these: play/pause plays and pauses, and previous/next track move to the previous or next page.

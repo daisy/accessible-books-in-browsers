@@ -29,8 +29,11 @@ export function adjacentPageLink(delta) {
 }
 
 export function initPageActions() {
-    for (const [id, label, delta] of [['previous-page', 'Previous page', -1], ['next-page', 'Next page', 1]]) {
-        registerAction({ id, label, group: 'Navigation',
+    for (const [id, label, delta, code] of [
+        ['previous-page', 'Previous page', -1, 'BracketLeft'],
+        ['next-page', 'Next page', 1, 'BracketRight']
+    ]) {
+        registerAction({ id, label, group: 'Navigation', defaultKeys: [{ code, shift: true }],
             run: () => adjacentPageLink(delta)?.click(), isAvailable: () => Boolean(adjacentPageLink(delta)) });
     }
 }

@@ -40,6 +40,7 @@ export function initCaptionMode() {
     setCaptionMode(captionModeEnabled, { persist: false });
     document.addEventListener('keydown', handleCaptionKeydown);
     registerAction({ id: 'toggle-caption-mode', label: 'Caption mode on or off', group: 'Reading',
+        defaultKeys: [{ code: 'Backslash', shift: true }],
         isAvailable: () => Boolean(toggle && !toggle.disabled),
         run: () => {
             toggle.click();

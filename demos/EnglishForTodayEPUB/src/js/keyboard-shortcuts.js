@@ -53,6 +53,8 @@ export function shortcutRejection(spec, actionId) {
 }
 
 export function isBrowseModeKey(spec) {
+    // Shift+comma and Shift+period too: NVDA's start of container, JAWS's previous and next element
+    if (spec.shift && !spec.alt && !spec.ctrl && !spec.meta && ['Comma', 'Period'].includes(spec.code)) return true;
     return !MODIFIERS.some(name => spec[name])
         && (/^Key[A-Z]$/.test(spec.code) || ['Comma', 'Minus', 'Semicolon', 'Slash', 'Quote'].includes(spec.code));
 }

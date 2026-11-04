@@ -12,14 +12,16 @@ const POPOVER_CLOSE_LABELS = {
 const CLOSE_SVG = '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"/></svg>';
 
 export function initPopoverActions() {
-    for (const [id, label, popoverId] of [
-        ['open-toc', 'Table of contents', 'webbook-toc-nav'],
-        ['open-settings', 'Settings', 'webbook-settings'],
-        ['open-goto-page', 'Go to page', 'webbook-menu'],
-        ['open-search', 'Search', 'webbook-search'],
-        ['open-about', 'About this publication', 'webbook-info']
+    // Alt+Shift (Option+Shift on a Mac) with a letter: free in NVDA, JAWS, Narrator and VoiceOver,
+    // and in Chrome, Edge and Safari, which take A, B, I, N and T
+    for (const [id, label, popoverId, code] of [
+        ['open-toc', 'Table of contents', 'webbook-toc-nav', 'KeyC'],
+        ['open-settings', 'Settings', 'webbook-settings', 'KeyS'],
+        ['open-goto-page', 'Go to page', 'webbook-menu', 'KeyG'],
+        ['open-search', 'Search', 'webbook-search', 'KeyF'],
+        ['open-about', 'About this publication', 'webbook-info', 'KeyO']
     ]) {
-        registerAction({ id, label, group: 'Panels',
+        registerAction({ id, label, group: 'Panels', defaultKeys: [{ code, alt: true, shift: true }],
             isAvailable: () => typeof document.getElementById(popoverId)?.showPopover === 'function',
             run: () => {
                 const popover = document.getElementById(popoverId);

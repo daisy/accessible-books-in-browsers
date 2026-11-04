@@ -243,14 +243,17 @@ function applyRate(rate) {
 }
 
 function initSettingActions() {
-    for (const [id, label, selector, delta, announcement] of [
-        ['rate-down', 'Slower', '#webbook-rate-range', -10, 'Narration speed'],
-        ['rate-up', 'Faster', '#webbook-rate-range', 10, 'Narration speed'],
-        ['font-smaller', 'Smaller text', '#webbook-font-size-range', -10, 'Text size'],
-        ['font-larger', 'Larger text', '#webbook-font-size-range', 10, 'Text size']
+    // With Alt+Shift: NVDA and JAWS use Shift+comma and Shift+period in browse mode, and JAWS
+    // uses minus
+    for (const [id, label, selector, delta, announcement, code] of [
+        ['rate-down', 'Slower', '#webbook-rate-range', -10, 'Narration speed', 'Comma'],
+        ['rate-up', 'Faster', '#webbook-rate-range', 10, 'Narration speed', 'Period'],
+        ['font-smaller', 'Smaller text', '#webbook-font-size-range', -10, 'Text size', 'Minus'],
+        ['font-larger', 'Larger text', '#webbook-font-size-range', 10, 'Text size', 'Equal']
     ]) {
         const nextValue = range => Math.max(Number(range.min || 50), Math.min(Number(range.max || 200), Number(range.value) + delta));
         registerAction({ id, label, group: id.startsWith('rate-') ? 'Narration' : 'Reading',
+            defaultKeys: [{ code, alt: true, shift: true }],
             isAvailable: () => {
                 const range = document.querySelector(selector);
                 return Boolean(range && !range.disabled && nextValue(range) !== Number(range.value));
