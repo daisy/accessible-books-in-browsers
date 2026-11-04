@@ -92,6 +92,8 @@ case folding, display direction and screen-reader pronunciation.
 | `[` | Anywhere outside a text field or open popover | Previous phrase, continuing onto the previous page from the first phrase of a page |
 | `]` | Anywhere outside a text field or open popover | Next phrase, continuing onto the next page from the last phrase of a page |
 | `\` | Anywhere outside a text field or open popover | Play / pause |
+| `Alt`+`Shift`+`P` | Anywhere outside a text field or open popover | Go to narration position: moves focus, and a screen reader, to the phrase narration is on, e.g. to read on from there after pausing |
+| `Alt`+`Shift`+`R` | Anywhere outside a text field or open popover | Play from here: starts narration at the phrase that has focus (a screen reader's cursor brings focus with it) or at selected text |
 | `Shift`+`[` / `Shift`+`]` | Anywhere outside a text field or open popover | Previous / next page |
 | `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
 | `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |
@@ -107,7 +109,7 @@ The narration keys are unmodified single keys. An earlier version used `Ctrl`+`A
 
 Open **Settings**, then choose **Change keyboard shortcuts** to open the shortcut editor. Choose **Change** next to an action and press its new key, with any modifiers. Escape cancels a change. If another action already uses the key, the editor shows and announces a warning before asking you to confirm the move. **Remove** clears an action's shortcut; **Restore default** restores one action, and **Reset to defaults** restores the table above. Choices are shared across books on the same website and remembered when you return.
 
-On a Mac, `Alt` is `Option`. Escape closes an open panel. The panel, speed and text size keys use `Alt`+`Shift` because NVDA, JAWS, Narrator and VoiceOver don't use it with letters or punctuation, and Chrome, Edge and Safari don't use these letters with it; `Shift`+`,` and `Shift`+`.` would have clashed with NVDA's and JAWS's browse-mode commands. Escape stays reserved for **Skip past**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when a key is also a screen reader browse-mode command (an unmodified letter or some punctuation, or `Shift`+`,` and `Shift`+`.`). Caption mode's arrow keys remain fixed.
+On a Mac, `Alt` is `Option`. Escape closes an open panel. The panel, narration position, speed and text size keys use `Alt`+`Shift` because NVDA, JAWS, Narrator and VoiceOver don't use it with letters or punctuation, and Chrome, Edge and Safari don't use these letters with it; `Shift`+`,` and `Shift`+`.` would have clashed with NVDA's and JAWS's browse-mode commands. Escape stays reserved for **Skip past**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when a key is also a screen reader browse-mode command (an unmodified letter or some punctuation, or `Shift`+`,` and `Shift`+`.`). Caption mode's arrow keys remain fixed.
 
 More about `[`, `]` and `\`:
 

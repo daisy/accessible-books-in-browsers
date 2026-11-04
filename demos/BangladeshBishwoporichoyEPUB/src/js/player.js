@@ -1,5 +1,5 @@
 import { elmForCue } from './cue-selector.js';
-import { highlightElm, clearNarrationHighlight, syncHashToElement, seekToHashTarget } from './narration-position.js';
+import { highlightElm, clearNarrationHighlight, syncHashToElement, seekToHashTarget, lastNarratedElement } from './narration-position.js';
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
 import { showCaptionForCue, refreshCaptionItemsFromTrack } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
@@ -45,6 +45,16 @@ export function initPlayer() {
                 return Boolean(cues.length && (playableCueIndex(cues, cueIndexAtOrBefore(audio.currentTime, cues), delta) >= 0 || adjacentPageLink(delta)));
             } });
     }
+    // Alt+Shift+P (position): free in the screen readers and browsers checked, see the README
+    registerAction({ id: 'go-to-narration', label: 'Go to narration position', group: 'Narration',
+        defaultKeys: [{ code: 'KeyP', alt: true, shift: true }],
+        run: goToNarrationPosition,
+        isAvailable: () => Boolean(narrationPositionElement())
+            && document.querySelector('main')?.getAttribute('aria-hidden') !== 'true' });
+    // Alt+Shift+R (read from here): the other way round, narration starts where the reader is
+    registerAction({ id: 'play-from-here', label: 'Play from here', group: 'Narration',
+        defaultKeys: [{ code: 'KeyR', alt: true, shift: true }],
+        run: playFromHere, isAvailable: () => pageCues().length > 0 });
     initDocumentListeners();
     startPlayerForPage();
 }
@@ -269,6 +279,57 @@ function seekToCue(cue) {
     showCaptionForCue(cue, metadataTrack);
 }
 
+// The phrase narration last reached, or, before it has played, the one at the audio's position
+function narrationPositionElement() {
+    const cues = pageCues();
+    const idx = cues.length ? Math.max(0, cueIndexAtOrBefore(audio.currentTime, cues)) : -1;
+    return lastNarratedElement() ?? (idx >= 0 ? elmForCue(cues[idx]) : null);
+}
+
+// Screen readers don't follow the highlight, so after pausing they pick up wherever their cursor
+// last was. This moves focus, and with it the screen reader, to the phrase.
+function goToNarrationPosition() {
+    const elm = narrationPositionElement();
+    if (!elm) return;
+    highlightElm(elm);
+    if (!elm.matches('a[href], button, input, select, textarea, [tabindex]')) elm.setAttribute('tabindex', '-1');
+    elm.focus({ preventScroll: true });
+}
+
+// The phrase the reader is at: the one holding focus (a screen reader's cursor brings focus with it
+// onto the phrases, which are focusable for this), else the one at the start of a text selection
+function cueAtReader(cues) {
+    const located = cues.map(cue => ({ cue, elm: elmForCue(cue) })).filter(({ elm }) => elm);
+    const focused = document.activeElement;
+    if (focused && focused !== document.body && document.querySelector('main')?.contains(focused)) {
+        const match = located.find(({ elm }) => elm === focused || elm.contains(focused) || focused.contains(elm));
+        if (match) return match.cue;
+    }
+    const selection = window.getSelection?.();
+    if (selection && selection.rangeCount && !selection.isCollapsed) {
+        const node = selection.getRangeAt(0).startContainer;
+        const match = located.find(({ elm }) => elm.contains(node))
+            ?? located.find(({ elm }) => node.compareDocumentPosition(elm) & Node.DOCUMENT_POSITION_FOLLOWING);
+        if (match) return match.cue;
+    }
+    return null;
+}
+
+function playFromHere() {
+    const cue = cueAtReader(pageCues());
+    if (cue) seekToCue(cue);
+    playOrOfferToContinue(audio);
+}
+
+// So that a screen reader's cursor, moving through the text, brings keyboard focus with it, and
+// Play from here knows where it is. tabindex -1 keeps them out of the Tab order.
+function makePhrasesFocusable() {
+    for (const cue of pageCues()) {
+        const elm = elmForCue(cue);
+        if (elm && !elm.matches('a[href], button, input, select, textarea, [tabindex]')) elm.setAttribute('tabindex', '-1');
+    }
+}
+
 function cueIndexAtOrBefore(time, cues) {
     for (let i = 0; i < cues.length; i++) {
         if (cues[i].startTime <= time && cues[i].endTime > time) return i;
@@ -279,6 +340,7 @@ function cueIndexAtOrBefore(time, cues) {
 
 function handleTrackReady() {
     refreshCaptionItemsFromTrack(metadataTrack);
+    makePhrasesFocusable();
     seekToHashTarget(audio, metadataTrack);
     applyResumeAudioTimeIfMatching(audio);
     seekToPageEntry();

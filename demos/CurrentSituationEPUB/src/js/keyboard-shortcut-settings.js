@@ -4,7 +4,7 @@ import { getActionKeys, keySpecForEvent, shortcutRejection, isBrowseModeKey, ass
 const BROWSE_MODE_WARNING = 'Warning: this key is a screen reader command in browse mode.';
 const MODIFIER_CODES = /^(Shift|Control|Alt|Meta)(Left|Right)$|^(AltGraph|CapsLock|NumLock|ScrollLock|Fn|FnLock)$/;
 const ACTION_ORDER = [
-    'play-pause', 'previous-phrase', 'next-phrase', 'skip-past', 'rate-down', 'rate-up',
+    'play-pause', 'previous-phrase', 'next-phrase', 'go-to-narration', 'play-from-here', 'skip-past', 'rate-down', 'rate-up',
     'previous-page', 'next-page',
     'open-toc', 'open-settings', 'open-goto-page', 'open-search', 'open-about',
     'font-smaller', 'font-larger', 'toggle-caption-mode'
