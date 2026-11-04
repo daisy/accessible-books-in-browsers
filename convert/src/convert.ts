@@ -9,6 +9,8 @@ import { buildSiteModel } from './model.js';
 import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
 import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath } from './output.js';
 import { transformContent } from './content-transform.js';
+import { createSearchData, generateSearchIndex } from './create-search-index.js';
+import * as utils from './utils.js';
 
 export type ConvertOptions = {
     headingTitles?: boolean;
@@ -42,6 +44,7 @@ async function convert(input: string, output: string, template: string, options:
         }
         const imageRegistry = new ImageAssetRegistry();
         const renderer = await TemplateRenderer.load(template);
+        const searchData = createSearchData(site);
         const coverAsset = site.metadata.coverPath
             ? imageRegistry.register(site.metadata.coverPath)
             : null;
@@ -60,7 +63,8 @@ async function convert(input: string, output: string, template: string, options:
         for (const page of site.pages) {
             winston.info(`Rendering ${page.outputFilename}`);
             const mediaSegments = mediaSegmentsByPage.get(page.outputFilename) ?? [];
-            const content = await transformContent(page, site, imageRegistry);
+            const narratedTargetIds = mediaSegments.map(segment => utils.getFrag(segment.textSrc)).filter(Boolean);
+            const content = await transformContent(page, site, imageRegistry, searchData, narratedTargetIds);
             const audio = await createAudioForPage(page, outputPaths, mediaSegments);
             const html = renderer.renderPage(site, page, content, audio, {
                 coverHref: coverAsset?.href ?? '',
@@ -69,6 +73,7 @@ async function convert(input: string, output: string, template: string, options:
             await fs.writeFile(outputPath(outputPaths, page.outputFilename), html);
         }
 
+        await generateSearchIndex(searchData, outputPaths);
         await copyImageAssets(imageRegistry, outputPaths);
         await finalizeOutput(outputPaths);
         winston.info(`Wrote ${output}`);

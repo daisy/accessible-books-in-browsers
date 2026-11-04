@@ -5,6 +5,8 @@ import type { SiteModel, SitePage } from './model.js';
 import { normalizeSourcePath, rewriteSourceHref } from './model.js';
 import * as fileio from './file-io.js';
 import * as utils from './utils.js';
+import type { SearchData } from './create-search-index.js';
+import { collectSearchPassages } from './create-search-index.js';
 
 export type TransformedContent = {
     bodyHtml: string;
@@ -14,7 +16,9 @@ export type TransformedContent = {
 async function transformContent(
     page: SitePage,
     site: SiteModel,
-    imageRegistry: ImageAssetRegistry
+    imageRegistry: ImageAssetRegistry,
+    searchData?: SearchData,
+    narratedTargetIds: string[] = []
 ): Promise<TransformedContent> {
     const source = await fileio.readToString(page.sourcePath);
     const dom = new JSDOM(source);
@@ -25,6 +29,7 @@ async function transformContent(
     rewriteInternalLinks(doc, page, site);
     rewriteImageReferences(doc, page, imageRegistry);
     selfAnchorHeadings(doc);
+    if (searchData) collectSearchPassages(searchData, doc, page, narratedTargetIds);
 
     return {
         bodyHtml: doc.body.innerHTML,

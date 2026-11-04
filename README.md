@@ -52,6 +52,34 @@ These demos were created using this [conversion script](https://github.com/daisy
 - Every heading has a permalink (visible on hover/focus) for bookmarking or sharing a specific section
 - The URL updates to reflect your reading position as narration plays, without adding browser-history entries
 
+## Search
+
+Search works within one book. Results link to the exact passage, including narration cue targets
+when a book has synchronized audio. The reader loads `search-data.json` and builds its in-memory
+index only after the first search.
+
+Narrated results use the existing ids required by their timing cues. Other results use Web
+Annotation-style `TextQuoteSelector` anchors: the passage's exact text plus nearby prefix and
+suffix context. The reader resolves the quotation after loading the page, so search does not add
+generated ids to publication content.
+
+Search uses `Intl.Segmenter` to split text into words according to its language, including scripts
+such as Chinese, Japanese, Thai, Lao, Khmer and Burmese that do not put spaces between every word.
+When a browser lacks `Intl.Segmenter`, the fallback splits on Unicode whitespace and punctuation
+and adds overlapping two-character pieces for Han, Hiragana, Katakana and Hangul text.
+
+Matching ignores case and Unicode compatibility differences such as full-width forms and ligatures.
+Combining marks remain significant because they are part of letters in Indic scripts, Vietnamese
+and many other languages. Two explicit language rules ignore optional Arabic harakat and tatweel,
+and Hebrew niqqud; new exceptions belong in the small rule table in `search-text.js`, with the
+language-specific reason documented there.
+
+The final query word can match a prefix. One-character typo tolerance applies only to words of at
+least five characters written entirely in Latin, Cyrillic or Greek letters, where an edit is less
+likely to change a vowel sign or tone mark. Search does not currently stem words or ignore accents
+in Latin-script languages. Accurate `lang` markup in the publication improves word segmentation,
+case folding, display direction and screen-reader pronunciation.
+
 ## Keyboard shortcuts
 
 | Shortcut | Where it works | What it does |
