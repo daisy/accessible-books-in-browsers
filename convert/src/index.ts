@@ -12,7 +12,7 @@ async function main() {
         .argument('template', "Directory containing template files")
         .option('--include-non-linear', 'Include OPF spine items marked linear="no" in the generated reading order')
         .option('--identifier <id>', "Book ID used to key saved reading positions; defaults to the EPUB's identifier")
-        .option('--heading-titles', "If every content document's <title> is the book title, title each page by its first heading that isn't the book title")
+        .option('--heading-titles', "If there is more than one content document and every one's <title> is the book title, title each page by its first heading that isn't the book title")
         .action(async(input, output, template, options: { headingTitles?: boolean, identifier?: string, includeNonLinear?: boolean }) => {
             const identifier = options.identifier?.trim();
             if (options.identifier !== undefined && !identifier) {

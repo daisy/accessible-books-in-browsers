@@ -1,7 +1,7 @@
 import { JSDOM } from 'jsdom';
 import path from 'path';
 import type { PageAudioAssets } from './audio.js';
-import type { SiteModel, SitePage } from './model.js';
+import { collapseWhitespace, type SiteModel, type SitePage } from './model.js';
 import type { TransformedContent } from './content-transform.js';
 import * as fileio from './file-io.js';
 import { validateTemplateContract } from './template-contract.js';
@@ -34,7 +34,7 @@ class TemplateRenderer {
     ): string {
         const doc = this.cloneTemplateDocument();
         doc.documentElement.setAttribute('lang', site.metadata.language);
-        setText(doc.querySelector('title'), page.title || content.title || site.metadata.title);
+        setText(doc.querySelector('title'), documentTitle(site, page, content));
         doc.querySelector('meta[name="webbook-book-id"]')?.setAttribute('content', site.bookId);
 
         const main = requireElement(doc, 'main');
@@ -52,6 +52,15 @@ class TemplateRenderer {
     private cloneTemplateDocument(): Document {
         return this.templateDocument.cloneNode(true) as Document;
     }
+}
+
+// Most specific first, so pages of the same book differ at the start of a tab or history entry.
+// The entry page, and a page with no title of its own, are titled by the book alone.
+function documentTitle(site: SiteModel, page: SitePage, content: TransformedContent): string {
+    const bookTitle = collapseWhitespace(site.metadata.title);
+    const pageTitle = collapseWhitespace(page.title || content.title || '');
+    if (page.index === 0 || !pageTitle || pageTitle === bookTitle) return bookTitle;
+    return `${pageTitle} – ${bookTitle}`;
 }
 
 function renderToc(doc: Document, site: SiteModel, currentPage: SitePage): void {

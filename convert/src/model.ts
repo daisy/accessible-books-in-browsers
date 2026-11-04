@@ -73,7 +73,9 @@ function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): SiteModel {
 
     const metadata = buildMetadata(epub.metadata);
     const bookTitle = collapseWhitespace(metadata.title);
+    // A one-page book titled after the book is already titled correctly
     const useHeadingTitles = options.headingTitles === true
+        && epub.spine.length > 1
         && epub.spine.every(item => collapseWhitespace(item.title ?? '') === bookTitle);
     const pages = epub.spine.map((spineItem, index) => {
         const sourcePath = normalizeSourcePath(spineItem.path);
@@ -256,6 +258,7 @@ function collapseWhitespace(value: string): string {
 
 export {
     buildSiteModel,
+    collapseWhitespace,
     normalizeSourcePath,
     rewriteSourceHref
 };
