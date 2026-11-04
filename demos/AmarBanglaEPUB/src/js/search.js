@@ -1,6 +1,7 @@
 import MiniSearch from './vendor/minisearch.js';
 import { createSearchSnippet, isFuzzySearchTerm, tokenizeSearchText } from './search-text.js';
 import { resolveTextQuote } from './search-anchor.js';
+import { compareSearchResults, searchMatchQuality } from './search-ranking.js';
 
 const SEARCH_HIGHLIGHT_NAME = 'search';
 const PENDING_HIGHLIGHT_KEY = 'webbook-search-highlight';
@@ -146,13 +147,18 @@ async function runSearch(rawQuery, ui) {
             fuzzy: term => isFuzzySearchTerm(term) ? 1 : false
         });
         for (const match of matches) {
+            match.matchQuality = searchMatchQuality(match, queryTerms);
             const existing = combined.get(match.id);
-            if (!existing || match.score > existing.score) combined.set(match.id, match);
+            if (!existing
+                || match.matchQuality < existing.matchQuality
+                || (match.matchQuality === existing.matchQuality && match.score > existing.score)) {
+                combined.set(match.id, match);
+            }
             else if (existing) existing.terms = Array.from(new Set([...existing.terms, ...match.terms]));
         }
     }
     const matches = Array.from(combined.values())
-        .sort((first, second) => second.score - first.score || first.order - second.order)
+        .sort(compareSearchResults)
         .slice(0, RESULT_LIMIT);
     renderResults(matches, ui.results);
     const quotedQuery = `'${query}'`;
