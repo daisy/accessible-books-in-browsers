@@ -10,6 +10,7 @@ import { initInPlaceNavigation } from './in-place-navigation.js';
 import { initPageActions } from './page-entry.js';
 import { initKeyboardShortcuts } from './keyboard-shortcuts.js';
 import { initKeyboardShortcutSettings } from './keyboard-shortcut-settings.js';
+import { initSearch } from './search.js';
 
 initEscapability();
 initResumePosition();
@@ -26,6 +27,7 @@ initPageActions();
 initPopoverActions();
 initKeyboardShortcuts();
 initKeyboardShortcutSettings();
+initSearch();
 // Last, so its click handler runs after the others have seen the click
 initInPlaceNavigation();
 

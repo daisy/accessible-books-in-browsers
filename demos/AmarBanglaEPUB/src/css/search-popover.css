@@ -47,6 +47,44 @@
         display: flex;
         flex-direction: column;
         gap: .5rem;
+        li {
+            min-width: 0;
+        }
+        a {
+            display: block;
+            padding: .75rem;
+            border: 1px solid color-mix(in srgb, var(--theme-fg) 25%, transparent);
+            border-radius: 5px;
+            color: var(--theme-fg);
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+        a:hover {
+            border-color: var(--webbook-focus-color);
+        }
+        a:focus-visible {
+            outline: 2px solid var(--webbook-focus-color);
+            outline-offset: 2px;
+        }
+        mark {
+            background: Mark;
+            color: MarkText;
+        }
+    }
+    #webbook-search-status {
+        margin: 0;
+        min-height: 1.5em;
+        color: var(--webbook-muted-fg);
+        font-size: var(--size-step-0);
+    }
+    .webbook-search-context,
+    .webbook-search-snippet {
+        display: block;
+    }
+    .webbook-search-context {
+        margin-bottom: .25rem;
+        color: var(--webbook-muted-fg);
+        font-size: .875rem;
     }
 }
 /* small screens */
@@ -85,6 +123,9 @@
             min-height: 0;
             max-height: none;
             padding: 1rem;
+        }
+        #webbook-search-status {
+            padding: .75rem 1rem 0;
         }
     }
 }

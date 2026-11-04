@@ -6,6 +6,8 @@
     --webbook-panel-border: 1px solid color-mix(in srgb, var(--theme-fg) 18%, transparent);
     /* #767676 on a light background is ~4.54:1, the standard minimum-passing AA gray for normal text */
     --webbook-muted-fg: #767676;
+    --webbook-search-highlight-bg: #005fcc;
+    --webbook-search-highlight-fg: white;
 }
 :root.webbook-dark,
 body.webbook-dark {
@@ -14,6 +16,8 @@ body.webbook-dark {
     --webbook-focus-color: #8ec5ff;
     /* lighter gray needed for AA on a black background */
     --webbook-muted-fg: #a8a8a8;
+    --webbook-search-highlight-bg: #d65db1;
+    --webbook-search-highlight-fg: black;
     color-scheme: dark;
 }
 :root.webbook-light,
@@ -22,5 +26,7 @@ body.webbook-light {
     --theme-fg: #111;
     --webbook-focus-color: #005fcc;
     --webbook-muted-fg: #767676;
+    --webbook-search-highlight-bg: #005fcc;
+    --webbook-search-highlight-fg: white;
     color-scheme: light;
 }

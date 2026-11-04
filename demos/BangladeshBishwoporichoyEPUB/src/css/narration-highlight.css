@@ -3,3 +3,7 @@
     background-color: var(--webbook-highlight-color, Mark);
     color: MarkText;
 }
+::highlight(search) {
+    background-color: var(--webbook-search-highlight-bg);
+    color: var(--webbook-search-highlight-fg);
+}

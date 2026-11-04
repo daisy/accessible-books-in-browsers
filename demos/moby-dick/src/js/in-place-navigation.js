@@ -115,6 +115,7 @@ async function loadInPlace(url, { push, moveFocus, scrollY, audioTime }) {
     currentPage = pagePath(url.href);
     startPage({ audioTime });
     placeReader(url.hash, moveFocus || focusWasInContent, scrollY);
+    document.dispatchEvent(new CustomEvent('webbook:pagechange', { detail: { url: url.href } }));
     prefetchNextPage();
 }
 

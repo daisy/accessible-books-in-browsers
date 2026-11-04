@@ -2,7 +2,7 @@
 #webbook-toc-nav:popover-open {
     margin: 0;
     inset: 0 auto 0 0;
-    width: min(360px, 80vw);
+    width: min(30rem, 90vw);
     height: 100dvh;
     padding: 0 1rem;
     display: flex;
@@ -41,7 +41,8 @@
     #webbook-toc-header {
         width: 100%;
         display: flex;
-        align-items: center;
+        /* the Cover link sits on the heading's baseline row, not centered on a wrapped title */
+        align-items: flex-end;
         justify-content: space-between;
         gap: 1rem;
         position: sticky;
@@ -75,5 +76,22 @@
         #webbook-toc-nav-hd {
             flex-basis: 100%;
         }
+    }
+}
+/* Marks the narrated entries in a book narrated in part */
+#webbook-toc-nav {
+    .webbook-narrated-mark svg,
+    #webbook-toc-narration-key svg {
+        width: 1em;
+        height: 1em;
+        vertical-align: -.125em;
+    }
+    .webbook-narrated-mark {
+        margin-inline-start: .4em;
+    }
+    #webbook-toc-narration-key {
+        margin: -.5rem 0 .75rem;
+        padding-inline: 1rem;
+        font-size: .9rem;
     }
 }

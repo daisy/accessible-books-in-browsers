@@ -39,6 +39,10 @@ These demos were created using this [conversion script](https://github.com/daisy
 
 * [Action for Heroes](https://daisy.github.io/accessible-books-in-browsers/demos/action-for-heroes)
 * [Moby Dick](https://daisy.github.io/accessible-books-in-browsers/demos/moby-dick)
+* [Amar Bangla Boi, Class 5](https://daisy.github.io/accessible-books-in-browsers/demos/AmarBanglaEPUB) (আমার বাংলা বই পঞ্চম শ্রেণি)
+* [Bangladesh o Bishwoporichoy, Class 4](https://daisy.github.io/accessible-books-in-browsers/demos/BangladeshBishwoporichoyEPUB) (বাংলাদেশ ও বিশ্ব পরিচয় চতুর্থ শ্রেণি)
+* [English for Today, Classes 9–10](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB)
+* [Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB)
 
 
 ## Reading features
