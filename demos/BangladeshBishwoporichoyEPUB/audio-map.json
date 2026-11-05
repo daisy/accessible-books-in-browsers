@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "duration": 10323.095569999998,
+  "pages": [
+    {
+      "href": "index.html",
+      "title": "Bangladesg",
+      "start": 0,
+      "duration": 13.342652999999999
+    },
+    {
+      "href": "package-2.html",
+      "title": "Bangladesg",
+      "start": 13.342652999999999,
+      "duration": 23.779161000000002
+    },
+    {
+      "href": "package-3.html",
+      "title": "বাংলাদেশ ও বিশ্ব পরিচয়",
+      "start": 37.121814,
+      "duration": 66.128141
+    },
+    {
+      "href": "package-4.html",
+      "title": "প্রসঙ্গ কথা",
+      "start": 103.249955,
+      "duration": 181.752221
+    },
+    {
+      "href": "package-5.html",
+      "title": "নির্দেশনা",
+      "start": 285.00217599999996,
+      "duration": 418.07657699999993
+    },
+    {
+      "href": "package-6.html",
+      "title": "দক্ষতা ম্যাট্রিক্স",
+      "start": 703.0787529999999,
+      "duration": 463.136781
+    },
+    {
+      "href": "package-7.html",
+      "title": "সূচিপত্র",
+      "start": 1166.215534,
+      "duration": 95.57027299999999
+    },
+    {
+      "href": "package-8.html",
+      "title": "অধ্যায় ১",
+      "start": 1261.785807,
+      "duration": 299.111838
+    },
+    {
+      "href": "package-9.html",
+      "title": "অধ্যায় ২",
+      "start": 1560.897645,
+      "duration": 398.18625900000006
+    },
+    {
+      "href": "package-10.html",
+      "title": "অধ্যায় ৩",
+      "start": 1959.083904,
+      "duration": 813.5215459999998
+    },
+    {
+      "href": "package-11.html",
+      "title": "অধ্যায় ৪",
+      "start": 2772.60545,
+      "duration": 579.7259639999997
+    },
+    {
+      "href": "package-12.html",
+      "title": "অধ্যায় ৫",
+      "start": 3352.3314139999998,
+      "duration": 419.59013600000003
+    },
+    {
+      "href": "package-13.html",
+      "title": "অধ্যায় ৬",
+      "start": 3771.92155,
+      "duration": 388.04637300000013
+    },
+    {
+      "href": "package-14.html",
+      "title": "অধ্যায় ৭",
+      "start": 4159.967923,
+      "duration": 524.4370990000002
+    },
+    {
+      "href": "package-15.html",
+      "title": "অধ্যায় ৮",
+      "start": 4684.405022000001,
+      "duration": 646.660045
+    },
+    {
+      "href": "package-16.html",
+      "title": "অধ্যায় ৯",
+      "start": 5331.065067,
+      "duration": 329.9267129999999
+    },
+    {
+      "href": "package-17.html",
+      "title": "অধ্যায় ১০",
+      "start": 5660.99178,
+      "duration": 320.18805199999997
+    },
+    {
+      "href": "package-18.html",
+      "title": "অধ্যায় ১১",
+      "start": 5981.179832,
+      "duration": 842.9298870000001
+    },
+    {
+      "href": "package-19.html",
+      "title": "অধ্যায় ১২",
+      "start": 6824.109719,
+      "duration": 628.7750819999998
+    },
+    {
+      "href": "package-20.html",
+      "title": "অধ্যায় ১৩",
+      "start": 7452.884801,
+      "duration": 461.66047800000007
+    },
+    {
+      "href": "package-21.html",
+      "title": "অধ্যায় ১৪",
+      "start": 7914.545279,
+      "duration": 479.71242299999994
+    },
+    {
+      "href": "package-22.html",
+      "title": "অধ্যায় ১৫",
+      "start": 8394.257701999999,
+      "duration": 625.1315629999998
+    },
+    {
+      "href": "package-23.html",
+      "title": "অধ্যায় ১৬",
+      "start": 9019.389264999998,
+      "duration": 452.81598600000007
+    },
+    {
+      "href": "package-24.html",
+      "title": "নমুনা প্রশ্ন",
+      "start": 9472.205250999998,
+      "duration": 681.6378930000001
+    },
+    {
+      "href": "package-25.html",
+      "title": "শব্দ ভান্ডার",
+      "start": 10153.843143999999,
+      "duration": 169.25242599999996
+    },
+    {
+      "href": "package-26.html",
+      "title": "Bangladesg",
+      "start": 10323.095569999998,
+      "duration": 0
+    }
+  ],
+  "chapters": [
+    {
+      "title": "বাংলাদেশ ও বিশ্ব পরিচয়",
+      "href": "package-3.html#dtb_8",
+      "time": 37.121814
+    },
+    {
+      "title": "প্রসঙ্গ কথা",
+      "href": "package-4.html#dtb_42",
+      "time": 103.249955
+    },
+    {
+      "title": "নির্দেশনা",
+      "href": "package-5.html#dtb_65",
+      "time": 285.00217599999996
+    },
+    {
+      "title": "দক্ষতা ম্যাট্রিক্স",
+      "href": "package-6.html#dtb_140",
+      "time": 703.0787529999999
+    },
+    {
+      "title": "সূচিপত্র",
+      "href": "package-7.html#dtb_536",
+      "time": 1166.215534
+    },
+    {
+      "title": "অধ্যায় ১",
+      "href": "package-8.html#dtb_679",
+      "time": 1261.785807
+    },
+    {
+      "title": "অধ্যায় ২",
+      "href": "package-9.html#dtb_847",
+      "time": 1560.897645
+    },
+    {
+      "title": "অধ্যায় ৩",
+      "href": "package-10.html#dtb_1070",
+      "time": 1959.083904
+    },
+    {
+      "title": "অধ্যায় ৪",
+      "href": "package-11.html#dtb_1484",
+      "time": 2772.60545
+    },
+    {
+      "title": "অধ্যায় ৫",
+      "href": "package-12.html#dtb_1902",
+      "time": 3352.3314139999998
+    },
+    {
+      "title": "অধ্যায় ৬",
+      "href": "package-13.html#dtb_2227",
+      "time": 3771.92155
+    },
+    {
+      "title": "অধ্যায় ৭",
+      "href": "package-14.html#dtb_2446",
+      "time": 4159.967923
+    },
+    {
+      "title": "অধ্যায় ৮",
+      "href": "package-15.html#dtb_2778",
+      "time": 4684.405022000001
+    },
+    {
+      "title": "অধ্যায় ৯",
+      "href": "package-16.html#dtb_3134",
+      "time": 5331.065067
+    },
+    {
+      "title": "অধ্যায় ১০",
+      "href": "package-17.html#dtb_3310",
+      "time": 5660.99178
+    },
+    {
+      "title": "অধ্যায় ১১",
+      "href": "package-18.html#dtb_3465",
+      "time": 5981.179832
+    },
+    {
+      "title": "অধ্যায় ১২",
+      "href": "package-19.html#dtb_3876",
+      "time": 6824.109719
+    },
+    {
+      "title": "অধ্যায় ১৩",
+      "href": "package-20.html#dtb_4145",
+      "time": 7452.884801
+    },
+    {
+      "title": "অধ্যায় ১৪",
+      "href": "package-21.html#dtb_4401",
+      "time": 7914.545279
+    },
+    {
+      "title": "অধ্যায় ১৫",
+      "href": "package-22.html#dtb_4637",
+      "time": 8394.257701999999
+    },
+    {
+      "title": "অধ্যায় ১৬",
+      "href": "package-23.html#dtb_4827",
+      "time": 9019.389264999998
+    },
+    {
+      "title": "নমুনা প্রশ্ন",
+      "href": "package-24.html#dtb_5044",
+      "time": 9472.205250999998
+    },
+    {
+      "title": "শব্দ ভান্ডার",
+      "href": "package-25.html#dtb_5382",
+      "time": 10153.843143999999
+    }
+  ]
+}
