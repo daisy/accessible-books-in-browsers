@@ -1,0 +1,58 @@
+/* spine nav arrows — fixed in the viewport margins */
+#webbook-spine-nav {
+    position: fixed;
+    top: 45vh;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    /* Kept off the screen edges: with VoiceOver on, iOS puts the page's scroll bar along the right
+       edge, and touching there found the scroll bar instead of the next-page arrow */
+    a {
+        pointer-events: auto;
+        color: var(--theme-fg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+        min-height: 3rem;
+    }
+    #webbook-previous-document {
+        margin-left: max(.75rem, env(safe-area-inset-left));
+    }
+    #webbook-next-document {
+        margin-left: auto;
+        margin-right: max(.75rem, env(safe-area-inset-right));
+    }
+}
+#webbook-spine-nav.visible,
+#webbook-spine-nav:focus-within {
+    opacity: 1;
+}
+/* small screens: in the top toolbar, at its left end, instead of floating over the text, which a
+   phone has no margin to spare for */
+@media (max-width: 45rem) {
+    #webbook-spine-nav {
+        top: 0;
+        right: auto;
+        z-index: 21;
+        height: 4rem;
+        align-items: center;
+        gap: .25rem;
+        padding-left: max(.5rem, env(safe-area-inset-left));
+
+        a {
+            /* on the toolbar's dark background in every theme */
+            color: white;
+        }
+        #webbook-previous-document,
+        #webbook-next-document {
+            margin: 0;
+        }
+    }
+}

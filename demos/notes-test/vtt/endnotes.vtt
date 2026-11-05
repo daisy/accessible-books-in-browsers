@@ -1,0 +1,29 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.042
+{"selector":{"type":"FragmentSelector","value":"en-h1"}}
+
+2
+00:00:01.042 --> 00:00:06.513
+{"selector":{"type":"FragmentSelector","value":"en1-text"}}
+
+3
+00:00:06.513 --> 00:00:11.161
+{"selector":{"type":"FragmentSelector","value":"en2-text"}}
+
+4
+00:00:11.161 --> 00:00:16.850
+{"selector":{"type":"FragmentSelector","value":"en3-text"}}
+
+5
+00:00:16.850 --> 00:00:21.007
+{"selector":{"type":"FragmentSelector","value":"en4-text"}}
+
+6
+00:00:21.007 --> 00:00:25.873
+{"selector":{"type":"FragmentSelector","value":"en5-text"}}
+
+7
+00:00:25.873 --> 00:00:30.728
+{"selector":{"type":"FragmentSelector","value":"en6-text"}}

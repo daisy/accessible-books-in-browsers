@@ -20,7 +20,11 @@
       </par>
       <par id="chapter2-par4">
         <text src="../xhtml/chapter2.xhtml#c2-p4"/>
-        <audio src="../audio/chapter2.mp3" clipBegin="0:00:27.545" clipEnd="0:00:31.564"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:27.545" clipEnd="0:00:33.103"/>
+      </par>
+      <par id="chapter2-par5">
+        <text src="../xhtml/chapter2.xhtml#c2-p5"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:33.103" clipEnd="0:00:37.122"/>
       </par>
     </seq>
   </body>

@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "duration": 149.618004,
+  "pages": [
+    {
+      "href": "index.html",
+      "title": "Notes Test Book",
+      "start": 0,
+      "duration": 6.832993
+    },
+    {
+      "href": "chapter1.html",
+      "title": "Chapter 1. Footnotes on the same page",
+      "start": 6.832993,
+      "duration": 74.935012
+    },
+    {
+      "href": "chapter2.html",
+      "title": "Chapter 2. Endnotes in another file",
+      "start": 81.768005,
+      "duration": 37.121995
+    },
+    {
+      "href": "endnotes.html",
+      "title": "Notes",
+      "start": 118.89,
+      "duration": 30.728004000000002
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Notes Test Book",
+      "href": "index.html",
+      "time": 0
+    },
+    {
+      "title": "Chapter 1. Footnotes on the same page",
+      "href": "chapter1.html",
+      "time": 6.832993
+    },
+    {
+      "title": "Chapter 2. Endnotes in another file",
+      "href": "chapter2.html",
+      "time": 81.768005
+    },
+    {
+      "title": "Notes",
+      "href": "endnotes.html",
+      "time": 118.89
+    }
+  ]
+}

@@ -18,6 +18,18 @@
         <text src="../xhtml/endnotes.xhtml#en3-text"/>
         <audio src="../audio/endnotes.mp3" clipBegin="0:00:11.161" clipEnd="0:00:16.850"/>
       </par>
+      <par id="endnotes-par4">
+        <text src="../xhtml/endnotes.xhtml#en4-text"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:16.850" clipEnd="0:00:21.007"/>
+      </par>
+      <par id="endnotes-par5">
+        <text src="../xhtml/endnotes.xhtml#en5-text"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:21.007" clipEnd="0:00:25.873"/>
+      </par>
+      <par id="endnotes-par6">
+        <text src="../xhtml/endnotes.xhtml#en6-text"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:25.873" clipEnd="0:00:30.728"/>
+      </par>
     </seq>
   </body>
 </smil>

@@ -5,14 +5,14 @@
     <dc:title>Notes Test Book</dc:title>
     <dc:language>en</dc:language>
     <dc:creator>accessible-books-in-browsers</dc:creator>
-    <meta property="dcterms:modified">2026-11-05T16:46:33Z</meta>
+    <meta property="dcterms:modified">2026-11-05T21:11:49Z</meta>
     <meta property="media:active-class">-epub-media-overlay-active</meta>
     <meta property="media:narrator">macOS say (Samantha)</meta>
-    <meta property="media:duration">0:01:47.895</meta>
+    <meta property="media:duration">0:02:29.619</meta>
     <meta property="media:duration" refines="#title-mo">0:00:06.833</meta>
-    <meta property="media:duration" refines="#chapter1-mo">0:00:52.648</meta>
-    <meta property="media:duration" refines="#chapter2-mo">0:00:31.564</meta>
-    <meta property="media:duration" refines="#endnotes-mo">0:00:16.850</meta>
+    <meta property="media:duration" refines="#chapter1-mo">0:01:14.935</meta>
+    <meta property="media:duration" refines="#chapter2-mo">0:00:37.122</meta>
+    <meta property="media:duration" refines="#endnotes-mo">0:00:30.728</meta>
     <meta property="schema:accessMode">textual</meta>
     <meta property="schema:accessMode">auditory</meta>
     <meta property="schema:accessModeSufficient">textual</meta>
@@ -21,7 +21,7 @@
     <meta property="schema:accessibilityFeature">structuralNavigation</meta>
     <meta property="schema:accessibilityFeature">tableOfContents</meta>
     <meta property="schema:accessibilityHazard">none</meta>
-    <meta property="schema:accessibilitySummary">A test book: footnotes on the same page, endnotes in a separate file, and synchronized narration of all text including the notes. Two note references are plain links without note semantics, on purpose.</meta>
+    <meta property="schema:accessibilitySummary">A test book: footnotes on the same page, endnotes in a separate file, and synchronized narration of all text including the notes. Two note references are plain links without note semantics, and only one note has its own back-link, on purpose.</meta>
   </metadata>
   <manifest>
     <item id="nav" href="xhtml/nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>

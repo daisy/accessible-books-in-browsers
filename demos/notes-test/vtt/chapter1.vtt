@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.158
+{"selector":{"type":"FragmentSelector","value":"c1-h1"}}
+
+2
+00:00:03.158 --> 00:00:10.544
+{"selector":{"type":"FragmentSelector","value":"c1-p1"}}
+
+3
+00:00:10.544 --> 00:00:15.772
+{"selector":{"type":"FragmentSelector","value":"fn1-text"}}
+
+4
+00:00:15.772 --> 00:00:24.587
+{"selector":{"type":"FragmentSelector","value":"c1-p2"}}
+
+5
+00:00:24.587 --> 00:00:31.778
+{"selector":{"type":"FragmentSelector","value":"fn2-text"}}
+
+6
+00:00:31.778 --> 00:00:38.415
+{"selector":{"type":"FragmentSelector","value":"c1-p3"}}
+
+7
+00:00:38.415 --> 00:00:46.351
+{"selector":{"type":"FragmentSelector","value":"c1-p4"}}
+
+8
+00:00:46.351 --> 00:00:52.648
+{"selector":{"type":"FragmentSelector","value":"fn3-text"}}
+
+9
+00:00:52.648 --> 00:00:58.589
+{"selector":{"type":"FragmentSelector","value":"c1-p5"}}
+
+10
+00:00:58.589 --> 00:01:04.072
+{"selector":{"type":"FragmentSelector","value":"fn4-text"}}
+
+11
+00:01:04.072 --> 00:01:09.393
+{"selector":{"type":"FragmentSelector","value":"fn5-text"}}
+
+12
+00:01:09.393 --> 00:01:14.935
+{"selector":{"type":"FragmentSelector","value":"fn6-text"}}

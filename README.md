@@ -51,6 +51,10 @@ These demos were created using this [conversion script](https://github.com/daisy
 * [English for Today, Classes 9–10](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB)
 * [Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB)
 
+Test books:
+
+* [Notes Test Book](https://daisy.github.io/accessible-books-in-browsers/demos/notes-test): a short narrated book with footnotes on the same page and endnotes in a separate file, for testing notes. Source in [`source-epubs/notes-test`](source-epubs/notes-test); the narration is synthetic (macOS `say`).
+
 
 ## Reading features
 
