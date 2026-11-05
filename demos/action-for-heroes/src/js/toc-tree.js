@@ -75,7 +75,7 @@ export function refreshTocTree({ expandCurrentPath = false, moveFocus = false } 
 
     const target = marked || visibleItems()[0] || items[0];
     setRovingItem(target);
-    if (moveFocus && target) moveFocusToItem(target, { scroll: true });
+    if (moveFocus && target) moveFocusToItem(target);
 }
 
 function refreshNarrationCurrent() {
@@ -94,11 +94,12 @@ function renderCurrentMarker() {
 }
 
 // All tree focus changes pass here so a future talking-TOC feature has one hook.
-function moveFocusToItem(item, { scroll = false } = {}) {
+// Always scrolled into view: arrowing past the edge of the list otherwise leaves focus out of sight
+function moveFocusToItem(item) {
     if (!item) return;
     setRovingItem(item);
-    item.focus({ preventScroll: !scroll });
-    if (scroll) item.scrollIntoView({ block: 'nearest' });
+    item.focus({ preventScroll: true });
+    item.scrollIntoView({ block: 'nearest' });
 }
 
 function enhanceList(list, level) {
@@ -116,26 +117,9 @@ function enhanceList(list, level) {
             if (item) {
                 item.setAttribute('aria-expanded', 'true');
                 li.insertBefore(createChevron(), item);
-                addSubsectionCount(item, group);
             }
         }
     });
-}
-
-// Screen readers say whether a section is expanded, and where an entry is among its siblings, but
-// not how many entries a section holds. Shown after the title, and given to screen readers as the
-// entry's description rather than in its name.
-function addSubsectionCount(item, group) {
-    const count = directChildren(group, 'li').length;
-    if (!count) return;
-    const text = `${count} ${count === 1 ? 'subsection' : 'subsections'}`;
-    item.setAttribute('aria-description', text);
-    const badge = document.createElement('span');
-    badge.className = 'webbook-toc-count';
-    badge.setAttribute('aria-hidden', 'true');
-    badge.title = text;
-    badge.textContent = String(count);
-    item.append(badge);
 }
 
 function createChevron() {
@@ -193,7 +177,7 @@ function handleFindKeydown(event) {
     if (!first) return;
     event.preventDefault();
     if (event.key === 'Enter') first.click();
-    else moveFocusToItem(first, { scroll: true });
+    else moveFocusToItem(first);
 }
 
 function applyFind(query) {
@@ -379,10 +363,10 @@ function itemLabel(item) {
     return itemText(item).toLocaleLowerCase(document.documentElement.lang || undefined);
 }
 
-// The entry's title alone, without the narrated mark or subsection count
+// The entry's title alone, without the narrated mark
 function itemText(item) {
     const clone = item.cloneNode(true);
-    clone.querySelectorAll('.sr-only, .webbook-narrated-mark, .webbook-toc-count').forEach(node => node.remove());
+    clone.querySelectorAll('.sr-only, .webbook-narrated-mark').forEach(node => node.remove());
     return clone.textContent.trim().replace(/\s+/g, ' ');
 }
 

@@ -143,19 +143,6 @@
             display: none;
         }
     }
-    /* how many entries a section holds */
-    .webbook-toc-count {
-        /* inline-block keeps the link's underline out of it */
-        display: inline-block;
-        margin-inline-start: .45em;
-        padding: 0 .4em;
-        border-radius: 1em;
-        font-size: .8em;
-        font-weight: 400;
-        /* full text color: the current entry's tinted background is too dark for the muted gray */
-        border: 1px solid color-mix(in srgb, var(--theme-fg) 40%, transparent);
-        white-space: nowrap;
-    }
     #webbook-toc-depth-control {
         order: 3;
         flex-basis: 100%;
