@@ -23,6 +23,8 @@ export type MediaSegment = {
 
 export type PageAudioAssets = {
     audioHref: string;
+    cues: Array<{ id: string; start: number }>;
+    duration: number;
     vttHref: string;
 };
 
@@ -55,8 +57,18 @@ async function createAudioForPage(
     await mergeAudioSegments(mediaSegments, audioOutPath);
     await createVtt(mediaSegments, vttOutPath);
 
+    let duration = 0;
+    const cues = mediaSegments.map(segment => {
+        const cue = { id: utils.getFrag(segment.textSrc), start: duration };
+        duration += segment.durOnDisk
+            ?? Math.max(0, segment.clipEnd.seconds - segment.clipBegin.seconds);
+        return cue;
+    });
+
     return {
         audioHref: utils.toPosixPath(path.join(OutputLayout.audioDir, audioFilename)),
+        cues,
+        duration,
         vttHref: utils.toPosixPath(path.join(OutputLayout.vttDir, vttFilename))
     };
 }

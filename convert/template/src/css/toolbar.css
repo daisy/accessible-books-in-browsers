@@ -89,13 +89,78 @@
         margin: 0;
         accent-color: white;
     }
-    #webbook-time {
+    #webbook-book-timeline {
+        grid-area: seek;
+        position: relative;
+        min-width: 0;
+        min-height: 2rem;
+        display: flex;
+        align-items: center;
+
+        #webbook-seek {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+    }
+    #webbook-chapter-ticks {
+        position: absolute;
+        z-index: 3;
+        inset: 50% .6rem auto;
+        height: 0;
+        pointer-events: none;
+    }
+    .webbook-chapter-tick {
+        position: absolute;
+        top: -.4rem;
+        width: 2px;
+        height: .8rem;
+        background: white;
+        box-shadow: 0 0 0 1px var(--offblack);
+        transform: translateX(-1px);
+    }
+    #webbook-timeline-label {
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 5;
+        bottom: calc(100% + .5rem);
+        width: max-content;
+        max-width: min(24rem, calc(100vw - 1rem));
+        padding: .4rem .6rem;
+        border: 2px solid var(--theme-fg);
+        border-radius: 4px;
+        background: var(--theme-bg);
+        color: var(--theme-fg);
+        font-size: .875rem;
+        line-height: 1.25;
+        text-align: center;
+        overflow-wrap: anywhere;
+        transform: translateX(-50%);
+        box-shadow: 0 2px 8px rgb(0 0 0 / 35%);
+        pointer-events: auto;
+    }
+    #webbook-time,
+    #webbook-time-mode {
         grid-area: time;
         color: white;
         font-size: .875rem;
         font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-        padding-inline-start: .5rem;
+        line-height: 1.15;
+        max-width: 9rem;
+        white-space: normal;
+        min-width: 0;
+        min-height: 2rem;
+        padding: .25rem 0 .25rem .5rem;
+        text-align: end;
+    }
+    #webbook-time-mode[hidden] {
+        display: none;
+    }
+    #webbook-time-mode #webbook-time {
+        grid-area: auto;
+        min-height: 0;
+        max-width: none;
+        padding: 0;
     }
     button[popovertarget=webbook-toc-nav] {
         grid-area: toc;

@@ -4,6 +4,7 @@ import { hideEscape } from './escapability.js';
 import { clearNarrationHighlight } from './narration-position.js';
 import { recordPageVisit } from './resume-position.js';
 import { resetPageEntry } from './page-entry.js';
+import { requestAutoplayForLink } from './autoplay.js';
 
 // Moving to another page of the book swaps that page's content into this one instead of loading
 // it: its text, title, spine links and narration go in, and the address bar shows its URL. The
@@ -37,14 +38,20 @@ export function initInPlaceNavigation() {
 }
 
 // Go to a URL in this book, loading it in place where possible
-export function navigateTo(href, { push = true, moveFocus = true } = {}) {
+export function navigateTo(href, { push = true, moveFocus = true, audioTime, autoplay = false } = {}) {
     let url;
     try { url = new URL(href, window.location.href); } catch { return; }
+    if (currentPage && pagePath(url.href) === currentPage) {
+        const audio = document.querySelector('#webbook-toolbar audio');
+        if (audio && typeof audioTime === 'number') audio.currentTime = audioTime;
+        return;
+    }
+    if (autoplay) requestAutoplayForLink({ href: url.href });
     if (!currentPage || !isOtherPageOfBook(url)) {
         window.location.href = url.href;
         return;
     }
-    loadInPlace(url, { push, moveFocus });
+    loadInPlace(url, { push, moveFocus, audioTime });
 }
 
 // Registered after the other click handlers, so they have seen the click (and asked for playback

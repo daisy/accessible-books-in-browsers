@@ -55,6 +55,8 @@ These demos were created using this [conversion script](https://github.com/daisy
 ## Reading features
 
 - Synchronized narration playback with word/phrase-level highlighting (CSS Custom Highlight API), auto-continuing across chapters when a chapter's audio ends
+- A full-book narration timeline with a tick and a label for each narrated chapter. Left/Right move 10 seconds, Up/Down 30 seconds, Page Up/Page Down move by chapter, and Home/End move to the book boundaries. A screen reader's slider adjustment (e.g. a VoiceOver swipe) moves 30 seconds. Older converted books without `audio-map.json` retain their per-page timeline.
+- The timeline time is a button that cycles between elapsed time, time left in the chapter and time left in the book. Time-left displays account for narration speed and identify narrated time when later pages have no narration.
 - Table of contents generated from the EPUB's own navigation document, including nested sub-entries, with the current section marked. Its **Show levels** control limits visible depth on touch and small screens. In the keyboard tree, Up/Down browse visible entries without loading them, Right/Left expand or collapse, Home/End jump to the ends, `*` expands siblings, typing finds the next matching entry, and Enter follows the selected link. **Find a section** narrows the tree to entries whose title contains the typed text, in any language; Down arrow moves into the results, Enter follows the first one, and Escape clears the field.
 - Go-to-page, using the EPUB's page-list navigation where available
 - Settings: appearance (auto/dark/light), font size and family, narration highlight color (auto or custom), playback rate, caption mode (a full-screen, narration-synced text view), skip-toggles for page numbers/footnotes/endnotes/notes/sidebars, and whether to resume the last reading position on open
@@ -101,6 +103,7 @@ case folding, display direction and screen-reader pronunciation.
 | `\` | Anywhere outside a text field or open popover | Play / pause |
 | `Alt`+`Shift`+`P` | Anywhere outside a text field or open popover | Go to narration position: moves focus, and a screen reader, to the phrase narration is on, e.g. to read on from there after pausing |
 | `Alt`+`Shift`+`R` | Anywhere outside a text field or open popover | Play from here: starts narration at the phrase that has focus (a screen reader's cursor brings focus with it) or at selected text |
+| `Alt`+`Shift`+`L` | Anywhere outside a text field or open popover | Announce the listening time left in the current chapter and book |
 | `Shift`+`[` / `Shift`+`]` | Anywhere outside a text field or open popover | Previous / next page |
 | `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
 | `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |
@@ -112,7 +115,7 @@ case folding, display direction and screen-reader pronunciation.
 | `Alt`+`Shift`+`-` / `Alt`+`Shift`+`=` | Anywhere outside a text field or open popover | Smaller / larger text |
 | `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
 
-The narration keys are unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The seek slider uses the browser's standard slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`).
+The narration keys are unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The narration slider uses the usual slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`); on the full-book timeline they move by the amounts described under [Reading features](#reading-features).
 
 Open **Settings**, then choose **Change keyboard shortcuts** to open the shortcut editor. Choose **Change** next to an action and press its new key, with any modifiers. Escape cancels a change. If another action already uses the key, the editor shows and announces a warning before asking you to confirm the move. **Remove** clears an action's shortcut; **Restore default** restores one action, and **Reset to defaults** restores the table above. Choices are shared across books on the same website and remembered when you return.
 

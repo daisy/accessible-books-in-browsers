@@ -11,6 +11,7 @@ import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath }
 import { transformContent } from './content-transform.js';
 import { createSearchData, generateSearchIndex } from './create-search-index.js';
 import * as utils from './utils.js';
+import { generateAudioMap, type PageAudioMapSource } from './audio-map.js';
 
 export type ConvertOptions = {
     headingTitles?: boolean;
@@ -64,6 +65,7 @@ async function convert(input: string, output: string, template: string, options:
         // Read ahead, so every page's table of contents can mark the narrated pages
         const mediaSegmentsByPage = new Map<string, MediaSegment[]>(site.pages.map(page => [page.outputFilename, []]));
         const pagesBySource = new Map<string, typeof site.pages>();
+        const pageAudioSources = new Map<string, PageAudioMapSource>();
         for (const page of site.pages) {
             const pages = pagesBySource.get(page.sourcePath) ?? [];
             pages.push(page);
@@ -92,6 +94,7 @@ async function convert(input: string, output: string, template: string, options:
             const narratedTargetIds = mediaSegments.map(segment => utils.getFrag(segment.textSrc)).filter(Boolean);
             const content = await transformContent(page, site, imageRegistry, searchData, narratedTargetIds);
             const audio = await createAudioForPage(page, outputPaths, mediaSegments);
+            pageAudioSources.set(page.outputFilename, { audio, bodyHtml: content.bodyHtml });
             const html = renderer.renderPage(site, page, content, audio, {
                 coverHref: coverAsset?.href ?? '',
                 narratedPages
@@ -99,6 +102,7 @@ async function convert(input: string, output: string, template: string, options:
             await fs.writeFile(outputPath(outputPaths, page.outputFilename), html);
         }
 
+        await generateAudioMap(site, pageAudioSources, outputPaths);
         await generateSearchIndex(searchData, outputPaths);
         await copyImageAssets(imageRegistry, outputPaths);
         await finalizeOutput(outputPaths);
