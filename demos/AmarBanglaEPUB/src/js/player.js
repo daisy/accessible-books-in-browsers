@@ -314,12 +314,18 @@ function enhanceBookTimeline() {
 
     wrapper.addEventListener('pointermove', event => {
         if (event.pointerType === 'touch') return;
+        ui.timelineHovered = true;
         const rect = ui.seekRange.getBoundingClientRect();
         const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
         showTimelineLabel(ratio * bookAudioMap.duration, ratio * 100);
     });
     wrapper.addEventListener('pointerleave', () => {
-        if (document.activeElement !== ui.seekRange && !ui.seeking) hideTimelineLabel();
+        ui.timelineHovered = false;
+        if (!timelineLabelWanted()) hideTimelineLabel();
+    });
+    // A tap leaves the slider focused, so on touch the label shows only while dragging
+    ui.seekRange.addEventListener('pointerup', event => {
+        if (event.pointerType === 'touch') setTimeout(() => { if (!ui.seeking) hideTimelineLabel(); }, 0);
     });
     ui.seekRange.addEventListener('focus', () => showTimelineValue(Number(ui.seekRange.value)));
     ui.seekRange.addEventListener('blur', () => {
@@ -349,7 +355,13 @@ function updateTimelineFromAudio(forceSpoken = false) {
         setBookSeekValueText(time);
         lastSpokenBookSecond = second;
     }
-    if (document.activeElement === ui.seekRange) showTimelineValue(time);
+    if (document.activeElement === ui.seekRange && ui.timelineLabel && !ui.timelineLabel.hidden) showTimelineValue(time);
+}
+
+// The label is for a mouse over the timeline, keyboard focus on it, and dragging: not for a slider
+// that a tap or a screen reader happened to leave focused
+function timelineLabelWanted() {
+    return Boolean(ui.seeking || ui.timelineHovered || ui.seekRange?.matches(':focus-visible'));
 }
 
 function currentAudioMapPage() {
@@ -382,7 +394,7 @@ function setBookSeekValueText(time) {
 }
 
 function showTimelineValue(time) {
-    showTimelineLabel(time, time / bookAudioMap.duration * 100);
+    if (timelineLabelWanted()) showTimelineLabel(time, time / bookAudioMap.duration * 100);
     setBookSeekValueText(time);
     updateTimeDisplay(time);
 }

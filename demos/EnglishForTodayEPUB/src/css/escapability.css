@@ -1,10 +1,11 @@
 /* escapability */
 #webbook-escape-container {
     position: fixed;
-    bottom: 4rem;
+    /* above the bottom toolbar, which appears on any touch and would otherwise cover it */
+    bottom: calc(var(--webbook-toolbar-height, 4rem) + .75rem);
     left: 50%;
     transform: translateX(-50%);
-    z-index: 10;
+    z-index: 25;
 }
 #webbook-escape-status {
     position: absolute;

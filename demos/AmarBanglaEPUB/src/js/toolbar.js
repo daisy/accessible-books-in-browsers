@@ -16,6 +16,14 @@ export function initToolbarAutoHide() {
         }, 3000);
     }
 
+    // Things that float above the toolbar (Skip past) need its height, which changes with the
+    // screen width and text size
+    if (typeof ResizeObserver === 'function') {
+        new ResizeObserver(() => {
+            document.documentElement.style.setProperty('--webbook-toolbar-height', `${toolbar.offsetHeight}px`);
+        }).observe(toolbar);
+    }
+
     // Show briefly on load
     showToolbar();
 
