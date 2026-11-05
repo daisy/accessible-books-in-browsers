@@ -11,6 +11,7 @@ import { initPageActions } from './page-entry.js';
 import { initKeyboardShortcuts } from './keyboard-shortcuts.js';
 import { initKeyboardShortcutSettings } from './keyboard-shortcut-settings.js';
 import { initSearch } from './search.js';
+import { initTocTree } from './toc-tree.js';
 
 initEscapability();
 initResumePosition();
@@ -28,6 +29,7 @@ initPopoverActions();
 initKeyboardShortcuts();
 initKeyboardShortcutSettings();
 initSearch();
+initTocTree();
 // Last, so its click handler runs after the others have seen the click
 initInPlaceNavigation();
 

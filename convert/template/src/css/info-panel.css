@@ -51,6 +51,17 @@
         margin: 0;
         font-size: var(--size-step-0);
     }
+    .webbook-cover-page-link {
+        width: fit-content;
+        border: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+        border-radius: 4px;
+        padding: .4rem .7rem;
+        color: var(--theme-fg);
+        background: var(--theme-bg);
+        font-size: var(--size-step-0);
+        font-weight: 600;
+        text-decoration: none;
+    }
     dt:not(:first-child) {
         margin-top: .75rem;
     }

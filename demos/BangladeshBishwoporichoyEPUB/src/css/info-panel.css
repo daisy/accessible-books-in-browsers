@@ -5,17 +5,17 @@
     width: min(340px, 92vw);
     height: 100dvh;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    overflow: hidden;
     border-radius: 5px 0 0 5px;
 
     #webbook-cover {
         width: 100%;
-        aspect-ratio: 2/3;
-        object-fit: cover;
+        height: 100%;
+        min-height: 0;
+        object-fit: contain;
         display: block;
-        flex-shrink: 0;
         border-bottom: var(--webbook-panel-border);
     }
     .webbook-info-body {
@@ -23,6 +23,12 @@
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        min-height: 0;
+        max-height: 100dvh;
+        overflow-y: auto;
+    }
+    #webbook-cover[hidden] + .webbook-info-body {
+        grid-row: 1 / -1;
     }
     h2 {
         margin: 0;
@@ -45,6 +51,17 @@
         margin: 0;
         font-size: var(--size-step-0);
     }
+    .webbook-cover-page-link {
+        width: fit-content;
+        border: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
+        border-radius: 4px;
+        padding: .4rem .7rem;
+        color: var(--theme-fg);
+        background: var(--theme-bg);
+        font-size: var(--size-step-0);
+        font-weight: 600;
+        text-decoration: none;
+    }
     dt:not(:first-child) {
         margin-top: .75rem;
     }
@@ -62,14 +79,30 @@
             font-size: var(--size-step-0);
         }
         progress {
+            appearance: none;
             width: 100%;
-            height: .4rem;
-            margin: .5rem 0;
+            height: .75rem;
+            margin: .75rem 0 .35rem;
+            overflow: hidden;
+            border: 1px solid var(--theme-fg);
+            border-radius: 999px;
+            background: var(--theme-bg);
             accent-color: var(--theme-fg);
         }
+        progress::-webkit-progress-bar {
+            background: var(--theme-bg);
+        }
+        progress::-webkit-progress-value {
+            background: var(--theme-fg);
+        }
+        progress::-moz-progress-bar {
+            background: var(--theme-fg);
+        }
         #webbook-progress-count {
-            color: var(--webbook-muted-fg);
-            font-size: 0.75rem;
+            color: var(--theme-fg);
+            font-size: var(--size-step-0);
+            font-weight: 700;
+            text-align: end;
         }
     }
 }

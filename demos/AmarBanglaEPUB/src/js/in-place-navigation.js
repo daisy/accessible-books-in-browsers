@@ -184,14 +184,25 @@ function swapIn(doc) {
     }
 
     // The converter's marking of the current page in the table of contents
-    const tocLinks = document.querySelectorAll('#webbook-toc-nav a');
-    const newTocLinks = doc.querySelectorAll('#webbook-toc-nav a');
+    const tocLinks = document.querySelectorAll('#webbook-toc-nav ol a');
+    const newTocLinks = doc.querySelectorAll('#webbook-toc-nav ol a');
     if (tocLinks.length === newTocLinks.length) {
         tocLinks.forEach((link, i) => {
             const current = newTocLinks[i].getAttribute('aria-current');
             if (current) link.setAttribute('aria-current', current);
             else link.removeAttribute('aria-current');
         });
+    }
+
+    // Page position is converter-provided because not every spine page is necessarily in the TOC.
+    const progress = document.querySelector('#webbook-progress');
+    const newProgress = doc.querySelector('#webbook-progress');
+    if (progress && newProgress) {
+        progress.dataset.webbookPageNumber = newProgress.dataset.webbookPageNumber || '';
+        progress.dataset.webbookPageCount = newProgress.dataset.webbookPageCount || '';
+        const label = progress.querySelector('#webbook-current-page-label');
+        const newLabel = newProgress.querySelector('#webbook-current-page-label');
+        if (label && newLabel) label.textContent = newLabel.textContent;
     }
 
     swapNarration(doc);

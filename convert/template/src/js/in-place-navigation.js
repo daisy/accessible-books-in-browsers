@@ -184,8 +184,8 @@ function swapIn(doc) {
     }
 
     // The converter's marking of the current page in the table of contents
-    const tocLinks = document.querySelectorAll('#webbook-toc-nav a');
-    const newTocLinks = doc.querySelectorAll('#webbook-toc-nav a');
+    const tocLinks = document.querySelectorAll('#webbook-toc-nav ol a');
+    const newTocLinks = doc.querySelectorAll('#webbook-toc-nav ol a');
     if (tocLinks.length === newTocLinks.length) {
         tocLinks.forEach((link, i) => {
             const current = newTocLinks[i].getAttribute('aria-current');

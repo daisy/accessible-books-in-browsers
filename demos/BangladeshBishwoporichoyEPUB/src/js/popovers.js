@@ -28,7 +28,7 @@ export function initPopoverActions() {
                 // Establish the same focus-return point as opening the panel from its toolbar.
                 document.querySelector(`button[popovertarget="${popoverId}"]:not(.webbook-popover-close)`)?.focus({ preventScroll: true });
                 popover.showPopover();
-                focusInitialPopoverControl(popover, popoverId);
+                if (popoverId !== 'webbook-toc-nav') focusInitialPopoverControl(popover, popoverId);
             } });
     }
 }
@@ -87,11 +87,21 @@ export function initTocInPageLinks() {
 // The converter marks a TOC link as the current page only when it points at the page itself. In
 // books whose TOC links all point at sections within pages, none would be marked, so mark the
 // section the reader is in: the last entry on this page that starts at or before where they are.
-function markCurrentTocEntry() {
+export function markCurrentTocEntry() {
+    const { links, current } = currentTocEntry();
+    if (!current) return null;
+    if (links.find(link => link.getAttribute('aria-current') === 'page') !== current) {
+        links.forEach(link => link.removeAttribute('aria-current'));
+        current.setAttribute('aria-current', 'page');
+    }
+    return current;
+}
+
+export function currentTocEntry() {
     const links = Array.from(document.querySelectorAll('#webbook-cover-link, #webbook-toc-nav ol a[href]'));
     const here = pagePath(window.location.href);
     const pageLinks = links.filter(link => pagePath(link.href) === here);
-    if (!pageLinks.length) return;
+    if (!pageLinks.length) return { links, current: null };
 
     const isReached = readingPositionTest();
     let current = pageLinks.find(link => !new URL(link.href).hash) ?? pageLinks[0];
@@ -100,8 +110,7 @@ function markCurrentTocEntry() {
         const target = id ? document.getElementById(id) : null;
         if (target && isReached(target)) current = link;
     }
-    links.forEach(link => link.removeAttribute('aria-current'));
-    current.setAttribute('aria-current', 'page');
+    return { links, current };
 }
 
 function pagePath(href) {
@@ -149,19 +158,21 @@ export function initPopoverToggleTracking() {
             if (!btn) return;
             if (e.newState === 'open') {
                 btn.classList.add('open');
-                if (id === 'webbook-toc-nav') {
-                    const current = popover.querySelector('a[aria-current="page"]');
-                    if (current) { current.scrollIntoView(); current.focus(); }
-                } else if (id === 'webbook-info') {
-                    const tocLinks = Array.from(document.querySelectorAll('#webbook-cover-link, #webbook-toc-nav ol a'));
-                    const currentIdx = tocLinks.findIndex(a => a.getAttribute('aria-current') === 'page');
-                    const total = tocLinks.length;
+                if (id === 'webbook-info') {
+                    const progressSection = document.querySelector('#webbook-progress');
+                    const current = Number(progressSection?.dataset.webbookPageNumber || 0);
+                    const total = Number(progressSection?.dataset.webbookPageCount || 0);
+                    const percentage = total > 0 ? Math.round(current / total * 100) : 0;
                     const pageLabel = document.querySelector('#webbook-current-page-label');
                     const progressBar = document.querySelector('#webbook-reading-progress');
                     const countLabel = document.querySelector('#webbook-progress-count');
-                    if (pageLabel) pageLabel.textContent = currentIdx >= 0 ? tocLinks[currentIdx].textContent.trim() : '';
-                    if (progressBar && total > 0) progressBar.value = currentIdx >= 0 ? Math.round((currentIdx + 1) / total * 100) : 0;
-                    if (countLabel && total > 0) countLabel.textContent = currentIdx >= 0 ? `${currentIdx + 1} of ${total}` : '';
+                    if (pageLabel && !pageLabel.textContent.trim()) pageLabel.textContent = document.title.split(' – ')[0];
+                    if (progressBar) {
+                        progressBar.value = percentage;
+                        progressBar.textContent = `${percentage}%`;
+                        progressBar.setAttribute('aria-valuetext', `${percentage}%`);
+                    }
+                    if (countLabel) countLabel.textContent = `${percentage}%`;
                     focusInitialPopoverControl(popover, id);
                 } else {
                     focusInitialPopoverControl(popover, id);

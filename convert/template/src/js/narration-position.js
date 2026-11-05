@@ -11,7 +11,9 @@ export function lastNarratedElement() {
 }
 
 export function highlightElm(elm) {
+    const changed = lastNarratedElm !== elm;
     lastNarratedElm = elm;
+    if (changed) document.dispatchEvent(new CustomEvent('webbook:narrationpositionchange', { detail: { element: elm } }));
 
     const highlights = customHighlightRegistry();
     if (highlights) {
