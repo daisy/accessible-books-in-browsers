@@ -1,5 +1,6 @@
 import { requestAutoplayForLink, clearAutoplayRequest } from './autoplay.js';
 import { registerAction } from './reader-actions.js';
+import { pageAudio } from './dom-utils.js';
 
 // Stepping past the first or last phrase of a page continues on the neighboring page, entering it
 // at its last or first phrase. The storage key predates phrase stepping and is kept so a page from
@@ -43,7 +44,7 @@ export function stepAcrossPageBoundary(delta) {
     if (!link) return false;
 
     localStorage.setItem(PAGE_ENTRY_STORAGE_KEY, delta > 0 ? 'first' : 'last');
-    const audio = document.querySelector('audio');
+    const audio = pageAudio();
     if (audio && !audio.paused && !audio.ended) {
         requestAutoplayForLink(link);
     } else {
