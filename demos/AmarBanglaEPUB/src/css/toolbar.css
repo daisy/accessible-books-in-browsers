@@ -206,6 +206,11 @@
     button[popovertarget].open {
         border: thin gray solid;
     }
+    #webbook-current-print-page {
+        font-size: .875rem;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
 }
 #webbook-top-toolbar.visible,
 #webbook-top-toolbar:focus-within {

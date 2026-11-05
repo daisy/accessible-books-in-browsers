@@ -43,6 +43,8 @@ class TemplateRenderer {
 
         const main = requireElement(doc, 'main');
         content.bodyAttributes.forEach(({ name, value }) => main.setAttribute(name, value));
+        const printPageBefore = printPageBeforePage(site, page);
+        if (printPageBefore) main.setAttribute('data-webbook-print-page-before', printPageBefore);
         main.innerHTML = content.bodyHtml;
 
         renderToc(doc, site, page, options.narratedPages);
@@ -71,7 +73,7 @@ function renderProgress(doc: Document, site: SiteModel, page: SitePage): void {
 
     section?.setAttribute('data-webbook-page-number', String(current));
     section?.setAttribute('data-webbook-page-count', String(total));
-    if (pageLabel) pageLabel.textContent = page.title;
+    if (pageLabel) pageLabel.textContent = `Section: ${page.title}`;
     if (progress) {
         progress.value = percentage;
         progress.textContent = `${percentage}%`;
@@ -79,6 +81,20 @@ function renderProgress(doc: Document, site: SiteModel, page: SitePage): void {
         progress.setAttribute('aria-valuetext', `${percentage}%`);
     }
     if (percentageLabel) percentageLabel.textContent = `${percentage}%`;
+}
+
+function printPageBeforePage(site: SiteModel, page: SitePage): string {
+    const pageIndexByHref = new Map(site.pages.map(candidate => [candidate.outputFilename, candidate.index]));
+    let label = '';
+    let latestPageIndex = -1;
+    for (const entry of site.pageList) {
+        const targetIndex = pageIndexByHref.get(entry.href.split('#')[0]);
+        if (targetIndex !== undefined && targetIndex < page.index && targetIndex >= latestPageIndex) {
+            label = entry.label;
+            latestPageIndex = targetIndex;
+        }
+    }
+    return label;
 }
 
 // Most specific first, so pages of the same book differ at the start of a tab or history entry.
@@ -327,4 +343,4 @@ function serializeDocument(doc: Document): string {
     return `<!DOCTYPE html>\n${doc.documentElement.outerHTML}`;
 }
 
-export { TemplateRenderer };
+export { printPageBeforePage, TemplateRenderer };

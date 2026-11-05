@@ -125,7 +125,7 @@ function pagePath(href) {
 // if audio is playing or that phrase is on screen. Otherwise it's what's on screen, since a reader
 // who scrolled away while paused is reading there: a section counts once its start has scrolled
 // up to just below the top toolbar.
-function readingPositionTest() {
+export function readingPositionTest() {
     const audio = document.querySelector('audio');
     const narrated = lastNarratedElement();
     if (narrated && ((audio && !audio.paused) || isOnScreen(narrated))) {
@@ -166,7 +166,10 @@ export function initPopoverToggleTracking() {
                     const pageLabel = document.querySelector('#webbook-current-page-label');
                     const progressBar = document.querySelector('#webbook-reading-progress');
                     const countLabel = document.querySelector('#webbook-progress-count');
-                    if (pageLabel && !pageLabel.textContent.trim()) pageLabel.textContent = document.title.split(' – ')[0];
+                    if (pageLabel) {
+                        const title = pageLabel.textContent.trim() || document.title.split(' – ')[0];
+                        if (!title.startsWith('Section: ')) pageLabel.textContent = `Section: ${title}`;
+                    }
                     if (progressBar) {
                         progressBar.value = percentage;
                         progressBar.textContent = `${percentage}%`;

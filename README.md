@@ -57,6 +57,7 @@ These demos were created using this [conversion script](https://github.com/daisy
 - Synchronized narration playback with word/phrase-level highlighting (CSS Custom Highlight API), auto-continuing across chapters when a chapter's audio ends
 - A full-book narration timeline whose label shows the chapter and time under the pointer, on focus and while dragging. Left/Right move 10 seconds, Up/Down 30 seconds, Page Up/Page Down move by chapter, and Home/End move to the book boundaries. A screen reader's slider adjustment (e.g. a VoiceOver swipe) moves 30 seconds. Older converted books without `audio-map.json` retain their per-page timeline.
 - The timeline time is a button that cycles between elapsed time, time left in the chapter and time left in the book. Time-left displays account for narration speed and identify narrated time when later pages have no narration.
+- In books with print page numbers, the Go to page button in the top toolbar shows the current print page. It follows narration or the reading position without making unsolicited announcements.
 - Table of contents generated from the EPUB's own navigation document, including nested sub-entries, with the current section marked. Its **Show levels** control limits visible depth on touch and small screens. In the keyboard tree, Up/Down browse visible entries without loading them, Right/Left expand or collapse, Home/End jump to the ends, `*` expands siblings, typing finds the next matching entry, and Enter follows the selected link. **Find a section** narrows the tree to entries whose title contains the typed text, in any language; Down arrow moves into the results, Enter follows the first one, and Escape clears the field.
 - Go-to-page, using the EPUB's page-list navigation where available
 - Settings: appearance (auto/dark/light), font size and family, narration highlight color (auto or custom), playback rate, caption mode (a full-screen, narration-synced text view), skip-toggles for page numbers/footnotes/endnotes/notes/sidebars, and whether to resume the last reading position on open
@@ -104,6 +105,7 @@ case folding, display direction and screen-reader pronunciation.
 | `Alt`+`Shift`+`P` | Anywhere outside a text field or open popover | Go to narration position: moves focus, and a screen reader, to the phrase narration is on, e.g. to read on from there after pausing |
 | `Alt`+`Shift`+`R` | Anywhere outside a text field or open popover | Play from here: starts narration at the phrase that has focus (a screen reader's cursor brings focus with it) or at selected text |
 | `Alt`+`Shift`+`L` | Anywhere outside a text field or open popover | Announce the listening time left in the current chapter and book |
+| `Alt`+`Shift`+`Q` | Anywhere outside a text field or open popover | Announce the current print page |
 | `Shift`+`[` / `Shift`+`]` | Anywhere outside a text field or open popover | Previous / next page |
 | `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
 | `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |

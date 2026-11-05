@@ -12,6 +12,7 @@ import { initKeyboardShortcuts } from './keyboard-shortcuts.js';
 import { initKeyboardShortcutSettings } from './keyboard-shortcut-settings.js';
 import { initSearch } from './search.js';
 import { initTocTree } from './toc-tree.js';
+import { initCurrentPrintPage } from './current-print-page.js';
 
 initEscapability();
 initResumePosition();
@@ -26,6 +27,7 @@ initPlayer();
 initToolbarAutoHide();
 initPageActions();
 initPopoverActions();
+initCurrentPrintPage();
 initKeyboardShortcuts();
 initKeyboardShortcutSettings();
 initSearch();
