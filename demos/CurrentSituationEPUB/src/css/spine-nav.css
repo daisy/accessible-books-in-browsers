@@ -34,3 +34,25 @@
 #webbook-spine-nav:focus-within {
     opacity: 1;
 }
+/* small screens: in the top toolbar, at its left end, instead of floating over the text, which a
+   phone has no margin to spare for */
+@media (max-width: 45rem) {
+    #webbook-spine-nav {
+        top: 0;
+        right: auto;
+        z-index: 21;
+        height: 4rem;
+        align-items: center;
+        gap: .25rem;
+        padding-left: max(.5rem, env(safe-area-inset-left));
+
+        a {
+            /* on the toolbar's dark background in every theme */
+            color: white;
+        }
+        #webbook-previous-document,
+        #webbook-next-document {
+            margin: 0;
+        }
+    }
+}
