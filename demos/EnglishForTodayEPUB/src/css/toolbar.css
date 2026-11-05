@@ -105,22 +105,6 @@
             z-index: 2;
         }
     }
-    #webbook-chapter-ticks {
-        position: absolute;
-        z-index: 3;
-        inset: 50% .6rem auto;
-        height: 0;
-        pointer-events: none;
-    }
-    .webbook-chapter-tick {
-        position: absolute;
-        top: -.4rem;
-        width: 2px;
-        height: .8rem;
-        background: white;
-        box-shadow: 0 0 0 1px var(--offblack);
-        transform: translateX(-1px);
-    }
     #webbook-timeline-label {
         box-sizing: border-box;
         position: absolute;

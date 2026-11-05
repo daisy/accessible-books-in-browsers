@@ -302,19 +302,12 @@ function enhanceBookTimeline() {
     ui.seekRange.before(wrapper);
     wrapper.append(ui.seekRange);
 
-    const ticks = document.createElement('div');
-    ticks.id = 'webbook-chapter-ticks';
-    ticks.setAttribute('aria-hidden', 'true');
-    for (const chapter of bookAudioMap.chapters) {
-        const tick = document.createElement('span');
-        tick.className = 'webbook-chapter-tick';
-        tick.style.insetInlineStart = `${chapter.time / bookAudioMap.duration * 100}%`;
-        ticks.append(tick);
-    }
+    // Chapters show in this label (on hover, focus and drag) rather than as tick marks on the track,
+    // which looked cluttered and only ever helped sighted readers
     const label = document.createElement('span');
     label.id = 'webbook-timeline-label';
     label.hidden = true;
-    wrapper.append(ticks, label);
+    wrapper.append(label);
     ui.timelineWrapper = wrapper;
     ui.timelineLabel = label;
     updateTimeDisplayToggle();
