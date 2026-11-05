@@ -33,6 +33,12 @@
 </head>
 
 <body>
+    <!-- Basic navigation for reading without JavaScript; hidden when the reader's script runs -->
+    <nav id="webbook-basic-nav" aria-label="Book">
+        <button type="button" popovertarget="webbook-toc-nav">Contents</button>
+        <a id="webbook-basic-previous" rel="prev" href="index.html">Previous</a>
+        <a id="webbook-basic-next" rel="next" href="chapter-1.html">Next</a>
+    </nav>
     <main>
         <section class="webbook-title-page">
             <img class="webbook-title-cover" src="assets/gibberish-cover.png" alt="Abstract paper collage cover for Gibberish Field Notes">
@@ -54,6 +60,7 @@
     <nav popover id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
         <div id="webbook-toc-header">
             <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <button type="button" class="webbook-basic-close" popovertarget="webbook-toc-nav" popovertargetaction="hide">Close</button>
             <a id="webbook-cover-link" href="index.html" aria-current="page">Cover</a>
         </div>
         <ol>

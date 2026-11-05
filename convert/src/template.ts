@@ -222,6 +222,20 @@ function renderSpineNav(doc: Document, site: SiteModel, currentPage: SitePage): 
 
     renderSpineLink(doc, '#webbook-previous-document', previous, 'Previous');
     renderSpineLink(doc, '#webbook-next-document', next, 'Next');
+    renderBasicLink(doc, '#webbook-basic-previous', previous, 'Previous');
+    renderBasicLink(doc, '#webbook-basic-next', next, 'Next');
+}
+
+// The same links as text, for the basic navigation shown without JavaScript (optional in the template)
+function renderBasicLink(doc: Document, selector: string, target: SitePage | undefined, label: string): void {
+    const link = doc.querySelector(selector);
+    if (!link) return;
+    if (!target) {
+        link.remove();
+        return;
+    }
+    link.setAttribute('href', target.outputFilename);
+    link.textContent = `${label}: ${target.title}`;
 }
 
 function renderSpineLink(doc: Document, selector: string, target: SitePage | undefined, label: string): void {
@@ -241,7 +255,7 @@ function renderSpineLink(doc: Document, selector: string, target: SitePage | und
 }
 
 function renderAudio(doc: Document, audioAssets: PageAudioAssets | null): void {
-    const audio = doc.querySelector('audio');
+    const audio = doc.querySelector('#webbook-toolbar audio');
     const controls = doc.querySelector('#webbook-audio-controls');
     if (!audioAssets) {
         audio?.remove();
@@ -251,6 +265,8 @@ function renderAudio(doc: Document, audioAssets: PageAudioAssets | null): void {
 
     if (!audio) return;
     audio.setAttribute('src', audioAssets.audioHref);
+    // The browser's own player, shown only without JavaScript; the reader's controls replace it
+    audio.setAttribute('controls', '');
     let track = audio.querySelector('track');
     if (!track) {
         track = doc.createElement('track');

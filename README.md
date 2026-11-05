@@ -139,6 +139,10 @@ More about `[`, `]` and `\`:
 
 The hardware media keys are separate from these: play/pause plays and pauses, and previous/next track move to the previous or next page.
 
+## Reading without JavaScript
+
+Every page is a complete HTML page. Without JavaScript, it has a plain header with a Contents button (the table of contents opens without JavaScript, as a native popover) and links to the previous and next pages, and narrated pages have the browser's own audio player at the bottom. The reading interface's toolbars only appear when its script runs.
+
 ## Development
 
 - **Reusing audio between conversions:** `npm run convert -- <input> <output> template --audio-cache [dir]` keeps each page's merged narration in `dir` (or a folder in the system's temp folder) and reuses it on the next conversion when the page's audio clips haven't changed. Merging clips is most of a conversion's time. Off by default.
