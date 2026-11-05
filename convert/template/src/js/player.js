@@ -311,7 +311,6 @@ function enhanceBookTimeline() {
     wrapper.append(label);
     ui.timelineWrapper = wrapper;
     ui.timelineLabel = label;
-    updateTimeDisplayToggle();
 
     wrapper.addEventListener('pointermove', event => {
         if (event.pointerType === 'touch') return;
@@ -420,16 +419,12 @@ function initTimeDisplayToggle() {
         try { localStorage.setItem(TIME_DISPLAY_STORAGE_KEY, ui.timeDisplayMode); } catch {}
         updateTimelineFromAudio(true);
     });
+    // Its name is the time it shows ("Elapsed: 6:48"), so voice control users can say what they see
+    // (WCAG 2.5.3); what activating it does goes in the description
+    const hint = 'Switches between elapsed time, time left in the chapter and time left in the book';
+    toggle.setAttribute('aria-description', hint);
+    toggle.title = hint;
     ui.timeToggle = toggle;
-    updateTimeDisplayToggle();
-}
-
-function updateTimeDisplayToggle(description) {
-    if (!ui.timeToggle) return;
-    const names = { elapsed: 'Elapsed time', chapter: 'Time left in chapter', book: 'Time left in book' };
-    const current = description || names[ui.timeDisplayMode];
-    ui.timeToggle.setAttribute('aria-label', `${current}. Change time display.`);
-    ui.timeToggle.title = `${current}; activate to change`;
 }
 
 function timeLeftAt(bookTime) {
@@ -441,16 +436,6 @@ function timeLeftAt(bookTime) {
     const pageIndex = bookAudioMap.pages.indexOf(page);
     const hasUnnarratedPagesAfter = bookAudioMap.pages.slice(pageIndex + 1).some(candidate => candidate.duration === 0);
     return { chapter, book, hasUnnarratedPagesAfter };
-}
-
-function compactTimeLeft(seconds) {
-    const total = Math.max(0, Math.ceil(seconds));
-    if (total < 60) return `${total} sec`;
-    const minutes = Math.ceil(total / 60);
-    if (minutes < 60) return `${minutes} min`;
-    const hours = Math.floor(minutes / 60);
-    const remainder = minutes % 60;
-    return `${hours} h${remainder ? ` ${remainder} min` : ''}`;
 }
 
 function formatRemainingTime(seconds) {
@@ -470,18 +455,13 @@ function spokenTimeLeft(seconds) {
 function updateTimeDisplay(bookTime) {
     if (!ui.timeDisplay || !bookAudioMap) return;
     const left = timeLeftAt(bookTime);
-    let description;
     if (ui.timeDisplayMode === 'chapter') {
         ui.timeDisplay.textContent = `Remaining in chapter: ${formatRemainingTime(left.chapter)}`;
-        description = `${compactTimeLeft(left.chapter)} left in chapter`;
     } else if (ui.timeDisplayMode === 'book') {
         ui.timeDisplay.textContent = `${left.hasUnnarratedPagesAfter ? 'Left in book audio' : 'Left in book'}: ${formatRemainingTime(left.book)}`;
-        description = `${compactTimeLeft(left.book)}${left.hasUnnarratedPagesAfter ? ' narrated time' : ''} left in book`;
     } else {
         ui.timeDisplay.textContent = `Elapsed: ${formatBookTime(bookTime)}`;
-        description = `Elapsed time ${formatBookTime(bookTime)}`;
     }
-    updateTimeDisplayToggle(description);
 }
 
 function announceTimeLeft() {
