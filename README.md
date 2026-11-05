@@ -6,6 +6,13 @@
 
 Transform EPUB into a series of HTML files for reading directly in the browser, with built-in Media Overlays support too.
 
+By default, the converter splits a content document containing several chapters into one page per
+chapter at its table of contents entries. Use `--no-split-chapters` to preserve the source content
+documents as pages. Heading-based page titles are also on by default; use `--no-heading-titles` to
+turn them off. Multiple top-level entries always identify chapters; nested entries are used as
+chapter boundaries only in long content documents (at least 50 KiB), so ordinary chapter files
+are not split into their subsections.
+
 See an [example fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick)):
 
 After conversion, the original EPUB is rewritten as:

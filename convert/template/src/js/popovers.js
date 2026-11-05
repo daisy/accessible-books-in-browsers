@@ -153,15 +153,20 @@ export function initPopoverToggleTracking() {
                     const current = popover.querySelector('a[aria-current="page"]');
                     if (current) { current.scrollIntoView(); current.focus(); }
                 } else if (id === 'webbook-info') {
-                    const tocLinks = Array.from(document.querySelectorAll('#webbook-cover-link, #webbook-toc-nav ol a'));
-                    const currentIdx = tocLinks.findIndex(a => a.getAttribute('aria-current') === 'page');
-                    const total = tocLinks.length;
+                    const progressSection = document.querySelector('#webbook-progress');
+                    const current = Number(progressSection?.dataset.webbookPageNumber || 0);
+                    const total = Number(progressSection?.dataset.webbookPageCount || 0);
+                    const percentage = total > 0 ? Math.round(current / total * 100) : 0;
                     const pageLabel = document.querySelector('#webbook-current-page-label');
                     const progressBar = document.querySelector('#webbook-reading-progress');
                     const countLabel = document.querySelector('#webbook-progress-count');
-                    if (pageLabel) pageLabel.textContent = currentIdx >= 0 ? tocLinks[currentIdx].textContent.trim() : '';
-                    if (progressBar && total > 0) progressBar.value = currentIdx >= 0 ? Math.round((currentIdx + 1) / total * 100) : 0;
-                    if (countLabel && total > 0) countLabel.textContent = currentIdx >= 0 ? `${currentIdx + 1} of ${total}` : '';
+                    if (pageLabel && !pageLabel.textContent.trim()) pageLabel.textContent = document.title.split(' – ')[0];
+                    if (progressBar) {
+                        progressBar.value = percentage;
+                        progressBar.textContent = `${percentage}%`;
+                        progressBar.setAttribute('aria-valuetext', `${percentage}%`);
+                    }
+                    if (countLabel) countLabel.textContent = `${percentage}%`;
                     focusInitialPopoverControl(popover, id);
                 } else {
                     focusInitialPopoverControl(popover, id);

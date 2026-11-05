@@ -194,6 +194,17 @@ function swapIn(doc) {
         });
     }
 
+    // Page position is converter-provided because not every spine page is necessarily in the TOC.
+    const progress = document.querySelector('#webbook-progress');
+    const newProgress = doc.querySelector('#webbook-progress');
+    if (progress && newProgress) {
+        progress.dataset.webbookPageNumber = newProgress.dataset.webbookPageNumber || '';
+        progress.dataset.webbookPageCount = newProgress.dataset.webbookPageCount || '';
+        const label = progress.querySelector('#webbook-current-page-label');
+        const newLabel = newProgress.querySelector('#webbook-current-page-label');
+        if (label && newLabel) label.textContent = newLabel.textContent;
+    }
+
     swapNarration(doc);
 }
 

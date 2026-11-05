@@ -2,6 +2,9 @@
 set -e
 cd "$(dirname "$0")/convert"
 npm run build
-for book in moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB; do
-    npm run convert -- "../source-epubs/$book/" "../demos/$book" template --heading-titles
+if [ "$#" -eq 0 ]; then
+    set -- moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB
+fi
+for book do
+    npm run convert -- "../source-epubs/$book/" "../demos/$book" template
 done

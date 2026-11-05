@@ -25,4 +25,5 @@ export type Epub = {
     basedir: string;
     packageFilename: string;
     navFilename: string;
+    coverDocumentHref?: string;
 };

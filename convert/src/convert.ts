@@ -16,6 +16,7 @@ export type ConvertOptions = {
     headingTitles?: boolean;
     identifier?: string;
     includeNonLinear?: boolean;
+    splitChapters?: boolean;
 };
 
 async function convert(input: string, output: string, template: string, options: ConvertOptions = {}): Promise<void> {
@@ -33,8 +34,17 @@ async function convert(input: string, output: string, template: string, options:
             includeNonLinear: options.includeNonLinear,
             warn: message => winston.warn(message)
         });
-        const site = buildSiteModel(epub, { identifier: options.identifier, headingTitles: options.headingTitles });
-        if (options.headingTitles) {
+        if (options.splitChapters === false) winston.info('Chapter splitting is off');
+        const site = await buildSiteModel(epub, {
+            identifier: options.identifier,
+            headingTitles: options.headingTitles !== false,
+            splitChapters: options.splitChapters !== false,
+            warn: message => winston.warn(message),
+            onSplit: (sourcePath, pieces) => winston.info(
+                `Split ${path.basename(sourcePath)} into ${pieces} pages at its table of contents entries`
+            )
+        });
+        if (options.headingTitles !== false) {
             winston.info(site.headingTitles
                 ? 'Every page is titled with the book title, so pages are titled by their first other heading'
                 : 'Pages have their own titles, so --heading-titles has no effect');
@@ -52,9 +62,25 @@ async function convert(input: string, output: string, template: string, options:
         await copyUiAssets(template, outputPaths);
 
         // Read ahead, so every page's table of contents can mark the narrated pages
-        const mediaSegmentsByPage = new Map<string, MediaSegment[]>();
+        const mediaSegmentsByPage = new Map<string, MediaSegment[]>(site.pages.map(page => [page.outputFilename, []]));
+        const pagesBySource = new Map<string, typeof site.pages>();
         for (const page of site.pages) {
-            mediaSegmentsByPage.set(page.outputFilename, page.moPath ? await getMediaSegments(page) : []);
+            const pages = pagesBySource.get(page.sourcePath) ?? [];
+            pages.push(page);
+            pagesBySource.set(page.sourcePath, pages);
+        }
+        for (const [sourcePath, pages] of pagesBySource) {
+            const firstPage = pages[0];
+            const segments = firstPage.moPath ? await getMediaSegments(firstPage) : [];
+            for (const segment of segments) {
+                const id = utils.getFrag(segment.textSrc);
+                const output = id ? site.idToOutput.get(`${sourcePath}#${id}`) : undefined;
+                const target = output ?? firstPage.outputFilename;
+                if (!output && pages.length > 1) {
+                    winston.warn(`Narration target ${id ? `#${id}` : segment.textSrc} was not found; using ${target}`);
+                }
+                mediaSegmentsByPage.get(target)?.push(segment);
+            }
         }
         const narratedPages = new Set(site.pages
             .filter(page => (mediaSegmentsByPage.get(page.outputFilename) ?? []).length > 0)

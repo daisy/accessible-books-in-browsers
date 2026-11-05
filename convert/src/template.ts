@@ -42,6 +42,7 @@ class TemplateRenderer {
         doc.querySelector('meta[name="webbook-book-id"]')?.setAttribute('content', site.bookId);
 
         const main = requireElement(doc, 'main');
+        content.bodyAttributes.forEach(({ name, value }) => main.setAttribute(name, value));
         main.innerHTML = content.bodyHtml;
 
         renderToc(doc, site, page, options.narratedPages);
@@ -49,6 +50,7 @@ class TemplateRenderer {
         renderAudio(doc, audio);
         renderPageList(doc, site);
         renderInfo(doc, site, options.coverHref);
+        renderProgress(doc, site, page);
 
         return serializeDocument(doc);
     }
@@ -56,6 +58,27 @@ class TemplateRenderer {
     private cloneTemplateDocument(): Document {
         return this.templateDocument.cloneNode(true) as Document;
     }
+}
+
+function renderProgress(doc: Document, site: SiteModel, page: SitePage): void {
+    const section = doc.querySelector('#webbook-progress');
+    const progress = doc.querySelector('#webbook-reading-progress') as HTMLProgressElement | null;
+    const pageLabel = doc.querySelector('#webbook-current-page-label');
+    const percentageLabel = doc.querySelector('#webbook-progress-count');
+    const total = site.pages.length;
+    const current = page.index + 1;
+    const percentage = total > 0 ? Math.round(current / total * 100) : 0;
+
+    section?.setAttribute('data-webbook-page-number', String(current));
+    section?.setAttribute('data-webbook-page-count', String(total));
+    if (pageLabel) pageLabel.textContent = page.title;
+    if (progress) {
+        progress.value = percentage;
+        progress.textContent = `${percentage}%`;
+        progress.setAttribute('aria-label', 'Reading progress');
+        progress.setAttribute('aria-valuetext', `${percentage}%`);
+    }
+    if (percentageLabel) percentageLabel.textContent = `${percentage}%`;
 }
 
 // Most specific first, so pages of the same book differ at the start of a tab or history entry.
@@ -79,7 +102,7 @@ function renderToc(doc: Document, site: SiteModel, currentPage: SitePage, narrat
     const tocList = ol;
 
     clearElement(tocList);
-    const coverHref = site.pages[0]?.outputFilename;
+    const coverHref = site.coverHref;
     renderTocEntries(doc, tocList, site.toc, currentPage, coverHref, []);
     markNarratedEntries(doc, nav, narratedPages);
 }
@@ -153,15 +176,19 @@ function renderTocEntries(
 
 function renderCoverLink(doc: Document, site: SiteModel, currentPage: SitePage): void {
     const coverLink = requireElement(doc, '#webbook-cover-link');
-    const coverPage = site.pages[0];
-    if (!coverPage) {
+    const coverHref = site.coverHref;
+    if (!coverHref) {
+        if (coverLink.previousSibling?.nodeType === 3
+            && !coverLink.previousSibling.textContent?.trim()) {
+            coverLink.previousSibling.remove();
+        }
         coverLink.remove();
         return;
     }
 
-    coverLink.setAttribute('href', coverPage.outputFilename);
+    coverLink.setAttribute('href', coverHref);
     coverLink.textContent = 'Cover';
-    if (coverPage.outputFilename === currentPage.outputFilename) {
+    if (coverHref.split('#')[0] === currentPage.outputFilename) {
         coverLink.setAttribute('aria-current', 'page');
     }
     else {

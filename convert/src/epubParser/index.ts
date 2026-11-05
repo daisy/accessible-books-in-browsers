@@ -36,7 +36,8 @@ async function parse(inputFilename: string, options: EpubParseOptions = {}): Pro
         navFilename: packageObj.navFilename,
         packageFilename: opfFilename,
         basedir,
-        nav
+        nav,
+        coverDocumentHref: packageObj.coverDocumentHref
     };
 }
 

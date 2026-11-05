@@ -18,6 +18,7 @@
                 const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
                 const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
                 root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
 
                 const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
                 const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
@@ -162,8 +163,8 @@
             <section id="webbook-progress" aria-label="Reading progress">
                 <h3>Progress</h3>
                 <p id="webbook-current-page-label"></p>
-                <progress id="webbook-reading-progress" max="100" value="0"></progress>
-                <p id="webbook-progress-count"></p>
+                <progress id="webbook-reading-progress" max="100" value="0" aria-label="Reading progress">0%</progress>
+                <p id="webbook-progress-count">0%</p>
             </section>
         </div>
     </section>

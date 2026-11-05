@@ -2,13 +2,15 @@ import path from 'path';
 import { JSDOM } from 'jsdom';
 import type { ImageAssetRegistry } from './assets.js';
 import type { SiteModel, SitePage } from './model.js';
-import { normalizeSourcePath, rewriteSourceHref } from './model.js';
+import { fragmentKey, normalizeSourcePath, rewriteSourceHref } from './model.js';
+import { ensureHeadingIds, extractDocumentPiece, removeIdsNotOwnedByPage } from './chapter-split.js';
 import * as fileio from './file-io.js';
 import * as utils from './utils.js';
 import type { SearchData } from './create-search-index.js';
 import { collectSearchPassages } from './create-search-index.js';
 
 export type TransformedContent = {
+    bodyAttributes: Array<{ name: string; value: string }>;
     bodyHtml: string;
     title: string;
 };
@@ -26,12 +28,17 @@ async function transformContent(
 
     stripXmlNamespaceAttributes(doc);
     translateEpubTypes(doc);
-    rewriteInternalLinks(doc, page, site);
     rewriteImageReferences(doc, page, imageRegistry);
     selfAnchorHeadings(doc);
+    if (page.split) extractDocumentPiece(doc, page.split, page.split.piece);
+    removeIdsOwnedByOtherPages(doc, page, site);
+    rewriteInternalLinks(doc, page, site);
     if (searchData) collectSearchPassages(searchData, doc, page, narratedTargetIds);
 
     return {
+        bodyAttributes: page.split
+            ? Array.from(doc.body.attributes, attribute => ({ name: attribute.name, value: attribute.value }))
+            : [],
         bodyHtml: doc.body.innerHTML,
         title: doc.querySelector('title')?.textContent?.trim() ?? ''
     };
@@ -112,12 +119,22 @@ function rewriteInternalLinks(doc: Document, page: SitePage, site: SiteModel): v
     doc.querySelectorAll('a[href]').forEach(link => {
         const href = link.getAttribute('href');
         if (!href || shouldLeaveHrefAlone(href)) return;
-        if (href.startsWith('#')) return;
+        if (href.startsWith('#')) {
+            const fragment = utils.getFrag(href);
+            const output = site.idToOutput.get(fragmentKey(page.sourcePath, fragment));
+            if (output && output !== page.outputFilename) link.setAttribute('href', `${output}#${fragment}`);
+            return;
+        }
 
         const absoluteHref = resolveContentHref(page.sourcePath, href);
-        const rewrittenHref = rewriteSourceHref(absoluteHref, site.sourceToOutput);
+        const rewrittenHref = rewriteSourceHref(absoluteHref, site.sourceToOutput, site.idToOutput, site.cutPointToOutput);
         if (rewrittenHref) link.setAttribute('href', rewrittenHref);
     });
+}
+
+function removeIdsOwnedByOtherPages(doc: Document, page: SitePage, site: SiteModel): void {
+    if (!page.split) return;
+    removeIdsNotOwnedByPage(doc, page.sourcePath, page.outputFilename, site.idToOutput);
 }
 
 function rewriteImageReferences(doc: Document, page: SitePage, imageRegistry: ImageAssetRegistry): void {
@@ -164,12 +181,10 @@ function rewriteSrcset(srcset: string, sourcePath: string, imageRegistry: ImageA
 }
 
 function selfAnchorHeadings(doc: Document): void {
+    ensureHeadingIds(doc);
     const headings = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
-    headings.forEach((heading, index) => {
-        const headingId = heading.getAttribute('id')
-            || heading.getAttribute('data-number')
-            || `h-${index}`;
-        heading.setAttribute('id', headingId);
+    headings.forEach(heading => {
+        const headingId = heading.id;
         // Same-page anchor targets aren't natively focusable, so activating a link to one
         // is normally a silent no-op for a screen reader user (no scroll, no focus change,
         // nothing perceptible happens). tabindex="-1" makes the heading a real focus target
@@ -183,7 +198,8 @@ function selfAnchorHeadings(doc: Document): void {
         if (hasSelfAnchor) return;
 
         const anchor = doc.createElement('a');
-        const anchorLabel = `Link to ${heading.textContent?.trim() ?? 'heading'}`;
+        const headingLabel = (heading.textContent ?? '').trim().replace(/\s+/g, ' ') || 'heading';
+        const anchorLabel = `Link to ${headingLabel}`;
         anchor.setAttribute('href', `#${headingId}`);
         anchor.setAttribute('rel', 'bookmark');
         anchor.setAttribute('class', 'webbook');
@@ -210,4 +226,4 @@ function shouldLeaveHrefAlone(href: string): boolean {
     return /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
 }
 
-export { transformContent };
+export { rewriteInternalLinks, selfAnchorHeadings, transformContent };

@@ -23,7 +23,9 @@ async function createVtt(mediaSegments: MediaSegment[], outFilename: string): Pr
         startTime += dur;
     });
 
-    await fs.writeFile(outFilename, v.toString());
+    // vtt-creator emits CRLF. Keep generated text files consistent with the repository and
+    // avoid every line appearing to contain trailing whitespace in Git.
+    await fs.writeFile(outFilename, v.toString().replace(/\r\n/g, '\n'));
 }
 
 export { createVtt };

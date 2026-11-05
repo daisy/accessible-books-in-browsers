@@ -9,6 +9,7 @@ const select = xpath.useNamespaces({
 });
 
 export type PackageDocument = {
+    coverDocumentHref?: string;
     metadata: Metadata;
     navFilename: string;
     spine: SpineItem[];
@@ -22,10 +23,21 @@ async function parse(inputFilename: string, options: PackageDocumentParseOptions
     const doc = await fileio.parse(inputFilename);
     const metadata = parseMetadata(doc, inputFilename);
     return {
+        coverDocumentHref: parseGuideCoverHref(inputFilename, doc),
         metadata,
         spine: parseSpine(inputFilename, doc, options),
         navFilename: getManifestItemHrefByProperty('nav', doc, inputFilename)
     };
+}
+
+function parseGuideCoverHref(opfFilename: string, doc: Document): string | undefined {
+    const reference = (select('//opf:guide/opf:reference', doc) as Element[]).find(element =>
+        (element.getAttribute('type') ?? '').toLowerCase().split(/\s+/).includes('cover'));
+    const href = reference?.getAttribute('href');
+    if (!href) return undefined;
+    const [filename, fragment] = href.split('#', 2);
+    const resolved = path.resolve(path.dirname(opfFilename), filename);
+    return fragment ? `${resolved}#${fragment}` : resolved;
 }
 
 function parseMetadata(doc: Document, opfFilename: string): Metadata {
@@ -132,4 +144,4 @@ function firstMetadataValue(value: string | string[] | undefined): string {
     return value ?? '';
 }
 
-export { parse };
+export { parse, parseGuideCoverHref };
