@@ -8,9 +8,7 @@ import { initPlayer } from './player.js';
 import { initToolbarAutoHide } from './toolbar.js';
 import { initInPlaceNavigation } from './in-place-navigation.js';
 import { initPageActions } from './page-entry.js';
-import { initKeyboardShortcuts } from './keyboard-shortcuts.js';
-import { initKeyboardShortcutSettings } from './keyboard-shortcut-settings.js';
-import { initSearch } from './search.js';
+import { initKeyboardShortcuts, initKeyboardShortcutEditorButton } from './keyboard-shortcuts.js';
 import { initTocTree } from './toc-tree.js';
 import { initCurrentPrintPage } from './current-print-page.js';
 import { initNotesInPlace } from './notes-in-place.js';
@@ -31,8 +29,8 @@ initPopoverActions();
 initCurrentPrintPage();
 initNotesInPlace();
 initKeyboardShortcuts();
-initKeyboardShortcutSettings();
-initSearch();
+initKeyboardShortcutEditorButton();
+initSearchOnDemand();
 initTocTree();
 // Last, so its click handler runs after the others have seen the click
 initInPlaceNavigation();
@@ -40,3 +38,18 @@ initInPlaceNavigation();
 import('./media-session.js')
     .then(({ initMediaSessionControls }) => initMediaSessionControls())
     .catch(error => console.warn('Media Session controls unavailable.', error));
+
+// Search is loaded when the reader first opens it, or right away after following a search result
+// to another page by a full page load, so that page can highlight the matched words
+function initSearchOnDemand() {
+    const panel = document.getElementById('webbook-search');
+    if (!panel) return;
+    let loading = null;
+    const load = () => loading ??= import('./search.js')
+        .then(({ initSearch }) => initSearch())
+        .catch(error => console.warn('Search unavailable.', error));
+    panel.addEventListener('beforetoggle', event => { if (event.newState === 'open') load(); });
+    try {
+        if (sessionStorage.getItem('webbook-search-highlight')) load();
+    } catch { /* Without session storage there's nothing pending. */ }
+}
