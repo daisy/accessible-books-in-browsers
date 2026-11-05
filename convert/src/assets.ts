@@ -61,6 +61,18 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
     }));
 }
 
+// A service worker only controls pages in its own folder and below, and must come from the book's
+// own site, so offline reading needs this file at the book's root; a CDN or a later UI upgrade
+// can't add it. It's the same for every book and does nothing by itself: the behavior lives with
+// the reader's files, which can be upgraded. Nothing registers it yet.
+const SERVICE_WORKER_STUB = `// Offline reading. The behavior lives with the reader's files, so it can be upgraded with them.
+importScripts('src/js/offline-worker.js');
+`;
+
+async function writeServiceWorkerStub(outputPaths: OutputPaths): Promise<void> {
+    await fs.writeFile(path.join(outputPaths.stagingDir, OutputLayout.serviceWorkerFilename), SERVICE_WORKER_STUB);
+}
+
 async function copyImageAssets(registry: ImageAssetRegistry, outputPaths: OutputPaths): Promise<void> {
     await Promise.all(registry.all().map(async asset => {
         await fs.copy(asset.sourcePath, path.join(outputPaths.imagesDir, asset.outputFilename));
@@ -71,5 +83,6 @@ export {
     copyImageAssets,
     copyUiAssets,
     ImageAssetRegistry,
-    UI_ASSET_DIRS
+    UI_ASSET_DIRS,
+    writeServiceWorkerStub
 };

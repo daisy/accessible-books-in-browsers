@@ -6,6 +6,7 @@ const OutputLayout = {
     audioDir: 'audio',
     imagesDir: 'images',
     logFilename: 'output.log',
+    serviceWorkerFilename: 'sw.js',
     vttDir: 'vtt'
 } as const;
 

@@ -3,7 +3,7 @@ import path from 'path';
 import winston from 'winston';
 import * as epubParser from './epubParser/index.js';
 import * as logger from './logger/index.js';
-import { ImageAssetRegistry, copyImageAssets, copyUiAssets } from './assets.js';
+import { ImageAssetRegistry, copyImageAssets, copyUiAssets, writeServiceWorkerStub } from './assets.js';
 import { TemplateRenderer } from './template.js';
 import { buildSiteModel } from './model.js';
 import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
@@ -61,6 +61,7 @@ async function convert(input: string, output: string, template: string, options:
             : null;
 
         await copyUiAssets(template, outputPaths);
+        await writeServiceWorkerStub(outputPaths);
 
         // Read ahead, so every page's table of contents can mark the narrated pages
         const mediaSegmentsByPage = new Map<string, MediaSegment[]>(site.pages.map(page => [page.outputFilename, []]));
