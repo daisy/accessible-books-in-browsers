@@ -36,6 +36,26 @@ h3 {
     font-size: var(--size-step-2);
 }
 
+/* Reading settings apply to all publication text, including elements whose
+   typographic scale is otherwise expressed in root-relative units. */
+main h1,
+main h2,
+main h3 {
+    font-family: inherit;
+}
+
+main h1 {
+    font-size: calc(var(--size-step-4) * var(--webbook-font-scale, 1));
+}
+
+main h2 {
+    font-size: calc(var(--size-step-3) * var(--webbook-font-scale, 1));
+}
+
+main h3 {
+    font-size: calc(var(--size-step-2) * var(--webbook-font-scale, 1));
+}
+
 
 ul,
 ol {
@@ -45,7 +65,7 @@ ol {
 blockquote {
     padding-inline-start: 1em;
     border-inline-start: 0.3em solid;
-    font-size: var(--size-step-1);
+    font-size: calc(var(--size-step-1) * var(--webbook-font-scale, 1));
     font-style: italic;
 }
 

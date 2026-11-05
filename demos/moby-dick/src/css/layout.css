@@ -64,7 +64,7 @@ main {
         width: 100%;
         margin: 1.5rem 0;
         border-collapse: collapse;
-        font-size: .95rem;
+        font-size: calc(.95rem * var(--webbook-font-scale, 1));
     }
     caption {
         margin-bottom: .4rem;
@@ -89,7 +89,7 @@ main {
         border-top: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
         border-bottom: 1px solid color-mix(in srgb, var(--theme-fg) 30%, transparent);
         color: var(--webbook-muted-fg);
-        font-size: .85rem;
+        font-size: calc(.85rem * var(--webbook-font-scale, 1));
     }
 }
 /* small screens */
