@@ -123,6 +123,12 @@
         height: auto;
         max-height: 45vh;
     }
+    /* One scrolling area, the panel, which has focusable controls; a body that also scrolled would
+       be a scroll region keyboard users can't reach */
+    .webbook-info-body {
+        max-height: none;
+        overflow: visible;
+    }
 }
 #webbook-accessibility {
     border-top: var(--webbook-panel-border);
