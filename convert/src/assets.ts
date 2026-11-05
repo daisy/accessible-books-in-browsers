@@ -59,6 +59,37 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
             await fs.copy(source, path.join(outputPaths.stagingDir, dirname));
         }
     }));
+    await combineStylesheets(path.join(outputPaths.stagingDir, 'src', 'css'), 'style.css');
+}
+
+// The template keeps its CSS in one file per component, joined by @import in style.css. A browser
+// only finds each imported file after loading the one before, so a book would show unstyled for a
+// moment on every full page load. In the book, style.css holds them all, in the same order (not
+// minified), and the separate files are left out.
+async function combineStylesheets(cssDir: string, entry: string): Promise<void> {
+    const entryPath = path.join(cssDir, entry);
+    if (!await fs.pathExists(entryPath)) return;
+    const inlined = new Set<string>();
+    const inline = async(file: string): Promise<string> => {
+        const css = await fs.readFile(file, 'utf8');
+        const parts: string[] = [];
+        let rest = css;
+        const importRule = /@import\s+(?:url\()?["']([^"')]+)["']\)?\s*;/;
+        for (let match = importRule.exec(rest); match; match = importRule.exec(rest)) {
+            parts.push(rest.slice(0, match.index));
+            const imported = path.resolve(path.dirname(file), match[1]);
+            if (!inlined.has(imported) && await fs.pathExists(imported)) {
+                inlined.add(imported);
+                parts.push(`/* ${path.basename(imported)} */\n${(await inline(imported)).trim()}\n`);
+            }
+            rest = rest.slice(match.index + match[0].length);
+        }
+        parts.push(rest);
+        return parts.join('');
+    };
+    const combined = await inline(entryPath);
+    await fs.writeFile(entryPath, combined.replace(/\n{3,}/g, '\n\n'));
+    await Promise.all(Array.from(inlined, file => fs.remove(file)));
 }
 
 // A service worker only controls pages in its own folder and below, and must come from the book's
