@@ -45,7 +45,7 @@ function createAudioMap(site: SiteModel, sources: Map<string, PageAudioMapSource
     const chapters: AudioMapChapter[] = [];
     const included = new Set<string>();
     let lastTime = -Infinity;
-    for (const entry of site.toc) {
+    for (const entry of chapterLevel(site.toc, pageByHref)) {
         if (!entry.href || included.has(entry.href)) continue;
         const pageHref = utils.getWithoutFrag(entry.href);
         const page = pageByHref.get(pageHref);
@@ -64,6 +64,21 @@ function createAudioMap(site: SiteModel, sources: Map<string, PageAudioMapSource
     }
 
     return { version: 1, duration: elapsed, pages, chapters };
+}
+
+// The chapters are the TOC's top level, unless it holds fewer than two narrated entries (a book whose
+// TOC is one entry, the book itself, with its chapters inside): then the level below, and so on, as
+// chapter splitting does
+function chapterLevel(toc: SiteModel['toc'], pageByHref: Map<string, { duration: number }>): SiteModel['toc'] {
+    const narrated = (entry: SiteModel['toc'][number]) =>
+        Boolean(entry.href && (pageByHref.get(utils.getWithoutFrag(entry.href))?.duration ?? 0) > 0);
+    let level = toc;
+    while (level.filter(narrated).length < 2) {
+        const below = level.flatMap(entry => entry.children);
+        if (!below.length) break;
+        level = below;
+    }
+    return level;
 }
 
 function cueOffsetForFragment(

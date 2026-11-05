@@ -65,3 +65,25 @@ test('does not create a map without narration, and gives chapters without narrat
     ]);
     assert.deepEqual(createAudioMap(site, sources).chapters.map(chapter => chapter.title), ['One']);
 });
+
+test('uses the level below when the top level holds fewer than two narrated chapters', () => {
+    const site = {
+        pages: [
+            { outputFilename: 'index.html', title: 'Cover' },
+            { outputFilename: 'one.html', title: 'One' },
+            { outputFilename: 'two.html', title: 'Two' }
+        ],
+        toc: [
+            { title: 'Report', href: 'one.html#report', children: [
+                { title: 'One', href: 'one.html', children: [] },
+                { title: 'Two', href: 'two.html', children: [] }
+            ] }
+        ]
+    };
+    const sources = new Map([
+        ['index.html', { audio: null, bodyHtml: '<h1>Cover</h1>' }],
+        ['one.html', { audio: { duration: 5, cues: [{ id: 'one', start: 0 }] }, bodyHtml: '<h1 id="one">One</h1>' }],
+        ['two.html', { audio: { duration: 5, cues: [{ id: 'two', start: 0 }] }, bodyHtml: '<h1 id="two">Two</h1>' }]
+    ]);
+    assert.deepEqual(createAudioMap(site, sources).chapters.map(chapter => chapter.title), ['One', 'Two']);
+});
