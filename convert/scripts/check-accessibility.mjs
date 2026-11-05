@@ -1,6 +1,8 @@
 // Runs axe-core on every page of the converted books in a folder (the demos by default), in
 // headless Chrome, and fails if it finds WCAG 2.2 A or AA violations. Each page is checked as it
-// opens; each book's first page is also checked with each panel open, in the light and dark themes.
+// opens; each book's first page is also checked with each panel open, in the light and dark themes,
+// and with JavaScript off (the plain navigation and native audio player), with the table of
+// contents open too.
 //
 //   node scripts/check-accessibility.mjs [folder] [--pages N] [--report file.json]
 //
@@ -45,6 +47,7 @@ try {
         for (const [i, page] of pages.entries()) {
             const url = `${server.url}/${book}/${page}`;
             results.push(...await checkPage(chrome, url, `${book}/${page}`, { panels: i === 0, themes: i === 0 ? ['light', 'dark'] : ['light'] }));
+            if (i === 0) results.push(...await checkWithoutJavaScript(chrome, url, `${book}/${page}`));
         }
         process.stdout.write(`${book}: ${pages.length} pages checked\n`);
     }
@@ -96,6 +99,25 @@ async function checkPage(chrome, url, where, { panels, themes }) {
         }
     }
     return out;
+}
+
+// Without JavaScript. Disabling scripts would stop axe too (it needs timers), so this blocks the
+// reader's script files and undoes what the head's inline script did, which is what a reader
+// without JavaScript gets: the plain navigation, the browser's audio player, no toolbars.
+async function checkWithoutJavaScript(chrome, url, where) {
+    await chrome.send('Network.enable');
+    await chrome.send('Network.setBlockedURLs', { urls: ['*/src/js/*'] });
+    try {
+        await chrome.navigate(url);
+        await chrome.evaluate(`document.documentElement.classList.remove('webbook-dark', 'webbook-light', 'webbook-js', 'webbook-caption-mode')`);
+        const out = [{ where: `${where} (no JavaScript)`, violations: await runAxe(chrome, 'document') }];
+        if (await chrome.evaluate(`(() => { const toc = document.getElementById('webbook-toc-nav'); if (!toc?.showPopover) return false; toc.showPopover(); return true; })()`)) {
+            out.push({ where: `${where} (no JavaScript, #webbook-toc-nav open)`, violations: await runAxe(chrome, `document.getElementById('webbook-toc-nav')`) });
+        }
+        return out;
+    } finally {
+        await chrome.send('Network.setBlockedURLs', { urls: [] });
+    }
 }
 
 async function runAxe(chrome, context) {

@@ -110,7 +110,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: .5rem 1.25rem;
+    gap: .75rem 2.5rem;
     padding: .75rem max(1rem, env(safe-area-inset-left));
     border-bottom: var(--webbook-panel-border);
 
@@ -125,6 +125,10 @@ main {
     }
     a {
         color: var(--theme-fg);
+    }
+    /* next page at the far end, apart from previous */
+    #webbook-basic-next {
+        margin-inline-start: auto;
     }
 }
 :root:is(.webbook-dark, .webbook-light, .webbook-js) :is(#webbook-basic-nav, .webbook-basic-close) {

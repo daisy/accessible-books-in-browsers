@@ -2,7 +2,7 @@
 #webbook-toc-nav:popover-open {
     margin: 0;
     inset: 0 auto 0 0;
-    width: min(30rem, 90vw);
+    width: min(36rem, 92vw);
     height: 100dvh;
     padding: 0 1rem;
     display: flex;
@@ -17,11 +17,20 @@
         list-style-type: none;
     }
     & > ol {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        /* the panel's own padding is enough; more here plus each level's indent left long titles a
+           narrow column */
+        padding-inline: 0 .25rem;
         margin: 0;
         overflow-y: auto;
         flex: 1;
+    }
+    /* Every entry's title goes in the title column, not only the tree's: without JavaScript (or
+       before the tree is set up) a plain link was placed in the 1.75rem chevron column */
+    li > a,
+    li > span {
+        grid-column: 2;
+        min-width: 0;
+        overflow-wrap: anywhere;
     }
     a[role="treeitem"] {
         grid-column: 2;
@@ -87,6 +96,9 @@
     ol ol {
         padding-top: .25rem;
         padding-bottom: .5rem;
+        /* the chevron column already indents each level; the browser's 2.5rem on top made deep
+           entries wrap at a fraction of the panel's width */
+        padding-inline-start: 1.25rem;
     }
     ol ol a {
         font-size: .9em;
@@ -103,11 +115,13 @@
         top: 0;
         background: var(--theme-bg);
         margin: 0 -1rem 1rem;
-        padding: 1rem 3.75rem 1rem 1rem;
+        padding: 1rem;
         border-bottom: var(--webbook-panel-border);
     }
     #webbook-toc-nav-hd {
         margin: 0;
+        /* clear of the close button; the rows below can use the full width */
+        padding-inline-end: 2.75rem;
     }
     #webbook-toc-header {
         flex-wrap: wrap;

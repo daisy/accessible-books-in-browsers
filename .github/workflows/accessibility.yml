@@ -1,5 +1,6 @@
 # Checks every page of the demos with axe-core for WCAG 2.2 A and AA violations, with each book's
-# first page also checked with each panel open, in the light and dark themes.
+# first page also checked with each panel open, in the light and dark themes, and without
+# JavaScript.
 name: Accessibility check
 
 on:
