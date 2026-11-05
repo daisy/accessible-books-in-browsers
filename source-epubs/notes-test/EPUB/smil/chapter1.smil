@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
+  <body>
+    <seq id="chapter1-seq" epub:textref="../xhtml/chapter1.xhtml">
+      <par id="chapter1-par0">
+        <text src="../xhtml/chapter1.xhtml#c1-h1"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:00.000" clipEnd="0:00:03.158"/>
+      </par>
+      <par id="chapter1-par1">
+        <text src="../xhtml/chapter1.xhtml#c1-p1"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:03.158" clipEnd="0:00:10.544"/>
+      </par>
+      <par id="chapter1-par2">
+        <text src="../xhtml/chapter1.xhtml#fn1-text"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:10.544" clipEnd="0:00:15.772"/>
+      </par>
+      <par id="chapter1-par3">
+        <text src="../xhtml/chapter1.xhtml#c1-p2"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:15.772" clipEnd="0:00:24.587"/>
+      </par>
+      <par id="chapter1-par4">
+        <text src="../xhtml/chapter1.xhtml#fn2-text"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:24.587" clipEnd="0:00:31.778"/>
+      </par>
+      <par id="chapter1-par5">
+        <text src="../xhtml/chapter1.xhtml#c1-p3"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:31.778" clipEnd="0:00:38.415"/>
+      </par>
+      <par id="chapter1-par6">
+        <text src="../xhtml/chapter1.xhtml#c1-p4"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:38.415" clipEnd="0:00:46.351"/>
+      </par>
+      <par id="chapter1-par7">
+        <text src="../xhtml/chapter1.xhtml#fn3-text"/>
+        <audio src="../audio/chapter1.mp3" clipBegin="0:00:46.351" clipEnd="0:00:52.648"/>
+      </par>
+    </seq>
+  </body>
+</smil>

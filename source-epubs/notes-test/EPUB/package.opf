@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id" xml:lang="en">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="pub-id">urn:uuid:6f1c2a52-8d0e-4b7a-9a7e-2f5d3c1b9e40</dc:identifier>
+    <dc:title>Notes Test Book</dc:title>
+    <dc:language>en</dc:language>
+    <dc:creator>accessible-books-in-browsers</dc:creator>
+    <meta property="dcterms:modified">2026-11-05T16:46:33Z</meta>
+    <meta property="media:active-class">-epub-media-overlay-active</meta>
+    <meta property="media:narrator">macOS say (Samantha)</meta>
+    <meta property="media:duration">0:01:47.895</meta>
+    <meta property="media:duration" refines="#title-mo">0:00:06.833</meta>
+    <meta property="media:duration" refines="#chapter1-mo">0:00:52.648</meta>
+    <meta property="media:duration" refines="#chapter2-mo">0:00:31.564</meta>
+    <meta property="media:duration" refines="#endnotes-mo">0:00:16.850</meta>
+    <meta property="schema:accessMode">textual</meta>
+    <meta property="schema:accessMode">auditory</meta>
+    <meta property="schema:accessModeSufficient">textual</meta>
+    <meta property="schema:accessModeSufficient">auditory</meta>
+    <meta property="schema:accessibilityFeature">synchronizedAudioText</meta>
+    <meta property="schema:accessibilityFeature">structuralNavigation</meta>
+    <meta property="schema:accessibilityFeature">tableOfContents</meta>
+    <meta property="schema:accessibilityHazard">none</meta>
+    <meta property="schema:accessibilitySummary">A test book: footnotes on the same page, endnotes in a separate file, and synchronized narration of all text including the notes. Two note references are plain links without note semantics, on purpose.</meta>
+  </metadata>
+  <manifest>
+    <item id="nav" href="xhtml/nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="title" href="xhtml/title.xhtml" media-type="application/xhtml+xml" media-overlay="title-mo"/>
+    <item id="title-mo" href="smil/title.smil" media-type="application/smil+xml"/>
+    <item id="title-audio" href="audio/title.mp3" media-type="audio/mpeg"/>
+    <item id="chapter1" href="xhtml/chapter1.xhtml" media-type="application/xhtml+xml" media-overlay="chapter1-mo"/>
+    <item id="chapter1-mo" href="smil/chapter1.smil" media-type="application/smil+xml"/>
+    <item id="chapter1-audio" href="audio/chapter1.mp3" media-type="audio/mpeg"/>
+    <item id="chapter2" href="xhtml/chapter2.xhtml" media-type="application/xhtml+xml" media-overlay="chapter2-mo"/>
+    <item id="chapter2-mo" href="smil/chapter2.smil" media-type="application/smil+xml"/>
+    <item id="chapter2-audio" href="audio/chapter2.mp3" media-type="audio/mpeg"/>
+    <item id="endnotes" href="xhtml/endnotes.xhtml" media-type="application/xhtml+xml" media-overlay="endnotes-mo"/>
+    <item id="endnotes-mo" href="smil/endnotes.smil" media-type="application/smil+xml"/>
+    <item id="endnotes-audio" href="audio/endnotes.mp3" media-type="audio/mpeg"/>
+  </manifest>
+  <spine>
+    <itemref idref="title"/>
+    <itemref idref="chapter1"/>
+    <itemref idref="chapter2"/>
+    <itemref idref="endnotes"/>
+  </spine>
+</package>

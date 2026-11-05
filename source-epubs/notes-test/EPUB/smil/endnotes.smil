@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
+  <body>
+    <seq id="endnotes-seq" epub:textref="../xhtml/endnotes.xhtml">
+      <par id="endnotes-par0">
+        <text src="../xhtml/endnotes.xhtml#en-h1"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:00.000" clipEnd="0:00:01.042"/>
+      </par>
+      <par id="endnotes-par1">
+        <text src="../xhtml/endnotes.xhtml#en1-text"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:01.042" clipEnd="0:00:06.513"/>
+      </par>
+      <par id="endnotes-par2">
+        <text src="../xhtml/endnotes.xhtml#en2-text"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:06.513" clipEnd="0:00:11.161"/>
+      </par>
+      <par id="endnotes-par3">
+        <text src="../xhtml/endnotes.xhtml#en3-text"/>
+        <audio src="../audio/endnotes.mp3" clipBegin="0:00:11.161" clipEnd="0:00:16.850"/>
+      </par>
+    </seq>
+  </body>
+</smil>

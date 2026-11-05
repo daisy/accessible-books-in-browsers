@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
+  <body>
+    <seq id="chapter2-seq" epub:textref="../xhtml/chapter2.xhtml">
+      <par id="chapter2-par0">
+        <text src="../xhtml/chapter2.xhtml#c2-h1"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:00.000" clipEnd="0:00:02.995"/>
+      </par>
+      <par id="chapter2-par1">
+        <text src="../xhtml/chapter2.xhtml#c2-p1"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:02.995" clipEnd="0:00:11.527"/>
+      </par>
+      <par id="chapter2-par2">
+        <text src="../xhtml/chapter2.xhtml#c2-p2"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:11.527" clipEnd="0:00:19.832"/>
+      </par>
+      <par id="chapter2-par3">
+        <text src="../xhtml/chapter2.xhtml#c2-p3"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:19.832" clipEnd="0:00:27.545"/>
+      </par>
+      <par id="chapter2-par4">
+        <text src="../xhtml/chapter2.xhtml#c2-p4"/>
+        <audio src="../audio/chapter2.mp3" clipBegin="0:00:27.545" clipEnd="0:00:31.564"/>
+      </par>
+    </seq>
+  </body>
+</smil>

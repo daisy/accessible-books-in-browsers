@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil xmlns="http://www.w3.org/ns/SMIL" xmlns:epub="http://www.idpf.org/2007/ops" version="3.0">
+  <body>
+    <seq id="title-seq" epub:textref="../xhtml/title.xhtml">
+      <par id="title-par0">
+        <text src="../xhtml/title.xhtml#title-h1"/>
+        <audio src="../audio/title.mp3" clipBegin="0:00:00.000" clipEnd="0:00:01.494"/>
+      </par>
+      <par id="title-par1">
+        <text src="../xhtml/title.xhtml#title-p1"/>
+        <audio src="../audio/title.mp3" clipBegin="0:00:01.494" clipEnd="0:00:06.833"/>
+      </par>
+    </seq>
+  </body>
+</smil>
