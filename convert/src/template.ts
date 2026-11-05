@@ -1,5 +1,6 @@
 import { JSDOM } from 'jsdom';
 import path from 'path';
+import type { AccessibilitySection } from './accessibility-info.js';
 import type { PageAudioAssets } from './audio.js';
 import { collapseWhitespace, type SiteModel, type SitePage } from './model.js';
 import type { TransformedContent } from './content-transform.js';
@@ -7,6 +8,8 @@ import * as fileio from './file-io.js';
 import { validateTemplateContract } from './template-contract.js';
 
 export type RenderOptions = {
+    // The source EPUB's accessibility claims, for the About panel
+    accessibility?: AccessibilitySection[];
     coverHref: string;
     // Output filenames of the pages that have narration
     narratedPages: Set<string>;
@@ -52,6 +55,7 @@ class TemplateRenderer {
         renderAudio(doc, audio);
         renderPageList(doc, site);
         renderInfo(doc, site, options.coverHref);
+        renderAccessibilityInfo(doc, options.accessibility ?? [], site.metadata.language);
         renderProgress(doc, site, page);
 
         return serializeDocument(doc);
@@ -311,6 +315,47 @@ function renderInfo(doc: Document, site: SiteModel, coverHref: string): void {
     addMetadataRow(doc, dl, 'Title', site.metadata.title);
     addMetadataRow(doc, dl, 'Author', site.metadata.author);
     addMetadataRow(doc, dl, 'Date', site.metadata.date);
+}
+
+// After the About panel's metadata, under the panel's h2. The claims are the EPUB's, not the web
+// book's, so say whose they are.
+function renderAccessibilityInfo(doc: Document, sections: AccessibilitySection[], bookLanguage: string): void {
+    const body = doc.querySelector('#webbook-info .webbook-info-body');
+    if (!body || !sections.length) return;
+    doc.querySelector('#webbook-accessibility')?.remove();
+
+    const section = doc.createElement('section');
+    section.id = 'webbook-accessibility';
+    section.setAttribute('aria-labelledby', 'webbook-accessibility-hd');
+    const heading = doc.createElement('h3');
+    heading.id = 'webbook-accessibility-hd';
+    heading.textContent = 'Accessibility';
+    const source = doc.createElement('p');
+    source.className = 'webbook-accessibility-source';
+    source.textContent = "The publisher's accessibility information for the original EPUB.";
+    section.append(heading, source);
+
+    for (const { heading: title, statements } of sections) {
+        const h4 = doc.createElement('h4');
+        h4.textContent = title;
+        const ul = doc.createElement('ul');
+        for (const statement of statements) {
+            const li = doc.createElement('li');
+            if (statement.href) {
+                const link = doc.createElement('a');
+                link.href = statement.href;
+                link.textContent = statement.text;
+                li.append(link);
+            } else {
+                li.textContent = statement.text;
+            }
+            if (statement.lang && statement.lang !== bookLanguage) li.setAttribute('lang', statement.lang);
+            ul.append(li);
+        }
+        section.append(h4, ul);
+    }
+    // Last: it can be long, and the reading progress above it is what most readers open About for
+    body.append(section);
 }
 
 function addMetadataRow(doc: Document, dl: Element, label: string, value: string): void {

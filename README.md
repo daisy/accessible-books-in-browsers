@@ -18,7 +18,7 @@ See an [example fileset](https://github.com/daisy/accessible-books-in-browsers/t
 After conversion, the original EPUB is rewritten as:
 
 - HTML files with the original contents, plus reading interface controls and links to the TOC, Previous, and Next pages.
-- An About page containing publication metainformation
+- An About page containing publication metainformation, and the publisher's accessibility information presented as the W3C [Accessibility Metadata Display Guide](https://w3c.github.io/cg-reports/publishingcg/CG-FINAL-a11y-display-guidelines-20250422/) describes
 - A TOC based on the original EPUB Nav Document
 
 Media Overlays conversion adds the following:

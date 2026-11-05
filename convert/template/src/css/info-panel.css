@@ -113,3 +113,40 @@
         border-radius: 0;
     }
 }
+/* The publication's accessibility information can be long: with it, the panel scrolls as a whole
+   and the cover takes less of the height */
+#webbook-info:popover-open:has(#webbook-accessibility) {
+    display: block;
+    overflow-y: auto;
+
+    #webbook-cover {
+        height: auto;
+        max-height: 45vh;
+    }
+}
+#webbook-accessibility {
+    border-top: var(--webbook-panel-border);
+    padding-top: 1.25rem;
+
+    h3 {
+        margin: 0;
+        font-size: 1.15rem;
+    }
+    .webbook-accessibility-source {
+        margin: .25rem 0 0;
+        font-size: .9rem;
+    }
+    h4 {
+        margin: 1.1rem 0 .3rem;
+        font-size: 1rem;
+    }
+    ul {
+        margin: 0;
+        padding-inline-start: 1.1rem;
+    }
+    li {
+        margin-block: .25rem;
+        line-height: 1.4;
+        font-size: var(--size-step-0);
+    }
+}
