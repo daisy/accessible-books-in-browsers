@@ -67,6 +67,7 @@ Test books:
 - Settings: appearance (auto/dark/light), font size and family, narration highlight color (auto or custom), playback rate, caption mode (a full-screen, narration-synced text view), skip-toggles for page numbers/footnotes/endnotes/notes/sidebars, and whether to resume the last reading position on open
 - Resumes your last reading position (page, heading, and exact audio offset) automatically when you reopen a book, with an announced "Loaded last position" banner
 - "Skip past" notification plus a single-keystroke escape (see Keyboard shortcuts below) so a table, list, figure, sidebar, footnote, endnote, or note doesn't have to be sat through during playback
+- Footnotes and endnotes open beside their reference without losing the reading position. The popover can play a same-page narrated note, or go to the full note with a reader-provided **Back to text** control. Narrated phrases with notes expose a note button, including a keyboard-operable list when a phrase has several notes.
 - Every heading has a permalink (visible on hover/focus) for bookmarking or sharing a specific section
 - The URL updates to reflect your reading position as narration plays, without adding browser-history entries
 
@@ -110,6 +111,8 @@ case folding, display direction and screen-reader pronunciation.
 | `Alt`+`Shift`+`R` | Anywhere outside a text field or open popover | Play from here: starts narration at the phrase that has focus (a screen reader's cursor brings focus with it) or at selected text |
 | `Alt`+`Shift`+`L` | Anywhere outside a text field or open popover | Announce the listening time left in the current chapter and book |
 | `Alt`+`Shift`+`Q` | Anywhere outside a text field or open popover | Announce the current print page |
+| Unassigned | While narration is on a phrase containing a note reference | Go to the note in this phrase, or open its list of notes |
+| Unassigned | After following **Go to note** | Back to text at the exact reference and narration position |
 | `Shift`+`[` / `Shift`+`]` | Anywhere outside a text field or open popover | Previous / next page |
 | `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
 | `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |
