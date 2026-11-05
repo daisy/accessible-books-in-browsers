@@ -8,6 +8,7 @@ import { playOrOfferToContinue } from './continue-playing.js';
 import { requestAutoplayForForwardSpineLink, requestAutoplayForLink, clearAutoplayRequest, consumeAutoplayRequest, normalizeAutoplayUrl } from './autoplay.js';
 import { consumePageEntry, adjacentPageLink, stepAcrossPageBoundary } from './page-entry.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
+import { handleNarratedPhrase, hidePhraseNotes } from './notes-in-place.js';
 
 const PLAY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><polygon points="5,3 19,12 5,21"/></svg>`;
 const PAUSE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/></svg>`;
@@ -733,9 +734,11 @@ function handleCueChange(e) {
         recordResumePosition(elm, audio);
         showCaptionForCue(cue, track);
         handleEscapableStructure(elm, track, activeCueIdx);
+        handleNarratedPhrase(elm);
     } else {
         clearNarrationHighlight();
         hideEscape();
+        hidePhraseNotes();
         updatePhraseButtons();
     }
 }

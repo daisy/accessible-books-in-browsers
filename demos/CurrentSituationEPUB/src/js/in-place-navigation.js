@@ -30,7 +30,8 @@ export function initInPlaceNavigation() {
                 push: false,
                 moveFocus: true,
                 scrollY: e.state?.webbookScrollY,
-                audioTime: e.state?.webbookAudioTime
+                audioTime: e.state?.webbookAudioTime,
+                autoplay: e.state?.webbookWasPlaying === true
             });
         }
     });
@@ -38,12 +39,23 @@ export function initInPlaceNavigation() {
 }
 
 // Go to a URL in this book, loading it in place where possible
-export function navigateTo(href, { push = true, moveFocus = true, audioTime, autoplay = false } = {}) {
+export function navigateTo(href, { push = true, moveFocus = true, audioTime, autoplay = false,
+    scrollY, state = null, replace = false } = {}) {
     let url;
     try { url = new URL(href, window.location.href); } catch { return; }
     if (currentPage && pagePath(url.href) === currentPage) {
         const audio = document.querySelector('#webbook-toolbar audio');
         if (audio && typeof audioTime === 'number') audio.currentTime = audioTime;
+        if (push) history.pushState(state, '', url.href);
+        else history.replaceState(state, '', url.href);
+        const target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null;
+        if (typeof scrollY === 'number') window.scrollTo(0, scrollY);
+        else target?.scrollIntoView();
+        if (moveFocus && target) {
+            if (!target.matches('a[href], button, input, select, textarea, [tabindex]')) target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+        }
+        if (autoplay && audio?.paused) audio.play().catch(() => {});
         return;
     }
     if (autoplay) requestAutoplayForLink({ href: url.href });
@@ -51,7 +63,7 @@ export function navigateTo(href, { push = true, moveFocus = true, audioTime, aut
         window.location.href = url.href;
         return;
     }
-    loadInPlace(url, { push, moveFocus, audioTime });
+    return loadInPlace(url, { push, moveFocus, audioTime, scrollY, state, replace, autoplay });
 }
 
 // Registered after the other click handlers, so they have seen the click (and asked for playback
@@ -87,7 +99,7 @@ function pagePath(href) {
     }
 }
 
-async function loadInPlace(url, { push, moveFocus, scrollY, audioTime }) {
+async function loadInPlace(url, { push, moveFocus, scrollY, audioTime, state = null, replace = false, autoplay = false }) {
     const navigation = ++navigationCount;
     let doc;
     try {
@@ -114,11 +126,14 @@ async function loadInPlace(url, { push, moveFocus, scrollY, audioTime }) {
         history.replaceState({
             ...history.state,
             webbookScrollY: window.scrollY,
-            webbookAudioTime: narrated ? audio.currentTime : undefined
+            webbookAudioTime: narrated ? audio.currentTime : undefined,
+            webbookWasPlaying: narrated ? !audio.paused : false
         }, '');
     }
+    if (autoplay) requestAutoplayForLink({ href: url.href });
     swapIn(doc);
-    if (push) history.pushState(null, '', url.href);
+    if (push) history.pushState(state, '', url.href);
+    else if (replace) history.replaceState(state, '', url.href);
     currentPage = pagePath(url.href);
     startPage({ audioTime });
     placeReader(url.hash, moveFocus || focusWasInContent, scrollY);
@@ -126,7 +141,7 @@ async function loadInPlace(url, { push, moveFocus, scrollY, audioTime }) {
     prefetchNextPage();
 }
 
-function fetchPage(url) {
+export function fetchPage(url) {
     const key = pagePath(url.href);
     if (!pageCache.has(key)) {
         const page = fetch(url.href, { credentials: 'same-origin' })

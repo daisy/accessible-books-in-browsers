@@ -1,4 +1,8 @@
 export function initToolbarAutoHide() {
+    // The reader is running: the basic navigation for reading without JavaScript can go. The
+    // head's appearance script usually says so first (webbook-dark/webbook-light), but not when
+    // storage is blocked.
+    document.documentElement.classList.add('webbook-js');
     const toolbar = document.querySelector('#webbook-toolbar');
     const topToolbar = document.querySelector('#webbook-top-toolbar');
     const spineNav = document.querySelector('#webbook-spine-nav');

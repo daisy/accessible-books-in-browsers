@@ -31,6 +31,12 @@
 </head>
 
 <body>
+    <!-- Basic navigation for reading without JavaScript; hidden when the reader's script runs -->
+    <nav id="webbook-basic-nav" aria-label="Book">
+        <button type="button" popovertarget="webbook-toc-nav">Contents</button>
+        
+        <a id="webbook-basic-next" rel="next" href="content-2.html">Next: Introduction</a>
+    </nav>
     <main>
    <div class="file">
       <h1 class="title epubtype_title" id="h-0" tabindex="-1">
@@ -90,6 +96,7 @@ The second picture shows  a man, a lady and a girl child standing in front of a 
     <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
         <div id="webbook-toc-header">
             <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <button type="button" class="webbook-basic-close" popovertarget="webbook-toc-nav" popovertargetaction="hide">Close</button>
         </div>
         <ol><li id="toc-1"><a href="content-2.html">Introduction</a></li><li id="toc-2"><a href="content-3.html">CHAT messages</a><ol><li id="toc-2-1"><a href="content-3.html#dtb25">The CHAT messages are:</a></li></ol></li><li id="toc-3"><a href="content-4.html">Preparing to read and CHAT</a><ol><li id="toc-3-1"><a href="content-4.html#dtb64">When preparing to read with children, please remember:</a></li><li id="toc-3-2"><a href="content-4.html#dtb73">It is time to CHAT, when you see</a></li><li id="toc-3-3"><a href="content-4.html#dtb90">Sharing information:</a></li><li id="toc-3-4"><a href="content-4.html#dtb97">Hearing children:</a></li><li id="toc-3-5"><a href="content-4.html#dtb112">Example of a CHAT that HEARs the child:</a></li><li id="toc-3-6"><a href="content-4.html#dtb143">Example of a CHAT where a child is not heard:</a></li><li id="toc-3-7"><a href="content-4.html#dtb161">Focus on the key messages</a></li><li id="toc-3-8"><a href="content-4.html#dtb171">Length of CHAT</a></li><li id="toc-3-9"><a href="content-4.html#dtb179">Unique CHATS</a></li><li id="toc-3-10"><a href="content-4.html#dtb184">THE ARIO: Information for Adults</a></li></ol></li><li id="toc-4"><a href="content-5.html">Understanding the Guide</a></li><li id="toc-5"><a href="content-6.html">THE ARIO</a><ol><li id="toc-5-1"><a href="content-6.html#dtb215">ADULTS BENEFIT FROM LISTENING TO CHILDREN</a></li></ol></li><li id="toc-6"><a href="content-7.html">THE ARIO</a><ol><li id="toc-6-1"><a href="content-7.html#dtb239">CHILDREN NEED TO KNOW THE FACTS ABOUT COVID-19</a></li></ol></li><li id="toc-7"><a href="content-8.html">KEY MESSAGE 1 Staying healthy</a></li><li id="toc-8"><a href="content-9.html">THE ARIO</a><ol><li id="toc-8-1"><a href="content-9.html#dtb312">CHILDREN SPEAK OUT</a></li></ol></li><li id="toc-9"><a href="content-10.html">KEY MESSAGE 2 Children speak out</a><ol><li id="toc-9-1"><a href="content-10.html#dtb366">MANAGING OUR STRESS</a></li></ol></li><li id="toc-10"><a href="content-11.html">KEY MESSAGE 3 Coping with stress</a></li><li id="toc-11"><a href="content-12.html">THE ARIO</a><ol><li id="toc-11-1"><a href="content-12.html#dtb498">FEELING SAFE COMES FROM THE HEART</a></li></ol></li><li id="toc-12"><a href="content-13.html">KEY MESSAGE 4 Keeping each other safe</a></li><li id="toc-13"><a href="content-14.html">THE ARIO</a><ol><li id="toc-13-1"><a href="content-14.html#dtb584">FAMILIES FIGHT COVID-19 TOGETHER</a></li></ol></li><li id="toc-14"><a href="content-15.html">KEY MESSAGE 5 Solving problems</a></li><li id="toc-15"><a href="content-16.html">THE ARIO</a><ol><li id="toc-15-1"><a href="content-16.html#dtb666">COVID-19 HAS NO BOUNDARIES</a></li></ol></li><li id="toc-16"><a href="content-17.html">KEY MESSAGE 6 All people need to be protected</a></li><li id="toc-17"><a href="content-18.html">THE ARIO</a><ol><li id="toc-17-1"><a href="content-18.html#dtb704">HOW TO DEAL WITH A BROKEN HEART?</a></li></ol></li><li id="toc-18"><a href="content-19.html">KEY MESSAGE 7 Living with heartache</a></li><li id="toc-19"><a href="content-20.html">THE ARIO</a><ol><li id="toc-19-1"><a href="content-20.html#dtb780">WHEN ARE WE SAFE FROM A PERSON WHO WAS INFECTED?</a></li></ol></li><li id="toc-20"><a href="content-21.html">KEY MESSAGE 8 Being a responsible citizen of the world</a></li><li id="toc-21"><a href="content-22.html">THE ARIO</a><ol><li id="toc-21-1"><a href="content-22.html#dtb880">YOU ARE THE HERO</a></li></ol></li><li id="toc-22"><a href="content-23.html">KEY MESSAGE 9 My hero is YOU</a></li><li id="toc-23"><a href="content-24.html">Links to My Hero is You further resources:</a></li></ol>
     </nav>
@@ -117,7 +124,7 @@ The second picture shows  a man, a lady and a girl child standing in front of a 
         <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
         </button>
-        <audio preload="metadata" src="audio/index.mp3"><track default="" kind="metadata" src="vtt/index.vtt"></audio>
+        <audio preload="metadata" src="audio/index.mp3" controls=""><track default="" kind="metadata" src="vtt/index.vtt"></audio>
         <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
             <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
@@ -164,11 +171,11 @@ The second picture shows  a man, a lady and a girl child standing in front of a 
             <dl><dt>Title</dt><dd>Action for Heroes </dd><dt>Author</dt><dd>IASC </dd><dt>Date</dt><dd>2021-10-07</dd></dl>
             <section id="webbook-progress" aria-label="Reading progress" data-webbook-page-number="1" data-webbook-page-count="24">
                 <h3>Progress</h3>
-                <p id="webbook-current-page-label">Action for Heroes </p>
+                <p id="webbook-current-page-label">Section: Action for Heroes </p>
                 <progress id="webbook-reading-progress" max="100" value="4" aria-label="Reading progress" aria-valuetext="4%">4%</progress>
                 <p id="webbook-progress-count">4%</p>
             </section>
-        </div>
+        <section id="webbook-accessibility" aria-labelledby="webbook-accessibility-hd"><h3 id="webbook-accessibility-hd">Accessibility</h3><p class="webbook-accessibility-source">The publisher's accessibility information for the original EPUB.</p><h4>Ways of reading</h4><ul><li>No information about appearance modifiability is available</li><li>No information about nonvisual reading is available</li></ul><h4>Conformance</h4><ul><li>No information is available</li></ul></section></div>
     </section>
 
     <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">

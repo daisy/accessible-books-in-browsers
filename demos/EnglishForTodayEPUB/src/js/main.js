@@ -13,6 +13,7 @@ import { initKeyboardShortcutSettings } from './keyboard-shortcut-settings.js';
 import { initSearch } from './search.js';
 import { initTocTree } from './toc-tree.js';
 import { initCurrentPrintPage } from './current-print-page.js';
+import { initNotesInPlace } from './notes-in-place.js';
 
 initEscapability();
 initResumePosition();
@@ -28,6 +29,7 @@ initToolbarAutoHide();
 initPageActions();
 initPopoverActions();
 initCurrentPrintPage();
+initNotesInPlace();
 initKeyboardShortcuts();
 initKeyboardShortcutSettings();
 initSearch();

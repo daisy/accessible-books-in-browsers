@@ -31,26 +31,32 @@
 </head>
 
 <body>
+    <!-- Basic navigation for reading without JavaScript; hidden when the reader's script runs -->
+    <nav id="webbook-basic-nav" aria-label="Book">
+        <button type="button" popovertarget="webbook-toc-nav">Contents</button>
+        <a id="webbook-basic-previous" rel="prev" href="chapter2.html">Previous: Chapter 2. Endnotes in another file</a>
+        
+    </nav>
     <main>
     <section role="doc-endnotes" class="epubtype_endnotes">
       <h1 id="en-h1" tabindex="-1">Notes<a href="#en-h1" rel="bookmark" class="webbook" title="Link to Notes" aria-label="Link to Notes"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h1>
       <ol>
-        <li id="en1" role="doc-endnote" class="epubtype_endnote">
+        <li id="en1" class="epubtype_endnote">
           <p id="en1-text">The supply boat also carried the post, so a missed boat meant two weeks without letters. <a href="chapter2.html#c2-ref1" role="doc-backlink">Back to text</a></p>
         </li>
-        <li id="en2" role="doc-endnote" class="epubtype_endnote">
+        <li id="en2" class="epubtype_endnote">
           <p id="en2-text">Swell height was estimated by eye against marks painted on the landing stage.</p>
         </li>
-        <li id="en3" role="doc-endnote" class="epubtype_endnote">
+        <li id="en3" class="epubtype_endnote">
           <p id="en3-text">This reference is a plain link with no note semantics, pointing at an endnote in another file.</p>
         </li>
-        <li id="en4" role="doc-endnote" class="epubtype_endnote">
+        <li id="en4" class="epubtype_endnote">
           <p id="en4-text">She could see the light from her kitchen window, if she stood on a chair.</p>
         </li>
-        <li id="en5" role="doc-endnote" class="epubtype_endnote">
+        <li id="en5" class="epubtype_endnote">
           <p id="en5-text">The same boat, repainted, now takes visitors out to the island in summer.</p>
         </li>
-        <li id="en6" role="doc-endnote" class="epubtype_endnote">
+        <li id="en6" class="epubtype_endnote">
           <p id="en6-text">The horn was retired before the light was, and replaced by a radio beacon.</p>
         </li>
       </ol>
@@ -69,6 +75,7 @@
     <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
         <div id="webbook-toc-header">
             <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <button type="button" class="webbook-basic-close" popovertarget="webbook-toc-nav" popovertargetaction="hide">Close</button>
         </div>
         <ol><li id="toc-1"><a href="index.html">Notes Test Book</a></li><li id="toc-2"><a href="chapter1.html">Chapter 1. Footnotes on the same page</a></li><li id="toc-3"><a href="chapter2.html">Chapter 2. Endnotes in another file</a></li><li id="toc-4"><a href="endnotes.html" aria-current="page">Notes</a></li></ol>
     </nav>
@@ -94,7 +101,7 @@
         <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
             <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
         </button>
-        <audio preload="metadata" src="audio/endnotes.mp3"><track default="" kind="metadata" src="vtt/endnotes.vtt"></audio>
+        <audio preload="metadata" src="audio/endnotes.mp3" controls=""><track default="" kind="metadata" src="vtt/endnotes.vtt"></audio>
         <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
             <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
@@ -131,14 +138,14 @@
         <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
         <div class="webbook-info-body">
             <h2 id="webbook-info-hd">About</h2>
-            <dl><dt>Title</dt><dd>Notes Test Book</dd><dt>Author</dt><dd>accessible-books-in-browsers</dd><dt>Date</dt><dd>2026-11-05T21:11:49Z</dd></dl>
+            <dl><dt>Title</dt><dd>Notes Test Book</dd><dt>Author</dt><dd>accessible-books-in-browsers</dd><dt>Date</dt><dd>2026-11-05T22:18:25Z</dd></dl>
             <section id="webbook-progress" aria-label="Reading progress" data-webbook-page-number="4" data-webbook-page-count="4">
                 <h3>Progress</h3>
                 <p id="webbook-current-page-label">Section: Notes</p>
                 <progress id="webbook-reading-progress" max="100" value="100" aria-label="Reading progress" aria-valuetext="100%">100%</progress>
                 <p id="webbook-progress-count">100%</p>
             </section>
-        </div>
+        <section id="webbook-accessibility" aria-labelledby="webbook-accessibility-hd"><h3 id="webbook-accessibility-hd">Accessibility</h3><p class="webbook-accessibility-source">The publisher's accessibility information for the original EPUB.</p><h4>Ways of reading</h4><ul><li>No information about appearance modifiability is available</li><li>All content can be read as read aloud speech or dynamic braille</li><li>All the content is available as prerecorded audio synchronized with text</li></ul><h4>Conformance</h4><ul><li>No information is available</li></ul><h4>Navigation</h4><ul><li>Elements such as headings, tables, etc for structured navigation</li><li>Table of contents to all chapters of the text via links</li></ul><h4>Hazards</h4><ul><li>The publication contains no hazards</li></ul><h4>Accessibility summary</h4><ul><li>A test book: footnotes on the same page, endnotes in a separate file, and synchronized narration of all text including the notes. Two note references are plain links without note semantics, and only one note has its own back-link, on purpose.</li></ul></section></div>
     </section>
 
     <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">

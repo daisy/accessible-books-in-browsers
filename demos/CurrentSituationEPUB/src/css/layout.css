@@ -99,3 +99,65 @@ main {
         padding-right: var(--size-step-0);
     }
 }
+
+/* Reading without JavaScript. The reader's script is running when <html> has webbook-dark or
+   webbook-light (set by the head's appearance script before the first paint, so nothing flashes)
+   or webbook-js (set by toolbar.js, for when storage is blocked and the head script can't run).
+   Without it, there's a plain header with the table of contents and the previous and next pages,
+   and the browser's own audio player instead of the toolbars. */
+#webbook-basic-nav {
+    grid-area: topbar;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem 1.25rem;
+    padding: .75rem max(1rem, env(safe-area-inset-left));
+    border-bottom: var(--webbook-panel-border);
+
+    button {
+        font: inherit;
+        padding: .4rem .9rem;
+        border: 1px solid currentColor;
+        border-radius: 4px;
+        background: var(--theme-bg);
+        color: var(--theme-fg);
+        cursor: pointer;
+    }
+    a {
+        color: var(--theme-fg);
+    }
+}
+:root:is(.webbook-dark, .webbook-light, .webbook-js) :is(#webbook-basic-nav, .webbook-basic-close) {
+    display: none;
+}
+:root:not(.webbook-dark):not(.webbook-light):not(.webbook-js) {
+    #webbook-top-toolbar,
+    #webbook-spine-nav {
+        display: none;
+    }
+    #webbook-toolbar {
+        display: block;
+        opacity: 1;
+        padding: .5rem max(1rem, env(safe-area-inset-left)) max(.5rem, env(safe-area-inset-bottom));
+    }
+    #webbook-toolbar:not(:has(audio)) {
+        display: none;
+    }
+    /* !important: the toolbar's own rules for its controls are more specific */
+    #webbook-toolbar > :not(audio),
+    #webbook-toolbar #webbook-audio-controls {
+        display: none !important;
+    }
+    #webbook-toolbar audio {
+        display: block;
+        width: 100%;
+    }
+}
+.webbook-basic-close {
+    font: inherit;
+    padding: .4rem .9rem;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+}

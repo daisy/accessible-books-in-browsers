@@ -4,8 +4,9 @@
     --theme-fg: #111;
     --webbook-focus-color: #005fcc;
     --webbook-panel-border: 1px solid color-mix(in srgb, var(--theme-fg) 18%, transparent);
-    /* #767676 on a light background is ~4.54:1, the standard minimum-passing AA gray for normal text */
-    --webbook-muted-fg: #767676;
+    /* #6e6e6e on the light background (#fafafa) is ~4.9:1; #767676, the usual AA gray, only passes
+       on pure white (4.54:1) and was 4.35:1 here */
+    --webbook-muted-fg: #6e6e6e;
     --webbook-search-highlight-bg: #005fcc;
     --webbook-search-highlight-fg: white;
 }
@@ -25,7 +26,7 @@ body.webbook-light {
     --theme-bg: #fafafa;
     --theme-fg: #111;
     --webbook-focus-color: #005fcc;
-    --webbook-muted-fg: #767676;
+    --webbook-muted-fg: #6e6e6e;
     --webbook-search-highlight-bg: #005fcc;
     --webbook-search-highlight-fg: white;
     color-scheme: light;
