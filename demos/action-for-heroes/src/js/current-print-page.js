@@ -8,8 +8,6 @@ let labelElement = null;
 let aboutLabelElement = null;
 let icon = null;
 let hasPrintPages = false;
-let pageListArrowIndex = null;
-let pageListArrowStarted = false;
 
 export function initCurrentPrintPage() {
     hasPrintPages = Boolean(document.querySelector('datalist#pages'));
@@ -20,6 +18,7 @@ export function initCurrentPrintPage() {
         labelElement.id = 'webbook-current-print-page';
         labelElement.hidden = true;
         button.prepend(labelElement);
+        button.addEventListener('click', clearPageInput);
     }
     if (hasPrintPages) {
         const progress = document.querySelector('#webbook-progress');
@@ -30,10 +29,6 @@ export function initCurrentPrintPage() {
             aboutLabelElement.hidden = true;
             progressBar.before(aboutLabelElement);
         }
-        const pageInput = document.querySelector('#goto-page');
-        pageInput?.addEventListener('focus', resetPageListArrows);
-        pageInput?.addEventListener('input', resetPageListArrows);
-        pageInput?.addEventListener('keydown', handlePageListArrow);
     }
 
     registerAction({
@@ -102,25 +97,9 @@ function updateButton() {
     }
 }
 
-function resetPageListArrows() {
-    const datalist = document.querySelector('datalist#pages');
-    pageListArrowIndex = Array.from(datalist?.options ?? [])
-        .findIndex(option => option.value === currentLabel || option.label === currentLabel);
-    pageListArrowStarted = false;
-}
-
-function handlePageListArrow(event) {
-    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
-    const datalist = document.querySelector('datalist#pages');
-    const options = Array.from(datalist?.options ?? []);
-    if (!options.length || pageListArrowIndex === null || pageListArrowIndex < 0) return;
-    event.preventDefault();
-    if (pageListArrowStarted) {
-        const delta = event.key === 'ArrowDown' ? 1 : -1;
-        pageListArrowIndex = Math.max(0, Math.min(options.length - 1, pageListArrowIndex + delta));
-    }
-    pageListArrowStarted = true;
-    event.currentTarget.value = options[pageListArrowIndex].value;
+function clearPageInput() {
+    const input = document.querySelector('#goto-page');
+    if (input) input.value = '';
 }
 
 export { printPageLabel, updateCurrentPrintPage };
