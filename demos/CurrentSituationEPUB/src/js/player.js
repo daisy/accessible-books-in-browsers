@@ -418,11 +418,12 @@ function initTimeDisplayToggle() {
     updateTimeDisplayToggle();
 }
 
-function updateTimeDisplayToggle() {
+function updateTimeDisplayToggle(description) {
     if (!ui.timeToggle) return;
     const names = { elapsed: 'Elapsed time', chapter: 'Time left in chapter', book: 'Time left in book' };
-    ui.timeToggle.setAttribute('aria-label', `${names[ui.timeDisplayMode]}. Change time display.`);
-    ui.timeToggle.title = `${names[ui.timeDisplayMode]}; activate to change`;
+    const current = description || names[ui.timeDisplayMode];
+    ui.timeToggle.setAttribute('aria-label', `${current}. Change time display.`);
+    ui.timeToggle.title = `${current}; activate to change`;
 }
 
 function timeLeftAt(bookTime) {
@@ -446,6 +447,10 @@ function compactTimeLeft(seconds) {
     return `${hours} h${remainder ? ` ${remainder} min` : ''}`;
 }
 
+function formatRemainingTime(seconds) {
+    return formatBookTime(Math.ceil(Math.max(0, seconds)));
+}
+
 function spokenTimeLeft(seconds) {
     const total = Math.max(0, Math.ceil(seconds));
     if (total < 60) return `${total} ${total === 1 ? 'second' : 'seconds'}`;
@@ -459,11 +464,18 @@ function spokenTimeLeft(seconds) {
 function updateTimeDisplay(bookTime) {
     if (!ui.timeDisplay || !bookAudioMap) return;
     const left = timeLeftAt(bookTime);
-    if (ui.timeDisplayMode === 'chapter') ui.timeDisplay.textContent = `${compactTimeLeft(left.chapter)} left in chapter`;
-    else if (ui.timeDisplayMode === 'book') {
-        ui.timeDisplay.textContent = `${compactTimeLeft(left.book)}${left.hasUnnarratedPagesAfter ? ' narrated time' : ''} left in book`;
-    } else ui.timeDisplay.textContent = formatBookTime(bookTime);
-    updateTimeDisplayToggle();
+    let description;
+    if (ui.timeDisplayMode === 'chapter') {
+        ui.timeDisplay.textContent = `Remaining in chapter: ${formatRemainingTime(left.chapter)}`;
+        description = `${compactTimeLeft(left.chapter)} left in chapter`;
+    } else if (ui.timeDisplayMode === 'book') {
+        ui.timeDisplay.textContent = `${left.hasUnnarratedPagesAfter ? 'Left in book audio' : 'Left in book'}: ${formatRemainingTime(left.book)}`;
+        description = `${compactTimeLeft(left.book)}${left.hasUnnarratedPagesAfter ? ' narrated time' : ''} left in book`;
+    } else {
+        ui.timeDisplay.textContent = `Elapsed: ${formatBookTime(bookTime)}`;
+        description = `Elapsed time ${formatBookTime(bookTime)}`;
+    }
+    updateTimeDisplayToggle(description);
 }
 
 function announceTimeLeft() {
