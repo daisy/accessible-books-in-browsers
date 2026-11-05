@@ -10,7 +10,8 @@
     "compile": "tsc",
     "start": "node build/index.js",
     "convert": "npm run start -- convert",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "check:a11y": "node scripts/check-accessibility.mjs"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "@types/jsdom": "^16.2.13",
     "@types/node": "^24.13.3",
     "@types/xmldom": "^0.1.31",
+    "axe-core": "^4.14.0",
     "rimraf": "^3.0.2",
     "typescript": "^5.9.3"
   },

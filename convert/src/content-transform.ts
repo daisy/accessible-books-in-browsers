@@ -52,6 +52,8 @@ function stripXmlNamespaceAttributes(doc: Document): void {
 }
 
 function translateEpubTypes(doc: Document): void {
+    // A role the source gave its endnotes, which DPUB-ARIA 1.1 deprecated
+    doc.querySelectorAll('[role="doc-endnote"]').forEach(elm => elm.removeAttribute('role'));
     doc.querySelectorAll('*').forEach(elm => {
         const epubType = elm.getAttribute('epub:type');
         if (!epubType) return;
@@ -64,9 +66,10 @@ function translateEpubTypes(doc: Document): void {
     });
 }
 
+// No role for endnotes: DPUB-ARIA 1.1 deprecated doc-endnote (and doc-endnotes' items are plain list
+// items); the epubtype_endnote class still marks them for the reader
 const EPUB_TYPE_ROLE_PRIORITY = [
     { type: 'footnote', role: 'doc-footnote' },
-    { type: 'endnote', role: 'doc-endnote' },
     { type: 'noteref', role: 'doc-noteref' },
     { type: 'pagebreak', role: 'doc-pagebreak' }
 ];

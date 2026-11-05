@@ -11,6 +11,7 @@ import { configureFfmpeg } from './ffmpeg.js';
 import * as fileio from './file-io.js';
 import * as utils from './utils.js';
 import { createVtt } from './vtt.js';
+import { cacheKey, restoreCachedAudio, storeCachedAudio, type AudioCache } from './audio-cache.js';
 
 export type MediaSegment = {
     clipBegin: utils.ClockValue;
@@ -38,7 +39,8 @@ const AUDIO_SEGMENT_CONCURRENCY = 4;
 async function createAudioForPage(
     page: SitePage,
     outputPaths: OutputPaths,
-    suppliedMediaSegments?: MediaSegment[]
+    suppliedMediaSegments?: MediaSegment[],
+    cache?: AudioCache | null
 ): Promise<PageAudioAssets | null> {
     if (!page.moPath) return null;
 
@@ -54,7 +56,11 @@ async function createAudioForPage(
     const audioOutPath = path.join(outputPaths.audioDir, audioFilename);
     const vttOutPath = path.join(outputPaths.vttDir, vttFilename);
 
-    await mergeAudioSegments(mediaSegments, audioOutPath);
+    const key = cache ? await cacheKey(mediaSegments, audioExt) : '';
+    if (!cache || !await restoreCachedAudio(cache, audioFilename, mediaSegments, audioOutPath, key)) {
+        await mergeAudioSegments(mediaSegments, audioOutPath);
+        if (cache) await storeCachedAudio(cache, audioFilename, mediaSegments, audioOutPath, key);
+    }
     await createVtt(mediaSegments, vttOutPath);
 
     let duration = 0;

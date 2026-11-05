@@ -139,4 +139,9 @@ More about `[`, `]` and `\`:
 
 The hardware media keys are separate from these: play/pause plays and pauses, and previous/next track move to the previous or next page.
 
+## Development
+
+- **Reusing audio between conversions:** `npm run convert -- <input> <output> template --audio-cache [dir]` keeps each page's merged narration in `dir` (or a folder in the system's temp folder) and reuses it on the next conversion when the page's audio clips haven't changed. Merging clips is most of a conversion's time. Off by default.
+- **Accessibility check:** `npm run check:a11y` (in `convert/`) runs [axe-core](https://github.com/dequelabs/axe-core) on every page of the demos in headless Chrome and fails on WCAG 2.2 A or AA violations; each book's first page is also checked with each panel open, in the light and dark themes. Pass a folder to check other converted books, `--pages N` to check fewer pages, `--report file.json` for the details. It needs Chrome or Chromium (`CHROME_PATH` if it isn't found). A GitHub Actions workflow runs it on every push that changes the demos or the converter.
+
 

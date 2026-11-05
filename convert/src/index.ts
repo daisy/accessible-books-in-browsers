@@ -14,9 +14,10 @@ async function main() {
         .option('--identifier <id>', "Book ID used to key saved reading positions; defaults to the EPUB's identifier")
         .option('--split-chapters', "Split a content document that holds several chapters into one page per chapter, at the table of contents' entries", true)
         .option('--no-split-chapters', 'Do not split content documents into chapter pages')
+        .option('--audio-cache [dir]', "Reuse each page's merged narration audio from an earlier conversion when its clips haven't changed (development convenience). Keeps the latest audio per page in dir, or in the system temp folder if no dir is given")
         .option('--heading-titles', "On by default: when every page's <title> is the book title, title each page by its first other heading", true)
         .option('--no-heading-titles', 'Do not replace repeated book titles with heading titles')
-        .action(async(input, output, template, options: { headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, splitChapters: boolean }) => {
+        .action(async(input, output, template, options: { audioCache?: string | boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, splitChapters: boolean }) => {
             const identifier = options.identifier?.trim();
             if (options.identifier !== undefined && !identifier) {
                 throw new Error('--identifier must not be empty');
@@ -26,6 +27,7 @@ async function main() {
                 path.resolve(process.cwd(), output),
                 path.resolve(process.cwd(), template),
                 {
+                    audioCache: options.audioCache,
                     headingTitles: options.headingTitles,
                     identifier,
                     includeNonLinear: options.includeNonLinear === true,

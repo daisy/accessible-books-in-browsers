@@ -7,6 +7,7 @@ import { ImageAssetRegistry, copyImageAssets, copyUiAssets, writeServiceWorkerSt
 import { TemplateRenderer } from './template.js';
 import { buildSiteModel } from './model.js';
 import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
+import { openAudioCache } from './audio-cache.js';
 import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath } from './output.js';
 import { transformContent } from './content-transform.js';
 import { createSearchData, generateSearchIndex } from './create-search-index.js';
@@ -14,6 +15,9 @@ import * as utils from './utils.js';
 import { generateAudioMap, type PageAudioMapSource } from './audio-map.js';
 
 export type ConvertOptions = {
+    // A folder (or true for the default one in the system's temp folder) to reuse unchanged page
+    // audio from; off by default
+    audioCache?: string | boolean;
     headingTitles?: boolean;
     identifier?: string;
     includeNonLinear?: boolean;
@@ -55,6 +59,7 @@ async function convert(input: string, output: string, template: string, options:
         }
         const imageRegistry = new ImageAssetRegistry();
         const renderer = await TemplateRenderer.load(template);
+        const audioCache = openAudioCache(options.audioCache, site.bookId);
         const searchData = createSearchData(site);
         const coverAsset = site.metadata.coverPath
             ? imageRegistry.register(site.metadata.coverPath)
@@ -94,7 +99,7 @@ async function convert(input: string, output: string, template: string, options:
             const mediaSegments = mediaSegmentsByPage.get(page.outputFilename) ?? [];
             const narratedTargetIds = mediaSegments.map(segment => utils.getFrag(segment.textSrc)).filter(Boolean);
             const content = await transformContent(page, site, imageRegistry, searchData, narratedTargetIds);
-            const audio = await createAudioForPage(page, outputPaths, mediaSegments);
+            const audio = await createAudioForPage(page, outputPaths, mediaSegments, audioCache);
             pageAudioSources.set(page.outputFilename, { audio, bodyHtml: content.bodyHtml });
             const html = renderer.renderPage(site, page, content, audio, {
                 coverHref: coverAsset?.href ?? '',

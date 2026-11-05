@@ -1,0 +1,37 @@
+# Checks every page of the demos with axe-core for WCAG 2.2 A and AA violations, with each book's
+# first page also checked with each panel open, in the light and dark themes.
+name: Accessibility check
+
+on:
+  push:
+    paths:
+      - 'demos/**'
+      - 'convert/**'
+      - '.github/workflows/accessibility.yml'
+  pull_request:
+    paths:
+      - 'demos/**'
+      - 'convert/**'
+  workflow_dispatch:
+
+jobs:
+  axe:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: convert
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: convert/package-lock.json
+      - run: npm ci
+      # ubuntu-latest has Google Chrome installed
+      - run: node scripts/check-accessibility.mjs ../demos --report axe-report.json
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: axe-report
+          path: convert/axe-report.json
