@@ -2,30 +2,29 @@ import { fetchPage, navigateTo } from './in-place-navigation.js';
 import { elmForCue } from './cue-selector.js';
 import { registerAction } from './reader-actions.js';
 import { canPlay } from './skippability.js';
+import { pageAudio } from './dom-utils.js';
+
+// Notes without losing your place. Following a note reference (or the note control that appears
+// while narration reads a phrase with references) goes to the note, wherever it is in the book.
+// If narration was playing, it reads the note and then goes back to the text and carries on; if
+// not, the reader reads it. Back to text returns at any time, to exactly where the reader was.
 
 const NOTE_SELECTOR = '.epubtype_footnote, .epubtype_endnote, .epubtype_note, [role="doc-footnote"], [role="doc-endnote"]';
 const BACKLINK_SELECTOR = '[role="doc-backlink"], .epubtype_backlink';
-let popover;
-let heading;
-let content;
-let goToNote;
-let playNote;
 let phraseButton;
 let phraseMenu;
 let status;
-let activeReference = null;
 let phraseReferences = [];
-let resumeAfterPopover = false;
-let noteAudioReturn = null;
 let lastNoteReturn = null;
 let phraseRequest = 0;
-// The popover is closing because the reader chose Go to note, so focus goes there, not back to the reference
-let closingForNote = false;
+// While narration reads a note it was sent to: the note, and the time its narration ends
+let autoReturn = null;
 
 function referenceLabel(reference) {
     return reference.textContent.trim().replace(/^\[|\]$/g, '') || 'Note';
 }
 
+// The words just before the reference, which is how a reader tells a phrase's notes apart
 function referenceContext(reference) {
     const passage = reference.closest('p, li, blockquote, figcaption, dd, dt') || reference.parentElement;
     if (!passage) return '';
@@ -35,18 +34,9 @@ function referenceContext(reference) {
     if (!clonedReference) return '';
     clonedReference.replaceWith(' WEBBOOKNOTE ');
     clone.querySelectorAll('a[href]').forEach(link => link.remove());
-    const [before = '', after = ''] = clone.textContent.replace(/\s+/g, ' ').split('WEBBOOKNOTE');
-    const beforeWords = before.trim().split(/\s+/).filter(Boolean).slice(-2).join(' ');
-    const afterWords = after.trim().split(/\s+/).filter(Boolean).slice(0, 2).join(' ');
-    return [beforeWords && `…${beforeWords}`, afterWords && `${afterWords}…`].filter(Boolean).join(' ');
-}
-
-function noteHeading(reference, note) {
-    const label = referenceLabel(reference);
-    if (label && label !== 'Note') return `Note ${label}`;
-    if (note.matches('.epubtype_footnote, [role="doc-footnote"]')) return 'Footnote';
-    if (note.matches('.epubtype_endnote, [role="doc-endnote"]')) return 'Endnote';
-    return 'Note';
+    const before = clone.textContent.replace(/\s+/g, ' ').split('WEBBOOKNOTE')[0] ?? '';
+    const words = before.trim().split(/\s+/).filter(Boolean);
+    return words.length ? `${words.length > 4 ? '…' : ''}${words.slice(-4).join(' ')}` : '';
 }
 
 function noteUrl(reference) {
@@ -74,44 +64,9 @@ async function resolveNote(reference) {
     } catch { return null; }
 }
 
-function strippedClone(note) {
-    const clone = note.cloneNode(true);
-    clone.removeAttribute('id');
-    clone.querySelectorAll('[id]').forEach(elm => elm.removeAttribute('id'));
-    clone.querySelectorAll(BACKLINK_SELECTOR).forEach(link => link.remove());
-    return clone;
-}
-
-function positionPopover(reference) {
-    const rect = reference.getBoundingClientRect();
-    const top = rect.bottom + 8;
-    popover.style.setProperty('--webbook-note-left', `${Math.min(window.innerWidth - 20, Math.max(12, rect.left))}px`);
-    popover.style.setProperty('--webbook-note-top', `${top}px`);
-    popover.classList.toggle('webbook-note-above', top + Math.min(360, window.innerHeight * .6) > window.innerHeight);
-    if (popover.classList.contains('webbook-note-above')) {
-        popover.style.setProperty('--webbook-note-top', `${Math.max(12, rect.top - 8)}px`);
-    }
-}
-
-async function openNote(reference) {
-    const resolved = await resolveNote(reference);
-    if (!resolved || typeof popover?.showPopover !== 'function') return false;
-    activeReference = reference;
-    const audio = document.querySelector('#webbook-toolbar audio');
-    resumeAfterPopover = Boolean(audio && !audio.paused);
-    if (resumeAfterPopover) audio.pause();
-    heading.textContent = noteHeading(reference, resolved.note);
-    content.replaceChildren(strippedClone(resolved.note));
-    goToNote.href = resolved.url.href;
-    playNote.hidden = !resolved.samePage || !noteCueRange(resolved.note);
-    positionPopover(reference);
-    popover.showPopover();
-    heading.focus();
-    return true;
-}
-
+// The stretch of this page's narration that reads the note
 function noteCueRange(note) {
-    const track = document.querySelector('#webbook-toolbar audio track')?.track;
+    const track = pageAudio()?.querySelector('track')?.track;
     const cues = Array.from(track?.cues || []).filter(cue => {
         const elm = elmForCue(cue);
         return elm && (note === elm || note.contains(elm));
@@ -119,30 +74,8 @@ function noteCueRange(note) {
     return cues.length ? { start: cues[0].startTime, end: cues[cues.length - 1].endTime } : null;
 }
 
-function playCurrentNote() {
-    const url = noteUrl(activeReference);
-    const note = url ? noteFromDocument(document, url) : null;
-    const range = note && noteCueRange(note);
-    const audio = document.querySelector('#webbook-toolbar audio');
-    if (!range || !audio) return;
-    noteAudioReturn = { time: audio.currentTime, playing: resumeAfterPopover };
-    resumeAfterPopover = false;
-    audio.currentTime = range.start;
-    audio.play();
-    const finish = () => {
-        if (!noteAudioReturn || audio.currentTime < range.end - .05) return;
-        const saved = noteAudioReturn;
-        noteAudioReturn = null;
-        audio.pause();
-        audio.currentTime = saved.time;
-        if (saved.playing) audio.play().catch(() => {});
-        audio.removeEventListener('timeupdate', finish);
-    };
-    audio.addEventListener('timeupdate', finish);
-}
-
 function returnRecord(reference) {
-    const audio = document.querySelector('#webbook-toolbar audio');
+    const audio = pageAudio();
     return {
         href: window.location.href.split('#')[0] + (reference.id ? `#${encodeURIComponent(reference.id)}` : ''),
         scrollY: window.scrollY,
@@ -151,32 +84,56 @@ function returnRecord(reference) {
     };
 }
 
-function followToNote(reference) {
+function goToNote(reference) {
     const url = noteUrl(reference);
     if (!url) return;
     const origin = returnRecord(reference);
-    // Which note this return belongs to, so it can go once narration or the reader leaves it (the
-    // address changes with narration, so it can't tell)
+    // Which note this return belongs to: the address follows narration, so it can't tell
     origin.noteId = decodeURIComponent(url.hash.slice(1));
-    // Narration doesn't carry on elsewhere while the reader is at the note: another page stops it
-    // anyway; on this page, pause it and put it at the note, so Play reads the note
-    const audio = document.querySelector('#webbook-toolbar audio');
-    const samePage = url.pathname === new URL(window.location.href).pathname;
-    if (popover?.matches(':popover-open')) {
-        origin.autoplay = origin.autoplay || resumeAfterPopover;
-        resumeAfterPopover = false;
-        closingForNote = true;
-        popover.hidePopover();
-    }
-    if (samePage && audio && !audio.paused) audio.pause();
     lastNoteReturn = origin;
-    navigateTo(url.href, { state: { webbookNoteReturn: origin }, autoplay: false });
-    if (samePage && audio) {
-        const note = noteFromDocument(document, url);
-        const range = note && noteCueRange(note);
-        if (range) audio.currentTime = range.start;
+    const audio = pageAudio();
+    const samePage = url.pathname === new URL(window.location.href).pathname;
+    if (samePage) {
+        navigateTo(url.href, { state: { webbookNoteReturn: origin }, autoplay: false });
+        if (origin.autoplay) readNoteThenReturn();
+    } else {
+        // The note's page starts its narration at the note (the address's #id) and keeps playing
+        // if narration was; readNoteThenReturn runs when it has loaded
+        navigateTo(url.href, { state: { webbookNoteReturn: origin }, autoplay: origin.autoplay, moveFocus: true });
+        if (origin.autoplay) document.addEventListener('webbook:pagechange', () => readNoteThenReturn(), { once: true });
     }
+    if (!origin.autoplay) audio?.pause();
     setTimeout(showBackToText, 0);
+}
+
+// Narration was playing: read the note, then go back to the text. A note without narration is
+// shown with narration paused, and Back to text resumes it.
+function readNoteThenReturn() {
+    const note = noteOfReturn();
+    const audio = pageAudio();
+    // A page just loaded in place may not have its narration timings yet
+    const trackEl = audio?.querySelector('track');
+    if (note && trackEl && trackEl.readyState < 2) {
+        trackEl.addEventListener('load', () => readNoteThenReturn(), { once: true });
+        return;
+    }
+    const range = note && noteCueRange(note);
+    if (!audio || !range) {
+        audio?.pause();
+        return;
+    }
+    autoReturn = { note, end: range.end };
+    audio.currentTime = range.start;
+    audio.play().catch(() => {});
+}
+
+function handleTimeUpdate() {
+    const audio = pageAudio();
+    if (!autoReturn || !audio || audio.paused) return;
+    if (audio.currentTime >= autoReturn.end - .05) {
+        autoReturn = null;
+        backToText();
+    }
 }
 
 function noteOfReturn() {
@@ -196,6 +153,7 @@ function showBackToText() {
 }
 
 function dismissReturn() {
+    autoReturn = null;
     if (!currentReturn()) return;
     history.replaceState({ ...history.state, webbookNoteReturn: undefined }, '');
     document.getElementById('webbook-back-to-text')?.setAttribute('hidden', '');
@@ -205,6 +163,7 @@ function dismissReturn() {
 async function backToText() {
     const origin = currentReturn();
     if (!origin) return false;
+    autoReturn = null;
     await navigateTo(origin.href, { push: false, replace: true, moveFocus: true, scrollY: origin.scrollY,
         audioTime: origin.audioTime, autoplay: origin.autoplay, state: null });
     lastNoteReturn = null;
@@ -216,15 +175,9 @@ function referencesInPhrase(elm) {
     return Array.from(elm.querySelectorAll('a[href]'));
 }
 
-// Opens the note in the popover, as activating the reference does; going to it in the book is
-// the popover's "Go to note"
-async function openReferencedNote(reference) {
-    if (!await openNote(reference)) followToNote(reference);
-}
-
 function openPhraseNotes() {
     if (phraseReferences.length === 1) {
-        openReferencedNote(phraseReferences[0]);
+        goToNote(phraseReferences[0]);
         return true;
     }
     phraseMenu.replaceChildren();
@@ -241,7 +194,7 @@ function openPhraseNotes() {
         button.append(label, context);
         button.addEventListener('click', () => {
             phraseMenu.hidePopover();
-            openReferencedNote(reference);
+            goToNote(reference);
         });
         phraseMenu.append(button);
         if (!index) setTimeout(() => button.focus(), 0);
@@ -251,7 +204,9 @@ function openPhraseNotes() {
 }
 
 export async function handleNarratedPhrase(elm) {
-    if (currentReturn()) {
+    // Narration moving on from the note it was sent to is handled by the return; the reader moving
+    // narration elsewhere ends it
+    if (currentReturn() && !autoReturn) {
         const note = noteOfReturn();
         if (note && elm !== note && !note.contains(elm)) dismissReturn();
     }
@@ -277,48 +232,6 @@ export function hidePhraseNotes() {
 }
 
 function buildUi() {
-    popover = document.createElement('aside');
-    popover.id = 'webbook-note-popover';
-    popover.className = 'webbook';
-    popover.setAttribute('popover', 'auto');
-    popover.setAttribute('aria-labelledby', 'webbook-note-heading');
-    const close = document.createElement('button');
-    close.type = 'button';
-    close.className = 'webbook-note-close';
-    close.textContent = 'Close';
-    close.addEventListener('click', () => popover.hidePopover());
-    heading = document.createElement('h2');
-    heading.id = 'webbook-note-heading';
-    heading.tabIndex = -1;
-    content = document.createElement('div');
-    content.id = 'webbook-note-content';
-    playNote = document.createElement('button');
-    playNote.type = 'button';
-    playNote.textContent = 'Play note';
-    playNote.addEventListener('click', playCurrentNote);
-    goToNote = document.createElement('a');
-    goToNote.textContent = 'Go to note';
-    goToNote.addEventListener('click', e => { e.preventDefault(); followToNote(activeReference); });
-    const actions = document.createElement('div');
-    actions.className = 'webbook-note-actions';
-    actions.append(playNote, goToNote, close);
-    popover.append(heading, content, actions);
-    popover.addEventListener('keydown', e => {
-        if (e.key !== 'Escape') return;
-        e.preventDefault();
-        e.stopPropagation();
-        popover.hidePopover();
-    });
-    popover.addEventListener('toggle', e => {
-        if (e.newState === 'closed') {
-            if (!closingForNote) activeReference?.focus({ preventScroll: true });
-            closingForNote = false;
-            const audio = document.querySelector('#webbook-toolbar audio');
-            if (resumeAfterPopover && audio) audio.play().catch(() => {});
-            resumeAfterPopover = false;
-        }
-    });
-
     const escapeContainer = document.getElementById('webbook-escape-container');
     phraseButton = document.createElement('button');
     phraseButton.id = 'webbook-note-phrase-btn';
@@ -335,6 +248,7 @@ function buildUi() {
     phraseMenu.className = 'webbook';
     phraseMenu.setAttribute('popover', 'auto');
     phraseMenu.setAttribute('role', 'menu');
+    phraseMenu.setAttribute('aria-label', 'Notes in this phrase');
     phraseMenu.addEventListener('keydown', e => {
         if (e.key === 'Escape') {
             e.preventDefault();
@@ -357,13 +271,13 @@ function buildUi() {
     back.textContent = 'Back to text';
     back.hidden = true;
     back.addEventListener('click', backToText);
-    document.body.append(popover, phraseMenu, back);
+    document.body.append(phraseMenu, back);
 }
 
 async function handleNoteClick(e, capturing) {
     if (e.defaultPrevented) return;
     const link = e.target instanceof Element ? e.target.closest('a[href]') : null;
-    if (!link || link.closest('#webbook-note-popover, #webbook-note-menu')) return;
+    if (!link || link.closest('#webbook-note-menu')) return;
     if (link.matches(BACKLINK_SELECTOR) && currentReturn()) {
         if (!capturing) return;
         e.preventDefault();
@@ -382,15 +296,20 @@ async function handleNoteClick(e, capturing) {
     const localNote = sameBookHash && local.pathname === here.pathname && noteFromDocument(document, local);
     const clearlyNote = semantic || Boolean(localNote);
     if (capturing !== clearlyNote) return;
-    if (!clearlyNote && !sameBookHash) {
+    if (!sameBookHash) {
         if (currentReturn()) dismissReturn();
         return;
     }
+    if (clearlyNote) {
+        e.preventDefault();
+        if (currentReturn()) dismissReturn();
+        goToNote(link);
+        return;
+    }
+    // A plain link into another page of the book: a note there is only known once it's fetched
     e.preventDefault();
     if (currentReturn()) dismissReturn();
-    const opened = await openNote(link);
-    if (opened) return;
-    if (semantic) followToNote(link);
+    if (await resolveNote(link)) goToNote(link);
     else navigateTo(link.href);
 }
 
@@ -403,7 +322,10 @@ export function initNotesInPlace() {
     // when they lead elsewhere).
     document.addEventListener('click', e => handleNoteClick(e, true), { capture: true });
     document.addEventListener('click', e => handleNoteClick(e, false));
+    // The audio element can arrive with a later page, so listen on the document
+    document.addEventListener('timeupdate', handleTimeUpdate, { capture: true });
     window.addEventListener('popstate', e => {
+        autoReturn = null;
         showBackToText();
         if (e.state?.webbookNoteReturn || !lastNoteReturn) return;
         const origin = lastNoteReturn;
@@ -413,7 +335,7 @@ export function initNotesInPlace() {
             const reference = new URL(origin.href).hash
                 ? document.getElementById(decodeURIComponent(new URL(origin.href).hash.slice(1))) : null;
             reference?.focus({ preventScroll: true });
-            const audio = document.querySelector('#webbook-toolbar audio');
+            const audio = pageAudio();
             if (audio && typeof origin.audioTime === 'number') audio.currentTime = origin.audioTime;
             if (audio && origin.autoplay) audio.play().catch(() => {});
             lastNoteReturn = null;
@@ -421,7 +343,7 @@ export function initNotesInPlace() {
     });
     document.addEventListener('webbook:pagechange', showBackToText);
     window.addEventListener('scroll', () => {
-        if (!currentReturn()) return;
+        if (!currentReturn() || autoReturn) return;
         const note = noteOfReturn();
         if (!note) return;
         const rect = note.getBoundingClientRect();

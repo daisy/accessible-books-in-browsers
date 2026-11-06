@@ -67,7 +67,7 @@ Test books:
 - Settings: appearance (auto/dark/light), font size and family, narration highlight color (auto or custom), playback rate, caption mode (a full-screen, narration-synced text view), skip-toggles for page numbers/footnotes/endnotes/notes/sidebars, and whether to resume the last reading position on open
 - Resumes your last reading position (page, heading, and exact audio offset) automatically when you reopen a book, with an announced "Loaded last position" banner
 - "Skip past" notification plus a single-keystroke escape (see Keyboard shortcuts below) so a table, list, figure, sidebar, footnote, endnote, or note doesn't have to be sat through during playback
-- Footnotes and endnotes open beside their reference without losing the reading position. The popover can play a same-page narrated note, or go to the full note with a reader-provided **Back to text** control. Narrated phrases with notes expose a note button, including a keyboard-operable list when a phrase has several notes.
+- Footnotes and endnotes without losing your place: following a note reference goes to the note, on the same page or another. If narration is playing, it reads the note and then goes back to the text and carries on; if not, you read it. **Back to text** returns at any time to exactly where you were. While narration reads a phrase with notes, a note button appears; for several notes it lists them by the words before each reference.
 - Every heading has a permalink (visible on hover/focus) for bookmarking or sharing a specific section
 - The URL updates to reflect your reading position as narration plays, without adding browser-history entries
 
