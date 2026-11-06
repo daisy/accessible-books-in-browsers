@@ -15,8 +15,12 @@ const ESCAPABLE_STRUCTURE_RULES = [
     { classes: ['epubtype_endnote'], tags: [], label: 'endnote' },
     { classes: ['epubtype_note'], tags: [], label: 'note' },
 ];
+// Inside a book's endnotes section, Skip past leaves the whole section, not just one note
+const NOTES_SECTION_SELECTOR = '.epubtype_endnotes, [role="doc-endnotes"]';
 
 function findEscapableStructure(elm) {
+    const notesSection = elm.closest(NOTES_SECTION_SELECTOR);
+    if (notesSection && document.querySelector('main')?.contains(notesSection)) return { elm: notesSection, label: 'notes' };
     const main = document.querySelector('main');
     let node = elm;
     while (node && node !== main) {

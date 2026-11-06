@@ -16,3 +16,5 @@
 .webbook-note-menu-context { display: block; }
 .webbook-note-menu-label { font-weight: 700; }
 .webbook-note-menu-context { margin-block-start: .15rem; font-size: .9em; font-weight: 400; }
+/* the reader's Back to text replaces a book's own back links while it shows */
+.webbook-note-return main :is([role="doc-backlink"], .epubtype_backlink) { display: none; }

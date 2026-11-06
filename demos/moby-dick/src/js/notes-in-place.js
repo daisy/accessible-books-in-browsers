@@ -1,7 +1,7 @@
 import { fetchPage, navigateTo } from './in-place-navigation.js';
 import { elmForCue } from './cue-selector.js';
 import { registerAction } from './reader-actions.js';
-import { canPlay } from './skippability.js';
+import { allowPlaybackOf, clearPlaybackException, cancelSkipPreroll } from './skippability.js';
 import { pageAudio } from './dom-utils.js';
 
 // Notes without losing your place. Following a note reference (or the note control that appears
@@ -91,6 +91,8 @@ function goToNote(reference) {
     // Which note this return belongs to: the address follows narration, so it can't tell
     origin.noteId = decodeURIComponent(url.hash.slice(1));
     lastNoteReturn = origin;
+    // Read even when the reader skips this kind of note in the flow, now or when they press Play
+    allowPlaybackOf(origin.noteId);
     const audio = pageAudio();
     const samePage = url.pathname === new URL(window.location.href).pathname;
     if (samePage) {
@@ -123,6 +125,8 @@ function readNoteThenReturn() {
         return;
     }
     autoReturn = { note, end: range.end };
+    // A skip the player may have started before this ran would leave the note muted
+    cancelSkipPreroll(audio);
     audio.currentTime = range.start;
     audio.play().catch(() => {});
 }
@@ -147,16 +151,19 @@ function currentReturn() {
     return history.state?.webbookNoteReturn || null;
 }
 
+// While the reader's Back to text shows, a book's own back links are hidden, so there's one
 function showBackToText() {
     const button = document.getElementById('webbook-back-to-text');
     if (button) button.hidden = !currentReturn();
+    document.documentElement.classList.toggle('webbook-note-return', Boolean(currentReturn()));
 }
 
 function dismissReturn() {
     autoReturn = null;
+    clearPlaybackException();
     if (!currentReturn()) return;
     history.replaceState({ ...history.state, webbookNoteReturn: undefined }, '');
-    document.getElementById('webbook-back-to-text')?.setAttribute('hidden', '');
+    showBackToText();
     lastNoteReturn = null;
 }
 
@@ -164,10 +171,11 @@ async function backToText() {
     const origin = currentReturn();
     if (!origin) return false;
     autoReturn = null;
+    clearPlaybackException();
     await navigateTo(origin.href, { push: false, replace: true, moveFocus: true, scrollY: origin.scrollY,
         audioTime: origin.audioTime, autoplay: origin.autoplay, state: null });
     lastNoteReturn = null;
-    document.getElementById('webbook-back-to-text')?.setAttribute('hidden', '');
+    showBackToText();
     return true;
 }
 
@@ -214,7 +222,8 @@ export async function handleNarratedPhrase(elm) {
     const candidates = referencesInPhrase(elm);
     const resolved = await Promise.all(candidates.map(reference => resolveNote(reference)));
     if (request !== phraseRequest) return;
-    const references = candidates.filter((reference, index) => resolved[index] && canPlay(resolved[index].note));
+    // Notes skipped in the flow (the default) are exactly the ones the button is for
+    const references = candidates.filter((reference, index) => resolved[index]);
     const changed = references.length !== phraseReferences.length || references.some((ref, i) => ref !== phraseReferences[i]);
     phraseReferences = references;
     if (!references.length) return hidePhraseNotes();

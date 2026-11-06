@@ -5,24 +5,43 @@ import { captionModeEnabled, showCaptionForCurrentState } from './caption-mode.j
 const SKIP_SEEK_PREROLL_SECONDS = 0.2;
 const SKIP_UNMUTE_BEFORE_TARGET_SECONDS = 0.05;
 
-// Skippability: when enabled, do not play cues inside these structure types.
+// Skippability: when enabled, do not play cues inside these structure types. Footnotes and
+// endnotes are skipped unless the reader turns that off: following a note reference, or the note
+// button narration shows for a phrase with notes, reads the note and comes back, so reading them
+// in the flow as well would repeat them (and a book's endnotes section would be read at its end).
 export const SKIPPABLE_STRUCTURE_RULES = [
     { classes: ['epubtype_pagebreak'],               key: 'webbook-skip-pagebreak', id: 'webbook-skip-pagebreak-toggle' },
-    { classes: ['epubtype_footnote', 'epubtype_endnote'], key: 'webbook-skip-footnote', id: 'webbook-skip-footnote-toggle' },
+    { classes: ['epubtype_footnote', 'epubtype_endnote', 'epubtype_endnotes'], key: 'webbook-skip-footnote', id: 'webbook-skip-footnote-toggle', skipByDefault: true },
     { classes: ['epubtype_note'],                    key: 'webbook-skip-note',      id: 'webbook-skip-note-toggle' },
     { classes: ['epubtype_sidebar'],                 key: 'webbook-skip-sidebar',   id: 'webbook-skip-sidebar-toggle' },
 ];
 
 let skipSeekIgnoreUntil = 0;
 let skipMuteUntil = 0;
+// The id of a structure the reader asked to hear (a note they went to), played even if its kind is
+// skipped. By id, so it can be set before the note's page has loaded.
+let playableExceptionId = '';
+
+function skipping({ key, skipByDefault }) {
+    let stored = null;
+    try { stored = localStorage.getItem(key); } catch { /* use the default */ }
+    return stored === null ? Boolean(skipByDefault) : stored === 'true';
+}
 
 export function canPlay(elm) {
-    for (const { classes, key } of SKIPPABLE_STRUCTURE_RULES) {
-        if (findClosestWithAnyClass(elm, classes)) {
-            return localStorage.getItem(key) !== 'true';
-        }
+    if (playableExceptionId && elm.closest(`[id="${CSS.escape(playableExceptionId)}"]`)) return true;
+    for (const rule of SKIPPABLE_STRUCTURE_RULES) {
+        if (findClosestWithAnyClass(elm, rule.classes)) return !skipping(rule);
     }
     return true;
+}
+
+export function allowPlaybackOf(id) {
+    playableExceptionId = id || '';
+}
+
+export function clearPlaybackException() {
+    playableExceptionId = '';
 }
 
 function findNextPlayableCue(cues, fromIdx) {
@@ -97,7 +116,7 @@ export function initSkippability() {
     for (const { key, id } of SKIPPABLE_STRUCTURE_RULES) {
         const toggle = document.querySelector(`#${id}`);
         if (!toggle) continue;
-        toggle.checked = localStorage.getItem(key) === 'true';
+        toggle.checked = skipping(SKIPPABLE_STRUCTURE_RULES.find(rule => rule.key === key));
         toggle.addEventListener('change', () => {
             localStorage.setItem(key, toggle.checked);
             if (captionModeEnabled) showCaptionForCurrentState();

@@ -58,7 +58,9 @@ function translateEpubTypes(doc: Document): void {
         const epubType = elm.getAttribute('epub:type');
         if (!epubType) return;
 
-        const types = epubType.split(/\s+/).filter(Boolean);
+        // EPUB 3 replaced rearnotes/rearnote with endnotes/endnote; treat the old terms as the new
+        const types = epubType.split(/\s+/).filter(Boolean).flatMap(type =>
+            type === 'rearnotes' ? [type, 'endnotes'] : type === 'rearnote' ? [type, 'endnote'] : [type]);
         types.forEach(type => elm.classList.add(`epubtype_${type.replace(/:/g, '_')}`));
         applyDpubAria(elm, types);
         applyAccessibleStructureName(elm, types);
@@ -70,6 +72,8 @@ function translateEpubTypes(doc: Document): void {
 // items); the epubtype_endnote class still marks them for the reader
 const EPUB_TYPE_ROLE_PRIORITY = [
     { type: 'footnote', role: 'doc-footnote' },
+    // The section of endnotes: a landmark, so screen reader users can go to it
+    { type: 'endnotes', role: 'doc-endnotes' },
     { type: 'noteref', role: 'doc-noteref' },
     { type: 'pagebreak', role: 'doc-pagebreak' }
 ];
