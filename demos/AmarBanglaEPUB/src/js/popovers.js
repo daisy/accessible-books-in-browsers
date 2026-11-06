@@ -1,5 +1,6 @@
 import { lastNarratedElement } from './narration-position.js';
 import { registerAction } from './reader-actions.js';
+import { pageAudio } from './dom-utils.js';
 
 const WEBBOOK_POPOVER_IDS = ['webbook-toc-nav', 'webbook-menu', 'webbook-settings', 'webbook-info', 'webbook-search'];
 const POPOVER_CLOSE_LABELS = {
@@ -126,7 +127,7 @@ function pagePath(href) {
 // who scrolled away while paused is reading there: a section counts once its start has scrolled
 // up to just below the top toolbar.
 export function readingPositionTest() {
-    const audio = document.querySelector('audio');
+    const audio = pageAudio();
     const narrated = lastNarratedElement();
     if (narrated && ((audio && !audio.paused) || isOnScreen(narrated))) {
         return target => target === narrated || target.contains(narrated)

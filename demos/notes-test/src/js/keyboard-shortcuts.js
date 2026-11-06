@@ -169,6 +169,24 @@ export async function loadKeyboardLayout() {
     try { layoutMap = await navigator.keyboard?.getLayoutMap(); } catch { /* Use physical-key names. */ }
 }
 
+// The button that opens the shortcut editor, in Settings. The editor itself (a large module) is
+// loaded the first time it's opened.
+export function initKeyboardShortcutEditorButton() {
+    const toggle = document.getElementById('webbook-keyboard-shortcuts-toggle');
+    if (!toggle || document.querySelector('.webbook-keyboard-shortcuts-row')) return;
+    const openRow = document.createElement('div');
+    openRow.className = 'webbook-keyboard-shortcuts-row';
+    const openButton = document.createElement('button');
+    openButton.type = 'button';
+    openButton.textContent = 'Change keyboard shortcuts';
+    openRow.append(openButton);
+    toggle.closest('div').after(openRow);
+    openButton.addEventListener('click', async () => {
+        const { openKeyboardShortcutEditor } = await import('./keyboard-shortcut-settings.js');
+        openKeyboardShortcutEditor(openButton);
+    });
+}
+
 export function initKeyboardShortcuts() {
     if (initialized) return;
     initialized = true;

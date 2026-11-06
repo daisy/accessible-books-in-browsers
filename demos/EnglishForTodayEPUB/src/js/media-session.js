@@ -1,4 +1,5 @@
 import { requestAutoplayForForwardSpineLink, clearAutoplayRequest } from './autoplay.js';
+import { pageAudio } from './dom-utils.js';
 
 export function initMediaSessionControls() {
     try {
@@ -41,7 +42,7 @@ function setMediaActionHandler(action, handler) {
 }
 
 function getReaderAudio() {
-    return document.querySelector('audio');
+    return pageAudio();
 }
 
 function hasUsableAudio(audio = getReaderAudio()) {

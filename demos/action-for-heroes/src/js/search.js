@@ -1,4 +1,3 @@
-import MiniSearch from './vendor/minisearch.js';
 import { createSearchSnippet, isFuzzySearchTerm, tokenizeSearchText } from './search-text.js';
 import { resolveTextQuote } from './search-anchor.js';
 import { compareSearchResults, searchMatchQuality } from './search-ranking.js';
@@ -75,18 +74,27 @@ export function initSearch() {
 
     readPendingSearchHighlight();
     applyPendingSearchHighlight();
+    // Loaded when the panel opened, after its toggle event
+    if (panel.matches(':popover-open')) {
+        input.focus();
+        input.select();
+    }
 }
 
 async function loadIndex(status) {
     if (searchIndex) return searchIndex;
     if (indexPromise) return indexPromise;
     setStatus(status, 'Loading search…');
-    indexPromise = fetch('search-data.json', { credentials: 'same-origin' })
-        .then(response => {
+    // The search library is the reader's largest file, so it's loaded with the data, on first search
+    let MiniSearch;
+    indexPromise = Promise.all([
+        fetch('search-data.json', { credentials: 'same-origin' }).then(response => {
             if (!response.ok) throw new Error(String(response.status));
             return response.json();
-        })
-        .then(data => {
+        }),
+        import('./vendor/minisearch.js').then(module => { MiniSearch = module.default; })
+    ])
+        .then(([data]) => {
             if (data?.version !== 1 || !Array.isArray(data.pages) || !Array.isArray(data.passages)) {
                 throw new Error('Unsupported search data');
             }

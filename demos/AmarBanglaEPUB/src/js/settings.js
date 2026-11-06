@@ -1,5 +1,6 @@
 import { navigateTo } from './in-place-navigation.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
+import { pageAudio } from './dom-utils.js';
 let darkModeMediaQueryListener = null;
 const KEYBOARD_SHORTCUTS_STORAGE_KEY = 'webbook-keyboard-shortcuts';
 let shortcutsEnabled = true;
@@ -238,7 +239,7 @@ function applyRate(rate) {
     if (display) display.textContent = `${rate}%`;
     const range = document.querySelector('#webbook-rate-range');
     if (range) range.setAttribute('aria-valuetext', `${rate}%`);
-    const audio = document.querySelector('audio');
+    const audio = pageAudio();
     if (audio) audio.playbackRate = parseInt(rate, 10) / 100;
 }
 

@@ -10,19 +10,17 @@ const ACTION_ORDER = [
     'font-smaller', 'font-larger', 'toggle-caption-mode'
 ];
 
-export function initKeyboardShortcutSettings() {
-    const toggle = document.getElementById('webbook-keyboard-shortcuts-toggle');
+// Loaded the first time the reader opens the editor (keyboard-shortcuts.js adds the button), and
+// built then
+export function openKeyboardShortcutEditor(openButton) {
     const settings = document.getElementById('webbook-settings');
-    if (!toggle || !settings || document.getElementById('webbook-keyboard-shortcuts')) return;
+    const panel = document.getElementById('webbook-keyboard-shortcuts') ?? buildEditor(openButton, settings);
+    settings?.hidePopover?.();
+    panel.showPopover();
+    panel.querySelector('.webbook-popover-close')?.focus();
+}
 
-    const openRow = document.createElement('div');
-    openRow.className = 'webbook-keyboard-shortcuts-row';
-    const openButton = document.createElement('button');
-    openButton.type = 'button';
-    openButton.textContent = 'Change keyboard shortcuts';
-    openRow.append(openButton);
-    toggle.closest('div').after(openRow);
-
+function buildEditor(openButton, settings) {
     const panel = document.createElement('section');
     panel.id = 'webbook-keyboard-shortcuts';
     panel.className = 'webbook';
@@ -276,12 +274,6 @@ export function initKeyboardShortcutSettings() {
     refresh();
     loadKeyboardLayout().then(refresh);
 
-    openButton.addEventListener('click', () => {
-        settings.hidePopover?.();
-        panel.showPopover();
-        closeButton.focus();
-    });
-
     // Capture before caption mode and the global listener see the key. Modifier presses don't
     // finish capture; Escape cancels without closing Settings. Capture ends after a refused key
     // too, so the next Tab always moves focus normally.
@@ -325,9 +317,10 @@ export function initKeyboardShortcutSettings() {
     });
     panel.addEventListener('toggle', event => {
         if (event.newState === 'open') return;
-        settings.addEventListener('toggle', settingsEvent => {
+        settings?.addEventListener('toggle', settingsEvent => {
             if (settingsEvent.newState === 'open') openButton.focus({ preventScroll: true });
         }, { once: true });
-        settings.showPopover?.();
+        settings?.showPopover?.();
     });
+    return panel;
 }

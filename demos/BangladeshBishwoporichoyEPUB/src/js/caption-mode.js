@@ -3,7 +3,7 @@ import { canPlay, cancelSkipPreroll } from './skippability.js';
 import { highlightElm } from './narration-position.js';
 import { consumePageEntry, stepAcrossPageBoundary } from './page-entry.js';
 import { stepPhrase } from './player.js';
-import { isInteractiveTarget, isAnyPopoverOpen } from './dom-utils.js';
+import { isInteractiveTarget, isAnyPopoverOpen, pageAudio } from './dom-utils.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 
 // Caption mode is remembered per book. The shared key is what the inline script in each page's
@@ -107,7 +107,7 @@ function clearCaption() {
 
 
 function getReaderAudio() {
-    return document.querySelector('audio');
+    return pageAudio();
 }
 
 function hasUsableAudio(audio) {

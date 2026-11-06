@@ -18,3 +18,9 @@ export function isAnyPopoverOpen() {
         return false;
     }
 }
+
+// The narration's audio element: the one in the toolbar, which the reader keeps across in-place
+// page loads. Not just the first <audio> on the page, which a book's own content could have.
+export function pageAudio() {
+    return document.querySelector('#webbook-toolbar audio');
+}

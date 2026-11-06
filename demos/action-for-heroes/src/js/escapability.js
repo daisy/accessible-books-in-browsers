@@ -1,8 +1,9 @@
-import { selectElm } from './cue-selector.js';
+import { elmForCue } from './cue-selector.js';
 import { registerAction } from './reader-actions.js';
 import { highlightElm } from './narration-position.js';
 import { showCaptionForCue } from './caption-mode.js';
 import { cancelSkipPreroll, canPlay } from './skippability.js';
+import { pageAudio } from './dom-utils.js';
 
 // Escapability: offer a Skip past button for the enclosing structure during playback.
 const ESCAPABLE_STRUCTURE_RULES = [
@@ -34,10 +35,8 @@ function matchesStructureRule(elm, rule) {
 function getEscapeTarget(ancestor, track, fromIdx) {
     const cues = Array.from(track.cues);
     for (let i = fromIdx + 1; i < cues.length; i++) {
-        try {
-            const elm = selectElm(JSON.parse(cues[i].text).selector);
-            if (elm && !ancestor.contains(elm) && canPlay(elm)) return { cue: cues[i], elm, track };
-        } catch { /* skip malformed cue */ }
+        const elm = elmForCue(cues[i]);
+        if (elm && !ancestor.contains(elm) && canPlay(elm)) return { cue: cues[i], elm, track };
     }
     return null;
 }
@@ -76,7 +75,7 @@ export function hideEscape() {
 function activateEscape() {
     const target = escapeTarget;
     const structure = currentEscapableStructure;
-    const audio = document.querySelector('audio');
+    const audio = pageAudio();
     if (!target || !audio) {
         hideEscape();
         return;

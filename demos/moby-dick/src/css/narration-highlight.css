@@ -1,9 +1,0 @@
-/* synchronized narration highlight — Mark/MarkText are OS system colors, accessible by default */
-::highlight(narration) {
-    background-color: var(--webbook-highlight-color, Mark);
-    color: MarkText;
-}
-::highlight(search) {
-    background-color: var(--webbook-search-highlight-bg);
-    color: var(--webbook-search-highlight-fg);
-}

@@ -1,5 +1,6 @@
 import { readingPositionTest } from './popovers.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
+import { pageAudio } from './dom-utils.js';
 
 let currentLabel = '';
 let updateScheduled = false;
@@ -48,7 +49,7 @@ export function initCurrentPrintPage() {
 }
 
 function scheduleScrollUpdate() {
-    const audio = document.querySelector('audio');
+    const audio = pageAudio();
     if (audio && !audio.paused && !audio.ended) return;
     if (updateScheduled) return;
     updateScheduled = true;
@@ -103,3 +104,4 @@ function clearPageInput() {
 }
 
 export { printPageLabel, updateCurrentPrintPage };
+export function currentPrintPageLabel() { return currentLabel; }

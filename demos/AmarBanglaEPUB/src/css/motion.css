@@ -1,8 +1,0 @@
-@media (prefers-reduced-motion: reduce) {
-    #webbook-spine-nav,
-    #webbook-toolbar,
-    #webbook-top-toolbar,
-    main a[rel=bookmark].webbook {
-        transition: none;
-    }
-}
