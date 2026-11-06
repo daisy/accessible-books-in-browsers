@@ -19,6 +19,8 @@ let resumeAfterPopover = false;
 let noteAudioReturn = null;
 let lastNoteReturn = null;
 let phraseRequest = 0;
+// The popover is closing because the reader chose Go to note, so focus goes there, not back to the reference
+let closingForNote = false;
 
 function referenceLabel(reference) {
     return reference.textContent.trim().replace(/^\[|\]$/g, '') || 'Note';
@@ -153,10 +155,35 @@ function followToNote(reference) {
     const url = noteUrl(reference);
     if (!url) return;
     const origin = returnRecord(reference);
+    // Which note this return belongs to, so it can go once narration or the reader leaves it (the
+    // address changes with narration, so it can't tell)
+    origin.noteId = decodeURIComponent(url.hash.slice(1));
+    // Narration doesn't carry on elsewhere while the reader is at the note: another page stops it
+    // anyway; on this page, pause it and put it at the note, so Play reads the note
+    const audio = document.querySelector('#webbook-toolbar audio');
+    const samePage = url.pathname === new URL(window.location.href).pathname;
+    if (popover?.matches(':popover-open')) {
+        origin.autoplay = origin.autoplay || resumeAfterPopover;
+        resumeAfterPopover = false;
+        closingForNote = true;
+        popover.hidePopover();
+    }
+    if (samePage && audio && !audio.paused) audio.pause();
     lastNoteReturn = origin;
-    popover?.hidePopover?.();
     navigateTo(url.href, { state: { webbookNoteReturn: origin }, autoplay: false });
+    if (samePage && audio) {
+        const note = noteFromDocument(document, url);
+        const range = note && noteCueRange(note);
+        if (range) audio.currentTime = range.start;
+    }
     setTimeout(showBackToText, 0);
+}
+
+function noteOfReturn() {
+    const origin = currentReturn();
+    if (!origin) return null;
+    return (origin.noteId && document.getElementById(origin.noteId))
+        || noteFromDocument(document, new URL(window.location.href));
 }
 
 function currentReturn() {
@@ -189,9 +216,15 @@ function referencesInPhrase(elm) {
     return Array.from(elm.querySelectorAll('a[href]'));
 }
 
+// Opens the note in the popover, as activating the reference does; going to it in the book is
+// the popover's "Go to note"
+async function openReferencedNote(reference) {
+    if (!await openNote(reference)) followToNote(reference);
+}
+
 function openPhraseNotes() {
     if (phraseReferences.length === 1) {
-        followToNote(phraseReferences[0]);
+        openReferencedNote(phraseReferences[0]);
         return true;
     }
     phraseMenu.replaceChildren();
@@ -208,7 +241,7 @@ function openPhraseNotes() {
         button.append(label, context);
         button.addEventListener('click', () => {
             phraseMenu.hidePopover();
-            followToNote(reference);
+            openReferencedNote(reference);
         });
         phraseMenu.append(button);
         if (!index) setTimeout(() => button.focus(), 0);
@@ -219,7 +252,7 @@ function openPhraseNotes() {
 
 export async function handleNarratedPhrase(elm) {
     if (currentReturn()) {
-        const note = noteFromDocument(document, new URL(window.location.href));
+        const note = noteOfReturn();
         if (note && elm !== note && !note.contains(elm)) dismissReturn();
     }
     const request = ++phraseRequest;
@@ -278,7 +311,8 @@ function buildUi() {
     });
     popover.addEventListener('toggle', e => {
         if (e.newState === 'closed') {
-            activeReference?.focus({ preventScroll: true });
+            if (!closingForNote) activeReference?.focus({ preventScroll: true });
+            closingForNote = false;
             const audio = document.querySelector('#webbook-toolbar audio');
             if (resumeAfterPopover && audio) audio.play().catch(() => {});
             resumeAfterPopover = false;
@@ -326,31 +360,49 @@ function buildUi() {
     document.body.append(popover, phraseMenu, back);
 }
 
+async function handleNoteClick(e, capturing) {
+    if (e.defaultPrevented) return;
+    const link = e.target instanceof Element ? e.target.closest('a[href]') : null;
+    if (!link || link.closest('#webbook-note-popover, #webbook-note-menu')) return;
+    if (link.matches(BACKLINK_SELECTOR) && currentReturn()) {
+        if (!capturing) return;
+        e.preventDefault();
+        backToText();
+        return;
+    }
+    if (!link.closest('main')) {
+        if (capturing && currentReturn()) dismissReturn();
+        return;
+    }
+    const semantic = link.matches('.epubtype_noteref, [role="doc-noteref"]');
+    const local = noteUrl(link);
+    const here = new URL(location.href);
+    const sameBookHash = local && local.origin === here.origin && local.hash
+        && local.pathname.slice(0, local.pathname.lastIndexOf('/')) === here.pathname.slice(0, here.pathname.lastIndexOf('/'));
+    const localNote = sameBookHash && local.pathname === here.pathname && noteFromDocument(document, local);
+    const clearlyNote = semantic || Boolean(localNote);
+    if (capturing !== clearlyNote) return;
+    if (!clearlyNote && !sameBookHash) {
+        if (currentReturn()) dismissReturn();
+        return;
+    }
+    e.preventDefault();
+    if (currentReturn()) dismissReturn();
+    const opened = await openNote(link);
+    if (opened) return;
+    if (semantic) followToNote(link);
+    else navigateTo(link.href);
+}
+
 export function initNotesInPlace() {
     buildUi();
-    document.addEventListener('click', async e => {
-        const link = e.target instanceof Element ? e.target.closest('a[href]') : null;
-        if (!link || link.closest('#webbook-note-popover, #webbook-note-menu')) return;
-        if (link.matches(BACKLINK_SELECTOR) && currentReturn()) {
-            e.preventDefault();
-            backToText();
-            return;
-        }
-        if (currentReturn()) dismissReturn();
-        if (!link.closest('main')) return;
-        const semantic = link.matches('.epubtype_noteref, [role="doc-noteref"]');
-        const local = noteUrl(link);
-        const here = new URL(location.href);
-        const sameBookHash = local && local.origin === here.origin && local.hash
-            && local.pathname.slice(0, local.pathname.lastIndexOf('/')) === here.pathname.slice(0, here.pathname.lastIndexOf('/'));
-        const localNote = sameBookHash && local.pathname === here.pathname && noteFromDocument(document, local);
-        if (!semantic && !localNote && !sameBookHash) return;
-        e.preventDefault();
-        const opened = await openNote(link);
-        if (opened) return;
-        if (semantic) followToNote(link);
-        else navigateTo(link.href);
-    });
+    // Note references are handled in the capture phase, so the player (which seeks narration to a
+    // same-page link's target) and in-place navigation don't act on them too. Only links that are
+    // clearly notes: other same-book links, which may or may not lead to a note on another page,
+    // are left to the bubble phase, after the player has seen them (it keeps narration playing
+    // when they lead elsewhere).
+    document.addEventListener('click', e => handleNoteClick(e, true), { capture: true });
+    document.addEventListener('click', e => handleNoteClick(e, false));
     window.addEventListener('popstate', e => {
         showBackToText();
         if (e.state?.webbookNoteReturn || !lastNoteReturn) return;
@@ -370,7 +422,7 @@ export function initNotesInPlace() {
     document.addEventListener('webbook:pagechange', showBackToText);
     window.addEventListener('scroll', () => {
         if (!currentReturn()) return;
-        const note = noteFromDocument(document, new URL(window.location.href));
+        const note = noteOfReturn();
         if (!note) return;
         const rect = note.getBoundingClientRect();
         if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) dismissReturn();
