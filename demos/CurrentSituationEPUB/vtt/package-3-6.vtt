@@ -2,43 +2,43 @@ WEBVTT
 
 1
 00:00:00.000 --> 00:00:01.269
-{"selector":{"type":"FragmentSelector","value":"dtb_270"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_269","refinedBy":{"type":"CssSelector","value":":scope > span:nth-of-type(1)"}}}
 
 2
 00:00:01.269 --> 00:00:09.388
-{"selector":{"type":"FragmentSelector","value":"dtb_271"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_269","refinedBy":{"type":"CssSelector","value":":scope > span:nth-of-type(2)"}}}
 
 3
 00:00:09.388 --> 00:00:11.648
-{"selector":{"type":"FragmentSelector","value":"dtb_278"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_272","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 4
 00:00:11.648 --> 00:00:36.501
-{"selector":{"type":"FragmentSelector","value":"dtb_281"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_279","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 5
 00:00:36.501 --> 00:00:38.165
-{"selector":{"type":"FragmentSelector","value":"dtb_285"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_272","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 6
 00:00:38.165 --> 00:00:46.969
-{"selector":{"type":"FragmentSelector","value":"dtb_288"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_286","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 7
 00:00:46.969 --> 00:00:50.278
-{"selector":{"type":"FragmentSelector","value":"dtb_292"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_272","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 8
 00:00:50.278 --> 00:00:59.577
-{"selector":{"type":"FragmentSelector","value":"dtb_295"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_293","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 9
 00:00:59.577 --> 00:01:12.980
-{"selector":{"type":"FragmentSelector","value":"dtb_297"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_293","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 10
 00:01:12.980 --> 00:01:29.309
-{"selector":{"type":"FragmentSelector","value":"dtb_299"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_293","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 11
 00:01:29.309 --> 00:01:30.673

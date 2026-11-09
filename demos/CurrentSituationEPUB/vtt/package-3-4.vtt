@@ -6,59 +6,59 @@ WEBVTT
 
 2
 00:00:03.844 --> 00:00:07.229
-{"selector":{"type":"FragmentSelector","value":"dtb_174"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(1) > div:nth-of-type(1) > img:nth-of-type(1)"}}}
 
 3
 00:00:07.229 --> 00:00:14.778
-{"selector":{"type":"FragmentSelector","value":"dtb_179"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(1) > div:nth-of-type(1) > img:nth-of-type(1)"}}}
 
 4
 00:00:14.778 --> 00:00:17.087
-{"selector":{"type":"FragmentSelector","value":"dtb_182"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 5
 00:00:17.087 --> 00:00:32.011
-{"selector":{"type":"FragmentSelector","value":"dtb_185"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_183","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 6
 00:00:32.011 --> 00:00:41.405
-{"selector":{"type":"FragmentSelector","value":"dtb_190"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(1) > div:nth-of-type(1) > img:nth-of-type(1)"}}}
 
 7
 00:00:41.405 --> 00:00:43.664
-{"selector":{"type":"FragmentSelector","value":"dtb_193"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 8
 00:00:43.664 --> 00:01:08.517
-{"selector":{"type":"FragmentSelector","value":"dtb_196"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_194","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 9
 00:01:08.517 --> 00:01:15.521
-{"selector":{"type":"FragmentSelector","value":"dtb_201"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(1) > div:nth-of-type(1) > img:nth-of-type(1)"}}}
 
 10
 00:01:15.521 --> 00:01:17.675
-{"selector":{"type":"FragmentSelector","value":"dtb_204"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 11
 00:01:17.675 --> 00:01:28.634
-{"selector":{"type":"FragmentSelector","value":"dtb_207"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_205","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 12
 00:01:28.634 --> 00:01:30.899
-{"selector":{"type":"FragmentSelector","value":"dtb_209"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > p:nth-of-type(2) > em:nth-of-type(1)"}}}
 
 13
 00:01:30.899 --> 00:01:39.593
-{"selector":{"type":"FragmentSelector","value":"dtb_212"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_210","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 14
 00:01:39.593 --> 00:01:41.972
-{"selector":{"type":"FragmentSelector","value":"dtb_214"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > p:nth-of-type(3) > em:nth-of-type(1)"}}}
 
 15
 00:01:41.972 --> 00:01:56.410
-{"selector":{"type":"FragmentSelector","value":"dtb_217"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_215","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 16
 00:01:56.410 --> 00:01:57.680

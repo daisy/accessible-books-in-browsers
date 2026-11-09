@@ -1,5 +1,6 @@
 import { requestAutoplayForForwardSpineLink, clearAutoplayRequest } from './autoplay.js';
 import { pageAudio } from './dom-utils.js';
+import { cancelSoundPause, pausedForSound } from './structure-sounds.js';
 
 export function initMediaSessionControls() {
     try {
@@ -13,7 +14,10 @@ function initMediaSession() {
     if (!('mediaSession' in navigator)) return;
 
     setMediaActionHandler('play', () => { playReaderAudio(); });
-    setMediaActionHandler('pause', () => getReaderAudio()?.pause());
+    setMediaActionHandler('pause', () => {
+        cancelSoundPause();
+        getReaderAudio()?.pause();
+    });
     setMediaActionHandler('nexttrack', () => navigateSpine(1));
     setMediaActionHandler('previoustrack', () => navigateSpine(-1));
 
@@ -21,6 +25,8 @@ function initMediaSession() {
     if (!audio) return;
 
     const syncPlaybackState = () => {
+        // Narration waiting a moment for a structure sound is still playing, to the lock screen
+        if (pausedForSound()) return;
         try {
             navigator.mediaSession.playbackState = audio.paused || audio.ended ? 'paused' : 'playing';
         } catch {

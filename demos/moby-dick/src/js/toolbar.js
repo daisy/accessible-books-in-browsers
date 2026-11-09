@@ -20,12 +20,16 @@ export function initToolbarAutoHide() {
         }, 3000);
     }
 
-    // Things that float above the toolbar (Skip past) need its height, which changes with the
-    // screen width and text size
+    // Things that float above the toolbar (Skip past) need its height, and scrolling to a link's
+    // target or to focus needs both toolbars' (layout.css); they change with the screen width and
+    // text size
     if (typeof ResizeObserver === 'function') {
-        new ResizeObserver(() => {
+        const observer = new ResizeObserver(() => {
             document.documentElement.style.setProperty('--webbook-toolbar-height', `${toolbar.offsetHeight}px`);
-        }).observe(toolbar);
+            document.documentElement.style.setProperty('--webbook-top-toolbar-height', `${topToolbar.offsetHeight}px`);
+        });
+        observer.observe(toolbar);
+        observer.observe(topToolbar);
     }
 
     // Show briefly on load

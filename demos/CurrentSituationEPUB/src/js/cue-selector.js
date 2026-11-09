@@ -7,9 +7,33 @@ const elementByCue = new WeakMap();
 export function selectElm(selector) {
     // getElementById, not querySelector('#…'): an id may start with a digit or contain characters
     // that a CSS selector would need escaped
-    if (selector.type === 'FragmentSelector') return document.getElementById(selector.value);
-    if (selector.type === 'CssSelector') return document.querySelector(selector.value);
+    if (selector.type === 'FragmentSelector') {
+        const anchor = document.getElementById(selector.value);
+        return selector.refinedBy ? anchor?.querySelector(selector.refinedBy.value) ?? null : anchor;
+    }
+    if (selector.type === 'CssSelector') {
+        const root = selector.value.startsWith(':scope') ? document.querySelector('main') : document;
+        if (selector.value === ':scope') return root;
+        return root?.querySelector(selector.value) ?? null;
+    }
     return null;
+}
+
+// The cue playing at a time, in seconds
+export function cueAtTime(cues, time) {
+    return cues.find(cue => cue.startTime <= time && time < cue.endTime) ?? null;
+}
+
+// The cue whose element is this one, holds it, or is inside it
+export function cueForElement(cues, target) {
+    return cues.find(cue => {
+        const elm = elmForCue(cue);
+        return elm && (elm === target || elm.contains(target) || target.contains(elm));
+    }) ?? null;
+}
+
+export function cacheCueElements(track) {
+    for (const cue of Array.from(track?.cues || [])) elmForCue(cue);
 }
 
 export function elmForCue(cue) {
@@ -21,5 +45,16 @@ export function elmForCue(cue) {
         return elm;
     } catch {
         return null;
+    }
+}
+
+// Older books identify the exact narrated element with a plain fragment. Its hash is already
+// phrase-precise, so adding the newer audio-time refinement would only change their URL format.
+export function cueNeedsTime(cue, elm) {
+    try {
+        const selector = JSON.parse(cue.text).selector;
+        return !(selector?.type === 'FragmentSelector' && !selector.refinedBy && selector.value === elm?.id);
+    } catch {
+        return true;
     }
 }

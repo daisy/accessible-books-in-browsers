@@ -6,44 +6,44 @@ WEBVTT
 
 2
 00:00:01.554 --> 00:00:05.161
-{"selector":{"type":"FragmentSelector","value":"dtb_33"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1)"}}}
 
 3
 00:00:05.161 --> 00:00:10.484
-{"selector":{"type":"FragmentSelector","value":"dtb_34"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2)"}}}
 
 4
 00:00:10.484 --> 00:00:14.527
-{"selector":{"type":"FragmentSelector","value":"dtb_37"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3)"}}}
 
 5
 00:00:14.527 --> 00:00:16.559
-{"selector":{"type":"FragmentSelector","value":"dtb_38"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4)"}}}
 
 6
 00:00:16.559 --> 00:00:21.679
-{"selector":{"type":"FragmentSelector","value":"dtb_39"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(5)"}}}
 
 7
 00:00:21.679 --> 00:00:25.803
-{"selector":{"type":"FragmentSelector","value":"dtb_42"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6)"}}}
 
 8
 00:00:25.803 --> 00:00:31.055
-{"selector":{"type":"FragmentSelector","value":"dtb_43"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7)"}}}
 
 9
 00:00:31.055 --> 00:00:35.200
-{"selector":{"type":"FragmentSelector","value":"dtb_44"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(8)"}}}
 
 10
 00:00:35.200 --> 00:00:37.476
-{"selector":{"type":"FragmentSelector","value":"dtb_45"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(9)"}}}
 
 11
 00:00:37.476 --> 00:00:42.382
-{"selector":{"type":"FragmentSelector","value":"dtb_46"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(10)"}}}
 
 12
 00:00:42.382 --> 00:00:44.383
-{"selector":{"type":"FragmentSelector","value":"dtb_49"}}
+{"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(11)"}}}

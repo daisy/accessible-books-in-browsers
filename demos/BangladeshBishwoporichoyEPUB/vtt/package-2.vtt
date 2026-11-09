@@ -2,8 +2,8 @@ WEBVTT
 
 1
 00:00:00.000 --> 00:00:13.689
-{"selector":{"type":"FragmentSelector","value":"dtb_6"}}
+{"selector":{"type":"FragmentSelector","value":"id_3","refinedBy":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > img:nth-of-type(1)"}}}
 
 2
 00:00:13.689 --> 00:00:23.779
-{"selector":{"type":"FragmentSelector","value":"dtb_7"}}
+{"selector":{"type":"FragmentSelector","value":"id_3","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1)"}}}

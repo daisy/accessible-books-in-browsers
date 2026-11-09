@@ -5,6 +5,7 @@ export function normalizeAutoplayUrl(href) {
     try {
         const url = new URL(href, window.location.href);
         url.hash = '';
+        url.search = '';
         return url.href;
     } catch {
         return '';

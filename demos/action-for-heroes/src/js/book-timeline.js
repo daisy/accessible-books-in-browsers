@@ -141,6 +141,15 @@ export function currentAudioMapPage() {
     return bookAudioMap?.pages.find(page => page.href === filename);
 }
 
+export function bookTimelineStatus() {
+    const audio = player.getAudio();
+    const page = currentAudioMapPage();
+    if (!bookAudioMap || !audio || !page) return null;
+    const time = Math.max(0, Math.min(bookAudioMap.duration, page.start + audio.currentTime));
+    const left = timeLeftAt(time);
+    return { time, duration: bookAudioMap.duration, timeLeft: left.book };
+}
+
 function pageForBookTime(time) {
     const narrated = bookAudioMap.pages.filter(page => page.duration > 0);
     return narrated.find(page => time < page.start + page.duration) || narrated.at(-1) || null;
@@ -153,6 +162,14 @@ function chapterForBookTime(time) {
         chapter = candidate;
     }
     return chapter;
+}
+
+export function bookTimeDestination(time) {
+    if (!bookAudioMap) return null;
+    const target = Math.max(0, Math.min(bookAudioMap.duration, Number(time) || 0));
+    const page = pageForBookTime(target);
+    const chapter = chapterForBookTime(target);
+    return page ? { href: page.href, title: chapter?.title || page.title, samePage: currentAudioMapPage()?.href === page.href } : null;
 }
 
 function setBookSeekValueText(time) {
@@ -305,9 +322,9 @@ export function seekBookTime(time, autoplay) {
         cancelSkipPreroll(player.getAudio());
         player.getAudio().currentTime = pageTime;
         player.updatePhraseButtons();
-        return;
+        return Promise.resolve();
     }
-    import('./in-place-navigation.js').then(({ navigateTo }) => {
-        navigateTo(page.href, { audioTime: pageTime, autoplay, moveFocus: false });
+    return import('./in-place-navigation.js').then(({ navigateTo }) => {
+        return navigateTo(page.href, { audioTime: pageTime, autoplay, moveFocus: false });
     });
 }

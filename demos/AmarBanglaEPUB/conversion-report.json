@@ -1,0 +1,656 @@
+{
+  "version": 1,
+  "language": {
+    "declared": "en-US",
+    "effective": "en-US"
+  },
+  "options": {
+    "split chapters": true,
+    "heading titles": true,
+    "markup cleanup": true,
+    "responsive tables": true,
+    "keep all ids": false,
+    "optional checks": false
+  },
+  "changes": [
+    {
+      "kind": "Empty paragraphs removed",
+      "count": 5,
+      "pages": {
+        "index.html": 1,
+        "package-8.html": 1,
+        "package-14.html": 2,
+        "package-39.html": 1
+      }
+    },
+    {
+      "kind": "Empty spans unwrapped",
+      "count": 34,
+      "pages": {
+        "package-11.html": 29,
+        "package-16.html": 1,
+        "package-25.html": 4
+      }
+    },
+    {
+      "kind": "Ineffective xml:lang attributes removed",
+      "count": 3139,
+      "pages": {
+        "index.html": 1,
+        "package-2.html": 1,
+        "package-3.html": 3,
+        "package-4.html": 3,
+        "package-5.html": 6,
+        "package-6.html": 13,
+        "package-7.html": 21,
+        "package-8.html": 2,
+        "package-9.html": 20,
+        "package-10.html": 13,
+        "package-11.html": 96,
+        "package-12.html": 54,
+        "package-13.html": 93,
+        "package-14.html": 128,
+        "package-15.html": 95,
+        "package-16.html": 127,
+        "package-17.html": 100,
+        "package-18.html": 88,
+        "package-19.html": 92,
+        "package-20.html": 108,
+        "package-21.html": 63,
+        "package-22.html": 100,
+        "package-23.html": 111,
+        "package-24.html": 151,
+        "package-25.html": 163,
+        "package-26.html": 70,
+        "package-27.html": 74,
+        "package-28.html": 103,
+        "package-29.html": 96,
+        "package-30.html": 73,
+        "package-31.html": 113,
+        "package-32.html": 84,
+        "package-33.html": 77,
+        "package-34.html": 103,
+        "package-35.html": 11,
+        "package-36.html": 85,
+        "package-37.html": 168,
+        "package-38.html": 429,
+        "package-39.html": 1
+      }
+    },
+    {
+      "kind": "Language attributes copied from xml:lang",
+      "count": 2920,
+      "pages": {
+        "package-3.html": 2,
+        "package-4.html": 2,
+        "package-5.html": 5,
+        "package-6.html": 12,
+        "package-7.html": 20,
+        "package-9.html": 19,
+        "package-10.html": 12,
+        "package-11.html": 66,
+        "package-12.html": 28,
+        "package-13.html": 80,
+        "package-14.html": 116,
+        "package-15.html": 94,
+        "package-16.html": 114,
+        "package-17.html": 94,
+        "package-18.html": 77,
+        "package-19.html": 91,
+        "package-20.html": 107,
+        "package-21.html": 52,
+        "package-22.html": 99,
+        "package-23.html": 110,
+        "package-24.html": 129,
+        "package-25.html": 158,
+        "package-26.html": 63,
+        "package-27.html": 73,
+        "package-28.html": 99,
+        "package-29.html": 95,
+        "package-30.html": 72,
+        "package-31.html": 107,
+        "package-32.html": 83,
+        "package-33.html": 76,
+        "package-34.html": 102,
+        "package-35.html": 10,
+        "package-36.html": 80,
+        "package-37.html": 145,
+        "package-38.html": 428
+      }
+    },
+    {
+      "kind": "Tables given responsive scrolling wrappers",
+      "count": 94,
+      "pages": {
+        "package-12.html": 1,
+        "package-13.html": 5,
+        "package-14.html": 6,
+        "package-15.html": 4,
+        "package-16.html": 5,
+        "package-17.html": 3,
+        "package-18.html": 3,
+        "package-19.html": 2,
+        "package-20.html": 6,
+        "package-21.html": 3,
+        "package-22.html": 4,
+        "package-23.html": 2,
+        "package-24.html": 8,
+        "package-25.html": 2,
+        "package-26.html": 2,
+        "package-27.html": 2,
+        "package-28.html": 3,
+        "package-29.html": 3,
+        "package-30.html": 2,
+        "package-31.html": 3,
+        "package-32.html": 4,
+        "package-33.html": 4,
+        "package-34.html": 3,
+        "package-36.html": 3,
+        "package-37.html": 6,
+        "package-38.html": 5
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "kind": "Element language",
+      "page": "package-8.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_78\"> (“সোনার বাংলা, আমি তোমায় ভালোবাসি। ।”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12.html",
+      "message": "Table has 26 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 3 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 4 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 6 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 8 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 5 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 3 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-17.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-18.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 6 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-19.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-19.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-20.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-21.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-21.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-21.html",
+      "message": "Table has 6 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-22.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-22.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-22.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-22.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-23.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-23.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 4 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 9 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-24.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-25.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-25.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-26.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-26.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-27.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-27.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-28.html",
+      "message": "Table has 2 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-28.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-28.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-28.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5286\"> (“শিক্ষাগুরুর মর্যাদা”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-29.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-29.html",
+      "message": "Table has 3 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-29.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-30.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-30.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-31.html",
+      "message": "Table has 2 rows and 7 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-31.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-31.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-32.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-32.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-32.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-32.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-33.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-33.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-33.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-33.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-34.html",
+      "message": "Table has 3 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-34.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-34.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-36.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-36.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-36.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-37.html",
+      "message": "Table has 3 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-37.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-37.html",
+      "message": "Table has 8 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-37.html",
+      "message": "Table has 6 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-37.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-37.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-38.html",
+      "message": "Table has 47 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-38.html",
+      "message": "Table has 40 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-38.html",
+      "message": "Table has 46 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-38.html",
+      "message": "Table has 50 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-38.html",
+      "message": "Table has 44 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Decorative images",
+      "message": "88 of 88 images (100%) have empty alternative text; review whether they are all decorative."
+    },
+    {
+      "kind": "Book language",
+      "message": "The dominant script of the book's text does not match en-US; review the metadata or use --language."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Ace",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    },
+    {
+      "name": "axe",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    }
+  ]
+}

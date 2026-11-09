@@ -6,27 +6,27 @@ WEBVTT
 
 2
 00:00:04.769 --> 00:00:06.549
-{"selector":{"type":"FragmentSelector","value":"dtb_421"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_415","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 3
 00:00:06.549 --> 00:00:17.928
-{"selector":{"type":"FragmentSelector","value":"dtb_424"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_422","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 4
 00:00:17.928 --> 00:00:19.622
-{"selector":{"type":"FragmentSelector","value":"dtb_428"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_415","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 5
 00:00:19.622 --> 00:00:36.550
-{"selector":{"type":"FragmentSelector","value":"dtb_431"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_429","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 6
 00:00:36.550 --> 00:00:38.355
-{"selector":{"type":"FragmentSelector","value":"dtb_435"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_415","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 7
 00:00:38.355 --> 00:00:54.853
-{"selector":{"type":"FragmentSelector","value":"dtb_438"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_436","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 8
 00:00:54.853 --> 00:00:56.158

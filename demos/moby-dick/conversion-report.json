@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "language": {
+    "declared": "en-US",
+    "effective": "en-US"
+  },
+  "options": {
+    "split chapters": true,
+    "heading titles": true,
+    "markup cleanup": true,
+    "responsive tables": true,
+    "keep all ids": false,
+    "optional checks": false
+  },
+  "changes": [],
+  "warnings": [
+    {
+      "kind": "Headings",
+      "page": "chapter_040.html",
+      "message": "Heading level skips from 1 to 3: HARPOONEERS AND SAILORS.."
+    },
+    {
+      "kind": "Headings",
+      "page": "chapter_100.html",
+      "message": "Heading level skips from 1 to 3: The Pequod, of Nantucket, Meets the Samuel Enderby, of London.."
+    },
+    {
+      "kind": "Headings",
+      "page": "chapter_108.html",
+      "message": "Heading level skips from 1 to 3: The Deck—First Night Watch.."
+    },
+    {
+      "kind": "Headings",
+      "page": "chapter_120.html",
+      "message": "Heading level skips from 1 to 3: AHAB STANDING BY THE HELM. STARBUCK APPROACHING HIM.."
+    },
+    {
+      "kind": "Link text",
+      "page": "copyright.html",
+      "message": "“www.gutenberg.org” does not describe its destination."
+    },
+    {
+      "kind": "Broken links",
+      "page": "toc-short.html",
+      "message": "toc.xhtml points to a page that is not in the converted book."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Ace",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    },
+    {
+      "name": "axe",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    }
+  ]
+}

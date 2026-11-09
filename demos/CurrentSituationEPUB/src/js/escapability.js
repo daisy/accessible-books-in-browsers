@@ -4,6 +4,7 @@ import { highlightElm } from './narration-position.js';
 import { showCaptionForCue } from './caption-mode.js';
 import { cancelSkipPreroll, canPlay } from './skippability.js';
 import { pageAudio } from './dom-utils.js';
+import { keepSoundsForSeek } from './structure-sounds.js';
 
 // Escapability: offer a Skip past button for the enclosing structure during playback.
 const ESCAPABLE_STRUCTURE_RULES = [
@@ -91,6 +92,7 @@ function activateEscape() {
         || Boolean(structure?.contains(active)) || Boolean(document.querySelector('main')?.contains(active));
 
     cancelSkipPreroll(audio);
+    keepSoundsForSeek();
     audio.currentTime = target.cue.startTime;
     hideEscape();
     highlightElm(target.elm);

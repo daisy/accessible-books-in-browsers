@@ -1,0 +1,516 @@
+{
+  "version": 1,
+  "language": {
+    "declared": "en-US",
+    "effective": "en-US"
+  },
+  "options": {
+    "split chapters": true,
+    "heading titles": true,
+    "markup cleanup": true,
+    "responsive tables": true,
+    "keep all ids": false,
+    "optional checks": false
+  },
+  "changes": [
+    {
+      "kind": "Empty paragraphs removed",
+      "count": 2,
+      "pages": {
+        "package-25.html": 1,
+        "package-26.html": 1
+      }
+    },
+    {
+      "kind": "Empty spans unwrapped",
+      "count": 1,
+      "pages": {
+        "package-21.html": 1
+      }
+    },
+    {
+      "kind": "Ineffective xml:lang attributes removed",
+      "count": 1963,
+      "pages": {
+        "index.html": 1,
+        "package-2.html": 2,
+        "package-3.html": 21,
+        "package-4.html": 9,
+        "package-5.html": 29,
+        "package-6.html": 174,
+        "package-7.html": 57,
+        "package-8.html": 52,
+        "package-9.html": 69,
+        "package-10.html": 128,
+        "package-11.html": 123,
+        "package-12.html": 107,
+        "package-13.html": 68,
+        "package-14.html": 111,
+        "package-15.html": 119,
+        "package-16.html": 68,
+        "package-17.html": 51,
+        "package-18.html": 129,
+        "package-19.html": 109,
+        "package-20.html": 97,
+        "package-21.html": 84,
+        "package-22.html": 76,
+        "package-23.html": 74,
+        "package-24.html": 144,
+        "package-25.html": 60,
+        "package-26.html": 1
+      }
+    },
+    {
+      "kind": "Language attributes copied from xml:lang",
+      "count": 1641,
+      "pages": {
+        "package-2.html": 1,
+        "package-3.html": 18,
+        "package-4.html": 7,
+        "package-5.html": 25,
+        "package-6.html": 131,
+        "package-7.html": 25,
+        "package-8.html": 27,
+        "package-9.html": 52,
+        "package-10.html": 115,
+        "package-11.html": 108,
+        "package-12.html": 72,
+        "package-13.html": 55,
+        "package-14.html": 81,
+        "package-15.html": 106,
+        "package-16.html": 67,
+        "package-17.html": 46,
+        "package-18.html": 117,
+        "package-19.html": 98,
+        "package-20.html": 82,
+        "package-21.html": 70,
+        "package-22.html": 70,
+        "package-23.html": 66,
+        "package-24.html": 143,
+        "package-25.html": 58,
+        "package-26.html": 1
+      }
+    },
+    {
+      "kind": "Tables given responsive scrolling wrappers",
+      "count": 64,
+      "pages": {
+        "package-6.html": 1,
+        "package-7.html": 1,
+        "package-8.html": 2,
+        "package-9.html": 3,
+        "package-10.html": 6,
+        "package-11.html": 7,
+        "package-12.html": 5,
+        "package-13.html": 4,
+        "package-14.html": 4,
+        "package-15.html": 5,
+        "package-16.html": 2,
+        "package-17.html": 2,
+        "package-18.html": 7,
+        "package-19.html": 2,
+        "package-20.html": 4,
+        "package-21.html": 5,
+        "package-23.html": 3,
+        "package-25.html": 1
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "kind": "Element language",
+      "page": "package-3.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_8\"> (“বাংলাদেশ ও বিশ্ব পরিচয়”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-6.html",
+      "message": "Table has 43 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-7.html",
+      "message": "Table has 19 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-7.html",
+      "message": "3 elements marked nl-NL use a different dominant script; lang was not copied. Examples: <p id=\"dtb_624\"> (“বাংলাদেশের ভূপ্রকৃতি”); <p id=\"dtb_638\"> (“বাংলাদেশের জনসংখ্যা”); <p id=\"dtb_652\"> (“আমাদের মুক্তিযুদ্ধ”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-8.html",
+      "message": "4 elements marked nl-NL use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_680\"> (“আমাদের পরিবেশ ও সমাজ”); <h1 id=\"dtb_681\"> (“১। প্রাকৃতিক পরিবেশের বৈচিত্র্য”); <p id=\"dtb_684\"> (“প্রকৃতির বিভিন্ন উপাদান নিয়ে প্রাকৃতিক পরিবেশ গঠিত হয়। প্রকৃতির উপাদানগুলো হল…”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-8.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_769\"> (“২ সামাজিক পরিবেশের উপর প্রকৃতির প্রভাব”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-9.html",
+      "message": "Table has 5 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-9.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-9.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-9.html",
+      "message": "2 elements marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_848\"> (“সমাজে পরস্পরের সহযোগিতা”); <h1 id=\"dtb_961\"> (“২। সামাজিক বিভিন্নতা ও বিশেষ চাহিদাসম্পন্ন শিশু”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-10.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-10.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_1071\"> (“বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11.html",
+      "message": "Table has 5 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_1756\"> (“৩। অর্থনৈতিক অধিকার”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12.html",
+      "message": "Table has 8 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12.html",
+      "message": "2 elements marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_1903\"> (“মূল্যবোধ ও আচরণ”); <h1 id=\"dtb_1904\"> (“১ ভালো হওয়া ও ভালো কাজ করা”)."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-13.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-13.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-13.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_2229\"> (“১। অধিকাংশের মত গ্রহণ”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 5 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 5 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-14.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-14.html",
+      "message": "1 element marked en-US use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_2686\"> (“৩ আইন শৃঙ্খলা রক্ষায় নিয়োজিত পেশা”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“• হাসপাতাল” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-16.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-16.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-17.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-19.html",
+      "message": "Table has 4 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-19.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-20.html",
+      "message": "Table has 6 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-20.html",
+      "message": "Table has 5 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-20.html",
+      "message": "Table has 3 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-20.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-21.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-21.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-21.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-21.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-21.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-23.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-23.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-23.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-25.html",
+      "message": "Table has 28 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Decorative images",
+      "message": "71 of 71 images (100%) have empty alternative text; review whether they are all decorative."
+    },
+    {
+      "kind": "Book language",
+      "message": "The dominant script of the book's text does not match en-US; review the metadata or use --language."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Ace",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    },
+    {
+      "name": "axe",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    }
+  ]
+}

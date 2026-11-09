@@ -1,7 +1,7 @@
 import { startPlayerForPage } from './player.js';
 import { startCaptionModeForPage } from './caption-mode.js';
 import { hideEscape } from './escapability.js';
-import { clearNarrationHighlight } from './narration-position.js';
+import { clearNarrationHighlight, readingPositionTime } from './narration-position.js';
 import { recordPageVisit } from './resume-position.js';
 import { resetPageEntry } from './page-entry.js';
 import { requestAutoplayForLink } from './autoplay.js';
@@ -115,19 +115,26 @@ async function loadInPlace(url, { push, moveFocus, scrollY, audioTime, state = n
         return;
     }
 
+    // Position-tracking features must not react to the focus and scroll changes used to place
+    // the incoming page before its requested hash or Back/Forward position is established.
+    document.dispatchEvent(new CustomEvent('webbook:pageplacing'));
+
     const focusWasInContent = !document.activeElement
         || document.activeElement === document.body
         || Boolean(document.activeElement.closest('main'));
 
-    // Kept with the page being left, so Back returns to the same place on it
+    // Kept with the page being left, so Back returns to the same place on it. While narration is
+    // paused, the reader may have scrolled away from it, and the URL follows where they're reading
+    // (browser-bookmarks.js): Back returns there, and Play continues from there.
     if (push) {
         const audio = document.querySelector('#webbook-toolbar audio');
         const narrated = audio?.getAttribute('src') || audio?.querySelector('source[src]');
+        const playing = narrated ? !audio.paused : false;
         history.replaceState({
             ...history.state,
             webbookScrollY: window.scrollY,
-            webbookAudioTime: narrated ? audio.currentTime : undefined,
-            webbookWasPlaying: narrated ? !audio.paused : false
+            webbookAudioTime: narrated ? (playing ? audio.currentTime : readingPositionTime(audio)) : undefined,
+            webbookWasPlaying: playing
         }, '');
     }
     if (autoplay) requestAutoplayForLink({ href: url.href });

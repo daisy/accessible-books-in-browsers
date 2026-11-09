@@ -164,6 +164,14 @@ function chapterForBookTime(time) {
     return chapter;
 }
 
+export function bookTimeDestination(time) {
+    if (!bookAudioMap) return null;
+    const target = Math.max(0, Math.min(bookAudioMap.duration, Number(time) || 0));
+    const page = pageForBookTime(target);
+    const chapter = chapterForBookTime(target);
+    return page ? { href: page.href, title: chapter?.title || page.title, samePage: currentAudioMapPage()?.href === page.href } : null;
+}
+
 function setBookSeekValueText(time) {
     if (!ui.seekRange) return;
     const chapter = chapterForBookTime(time);
@@ -314,9 +322,9 @@ export function seekBookTime(time, autoplay) {
         cancelSkipPreroll(player.getAudio());
         player.getAudio().currentTime = pageTime;
         player.updatePhraseButtons();
-        return;
+        return Promise.resolve();
     }
-    import('./in-place-navigation.js').then(({ navigateTo }) => {
-        navigateTo(page.href, { audioTime: pageTime, autoplay, moveFocus: false });
+    return import('./in-place-navigation.js').then(({ navigateTo }) => {
+        return navigateTo(page.href, { audioTime: pageTime, autoplay, moveFocus: false });
     });
 }

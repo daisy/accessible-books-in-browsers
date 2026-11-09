@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "language": {
+    "declared": "en",
+    "effective": "en"
+  },
+  "options": {
+    "split chapters": true,
+    "heading titles": true,
+    "markup cleanup": true,
+    "responsive tables": true,
+    "keep all ids": false,
+    "optional checks": false
+  },
+  "changes": [
+    {
+      "kind": "Ineffective xml:lang attributes removed",
+      "count": 4,
+      "pages": {
+        "index.html": 1,
+        "chapter1.html": 1,
+        "chapter2.html": 1,
+        "endnotes.html": 1
+      }
+    }
+  ],
+  "warnings": [],
+  "checks": [
+    {
+      "name": "Ace",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    },
+    {
+      "name": "axe",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    }
+  ]
+}

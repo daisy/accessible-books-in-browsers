@@ -6,4 +6,4 @@ WEBVTT
 
 2
 00:00:01.494 --> 00:00:06.833
-{"selector":{"type":"FragmentSelector","value":"title-p1"}}
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(1)"}}

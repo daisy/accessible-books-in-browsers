@@ -2,4 +2,4 @@ WEBVTT
 
 1
 00:00:00.000 --> 00:00:06.544
-{"selector":{"type":"FragmentSelector","value":"dtb_10"}}
+{"selector":{"type":"FragmentSelector","value":"id_3","refinedBy":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > img:nth-of-type(1)"}}}

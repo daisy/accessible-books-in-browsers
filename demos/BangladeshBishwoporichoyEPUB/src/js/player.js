@@ -1,5 +1,5 @@
-import { elmForCue } from './cue-selector.js';
-import { highlightElm, clearNarrationHighlight, syncHashToElement, seekToHashTarget, lastNarratedElement } from './narration-position.js';
+import { cacheCueElements, cueForElement, cueNeedsTime, elmForCue } from './cue-selector.js';
+import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarget, lastNarratedElement, settlePositionUrlPlacement } from './narration-position.js';
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
 import { showCaptionForCue, refreshCaptionItemsFromTrack } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
@@ -354,12 +354,12 @@ function goToNarrationPosition() {
 // The phrase the reader is at: the one holding focus (a screen reader's cursor brings focus with it
 // onto the phrases, which are focusable for this), else the one at the start of a text selection
 function cueAtReader(cues) {
-    const located = cues.map(cue => ({ cue, elm: elmForCue(cue) })).filter(({ elm }) => elm);
     const focused = document.activeElement;
     if (focused && focused !== document.body && document.querySelector('main')?.contains(focused)) {
-        const match = located.find(({ elm }) => elm === focused || elm.contains(focused) || focused.contains(elm));
-        if (match) return match.cue;
+        const match = cueForElement(cues, focused);
+        if (match) return match;
     }
+    const located = cues.map(cue => ({ cue, elm: elmForCue(cue) })).filter(({ elm }) => elm);
     const selection = window.getSelection?.();
     if (selection && selection.rangeCount && !selection.isCollapsed) {
         const node = selection.getRangeAt(0).startContainer;
@@ -394,20 +394,26 @@ function cueIndexAtOrBefore(time, cues) {
 }
 
 function handleTrackReady() {
+    // Refined selectors use paths through the publication DOM. Resolve all of them before any
+    // feature adds focus hooks, buttons or wrappers inside the text.
+    cacheCueElements(metadataTrack);
     refreshCaptionItemsFromTrack(metadataTrack);
     makePhrasesFocusable();
-    seekToHashTarget(audio, metadataTrack);
+    seekToHashTarget(audio, metadataTrack, window.location.hash, { place: returnToTime === null });
     applyResumeAudioTimeIfMatching(audio);
     seekToPageEntry();
     // The URL's #id only gives the start of the phrase
     if (returnToTime !== null) {
         audio.currentTime = returnToTime;
         returnToTime = null;
+    } else {
+        settlePositionUrlPlacement();
     }
     updatePhraseButtons();
     // Started here rather than with the autoplay attribute, so a page opened partway through
     // doesn't play its first moments before seeking there
     if (shouldAutoplayThisPage && startsPartway) playOrOfferToContinue(audio);
+    document.dispatchEvent(new CustomEvent('webbook:playerready'));
 }
 
 // Arriving from a phrase step across the page boundary
@@ -442,7 +448,7 @@ function handleCueChange(e) {
         if (!elm) return;
         if (!handleCuePlayability(elm, audio, track, activeCueIdx, cue)) return;
         highlightElm(elm);
-        syncHashToElement(elm);
+        syncPositionUrl(elm, cueNeedsTime(cue, elm) ? cue.startTime : undefined);
         recordResumePosition(elm, audio);
         showCaptionForCue(cue, track);
         handleEscapableStructure(elm, track, activeCueIdx);

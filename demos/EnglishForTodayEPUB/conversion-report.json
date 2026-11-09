@@ -1,0 +1,3571 @@
+{
+  "version": 1,
+  "language": {
+    "declared": "en-US",
+    "effective": "en-US"
+  },
+  "options": {
+    "split chapters": true,
+    "heading titles": true,
+    "markup cleanup": true,
+    "responsive tables": true,
+    "keep all ids": false,
+    "optional checks": false
+  },
+  "changes": [
+    {
+      "kind": "Empty paragraphs removed",
+      "count": 11,
+      "pages": {
+        "package-9.html": 1,
+        "package-10.html": 2,
+        "package-12-2.html": 1,
+        "package-12-4.html": 2,
+        "package-13.html": 1,
+        "package-16.html": 1,
+        "package-17.html": 1,
+        "package-19-6.html": 1,
+        "package-21.html": 1
+      }
+    },
+    {
+      "kind": "Ineffective xml:lang attributes removed",
+      "count": 3660,
+      "pages": {
+        "index.html": 1,
+        "package-2.html": 4,
+        "package-3.html": 32,
+        "package-4.html": 11,
+        "package-5.html": 50,
+        "package-6.html": 185,
+        "package-7.html": 2,
+        "package-7-2.html": 7,
+        "package-7-3.html": 254,
+        "package-8.html": 239,
+        "package-9.html": 265,
+        "package-10.html": 253,
+        "package-11.html": 2,
+        "package-11-2.html": 9,
+        "package-11-3.html": 81,
+        "package-11-4.html": 88,
+        "package-11-5.html": 43,
+        "package-11-6.html": 46,
+        "package-11-7.html": 37,
+        "package-12.html": 2,
+        "package-12-2.html": 8,
+        "package-12-3.html": 56,
+        "package-12-4.html": 93,
+        "package-12-5.html": 36,
+        "package-12-6.html": 28,
+        "package-12-7.html": 50,
+        "package-12-8.html": 31,
+        "package-13.html": 219,
+        "package-14.html": 141,
+        "package-15.html": 203,
+        "package-16.html": 239,
+        "package-17.html": 150,
+        "package-18.html": 196,
+        "package-19.html": 2,
+        "package-19-2.html": 7,
+        "package-19-3.html": 64,
+        "package-19-4.html": 35,
+        "package-19-5.html": 46,
+        "package-19-6.html": 31,
+        "package-19-7.html": 36,
+        "package-19-8.html": 46,
+        "package-19-9.html": 49,
+        "package-19-10.html": 32,
+        "package-19-11.html": 15,
+        "package-19-12.html": 17,
+        "package-19-13.html": 8,
+        "package-20.html": 210,
+        "package-21.html": 1
+      }
+    },
+    {
+      "kind": "Language attributes copied from xml:lang",
+      "count": 57,
+      "pages": {
+        "index.html": 1,
+        "package-2.html": 1,
+        "package-3.html": 1,
+        "package-4.html": 1,
+        "package-5.html": 1,
+        "package-6.html": 2,
+        "package-7.html": 1,
+        "package-7-2.html": 1,
+        "package-7-3.html": 1,
+        "package-8.html": 3,
+        "package-9.html": 1,
+        "package-10.html": 1,
+        "package-11.html": 1,
+        "package-11-2.html": 1,
+        "package-11-3.html": 1,
+        "package-11-4.html": 1,
+        "package-11-5.html": 2,
+        "package-11-6.html": 1,
+        "package-11-7.html": 1,
+        "package-12.html": 1,
+        "package-12-2.html": 1,
+        "package-12-3.html": 1,
+        "package-12-4.html": 1,
+        "package-12-5.html": 1,
+        "package-12-6.html": 1,
+        "package-12-7.html": 1,
+        "package-12-8.html": 1,
+        "package-13.html": 1,
+        "package-14.html": 1,
+        "package-15.html": 1,
+        "package-16.html": 1,
+        "package-17.html": 1,
+        "package-18.html": 3,
+        "package-19.html": 1,
+        "package-19-2.html": 1,
+        "package-19-3.html": 2,
+        "package-19-4.html": 1,
+        "package-19-5.html": 1,
+        "package-19-6.html": 1,
+        "package-19-7.html": 1,
+        "package-19-8.html": 1,
+        "package-19-9.html": 1,
+        "package-19-10.html": 1,
+        "package-19-11.html": 1,
+        "package-19-12.html": 1,
+        "package-19-13.html": 2,
+        "package-20.html": 2,
+        "package-21.html": 1
+      }
+    },
+    {
+      "kind": "Tables given responsive scrolling wrappers",
+      "count": 94,
+      "pages": {
+        "package-5.html": 1,
+        "package-6.html": 9,
+        "package-7-3.html": 6,
+        "package-8.html": 9,
+        "package-9.html": 2,
+        "package-10.html": 8,
+        "package-11-3.html": 2,
+        "package-11-4.html": 3,
+        "package-11-5.html": 1,
+        "package-11-6.html": 2,
+        "package-12-3.html": 4,
+        "package-12-4.html": 3,
+        "package-12-6.html": 2,
+        "package-12-8.html": 1,
+        "package-13.html": 6,
+        "package-14.html": 3,
+        "package-15.html": 9,
+        "package-16.html": 6,
+        "package-17.html": 8,
+        "package-18.html": 5,
+        "package-19-9.html": 1,
+        "package-20.html": 3
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "kind": "Element language",
+      "page": "package-2.html",
+      "message": "2 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_6\"> (“English For Today”); <p id=\"dtb_11\"> (“Prescribed by the National Curriculum & Textbook Board as a Textbook for 9-10…”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-3.html",
+      "message": "23 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_17\"> (“ENGLISH FOR TODAY”); <p id=\"dtb_21\"> (“Raihana Shams”); <p id=\"dtb_22\"> (“Md. Zulfeqar Haider”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-4.html",
+      "message": "7 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_67\"> (“The secondary curriculum has been revised in the light of National Education …”); <p id=\"dtb_71\"> (“The development of curriculum, syllabus and textbook is a continuous process.…”); <p id=\"dtb_76\"> (“The publication of teacher's guide is under process. The teacher's guide will…”)."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-5.html",
+      "message": "Table has 16 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-5.html",
+      "message": "16 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_114\"> (“Good citizens”); <p id=\"dtb_128\"> (“Events and festivals”); <p id=\"dtb_135\"> (“Are we aware?”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. Can you live alone in a house?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. Make a list of the problems you think you will have if you live alone in a…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. Why did the young man leave his house?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. Where did he make a hut? What did he make the hut with?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“3. Was the man happy in his hut?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“4. How did he find himself again in a family?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“5. Where and how can a person be happy?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“6. What is the moral of the story?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. As people live in a community or society, they often have problems. A fami…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. To prevent theft or robberies, constant security measures are often necess…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“3. A community may have a problem like they don't have a primary school in th…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“4. Cooking should not be exclusively a woman's job.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“5. Young learners must cultivate virtues and acquire knowledge and skills to …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“6. To establish peace and harmony among the people in a locality / village, o…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“7. Only studying at school is not enough for the young learners. They must al…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“8. People in a society / locality, often need to buy things at home. So there…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“9. In a village or locality, roads often need repairing for easy movement of …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. Abraham Lincoln, a former president of the United States, advocates a “Gov…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. Two students are making a kite with colored paper, sticks, glue and string.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“3. Tisha's room was always messy. She could not find things easily. Recently …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“4. \"It is the duty of every citizen to observe the constitution and laws to m…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“5. Students in pairs are acting out a dialogue in a class.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“6. Mouli is back from school. She is very hungry and looks exhausted. \"What's…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“7. The students of physical education class are practicing stretching exercis…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“8. The affairs of Dhaka city were run by the Dhaka Municipality until 1978, w…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. What do you understand by character?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. What does a person with a good character usually do to others?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. Which is the correct statement according to the information in the listeni…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. Did Rony do right or wrong? Why ?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. What do you think his mother will do when Rony comes back home without sal…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“3. What Rony should have done in the situation?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“4. What do you mean by responsibility?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. The constitution of the People's Republic of Bangladesh, Part II.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. Pan III, ibid. (Ibid: abbreviation from Latin ibidem which means in the sa…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“1. Which persons and institutions do you have responsibilities for? Make a li…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“2. Make a list of responsibilities you have as a students at home, school, an…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“3. Make another list of things you shouldn't do at home, school, and in society.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“4. Who do you get help from to discharge the responsibilities you have listed…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“5. Are there any difficulties in fulfilling the responsibilities? Briefly des…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“6. Make a list of responsibilities other people have towards you. Briefly des…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“7. (a) What rewards are you likely to get if you fulfill your responsibilities?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-6.html",
+      "message": "“8. What responsibilities do you think you can perform well when you go on a c…” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-6.html",
+      "message": "Table has 2 rows and 8 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-6.html",
+      "message": "152 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_216\"> (“Good citizens”); <h1 id=\"dtb_221\"> (“Learning outcomes”); <p id=\"dtb_222\"> (“After we have studied the unit, we will be able to”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-7-2.html",
+      "message": "5 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_880\"> (“Learning outcomes”); <p id=\"dtb_881\"> (“After we have studied the unit, we will be able to”); <p id=\"dtb_884\"> (“narrate incidents and events in a logical sequence.”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“2. what are her pastimes?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“3. Make a list of Tiya's pastimes.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“4. How will Tiya learn about yoga?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“1. How does exercise work on our memory?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“2. What other benefits can you think of from exercise?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“3. What is the most important benefit of exercise to you and why?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“1. What makes London Olympic 2012 exceptionally sensational?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“2. How are Phelps and Bolt brilliantly similar and different?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“3. Between these two Olympians who has bagged the highest honour within the s…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“4. What is special in Bolt so far?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“5. flow does Bolt evaluate himself?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“1. What is the gender policy of the surveyors?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“2. What is the survey findings regarding watching television?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“3. Which age group is more interested in socializing with others?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-7-3.html",
+      "message": "“4. According to the chart, how do the kids change their pastimes when they ar…” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-7-3.html",
+      "message": "Table has 4 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-7-3.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-7-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-7-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-7-3.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-7-3.html",
+      "message": "Table has 9 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-7-3.html",
+      "message": "171 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_892\"> (“Lesson 1: Have you any favourite pastime?”); <p id=\"dtb_893\"> (“A. Look at the pictures. What are the people doing here? When do people do th…”); <p id=\"dtb_900\"> (“B Read the dialogue and answer the questions.”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What do you think the woman is to the child?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Why is she holding the child on her flank?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Can a mother be compared to anybody?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. According to ancient Greek myths Rhea is the” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. The name of Jesus Christ's mother was” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Julia Ward Howe was” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“4. Mother's Day was first announced as a formal holiday in the USA in” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“5. In 1914 the American president was” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“6. Which country doesn't celebrate Mother's Day on the 2nd Sunday of May?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What country first observed Mother's Day as a national holiday?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. When is Mother's Day now celebrated by most of the countries in the world?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. How is Mother's Day usually observed?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“4. Why should we observe Mother's Day?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Do you help your mother with her housework? How?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Do you celebrate Mother's Day? If yes, when and how?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What do you see in the picture?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Can you relate any historical event to this picture? What happened on this…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Industrial Revolution: the period, especially in the 18th and 19th centuri…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Trade Union: an organization that represents workers of mills and factories.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What does May Day refer to?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. How long did the workers have to work a day before the May 1 strike?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. How many workers were victimized for taking part in the strike?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“4. Why did the workers in Chicago go on a strike?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“5. What do you learn from the events of May l, 1886?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Do you think Tania's monthly salary is enough for her work?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Does Tania live in a hygienic place? Is it good for her health? What may h…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Is the factory safe enough for workers to work in? Why do you think so?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“4. Do you have any suggestions for safety of factory workers ? If so, what?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What's the picture about?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Where do you think it is?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Why was it built?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Why do we observe 21 February as the International Mother Language Day?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. What happened when Urdu was declared as the only official language of Paki…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. \"The seed of independence was sown on 21 February 1952\". Do you agree with…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. When did the International Mother Language Day celebration begin?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. What does the abbreviation UNESCO stand for?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. What is the other name of 21 February?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Why is 21 February called Shaheed Dibosh'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Why do people go to the Shaheod Minar? How do they go there?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Why is 2? February now observed throughout the world every year`?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What can you see in the picture?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Where is it?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Why was it built?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Our biggest state festival is” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. The celebration of Independence Day begins with” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. The National Mausoleum is” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“4. On Independence Day the National Parade is held” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. What's the picture about?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. Where do you think it is?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. What are people doing?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“1. Do you go out in the morning of Pahela Boislrakh? If you do, where do you …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“2. What kind of food do you eat in the morning of Pahela Boishakh?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-8.html",
+      "message": "“3. Do you wear any special clothes on this occasion?” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-8.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-8.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-8.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 2 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-8.html",
+      "message": "Table has 2 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-8.html",
+      "message": "163 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_1692\"> (“Events and festivals”); <h1 id=\"dtb_1697\"> (“Learning outcomes”); <p id=\"dtb_1698\"> (“After we have studied this unit, we will be able to”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. Where can you find this kind of boat?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. Why does the boatman carry passengers across a river? .” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“3. Why do people use country boats?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. Why do many people have little or no patience with these kinds of situatio…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. 'No more, No more, please wait' who said this? Explain in 2/3 sentences.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“3. Describe the problems given below:” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“5. What will be the size of our population in 2050?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. How do you get the population growth rate of a country?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. Why will the population of Bangladesh be so large in 2050?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. What do the people do in trees and the boats'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. Why do they do so`?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. The rate of increase in food production cannot keep pace with the rate of …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. How can our housing problem increase or add to our food problem?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“3. What makes our land shrink day by day mentioned in line no. 13?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“4. Many people may have to live on trees, because” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“5. People are cutting trees to” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. Raise awareness among the people particularly in the rural areas about the…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. Stop child marriage.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“3. Keep the size of the family small with two children --- two girls or two b…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. Try to find out why English is needed for a good hotel front desk officer …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. Choose two / three other jobs where English is needed and write why and ho…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. You can learn a common language in and outside the classroom.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. You cannot speak all the languages of different people of different” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“3. For example, you can do businesses with a Chinese, a Japanese, a French,” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“4. Also other things like the radio, TV, computers and newspapers can help” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“5. Therefore you need a common language, i.e. English, which is understood” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“1. Describe briefly the things that have made the present world smaller.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“2. Give reasons why a common language is needed in today's world.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“3. Why is English needed all the more in Bangladesh?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-9.html",
+      "message": "“4. How can our youths become skilled workforce?” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-9.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-9.html",
+      "message": "Table has 7 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-9.html",
+      "message": "210 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_2527\"> (“Are we aware?”); <h1 id=\"dtb_2533\"> (“Learning outcomes”); <p id=\"dtb_2534\"> (“After we have studied the unit, we will be able to”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. In paragraph 3 ‘roaring rivers’ mean” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. landed property” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“3. whispering wind” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. What do you see in each picture?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. What are some of the common sources of environmental pollution'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“3. Which of these sources are most threatening for your environment?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. Can man influence the climate? If the answer is yes, explain how?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. Which human activities are responsible for increasing carbon dioxide in” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. Fossil fuels are burned at an alarming rate due to industrialization.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. Coal is the only fuel used for generating energy.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“3. At present, nearly 85 million barrels of crude oil are used weekly.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“4. Deforestation is caused by nature.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“5. Forests help consume carbon dioxide gases from the air.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. Sun's radiation a.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. Fossil fuels” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“4. Crude oil” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“5. Raw materials” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“6. Deforestation” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“7. photosynthesis” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. Global warming will kill all the fishes within ten years.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. Some fishes cannot reproduce if the water is too warm.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“3. A two degree rise in temperature will make some species extinct.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“4. Fishes are valuable economic investments.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“5. Nearly 14% of people depend on fish for their basic food needs.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“6. People will suffer a lot if greater pressure is put on fish.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. Do you throw away empty cans and bottles'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. What do you do with your old newspapers?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“3. What happens to the garbage after you throw it away?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“1. How can you cut down your shopping list?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“2. What can you do to reuse things?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“3. What kind of household goods, clothes and toys, can be donated?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“4. How can you sell your used items?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-10.html",
+      "message": "“5. How recycling may help save our environment?” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-10.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-10.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-10.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-10.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-10.html",
+      "message": "203 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_3323\"> (“Climate change”); <h1 id=\"dtb_3328\"> (“Learning outcomes”); <p id=\"dtb_3329\"> (“After we have studied this unit, we will be able to”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11-2.html",
+      "message": "8 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_4148\"> (“Our Neighbours”); <h1 id=\"dtb_4153\"> (“Learning outcomes”); <p id=\"dtb_4154\"> (“After we have studied this unit, we will be able to”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“2. a land of religious coexistence” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“3. A land of high peaks and Everest” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“4. A small country with huge population” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“5. A blend of natural beauty and cultural heritage” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“6. The temples of Nepal” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“7. Many occasions to celebrate” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“8. A rich spot of cultural heritage” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“9. A small population with huge diversity” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“1. tropical lowland” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“2. temperate climate” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“3. ethnic groups” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“4. pilgrimage destination” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“5. elegant architecture” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“1. How many ethnic groups are there in Nepal?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“2. What do you know about the weather of Nepal?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“3. \"Many Nepalese combine Hindu and Buddhist practices .\"- Explain this state…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“4. Which three cities of Nepal will you visit in order to see the rich sample…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“5. Make a list of the festivals that are celebrated in Nepal.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-3.html",
+      "message": "“6. Give at least three reasons why you might be interested to visit Nepal. Al…” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11-3.html",
+      "message": "79 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_4167\"> (“Lesson 1: Nepal, the land of Everest”); <p id=\"dtb_4168\"> (“A . Read the following passage on Nepal.”); <p id=\"dtb_4174\"> (“a. Known as the Land of Everest, Nepal is one of the most charming countries …”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“1. Which country is often known as the Pearl of the Indian Ocean?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“2. Which country is the world's largest tea exporter?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“3. Which country did the spice cinnamon originate from?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“4. Which country was mentioned in the great Indian epic the Ramayana?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“5. Which country has the highest literacy rate in South Asia?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“1. A beautiful island with natural richness” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“2. Teardrop of India” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“3. Geographical features” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“4. A rich multicultural setting” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“5. Some religious groups of Sri Lanka” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“6. A traditional economy” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“7. The land of cinnamon” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“8. A melting pot of the past civilizations” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“9. Tourist attractions and leisure activities” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“10. A country with beautiful beaches” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-4.html",
+      "message": "“2. If you are given an offer to visit any two of the four Sri Lankan cities a…” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11-4.html",
+      "message": "Table has 3 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11-4.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11-4.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11-4.html",
+      "message": "80 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_4417\"> (“Lesson 2: Sri Lanka: The pearl of the Indian Ocean”); <p id=\"dtb_4418\"> (“A. Discuss these questions in pairs.”); <p id=\"dtb_4421\"> (“1. Which country is often known as the Pearl of the Indian Ocean?”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“1. Did you ever visit any island or seen any island on TV?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“2. Have you ever heard of a coral island? Is there any coral island in Bangla…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“1. What is an atoll?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“2. How many countries in the world are smaller than the Maldives in size?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“3. When was Islam introduced in the Maldives?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“4. What makes the Maldives an ideal place for the tourists?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“5. What dangers of climate change might affect the Maldives?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“6. Do you support the idea of having a cabinet meeting underwater? What could…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“1. Only seven countries in the world are smaller in size than the Maldives.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“2. No other South Asian countries has a smaller population than the Maldives.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“3. The islands of the Maldives were inhabited in the 12th century.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“4. The Maldives was an independent Islamic sultanate from 1153 to 1968” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-5.html",
+      "message": "“5. The Maldives was ranked as the second best country for natural beauty in 2…” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-11-5.html",
+      "message": "Table has 8 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11-5.html",
+      "message": "33 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_4685\"> (“A . Discuss the questions in pairs.”); <p id=\"dtb_4690\"> (“1. Did you ever visit any island or seen any island on TV?”); <p id=\"dtb_4693\"> (“2. Have you ever heard of a coral island? Is there any coral island in Bangla…”)."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-11-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11-6.html",
+      "message": "31 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_4852\"> (“Lesson 4: India: Unity within diversity”); <p id=\"dtb_4853\"> (“A . Read the following text and answer the questions.”); <p id=\"dtb_4858\"> (“India is our closet neighbour. It is the largest among South Asian Countries.…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-7.html",
+      "message": "“1. A unique culture and tradition has evolved in Bhutan because” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-7.html",
+      "message": "“2. Bhutanese houses are built from” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-7.html",
+      "message": "“3. Which of the following activities is mentioned as a way of celebrating, Losar” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-7.html",
+      "message": "“4. As per the constitutional obligation imposed by the Bhutanese government,” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-11-7.html",
+      "message": "“5. The progress of Bhutan as a nation is measured by” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-11-7.html",
+      "message": "36 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5007\"> (“Lesson 5: Bhutan: The land of happiness”); <p id=\"dtb_5008\"> (“A . Read the following text and answer the questions.”); <p id=\"dtb_5014\"> (“Bhutan is called the Jewel of the Eastern Himalayas. This small, landlocked c…”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-2.html",
+      "message": "6 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5114\"> (“People who stand out”); <p id=\"dtb_5119\"> (“After we have studied this unit, we will be able to”); <p id=\"dtb_5123\"> (“read and understand texts through silent reading.”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“1. Write in detail how Zainul Abedin portrayed the sufferings of people.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“2. What influence did the river Brahmaputra have on Zainul Abedin? How did he…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“3. What did these works earn him later in his life?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“4. How did his art help to intensify the noncooperation movement?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“1. The US Ambassador to Bangladesh considers Zainul Abedin a” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“2. Zainul's art gallery was set up in [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“3. The number of Zainul's artworks preserved in the gallery is --------” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“4. The US Ambassador commented that the museum is a global” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“5. Mozena visited the gallery for” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-3.html",
+      "message": "“3. Who else were there with the Ambassador during his visit?” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-12-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-12-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-12-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-12-3.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-3.html",
+      "message": "31 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5131\"> (“Lesson l: Zainul Abedin, the great artist”); <p id=\"dtb_5134\"> (“A. Read the text and answer the questions that follow.”); <p id=\"dtb_5137\"> (“The pioneer of Bangladeshi modern art Zainul Abedin is widely acclaimed for h…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“1. What is Partha Pratim Majumder doing in the two pictures?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“2. Describe his facial expressions.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“3. Describe his physical features i.e. his age, how he looks, what he is wear…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“2. In what form have the silent gestures evolved into?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“3. In olden times the actors who performed mime used to put white paint on their” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“4. In the sentence \"It touched a little boy's heart while he was watching a p…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“1. The ancient Egyptian art shows that people at that time interacted with on…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“2. Humans used a few words as the primary means of interaction.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“3. Partha Pratim Majumder is among the first few who performed mime in Bangla…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“4. The turning point in Majumder's life is when he performed at Bangladesh Sh…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“5. Marcel Marceau's school of mime is in Barcelona.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“1. What is `mime'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“2. What helped Partha to express himself clearly while performing mime?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“3. What did he use to describe through his performance at the beginning?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“4. Why was the French ambassador impressed when he saw Majumder's performance?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“5. Describe in sequence why Majumder was given a number of the highest awards…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“5. His father made” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“1. The birth place of Partha Pratim Majumder is Pabna.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“2. He was born in 1954.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“3. He belonged to a culturally enlightened family.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“4. Majumder's father inspired him to value art.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“5. His forefathers' home was in Kalachandpara.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-4.html",
+      "message": "“6. He spent his childhood enjoying different cultural activities.” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12-4.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-12-4.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12-4.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-4.html",
+      "message": "68 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5300\"> (“Lesson 2: The art of silence”); <p id=\"dtb_5305\"> (“A . Look at the above pictures of Partha Pratim Majumder. Work in pairs and d…”); <p id=\"dtb_5311\"> (“1. What is Partha Pratim Majumder doing in the two pictures?”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“1. What does ‘servant of humanity’ mean in the text?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“2. Why did Mother Teresa want to be a missionary? Because she heard” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“3. Mother Teresa set out to join the missionary of the Sisters of Loreto in t…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“4. Mother Teresa took her first vows at the age of” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“1. Where did Mother Teresa's ancestors come from?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“2. Where was her father's home?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“3. Why did she want to become a missionary?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“4. What makes her different from other girls at such an early age? What words…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“5. What did Mother Teresa do in the first seventeen years in India?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“1. How old is she? Why do you think so?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“2. What is she wearing?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-5.html",
+      "message": "“3. How has she worn it?” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-5.html",
+      "message": "27 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5580\"> (“Lesson 4: The beginning”); <p id=\"dtb_5581\"> (“A . Read the text and choose the best answer.”); <p id=\"dtb_5586\"> (“It was Autumn. August 26, 1910. A little girl was born to an Albanian descent…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“1. Mother Teresa took a thorough medical training from the USA.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“2. At first she collected children from the streets and gave them food and cl…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“3. She and her group started to look after and care for the lepers.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“4. It took them a long time to go to other cities of India.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“5. Mother Teresa went to several countries.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“1. What did Mother Teresa initially do before beginning to work for humanity?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“2. How many vows did the Missionaries of Charity take? What were they?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-6.html",
+      "message": "“3. What did Mother Teresa and her group do? Now write the answers in your exe…” starts like a list item."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-12-6.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12-6.html",
+      "message": "Table has 4 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-6.html",
+      "message": "19 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5671\"> (“Lesson 5: The missionary”); <p id=\"dtb_5672\"> (“A Listen to the CD/teacher and fill in the gaps.”); <p id=\"dtb_5680\"> (“Listening text: 6”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“1. Mother Teresa was moved to see the diseases that spread in the streets of …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“2. She opened a home for the orphans.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“3. She and her group brought in the dying people from the streets of Kolkata.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“4. `Nirmol Hridoy' was founded so that the poor people who are dying can get …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“5. Mother Teresa said that humanity passes through charitable organization.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“6. We have learnt how to come forward to help only those who belong to a spec…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“1. Why do you think Mother Teresa won so many awards?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“2. What does `Nirmol Hridov' stand for?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“3. Why do you think the home is named `Nirmol Hridoy'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“4. Why did Mother Teresa want the dying people to feel that they too deserve …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“5. What are things that we have learnt from Mother Teresa?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“1. What do you see?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“2. Are you familiar with this logo?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“3. What does this logo stand for?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“4. Which company uses this logo for its” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“5. Do you know the logo of any” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“6. Do you like it? Why/Why not?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“1. Jobs spent his entire career working for Apple.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“2. He became famous because he knew how to market computers and keep the buye…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“3. He became the chairman of The Walt Disney Company.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“4. Jobs left Apple in 2001.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“5. Jobs was a visionary.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“1. Write about Jobs' successful career.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“2. What does 'power battle' mean?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“3. How did Jobs manage to bring back Apple?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“4. Why was he called a visionary?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-7.html",
+      "message": "“5. Why did Jobs feel that Wi-Fi connection was needed in laptops?” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-7.html",
+      "message": "48 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5779\"> (“Lesson 6: Love for humanity”); <p id=\"dtb_5780\"> (“A . Look at the picture and talk about it in pairs.”); <p id=\"dtb_5791\"> (“Read more about Mother Teres a”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-8.html",
+      "message": "“1. What do the words `chosen' and `special' mean in the text. Explain.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-8.html",
+      "message": "“2. Why didn't Jobs enjoy school?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-8.html",
+      "message": "“3. What did he do to keep himself entertained?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-8.html",
+      "message": "“4. Why couldn't Jobs accept other people's authority at school? Why has he no…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-8.html",
+      "message": "“5. Why did Jobs have the wish to control everything?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-12-8.html",
+      "message": "“6. How did Jobs' teacher Imogene Hill keep him busy?” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-12-8.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-12-8.html",
+      "message": "17 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_5978\"> (“Lesson 8: Jobs' childhood”); <p id=\"dtb_5979\"> (“A . Read the text and write answers to the questions that follow.”); <p id=\"dtb_5985\"> (“A car mechanic Paul Jobs and his wife Clara jobs adopted Steve who was abando…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“1. What is this building?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“2. Do you have a building like this in your town/village?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“3. What do we call it?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“4. What is it for?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“1. Paharpur is a” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“2. After excavation, the archaeologists discovered a huge” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“3. How many phases of excavation of ' Paharpur' has been mentioned in the text?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“4. What thing indicates that the site was built by the second Pala king?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“1. Why is the village named Paharpur?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“2. Where is it located?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“3. What is it famous for?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“4. What did Cunningham find when he was digging the Paharpur site?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“5. Why was the site officially stated to be preserved?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“1. Where is the Statue of Liberty situated?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“2. Which country gave the statue as a gift?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“3. The gift was meant for which country?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“4. On what occasion was it given?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“5. When was the statue given?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“6. What does the statue represent?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“1. On what occasion did the French government give the Statue of Liberty to t…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“2. When did she reach her destination?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“3. How was she transported?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“4. How has new technology made it possible for people to see the statue from …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“5. What do you understand by the expression `enlightening the world'?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“1. What do you think it is?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“2. Where is this situated?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-13.html",
+      "message": "“3. Are you familiar with something like this?” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 8 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-13.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-13.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 12 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-13.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-13.html",
+      "message": "Table has 10 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-13.html",
+      "message": "154 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_6073\"> (“World heritage”); <p id=\"dtb_6077\"> (“After we have studied this unit, we will be able to”); <p id=\"dtb_6080\"> (“listen for specific information:”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“1. What is the best thing that ever happened to this man?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“2. Why does Kamal like his job?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“3. What is the problem with his job?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“4. When does he earn most money?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“5. What attitude do you find here in Kamal when you read these lines `Maybe I…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“1. [dash] happy?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“2. When [dash] leave home in summer?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“3. What [dash] plant after winter?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“4. What [dash] do at the weekend?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“5. What [dash] collect?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“1. `But have you ever thought of other types of Jobs out there----?' What doe…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“2. There are four particular strange and weird jobs mentioned in para one of …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“3. Before going for an unconventional and strange job the author has suggeste…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“4. What are some other part-time strange jobs mentioned in the text?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“5. What type of job is referred to by the expression `writing memos and atten…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“1. assessing the comfort of a piece of furniture” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“2. farming oysters in the middle of the ocean” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“1. How is the career of a florist?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“2. What qualities do you need to have for a florist's job?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“3. How does most florists learn the trade?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-14.html",
+      "message": "“4. What is the extra advantage of a florist's job?” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 8 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 4 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-14.html",
+      "message": "Table has 6 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-14.html",
+      "message": "103 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_6760\"> (“Unconventional jobs”); <p id=\"dtb_6764\"> (“After we have studied this unit, we will be able to”); <p id=\"dtb_6767\"> (“describe familiar objects.”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“1. Do you consider dreams important for life? Why/ Why not?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“2. What do you dream at this moment as a student?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“3. What, according to you is the dream of Bangladesh at present?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“4. Give examples of some dreams that were commonly shared by Bangladesh as a …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“5. Do you think the world has any common dream? What is that?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“1. Catherine Aich” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“2. Masum Billah” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“3. Nirmal Drong” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“1. Masum Billah desires to study agriculture as his teacher suggests him to d…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“2. If Masum qualifies, he will take admission to a university in his rural area.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“3. Catherine's mum died in a doctor's hand.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“4. If Catherine's family had brought a trained nurse, her mother might have s…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“5. If Najmun Sultana came a few months ago, Nirmal could take admission to a …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“6. If Nirmal's dreams come true, his near and dear ones will be more consciou…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“1. Where did Pritilata fight?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“5. What is your learning from Pritilata's life?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“1. Zahir Raihan is famous as [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“2. Zahir was imprisoned because [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“3. He participated in [dash] and [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“4. Jibon Theke Neya symbolizes[dash] .” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“5. He donated [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“6. He worked to organize [dash] by his great documentary Stop Genocide.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“7. His disappearance is a great[dash] .” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“1. Why is Zahir Raihan considered a freedom fighter though he was a film maker?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-15.html",
+      "message": "“2. How does the title of the lesson fit to the story of Zahir Raihan?” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 4 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-15.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-15.html",
+      "message": "Table has 3 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-15.html",
+      "message": "141 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_7273\"> (“Learning outcomes”); <p id=\"dtb_7274\"> (“After we have studied the unit, we will able to”); <p id=\"dtb_7277\"> (“listen for specific information.”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. What happened to Sohan last night?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. How was the summer night?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. How is a summer day?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“4. What happens during load-shedding in Sohan's area?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“5. What do people use at night during load-shedding?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. fuel” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. desert” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. fossil” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“4. sun” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. What is the scientist Kalam concerned about?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. Why do you think the massive burning of coal may lead to an ecological dis…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. What do you mean by the potential danger of nuclear energy?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“4. What according to Mr Kalam is the solution of future energy crisis?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“5. Why does Mr Kalam put so much importance on the issue of energy?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“6. Why does Mr Kalam put much importance on solar energy?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. Alternative power supply system is a completely new system to introduce.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. A renewable energy source can be a substitute to conventional electricity.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. Solar units of Mr Asad are for commercial use only.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. What do you mean by renewable energy sources?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. What are the problems with non-renewable energy sources?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. What are the major differences between renewable and non-renewable energy …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. What is the name of the project?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. Where in the CHT is the project located?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. When did it start operation?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“4. How much electricity is being produced from here to the national grid?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“5. How many units are working there?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“6. What is the positive impact of the project in our national development?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“1. Why is renewable energy called green energy?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“2. `Nothing is there about green energy in the text either'. --- Do you think…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-16.html",
+      "message": "“3. `I now understand the relation between the two pictures in section A'.” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 3 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 4 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 3 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 4 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-16.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-16.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-16.html",
+      "message": "162 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_7872\"> (“Unit Eleven”); <h1 id=\"dtb_7873\"> (“Renewable energy”); <p id=\"dtb_7877\"> (“After we have studied this unit, we will be able to”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“2. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“3. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“4. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“5. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“2. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“3. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“4. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“5. [dash]” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“1. Do you have any root other than the place where you are living now? If” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“3. Do you feel any attraction for or pull of your roots?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“4. How do you nourish your roots?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“1. Mr Islam” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“2. The specialty of Islam's brothers is” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“3. Mr Islam never believes that” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“4. Mr Islam also believes” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-17.html",
+      "message": "“5. Staying with the roots” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 2 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 2 rows and 2 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-17.html",
+      "message": "Table has 2 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-17.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-17.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-17.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-17.html",
+      "message": "118 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_8590\"> (“Unit Twelve”); <p id=\"dtb_8595\"> (“Learning outcomes”); <p id=\"dtb_8597\"> (“After we have studied the unit, we will able to”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“1. What is an email?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“2. How do emails operate?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“3. How do the commercial servers serve in the process of an email?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“4. `It has been a powerful communication tool in modern life.' Explain the st…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“5. How do emails affect our daily work schedule?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“1. What do you mean by social networks?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“2. What are some uses of social networks?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“3. 'These services ... have made a lot for the users to feel that they really…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“4. Make a list of the arguments as to why social networks are expanding so fa…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“1. The [dash] technology has made social networking sites to emerge.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“2. Users have to pay for” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“3. User accounts have [dash] protection measures.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“4. User profiles have a section for” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“1. Education experts [dash] utilizing the advantages of computer technology […” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“2. In e-learning, everything from admission to certification must [dash] elec…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“3. In some online courses, you [dash] your test online.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“4. In case of online programmes, there [dash] some conventional campus from w…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-18.html",
+      "message": "“5. In e-learning, all activities [dash] by a system called Learning Managemen…” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 2 rows and 6 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-18.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-18.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 5 rows and 7 columns but no header cells."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-18.html",
+      "message": "Table has 8 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-18.html",
+      "message": "109 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_9192\"> (“Unit Thirteen”); <p id=\"dtb_9197\"> (“After we have studied this unit, we will be able to”); <p id=\"dtb_9200\"> (“surf the Internet.”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19.html",
+      "message": "1 element marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_9836\"> (“Unit Fourteen”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-2.html",
+      "message": "6 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_9837\"> (“Pleasure and purpose”); <p id=\"dtb_9841\"> (“Learning outcomes”); <p id=\"dtb_9843\"> (“After we have studied the unit, we will be able to”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“1. Do you read any books other than your English and Bangla textbooks?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“2. If yes, what kinds of books do you read? (stories, poems, etc)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“3. Now write one or two reasons why you read those books and share with your …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“1. How are the two mothers different from each other?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“2. How are they the same?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“3. What did the first mother do to the speaker?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“4. Who was the speaker's second mother? Describe her briefly.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“5. What would be the speaker's advice to her own children?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“6. Who are the three women referred to in the poem? Briefly describe them.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“7. What should children do to their mother and why?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-3.html",
+      "message": "“8. Do you like this poem? Why?” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-3.html",
+      "message": "59 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_9853\"> (“A. Ask and answer these questions in pairs.”); <p id=\"dtb_9856\"> (“1. Do you read any books other than your English and Bangla textbooks?”); <p id=\"dtb_9859\"> (“2. If yes, what kinds of books do you read? (stories, poems, etc)”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-4.html",
+      "message": "“1. What was the weather like when Mary went to bring the cattle home?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-4.html",
+      "message": "“2. Look at some words, phrases and sentences that have been repeated several …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-4.html",
+      "message": "“3. How has the poet described the sea?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-4.html",
+      "message": "“4. Narrate the story of Mary in your own words.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-4.html",
+      "message": "“5. Suppose, you with a couple of your friends were walking on the shore while…” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-4.html",
+      "message": "34 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_9971\"> (“Lesson 3: The Sands of Dee”); <p id=\"dtb_9972\"> (“A. Listen to the poem. Read it aloud in groups.”); <p id=\"dtb_9976\"> (“The Sands of Dee”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-5.html",
+      "message": "“1. Have you seen any gipsy? If yes, where?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-5.html",
+      "message": "“2. Do gypsies live in our country?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-5.html",
+      "message": "“3. In what ways are they different from the general people?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-5.html",
+      "message": "“1. Why does the poet call time an old gipsy man?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-5.html",
+      "message": "“2. Make a list of things the poet will offer time if it stays just for a day.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-5.html",
+      "message": "“3. What else can you offer time if it stays for a day?” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-5.html",
+      "message": "44 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10036\"> (“Lesson 4: Time, You Old Gipsy Man”); <p id=\"dtb_10037\"> (“A . Read and answer the following questions.”); <p id=\"dtb_10043\"> (“1. Have you seen any gipsy? If yes, where?”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-6.html",
+      "message": "“1. Do you like to enjoy natural beauty like flowers, trees, woods, hills, etc.?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-6.html",
+      "message": "“2. Have you ever been to a place where you enjoyed such beauty? If yes, brief…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-6.html",
+      "message": "“1. Where do you think the speaker is going? Why is he going there?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-6.html",
+      "message": "“2. Why did the poet stop by the woods though it was dark and he was alone?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-6.html",
+      "message": "“3. Guess what promise the poet had to keep before he would sleep?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-6.html",
+      "message": "“4. Write an imaginary dialogue between the poet and his horse.” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-6.html",
+      "message": "29 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10109\"> (“Lesson 5: Stopping by Woods on a Snowing Evening”); <p id=\"dtb_10111\"> (“A . Ask and answer these questions.”); <p id=\"dtb_10117\"> (“1. Do you like to enjoy natural beauty like flowers, trees, woods, hills, etc.?”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-7.html",
+      "message": "“1. Make a list of things Rosamond wanted to buy.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-7.html",
+      "message": "“2. How did the milliner's shop look like?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-7.html",
+      "message": "“3. What can you see in a jeweler’s shop in a town/city in Bangladesh, which y…” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-7.html",
+      "message": "32 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10177\"> (“Lesson 6: The Purple Jar-1”); <p id=\"dtb_10178\"> (“A . Think about the following situation.”); <p id=\"dtb_10184\"> (“Suppose your mother /father has given you some money to spend on anything you…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-8.html",
+      "message": "“1. Which is the correct statement?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-8.html",
+      "message": "“2. Rosamond wanted to buy” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-8.html",
+      "message": "“3. The money Rosamond's mother has can buy only” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-8.html",
+      "message": "“4. Why did Rosamond persuade her mother to buy her a pair of shoes`!” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-8.html",
+      "message": "“5. What made Rosamond finally decide to buy the purple jar?” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-8.html",
+      "message": "43 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10258\"> (“Lesson 7: The Purple Jar-2”); <p id=\"dtb_10259\"> (“A . Read more about the story.”); <p id=\"dtb_10265\"> (“This time Rosamond was really disappointed as her mother wanted nothing. Howe…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“1. Why didn't Rosamond examine the jar before buying it?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“2. What did she take the jar for?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“3. How did she come to know that the purple jar was in fact a plain white gla…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“4. Describe her sufferings and disappointments for buying the purple jar.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“1. How did Rosamond try to persuade her mother to buy all the pretty things s…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“2. How did her mother try to stop Rosamond from buying all the things she wan…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-9.html",
+      "message": "“3. Write two compositions- one about Rosamond and the other about her mother.…” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-19-9.html",
+      "message": "Table has 5 rows and 5 columns but no header cells."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-9.html",
+      "message": "30 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10355\"> (“Lesson 8: The Purple Jar-3”); <p id=\"dtb_10356\"> (“A . Read the last part of the story to see what happened to Rosamond's beauti…”); <p id=\"dtb_10362\"> (“Rosamond and her mother were going back to the chemist's shop. As they were w…”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“1. What do you see?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“2. What are they doing?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“3. What type of clothes are they wearing?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“4. Are you familiar with such clothes?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“5. Who wears such clothes?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“6. Mention which clothes of our country are close to the ones men are wearing…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“1. Bassanio was a very rich man,” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“2. Bassanio and Antonio hated each other.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“3. Antonio went to Shylock to borrow some money.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“4. Shylock happily gave Antonio the money he asked for.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“5. Antonio needed the money to bring his merchandise.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“1. Why was Bassanio short of money all the time?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“2. Why did he go to Antonio?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“3. Why did Antonio go to Shylock?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“4. Why did Shylock get a bond signed by Antonio?” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-19-10.html",
+      "message": "“5. What could be written on the bond?” starts like a list item."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-10.html",
+      "message": "31 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10486\"> (“Lesson 9: A Pound of Flesh”); <p id=\"dtb_10489\"> (“A. Look at the picture and ask and answer the questions.”); <p id=\"dtb_10492\"> (“1. What do you see?”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-11.html",
+      "message": "13 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10617\"> (“Lesson 10: The three caskets”); <p id=\"dtb_10620\"> (“A. Look at the picture and discuss it in pairs.”); <p id=\"dtb_10626\"> (“B . Read the text and answer the following questions.”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-12.html",
+      "message": "16 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <h1 id=\"dtb_10695\"> (“Lesson 11: the trial”); <p id=\"dtb_10696\"> (“A . Read the text; and answer the following questions.”); <p id=\"dtb_10702\"> (“When Bassanio reached Venice, Antonio was already in the court of justice. Th…”)."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-19-13.html",
+      "message": "5 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_10780\"> (“Who was Portia? What do you know about her?”); <p id=\"dtb_10784\"> (“What did Portia say regarding mercy?”); <p id=\"dtb_10786\"> (“How did Portia save Antonio's live?”)."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“1. Choose the correct answer from the alternatives. 1 x 7 = 7” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“2. Answer the following questions, 2 x 5 =10” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“3. Write a summary of the passage in no more than 90 to 100 words. 10” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“4. Read the passage on the membership of a sports club. Complete the table” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“5. From your reading of the above passage fill in the blanks with suitable wo…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“6. Match the parts of sentences given in column ‘A’ and column ‘B’ to write f…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“7. Put the following parts of the story in correct order to rewrite the whole…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“8. Answer the following questions to write a paragraph on Your Most Favourite…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“9. Read the beginning of a story. Write ten new sentences to complete the story.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“10. The graph below shows the results of SSC exam of ABC Secondary School fro…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“11. Suppose, you have a friend in Nepal named Mahesh/ Renuka. You have just v…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“12. Alisha is a 17 year old girl. She has been suffering from fever for three…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“1. Answers (Multiple Choice Questions)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“2. Answers.” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“3. Answer (Summary)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“4. Answers (Information transfer)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“1) 500/five hundred/5 hundred” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“2) 2500/ two thousand five hundred” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“3) 10-00, 4-30/l0am, 4-30pm (both required for correct answer)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“4) weekdays” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“5) 50/fifty” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“5. Answers” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“1) facilities/amenities/services” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“2) pay/give/deposit” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“3) less/lower/cheaper” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“4) access/entry/admission” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“5) cheapest” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“6. Answer (Matching)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“7. Answer (re-arranging)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“8. Answer (paragraph)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“10. Answer (Describing graph)” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "package-20.html",
+      "message": "“12. Answer (Writing Dialogue)” starts like a list item."
+    },
+    {
+      "kind": "Data tables without headers",
+      "page": "package-20.html",
+      "message": "Table has 4 rows and 4 columns but no header cells."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Tables resembling layout",
+      "page": "package-20.html",
+      "message": "Table has no headers and appears to be used for layout."
+    },
+    {
+      "kind": "Element language",
+      "page": "package-20.html",
+      "message": "166 elements marked bn-IN use a different dominant script; lang was not copied. Examples: <p id=\"dtb_10793\"> (“SSC Examination”); <p id=\"dtb_10795\"> (“English Paper One”); <p id=\"dtb_10801\"> (“[Answer all the questions. Figures in the margin indicate full marks]”)."
+    },
+    {
+      "kind": "Decorative images",
+      "message": "95 of 95 images (100%) have empty alternative text; review whether they are all decorative."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Ace",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    },
+    {
+      "name": "axe",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    }
+  ]
+}

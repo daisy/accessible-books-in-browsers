@@ -104,3 +104,4 @@ function clearPageInput() {
 }
 
 export { printPageLabel, updateCurrentPrintPage };
+export function currentPrintPageLabel() { return currentLabel; }

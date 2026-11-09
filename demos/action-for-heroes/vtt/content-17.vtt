@@ -2,67 +2,67 @@ WEBVTT
 
 1
 00:00:00.000 --> 00:00:04.324
-{"selector":{"type":"FragmentSelector","value":"dtb687"}}
+{"selector":{"type":"FragmentSelector","value":"d2e3017","refinedBy":{"type":"CssSelector","value":":scope > span:nth-of-type(1)"}}}
 
 2
 00:00:04.324 --> 00:00:06.153
-{"selector":{"type":"FragmentSelector","value":"dtb688"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 3
 00:00:06.153 --> 00:00:07.882
-{"selector":{"type":"FragmentSelector","value":"dtb689"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(2) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 4
 00:00:07.882 --> 00:00:11.106
-{"selector":{"type":"FragmentSelector","value":"dtb690"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(3) > span:nth-of-type(1)"}}
 
 5
 00:00:11.106 --> 00:00:14.270
-{"selector":{"type":"FragmentSelector","value":"dtb691"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(3) > span:nth-of-type(2)"}}
 
 6
 00:00:14.270 --> 00:00:18.419
-{"selector":{"type":"FragmentSelector","value":"dtb692"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(3) > span:nth-of-type(3)"}}
 
 7
 00:00:18.419 --> 00:00:26.197
-{"selector":{"type":"FragmentSelector","value":"dtb693"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(3) > span:nth-of-type(4)"}}
 
 8
 00:00:26.197 --> 00:00:31.516
-{"selector":{"type":"FragmentSelector","value":"dtb694"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(3) > span:nth-of-type(5)"}}
 
 9
 00:00:31.516 --> 00:00:39.034
-{"selector":{"type":"FragmentSelector","value":"dtb695"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(3) > span:nth-of-type(6)"}}
 
 10
 00:00:39.034 --> 00:00:42.618
-{"selector":{"type":"FragmentSelector","value":"dtb696"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(4) > span:nth-of-type(1)"}}
 
 11
 00:00:42.618 --> 00:00:47.297
-{"selector":{"type":"FragmentSelector","value":"dtb697"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(4) > span:nth-of-type(2)"}}
 
 12
 00:00:47.297 --> 00:00:51.656
-{"selector":{"type":"FragmentSelector","value":"dtb698"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(4) > span:nth-of-type(3)"}}
 
 13
 00:00:51.656 --> 00:00:55.155
-{"selector":{"type":"FragmentSelector","value":"dtb699"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(4) > span:nth-of-type(4)"}}
 
 14
 00:00:55.155 --> 00:00:57.679
-{"selector":{"type":"FragmentSelector","value":"rId4541"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(5) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 15
 00:00:57.679 --> 00:00:59.453
-{"selector":{"type":"FragmentSelector","value":"dtb700"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(6) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 16
 00:00:59.453 --> 00:01:02.467
-{"selector":{"type":"FragmentSelector","value":"dtb701"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(6) > span:nth-of-type(1) > strong:nth-of-type(2)"}}
 
 17
 00:01:02.467 --> 00:01:04.581
@@ -70,11 +70,11 @@ WEBVTT
 
 18
 00:01:04.581 --> 00:01:07.480
-{"selector":{"type":"FragmentSelector","value":"rId4642"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(7) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 19
 00:01:07.480 --> 00:01:10.379
-{"selector":{"type":"FragmentSelector","value":"rId4743"}}
+{"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 20
 00:01:10.379 --> 00:01:14.483

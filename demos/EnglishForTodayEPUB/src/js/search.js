@@ -1,6 +1,7 @@
 import { createSearchSnippet, isFuzzySearchTerm, tokenizeSearchText } from './search-text.js';
 import { resolveTextQuote } from './search-anchor.js';
 import { compareSearchResults, searchMatchQuality } from './search-ranking.js';
+import { selectElm } from './cue-selector.js';
 
 const SEARCH_HIGHLIGHT_NAME = 'search';
 const PENDING_HIGHLIGHT_KEY = 'webbook-search-highlight';
@@ -188,7 +189,9 @@ export function describeSearchResult(match) {
     return {
         heading: match.heading || page.title,
         snippet: createSearchSnippet(match.text, match.terms, match.lang).map(part => part.text).join(''),
-        target: passage.id ? `${page.href}#${encodeURIComponent(passage.id)}` : page.href
+        target: passage.id || passage.selector?.type === 'FragmentSelector'
+            ? `${page.href}#${encodeURIComponent(passage.id || passage.selector.value)}`
+            : page.href
     };
 }
 
@@ -198,7 +201,8 @@ function renderResults(matches, results) {
         const passage = searchData.passages[match.passageIndex];
         const item = document.createElement('li');
         const link = document.createElement('a');
-        link.href = passage.id ? `${page.href}#${encodeURIComponent(passage.id)}` : page.href;
+        const anchorId = passage.id || (passage.selector?.type === 'FragmentSelector' ? passage.selector.value : '');
+        link.href = anchorId ? `${page.href}#${encodeURIComponent(anchorId)}` : page.href;
         link.dataset.searchResult = '';
         link.dataset.passageIndex = match.passageIndex;
         link.dataset.matchedTerms = JSON.stringify(match.terms);
@@ -235,7 +239,9 @@ function applyPendingSearchHighlight() {
     if (!pendingHighlight || pagePath(pendingHighlight.page) !== pagePath(window.location.pathname)) return;
     const target = pendingHighlight.id
         ? document.getElementById(pendingHighlight.id)
-        : resolveTextQuote(document.querySelector('main'), pendingHighlight.selector);
+        : pendingHighlight.selector?.type === 'TextQuoteSelector'
+            ? resolveTextQuote(document.querySelector('main'), pendingHighlight.selector)
+            : selectElm(pendingHighlight.selector);
     if (!target) return;
     clearSearchHighlight();
     const ranges = rangesForTerms(target, pendingHighlight.terms, pendingHighlight.lang);

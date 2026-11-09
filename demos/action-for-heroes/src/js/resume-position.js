@@ -1,3 +1,5 @@
+import { positionAnchor } from './narration-position.js';
+
 const RESUME_ENABLED_KEY = 'webbook-resume-enabled';
 const RESUME_BANNER_PENDING_KEY = 'webbook-resume-banner-pending';
 const RESUME_SESSION_CHECKED_KEY = 'webbook-resume-checked';
@@ -79,11 +81,13 @@ export function initResumePosition() {
     sessionStorage.setItem(RESUME_SESSION_CHECKED_KEY, 'true');
 
     const resumeEnabled = localStorage.getItem(RESUME_ENABLED_KEY) !== 'false';
-    if (resumeEnabled && !alreadyCheckedThisSession && isEntryPage()) {
+    const hasExplicitPosition = Boolean(window.location.hash || new URL(window.location.href).searchParams.has('t'));
+    if (resumeEnabled && !hasExplicitPosition && !alreadyCheckedThisSession && isEntryPage()) {
         const saved = readResumePosition(bookId);
         if (saved?.page && saved.page !== currentPageFilename()) {
             localStorage.setItem(RESUME_BANNER_PENDING_KEY, 'true');
-            window.location.href = saved.elementId ? `${saved.page}#${saved.elementId}` : saved.page;
+            const anchorId = saved.anchorId || saved.elementId;
+            window.location.href = anchorId ? `${saved.page}?t=${saved.audioTime ?? 0}#${anchorId}` : saved.page;
             return true;
         }
     }
@@ -94,18 +98,25 @@ export function initResumePosition() {
 
 // The position saved for an earlier page doesn't apply to this one
 export function recordPageVisit() {
-    writeResumePosition(getBookId(), { page: currentPageFilename(), elementId: undefined, audioTime: undefined });
+    writeResumePosition(getBookId(), {
+        page: currentPageFilename(),
+        anchorId: undefined,
+        elementId: undefined,
+        audioTime: undefined
+    });
 }
 
-// Called on each narration cuechange alongside syncHashToElement — same low frequency,
+// Called on each narration cuechange alongside syncPositionUrl — same low frequency,
 // same "purely additive" write, keyed by book id so multiple books in the same origin
 // don't collide.
 export function recordResumePosition(elm, audio) {
     const bookId = getBookId();
-    if (!bookId || !elm?.id) return;
+    const anchor = positionAnchor(elm);
+    if (!bookId || !anchor?.id) return;
     writeResumePosition(bookId, {
         page: currentPageFilename(),
-        elementId: elm.id,
+        anchorId: anchor.id,
+        elementId: undefined,
         audioTime: audio?.currentTime ?? 0
     });
 }
@@ -118,7 +129,8 @@ export function applyResumeAudioTimeIfMatching(audio) {
     if (!bookId) return;
     const saved = readResumePosition(bookId);
     const hashId = decodeURIComponent((window.location.hash || '').replace(/^#/, ''));
-    if (saved?.page === currentPageFilename() && saved.elementId && saved.elementId === hashId && typeof saved.audioTime === 'number') {
+    const anchorId = saved?.anchorId || saved?.elementId;
+    if (saved?.page === currentPageFilename() && anchorId && anchorId === hashId && typeof saved.audioTime === 'number') {
         audio.currentTime = saved.audioTime;
     }
 }

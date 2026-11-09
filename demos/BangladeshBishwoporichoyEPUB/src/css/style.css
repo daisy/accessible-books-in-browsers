@@ -78,6 +78,8 @@ blockquote {
     --offblack: #111;
     --theme-bg: #fafafa;
     --theme-fg: #111;
+    --webbook-chrome-bg: var(--offblack);
+    --webbook-chrome-fg: white;
     --webbook-focus-color: #005fcc;
     --webbook-panel-border: 1px solid color-mix(in srgb, var(--theme-fg) 18%, transparent);
     /* #6e6e6e on the light background (#fafafa) is ~4.9:1; #767676, the usual AA gray, only passes
@@ -109,6 +111,12 @@ body.webbook-light {
 }
 
 /* layout.css */
+/* scrolling to a link's target, a search result or a focused element stops short of the toolbars
+   that sit over the text (WCAG 2.4.11), with a little room to spare */
+:root {
+    scroll-padding-top: calc(var(--webbook-top-toolbar-height, 4rem) + .5rem);
+    scroll-padding-bottom: calc(var(--webbook-toolbar-height, 4rem) + .5rem);
+}
 /* page container */
 body {
     background: var(--theme-bg);
@@ -138,10 +146,29 @@ body {
     border: 0;
 }
 
+/* text spacing settings (text-spacing.js): set only when the reader chooses a step, and then over
+   the book's own CSS. Line spacing brings paragraph spacing (WCAG 1.4.12: 2 times the font size). */
+:root[data-webbook-line-height] main,
+:root[data-webbook-line-height] main * {
+    line-height: var(--webbook-line-height) !important;
+}
+:root[data-webbook-line-height] main p {
+    margin-block-end: 2em !important;
+}
+:root[data-webbook-letter-spacing] main,
+:root[data-webbook-letter-spacing] main * {
+    letter-spacing: var(--webbook-letter-spacing) !important;
+}
+:root[data-webbook-word-spacing] main,
+:root[data-webbook-word-spacing] main * {
+    word-spacing: var(--webbook-word-spacing) !important;
+}
+
 /* publication text */
 main {
     grid-area: main;
-    max-width: 45rem;
+    /* the Line length setting (text-spacing.js), in em so it follows the text size */
+    max-width: var(--webbook-line-length, 45rem);
     margin: auto;
     /* clear of the fixed bottom toolbar */
     padding-bottom: 9rem;
@@ -202,6 +229,51 @@ main {
         color: var(--webbook-muted-fg);
         font-size: calc(.85rem * var(--webbook-font-scale, 1));
     }
+}
+
+/* Publication tables remain intact and scroll instead of widening a phone-sized page. JS removes
+   the region and tab stop when the table fits, but the wrapper works without JS too. */
+.webbook-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.webbook-table-scroll:focus-visible {
+    outline: 3px solid var(--theme-fg);
+    outline-offset: 2px;
+}
+/* the reader's text and background colors (page-colors.js): one palette for the publication and
+   the reader UI. As under forced colors, backgrounds inside the text go, so a sidebar's own can't
+   leave the chosen text unreadable. */
+:root[data-webbook-colors],
+:root[data-webbook-colors] body {
+    --theme-bg: var(--webbook-page-bg);
+    --theme-fg: var(--webbook-page-fg);
+    --webbook-chrome-bg: var(--webbook-page-bg);
+    --webbook-chrome-fg: var(--webbook-page-fg);
+    --webbook-muted-fg: var(--webbook-page-muted);
+    --webbook-focus-color: var(--webbook-page-focus);
+    --webbook-search-highlight-bg: var(--webbook-page-search-bg);
+    --webbook-search-highlight-fg: var(--webbook-page-search-fg);
+    color-scheme: var(--webbook-page-scheme);
+}
+:root[data-webbook-colors] body {
+    background: var(--webbook-page-bg);
+    color: var(--webbook-page-fg);
+}
+:root[data-webbook-colors] :is(main, main :not(svg *, img)) {
+    color: var(--webbook-page-fg) !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: color-mix(in srgb, var(--webbook-page-fg) 40%, transparent) !important;
+}
+/* the browser's own focus ring may not stand out on the chosen background (WCAG 1.4.11) */
+:root[data-webbook-colors] main :focus-visible {
+    outline: 3px solid var(--webbook-focus-color) !important;
+    outline-offset: 2px;
+}
+/* links can't be told apart by color any more (WCAG 1.4.1) */
+:root[data-webbook-colors] main a:any-link {
+    text-decoration-line: underline !important;
 }
 /* small screens */
 @media(max-width: 45rem) {
@@ -313,10 +385,29 @@ main {
 }
 
 /* narration-highlight.css */
-/* synchronized narration highlight — Mark/MarkText are OS system colors, accessible by default */
-::highlight(narration) {
-    background-color: var(--webbook-highlight-color, Mark);
-    color: MarkText;
+/* synchronized narration highlight (highlight-settings.js): a background, an underline or both. The
+   colors are worked out against the page behind the phrase; Mark/MarkText are the fallback. */
+:root:not([data-webbook-highlight-style="underline"]) ::highlight(narration) {
+    background-color: var(--webbook-highlight-bg, Mark);
+    color: var(--webbook-highlight-fg, MarkText);
+}
+/* the text keeps its own color under an underline alone */
+:root:is([data-webbook-highlight-style="underline"], [data-webbook-highlight-style="both"]) ::highlight(narration) {
+    text-decoration: underline 3px var(--webbook-highlight-line, Mark);
+    text-underline-offset: .2em;
+}
+/* with the background too, the underline falls below the background, on the page (its color is
+   chosen for that, see highlightColors) */
+:root[data-webbook-highlight-style="both"] ::highlight(narration) {
+    text-underline-offset: .3em;
+}
+/* forced colors (Windows high contrast and the like): the system's own highlight colors */
+@media (forced-colors: active) {
+    :root ::highlight(narration) {
+        background-color: Mark;
+        color: MarkText;
+        text-decoration-color: MarkText;
+    }
 }
 ::highlight(search) {
     background-color: var(--webbook-search-highlight-bg);
@@ -350,11 +441,15 @@ body.webbook-caption-mode #webbook-caption-view {
     gap: 1rem;
 }
 #webbook-caption-text {
-    max-width: 42rem;
+    /* the text spacing settings (text-spacing.js); line length in the caption's own em, so it
+       gives about as many characters a line as in the book's text */
+    max-width: var(--webbook-line-length, 42rem);
     margin: 0;
     font-family: var(--webbook-main-font-family, system-ui);
     font-size: calc(2rem * var(--webbook-font-scale, 1));
-    line-height: 1.25;
+    line-height: var(--webbook-line-height, 1.25);
+    letter-spacing: var(--webbook-letter-spacing, normal);
+    word-spacing: var(--webbook-word-spacing, normal);
 }
 @media(max-width: 45rem) {
     #webbook-caption-view {
@@ -428,8 +523,8 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     white-space: nowrap;
 }
 #webbook-escape-btn {
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     border: none;
     border-radius: 2rem;
     padding: .4rem 1rem;
@@ -443,28 +538,10 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 }
 
 /* notes-in-place.css */
-#webbook-note-popover:popover-open {
-    position: fixed;
-    inset: var(--webbook-note-top) auto auto var(--webbook-note-left);
-    width: min(34rem, calc(100vw - 2rem));
-    max-height: min(60vh, 32rem);
-    margin: 0;
-    padding: 1rem;
-    overflow: auto;
-    border: 1px solid var(--grey);
-    border-radius: .5rem;
-    background: var(--white);
-    color: var(--offblack);
-    box-shadow: 0 4px 18px rgb(0 0 0 / 35%);
-}
-#webbook-note-popover.webbook-note-above:popover-open { transform: translateY(-100%); }
-#webbook-note-heading { margin-block: 0 .5rem; }
-#webbook-note-content > :first-child { margin-block-start: 0; }
-.webbook-note-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-block-start: 1rem; }
 #webbook-note-phrase-btn,
 #webbook-back-to-text {
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     border: 0;
     border-radius: 2rem;
     padding: .4rem 1rem;
@@ -479,15 +556,8 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 .webbook-note-menu-context { display: block; }
 .webbook-note-menu-label { font-weight: 700; }
 .webbook-note-menu-context { margin-block-start: .15rem; font-size: .9em; font-weight: 400; }
-@media (max-width: 40rem) {
-    #webbook-note-popover:popover-open {
-        inset: auto 0 0 0;
-        width: auto;
-        max-height: 70vh;
-        border-radius: .75rem .75rem 0 0;
-        transform: none;
-    }
-}
+/* the reader's Back to text replaces a book's own back links while it shows */
+.webbook-note-return main :is([role="doc-backlink"], .epubtype_backlink) { display: none; }
 
 /* resume-banner.css */
 /* "loaded last position" toast */
@@ -497,8 +567,8 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     left: 50%;
     transform: translateX(-50%);
     z-index: 30;
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     border-radius: 2rem;
     padding: .4rem 1rem;
     font-size: var(--size-step-0);
@@ -556,8 +626,8 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         padding-left: max(.5rem, env(safe-area-inset-left));
 
         a {
-            /* on the toolbar's dark background in every theme */
-            color: white;
+            /* on the toolbar background */
+            color: var(--webbook-chrome-fg);
         }
         #webbook-previous-document,
         #webbook-next-document {
@@ -815,6 +885,21 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         input[type=range] {
             grid-column: 1 / -1;
         }
+    }
+    /* a group of settings inside the panel, like Text spacing */
+    fieldset fieldset {
+        padding: 0;
+    }
+    legend:not(.sr-only) {
+        margin-bottom: .75rem;
+        padding: 0;
+        font-size: var(--size-step-0);
+        font-weight: 700;
+    }
+    /* custom colors: two color rows and the contrast below them */
+    #webbook-colors-custom p {
+        grid-column: 1 / -1;
+        margin: 0;
     }
     /* highlight color: two rows inside one div */
     #webbook-color {
@@ -1182,7 +1267,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 /* webbook's toolbar: the timeline on its own row, and large buttons under it */
 #webbook-toolbar {
     --webbook-toolbar-button: 3rem;
-    background: var(--offblack);
+    background: var(--webbook-chrome-bg);
     display: grid;
     /* the empty column after TOC balances the two buttons on the right, so play stays centered */
     grid-template-areas:
@@ -1210,7 +1295,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 
     button {
         background: none;
-        color: white;
+        color: var(--webbook-chrome-fg);
         border: none;
         border-radius: 5px;
         min-width: var(--webbook-toolbar-button);
@@ -1269,7 +1354,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         min-width: 0;
         min-height: 2rem;
         margin: 0;
-        accent-color: white;
+        accent-color: var(--webbook-chrome-fg);
     }
     #webbook-book-timeline {
         grid-area: seek;
@@ -1309,7 +1394,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     #webbook-time,
     #webbook-time-mode {
         grid-area: time;
-        color: white;
+        color: var(--webbook-chrome-fg);
         font-size: .875rem;
         font-variant-numeric: tabular-nums;
         line-height: 1.15;
@@ -1341,7 +1426,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         grid-area: about;
     }
     button[popovertarget].open {
-        border: thin gray solid;
+        border: thin solid color-mix(in srgb, var(--webbook-chrome-fg) 45%, transparent);
     }
 }
 /* no narration on this page: one row of buttons */
@@ -1355,7 +1440,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 }
 /* top toolbar */
 #webbook-top-toolbar {
-    background: var(--offblack);
+    background: var(--webbook-chrome-bg);
     display: flex;
     justify-content: flex-end;
     position: sticky;
@@ -1369,7 +1454,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 
     button {
         background: none;
-        color: white;
+        color: var(--webbook-chrome-fg);
         border: none;
         border-radius: 5px;
         min-width: 3rem;
@@ -1385,7 +1470,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         height: 2rem;
     }
     button[popovertarget].open {
-        border: thin gray solid;
+        border: thin solid color-mix(in srgb, var(--webbook-chrome-fg) 45%, transparent);
     }
     #webbook-current-print-page {
         font-size: .875rem;
@@ -1406,10 +1491,10 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     z-index: 30;
     min-height: 3.5rem;
     padding: .75rem 1.5rem;
-    border: 2px solid white;
+    border: 2px solid var(--webbook-chrome-fg);
     border-radius: 2rem;
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     font: inherit;
     font-size: var(--size-step-1);
     font-weight: 700;

@@ -1,7 +1,9 @@
 import { navigateTo } from './in-place-navigation.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 import { pageAudio } from './dom-utils.js';
-let darkModeMediaQueryListener = null;
+import { initHighlightSettings } from './highlight-settings.js';
+import { initTextSpacing } from './text-spacing.js';
+import { initPageColors } from './page-colors.js';
 const KEYBOARD_SHORTCUTS_STORAGE_KEY = 'webbook-keyboard-shortcuts';
 let shortcutsEnabled = true;
 let shortcutsStorageUnavailable = false;
@@ -89,37 +91,6 @@ function findPageOption(value, datalist) {
     }) ?? null;
 }
 
-function initHighlightColor() {
-    const autoToggle = document.querySelector('#webbook-highlight-auto-toggle');
-    const colorPicker = document.querySelector('#webbook-color-picker');
-    if (!autoToggle || !colorPicker) return;
-
-    const isAuto = localStorage.getItem('webbook-highlight-auto') !== 'false';
-    const color = localStorage.getItem('webbook-highlight-color') || '#ffdd00';
-
-    autoToggle.checked = isAuto;
-    colorPicker.value = color;
-    colorPicker.disabled = isAuto;
-    applyHighlightColor(isAuto ? null : color);
-
-    autoToggle.addEventListener('change', () => {
-        localStorage.setItem('webbook-highlight-auto', autoToggle.checked);
-        colorPicker.disabled = autoToggle.checked;
-        applyHighlightColor(autoToggle.checked ? null : colorPicker.value);
-    });
-    colorPicker.addEventListener('input', () => {
-        localStorage.setItem('webbook-highlight-color', colorPicker.value);
-        applyHighlightColor(colorPicker.value);
-    });
-}
-function applyHighlightColor(color) {
-    if (color) {
-        document.body.style.setProperty('--webbook-highlight-color', color);
-    } else {
-        document.body.style.removeProperty('--webbook-highlight-color');
-    }
-}
-
 function initFontSize() {
     const range = document.querySelector('#webbook-font-size-range');
     const reset = document.querySelector('#webbook-reset-font-size');
@@ -152,6 +123,7 @@ function applyFontSize(size) {
 
     const display = document.querySelector('#webbook-font-size-value');
     if (display) display.textContent = `${normalizedSize}%`;
+    document.dispatchEvent(new document.defaultView.CustomEvent('webbook:layoutchange'));
 }
 
 function initFontFamily() {
@@ -171,35 +143,7 @@ function applyFontFamily(font) {
     document.documentElement.style.setProperty('--webbook-main-font-family', font);
     const main = document.querySelector('main');
     if (main) main.style.fontFamily = font;
-}
-
-function initAppearance() {
-    const select = document.querySelector('#webbook-appearance-options');
-    const appearance = localStorage.getItem('webbook-appearance') || 'auto';
-    if (select) select.value = appearance;
-    applyAppearance(appearance);
-    if (select) select.addEventListener('change', () => applyAppearance(select.value));
-}
-function applyAppearance(value) {
-    localStorage.setItem('webbook-appearance', value);
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    if (darkModeMediaQueryListener) {
-        mq.removeEventListener('change', darkModeMediaQueryListener);
-        darkModeMediaQueryListener = null;
-    }
-    const apply = dark => {
-        document.documentElement.classList.toggle('webbook-dark', dark);
-        document.documentElement.classList.toggle('webbook-light', !dark);
-        document.body.classList.toggle('webbook-dark', dark);
-        document.body.classList.toggle('webbook-light', !dark);
-    };
-    if (value === 'auto') {
-        apply(mq.matches);
-        darkModeMediaQueryListener = e => apply(e.matches);
-        mq.addEventListener('change', darkModeMediaQueryListener);
-    } else {
-        apply(value === 'dark');
-    }
+    document.dispatchEvent(new document.defaultView.CustomEvent('webbook:layoutchange'));
 }
 
 function initDialogBackdropBlur() {
@@ -270,11 +214,12 @@ function initSettingActions() {
 
 export function initSettings() {
     initPageNavigation();
-    initAppearance();
+    initPageColors();
     initDialogBackdropBlur();
-    initHighlightColor();
+    initHighlightSettings();
     initFontSize();
     initFontFamily();
+    initTextSpacing();
     initRate();
     initKeyboardShortcuts();
     initSettingActions();

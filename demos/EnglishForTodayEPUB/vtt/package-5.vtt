@@ -6,188 +6,188 @@ WEBVTT
 
 2
 00:00:01.594 --> 00:00:02.839
-{"selector":{"type":"FragmentSelector","value":"dtb_103"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(1) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 3
 00:00:02.839 --> 00:00:04.143
-{"selector":{"type":"FragmentSelector","value":"dtb_106"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 4
 00:00:04.143 --> 00:00:05.653
-{"selector":{"type":"FragmentSelector","value":"dtb_109"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(3) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 5
 00:00:05.653 --> 00:00:07.187
-{"selector":{"type":"FragmentSelector","value":"dtb_112"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 6
 00:00:07.187 --> 00:00:08.932
-{"selector":{"type":"FragmentSelector","value":"dtb_114"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 7
 00:00:08.932 --> 00:00:10.701
-{"selector":{"type":"FragmentSelector","value":"dtb_116"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 8
 00:00:10.701 --> 00:00:12.156
-{"selector":{"type":"FragmentSelector","value":"dtb_119"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 9
 00:00:12.156 --> 00:00:13.800
-{"selector":{"type":"FragmentSelector","value":"dtb_121"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 10
 00:00:13.800 --> 00:00:16.084
-{"selector":{"type":"FragmentSelector","value":"dtb_123"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 11
 00:00:16.084 --> 00:00:17.649
-{"selector":{"type":"FragmentSelector","value":"dtb_126"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 12
 00:00:17.649 --> 00:00:19.793
-{"selector":{"type":"FragmentSelector","value":"dtb_128"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 13
 00:00:19.793 --> 00:00:22.373
-{"selector":{"type":"FragmentSelector","value":"dtb_130"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 14
 00:00:22.373 --> 00:00:23.917
-{"selector":{"type":"FragmentSelector","value":"dtb_133"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 15
 00:00:23.917 --> 00:00:25.461
-{"selector":{"type":"FragmentSelector","value":"dtb_135"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 16
 00:00:25.461 --> 00:00:27.886
-{"selector":{"type":"FragmentSelector","value":"dtb_137"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(5) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 17
 00:00:27.886 --> 00:00:29.490
-{"selector":{"type":"FragmentSelector","value":"dtb_140"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 18
 00:00:29.490 --> 00:00:31.665
-{"selector":{"type":"FragmentSelector","value":"dtb_142"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 19
 00:00:31.665 --> 00:00:34.099
-{"selector":{"type":"FragmentSelector","value":"dtb_144"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 20
 00:00:34.099 --> 00:00:35.773
-{"selector":{"type":"FragmentSelector","value":"dtb_147"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 21
 00:00:35.773 --> 00:00:37.348
-{"selector":{"type":"FragmentSelector","value":"dtb_149"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 22
 00:00:37.348 --> 00:00:39.807
-{"selector":{"type":"FragmentSelector","value":"dtb_151"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 23
 00:00:39.807 --> 00:00:41.467
-{"selector":{"type":"FragmentSelector","value":"dtb_154"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 24
 00:00:41.467 --> 00:00:43.601
-{"selector":{"type":"FragmentSelector","value":"dtb_156"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 25
 00:00:43.601 --> 00:00:45.930
-{"selector":{"type":"FragmentSelector","value":"dtb_158"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 26
 00:00:45.930 --> 00:00:47.415
-{"selector":{"type":"FragmentSelector","value":"dtb_161"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 27
 00:00:47.415 --> 00:00:49.214
-{"selector":{"type":"FragmentSelector","value":"dtb_163"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 28
 00:00:49.214 --> 00:00:52.124
-{"selector":{"type":"FragmentSelector","value":"dtb_165"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 29
 00:00:52.124 --> 00:00:53.713
-{"selector":{"type":"FragmentSelector","value":"dtb_168"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 30
 00:00:53.713 --> 00:00:55.918
-{"selector":{"type":"FragmentSelector","value":"dtb_170"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 31
 00:00:55.918 --> 00:00:59.622
-{"selector":{"type":"FragmentSelector","value":"dtb_172"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 32
 00:00:59.622 --> 00:01:01.186
-{"selector":{"type":"FragmentSelector","value":"dtb_175"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 33
 00:01:01.186 --> 00:01:02.591
-{"selector":{"type":"FragmentSelector","value":"dtb_177"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 34
 00:01:02.591 --> 00:01:06.455
-{"selector":{"type":"FragmentSelector","value":"dtb_179"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 35
 00:01:06.455 --> 00:01:08.134
-{"selector":{"type":"FragmentSelector","value":"dtb_182"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(12) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 36
 00:01:08.134 --> 00:01:09.979
-{"selector":{"type":"FragmentSelector","value":"dtb_184"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(12) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 37
 00:01:09.979 --> 00:01:14.093
-{"selector":{"type":"FragmentSelector","value":"dtb_186"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(12) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 38
 00:01:14.093 --> 00:01:15.797
-{"selector":{"type":"FragmentSelector","value":"dtb_189"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(13) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 39
 00:01:15.797 --> 00:01:17.092
-{"selector":{"type":"FragmentSelector","value":"dtb_191"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(13) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 40
 00:01:17.092 --> 00:01:20.861
-{"selector":{"type":"FragmentSelector","value":"dtb_193"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(13) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 41
 00:01:20.861 --> 00:01:22.580
-{"selector":{"type":"FragmentSelector","value":"dtb_196"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 42
 00:01:22.580 --> 00:01:25.145
-{"selector":{"type":"FragmentSelector","value":"dtb_198"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 43
 00:01:25.145 --> 00:01:29.279
-{"selector":{"type":"FragmentSelector","value":"dtb_200"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 44
 00:01:29.279 --> 00:01:31.083
-{"selector":{"type":"FragmentSelector","value":"dtb_203"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(15) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 45
 00:01:31.083 --> 00:01:33.188
-{"selector":{"type":"FragmentSelector","value":"dtb_205"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(15) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 46
 00:01:33.188 --> 00:01:37.047
-{"selector":{"type":"FragmentSelector","value":"dtb_207"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(15) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 47
 00:01:37.047 --> 00:01:38.977
-{"selector":{"type":"FragmentSelector","value":"dtb_212"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(16) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 48
 00:01:38.977 --> 00:01:42.681
-{"selector":{"type":"FragmentSelector","value":"dtb_214"}}
+{"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(16) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
