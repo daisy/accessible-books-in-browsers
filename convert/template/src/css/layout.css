@@ -1,3 +1,9 @@
+/* scrolling to a link's target, a search result or a focused element stops short of the toolbars
+   that sit over the text (WCAG 2.4.11), with a little room to spare */
+:root {
+    scroll-padding-top: calc(var(--webbook-top-toolbar-height, 4rem) + .5rem);
+    scroll-padding-bottom: calc(var(--webbook-toolbar-height, 4rem) + .5rem);
+}
 /* page container */
 body {
     background: var(--theme-bg);
