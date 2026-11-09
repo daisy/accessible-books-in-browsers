@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { JSDOM } from 'jsdom';
 import { passageText, resolveTextQuote, searchablePassages } from '../src/js/search-anchor.js';
+import { selectElm } from '../src/js/cue-selector.js';
 
 test('finds addressable blocks without requiring ids', () => {
     const document = new JSDOM(`<main>
@@ -37,4 +38,14 @@ test('falls back to the exact quote when surrounding text changes', () => {
         prefix: 'Old context'
     });
     assert.equal(passageText(target), 'Stable quotation');
+});
+
+test('resolves a fragment selector refined by a scoped CSS path', () => {
+    const dom = new JSDOM('<main><section id="chapter"><p><span>First</span><span id="old">Second</span></p></section></main>');
+    globalThis.document = dom.window.document;
+    const target = document.getElementById('old');
+    target.removeAttribute('id');
+    assert.equal(selectElm({ type: 'FragmentSelector', value: 'chapter', refinedBy: {
+        type: 'CssSelector', value: ':scope > p:nth-of-type(1) > span:nth-of-type(2)'
+    } }), target);
 });

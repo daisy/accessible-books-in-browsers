@@ -12,6 +12,7 @@ import { initKeyboardShortcuts, initKeyboardShortcutEditorButton } from './keybo
 import { initTocTree } from './toc-tree.js';
 import { initCurrentPrintPage } from './current-print-page.js';
 import { initNotesInPlace } from './notes-in-place.js';
+import { initBrowserBookmarks } from './browser-bookmarks.js';
 
 initEscapability();
 initResumePosition();
@@ -32,6 +33,7 @@ initKeyboardShortcuts();
 initKeyboardShortcutEditorButton();
 initSearchOnDemand();
 initTocTree();
+initBrowserBookmarks();
 // Last, so its click handler runs after the others have seen the click
 initInPlaceNavigation();
 
