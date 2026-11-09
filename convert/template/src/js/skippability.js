@@ -1,6 +1,7 @@
 import { elmForCue } from './cue-selector.js';
 import { hideEscape } from './escapability.js';
 import { captionModeEnabled, showCaptionForCurrentState } from './caption-mode.js';
+import { keepSoundsForSeek } from './structure-sounds.js';
 
 const SKIP_SEEK_PREROLL_SECONDS = 0.2;
 const SKIP_UNMUTE_BEFORE_TARGET_SECONDS = 0.05;
@@ -61,10 +62,12 @@ export function skipCue(audio, track, fromIdx, cue) {
             audio.dataset.webbookMutedForSkip = 'true';
             audio.muted = true;
         }
+        keepSoundsForSeek();
         audio.currentTime = Math.max(0, nextCue.startTime - SKIP_SEEK_PREROLL_SECONDS);
     } else {
         skipSeekIgnoreUntil = 0;
         skipMuteUntil = 0;
+        keepSoundsForSeek();
         audio.currentTime = Math.min(cue.endTime, audio.duration || cue.endTime);
     }
     hideEscape();

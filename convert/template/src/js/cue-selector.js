@@ -12,6 +12,19 @@ export function selectElm(selector) {
     return null;
 }
 
+// The cue playing at a time, in seconds
+export function cueAtTime(cues, time) {
+    return cues.find(cue => cue.startTime <= time && time < cue.endTime) ?? null;
+}
+
+// The cue whose element is this one, holds it, or is inside it
+export function cueForElement(cues, target) {
+    return cues.find(cue => {
+        const elm = elmForCue(cue);
+        return elm && (elm === target || elm.contains(target) || target.contains(elm));
+    }) ?? null;
+}
+
 export function elmForCue(cue) {
     const remembered = elementByCue.get(cue);
     if (remembered?.isConnected) return remembered;
