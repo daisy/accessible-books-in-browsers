@@ -100,6 +100,19 @@ likely to change a vowel sign or tone mark. Search does not currently stem words
 in Latin-script languages. Accurate `lang` markup in the publication improves word segmentation,
 case folding, display direction and screen-reader pronunciation.
 
+## AI assistants in the browser
+
+The reader progressively exposes WebMCP tools to AI assistants running in a browser that supports
+the experimental WebMCP API. An assistant can report the reading position, list or search the
+contents, move through the book, control narration, change reading options, and read text from the
+current phrase, section or page. Book text returned to an assistant is marked as untrusted content.
+
+As of November 2026, WebMCP is experimental and available for testing in Chrome or Edge with its
+WebMCP testing feature enabled, including through WebMCP inspector extensions. Browsers without
+WebMCP continue to work normally. **Let AI assistants in this browser control the reader** is on by
+default in Settings when WebMCP is available and is shared across books on the same website; turn
+it off to unregister all of the reader's tools. Unsupported browsers do not show the setting.
+
 ## Keyboard shortcuts
 
 | Shortcut | Where it works | What it does |

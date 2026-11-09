@@ -136,12 +136,23 @@ async function runSearch(rawQuery, ui) {
         setStatus(ui.status, '');
         return;
     }
-    const index = await loadIndex(ui.status);
-    if (!index) {
+    const matches = await searchBook(query, ui.status);
+    if (!matches) {
         ui.results.replaceChildren();
         setStatus(ui.status, "Search isn't available for this book.");
         return;
     }
+
+    renderResults(matches, ui.results);
+    const quotedQuery = `'${query}'`;
+    setStatus(ui.status, matches.length ? `${matches.length} results for ${quotedQuery}` : `No results for ${quotedQuery}`);
+}
+
+export async function searchBook(rawQuery, status = null) {
+    const query = rawQuery.trim();
+    if (!query) return [];
+    const index = await loadIndex(status);
+    if (!index) return null;
 
     const languages = new Set([searchData.lang, ...searchData.passages.map(passage => passage.lang).filter(Boolean)]);
     const combined = new Map();
@@ -166,12 +177,22 @@ async function runSearch(rawQuery, ui) {
             else if (existing) existing.terms = Array.from(new Set([...existing.terms, ...match.terms]));
         }
     }
-    const matches = Array.from(combined.values())
+    return Array.from(combined.values())
         .sort(compareSearchResults)
         .slice(0, RESULT_LIMIT);
-    renderResults(matches, ui.results);
-    const quotedQuery = `'${query}'`;
-    setStatus(ui.status, matches.length ? `${matches.length} results for ${quotedQuery}` : `No results for ${quotedQuery}`);
+}
+
+export function describeSearchResult(match) {
+    const page = searchData?.pages?.[match.page];
+    const passage = searchData?.passages?.[match.passageIndex];
+    if (!page || !passage) return null;
+    return {
+        heading: match.heading || page.title,
+        snippet: createSearchSnippet(match.text, match.terms, match.lang).map(part => part.text).join(''),
+        target: passage.id || passage.selector?.type === 'FragmentSelector'
+            ? `${page.href}#${encodeURIComponent(passage.id || passage.selector.value)}`
+            : page.href
+    };
 }
 
 function renderResults(matches, results) {
@@ -205,7 +226,7 @@ function renderResults(matches, results) {
 }
 
 function setStatus(status, message) {
-    status.textContent = message;
+    if (status) status.textContent = message;
 }
 
 function readPendingSearchHighlight() {
