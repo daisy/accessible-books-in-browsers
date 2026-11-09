@@ -13,6 +13,8 @@ const COLORS_KEY = 'webbook-colors';
 const TEXT_KEY = 'webbook-colors-text';
 const TEXT_AUTO_KEY = 'webbook-colors-text-auto';
 const BACKGROUND_KEY = 'webbook-colors-background';
+// Per book: while on, this book's choices are also the default for books without their own
+const SHARE_KEY = 'webbook-colors-share';
 const BOOK_DEFAULT = 'book-default';
 // [value, label, text, background]; each at least 7:1 (WCAG's AAA level for text)
 const PRESETS = [
@@ -98,22 +100,16 @@ function buildSettings() {
     custom.append(...colorRow('webbook-colors-background-picker', 'Background color'), autoLabel, autoToggle,
         ...colorRow('webbook-colors-text-picker', 'Text color'), contrast);
 
-    const defaultRow = document.createElement('div');
-    defaultRow.id = 'webbook-colors-default';
-    const defaultLabel = document.createElement('span');
-    defaultLabel.textContent = 'Default for other books';
-    const defaultButton = document.createElement('button');
-    defaultButton.type = 'button';
-    defaultButton.id = 'webbook-colors-default-button';
-    defaultButton.textContent = 'Use these colors';
-    defaultButton.setAttribute('aria-describedby', 'webbook-colors-default-status');
-    const defaultStatus = document.createElement('span');
-    defaultStatus.id = 'webbook-colors-default-status';
-    defaultStatus.className = 'sr-only';
-    defaultStatus.setAttribute('role', 'status');
-    defaultStatus.setAttribute('aria-live', 'polite');
-    defaultRow.append(defaultLabel, defaultButton, defaultStatus);
-    appearance.replaceWith(row, custom, defaultRow);
+    const shareRow = document.createElement('div');
+    shareRow.id = 'webbook-colors-share';
+    const shareLabel = document.createElement('label');
+    shareLabel.htmlFor = 'webbook-colors-share-toggle';
+    shareLabel.textContent = 'Use these colors for other books';
+    const shareToggle = document.createElement('input');
+    shareToggle.type = 'checkbox';
+    shareToggle.id = 'webbook-colors-share-toggle';
+    shareRow.append(shareLabel, shareToggle);
+    appearance.replaceWith(row, custom, shareRow);
 }
 
 // The light or dark base for a choice: the system's for the book's colors and Automatic, and for
@@ -174,8 +170,7 @@ export function initPageColors() {
     const autoToggle = document.getElementById('webbook-colors-text-auto-toggle');
     const backgroundPicker = document.getElementById('webbook-colors-background-picker');
     const contrast = document.getElementById('webbook-colors-contrast');
-    const defaultButton = document.getElementById('webbook-colors-default-button');
-    const defaultStatus = document.getElementById('webbook-colors-default-status');
+    const shareToggle = document.getElementById('webbook-colors-share-toggle');
 
     // Before this setting, Appearance chose light or dark; a reader who chose one keeps it. Once:
     // from then on, Appearance follows the colors chosen here.
@@ -228,9 +223,23 @@ export function initPageColors() {
     });
     if (!select) return;
     select.value = value;
+    // While sharing is on, each change here is also the default for other books
+    const shareChoice = () => {
+        if (!shareToggle?.checked) return;
+        writeSetting(COLORS_KEY, select.value);
+        writeSetting(TEXT_KEY, textPicker?.value || '');
+        writeSetting(BACKGROUND_KEY, backgroundPicker?.value || '');
+        writeSetting(TEXT_AUTO_KEY, String(autoToggle?.checked ?? true));
+    };
+    if (shareToggle) shareToggle.checked = readSetting(bookColorSettingKey(SHARE_KEY)) === 'true';
+    shareToggle?.addEventListener('change', () => {
+        writeSetting(bookColorSettingKey(SHARE_KEY), shareToggle.checked ? 'true' : '');
+        shareChoice();
+    });
     select.addEventListener('change', () => {
         writeBookColorSetting(COLORS_KEY, select.value);
         showChoice(select.value);
+        shareChoice();
     });
     for (const [picker, key] of [[textPicker, TEXT_KEY], [backgroundPicker, BACKGROUND_KEY]]) {
         // While a color is being picked, the page follows; the ratio is announced once it's chosen
@@ -238,6 +247,7 @@ export function initPageColors() {
             if (picker === backgroundPicker) followBackground();
             writeBookColorSetting(key, picker.value);
             showChoice('custom');
+            shareChoice();
         });
         picker?.addEventListener('change', () => {
             if (contrast) announceReaderAction(contrast.textContent);
@@ -247,20 +257,7 @@ export function initPageColors() {
         writeBookColorSetting(TEXT_AUTO_KEY, String(autoToggle.checked));
         followBackground();
         showChoice('custom');
+        shareChoice();
         if (contrast) announceReaderAction(contrast.textContent);
-    });
-    defaultButton?.addEventListener('click', () => {
-        writeSetting(COLORS_KEY, select.value);
-        writeSetting(TEXT_KEY, textPicker?.value || '');
-        writeSetting(BACKGROUND_KEY, backgroundPicker?.value || '');
-        writeSetting(TEXT_AUTO_KEY, String(autoToggle?.checked ?? true));
-        const message = select.value
-            ? 'These colors are now the default for books without their own color choice.'
-            : 'The book’s original colors are now the default for books without their own color choice.';
-        if (defaultStatus) {
-            defaultStatus.textContent = '';
-            setTimeout(() => { defaultStatus.textContent = message; }, 30);
-        }
-        announceReaderAction(message);
     });
 }
