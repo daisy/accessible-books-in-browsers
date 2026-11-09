@@ -19,6 +19,7 @@ export type BookMetadata = {
     coverPath: string;
     date: string;
     identifier: string;
+    declaredLanguage: string;
     language: string;
     title: string;
 };
@@ -63,6 +64,7 @@ export type SiteModelOptions = {
     identifier?: string;
     headingTitles?: boolean;
     splitChapters?: boolean;
+    language?: string;
     warn?: (message: string) => void;
     onSplit?: (sourcePath: string, pieces: number) => void;
 };
@@ -79,7 +81,7 @@ type PlannedPage = {
 };
 
 async function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): Promise<SiteModel> {
-    const metadata = buildMetadata(epub.metadata);
+    const metadata = buildMetadata(epub.metadata, options.language);
     const bookTitle = collapseWhitespace(metadata.title);
     const sourceToOutput = new Map<string, string>();
     const usedFilenames = new Set<string>();
@@ -214,12 +216,14 @@ function uniqueFilename(filename: string, usedFilenames: Set<string>): string {
     return candidate;
 }
 
-function buildMetadata(metadata: Metadata): BookMetadata {
+function buildMetadata(metadata: Metadata, languageOverride?: string): BookMetadata {
+    const declaredLanguage = firstValue(metadata['dc:language'] ?? metadata.language).trim().split(/\s+/)[0] || 'en';
     return {
         author: firstValue(metadata['dc:creator'] ?? metadata.creator), coverPath: firstValue(metadata.cover),
         date: firstValue(metadata['dc:date'] ?? metadata.date ?? metadata['dcterms:modified']),
         identifier: firstValue(metadata['dc:identifier'] ?? metadata.identifier),
-        language: firstValue(metadata['dc:language'] ?? metadata.language).trim().split(/\s+/)[0] || 'en',
+        declaredLanguage,
+        language: languageOverride ?? declaredLanguage,
         title: firstValue(metadata['dc:title'] ?? metadata.title) || 'Untitled'
     };
 }

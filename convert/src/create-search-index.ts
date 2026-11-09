@@ -2,6 +2,7 @@ import fs from 'fs-extra';
 import type { SiteModel, SitePage } from './model.js';
 import type { OutputPaths } from './output.js';
 import { outputPath } from './output.js';
+import type { NarrationSelector } from './structure-ids.js';
 
 export type SearchPage = {
     href: string;
@@ -11,7 +12,7 @@ export type SearchPage = {
 export type SearchPassage = {
     page: number;
     id?: string;
-    selector?: TextQuoteSelector;
+    selector?: TextQuoteSelector | NarrationSelector;
     heading: string;
     text: string;
     lang?: string;

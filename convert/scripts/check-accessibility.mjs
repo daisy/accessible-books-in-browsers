@@ -4,7 +4,7 @@
 // and with JavaScript off (the plain navigation and native audio player), with the table of
 // contents open too.
 //
-//   node scripts/check-accessibility.mjs [folder] [--pages N] [--report file.json]
+//   node scripts/check-accessibility.mjs [folder] [--pages N] [--width N] [--report file.json]
 //
 // Needs Chrome or Chromium: set CHROME_PATH, or it looks in the usual places. Uses the Chrome
 // DevTools Protocol directly, so the only dependency is axe-core.
@@ -27,10 +27,11 @@ const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
 const args = process.argv.slice(2);
 const option = name => { const i = args.indexOf(name); return i >= 0 ? args.splice(i, 2)[1] : undefined; };
 const pageLimit = Number(option('--pages')) || Infinity;
+const viewportWidth = Number(option('--width')) || 1280;
 const reportFile = option('--report');
 const root = path.resolve(args[0] ?? new URL('../../demos', import.meta.url).pathname);
 
-const books = readdirSync(root)
+const books = existsSync(path.join(root, 'index.html')) ? ['.'] : readdirSync(root)
     .filter(name => existsSync(path.join(root, name, 'index.html')))
     .sort();
 if (!books.length) {
@@ -39,7 +40,7 @@ if (!books.length) {
 }
 
 const server = await serve(root);
-const chrome = await launchChrome();
+const chrome = await launchChrome(viewportWidth);
 const results = [];
 try {
     for (const book of books) {
@@ -156,10 +157,10 @@ function chromePath() {
     return found;
 }
 
-async function launchChrome() {
+async function launchChrome(width) {
     const profile = mkdtempSync(path.join(tmpdir(), 'webbook-axe-'));
     const proc = spawn(chromePath(), ['--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profile}`,
-        '--no-first-run', '--no-default-browser-check', '--mute-audio', '--window-size=1280,900', 'about:blank'],
+        '--no-first-run', '--no-default-browser-check', '--mute-audio', `--window-size=${width},900`, 'about:blank'],
         { stdio: ['ignore', 'ignore', 'pipe'] });
     const wsUrl = await new Promise((resolve, reject) => {
         let buffer = '';
@@ -176,6 +177,7 @@ async function launchChrome() {
     const send = (method, params = {}) => browser.send(method, params, sessionId);
     await send('Page.enable');
     await send('Runtime.enable');
+    await send('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false });
     return {
         send,
         async evaluate(expression) {

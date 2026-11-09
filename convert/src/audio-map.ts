@@ -5,6 +5,7 @@ import type { OutputPaths } from './output.js';
 import { outputPath } from './output.js';
 import type { SiteModel } from './model.js';
 import * as utils from './utils.js';
+import { resolveNarrationSelector } from './structure-ids.js';
 
 export type AudioMapPage = {
     href: string;
@@ -84,13 +85,16 @@ function chapterLevel(toc: SiteModel['toc'], pageByHref: Map<string, { duration:
 function cueOffsetForFragment(
     bodyHtml: string,
     fragment: string,
-    cues: Array<{ id: string; start: number }>
+    cues: Array<{ id: string; selector?: import('./structure-ids.js').NarrationSelector; start: number }>
 ): number {
     const doc = new JSDOM(`<body>${bodyHtml}</body>`).window.document;
     const target = doc.getElementById(fragment);
     if (!target) return 0;
     for (const cue of cues) {
-        const cueTarget = doc.getElementById(cue.id);
+        // The fallback keeps programmatic callers and pre-structure-id data working.
+        const cueTarget = cue.selector
+            ? resolveNarrationSelector(doc, cue.selector)
+            : doc.getElementById(cue.id);
         if (cueTarget && (cueTarget === target || target.contains(cueTarget)
             || Boolean(target.compareDocumentPosition(cueTarget) & target.DOCUMENT_POSITION_FOLLOWING))) {
             return cue.start;

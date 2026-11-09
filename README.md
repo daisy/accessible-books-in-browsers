@@ -78,10 +78,10 @@ Search works within one book. Results link to the exact passage, including narra
 when a book has synchronized audio. The reader loads `search-data.json` and builds its in-memory
 index only after the first search.
 
-Narrated results use the existing ids required by their timing cues. Other results use Web
-Annotation-style `TextQuoteSelector` anchors: the passage's exact text plus nearby prefix and
-suffix context. The reader resolves the quotation after loading the page, so search does not add
-generated ids to publication content.
+Narrated results use Web Annotation fragment and scoped CSS selectors shared with their timing
+cues. Other results use `TextQuoteSelector` anchors: the passage's exact text plus nearby prefix
+and suffix context. The reader resolves these selectors after loading the page, so search does not
+add ids to paragraphs or phrases.
 
 Search uses `Intl.Segmenter` to split text into words according to its language, including scripts
 such as Chinese, Japanese, Thai, Lao, Khmer and Burmese that do not put spaces between every word.
@@ -146,7 +146,23 @@ Every page is a complete HTML page. Without JavaScript, it has a plain header wi
 
 ## Development
 
+### What the converter changes
+
+The converter makes these repairs by default:
+
+- `--split-chapters` separates content documents that contain several chapters; use `--no-split-chapters` to retain their original page boundaries.
+- `--heading-titles` gives pages useful titles when every source document repeats the book title; use `--no-heading-titles` to retain those titles.
+- `--markup-cleanup` copies trustworthy `xml:lang` values to HTML `lang`, removes meaningless wrappers and empty paragraphs, repairs table-header scope, nested main landmarks, duplicate or reader-conflicting ids, positive tab order and autoplaying publication media. Use `--no-markup-cleanup` to disable these repairs.
+- `--responsive-tables` wraps tables so wide ones scroll within the page; use `--no-responsive-tables` to leave tables unwrapped.
+
+Every conversion writes `conversion-report.md` and `conversion-report.json`, listing options,
+changes by page, and issues that need human review. `--language <tag>` overrides an incorrect EPUB
+language for page and search behavior. `--check` additionally requests Ace on the input and axe on
+the output; either check is skipped with an explanation when its optional tool or browser is not
+installed, and an unavailable check never prevents conversion.
+
 - **Reusing audio between conversions:** `npm run convert -- <input> <output> template --audio-cache [dir]` keeps each page's merged narration in `dir` (or a folder in the system's temp folder) and reuses it on the next conversion when the page's audio clips haven't changed. Merging clips is most of a conversion's time. Off by default.
+- **Content ids:** converted books retain ids on structures (including headings, sections, sidebars, figures, tables, lists, quotes, notes, note references and page markers) and on anything referenced by navigation, links, IDREF attributes or publication CSS. Structures without ids receive stable generated ids. Narration locates ordinary phrases with scoped CSS selectors instead of keeping an id on every phrase. Use `--keep-all-ids` when external tooling depends on all of the EPUB's original ids.
 - **Accessibility check:** `npm run check:a11y` (in `convert/`) runs [axe-core](https://github.com/dequelabs/axe-core) on every page of the demos in headless Chrome and fails on WCAG 2.2 A or AA violations; each book's first page is also checked with each panel open, in the light and dark themes, and without JavaScript (with the table of contents open too). Pass a folder to check other converted books, `--pages N` to check fewer pages, `--report file.json` for the details. It needs Chrome or Chromium (`CHROME_PATH` if it isn't found). A GitHub Actions workflow runs it on every push that changes the demos or the converter.
 
 

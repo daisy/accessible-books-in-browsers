@@ -17,11 +17,19 @@ async function main() {
         .option('--audio-cache [dir]', "Reuse each page's merged narration audio from an earlier conversion when its clips haven't changed (development convenience). Keeps the latest audio per page in dir, or in the system temp folder if no dir is given")
         .option('--heading-titles', "On by default: when every page's <title> is the book title, title each page by its first other heading", true)
         .option('--no-heading-titles', 'Do not replace repeated book titles with heading titles')
-        .action(async(input, output, template, options: { audioCache?: string | boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, splitChapters: boolean }) => {
+        .option('--language <tag>', "Override the EPUB's declared BCP 47 language")
+        .option('--markup-cleanup', 'Apply safe accessibility-preserving markup repairs', true)
+        .option('--no-markup-cleanup', 'Leave publication markup unchanged')
+        .option('--responsive-tables', 'Wrap publication tables for horizontal scrolling when needed', true)
+        .option('--no-responsive-tables', 'Do not add responsive table wrappers')
+        .option('--check', 'Run optional Ace and axe accessibility checks when their tools are available')
+        .option('--keep-all-ids', 'Keep every id from the EPUB instead of retaining only structures and referenced ids')
+        .action(async(input, output, template, options: { audioCache?: string | boolean, check?: boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, language?: string, markupCleanup: boolean, responsiveTables: boolean, splitChapters: boolean, keepAllIds?: boolean }) => {
             const identifier = options.identifier?.trim();
             if (options.identifier !== undefined && !identifier) {
                 throw new Error('--identifier must not be empty');
             }
+            const language = options.language === undefined ? undefined : canonicalLanguage(options.language);
             await convert(
                 path.resolve(process.cwd(), input),
                 path.resolve(process.cwd(), output),
@@ -31,11 +39,22 @@ async function main() {
                     headingTitles: options.headingTitles,
                     identifier,
                     includeNonLinear: options.includeNonLinear === true,
-                    splitChapters: options.splitChapters
+                    splitChapters: options.splitChapters,
+                    keepAllIds: options.keepAllIds === true,
+                    language,
+                    markupCleanup: options.markupCleanup,
+                    responsiveTables: options.responsiveTables,
+                    check: options.check === true
                 }
             );
         });
     program.parse(process.argv);
+}
+
+function canonicalLanguage(value: string): string {
+    const tag = value.trim();
+    if (!tag) throw new Error('--language must not be empty');
+    try { return Intl.getCanonicalLocales(tag)[0]; } catch { throw new Error(`Invalid BCP 47 language tag: ${value}`); }
 }
 
 (async () => await main())();

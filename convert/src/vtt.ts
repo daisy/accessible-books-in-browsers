@@ -3,8 +3,9 @@ import Vtt from 'vtt-creator';
 import winston from 'winston';
 import type { MediaSegment } from './audio.js';
 import * as utils from './utils.js';
+import type { NarrationSelector } from './structure-ids.js';
 
-async function createVtt(mediaSegments: MediaSegment[], outFilename: string): Promise<void> {
+async function createVtt(mediaSegments: MediaSegment[], outFilename: string, selectors: Map<string, NarrationSelector> = new Map()): Promise<void> {
     winston.info(`Generating ${outFilename}`);
     const v = new Vtt();
     let startTime = 0;
@@ -13,7 +14,7 @@ async function createVtt(mediaSegments: MediaSegment[], outFilename: string): Pr
         const textId = utils.getFrag(mediaSegment.textSrc);
         const dur = mediaSegment.durOnDisk ?? Math.max(0, mediaSegment.clipEnd.seconds - mediaSegment.clipBegin.seconds);
         const metadata = {
-            selector: {
+            selector: selectors.get(textId) ?? {
                 type: 'FragmentSelector',
                 value: textId
             }

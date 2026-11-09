@@ -12,6 +12,8 @@ import * as fileio from './file-io.js';
 import * as utils from './utils.js';
 import { createVtt } from './vtt.js';
 import { cacheKey, restoreCachedAudio, storeCachedAudio, type AudioCache } from './audio-cache.js';
+import type { NarrationSelector } from './structure-ids.js';
+import { isExternalHref } from './ids.js';
 
 export type MediaSegment = {
     clipBegin: utils.ClockValue;
@@ -24,7 +26,7 @@ export type MediaSegment = {
 
 export type PageAudioAssets = {
     audioHref: string;
-    cues: Array<{ id: string; start: number }>;
+    cues: Array<{ id: string; selector: NarrationSelector; start: number }>;
     duration: number;
     vttHref: string;
 };
@@ -40,7 +42,8 @@ async function createAudioForPage(
     page: SitePage,
     outputPaths: OutputPaths,
     suppliedMediaSegments?: MediaSegment[],
-    cache?: AudioCache | null
+    cache?: AudioCache | null,
+    selectors: Map<string, NarrationSelector> = new Map()
 ): Promise<PageAudioAssets | null> {
     if (!page.moPath) return null;
 
@@ -61,11 +64,12 @@ async function createAudioForPage(
         await mergeAudioSegments(mediaSegments, audioOutPath);
         if (cache) await storeCachedAudio(cache, audioFilename, mediaSegments, audioOutPath, key);
     }
-    await createVtt(mediaSegments, vttOutPath);
+    await createVtt(mediaSegments, vttOutPath, selectors);
 
     let duration = 0;
     const cues = mediaSegments.map(segment => {
-        const cue = { id: utils.getFrag(segment.textSrc), start: duration };
+        const id = utils.getFrag(segment.textSrc);
+        const cue = { id, selector: selectors.get(id) ?? { type: 'FragmentSelector' as const, value: id }, start: duration };
         duration += segment.durOnDisk
             ?? Math.max(0, segment.clipEnd.seconds - segment.clipBegin.seconds);
         return cue;
@@ -197,7 +201,7 @@ async function runWithConcurrency<T>(
 
 function resolveSmilReference(smilPath: string, reference: string, pageSourcePath: string): string {
     if (reference.startsWith('#')) return `${pageSourcePath}${reference}`;
-    if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(reference)) return reference;
+    if (isExternalHref(reference)) return reference;
 
     const frag = utils.getFrag(reference);
     const withoutFrag = utils.getWithoutFrag(reference);

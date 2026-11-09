@@ -112,6 +112,16 @@ main {
     }
 }
 
+/* Publication tables remain intact and scroll instead of widening a phone-sized page. JS removes
+   the region and tab stop when the table fits, but the wrapper works without JS too. */
+.webbook-table-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.webbook-table-scroll:focus-visible {
+    outline: 3px solid var(--theme-fg);
+    outline-offset: 2px;
+}
 /* the reader's text and background colors (page-colors.js): one palette for the publication and
    the reader UI. As under forced colors, backgrounds inside the text go, so a sidebar's own can't
    leave the chosen text unreadable. */

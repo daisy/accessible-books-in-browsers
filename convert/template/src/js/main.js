@@ -13,6 +13,7 @@ import { initTocTree } from './toc-tree.js';
 import { initCurrentPrintPage } from './current-print-page.js';
 import { initNotesInPlace } from './notes-in-place.js';
 import { initBrowserBookmarks } from './browser-bookmarks.js';
+import { initResponsiveTables } from './responsive-tables.js';
 
 initEscapability();
 initResumePosition();
@@ -34,6 +35,7 @@ initKeyboardShortcutEditorButton();
 initSearchOnDemand();
 initTocTree();
 initBrowserBookmarks();
+initResponsiveTables();
 // Last, so its click handler runs after the others have seen the click
 initInPlaceNavigation();
 

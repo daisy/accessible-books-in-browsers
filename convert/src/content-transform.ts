@@ -8,11 +8,24 @@ import * as fileio from './file-io.js';
 import * as utils from './utils.js';
 import type { SearchData } from './create-search-index.js';
 import { collectSearchPassages } from './create-search-index.js';
+import { applyStructureIds, type NarrationSelector } from './structure-ids.js';
+import { cleanPublicationMarkup, renameCollidingIds } from './markup-cleanup.js';
+import { cssReferencedIds, isExternalHref } from './ids.js';
+import type { ConversionReport } from './conversion-report.js';
 
 export type TransformedContent = {
     bodyAttributes: Array<{ name: string; value: string }>;
     bodyHtml: string;
     title: string;
+    narrationSelectors: Map<string, NarrationSelector>;
+    renamedIds: Map<string, string>;
+};
+
+export type ContentCleanupOptions = {
+    cleanup: boolean;
+    report: ConversionReport;
+    reservedIds: Set<string>;
+    responsiveTables: boolean;
 };
 
 async function transformContent(
@@ -20,7 +33,10 @@ async function transformContent(
     site: SiteModel,
     imageRegistry: ImageAssetRegistry,
     searchData?: SearchData,
-    narratedTargetIds: string[] = []
+    narratedTargetIds: string[] = [],
+    externallyReferencedIds: string[] = [],
+    keepAllIds = false,
+    cleanupOptions?: ContentCleanupOptions
 ): Promise<TransformedContent> {
     const source = await fileio.readToString(page.sourcePath);
     const dom = new JSDOM(source);
@@ -33,15 +49,80 @@ async function transformContent(
     if (page.split) extractDocumentPiece(doc, page.split, page.split.piece);
     removeIdsOwnedByOtherPages(doc, page, site);
     rewriteInternalLinks(doc, page, site);
+    const navigationIds = [
+        ...navigationFragmentIds(site, page.outputFilename),
+        ...externallyReferencedIds,
+        ...await stylesheetReferencedIds(doc, page.sourcePath)
+    ];
+    if (cleanupOptions) {
+        cleanPublicationMarkup(doc, {
+            bookLanguage: site.metadata.language,
+            cleanup: cleanupOptions.cleanup,
+            page: page.outputFilename,
+            protectedIds: navigationIds,
+            narratedTargetIds,
+            responsiveTables: cleanupOptions.responsiveTables,
+            report: cleanupOptions.report
+        });
+    }
     if (searchData) collectSearchPassages(searchData, doc, page, narratedTargetIds);
+    // The CSS paths in narration selectors are worked out here, on the cleaned-up markup, which
+    // is what the book contains
+    const narrationSelectors = applyStructureIds(doc, narratedTargetIds, navigationIds, keepAllIds);
+    // After the structure-id pass, so only ids that stay in the book are renamed
+    const renamedIds = cleanupOptions?.cleanup
+        ? renameCollidingIds(doc, narrationSelectors, cleanupOptions.reservedIds, page.outputFilename, cleanupOptions.report)
+        : new Map<string, string>();
+    if (searchData) updateNarratedSearchSelectors(searchData, page.index, narrationSelectors);
 
     return {
         bodyAttributes: page.split
             ? Array.from(doc.body.attributes, attribute => ({ name: attribute.name, value: attribute.value }))
             : [],
         bodyHtml: doc.body.innerHTML,
-        title: doc.querySelector('title')?.textContent?.trim() ?? ''
+        title: doc.querySelector('title')?.textContent?.trim() ?? '',
+        narrationSelectors,
+        renamedIds
     };
+}
+
+async function stylesheetReferencedIds(doc: Document, sourcePath: string): Promise<string[]> {
+    const ids = new Set<string>();
+    for (const link of Array.from(doc.querySelectorAll('link[rel~="stylesheet"][href]'))) {
+        const href = (link.getAttribute('href') || '').split(/[?#]/)[0];
+        if (!href || isExternalHref(href)) continue;
+        try {
+            const cssPath = path.resolve(path.dirname(sourcePath), decodeURIComponent(href));
+            const css = await fileio.readToString(cssPath);
+            cssReferencedIds(css).forEach(id => ids.add(id));
+        } catch {
+            // Resource rewriting reports missing publication assets. An unreadable stylesheet
+            // must not make this final id-retention pass fail independently.
+        }
+    }
+    return Array.from(ids);
+}
+
+function navigationFragmentIds(site: SiteModel, outputFilename: string): string[] {
+    const entries: Array<{ href: string }> = [...site.pageList];
+    const addToc = (toc: SiteModel['toc']) => toc.forEach(entry => { entries.push({ href: entry.href }); addToc(entry.children); });
+    addToc(site.toc);
+    return entries.filter(entry => utils.getWithoutFrag(entry.href) === outputFilename)
+        .map(entry => utils.getFrag(entry.href)).filter(Boolean);
+}
+
+function updateNarratedSearchSelectors(data: SearchData, pageIndex: number, selectors: Map<string, NarrationSelector>): void {
+    data.passages.filter(passage => passage.page === pageIndex && passage.id).forEach(passage => {
+        const selector = selectors.get(passage.id!);
+        if (!selector) return;
+        // A phrase that keeps its own id is still found by it (renamed, if it was)
+        if (selector.type === 'FragmentSelector' && !selector.refinedBy) {
+            passage.id = selector.value;
+            return;
+        }
+        delete passage.id;
+        passage.selector = selector;
+    });
 }
 
 function stripXmlNamespaceAttributes(doc: Document): void {
@@ -125,7 +206,7 @@ function hasAccessibleStructureName(elm: Element): boolean {
 function rewriteInternalLinks(doc: Document, page: SitePage, site: SiteModel): void {
     doc.querySelectorAll('a[href]').forEach(link => {
         const href = link.getAttribute('href');
-        if (!href || shouldLeaveHrefAlone(href)) return;
+        if (!href || isExternalHref(href)) return;
         if (href.startsWith('#')) {
             const fragment = utils.getFrag(href);
             const output = site.idToOutput.get(fragmentKey(page.sourcePath, fragment));
@@ -165,7 +246,7 @@ function rewriteUrlAttribute(
 ): void {
     doc.querySelectorAll(selector).forEach(elm => {
         const value = elm.getAttribute(attributeName);
-        if (!value || shouldLeaveHrefAlone(value)) return;
+        if (!value || isExternalHref(value)) return;
 
         const frag = utils.getFrag(value);
         const sourcePath = normalizeSourcePath(resolveContentHref(page.sourcePath, utils.getWithoutFrag(value)));
@@ -179,7 +260,7 @@ function rewriteSrcset(srcset: string, sourcePath: string, imageRegistry: ImageA
         .map(candidate => {
             const parts = candidate.trim().split(/\s+/);
             const imagePath = parts.shift();
-            if (!imagePath || shouldLeaveHrefAlone(imagePath)) return candidate.trim();
+            if (!imagePath || isExternalHref(imagePath)) return candidate.trim();
 
             const asset = imageRegistry.register(resolveContentHref(sourcePath, imagePath));
             return [asset.href, ...parts].join(' ');
@@ -227,10 +308,6 @@ function resolveContentHref(sourcePath: string, href: string): string {
     const frag = utils.getFrag(href);
     const resolved = path.resolve(baseDir, noFrag);
     return frag ? `${resolved}#${frag}` : resolved;
-}
-
-function shouldLeaveHrefAlone(href: string): boolean {
-    return /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
 }
 
 export { rewriteInternalLinks, selfAnchorHeadings, transformContent };

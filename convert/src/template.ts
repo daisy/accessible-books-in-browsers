@@ -32,6 +32,10 @@ class TemplateRenderer {
         return new TemplateRenderer(dom.window.document);
     }
 
+    reservedContentIds(): Set<string> {
+        return new Set(Array.from(this.templateDocument.querySelectorAll('[id]'), elm => elm.id));
+    }
+
     renderPage(
         site: SiteModel,
         page: SitePage,
