@@ -27,6 +27,12 @@ const STANDARD = [
     ['dark', 'Dark']
 ];
 const MIN_CONTRAST = 4.5;
+// Read by the inline script in each page's head (frozen by the contract), which picks the light or
+// dark base before the first paint. Kept in step with the colors chosen here, so a page loads
+// without a flash of the other one.
+const APPEARANCE_KEY = 'webbook-appearance';
+const MIGRATED_KEY = 'webbook-appearance-migrated';
+const systemDark = () => window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
 
 function colorRow(id, text) {
     const label = document.createElement('label');
@@ -110,6 +116,22 @@ function buildSettings() {
     appearance.replaceWith(row, custom, defaultRow);
 }
 
+// The light or dark base for a choice: the system's for the book's colors and Automatic, and for
+// the others whichever their background is
+function schemeFor(choice, background) {
+    if (!choice || choice === 'auto') return 'auto';
+    return background ? pageColorTokens(readableTextOn(background), background).scheme : 'auto';
+}
+
+function applyScheme(scheme) {
+    writeSetting(APPEARANCE_KEY, scheme);
+    const dark = scheme === 'dark' || (scheme === 'auto' && systemDark());
+    for (const element of [document.documentElement, document.body]) {
+        element.classList.toggle('webbook-dark', dark);
+        element.classList.toggle('webbook-light', !dark);
+    }
+}
+
 function contrastMessage(text, background) {
     // Rounded down, so a pair just under 4.5:1 doesn't show as 4.5
     const ratio = Math.floor(contrastRatio(text, background) * 10) / 10;
@@ -155,6 +177,13 @@ export function initPageColors() {
     const defaultButton = document.getElementById('webbook-colors-default-button');
     const defaultStatus = document.getElementById('webbook-colors-default-status');
 
+    // Before this setting, Appearance chose light or dark; a reader who chose one keeps it. Once:
+    // from then on, Appearance follows the colors chosen here.
+    if (readSetting(MIGRATED_KEY) === null) {
+        const legacy = readSetting(APPEARANCE_KEY);
+        if (readSetting(COLORS_KEY) === null && (legacy === 'light' || legacy === 'dark')) writeSetting(COLORS_KEY, legacy);
+        writeSetting(MIGRATED_KEY, 'true');
+    }
     const savedValue = readBookColorSetting(COLORS_KEY) || '';
     const migratedValue = savedValue === 'white' ? 'light' : savedValue === 'black' ? 'dark' : savedValue;
     const value = migratedValue === 'custom' || STANDARD.some(([choice]) => choice === migratedValue)
@@ -187,11 +216,16 @@ export function initPageColors() {
         if (custom) custom.hidden = choice !== 'custom';
         const [text, background] = current(choice);
         apply(text, background);
+        applyScheme(schemeFor(choice, background));
         if (contrast && choice === 'custom' && text && background) contrast.textContent = contrastMessage(text, background);
     };
     showChoice(value);
     const systemScheme = window.matchMedia?.('(prefers-color-scheme: dark)');
-    systemScheme?.addEventListener('change', () => { if (select?.value === 'auto') showChoice('auto'); });
+    // The book's colors and Automatic follow the system's light or dark as it changes
+    systemScheme?.addEventListener('change', () => {
+        const choice = select?.value ?? value;
+        if (!choice || choice === 'auto') showChoice(choice);
+    });
     if (!select) return;
     select.value = value;
     select.addEventListener('change', () => {
