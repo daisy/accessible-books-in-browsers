@@ -2,6 +2,8 @@
     --offblack: #111;
     --theme-bg: #fafafa;
     --theme-fg: #111;
+    --webbook-chrome-bg: var(--offblack);
+    --webbook-chrome-fg: white;
     --webbook-focus-color: #005fcc;
     --webbook-panel-border: 1px solid color-mix(in srgb, var(--theme-fg) 18%, transparent);
     /* #6e6e6e on the light background (#fafafa) is ~4.9:1; #767676, the usual AA gray, only passes

@@ -24,11 +24,15 @@ body.webbook-caption-mode #webbook-caption-view {
     gap: 1rem;
 }
 #webbook-caption-text {
-    max-width: 42rem;
+    /* the text spacing settings (text-spacing.js); line length in the caption's own em, so it
+       gives about as many characters a line as in the book's text */
+    max-width: var(--webbook-line-length, 42rem);
     margin: 0;
     font-family: var(--webbook-main-font-family, system-ui);
     font-size: calc(2rem * var(--webbook-font-scale, 1));
-    line-height: 1.25;
+    line-height: var(--webbook-line-height, 1.25);
+    letter-spacing: var(--webbook-letter-spacing, normal);
+    word-spacing: var(--webbook-word-spacing, normal);
 }
 @media(max-width: 45rem) {
     #webbook-caption-view {

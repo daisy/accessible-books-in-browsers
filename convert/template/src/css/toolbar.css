@@ -1,7 +1,7 @@
 /* webbook's toolbar: the timeline on its own row, and large buttons under it */
 #webbook-toolbar {
     --webbook-toolbar-button: 3rem;
-    background: var(--offblack);
+    background: var(--webbook-chrome-bg);
     display: grid;
     /* the empty column after TOC balances the two buttons on the right, so play stays centered */
     grid-template-areas:
@@ -29,7 +29,7 @@
 
     button {
         background: none;
-        color: white;
+        color: var(--webbook-chrome-fg);
         border: none;
         border-radius: 5px;
         min-width: var(--webbook-toolbar-button);
@@ -88,7 +88,7 @@
         min-width: 0;
         min-height: 2rem;
         margin: 0;
-        accent-color: white;
+        accent-color: var(--webbook-chrome-fg);
     }
     #webbook-book-timeline {
         grid-area: seek;
@@ -128,7 +128,7 @@
     #webbook-time,
     #webbook-time-mode {
         grid-area: time;
-        color: white;
+        color: var(--webbook-chrome-fg);
         font-size: .875rem;
         font-variant-numeric: tabular-nums;
         line-height: 1.15;
@@ -160,7 +160,7 @@
         grid-area: about;
     }
     button[popovertarget].open {
-        border: thin gray solid;
+        border: thin solid color-mix(in srgb, var(--webbook-chrome-fg) 45%, transparent);
     }
 }
 /* no narration on this page: one row of buttons */
@@ -174,7 +174,7 @@
 }
 /* top toolbar */
 #webbook-top-toolbar {
-    background: var(--offblack);
+    background: var(--webbook-chrome-bg);
     display: flex;
     justify-content: flex-end;
     position: sticky;
@@ -188,7 +188,7 @@
 
     button {
         background: none;
-        color: white;
+        color: var(--webbook-chrome-fg);
         border: none;
         border-radius: 5px;
         min-width: 3rem;
@@ -204,7 +204,7 @@
         height: 2rem;
     }
     button[popovertarget].open {
-        border: thin gray solid;
+        border: thin solid color-mix(in srgb, var(--webbook-chrome-fg) 45%, transparent);
     }
     #webbook-current-print-page {
         font-size: .875rem;
@@ -225,10 +225,10 @@
     z-index: 30;
     min-height: 3.5rem;
     padding: .75rem 1.5rem;
-    border: 2px solid white;
+    border: 2px solid var(--webbook-chrome-fg);
     border-radius: 2rem;
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     font: inherit;
     font-size: var(--size-step-1);
     font-weight: 700;

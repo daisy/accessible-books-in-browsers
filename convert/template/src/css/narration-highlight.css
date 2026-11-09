@@ -1,7 +1,26 @@
-/* synchronized narration highlight — Mark/MarkText are OS system colors, accessible by default */
-::highlight(narration) {
-    background-color: var(--webbook-highlight-color, Mark);
-    color: MarkText;
+/* synchronized narration highlight (highlight-settings.js): a background, an underline or both. The
+   colors are worked out against the page behind the phrase; Mark/MarkText are the fallback. */
+:root:not([data-webbook-highlight-style="underline"]) ::highlight(narration) {
+    background-color: var(--webbook-highlight-bg, Mark);
+    color: var(--webbook-highlight-fg, MarkText);
+}
+/* the text keeps its own color under an underline alone */
+:root:is([data-webbook-highlight-style="underline"], [data-webbook-highlight-style="both"]) ::highlight(narration) {
+    text-decoration: underline 3px var(--webbook-highlight-line, Mark);
+    text-underline-offset: .2em;
+}
+/* with the background too, the underline falls below the background, on the page (its color is
+   chosen for that, see highlightColors) */
+:root[data-webbook-highlight-style="both"] ::highlight(narration) {
+    text-underline-offset: .3em;
+}
+/* forced colors (Windows high contrast and the like): the system's own highlight colors */
+@media (forced-colors: active) {
+    :root ::highlight(narration) {
+        background-color: Mark;
+        color: MarkText;
+        text-decoration-color: MarkText;
+    }
 }
 ::highlight(search) {
     background-color: var(--webbook-search-highlight-bg);

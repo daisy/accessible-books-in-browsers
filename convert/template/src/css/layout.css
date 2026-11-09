@@ -27,10 +27,29 @@ body {
     border: 0;
 }
 
+/* text spacing settings (text-spacing.js): set only when the reader chooses a step, and then over
+   the book's own CSS. Line spacing brings paragraph spacing (WCAG 1.4.12: 2 times the font size). */
+:root[data-webbook-line-height] main,
+:root[data-webbook-line-height] main * {
+    line-height: var(--webbook-line-height) !important;
+}
+:root[data-webbook-line-height] main p {
+    margin-block-end: 2em !important;
+}
+:root[data-webbook-letter-spacing] main,
+:root[data-webbook-letter-spacing] main * {
+    letter-spacing: var(--webbook-letter-spacing) !important;
+}
+:root[data-webbook-word-spacing] main,
+:root[data-webbook-word-spacing] main * {
+    word-spacing: var(--webbook-word-spacing) !important;
+}
+
 /* publication text */
 main {
     grid-area: main;
-    max-width: 45rem;
+    /* the Line length setting (text-spacing.js), in em so it follows the text size */
+    max-width: var(--webbook-line-length, 45rem);
     margin: auto;
     /* clear of the fixed bottom toolbar */
     padding-bottom: 9rem;
@@ -91,6 +110,41 @@ main {
         color: var(--webbook-muted-fg);
         font-size: calc(.85rem * var(--webbook-font-scale, 1));
     }
+}
+
+/* the reader's text and background colors (page-colors.js): one palette for the publication and
+   the reader UI. As under forced colors, backgrounds inside the text go, so a sidebar's own can't
+   leave the chosen text unreadable. */
+:root[data-webbook-colors],
+:root[data-webbook-colors] body {
+    --theme-bg: var(--webbook-page-bg);
+    --theme-fg: var(--webbook-page-fg);
+    --webbook-chrome-bg: var(--webbook-page-bg);
+    --webbook-chrome-fg: var(--webbook-page-fg);
+    --webbook-muted-fg: var(--webbook-page-muted);
+    --webbook-focus-color: var(--webbook-page-focus);
+    --webbook-search-highlight-bg: var(--webbook-page-search-bg);
+    --webbook-search-highlight-fg: var(--webbook-page-search-fg);
+    color-scheme: var(--webbook-page-scheme);
+}
+:root[data-webbook-colors] body {
+    background: var(--webbook-page-bg);
+    color: var(--webbook-page-fg);
+}
+:root[data-webbook-colors] :is(main, main :not(svg *, img)) {
+    color: var(--webbook-page-fg) !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: color-mix(in srgb, var(--webbook-page-fg) 40%, transparent) !important;
+}
+/* the browser's own focus ring may not stand out on the chosen background (WCAG 1.4.11) */
+:root[data-webbook-colors] main :focus-visible {
+    outline: 3px solid var(--webbook-focus-color) !important;
+    outline-offset: 2px;
+}
+/* links can't be told apart by color any more (WCAG 1.4.1) */
+:root[data-webbook-colors] main a:any-link {
+    text-decoration-line: underline !important;
 }
 /* small screens */
 @media(max-width: 45rem) {

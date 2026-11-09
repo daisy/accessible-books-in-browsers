@@ -47,8 +47,8 @@
         padding-left: max(.5rem, env(safe-area-inset-left));
 
         a {
-            /* on the toolbar's dark background in every theme */
-            color: white;
+            /* on the toolbar background */
+            color: var(--webbook-chrome-fg);
         }
         #webbook-previous-document,
         #webbook-next-document {

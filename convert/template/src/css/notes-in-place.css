@@ -1,7 +1,7 @@
 #webbook-note-phrase-btn,
 #webbook-back-to-text {
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     border: 0;
     border-radius: 2rem;
     padding: .4rem 1rem;

@@ -5,8 +5,8 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 30;
-    background: var(--offblack);
-    color: white;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
     border-radius: 2rem;
     padding: .4rem 1rem;
     font-size: var(--size-step-0);

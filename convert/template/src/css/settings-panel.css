@@ -37,6 +37,21 @@
             grid-column: 1 / -1;
         }
     }
+    /* a group of settings inside the panel, like Text spacing */
+    fieldset fieldset {
+        padding: 0;
+    }
+    legend:not(.sr-only) {
+        margin-bottom: .75rem;
+        padding: 0;
+        font-size: var(--size-step-0);
+        font-weight: 700;
+    }
+    /* custom colors: two color rows and the contrast below them */
+    #webbook-colors-custom p {
+        grid-column: 1 / -1;
+        margin: 0;
+    }
     /* highlight color: two rows inside one div */
     #webbook-color {
         grid-template-columns: 1fr auto;
