@@ -1,6 +1,6 @@
 // The reader's own text and background colors for the book (#19): a few reviewed pairs, or their
 // own (the text color can follow the background: black or white, whichever reads better). They
-// replace the book's colors and the reader UI's colors together. The narration highlight, search highlight and focus outlines
+// replace the reader's light or dark theme, for the text and the reader UI together. The narration highlight, search highlight and focus outlines
 // are worked out against the chosen background. A pair under 4.5:1 is warned about, not refused:
 // some readers need low contrast. Under forced colors the system's colors win, as for everything.
 
@@ -19,12 +19,15 @@ const BOOK_DEFAULT = 'book-default';
 // [value, label, text, background]; each at least 7:1 (WCAG's AAA level for text)
 const PRESETS = [
     ['cream', 'Black on cream', '#000000', '#faf4e1'],
-    ['sepia', 'Dark brown on sepia', '#3b2a1a', '#f4ecd8'],
+    // A real tan, not a second cream: the two looked nearly the same (user, 2026-11-10)
+    ['sepia', 'Dark brown on sepia', '#3b2a1a', '#e9d8b4'],
     ['gray', 'Light gray on dark gray', '#e6e6e6', '#1f1f1f'],
     ['blue', 'Yellow on dark blue', '#ffeb3b', '#0b1f4b']
 ];
+// The default ('') is Automatic: the reader's own light or dark theme, following the system. There
+// was a "Book colors" choice too, but the converter keeps none of a book's CSS, so it was the same
+// as Automatic (user, 2026-11-10). A saved 'auto', from when both existed, reads as the default.
 const STANDARD = [
-    ['auto', 'Automatic (system light or dark)'],
     ['light', 'Light'],
     ['dark', 'Dark']
 ];
@@ -58,8 +61,8 @@ export function bookColorSettingKey(key, bookId = getBookId()) {
 function readBookColorSetting(key) {
     const bookId = getBookId();
     const local = bookId ? readSetting(bookColorSettingKey(key, bookId)) : null;
-    if (local !== null) return key === COLORS_KEY && local === BOOK_DEFAULT ? '' : local;
-    return readSetting(key);
+    const value = local !== null ? local : readSetting(key);
+    return key === COLORS_KEY && (value === BOOK_DEFAULT || value === 'auto') ? '' : value;
 }
 
 function writeBookColorSetting(key, value) {
@@ -80,7 +83,7 @@ function buildSettings() {
     label.textContent = 'Colors';
     const select = document.createElement('select');
     select.id = 'webbook-colors-options';
-    select.append(optionElement('', 'Book colors'));
+    select.append(optionElement('', 'Automatic (system light or dark)'));
     for (const [value, text] of STANDARD) select.append(optionElement(value, text));
     for (const [value, text] of PRESETS) select.append(optionElement(value, text));
     select.append(optionElement('custom', 'Custom'));
@@ -112,10 +115,10 @@ function buildSettings() {
     appearance.replaceWith(row, custom, shareRow);
 }
 
-// The light or dark base for a choice: the system's for the book's colors and Automatic, and for
+// The light or dark base for a choice: the system's for Automatic, and for
 // the others whichever their background is
 function schemeFor(choice, background) {
-    if (!choice || choice === 'auto') return 'auto';
+    if (!choice) return 'auto';
     return background ? pageColorTokens(readableTextOn(background), background).scheme : 'auto';
 }
 
@@ -155,7 +158,6 @@ function apply(text, background) {
 }
 
 function presetColors(value) {
-    if (value === 'auto') value = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     if (value === 'light') return [parseColor('#111111'), parseColor('#fafafa')];
     if (value === 'dark') return [parseColor('#ffffff'), parseColor('#000000')];
     const preset = PRESETS.find(([presetValue]) => presetValue === value);
@@ -216,10 +218,10 @@ export function initPageColors() {
     };
     showChoice(value);
     const systemScheme = window.matchMedia?.('(prefers-color-scheme: dark)');
-    // The book's colors and Automatic follow the system's light or dark as it changes
+    // Automatic follows the system's light or dark as it changes
     systemScheme?.addEventListener('change', () => {
         const choice = select?.value ?? value;
-        if (!choice || choice === 'auto') showChoice(choice);
+        if (!choice) showChoice(choice);
     });
     if (!select) return;
     select.value = value;
@@ -250,7 +252,7 @@ export function initPageColors() {
             shareChoice();
         });
         picker?.addEventListener('change', () => {
-            if (contrast) announceReaderAction(contrast.textContent);
+            if (contrast) announceReaderAction(contrast.textContent, { show: false });
         });
     }
     autoToggle?.addEventListener('change', () => {
@@ -258,6 +260,6 @@ export function initPageColors() {
         followBackground();
         showChoice('custom');
         shareChoice();
-        if (contrast) announceReaderAction(contrast.textContent);
+        if (contrast) announceReaderAction(contrast.textContent, { show: false });
     });
 }

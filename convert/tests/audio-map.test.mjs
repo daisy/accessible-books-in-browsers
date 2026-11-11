@@ -87,3 +87,38 @@ test('uses the level below when the top level holds fewer than two narrated chap
     ]);
     assert.deepEqual(createAudioMap(site, sources).chapters.map(chapter => chapter.title), ['One', 'Two']);
 });
+
+test('maps every narrated TOC entry, at every level, to where its heading is spoken', () => {
+    const site = {
+        pages: [
+            { outputFilename: 'index.html', title: 'Front' },
+            { outputFilename: 'one.html', title: 'One' }
+        ],
+        toc: [
+            { title: 'Front', href: 'index.html', children: [] },
+            { title: 'One', href: 'one.html#one', children: [
+                { title: 'Part', href: 'one.html#part', children: [] },
+                { title: 'No heading', href: 'one.html#plain', children: [] }
+            ] }
+        ]
+    };
+    const sources = new Map([
+        ['index.html', { audio: null, bodyHtml: '<h1>Front</h1>' }],
+        ['one.html', { audio: { audioHref: 'audio/one.webm', duration: 30, cues: [
+            { id: 'h-one', start: 0 }, { id: 'p1', start: 3 },
+            { id: 'h-part-a', start: 10 }, { id: 'h-part-b', start: 12 }, { id: 'p2', start: 14 },
+            { id: 'p3', start: 20 }
+        ] }, bodyHtml: '<section id="one"><h1><span id="h-one">One</span></h1><p id="p1">Text</p>'
+            + '<section id="part"><h2><span id="h-part-a">Part</span> <span id="h-part-b">two</span></h2><p id="p2">More</p></section>'
+            + '<div id="plain"><p id="p3">Last</p></div></section>' }]
+    ]);
+
+    const result = createAudioMap(site, sources);
+    assert.equal(result.pages[1].audio, 'audio/one.webm');
+    assert.equal(result.pages[0].audio, undefined);
+    assert.deepEqual(result.toc, [
+        { href: 'one.html#one', time: 0, end: 3 },
+        { href: 'one.html#part', time: 10, end: 14 },
+        { href: 'one.html#plain', time: 20, end: 30 }
+    ]);
+});

@@ -21,6 +21,27 @@ export type ConversionReportData = {
     changes: Array<{ kind: string; count: number; pages: Record<string, number> }>;
     warnings: ReportWarning[];
     checks: ReportCheck[];
+    audio?: {
+        mode: string;
+        sourceBytes: number;
+        outputBytes: number;
+        settings: string[];
+        maximumEncoderDriftSeconds: number;
+        cleanup: {
+            enabled: boolean;
+            targetLufs: number;
+            truePeakDb: number;
+            filters: string[];
+            loudnessRangeBeforeLu: number | null;
+            pages: Array<{
+                page: string;
+                clippingSamples: number;
+                loudnessLufs: number | null;
+                noiseFloorDb: number | null;
+                peakDb: number | null;
+            }>;
+        };
+    };
 };
 
 export class ConversionReport {
@@ -32,6 +53,7 @@ export class ConversionReport {
     private missingAltImages = 0;
     private bookLetters = 0;
     private bookExpectedLetters = 0;
+    private audio?: ConversionReportData['audio'];
 
     constructor(
         readonly language: ConversionReportData['language'],
@@ -60,6 +82,10 @@ export class ConversionReport {
         this.bookExpectedLetters += expectedLetters;
     }
 
+    setAudio(audio: NonNullable<ConversionReportData['audio']>): void {
+        this.audio = audio;
+    }
+
     finishBookWarnings(): void {
         if (this.images >= 5 && this.emptyAltImages / this.images >= .9) {
             this.warning('Decorative images',
@@ -85,7 +111,8 @@ export class ConversionReport {
                 pages: Object.fromEntries(pages)
             })).sort((a, b) => a.kind.localeCompare(b.kind)),
             warnings: this.warnings,
-            checks: this.checks
+            checks: this.checks,
+            ...(this.audio ? { audio: this.audio } : {})
         };
     }
 }
@@ -106,6 +133,16 @@ export function reportMarkdown(data: ConversionReportData): string {
         `- Effective language: ${data.language.effective}`,
         ...(data.language.override ? [`- Language override: ${data.language.override}`] : []),
         ...Object.entries(data.options).map(([name, value]) => `- ${name}: ${String(value)}`), '',
+        ...(data.audio ? [
+            '## Audio', '',
+            `Source audio: ${formatBytes(data.audio.sourceBytes)}. Converted audio: ${formatBytes(data.audio.outputBytes)}.`,
+            `Mode: ${data.audio.mode}. Maximum encoder duration difference: ${data.audio.maximumEncoderDriftSeconds.toFixed(3)} seconds.`,
+            ...data.audio.settings.map(setting => `- ${setting}`), '',
+            `Cleanup: ${data.audio.cleanup.enabled ? `on; target ${data.audio.cleanup.targetLufs} LUFS, true peak ${data.audio.cleanup.truePeakDb} dBTP` : 'off'}.`,
+            ...(data.audio.cleanup.filters.length ? [`Filters: ${data.audio.cleanup.filters.join(', ')}.`] : []),
+            `Loudness range before cleanup: ${data.audio.cleanup.loudnessRangeBeforeLu === null ? 'not measurable' : `${data.audio.cleanup.loudnessRangeBeforeLu.toFixed(1)} LU`}.`,
+            ...data.audio.cleanup.pages.map(page => `- ${page.page}: ${page.loudnessLufs === null ? 'loudness not measurable' : `${page.loudnessLufs.toFixed(1)} LUFS`}; peak ${page.peakDb === null ? 'not measurable' : `${page.peakDb.toFixed(1)} dBFS`}; quietest stretch ${page.noiseFloorDb === null ? 'below measurement floor' : `${page.noiseFloorDb.toFixed(1)} dBFS`}; clipping samples ${page.clippingSamples}`), ''
+        ] : []),
         `## Changes (${changeCount})`, ''
     ];
     if (!data.changes.length) lines.push('No markup changes.', '');
@@ -136,6 +173,11 @@ export function reportMarkdown(data: ConversionReportData): string {
     for (const check of data.checks) lines.push(`- ${check.name}: ${check.status}. ${check.detail}`);
     lines.push('');
     return `${lines.join('\n')}\n`;
+}
+
+function formatBytes(bytes: number): string {
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
 }
 
 function checkSummary(checks: ReportCheck[]): string {

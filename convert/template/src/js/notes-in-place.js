@@ -1,9 +1,10 @@
 import { fetchPage, navigateTo } from './in-place-navigation.js';
-import { elmForCue } from './cue-selector.js';
+import { cueForElement, elmForCue } from './cue-selector.js';
 import { registerAction } from './reader-actions.js';
 import { allowPlaybackOf, clearPlaybackException, cancelSkipPreroll } from './skippability.js';
 import { pageAudio } from './dom-utils.js';
 import { initStructureSounds, keepSoundsForSeek, pausedForSound, soundForNarratedPhrase } from './structure-sounds.js';
+import { showShortcutHint } from './keyboard-shortcuts.js';
 
 // Notes without losing your place. Following a note reference (or the note control that appears
 // while narration reads a phrase with references) goes to the note, wherever it is in the book.
@@ -106,15 +107,26 @@ function noteCueRange(note) {
     return cues.length ? { start: cues[0].startTime, end: cues[cues.length - 1].endTime } : null;
 }
 
-// Narration waiting after a phrase with notes counts as playing, and carries on after the phrase
+// Narration waiting after a phrase with notes counts as playing, and carries on after the phrase.
+// Not playing, the reader followed a reference wherever they were reading, which may not be where
+// narration stopped: going back puts narration at the start of the reference's phrase, so that's
+// what's highlighted and where Play starts (user, 2026-11-10: after a note from an earlier
+// paragraph, the phrase narration had stopped at was highlighted instead).
 function returnRecord(reference) {
     const audio = pageAudio();
+    const playing = Boolean(audio && (!audio.paused || notePause));
     return {
         href: window.location.href.split('#')[0] + (reference.id ? `#${encodeURIComponent(reference.id)}` : ''),
         scrollY: window.scrollY,
-        audioTime: notePause ? notePause.resumeAt : audio?.currentTime,
-        autoplay: Boolean(audio && (!audio.paused || notePause))
+        audioTime: notePause ? notePause.resumeAt : playing ? audio?.currentTime : referenceTime(reference, audio),
+        autoplay: playing
     };
+}
+
+// The start of the phrase that holds this reference; where narration is, if no phrase does
+function referenceTime(reference, audio) {
+    const cues = Array.from(audio?.querySelector('track')?.track?.cues || []);
+    return cueForElement(cues, reference)?.startTime ?? audio?.currentTime;
 }
 
 function goToNote(reference, overrides = {}) {
@@ -284,6 +296,7 @@ function currentReturn() {
 function showBackToText() {
     const button = document.getElementById('webbook-back-to-text');
     if (button) button.hidden = !currentReturn();
+    if (button && !button.hidden) showShortcutHint(button, 'back-to-text');
     document.documentElement.classList.toggle('webbook-note-return', Boolean(currentReturn()));
 }
 
@@ -297,9 +310,10 @@ function dismissReturn() {
     lastNoteReturn = null;
 }
 
-async function backToText() {
-    const origin = currentReturn();
-    if (!origin) return false;
+async function backToText({ keepPlaying = false } = {}) {
+    const stored = currentReturn();
+    if (!stored) return false;
+    const origin = keepPlaying ? { ...stored, autoplay: true } : stored;
     autoReturn = null;
     clearPlaybackException();
     // Narration went to a phrase's notes by itself: the next one, then back to the text
@@ -377,6 +391,7 @@ export async function handleNarratedPhrase(elm) {
     phraseButton.disabled = false;
     phraseButton.textContent = references.length === 1 ? `Note ${referenceLabel(references[0])}` : `Notes (${references.length})`;
     if (changed) status.textContent = `${phraseButton.textContent} available.`;
+    showShortcutHint(phraseButton, 'go-to-phrase-note');
 }
 
 export function hidePhraseNotes() {
@@ -552,6 +567,16 @@ export function initNotesInPlace() {
         }, 0);
     });
     document.addEventListener('webbook:pagechange', showBackToText);
+    // Skip past while narration reads a note it was sent to: back to the text, still playing, even
+    // with "Go back to the text after a note" off. Skipping a note means leaving it, and after it
+    // in the book is usually only the next note or chapter (user, 2026-11-10: narration stopped).
+    document.addEventListener('webbook:skippast', e => {
+        const note = autoReturn?.note;
+        const structure = e.detail?.structure;
+        if (!note || !structure || !(structure === note || structure.contains(note) || note.contains(structure))) return;
+        e.preventDefault();
+        backToText({ keepPlaying: true });
+    });
     window.addEventListener('scroll', () => {
         if (!currentReturn() || autoReturn) return;
         const note = noteOfReturn();
@@ -560,8 +585,8 @@ export function initNotesInPlace() {
         if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) dismissReturn();
     }, { passive: true });
     registerAction({ id: 'go-to-phrase-note', label: 'Go to note in this phrase', group: 'Narration',
-        defaultKeys: [], run: openPhraseNotes, isAvailable: () => phraseReferences.length > 0 });
+        defaultKeys: [{ code: 'KeyE', alt: true, shift: true }], run: openPhraseNotes, isAvailable: () => phraseReferences.length > 0 });
     registerAction({ id: 'back-to-text', label: 'Back to text', group: 'Navigation',
-        defaultKeys: [], run: backToText, isAvailable: () => Boolean(currentReturn()) });
+        defaultKeys: [{ code: 'Backspace', alt: true, shift: true }], run: backToText, isAvailable: () => Boolean(currentReturn()) });
     showBackToText();
 }

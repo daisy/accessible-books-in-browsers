@@ -54,7 +54,7 @@ body {
 /* publication text */
 main {
     grid-area: main;
-    /* the Line length setting (text-spacing.js), in em so it follows the text size */
+    /* the Line length setting (text-spacing.js): a fraction of the width the text has */
     max-width: var(--webbook-line-length, 45rem);
     margin: auto;
     /* clear of the fixed bottom toolbar */
@@ -219,7 +219,7 @@ main {
     }
     /* !important: the toolbar's own rules for its controls are more specific */
     #webbook-toolbar > :not(audio),
-    #webbook-toolbar #webbook-audio-controls {
+    #webbook-toolbar :is(#webbook-narration-position, #webbook-audio-controls) {
         display: none !important;
     }
     #webbook-toolbar audio {

@@ -1,6 +1,7 @@
 // Runs axe-core on every page of the converted books in a folder (the demos by default), in
 // headless Chrome, and fails if it finds WCAG 2.2 A or AA violations. Each page is checked as it
-// opens; each book's first page is also checked with each panel open, in the light and dark themes,
+// opens; each book's first page is also checked with each panel open, in each Colors choice (light,
+// dark and the four reviewed pairs),
 // and with JavaScript off (the plain navigation and native audio player), with the table of
 // contents open too.
 //
@@ -47,7 +48,7 @@ try {
         const pages = readdirSync(path.join(root, book)).filter(file => file.endsWith('.html')).sort(indexFirst).slice(0, pageLimit);
         for (const [i, page] of pages.entries()) {
             const url = `${server.url}/${book}/${page}`;
-            results.push(...await checkPage(chrome, url, `${book}/${page}`, { panels: i === 0, themes: i === 0 ? ['light', 'dark'] : ['light'] }));
+            results.push(...await checkPage(chrome, url, `${book}/${page}`, { panels: i === 0, themes: i === 0 ? ['light', 'dark', 'cream', 'sepia', 'gray', 'blue'] : ['light'] }));
             if (i === 0) results.push(...await checkWithoutJavaScript(chrome, url, `${book}/${page}`));
         }
         process.stdout.write(`${book}: ${pages.length} pages checked\n`);
@@ -85,9 +86,11 @@ function indexFirst(a, b) {
 async function checkPage(chrome, url, where, { panels, themes }) {
     const out = [];
     for (const theme of themes) {
-        // The theme is read from storage before the first paint, so set it on the book's origin first
+        // Chosen through Colors, as a reader would (a shared choice, so every book on the origin has
+        // it): Colors sets the light or dark base itself, and the head script reads that before the
+        // first paint. Setting the old appearance key alone was reset to the system's by Automatic.
         await chrome.navigate(url);
-        await chrome.evaluate(`localStorage.setItem('webbook-appearance', '${theme}')`);
+        await chrome.evaluate(`localStorage.clear(); localStorage.setItem('webbook-colors', '${theme}'); localStorage.setItem('webbook-appearance', '${theme === 'dark' || theme === 'gray' || theme === 'blue' ? 'dark' : 'light'}')`);
         await chrome.navigate(url);
         out.push({ where: `${where} (${theme})`, violations: await runAxe(chrome, 'document') });
         if (!panels) continue;

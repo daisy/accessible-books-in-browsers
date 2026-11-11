@@ -49,7 +49,9 @@ class TemplateRenderer {
         doc.querySelector('meta[name="webbook-book-id"]')?.setAttribute('content', site.bookId);
 
         const main = requireElement(doc, 'main');
-        content.bodyAttributes.forEach(({ name, value }) => main.setAttribute(name, value));
+        // The book's <body> attributes go on <main>, but not its id: <main> is #webbook-main, the skip
+        // link's target (contract). A link to the body's id still opens the page, at its top.
+        content.bodyAttributes.filter(({ name }) => name !== 'id').forEach(({ name, value }) => main.setAttribute(name, value));
         const printPageBefore = printPageBeforePage(site, page);
         if (printPageBefore) main.setAttribute('data-webbook-print-page-before', printPageBefore);
         main.innerHTML = content.bodyHtml;
@@ -260,10 +262,9 @@ function renderSpineLink(doc: Document, selector: string, target: SitePage | und
 
 function renderAudio(doc: Document, audioAssets: PageAudioAssets | null): void {
     const audio = doc.querySelector('#webbook-toolbar audio');
-    const controls = doc.querySelector('#webbook-audio-controls');
     if (!audioAssets) {
         audio?.remove();
-        controls?.remove();
+        doc.querySelectorAll('#webbook-narration-position, #webbook-audio-controls').forEach(group => group.remove());
         return;
     }
 

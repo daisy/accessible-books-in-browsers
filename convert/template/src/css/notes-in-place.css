@@ -1,12 +1,33 @@
+/* prompts floating above the toolbar: bordered and bold, so they stand out from the text */
 #webbook-note-phrase-btn,
 #webbook-back-to-text {
     background: var(--webbook-chrome-bg);
     color: var(--webbook-chrome-fg);
-    border: 0;
+    border: 2px solid var(--webbook-chrome-fg);
     border-radius: 2rem;
-    padding: .4rem 1rem;
+    min-height: 2.75rem;
+    padding: .5rem 1.25rem;
     font-size: var(--size-step-0);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
     box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+}
+/* the key that does the same (showShortcutHint), for keyboards only */
+.webbook-shortcut-hint {
+    padding: .05rem .4rem;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: .8em;
+    font-weight: 400;
+}
+@media (any-hover: none) {
+    .webbook-shortcut-hint {
+        display: none;
+    }
 }
 #webbook-note-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 #webbook-back-to-text { position: fixed; z-index: 25; right: .75rem; bottom: calc(var(--webbook-toolbar-height, 4rem) + .75rem); }

@@ -16,7 +16,8 @@ export type NarrationSelector = FragmentSelector | CssSelector;
 const STRUCTURE_SELECTOR = [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', '[role="heading"]',
     'section', 'article', 'aside', 'figure', 'table', 'ul', 'ol', 'dl', 'blockquote',
-    '[role^="doc-"]',
+    // Document roles, except the ones on links (a backlink, bibliography or glossary reference)
+    '[role^="doc-"]:not([role="doc-backlink"]):not([role="doc-biblioref"]):not([role="doc-glossref"])',
     '[role="doc-footnote"]', '[role="doc-endnotes"]', '[role="doc-noteref"]', '[role="doc-pagebreak"]',
     '[role="figure"]', '[role="table"]', '[role="list"]', '[role="region"]',
     '.epubtype_chapter', '.epubtype_part', '.epubtype_prologue', '.epubtype_epilogue',
@@ -42,7 +43,9 @@ function addGeneratedStructureIds(doc: Document): void {
     const used = new Set(Array.from(doc.querySelectorAll('[id]'), elm => elm.id));
     const counts = new Map<string, number>();
     doc.querySelectorAll(STRUCTURE_SELECTOR).forEach(elm => {
-        if (elm.id || elm.classList.contains('webbook-table-scroll')) return;
+        // <body> isn't a structure, whatever its epub:type says (bodymatter): it becomes <main>,
+        // whose id is the template's #webbook-main, so a generated id there replaced it
+        if (elm.id || elm.classList.contains('webbook-table-scroll') || elm.matches('body, main')) return;
         const base = structureName(elm);
         let number = (counts.get(base) ?? 0) + 1;
         let id = `${base}-${number}`;

@@ -89,12 +89,39 @@ async function getDuration(filename: string): Promise<number> {
     });
 }
 
+export type AudioProperties = {
+    bitrate: number;
+    channels: number;
+    codec: string;
+    sampleRate: number;
+};
+
+async function getAudioProperties(filename: string): Promise<AudioProperties> {
+    await configureFfmpeg();
+    return new Promise((resolve, reject) => {
+        ffmpeg.ffprobe(filename, (err, metadata) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            const stream = metadata.streams?.find(candidate => candidate.codec_type === 'audio') ?? metadata.streams?.[0];
+            resolve({
+                bitrate: Number(stream?.bit_rate ?? metadata.format.bit_rate) || 0,
+                channels: Number(stream?.channels) || 1,
+                codec: stream?.codec_name ?? '',
+                sampleRate: Number(stream?.sample_rate) || 44100
+            });
+        });
+    });
+}
+
 function toPosixPath(value: string): string {
     return value.split(/[\\/]/).join('/');
 }
 
 export {
     addItem,
+    getAudioProperties,
     getDuration,
     getFrag,
     getWithoutFrag,

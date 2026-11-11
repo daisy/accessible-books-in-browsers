@@ -18,9 +18,11 @@
 #webbook-escape-btn {
     background: var(--webbook-chrome-bg);
     color: var(--webbook-chrome-fg);
-    border: none;
+    border: 2px solid var(--webbook-chrome-fg);
     border-radius: 2rem;
-    padding: .4rem 1rem;
+    min-height: 2.75rem;
+    padding: .5rem 1.25rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     gap: .4rem;

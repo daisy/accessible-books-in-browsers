@@ -13,3 +13,28 @@
     white-space: nowrap;
     box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
 }
+
+/* what a shortcut or other reader action just did, shown for a few seconds (reader-actions.js);
+   at the top, because Skip past is just above the bottom toolbar */
+#webbook-action-notice {
+    position: fixed;
+    top: calc(var(--webbook-top-toolbar-height, 4rem) + .75rem);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 30;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: calc(100vw - 2rem);
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
+    border: 2px solid var(--webbook-chrome-fg);
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    font-size: var(--size-step-0);
+    text-align: center;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+    cursor: pointer;
+}
+#webbook-action-notice[hidden] {
+    display: none;
+}

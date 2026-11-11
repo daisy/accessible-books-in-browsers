@@ -44,16 +44,18 @@ See [Reading features](#reading-features) and [Keyboard shortcuts](#keyboard-sho
 
 These demos were created using this [conversion script](https://github.com/daisy/accessible-books-in-browsers/tree/main/convert). 
 
-* [Action for Heroes](https://daisy.github.io/accessible-books-in-browsers/demos/action-for-heroes)
-* [Moby Dick](https://daisy.github.io/accessible-books-in-browsers/demos/moby-dick)
-* [Amar Bangla Boi, Class 5](https://daisy.github.io/accessible-books-in-browsers/demos/AmarBanglaEPUB) (আমার বাংলা বই পঞ্চম শ্রেণি)
-* [Bangladesh o Bishwoporichoy, Class 4](https://daisy.github.io/accessible-books-in-browsers/demos/BangladeshBishwoporichoyEPUB) (বাংলাদেশ ও বিশ্ব পরিচয় চতুর্থ শ্রেণি)
-* [English for Today, Classes 9–10](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB)
-* [Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB)
+* **Action for Heroes**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/action-for-heroes) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/action-for-heroes) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/action-for-heroes)
+* **Moby Dick**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/moby-dick) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/moby-dick)
+* **Amar Bangla Boi, Class 5** (আমার বাংলা বই পঞ্চম শ্রেণি): [demo](https://daisy.github.io/accessible-books-in-browsers/demos/AmarBanglaEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/AmarBanglaEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/AmarBanglaEPUB)
+* **Bangladesh o Bishwoporichoy, Class 4** (বাংলাদেশ ও বিশ্ব পরিচয় চতুর্থ শ্রেণি): [demo](https://daisy.github.io/accessible-books-in-browsers/demos/BangladeshBishwoporichoyEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/BangladeshBishwoporichoyEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/BangladeshBishwoporichoyEPUB)
+* **English for Today, Classes 9–10**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/EnglishForTodayEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/EnglishForTodayEPUB)
+* **Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/CurrentSituationEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/CurrentSituationEPUB)
 
 Test books:
 
-* [Notes Test Book](https://daisy.github.io/accessible-books-in-browsers/demos/notes-test): a short narrated book with footnotes on the same page and endnotes in a separate file, for testing notes. Source in [`source-epubs/notes-test`](source-epubs/notes-test); the narration is synthetic (macOS `say`).
+* **Notes Test Book**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/notes-test) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/notes-test) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/notes-test)
+
+  A short narrated book with footnotes on the same page and endnotes in a separate file, for testing notes. The narration is synthetic (macOS `say`).
 
 
 ## Reading features
@@ -76,28 +78,30 @@ Test books:
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
   out of lists and tables, just before the phrase.
 - **Settings:**
-  - **Colors:** the book's own; automatic, light or dark; reviewed pairs, each at least 7:1; or
+  - **Colors:** automatic (the system's light or dark), light or dark; reviewed pairs, each at least 7:1; or
     custom, with automatic black or white text. Per book, or shared with other books.
   - **Highlight:** a color chosen to stand out from the page (or your own) and a style:
     background, underline or both.
   - **Text:** font, size, and line, letter and word spacing and line length, up to WCAG 1.4.12's
     values.
   - **Narration:** speed, and caption mode, the narrated text full screen.
+  - **Toolbars:** hide automatically (the default: they fade a few seconds after you last move
+    the mouse, touch or press a key), or stay on screen. For every book.
 
 ## Keyboard shortcuts
 
 | Shortcut | Where it works | What it does |
 |---|---|---|
-| `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, sidebar, footnote, endnote, or note during narration playback |
+| `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, sidebar, footnote, endnote, or note during narration playback; at the end of a page, go to the next one. While a message from another shortcut is showing, the first `Escape` dismisses the message |
 | `[` | Anywhere outside a text field or open popover | Previous phrase, continuing onto the previous page from the first phrase of a page |
 | `]` | Anywhere outside a text field or open popover | Next phrase, continuing onto the next page from the last phrase of a page |
 | `\` | Anywhere outside a text field or open popover | Play / pause |
 | `Alt`+`Shift`+`P` | Anywhere outside a text field or open popover | Go to narration position: moves focus, and a screen reader, to the phrase narration is on, e.g. to read on from there after pausing |
 | `Alt`+`Shift`+`R` | Anywhere outside a text field or open popover | Play from here: starts narration at the phrase that has focus (a screen reader's cursor brings focus with it) or at selected text |
-| `Alt`+`Shift`+`L` | Anywhere outside a text field or open popover | Announce the listening time left in the current chapter and book |
-| `Alt`+`Shift`+`Q` | Anywhere outside a text field or open popover | Announce the current print page |
-| Unassigned | While narration is on a phrase containing a note reference | Go to the note in this phrase, or open its list of notes |
-| Unassigned | After following **Go to note** | Back to text at the exact reference and narration position |
+| `Alt`+`Shift`+`L` | Anywhere outside a text field or open popover | Show and announce the listening time left in the current chapter and book |
+| `Alt`+`Shift`+`Q` | Anywhere outside a text field or open popover | Show and announce the current print page |
+| `Alt`+`Shift`+`E` | While narration is on a phrase containing a note reference | Go to the note in this phrase, or open its list of notes |
+| `Alt`+`Shift`+`Backspace` (`Option`+`Shift`+`Delete` on a Mac) | After following **Go to note** | Back to text at the exact reference and narration position |
 | `Shift`+`[` / `Shift`+`]` | Anywhere outside a text field or open popover | Previous / next page |
 | `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
 | `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |
@@ -189,7 +193,15 @@ and `template` the reader (`convert/template`). Only valid EPUBs are accepted.
 | `--include-non-linear` | Include spine items marked `linear="no"` in the reading order. |
 | `--check` | Also run [Ace](https://daisy.github.io/ace/) on the EPUB and axe on the result, if they're installed. A check that can't run is skipped and explained in the report; it never stops the conversion. |
 | `--audio-cache [dir]` | Reuse each page's merged narration from an earlier conversion when its audio clips haven't changed, kept in `dir` or the system's temp folder. Merging is most of a conversion's time. For development. |
+| `--small-audio` | Make narration smaller for offline reading or expensive data: mono 24 kHz MP3 at 32 kb/s, tuned for speech. |
+| `--no-audio-cleanup` | Leave narration levels and joins unchanged. By default the converter applies 5 ms fades at joins, removes rumble below 90 Hz, softens plosive pops (p, b), and normalizes every page to -18 LUFS with a -1.5 dBTP limit. |
+| `--audio-enhance <list>` | Add one or more comma-separated, optional narration filters: `warm-eq`, `compression`, `noise`, `deess`, or `declick`. These can alter the sound substantially, so compare them by ear. |
 
 Every conversion also writes `conversion-report.md` and `conversion-report.json`: the options used,
-every change by page, and warnings for a person to review, such as language markup that doesn't
-match the text, images all marked decorative, broken links and heading problems.
+the source and converted narration sizes and encoding settings, every change by page, and warnings
+for a person to review, such as language markup that doesn't match the text, images all marked
+decorative, broken links and heading problems. Narration is cut through lossless PCM and encoded
+once per page. By default it uses source-matched channel, sample-rate and bitrate settings;
+`--small-audio` uses its speech encoding instead.
+Audio cleanup never changes the PCM-derived page or cue duration. The conversion report includes
+pre-cleanup loudness, peaks, quiet-stretch levels, clipping findings, and the applied filters.

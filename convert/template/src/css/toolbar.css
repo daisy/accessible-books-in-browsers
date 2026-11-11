@@ -1,12 +1,20 @@
-/* webbook's toolbar: the timeline on its own row, and large buttons under it */
+/* Safari on iOS darkens whatever is tapped with its own gray box, which flashed dark over the time
+   button on light pages. The reader's controls show their own state; focus keeps its outline. */
+#webbook-toolbar,
+#webbook-top-toolbar,
+#webbook-spine-nav,
+.webbook {
+    -webkit-tap-highlight-color: transparent;
+}
+/* webbook's toolbar: the time and the timeline on their own rows, and large buttons under them */
 #webbook-toolbar {
     --webbook-toolbar-button: 3rem;
     background: var(--webbook-chrome-bg);
     display: grid;
     /* the empty column after TOC balances the two buttons on the right, so play stays centered */
     grid-template-areas:
-        'seek seek seek seek seek seek seek seek seek'
         'time time time time time time time time time'
+        'seek seek seek seek seek seek seek seek seek'
         'toc . . prev play next . about settings';
     grid-template-columns:
         var(--webbook-toolbar-button) minmax(0, var(--webbook-toolbar-button)) 1fr
@@ -47,7 +55,8 @@
     audio {
         display: none;
     }
-    /* The group spans both rows and hands its controls to the toolbar's own columns */
+    /* The groups span all the rows and hand their controls to the toolbar's own columns */
+    #webbook-narration-position,
     #webbook-audio-controls {
         grid-row: 1 / 4;
         grid-column: 1 / -1;
@@ -58,10 +67,10 @@
         /* it overlaps the toolbar's other buttons, so only its controls take clicks */
         pointer-events: none;
     }
-    #webbook-audio-controls > * {
+    :is(#webbook-narration-position, #webbook-audio-controls) > * {
         pointer-events: auto;
     }
-    #webbook-audio-controls[hidden] {
+    :is(#webbook-narration-position, #webbook-audio-controls)[hidden] {
         display: none;
     }
     #webbook-previous-phrase {
@@ -171,6 +180,23 @@
 #webbook-toolbar.visible,
 #webbook-toolbar:focus-within {
     opacity: 1;
+}
+/* first on the page, shown when it has focus */
+#webbook-skip-link {
+    position: fixed;
+    top: .5rem;
+    left: max(.5rem, env(safe-area-inset-left));
+    z-index: 40;
+    padding: .75rem 1rem;
+    border: 2px solid var(--webbook-chrome-fg);
+    border-radius: 4px;
+    background: var(--webbook-chrome-bg);
+    color: var(--webbook-chrome-fg);
+    font-size: var(--size-step-0);
+    transform: translateY(calc(-100% - 1rem));
+}
+#webbook-skip-link:focus {
+    transform: none;
 }
 /* top toolbar */
 #webbook-top-toolbar {

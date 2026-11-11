@@ -38,3 +38,13 @@ test('keep-all-ids retains old fragment selectors and does not generate ids', ()
     assert(document.getElementById('phrase'));
     assert.deepEqual(selector, { type: 'FragmentSelector', value: 'phrase' });
 });
+
+test('the body is not a structure, and links with document roles are not either', () => {
+    // EPUBs mark the body itself as body matter; it becomes <main>, whose id is #webbook-main
+    const document = new JSDOM('<body class="epubtype_bodymatter"><p id="phrase">Words<a role="doc-backlink" href="#x">back</a></p><p id="x">X</p></body>').window.document;
+    const target = document.getElementById('phrase');
+    const selector = applyStructureIds(document, ['phrase']).get('phrase');
+    assert.equal(document.body.id, '');
+    assert.equal(document.querySelector('[role="doc-backlink"]').id, '');
+    assert.equal(resolveNarrationSelector(document, selector), target);
+});

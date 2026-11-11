@@ -22,6 +22,13 @@ const KEY_NAMES = {
     NumpadDecimal: ['Numpad .', 'Numpad decimal'], NumpadEqual: ['Numpad =', 'Numpad equals'],
     IntlRo: ['IntlRo', 'International Ro key'], IntlYen: ['¥', 'Yen']
 };
+// A Mac's keyboard names these differently: the key above Return is "delete" (⌫), and the one that
+// deletes forward is "forward delete" (⌦, fn+delete on a laptop) (user, 2026-11-10: the Back to
+// text hint said Backspace, which a Mac doesn't have)
+const MAC_KEY_NAMES = {
+    Backspace: ['⌫', 'Delete'],
+    Delete: ['⌦', 'Forward delete']
+};
 const SPOKEN_CHARACTERS = Object.fromEntries(Object.values(KEY_NAMES).map(([key, name]) => [key, name]));
 let changes = {};
 let capturing = false;
@@ -57,6 +64,19 @@ export function isBrowseModeKey(spec) {
     if (spec.shift && !spec.alt && !spec.ctrl && !spec.meta && ['Comma', 'Period'].includes(spec.code)) return true;
     return !MODIFIERS.some(name => spec[name])
         && (/^Key[A-Z]$/.test(spec.code) || ['Comma', 'Minus', 'Semicolon', 'Slash', 'Quote'].includes(spec.code));
+}
+
+// Alt+Shift with A, B, I, N or T are Chrome's and Edge's own commands (focus the toolbar, the
+// bookmarks bar and so on), so the browser may take them first
+function isBrowserKey(spec) {
+    return spec.alt && spec.shift && !spec.ctrl && !spec.meta && ['KeyA', 'KeyB', 'KeyI', 'KeyN', 'KeyT'].includes(spec.code);
+}
+
+// What might take a key before the reader does; the reader allows it, but says so
+export function shortcutWarning(spec) {
+    if (isBrowseModeKey(spec)) return 'Warning: this key is a screen reader command in browse mode.';
+    if (isBrowserKey(spec)) return 'Warning: Chrome and Edge use this key for their own commands.';
+    return '';
 }
 
 function readChanges() {
@@ -151,12 +171,28 @@ export function setShortcutCapture(active) {
     capturing = active;
 }
 
+// A floating button an action also runs from (Skip past, a phrase's notes, Back to text) shows its
+// first key, as the reader has it, for keyboard users to learn; screen readers get aria-keyshortcuts
+export function showShortcutHint(button, actionId) {
+    button.querySelector('.webbook-shortcut-hint')?.remove();
+    button.removeAttribute('aria-keyshortcuts');
+    const [spec] = keyboardShortcutsEnabled() ? getActionKeys(actionId) : [];
+    if (!spec) return;
+    const modifiers = [['ctrl', 'Control'], ['alt', 'Alt'], ['shift', 'Shift'], ['meta', 'Meta']].filter(([flag]) => spec[flag]).map(([, name]) => name);
+    button.setAttribute('aria-keyshortcuts', [...modifiers, spec.code.replace(/^(Key|Digit)/, '')].join('+'));
+    const hint = document.createElement('kbd');
+    hint.className = 'webbook-shortcut-hint';
+    hint.setAttribute('aria-hidden', 'true');
+    hint.textContent = shortcutName(spec).text;
+    button.append(hint);
+}
+
 export function shortcutName(spec) {
-    const fallback = KEY_NAMES[spec.code] ?? [spec.code.replace(/^(Key|Digit)/, '').replace(/^Numpad/, 'Numpad '), spec.code.replace(/^(Key|Digit)/, '').replace(/^Numpad/, 'Numpad ')];
+    const mac = /Mac|iPhone|iPad/.test(navigator.platform);
+    const fallback = (mac && MAC_KEY_NAMES[spec.code]) || KEY_NAMES[spec.code] || [spec.code.replace(/^(Key|Digit)/, '').replace(/^Numpad/, 'Numpad '), spec.code.replace(/^(Key|Digit)/, '').replace(/^Numpad/, 'Numpad ')];
     const layoutKey = layoutMap?.get(spec.code);
     const key = layoutKey ? (/^[a-z]$/i.test(layoutKey) ? layoutKey.toUpperCase() : layoutKey) : fallback[0];
     const spoken = layoutKey ? (SPOKEN_CHARACTERS[key] ?? key) : fallback[1];
-    const mac = /Mac|iPhone|iPad/.test(navigator.platform);
     const names = [['ctrl', 'Ctrl', 'Control', '⌃'], ['alt', 'Alt', mac ? 'Option' : 'Alt', '⌥'], ['shift', 'Shift', 'Shift', '⇧'], ['meta', mac ? 'Cmd' : 'Meta', mac ? 'Command' : 'Meta', '⌘']];
     const modifiers = names.filter(([flag]) => spec[flag]);
     return {

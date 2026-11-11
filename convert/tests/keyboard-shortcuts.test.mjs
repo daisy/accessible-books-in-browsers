@@ -153,6 +153,10 @@ test('layout names have spoken alternatives and browse-mode keys can be warned a
     assert.equal(shortcuts.isBrowseModeKey({ code: 'Comma' }), true);
     assert.equal(shortcuts.isBrowseModeKey({ code: 'KeyH', ctrl: true }), false);
     assert.equal(shortcuts.isBrowseModeKey({ code: 'BracketRight' }), false);
+    assert.match(shortcuts.shortcutWarning({ code: 'KeyH' }), /screen reader/);
+    assert.match(shortcuts.shortcutWarning({ code: 'KeyT', alt: true, shift: true }), /Chrome and Edge/);
+    assert.equal(shortcuts.shortcutWarning({ code: 'KeyL', alt: true, shift: true }), '');
+    assert.equal(shortcuts.shortcutWarning({ code: 'KeyT', alt: true, shift: true, ctrl: true }), '');
     Object.defineProperty(navigator, 'keyboard', { value: { getLayoutMap: async () => new Map([['BracketLeft', 'ü']]) } });
     await shortcuts.loadKeyboardLayout();
     assert.equal(shortcuts.shortcutName({ code: 'BracketLeft' }).text, 'ü');

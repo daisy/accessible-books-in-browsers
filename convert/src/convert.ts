@@ -20,11 +20,14 @@ import { rewriteRenamedFragment } from './markup-cleanup.js';
 import { isExternalHref } from './ids.js';
 import { JSDOM } from 'jsdom';
 import { runOptionalChecks } from './optional-checks.js';
+import { audioCleanupSettings, cleanupFilters, type AudioEnhancement, type AudioCleanupSettings } from './audio-cleanup.js';
 
 export type ConvertOptions = {
     // A folder (or true for the default one in the system's temp folder) to reuse unchanged page
     // audio from; off by default
     audioCache?: string | boolean;
+    audioCleanup?: boolean;
+    audioEnhance?: AudioEnhancement[];
     headingTitles?: boolean;
     identifier?: string;
     includeNonLinear?: boolean;
@@ -33,6 +36,7 @@ export type ConvertOptions = {
     language?: string;
     markupCleanup?: boolean;
     responsiveTables?: boolean;
+    smallAudio?: boolean;
     check?: boolean;
 };
 
@@ -81,10 +85,14 @@ async function convert(input: string, output: string, template: string, options:
             'heading titles': options.headingTitles !== false,
             'markup cleanup': options.markupCleanup !== false,
             'responsive tables': options.responsiveTables !== false,
+            'small audio': options.smallAudio === true,
+            'audio cleanup': options.audioCleanup !== false,
+            'audio enhancements': options.audioEnhance?.join(',') || false,
             'keep all ids': options.keepAllIds === true,
             'optional checks': options.check === true
         });
         const audioCache = openAudioCache(options.audioCache, site.bookId);
+        const cleanup = audioCleanupSettings(options.audioCleanup !== false, options.audioEnhance ?? []);
         const accessibility = await readAccessibilityInfo(epub.packageFilename);
         const searchData = createSearchData(site);
         const referencedIdsByPage = await crossPageReferencedIds(site);
@@ -134,7 +142,9 @@ async function convert(input: string, output: string, template: string, options:
                     reservedIds: renderer.reservedContentIds(),
                     responsiveTables: options.responsiveTables !== false
                 });
-            const audio = await createAudioForPage(page, outputPaths, mediaSegments, audioCache, content.narrationSelectors);
+            const audio = await createAudioForPage(
+                page, outputPaths, mediaSegments, audioCache, content.narrationSelectors, options.smallAudio === true, cleanup
+            );
             pageAudioSources.set(page.outputFilename, { audio, bodyHtml: content.bodyHtml });
             transformed.set(page.outputFilename, { content, audio });
             renamesByPage.set(page.outputFilename, content.renamedIds);
@@ -156,6 +166,7 @@ async function convert(input: string, output: string, template: string, options:
         await generateAudioMap(site, pageAudioSources, outputPaths);
         await generateSearchIndex(searchData, outputPaths);
         await copyImageAssets(imageRegistry, outputPaths);
+        await addAudioReport(report, mediaSegmentsByPage, transformed, outputPaths, options.smallAudio === true, cleanup);
         await reportBrokenLinks(site, contentDocuments, outputPaths, report);
         report.finishBookWarnings();
         if (options.check !== true) {
@@ -173,6 +184,60 @@ async function convert(input: string, output: string, template: string, options:
         await discardOutputStaging(outputPaths);
         throw err;
     }
+}
+
+async function addAudioReport(
+    report: ConversionReport,
+    segmentsByPage: Map<string, MediaSegment[]>,
+    transformed: Map<string, { audio: Awaited<ReturnType<typeof createAudioForPage>> }>,
+    paths: { stagingDir: string },
+    smallAudio: boolean,
+    cleanup: AudioCleanupSettings
+): Promise<void> {
+    const sources = new Set<string>();
+    for (const segments of segmentsByPage.values()) {
+        for (const segment of segments) sources.add(utils.getWithoutFrag(segment.src));
+    }
+    const sourceBytes = (await Promise.all(Array.from(sources, source => fs.stat(source).then(stat => stat.size))))
+        .reduce((sum, size) => sum + size, 0);
+    const audioEntries = Array.from(transformed, ([page, result]) => ({ page, asset: result.audio }))
+        .filter((entry): entry is { page: string; asset: NonNullable<typeof entry.asset> } => entry.asset !== null);
+    const audio = audioEntries.map(entry => entry.asset);
+    const outputBytes = (await Promise.all(audio.map(asset =>
+        fs.stat(path.join(paths.stagingDir, asset.audioHref)).then(stat => stat.size))))
+        .reduce((sum, size) => sum + size, 0);
+    const settings = Array.from(new Set(audio.map(asset => {
+        const value = asset.encoding;
+        return `${value.extension.replace(/^\./, '').toUpperCase()}, ${value.channels === 1 ? 'mono' : `${value.channels} channels`}, ${value.sampleRate} Hz, ${value.bitrateKbps} kb/s${value.codec ? ` (${value.codec})` : ''}`;
+    })));
+    const loudness = audio.map(asset => asset.findings.loudnessLufs).filter((value): value is number => value !== null);
+    const loudnessRange = loudness.length ? Math.max(...loudness) - Math.min(...loudness) : null;
+    const ordered = [...loudness].sort((a, b) => a - b);
+    const median = ordered.length ? ordered[Math.floor(ordered.length / 2)] : null;
+    const findings = audioEntries.map(({ page, asset }) => ({ page, ...asset.findings }));
+    for (const finding of findings) {
+        if (finding.clippingSamples > 0) {
+            report.warning('Audio clipping', `${finding.clippingSamples} samples are at or near full scale. Cleanup cannot restore clipped detail.`, finding.page);
+        }
+        if (finding.noiseFloorDb !== null && finding.noiseFloorDb > -35) {
+            report.warning('Audio noise floor', `Quietest measured stretch is ${finding.noiseFloorDb.toFixed(1)} dBFS; consider --audio-enhance noise.`, finding.page);
+        }
+        if (median !== null && finding.loudnessLufs !== null && Math.abs(finding.loudnessLufs - median) > 6) {
+            report.warning('Audio level', `Measured ${finding.loudnessLufs.toFixed(1)} LUFS, far from the book median of ${median.toFixed(1)} LUFS.`, finding.page);
+        }
+    }
+    report.setAudio({
+        mode: smallAudio ? 'small audio (mp3)' : 'source-matched, single encode', sourceBytes, outputBytes, settings,
+        maximumEncoderDriftSeconds: Math.max(0, ...audio.map(asset => Math.abs(asset.encoderDrift))),
+        cleanup: {
+            enabled: cleanup.enabled,
+            targetLufs: cleanup.loudnessLufs,
+            truePeakDb: cleanup.truePeakDb,
+            filters: cleanup.enabled ? ['5 ms fades at joins', ...cleanupFilters(cleanup), 'two-pass loudnorm'] : [],
+            loudnessRangeBeforeLu: loudnessRange,
+            pages: findings
+        }
+    });
 }
 
 function rewriteRenamedTargets(

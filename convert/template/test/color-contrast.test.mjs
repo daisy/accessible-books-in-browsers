@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import {
-    HIGHLIGHT_PALETTE, MIN_HIGHLIGHT_CONTRAST, MIN_TEXT_CONTRAST,
-    composite, contrastRatio, highlightColors, pageColorTokens, parseColor, pickHighlight, readableTextOn, toHex
+    HIGHLIGHT_PALETTE, LIGHT_PAGE_PALETTE, MIN_HIGHLIGHT_CONTRAST, MIN_LIGHT_PAGE_DIFFERENCE, MIN_TEXT_CONTRAST,
+    automaticHighlight, composite, contrastRatio, highlightColors, pageColorTokens, parseColor, pickHighlight, readableTextOn, toHex
 } from '../src/js/color-contrast.js';
 
 const color = value => parseColor(value);
@@ -58,6 +58,23 @@ test('the automatic highlight stands out from the page behind it', () => {
     }
 });
 
+test('a light page gets a highlighter: soft yellow, or light blue on a yellowish page, with black text', () => {
+    assert.equal(toHex(automaticHighlight([color('#ffffff')])), '#ffe066');
+    assert.equal(toHex(automaticHighlight([color('#fafafa')])), '#ffe066');
+    // cream and sepia, the light presets
+    assert.equal(toHex(automaticHighlight([color('#faf4e1')])), '#9fd3ff');
+    assert.equal(toHex(automaticHighlight([color('#e9d8b4')])), '#7cc3ff');
+    for (const page of ['#ffffff', '#fafafa', '#faf4e1', '#e9d8b4', '#f4ecd8', '#cce5ff', '#fff3c4', '#eeeeee']) {
+        const highlight = automaticHighlight([color(page)]);
+        assert.ok(contrastRatio(highlight, color(page)) >= MIN_LIGHT_PAGE_DIFFERENCE, page);
+        assert.equal(toHex(readableTextOn(highlight)), '#000000', page);
+    }
+    for (const value of LIGHT_PAGE_PALETTE) assert.ok(contrastRatio(color(value), color('#000000')) >= MIN_TEXT_CONTRAST, value);
+    // Dark pages keep yellow, with 3:1
+    assert.equal(toHex(automaticHighlight([color('#000000')])), '#ffdd00');
+    assert.equal(toHex(highlightColors([color('#ffffff')]).background), '#ffe066');
+});
+
 test('an unknown page background gets the color that works on all the candidates', () => {
     const picked = pickHighlight([color('#fafafa'), color('#ffffff'), color('#000000')]);
     assert.equal(toHex(picked), '#a14d00');
@@ -90,7 +107,8 @@ test('the reader\'s highlight color is kept, with readable text on it', () => {
 test('an underline alone has 3:1 against the page, even in the reader\'s color', () => {
     // A color that stands out keeps it
     assert.equal(toHex(highlightColors([color('#ffffff')], '#0055cc', 'underline').line), '#0055cc');
-    assert.equal(toHex(highlightColors([color('#ffffff')], null, 'underline').line), '#a14d00');
+    // The automatic highlight on white is soft yellow, too pale for a line there, so the line is black
+    assert.equal(toHex(highlightColors([color('#ffffff')], null, 'underline').line), '#000000');
     // One that doesn't (white on white, yellow on white) is replaced
     for (const [page, custom] of [['#ffffff', '#ffffff'], ['#ffffff', '#ffdd00'], ['#000000', '#111111'], ['#808080', '#888888']]) {
         const { line } = highlightColors([color(page)], custom, 'underline');
@@ -114,7 +132,7 @@ test('an underline below a highlight background is black or white on the page, w
 });
 
 test('on the reader\'s own colors, focus and the search highlight stand out, apart from narration', () => {
-    const pairs = [['#000000', '#faf4e1'], ['#3b2a1a', '#f4ecd8'], ['#ffffff', '#000000'], ['#e6e6e6', '#1f1f1f'],
+    const pairs = [['#000000', '#faf4e1'], ['#3b2a1a', '#e9d8b4'], ['#ffffff', '#000000'], ['#e6e6e6', '#1f1f1f'],
         ['#ffeb3b', '#0b1f4b'], ['#333333', '#808080'], ['#5f87a0', '#5f87a0']];
     for (const [text, page] of pairs) {
         const tokens = pageColorTokens(color(text), color(page));
@@ -122,7 +140,7 @@ test('on the reader\'s own colors, focus and the search highlight stand out, apa
         assert.ok(contrastRatio(tokens.focus, color(page)) >= MIN_HIGHLIGHT_CONTRAST, `focus, ${label}`);
         assert.ok(contrastRatio(tokens.searchBackground, color(page)) >= MIN_HIGHLIGHT_CONTRAST, `search, ${label}`);
         assert.ok(contrastRatio(tokens.searchText, tokens.searchBackground) >= MIN_TEXT_CONTRAST, `search text, ${label}`);
-        assert.notEqual(toHex(tokens.searchBackground), toHex(pickHighlight([color(page)])), `distinct, ${label}`);
+        assert.notEqual(toHex(tokens.searchBackground), toHex(automaticHighlight([color(page)])), `distinct, ${label}`);
     }
     assert.equal(pageColorTokens(color('#ffffff'), color('#000000')).scheme, 'dark');
     assert.equal(pageColorTokens(color('#000000'), color('#faf4e1')).scheme, 'light');

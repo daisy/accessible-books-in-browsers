@@ -6,5 +6,6 @@ if [ "$#" -eq 0 ]; then
     set -- moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB notes-test
 fi
 for book do
-    npm run convert -- "../source-epubs/$book/" "../demos/$book" template --audio-cache
+    npm run convert -- "../source-epubs/$book/" "../demos/$book" template --audio-cache \
+        --audio-enhance warm-eq,compression,noise,deess,declick --small-audio
 done

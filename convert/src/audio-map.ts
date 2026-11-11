@@ -12,6 +12,8 @@ export type AudioMapPage = {
     title: string;
     start: number;
     duration: number;
+    // The page's narration file, when it has narration
+    audio?: string;
 };
 
 export type AudioMapChapter = {
@@ -20,12 +22,22 @@ export type AudioMapChapter = {
     time: number;
 };
 
+// Where a TOC entry's heading is spoken, in book time, so the TOC can play just the heading
+export type AudioMapTocEntry = {
+    href: string;
+    time: number;
+    end: number;
+};
+
 export type AudioMap = {
     version: 1;
     duration: number;
     pages: AudioMapPage[];
     chapters: AudioMapChapter[];
+    toc: AudioMapTocEntry[];
 };
+
+type MapCue = { id: string; selector?: import('./structure-ids.js').NarrationSelector; start: number };
 
 export type PageAudioMapSource = {
     audio: PageAudioAssets | null;
@@ -35,8 +47,10 @@ export type PageAudioMapSource = {
 function createAudioMap(site: SiteModel, sources: Map<string, PageAudioMapSource>): AudioMap | null {
     let elapsed = 0;
     const pages = site.pages.map(page => {
-        const duration = sources.get(page.outputFilename)?.audio?.duration ?? 0;
-        const mapped = { href: page.outputFilename, title: page.title, start: elapsed, duration };
+        const audio = sources.get(page.outputFilename)?.audio;
+        const duration = audio?.duration ?? 0;
+        const mapped: AudioMapPage = { href: page.outputFilename, title: page.title, start: elapsed, duration };
+        if (audio && duration > 0) mapped.audio = audio.audioHref;
         elapsed += duration;
         return mapped;
     });
@@ -64,7 +78,64 @@ function createAudioMap(site: SiteModel, sources: Map<string, PageAudioMapSource
         lastTime = time;
     }
 
-    return { version: 1, duration: elapsed, pages, chapters };
+    return { version: 1, duration: elapsed, pages, chapters, toc: tocNarration(site.toc, pageByHref, sources) };
+}
+
+// Every TOC entry, at every level, whose heading has narration
+function tocNarration(
+    toc: SiteModel['toc'],
+    pageByHref: Map<string, AudioMapPage>,
+    sources: Map<string, PageAudioMapSource>
+): AudioMapTocEntry[] {
+    const parsed = new Map<string, { doc: Document; cueElements: Array<Element | null> }>();
+    const entries: AudioMapTocEntry[] = [];
+    const visit = (entry: SiteModel['toc'][number]) => {
+        const pageHref = entry.href ? utils.getWithoutFrag(entry.href) : '';
+        const page = pageByHref.get(pageHref);
+        const audio = sources.get(pageHref)?.audio;
+        if (entry.href && page && page.duration > 0 && audio?.cues.length) {
+            let pageDoc = parsed.get(pageHref);
+            if (!pageDoc) {
+                const doc = new JSDOM(`<body>${sources.get(pageHref)!.bodyHtml}</body>`).window.document;
+                pageDoc = { doc, cueElements: audio.cues.map(cue => cueElement(doc, cue)) };
+                parsed.set(pageHref, pageDoc);
+            }
+            const span = headingNarration(pageDoc.doc, utils.getFrag(entry.href), audio.cues, pageDoc.cueElements, page.duration);
+            if (span) entries.push({ href: entry.href, time: page.start + span.start, end: page.start + span.end });
+        }
+        entry.children.forEach(visit);
+    };
+    toc.forEach(visit);
+    return entries;
+}
+
+function cueElement(doc: Document, cue: MapCue): Element | null {
+    return cue.selector ? resolveNarrationSelector(doc, cue.selector) : doc.getElementById(cue.id);
+}
+
+// The cues that speak the heading at a TOC target (the target itself, or the first heading in it),
+// as page times from the first one's start to the next cue's. Without narration in a heading, the
+// first phrase at or after the target.
+function headingNarration(
+    doc: Document,
+    fragment: string,
+    cues: MapCue[],
+    cueElements: Array<Element | null>,
+    pageDuration: number
+): { start: number; end: number } | null {
+    const target = fragment ? doc.getElementById(fragment) : doc.body;
+    if (!target) return null;
+    const headings = 'h1, h2, h3, h4, h5, h6, [role="heading"]';
+    const heading = target.matches(headings) ? target : target.querySelector(headings);
+    const endOf = (index: number) => cues[index + 1]?.start ?? pageDuration;
+    if (heading) {
+        const inHeading = cueElements.flatMap((elm, index) =>
+            elm && (heading.contains(elm) || elm.contains(heading)) ? [index] : []);
+        if (inHeading.length) return { start: cues[inHeading[0]].start, end: endOf(inHeading[inHeading.length - 1]) };
+    }
+    const first = cueElements.findIndex(elm => elm && (elm === target || target.contains(elm)
+        || Boolean(target.compareDocumentPosition(elm) & target.DOCUMENT_POSITION_FOLLOWING)));
+    return first >= 0 ? { start: cues[first].start, end: endOf(first) } : null;
 }
 
 // The chapters are the TOC's top level, unless it holds fewer than two narrated entries (a book whose

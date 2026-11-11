@@ -3,12 +3,13 @@ import fs from 'fs-extra';
 import os from 'os';
 import path from 'path';
 import winston from 'winston';
-import type { MediaSegment } from './audio.js';
+import type { AudioEncodingSettings, MediaSegment } from './audio.js';
+import type { AudioCleanupSettings, AudioFindings } from './audio-cleanup.js';
 import * as utils from './utils.js';
 
 // Bump whenever mergeAudioSegments changes what it writes, so cached audio made the old way is
 // rebuilt rather than reused
-const MERGE_VERSION = 1;
+const MERGE_VERSION = 5;
 
 export type AudioCache = {
     // This book's folder in the cache
@@ -31,7 +32,9 @@ function openAudioCache(option: string | boolean | undefined, bookId: string): A
 
 // Everything that decides what the merged file contains: each clip's source file (by path, size
 // and modification time) and the times cut from it
-async function cacheKey(segments: MediaSegment[], audioExt: string): Promise<string> {
+async function cacheKey(
+    segments: MediaSegment[], encoding: AudioEncodingSettings, cleanup?: AudioCleanupSettings
+): Promise<string> {
     const files = new Map<string, { size: number; mtimeMs: number }>();
     for (const segment of segments) {
         const src = utils.getWithoutFrag(segment.src);
@@ -42,7 +45,8 @@ async function cacheKey(segments: MediaSegment[], audioExt: string): Promise<str
     }
     const description = {
         version: MERGE_VERSION,
-        audioExt,
+        encoding,
+        cleanup,
         files: Array.from(files.entries()),
         clips: segments.map(segment => [segment.src, segment.clipBegin.seconds, segment.clipEnd.seconds])
     };
@@ -57,18 +61,18 @@ async function restoreCachedAudio(
     segments: MediaSegment[],
     outPath: string,
     key: string
-): Promise<boolean> {
+): Promise<{ findings?: AudioFindings } | null> {
     try {
         const manifest = await fs.readJson(path.join(cache.dir, `${audioFilename}.json`));
         if (manifest.key !== key || !Array.isArray(manifest.durations) || manifest.durations.length !== segments.length) {
-            return false;
+            return null;
         }
         await fs.copy(path.join(cache.dir, audioFilename), outPath);
         segments.forEach((segment, i) => { segment.durOnDisk = manifest.durations[i]; });
         winston.info(`Reused cached audio for ${audioFilename}`);
-        return true;
+        return { findings: manifest.findings };
     } catch {
-        return false;
+        return null;
     }
 }
 
@@ -77,13 +81,15 @@ async function storeCachedAudio(
     audioFilename: string,
     segments: MediaSegment[],
     outPath: string,
-    key: string
+    key: string,
+    findings?: AudioFindings
 ): Promise<void> {
     try {
         await fs.ensureDir(cache.dir);
         await fs.copy(outPath, path.join(cache.dir, audioFilename));
         await fs.writeJson(path.join(cache.dir, `${audioFilename}.json`), {
             key,
+            findings,
             durations: segments.map(segment => segment.durOnDisk ?? null)
         });
     } catch (err) {
@@ -93,6 +99,7 @@ async function storeCachedAudio(
 
 export {
     cacheKey,
+    MERGE_VERSION,
     openAudioCache,
     restoreCachedAudio,
     storeCachedAudio

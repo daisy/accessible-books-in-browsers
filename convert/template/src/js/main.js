@@ -15,6 +15,8 @@ import { initNotesInPlace } from './notes-in-place.js';
 import { initAgentTools } from './agent-tools.js';
 import { initBrowserBookmarks } from './browser-bookmarks.js';
 import { initResponsiveTables } from './responsive-tables.js';
+import { initSkipLink } from './skip-link.js';
+import { initReaderActionNotice } from './reader-actions.js';
 
 initEscapability();
 initResumePosition();
@@ -38,6 +40,8 @@ initTocTree();
 initAgentTools();
 initBrowserBookmarks();
 initResponsiveTables();
+initSkipLink();
+initReaderActionNotice();
 // Last, so its click handler runs after the others have seen the click
 initInPlaceNavigation();
 

@@ -4,17 +4,29 @@ declare module 'fluent-ffmpeg' {
 
         type FfprobeData = {
             format: {
+                bit_rate?: string;
                 duration?: number;
             };
+            streams?: Array<{
+                bit_rate?: string;
+                channels?: number;
+                codec_name?: string;
+                codec_type?: string;
+                sample_rate?: string;
+            }>;
         };
 
         type FfprobeCallback = (err: Error | null, metadata: FfprobeData) => void;
 
         interface FfmpegCommand {
             audioChannels(channels: number): FfmpegCommand;
+            audioBitrate(bitrate: string | number): FfmpegCommand;
+            audioCodec(codec: string): FfmpegCommand;
             audioFilters(filters: string): FfmpegCommand;
+            audioFrequency(frequency: number): FfmpegCommand;
             input(filename: string): FfmpegCommand;
             inputOptions(options: string[]): FfmpegCommand;
+            outputOptions(options: string[]): FfmpegCommand;
             on(event: 'end', listener: () => void): FfmpegCommand;
             on(event: 'error', listener: (err: Error) => void): FfmpegCommand;
             on(event: 'progress', listener: (progress: Progress) => void): FfmpegCommand;

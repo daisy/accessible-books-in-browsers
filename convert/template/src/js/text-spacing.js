@@ -17,11 +17,25 @@ const SETTINGS = [
     { key: 'webbook-word-spacing', id: 'webbook-word-spacing-options', label: 'Word spacing',
         property: '--webbook-word-spacing', flag: 'data-webbook-word-spacing',
         steps: [['', 'Book default'], ['wider', 'Wider', '0.16em'], ['widest', 'Widest', '0.3em']] },
-    // In em, so it follows the text size
+    // Fractions of the width the text has (the window, less the page arrows beside the text), the
+    // same at any text size or spacing: Narrow half, Wide all of it, Medium halfway. See lineLength().
     { key: 'webbook-line-length', id: 'webbook-line-length-options', label: 'Line length',
         property: '--webbook-line-length',
-        steps: [['', 'Book default'], ['narrow', 'Narrow', '35em'], ['medium', 'Medium', '45em'], ['wide', 'Wide', '60em']] }
+        steps: [['', 'Book default'], ['narrow', 'Narrow', lineLength('narrow')], ['medium', 'Medium', lineLength('medium')],
+            ['wide', 'Wide', lineLength('wide')]] }
 ];
+
+// Percentages are of <main>'s grid area, resolved where <main> uses the value. Narrow is never
+// narrower than 20rem (or the whole width, on a smaller screen), so a phone isn't left a column of a
+// few words; Medium stays halfway between Narrow and Wide as they come out. Earlier versions counted
+// characters a line (em, then ch), and at large text sizes the steps ran into the window and
+// looked alike (user, 2026-11-10: "fractions of the window").
+function lineLength(step) {
+    const narrow = 'max(50%, min(100%, 20rem))';
+    if (step === 'narrow') return narrow;
+    if (step === 'wide') return '100%';
+    return `calc((${narrow} + 100%) / 2)`;
+}
 
 function stepFor(setting, value) {
     return setting.steps.find(([stepValue]) => stepValue === value) || setting.steps[0];
