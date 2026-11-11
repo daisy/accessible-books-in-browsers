@@ -284,14 +284,9 @@ function selfAnchorHeadings(doc: Document): void {
             && child.getAttribute('href') === `#${headingId}`
         );
         if (hasSelfAnchor) return;
-        // A heading with nothing to see (no text, no image) is one the publisher meant for screen
-        // readers only, e.g. <h1 class="blind" title="Copyright"></h1>: a link in it would be all
-        // that shows, labelled "Link to heading", and would become the heading's name
-        const text = (heading.textContent ?? '').trim().replace(/\s+/g, ' ');
-        if (!text && !heading.querySelector('img, svg, math, picture, video, canvas')) return;
 
         const anchor = doc.createElement('a');
-        const headingLabel = text || 'heading';
+        const headingLabel = (heading.textContent ?? '').trim().replace(/\s+/g, ' ') || 'heading';
         const anchorLabel = `Link to ${headingLabel}`;
         anchor.setAttribute('href', `#${headingId}`);
         anchor.setAttribute('rel', 'bookmark');
