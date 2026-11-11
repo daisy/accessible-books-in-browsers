@@ -115,13 +115,13 @@ export function handleMathCopy(event) {
 }
 
 export function equationButtonName(math) {
-    const host = math.closest('.disp-formula, figure, .equation');
-    const label = host?.querySelector('.label, .eqno, .equation-number, figcaption')?.textContent.trim();
+    const host = math.closest('.webbook-equation, .disp-formula, figure, .equation');
+    const label = host?.querySelector('.webbook-equation-number, .label, .eqno, .equation-number, figcaption')?.textContent.trim();
     return label && label.length < 80 ? `Copy equation ${label.replace(/^\((.*)\)$/, '$1')}` : 'Copy equation';
 }
 
 export function isDisplayEquation(math) {
-    if (math.getAttribute('display') === 'block' || math.closest('.disp-formula')) return true;
+    if (math.getAttribute('display') === 'block' || math.closest('.webbook-equation, .disp-formula')) return true;
     const block = math.closest('p, div, figure, li, td, main');
     if (!block || block.querySelectorAll('math').length !== 1) return false;
     const clone = block.cloneNode(true);

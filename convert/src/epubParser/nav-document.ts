@@ -42,6 +42,9 @@ async function parse(inputFilename: string, options: NavDocumentParseOptions = {
 
 function resolveNavHref(navFilename: string, href: string, warn?: (message: string) => void): string {
     const withoutFrag = utils.getWithoutFrag(href);
+    // A fragment-only URL names an element in the navigation document itself. It
+    // isn't an external URL or a reference to some other spine file.
+    if (!withoutFrag && href.startsWith('#')) return `${path.resolve(navFilename)}${href}`;
     if (!isLocalFileHref(withoutFrag)) {
         warn?.(`Nav document href is not a local file reference in ${navFilename}; leaving unchanged: ${href}`);
         return href;

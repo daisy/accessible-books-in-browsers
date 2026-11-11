@@ -109,13 +109,18 @@ export function applyStructureIds(
     doc: Document,
     narrationTargetIds: string[],
     navigationIds: Iterable<string> = [],
-    keepAllIds = false
+    keepAllIds = false,
+    afterIdRemoval?: (narratedTargets: ReadonlySet<Element>) => void
 ): Map<string, NarrationSelector> {
     const targets = new Map(narrationTargetIds.map(id => [id, doc.getElementById(id)]));
     for (const [id, target] of targets) {
         if (!target) throw new Error(`Narration target #${id} was not found in the transformed page`);
     }
-    if (keepAllIds) return new Map(narrationTargetIds.map(id => [id, { type: 'FragmentSelector', value: id }]));
+    const narratedTargets = new Set(Array.from(targets.values()) as Element[]);
+    if (keepAllIds) {
+        afterIdRemoval?.(narratedTargets);
+        return new Map(narrationTargetIds.map(id => [id, { type: 'FragmentSelector', value: id }]));
+    }
 
     removeRepeatedIds(doc);
     addGeneratedStructureIds(doc);
@@ -124,10 +129,13 @@ export function applyStructureIds(
     doc.querySelectorAll('[id]').forEach(elm => {
         if (elm.matches(STRUCTURE_SELECTOR) || referenced.has(elm.id) || elm.closest('svg, math')) kept.add(elm.id);
     });
+    doc.querySelectorAll('[id]').forEach(elm => { if (!kept.has(elm.id)) elm.removeAttribute('id'); });
+    // Empty anchors can only be identified once ids have been retained or removed.
+    // Build paths afterwards, so unwrapping one cannot invalidate narration selectors.
+    afterIdRemoval?.(narratedTargets);
     const main = doc.querySelector('main') || doc.body;
     const selectors = new Map<string, NarrationSelector>();
     for (const [id, target] of targets as Map<string, Element>) selectors.set(id, selectorFor(target, kept, main));
-    doc.querySelectorAll('[id]').forEach(elm => { if (!kept.has(elm.id)) elm.removeAttribute('id'); });
     for (const [id, selector] of selectors) {
         if (resolveNarrationSelector(doc, selector) !== targets.get(id)) {
             throw new Error(`Narration selector for #${id} did not resolve to its original element`);

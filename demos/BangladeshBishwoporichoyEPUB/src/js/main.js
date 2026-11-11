@@ -19,6 +19,7 @@ import { initSkipLink } from './skip-link.js';
 import { initReaderActionNotice } from './reader-actions.js';
 import { initSettingsTransfer } from './settings-transfer.js';
 import { initCopyContent } from './copy-content.js';
+import { initResponsiveEquations } from './responsive-equations.js';
 
 initEscapability();
 initResumePosition();
@@ -36,6 +37,7 @@ initPopoverActions();
 initCurrentPrintPage();
 initNotesInPlace();
 initCopyContent();
+initResponsiveEquations();
 initSettingsTransfer();
 initKeyboardShortcuts();
 initKeyboardShortcutEditorButton();

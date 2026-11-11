@@ -17,6 +17,25 @@
   },
   "changes": [
     {
+      "kind": "Chapter boundaries kept outside blocks",
+      "count": 13,
+      "pages": {
+        "package-3-5.html": 1,
+        "package-3-6.html": 1,
+        "package-3-7.html": 1,
+        "package-3-10.html": 1,
+        "package-3-11.html": 1,
+        "package-3-12.html": 1,
+        "package-3-13.html": 1,
+        "package-3-14.html": 1,
+        "package-3-15.html": 1,
+        "package-3-16.html": 1,
+        "package-3-17.html": 1,
+        "package-3-18.html": 1,
+        "package-3-19.html": 1
+      }
+    },
+    {
       "kind": "Empty paragraphs removed",
       "count": 2,
       "pages": {

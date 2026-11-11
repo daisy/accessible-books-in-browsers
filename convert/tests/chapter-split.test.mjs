@@ -45,7 +45,7 @@ test('chooses the shallowest TOC depth with at least two valid targets', () => {
     assert.equal(planDocumentSplit(doc, [{ depth: 1, fragment: 'top', title: 'Top' }]), undefined);
 });
 
-test('lifts a heading boundary to its section but not an inline target', () => {
+test('lifts boundaries to preserve whole headings and paragraphs', () => {
     const sectionDoc = documentFor('<section class="chapter"><h2 id="a">A</h2><p>One</p></section><section class="chapter"><h2 id="b">B</h2><p>Two</p></section>');
     const sectionPlan = planDocumentSplit(sectionDoc, [
         { depth: 1, fragment: 'a', title: 'A' }, { depth: 1, fragment: 'b', title: 'B' }
@@ -58,10 +58,10 @@ test('lifts a heading boundary to its section but not an inline target', () => {
     const inlinePlan = planDocumentSplit(inlineDoc, [
         { depth: 1, fragment: 'a', title: 'A' }, { depth: 1, fragment: 'b', title: 'B' }
     ]);
-    assert.equal(inlinePlan.leading, true);
-    const inlineChapter = extractDocumentPiece(inlineDoc, inlinePlan, 1);
+    assert.equal(inlinePlan.leading, false);
+    const inlineChapter = extractDocumentPiece(inlineDoc, inlinePlan, 0);
     assert.equal(inlineChapter.body.firstElementChild?.localName, 'p');
-    assert.match(inlineChapter.body.textContent, /A after/);
+    assert.equal(inlineChapter.body.textContent, 'Before A after.');
 });
 
 test('keeps a leading page only when it has meaningful content', () => {
@@ -78,6 +78,39 @@ test('keeps a leading page only when it has meaningful content', () => {
     ]);
     assert.equal(introPlan.leading, true);
     assert.equal(introPlan.pieces, 3);
+});
+
+test('TOC targets never split an indivisible block, including nested table cells', () => {
+    for (const fragment of [
+        '<h2><span>1</span> <a id="b"></a>Introduction</h2>',
+        '<p>Before <a id="b"></a>after.</p>',
+        '<ul><li>Before <a id="b"></a>after.</li></ul>',
+        '<table><tr><td>Before <a id="b"></a>after.</td></tr></table>',
+        '<figure><p>Before <a id="b"></a>after.</p></figure>',
+        '<dl><dt>Before <a id="b"></a>after.</dt></dl>',
+        '<dl><dd>Before <a id="b"></a>after.</dd></dl>',
+        '<blockquote><p>Before <a id="b"></a>after.</p></blockquote>'
+    ]) {
+        const original = documentFor(`<h1 id="a">First</h1><p>Earlier</p><section id="second">${fragment}</section>`);
+        const plan = planDocumentSplit(original, [{ depth: 1, fragment: 'a', title: 'First' }, { depth: 1, fragment: 'b', title: 'Second' }]);
+        assert.equal(plan.leading, false);
+        const before = extractDocumentPiece(documentFor(original.body.innerHTML), plan, 0);
+        const after = extractDocumentPiece(documentFor(original.body.innerHTML), plan, 1);
+        assert.equal(before.body.textContent, 'FirstEarlier');
+        assert.equal(after.querySelector('section').id, 'second');
+        assert.equal(after.querySelector('section').innerHTML, original.querySelector('section').innerHTML);
+        assert.equal(pieceForElement(original, plan, original.getElementById('b')), 1);
+    }
+});
+
+test('two TOC entries in one block share a page instead of making an empty or partial piece', () => {
+    const doc = documentFor('<h2><span id="a">One</span> and <span id="alias">Two</span></h2><h2 id="b">Three</h2>');
+    const warnings = [];
+    const plan = planDocumentSplit(doc, ['a', 'alias', 'b'].map(fragment => ({ depth: 1, fragment, title: fragment })), warning => warnings.push(warning));
+    assert.deepEqual(plan.cutIds, ['a', 'b']);
+    assert.equal(plan.pieces, 2);
+    assert.equal(pieceForElement(doc, plan, doc.getElementById('alias')), 0);
+    assert.match(warnings[0], /indivisible block/);
 });
 
 test('Range cloning preserves wrappers and body attributes while ids remain unique', () => {

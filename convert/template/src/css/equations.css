@@ -1,0 +1,54 @@
+/* A semantic equation/number pair, identified during conversion without publisher classes.
+   Grid placement changes the visual order only; the publication's DOM order stays intact. */
+main math {
+    max-width: 100%;
+    overflow-x: auto;
+}
+/* Display equations already have an outer scrolling region. Keep their natural
+   width inside it instead of nesting another scrollbar on the MathML root. */
+main :is(table, .webbook-equation-scroll, .webbook-copy-source) math {
+    max-width: none;
+    overflow: visible;
+}
+main .webbook-equation {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .5em .75em;
+    max-width: 100%;
+    min-width: 0;
+    margin-block: 1em;
+    container-type: inline-size;
+}
+main .webbook-equation-number {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    white-space: nowrap;
+}
+main .webbook-equation-scroll {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    text-align: center;
+    padding-block: .25em;
+}
+main .webbook-equation-scroll:focus-visible {
+    outline: 3px solid var(--webbook-focus-color);
+    outline-offset: 2px;
+}
+main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-number {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll {
+    grid-column: 1 / -1;
+}
+/* Useful even without JavaScript, and follows the containing equation's font size. */
+@container (max-width: 30em) {
+    main .webbook-equation-number { grid-column: 1 / -1; grid-row: 2; }
+    main .webbook-equation-scroll { grid-column: 1 / -1; }
+}

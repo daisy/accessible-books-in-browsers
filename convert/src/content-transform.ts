@@ -12,6 +12,7 @@ import { applyStructureIds, type NarrationSelector } from './structure-ids.js';
 import { cleanPublicationMarkup, renameCollidingIds } from './markup-cleanup.js';
 import { cssReferencedIds, isExternalHref } from './ids.js';
 import type { ConversionReport } from './conversion-report.js';
+import { cleanLeftoverAnchors } from './conversion-rules.js';
 
 export type TransformedContent = {
     bodyAttributes: Array<{ name: string; value: string }>;
@@ -45,7 +46,7 @@ async function transformContent(
     stripXmlNamespaceAttributes(doc);
     translateEpubTypes(doc);
     rewriteImageReferences(doc, page, imageRegistry);
-    selfAnchorHeadings(doc);
+    ensureHeadingIds(doc);
     if (page.split) extractDocumentPiece(doc, page.split, page.split.piece);
     removeIdsOwnedByOtherPages(doc, page, site);
     rewriteInternalLinks(doc, page, site);
@@ -54,21 +55,33 @@ async function transformContent(
         ...externallyReferencedIds,
         ...await stylesheetReferencedIds(doc, page.sourcePath)
     ];
-    if (cleanupOptions) {
-        cleanPublicationMarkup(doc, {
-            bookLanguage: site.metadata.language,
-            cleanup: cleanupOptions.cleanup,
-            page: page.outputFilename,
-            protectedIds: navigationIds,
-            narratedTargetIds,
-            responsiveTables: cleanupOptions.responsiveTables,
-            report: cleanupOptions.report
-        });
+    const markupOptions = cleanupOptions ? {
+        bookLanguage: site.metadata.language,
+        cleanup: cleanupOptions.cleanup,
+        page: page.outputFilename,
+        protectedIds: navigationIds,
+        narratedTargetIds,
+        responsiveTables: cleanupOptions.responsiveTables,
+        report: cleanupOptions.report
+    } : undefined;
+    if (markupOptions) cleanPublicationMarkup(doc, markupOptions);
+    if (markupOptions?.cleanup) {
+        const emptyHeadings = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'))
+            .filter(heading => !(heading.textContent ?? '').trim()).length;
+        markupOptions.report.change('Empty heading permalinks omitted', page.outputFilename, emptyHeadings);
+    }
+    selfAnchorHeadings(doc, cleanupOptions?.cleanup === true);
+    if (page.split && cleanupOptions) {
+        const cut = page.split.cutIds[page.split.piece - (page.split.leading ? 1 : 0)];
+        if (cut && page.split.blockBoundaryIds?.includes(cut)) {
+            cleanupOptions.report.change('Chapter boundaries kept outside blocks', page.outputFilename);
+        }
     }
     if (searchData) collectSearchPassages(searchData, doc, page, narratedTargetIds);
     // The CSS paths in narration selectors are worked out here, on the cleaned-up markup, which
     // is what the book contains
-    const narrationSelectors = applyStructureIds(doc, narratedTargetIds, navigationIds, keepAllIds);
+    const narrationSelectors = applyStructureIds(doc, narratedTargetIds, navigationIds, keepAllIds,
+        markupOptions?.cleanup ? targets => cleanLeftoverAnchors(doc, markupOptions, targets) : undefined);
     // After the structure-id pass, so only ids that stay in the book are renamed
     const renamedIds = cleanupOptions?.cleanup
         ? renameCollidingIds(doc, narrationSelectors, cleanupOptions.reservedIds, page.outputFilename, cleanupOptions.report)
@@ -269,10 +282,11 @@ function rewriteSrcset(srcset: string, sourcePath: string, imageRegistry: ImageA
         .join(', ');
 }
 
-function selfAnchorHeadings(doc: Document): void {
+function selfAnchorHeadings(doc: Document, skipEmpty = false): void {
     ensureHeadingIds(doc);
     const headings = Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6'));
     headings.forEach(heading => {
+        if (skipEmpty && !(heading.textContent ?? '').trim()) return;
         const headingId = heading.id;
         // Same-page anchor targets aren't natively focusable, so activating a link to one
         // is normally a silent no-op for a screen reader user (no scroll, no focus change,

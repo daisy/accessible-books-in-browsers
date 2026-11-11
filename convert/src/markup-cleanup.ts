@@ -1,6 +1,7 @@
 import type { ConversionReport } from './conversion-report.js';
 import { IDREF_ATTRIBUTES, decodeFragment, referencedIds, uniqueId } from './ids.js';
 import type { NarrationSelector } from './structure-ids.js';
+import { repairHeadingTitles, markNumberedEquations } from './conversion-rules.js';
 
 export type MarkupCleanupOptions = {
     bookLanguage: string;
@@ -15,11 +16,13 @@ export type MarkupCleanupOptions = {
 // Ids are renamed separately, after the structure-id pass (renameCollidingIds), so only ids that
 // stay in the book are renamed
 export function cleanPublicationMarkup(doc: Document, options: MarkupCleanupOptions): void {
+    if (options.cleanup) repairHeadingTitles(doc, options);
     analyzeWarnings(doc, options);
     const protectedIds = referencedIds(doc, [...options.protectedIds, ...options.narratedTargetIds]);
 
     if (options.cleanup) {
         repairLanguages(doc, options);
+        markNumberedEquations(doc, options);
         unwrapEmptySpans(doc, options);
         removeEmptyParagraphs(doc, protectedIds, options);
         addHeaderScopes(doc, options);

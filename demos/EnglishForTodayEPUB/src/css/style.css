@@ -125,9 +125,12 @@ body {
 
     display: grid;
     grid-template-areas:
-        "topbar topbar topbar"
-        "prev main next"
-        "toolbar toolbar toolbar";
+        "topbar"
+        "main"
+        "toolbar";
+    /* Spine arrows are fixed over the viewport margins, outside this grid. One
+       flexible column also keeps no-JS navigation from squeezing the book's text. */
+    grid-template-columns: minmax(0, 1fr);
     /* without this, a short page stretches every row to fill the viewport, toolbar rows included */
     grid-template-rows: auto 1fr auto;
 }
@@ -167,6 +170,8 @@ body {
 /* publication text */
 main {
     grid-area: main;
+    box-sizing: border-box;
+    width: 100%;
     /* the Line length setting (text-spacing.js): a fraction of the width the text has */
     max-width: var(--webbook-line-length, 45rem);
     margin: auto;
@@ -1892,5 +1897,61 @@ main [data-webbook-copy-scroll]:focus-visible,
 main .webbook-copy-button:focus-visible {
     outline: 2px solid var(--webbook-focus-color);
     outline-offset: 3px;
+}
+
+/* equations.css */
+/* A semantic equation/number pair, identified during conversion without publisher classes.
+   Grid placement changes the visual order only; the publication's DOM order stays intact. */
+main math {
+    max-width: 100%;
+    overflow-x: auto;
+}
+/* Display equations already have an outer scrolling region. Keep their natural
+   width inside it instead of nesting another scrollbar on the MathML root. */
+main :is(table, .webbook-equation-scroll, .webbook-copy-source) math {
+    max-width: none;
+    overflow: visible;
+}
+main .webbook-equation {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .5em .75em;
+    max-width: 100%;
+    min-width: 0;
+    margin-block: 1em;
+    container-type: inline-size;
+}
+main .webbook-equation-number {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    white-space: nowrap;
+}
+main .webbook-equation-scroll {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    text-align: center;
+    padding-block: .25em;
+}
+main .webbook-equation-scroll:focus-visible {
+    outline: 3px solid var(--webbook-focus-color);
+    outline-offset: 2px;
+}
+main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-number {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll {
+    grid-column: 1 / -1;
+}
+/* Useful even without JavaScript, and follows the containing equation's font size. */
+@container (max-width: 30em) {
+    main .webbook-equation-number { grid-column: 1 / -1; grid-row: 2; }
+    main .webbook-equation-scroll { grid-column: 1 / -1; }
 }
 

@@ -1,6 +1,6 @@
 # Conversion report
 
-Changes: 90. Warnings for review: 41. Optional checks: Ace not requested, axe not requested.
+Changes: 103. Warnings for review: 41. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
 
@@ -51,7 +51,23 @@ Loudness range before cleanup: 0.8 LU.
 - package-3-22.html: -25.3 LUFS; peak -4.5 dBFS; quietest stretch below measurement floor; clipping samples 0
 - package-3-23.html: -25.4 LUFS; peak -3.6 dBFS; quietest stretch below measurement floor; clipping samples 0
 
-## Changes (90)
+## Changes (103)
+
+### Chapter boundaries kept outside blocks (13)
+
+- package-3-5.html: 1
+- package-3-6.html: 1
+- package-3-7.html: 1
+- package-3-10.html: 1
+- package-3-11.html: 1
+- package-3-12.html: 1
+- package-3-13.html: 1
+- package-3-14.html: 1
+- package-3-15.html: 1
+- package-3-16.html: 1
+- package-3-17.html: 1
+- package-3-18.html: 1
+- package-3-19.html: 1
 
 ### Empty paragraphs removed (2)
 
