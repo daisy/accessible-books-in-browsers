@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting } from './settings-sections.js';
 import { getActions, runAction, initReaderActionStatus } from './reader-actions.js';
 import { keyboardShortcutsEnabled } from './settings.js';
 import { isAnyPopoverOpen, isTextEntryTarget } from './dom-utils.js';
@@ -39,7 +41,7 @@ export function keySpecForEvent(event) {
     return { code: event.code, shift: event.shiftKey, alt: event.altKey, ctrl: event.ctrlKey, meta: event.metaKey };
 }
 
-function normalizeKeySpec(spec) {
+export function normalizeKeySpec(spec) {
     if (!spec || typeof spec !== 'object' || typeof spec.code !== 'string') return null;
     if (!Object.hasOwn(KEY_NAMES, spec.code) && !/^(Key[A-Z]|Digit[0-9]|Numpad[0-9]|F([1-9]|1[0-9]|2[0-4]))$/.test(spec.code)) return null;
     if (MODIFIERS.some(name => spec[name] !== undefined && typeof spec[name] !== 'boolean')) return null;
@@ -216,7 +218,7 @@ export function initKeyboardShortcutEditorButton() {
     openButton.type = 'button';
     openButton.textContent = 'Change keyboard shortcuts';
     openRow.append(openButton);
-    toggle.closest('div').after(openRow);
+    appendSetting('keyboard', openRow);
     openButton.addEventListener('click', async () => {
         const { openKeyboardShortcutEditor } = await import('./keyboard-shortcut-settings.js');
         openKeyboardShortcutEditor(openButton);

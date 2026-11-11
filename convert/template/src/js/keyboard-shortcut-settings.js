@@ -6,7 +6,8 @@ const ACTION_ORDER = [
     'play-pause', 'previous-phrase', 'next-phrase', 'go-to-narration', 'play-from-here', 'skip-past', 'rate-down', 'rate-up',
     'previous-page', 'next-page',
     'open-toc', 'open-settings', 'open-goto-page', 'open-search', 'open-about',
-    'font-smaller', 'font-larger', 'toggle-caption-mode'
+    'font-smaller', 'font-larger', 'toggle-caption-mode',
+    'export-settings', 'import-settings', 'reset-settings'
 ];
 
 // Loaded the first time the reader opens the editor (keyboard-shortcuts.js adds the button), and
@@ -149,7 +150,7 @@ function buildEditor(openButton, settings) {
         announce(`Press the new shortcut for ${action.label}, or Escape to cancel.`);
     }
 
-    for (const group of ['Narration', 'Navigation', 'Panels', 'Reading']) {
+    for (const group of ['Narration', 'Navigation', 'Panels', 'Reading', 'Settings']) {
         const actions = getActions()
             .filter(action => action.group === group)
             .sort((first, second) => ACTION_ORDER.indexOf(first.id) - ACTION_ORDER.indexOf(second.id));

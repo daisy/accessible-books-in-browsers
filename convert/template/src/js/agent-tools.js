@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting, settingsSection } from './settings-sections.js';
 import { getActions, runAction, announceReaderAction } from './reader-actions.js';
 import { navigateTo } from './in-place-navigation.js';
 import { currentTocEntry } from './popovers.js';
@@ -304,7 +306,7 @@ function unregisterTools() {
 
 function createSetting() {
     if (!modelContext()?.registerTool) return;
-    const fieldset = document.querySelector('#webbook-settings fieldset');
+    const fieldset = settingsSection('all');
     if (!fieldset || document.getElementById('webbook-agent-tools-toggle')) return;
     const row = document.createElement('div');
     row.className = 'webbook-agent-tools-row';
@@ -321,7 +323,7 @@ function createSetting() {
         else unregisterTools();
     });
     row.append(label, settingToggle);
-    fieldset.append(row);
+    appendSetting('all', row);
 }
 
 export function initAgentTools() {

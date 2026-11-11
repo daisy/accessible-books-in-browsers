@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting, settingsSection } from './settings-sections.js';
 import { announceReaderAction, registerAction } from './reader-actions.js';
 import { readSetting, writeSetting } from './stored-settings.js';
 
@@ -67,12 +69,12 @@ export function initToolbarAutoHide() {
     });
 }
 
-// The UI creates this setting itself, after Blur background behind dialogs, so books converted
+// The UI creates this setting itself, so books converted
 // before it existed get it too
 function buildAutoHideSetting() {
     const existing = document.getElementById('webbook-toolbar-auto-hide-toggle');
     if (existing) return existing;
-    const fieldset = document.querySelector('#webbook-settings fieldset');
+    const fieldset = settingsSection('text');
     if (!fieldset) return null;
     const row = document.createElement('div');
     row.id = 'webbook-toolbar-auto-hide';
@@ -83,8 +85,6 @@ function buildAutoHideSetting() {
     toggle.type = 'checkbox';
     toggle.id = 'webbook-toolbar-auto-hide-toggle';
     row.append(label, toggle);
-    const blurRow = document.getElementById('webbook-dialog-blur-toggle')?.closest('div');
-    if (blurRow?.parentElement === fieldset) blurRow.after(row);
-    else fieldset.append(row);
+    appendSetting('text', row);
     return toggle;
 }

@@ -9,3 +9,7 @@ slides
 output.log
 dev.md
 demos2
+
+# Math book, temporarily excluded
+/demos/math-optimization-ml/
+/source-epubs/math-optimization-ml/

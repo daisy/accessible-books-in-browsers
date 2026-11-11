@@ -2,43 +2,61 @@
 
 [Github project page](https://github.com/daisy/accessible-books-in-browsers)
 
-## About 
+## About
 
-Transform EPUB into a series of HTML files for reading directly in the browser, with built-in Media Overlays support too.
+Turns an EPUB into a book you read in the browser: plain HTML pages, one per chapter, with a
+reading interface on top. Books with narration (EPUB Media Overlays) play it with the phrase being
+read highlighted. A converted book is a folder of static files you can host anywhere, and it reads
+without JavaScript too. See an [example fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick).
 
-By default, the converter splits a content document containing several chapters into one page per
-chapter at its table of contents entries. Use `--no-split-chapters` to preserve the source content
-documents as pages. Heading-based page titles are also on by default; use `--no-heading-titles` to
-turn them off. Multiple top-level entries always identify chapters; nested entries are used as
-chapter boundaries only in long content documents (at least 50 KiB), so ordinary chapter files
-are not split into their subsections.
+## Features at a glance
 
-See an [example fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick)):
+**Reading**
+- **Narration** with the phrase highlighted, carrying on from page to page, also with the screen
+  locked; a timeline for the whole book; time left in the chapter and the book; speed control; the
+  phone's lock screen and media keys.
+- **Caption mode:** the phrase being read, large, alone on the screen.
+- **Getting around:** the book's table of contents as a tree, with a filter; go to print page;
+  previous and next page and phrase; search across the book, in any language.
+- **Your place:** reopening a book resumes where you were, and the address always points at the
+  reading position, so browser bookmarks and copied links return there.
+- **Notes:** follow a note reference and come back to exactly where you were; narration reads the
+  note and returns.
+- **Skipping:** leave a table, list, figure, sidebar or note with one key; skip page numbers, notes
+  or sidebars altogether.
+- **Metadata summary:** About gives the book's title, author, date, cover and your progress
+  through it, and the publisher's accessibility information: ways of reading, conformance and more.
 
-After conversion, the original EPUB is rewritten as:
+**Making it yours**
+- Colors (automatic light or dark, reviewed pairs, or your own), highlight color and style, font,
+  text size, line, letter and word spacing, and line length.
+- Keyboard shortcuts for every action, which you can change; toolbars that hide or stay.
+- Settings apply to every book on the same website, and can be exported and imported.
+- Structure sounds (off by default): tones at headings, notes, lists and tables.
 
-- HTML files with the original contents, plus reading interface controls and links to the TOC, Previous, and Next pages.
-- An About page containing publication metainformation, and the publisher's accessibility information presented as the W3C [Accessibility Metadata Display Guide](https://w3c.github.io/cg-reports/publishingcg/CG-FINAL-a11y-display-guidelines-20250422/) describes
-- A TOC based on the original EPUB Nav Document
+**Accessibility**
+- Built and checked against WCAG 2.2 AA: a skip link, controls in reading order, shortcuts that
+  avoid screen reader commands, and an automated axe check of every demo page.
+- The publisher's accessibility information in About, as the W3C [Accessibility Metadata Display
+  Guide](https://w3c.github.io/cg-reports/publishingcg/CG-FINAL-a11y-display-guidelines-20250422/)
+  describes.
+- Every page reads without JavaScript, with the browser's own audio player.
 
-Media Overlays conversion adds the following:
-- Creation of one audio file per HTML page
-- Embedding that audio file in the HTML page
-- A VTT file containing the phrase timing information for that audio file
+**Experimental**
+- **AI assistants (WebMCP):** an AI assistant in the browser can move through the book, control
+  narration and settings, and search and read it. WebMCP is an experimental browser API, available
+  only for testing in Chrome and Edge for now; see [AI assistants in the browser](#ai-assistants-in-the-browser-experimental).
 
+**The converter**
+- Splits documents that hold several chapters into a page per chapter; titles pages by their
+  headings; keeps only meaningful ids.
+- Cleans up markup (language tags, empty spans, header cells) and reports what a person should
+  review, such as images all marked decorative or broken links; optionally runs Ace and axe.
+- Narration: one audio file per page, encoded once, cleaned up (rumble, plosive pops, even
+  loudness), and optionally small for offline reading or expensive data.
 
-## Latest
-
-September 2026
-
-* The converter has been rewritten around a clean parse-once, render-once pipeline, resulting in faster conversions.
-* Accessibility fixes based on direct feedback from screen reader testers: 
-  * proper ARIA roles for footnotes, endnotes, and pagebreaks; 
-  * accessible names and values on sliders and sidebars; 
-  * a single-keystroke way to skip past tables, lists, and footnotes during narration; 
-  * heading permalinks that are more usable by screen reader users. 
-
-See [Reading features](#reading-features) and [Keyboard shortcuts](#keyboard-shortcuts) below.
+See [Reading features](#reading-features), [Keyboard shortcuts](#keyboard-shortcuts) and
+[Converting a book](#converting-a-book) below.
 
 ## Demos
 
@@ -77,16 +95,27 @@ Test books:
   numbers, notes and sidebars can be skipped altogether (footnotes and endnotes are by default).
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
   out of lists and tables, just before the phrase.
-- **Settings:**
-  - **Colors:** automatic (the system's light or dark), light or dark; reviewed pairs, each at least 7:1; or
-    custom, with automatic black or white text. Per book, or shared with other books.
-  - **Highlight:** a color chosen to stand out from the page (or your own) and a style:
-    background, underline or both.
-  - **Text:** font, size, and line, letter and word spacing and line length, up to WCAG 1.4.12's
-    values.
-  - **Narration:** speed, and caption mode, the narrated text full screen.
-  - **Toolbars:** hide automatically (the default: they fade a few seconds after you last move
-    the mouse, touch or press a key), or stay on screen. For every book.
+- **Settings:** all sections stay open, with a **Jump to** list at the top. Every preference applies
+  to all books on the same website.
+  - **Colors:** automatic (system light or dark), light or dark, reviewed pairs, or custom colors
+    with automatic black or white text; highlight color and background, underline or both.
+  - **Text:** font, size, line, letter and word spacing, line length, dialog backdrop blur, and
+    whether toolbars hide automatically or stay visible.
+  - **Narration:** playback rate, caption mode (also works with text without narration), skip page
+    numbers, footnotes and endnotes, notes or sidebars, and structure sounds.
+  - **Notes:** what to do at a phrase with notes, and whether to return to the text after a note.
+  - **Reading position:** resume last position on open.
+  - **Keyboard:** enable shortcuts and open the shortcut editor.
+  - **All settings:** AI assistant control (where supported), export, import, and reset with a
+    second press to confirm.
+
+**Moving your settings:** choose **Export settings** in **All settings** to download
+`reader-settings.json`, then **Import settings** in another browser or on another device. The file
+includes all preferences and custom keyboard shortcuts, including the time display and contents
+depth; it excludes reading positions. Invalid files leave your settings unchanged. Import and reset
+refresh the current page, keeping your reading location and narration time. Otherwise preferences
+are saved in that browser, for books on the same website. **Reset all settings** restores defaults
+without removing your saved reading positions.
 
 ## Keyboard shortcuts
 
@@ -151,7 +180,7 @@ text, so search adds no ids to the book.
 - Accurate `lang` markup in the book helps search, as it helps display and screen reader
   pronunciation.
 
-## AI assistants in the browser
+## AI assistants in the browser (experimental)
 
 The reader progressively exposes WebMCP tools to AI assistants running in a browser that supports
 the experimental WebMCP API. An assistant can report the reading position, list or search the
@@ -196,6 +225,10 @@ and `template` the reader (`convert/template`). Only valid EPUBs are accepted.
 | `--small-audio` | Make narration smaller for offline reading or expensive data: mono 24 kHz MP3 at 32 kb/s, tuned for speech. |
 | `--no-audio-cleanup` | Leave narration levels and joins unchanged. By default the converter applies 5 ms fades at joins, removes rumble below 90 Hz, softens plosive pops (p, b), and normalizes every page to -18 LUFS with a -1.5 dBTP limit. |
 | `--audio-enhance <list>` | Add one or more comma-separated, optional narration filters: `warm-eq`, `compression`, `noise`, `deess`, or `declick`. These can alter the sound substantially, so compare them by ear. |
+
+Chapter splitting: several top-level table of contents entries in one document always mark
+chapters; nested entries are used only in long documents (at least 50 KiB), so ordinary chapter
+files aren't split into their subsections.
 
 Every conversion also writes `conversion-report.md` and `conversion-report.json`: the options used,
 the source and converted narration sizes and encoding settings, every change by page, and warnings

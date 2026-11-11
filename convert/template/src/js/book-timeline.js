@@ -1,3 +1,4 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { cancelSkipPreroll } from './skippability.js';
 import { announceReaderAction } from './reader-actions.js';
 

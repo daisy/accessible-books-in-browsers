@@ -17,6 +17,7 @@ import { initBrowserBookmarks } from './browser-bookmarks.js';
 import { initResponsiveTables } from './responsive-tables.js';
 import { initSkipLink } from './skip-link.js';
 import { initReaderActionNotice } from './reader-actions.js';
+import { initSettingsTransfer } from './settings-transfer.js';
 
 initEscapability();
 initResumePosition();
@@ -33,6 +34,7 @@ initPageActions();
 initPopoverActions();
 initCurrentPrintPage();
 initNotesInPlace();
+initSettingsTransfer();
 initKeyboardShortcuts();
 initKeyboardShortcutEditorButton();
 initSearchOnDemand();

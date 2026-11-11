@@ -1,3 +1,4 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { elmForCue } from './cue-selector.js';
 import { hideEscape } from './escapability.js';
 import { captionModeEnabled, showCaptionForCurrentState } from './caption-mode.js';

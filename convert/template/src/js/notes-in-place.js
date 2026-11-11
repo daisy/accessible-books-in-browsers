@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting, settingsSection } from './settings-sections.js';
 import { fetchPage, navigateTo } from './in-place-navigation.js';
 import { cueForElement, elmForCue } from './cue-selector.js';
 import { registerAction } from './reader-actions.js';
@@ -448,7 +450,7 @@ function buildUi() {
 
 // The UI creates these settings itself, so books converted before they existed get them too
 function buildSettings() {
-    const fieldset = document.querySelector('#webbook-settings fieldset');
+    const fieldset = settingsSection('notes');
     if (!fieldset || document.getElementById('webbook-note-references-options')) return;
     const referencesRow = document.createElement('div');
     const referencesLabel = document.createElement('label');
@@ -480,9 +482,8 @@ function buildSettings() {
     });
     returnRow.append(returnLabel, toggle);
 
-    const skipRow = document.querySelector('#webbook-skip-footnote-toggle')?.closest('div');
-    if (skipRow?.parentElement === fieldset) skipRow.after(referencesRow, returnRow);
-    else fieldset.append(referencesRow, returnRow);
+    appendSetting('notes', referencesRow);
+    appendSetting('notes', returnRow);
 }
 
 async function handleNoteClick(e, capturing) {

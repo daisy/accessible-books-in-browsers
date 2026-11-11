@@ -189,71 +189,68 @@
 
     <section popover id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
         <h2 id="webbook-settings-hd">Settings</h2>
-        <fieldset>
-            <legend class="sr-only">Reading settings</legend>
-            <div id="webbook-color">
-                <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
-                <input type="checkbox" id="webbook-highlight-auto-toggle" checked>
-                <label for="webbook-color-picker">Custom color</label>
-                <input type="color" id="webbook-color-picker" disabled>
-            </div>
-            <div id="webbook-font-size">
-                <label for="webbook-font-size-range">Font size</label>
-                <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
-                <p id="webbook-font-size-value">100%</p>
-                <button type="button" id="webbook-reset-font-size">Reset</button>
-            </div>
-            <div id="webbook-font-family">
-                <label for="webbook-font-family-options">Font</label>
-                <select id="webbook-font-family-options">
-                    <option value="system-ui">System UI</option>
-                    <option value="sans-serif">Sans-serif</option>
-                    <option value="serif">Serif</option>
-                </select>
-            </div>
-            <div id="webbook-appearance">
-                <label for="webbook-appearance-options">Appearance</label>
-                <select id="webbook-appearance-options">
-                    <option value="auto">Auto (system)</option>
-                    <option value="dark">Dark</option>
-                    <option value="light">Light</option>
-                </select>
-            </div>
-            <div>
-                <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
-                <input type="checkbox" id="webbook-dialog-blur-toggle" checked>
-            </div>
-            <div>
-                <label for="webbook-caption-mode-toggle">Caption mode</label>
-                <input type="checkbox" id="webbook-caption-mode-toggle">
-            </div>
-            <div id="webbook-rate">
-                <label for="webbook-rate-range">Playback rate</label>
-                <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
-                <p id="webbook-rate-value">100%</p>
-                <button type="button" id="webbook-reset-rate">Reset</button>
-            </div>
-            <div>
-                <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
-                <input type="checkbox" id="webbook-skip-pagebreak-toggle">
-            </div>
-            <div>
-                <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
-                <input type="checkbox" id="webbook-skip-footnote-toggle">
-            </div>
-            <div>
-                <label for="webbook-skip-note-toggle">Skip notes</label>
-                <input type="checkbox" id="webbook-skip-note-toggle">
-            </div>
-            <div>
-                <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
-                <input type="checkbox" id="webbook-skip-sidebar-toggle">
-            </div>
-            <div>
-                <label for="webbook-resume-toggle">Resume last position on open</label>
-                <input type="checkbox" id="webbook-resume-toggle" checked>
-            </div>
-        </fieldset>
+        <div id="webbook-color">
+            <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+            <input type="checkbox" id="webbook-highlight-auto-toggle" checked>
+            <label for="webbook-color-picker">Custom color</label>
+            <input type="color" id="webbook-color-picker" disabled>
+        </div>
+        <div id="webbook-font-size">
+            <label for="webbook-font-size-range">Font size</label>
+            <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+            <p id="webbook-font-size-value">100%</p>
+            <button type="button" id="webbook-reset-font-size">Reset</button>
+        </div>
+        <div id="webbook-font-family">
+            <label for="webbook-font-family-options">Font</label>
+            <select id="webbook-font-family-options">
+                <option value="system-ui">System UI</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="serif">Serif</option>
+            </select>
+        </div>
+        <div id="webbook-appearance">
+            <label for="webbook-appearance-options">Appearance</label>
+            <select id="webbook-appearance-options">
+                <option value="auto">Auto (system)</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </div>
+        <div>
+            <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+            <input type="checkbox" id="webbook-dialog-blur-toggle" checked>
+        </div>
+        <div>
+            <label for="webbook-caption-mode-toggle">Caption mode</label>
+            <input type="checkbox" id="webbook-caption-mode-toggle">
+        </div>
+        <div id="webbook-rate">
+            <label for="webbook-rate-range">Playback rate</label>
+            <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+            <p id="webbook-rate-value">100%</p>
+            <button type="button" id="webbook-reset-rate">Reset</button>
+        </div>
+        <div>
+            <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+            <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-footnote-toggle">Skip footnotes &amp; endnotes</label>
+            <input type="checkbox" id="webbook-skip-footnote-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-note-toggle">Skip notes</label>
+            <input type="checkbox" id="webbook-skip-note-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+            <input type="checkbox" id="webbook-skip-sidebar-toggle">
+        </div>
+        <div>
+            <label for="webbook-resume-toggle">Resume last position on open</label>
+            <input type="checkbox" id="webbook-resume-toggle" checked>
+        </div>
     </section>
 
     <script type="module" src="src/js/main.js"></script>
