@@ -1827,3 +1827,85 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     }
 }
 
+/* copy-content.css */
+/* Copy controls follow the expression/listing, never float over its content. The source can
+   scroll if a two-dimensional equation or a long code line can't reflow. */
+main .webbook-copy-unit {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+    max-width: 100%;
+    min-width: 0;
+    vertical-align: middle;
+}
+main .webbook-copy-source {
+    display: inline-block;
+    box-sizing: border-box;
+    padding: .25rem;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+}
+main .webbook-copy-code {
+    display: flex;
+    /* A long pre must not become the grid's intrinsic minimum width. */
+    contain: inline-size;
+    margin-block: 1em;
+    pre { max-width: 100%; min-width: 0; overflow-x: auto; margin: 0; }
+}
+main .webbook-copy-button {
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: .25rem .5rem;
+    border: 1px solid var(--theme-fg);
+    border-radius: 4px;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    font: 400 .875rem/1.4 system-ui, sans-serif;
+    cursor: pointer;
+    user-select: none;
+}
+main .webbook-copy-button::before { content: 'Copy'; }
+@media (hover: hover) and (pointer: fine) {
+    main .webbook-copy-button { opacity: 0; }
+    main .webbook-copy-unit:hover .webbook-copy-button,
+    main .webbook-copy-unit:focus-within .webbook-copy-button { opacity: 1; }
+}
+main math:focus-visible,
+main [data-webbook-copy-scroll]:focus-visible,
+main .webbook-copy-button:focus-visible,
+#webbook-copy button:focus-visible,
+#webbook-copy-open:focus-visible {
+    outline: 2px solid var(--webbook-focus-color);
+    outline-offset: 3px;
+}
+#webbook-top-toolbar #webbook-copy-open {
+    font: 400 1rem/1.4 system-ui, sans-serif;
+}
+#webbook-top-toolbar #webbook-copy-open[hidden] { display: none; }
+#webbook-copy:popover-open {
+    box-sizing: border-box;
+    inset: 4rem .75rem auto auto;
+    margin: 0;
+    width: min(21rem, calc(100vw - 1.5rem));
+    max-height: calc(100dvh - 5rem);
+    padding: 1rem;
+    h2 { margin: 0 3rem 1rem 0; font-size: 1.25rem; }
+    > button:not(.webbook-popover-close) {
+        display: block;
+        width: 100%;
+        min-height: 2.75rem;
+        margin-block: .5rem;
+        padding: .5rem;
+        border: 1px solid var(--theme-fg);
+        border-radius: 4px;
+        background: var(--theme-bg);
+        color: var(--theme-fg);
+        font: 400 1rem/1.5 system-ui, sans-serif;
+        cursor: pointer;
+    }
+}
+

@@ -26,6 +26,11 @@ export function cleanPublicationMarkup(doc: Document, options: MarkupCleanupOpti
         replacePublicationMains(doc, options);
         repairTabOrder(doc, options);
         repairMedia(doc, options);
+        for (const math of Array.from(doc.querySelectorAll('math[alttext]'))) {
+            if (math.getAttribute('alttext')?.trim()) continue;
+            math.removeAttribute('alttext');
+            options.report.change('Empty MathML text alternatives removed', options.page);
+        }
     }
     if (options.responsiveTables) wrapTables(doc, options);
 }

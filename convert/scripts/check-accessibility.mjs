@@ -20,7 +20,7 @@ import path from 'node:path';
 const require = createRequire(import.meta.url);
 const AXE_SOURCE = readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 const WCAG_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
-const PANELS = ['webbook-toc-nav', 'webbook-settings', 'webbook-info', 'webbook-search', 'webbook-menu'];
+const PANELS = ['webbook-toc-nav', 'webbook-settings', 'webbook-info', 'webbook-search', 'webbook-menu', 'webbook-copy'];
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json',
     '.mp3': 'audio/mpeg', '.vtt': 'text/vtt', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
     '.svg': 'image/svg+xml', '.gif': 'image/gif', '.webp': 'image/webp' };

@@ -7,7 +7,8 @@ const ACTION_ORDER = [
     'previous-page', 'next-page',
     'open-toc', 'open-settings', 'open-goto-page', 'open-search', 'open-about',
     'font-smaller', 'font-larger', 'toggle-caption-mode',
-    'export-settings', 'import-settings', 'reset-settings'
+    'export-settings', 'import-settings', 'reset-settings',
+    'copy-equation', 'copy-selection', 'copy-code', 'open-copy-menu'
 ];
 
 // Loaded the first time the reader opens the editor (keyboard-shortcuts.js adds the button), and

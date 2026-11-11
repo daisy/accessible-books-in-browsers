@@ -227,6 +227,7 @@ function removeIdsOwnedByOtherPages(doc: Document, page: SitePage, site: SiteMod
 
 function rewriteImageReferences(doc: Document, page: SitePage, imageRegistry: ImageAssetRegistry): void {
     rewriteUrlAttribute(doc, page, imageRegistry, 'img[src]', 'src');
+    rewriteUrlAttribute(doc, page, imageRegistry, 'math[altimg]', 'altimg');
     rewriteUrlAttribute(doc, page, imageRegistry, 'image[href]', 'href');
     rewriteUrlAttribute(doc, page, imageRegistry, 'image[xlink\\:href]', 'xlink:href');
 

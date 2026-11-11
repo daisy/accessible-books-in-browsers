@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" class="webbook-js webbook-light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Copy equations and code</title>
+    <link rel="stylesheet" href="../../src/css/style.css">
+</head>
+<body>
+    <section id="webbook-top-toolbar" class="webbook visible" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-settings">Settings</button>
+    </section>
+    <main id="webbook-main">
+        <h1>Copy equations and code</h1>
+        <p id="inline">Before <math id="inline-math"><mfrac><mi>x</mi><mi>y</mi></mfrac></math> after.</p>
+        <div class="disp-formula" id="numbered"><span class="label">(3.2)</span> <math id="display-math"><msup><mi>x</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></math></div>
+        <p id="alone"><math id="sole-math"><msqrt><mi>x</mi></msqrt></math></p>
+        <p>Another expression: <math id="block-math" display="block"><mi>a</mi><mo>=</mo><mi>b</mi></math></p>
+        <h2>Code</h2>
+        <pre id="listing"><code>function square(x) {
+    return x * x;
+}
+</code></pre>
+        <p>Inline <code id="inline-code">square(x)</code> has no extra Copy button.</p>
+        <div id="rich-editor" contenteditable="true" role="textbox" aria-label="Paste an equation here" aria-multiline="true"></div>
+    </main>
+    <section id="webbook-settings" class="webbook" popover aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+    </section>
+    <script type="module">
+        import { initCopyContent } from '../../src/js/copy-content.js';
+        import { initReaderActionStatus, initReaderActionNotice } from '../../src/js/reader-actions.js';
+        import { initKeyboardShortcuts } from '../../src/js/keyboard-shortcuts.js';
+        import { initPopoverCloseButtons } from '../../src/js/popovers.js';
+        initReaderActionStatus();
+        initCopyContent();
+        initKeyboardShortcuts();
+        initPopoverCloseButtons();
+        initReaderActionNotice();
+    </script>
+</body>
+</html>

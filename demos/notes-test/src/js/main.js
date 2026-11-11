@@ -18,6 +18,7 @@ import { initResponsiveTables } from './responsive-tables.js';
 import { initSkipLink } from './skip-link.js';
 import { initReaderActionNotice } from './reader-actions.js';
 import { initSettingsTransfer } from './settings-transfer.js';
+import { initCopyContent } from './copy-content.js';
 
 initEscapability();
 initResumePosition();
@@ -34,6 +35,7 @@ initPageActions();
 initPopoverActions();
 initCurrentPrintPage();
 initNotesInPlace();
+initCopyContent();
 initSettingsTransfer();
 initKeyboardShortcuts();
 initKeyboardShortcutEditorButton();

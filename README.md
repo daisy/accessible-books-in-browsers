@@ -69,6 +69,10 @@ These demos were created using this [conversion script](https://github.com/daisy
 * **English for Today, Classes 9–10**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/EnglishForTodayEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/EnglishForTodayEPUB)
 * **Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/CurrentSituationEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/CurrentSituationEPUB)
 
+* **Mathematical Optimization for Machine Learning** (De Gruyter, 2025; [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)): [demo](https://daisy.github.io/accessible-books-in-browsers/demos/math-optimization-ml) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/math-optimization-ml) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/math-optimization-ml)
+
+  No narration; here for its math: about 2,400 MathML expressions, kept as MathML.
+
 Test books:
 
 * **Notes Test Book**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/notes-test) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/notes-test) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/notes-test)
@@ -95,12 +99,22 @@ Test books:
   numbers, notes and sidebars can be skipped altogether (footnotes and endnotes are by default).
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
   out of lists and tables, just before the phrase.
+- **Copy equations and code:** display equations and code blocks have a **Copy** button (shown on
+  hover or focus, always visible on touch screens). Equations copy as MathML HTML for rich editors
+  and LaTeX text for calculators, notes and LaTeX tools. **Settings → Text → Copy equations as**
+  changes the plain-text form to MathML when needed. TeX annotations or non-empty alternatives
+  take priority; otherwise the reader converts the MathML, falling back to its source if needed.
+  Selecting text with math and using the browser's Copy command preserves whole equations, with
+  `$…$` LaTeX in the plain text. The top toolbar's **Copy** menu also copies an inline equation at
+  the selection or focus, or in the narrated phrase (the first if there are several), and copies
+  a selection or code block. Inline math adds no Tab stops. Copying requires HTTPS or localhost
+  and clipboard permission. Code copies exactly, including indentation and line breaks.
 - **Settings:** all sections stay open, with a **Jump to** list at the top. Every preference applies
   to all books on the same website.
   - **Colors:** automatic (system light or dark), light or dark, reviewed pairs, or custom colors
     with automatic black or white text; highlight color and background, underline or both.
   - **Text:** font, size, line, letter and word spacing, line length, dialog backdrop blur, and
-    whether toolbars hide automatically or stay visible.
+    whether toolbars hide automatically or stay visible, and LaTeX or MathML for copying equations.
   - **Narration:** playback rate, caption mode (also works with text without narration), skip page
     numbers, footnotes and endnotes, notes or sidebars, and structure sounds.
   - **Notes:** what to do at a phrase with notes, and whether to return to the text after a note.
@@ -141,6 +155,9 @@ without removing your saved reading positions.
 | `Alt`+`Shift`+`,` / `Alt`+`Shift`+`.` | Anywhere outside a text field or open popover | Narration slower / faster |
 | `Alt`+`Shift`+`-` / `Alt`+`Shift`+`=` | Anywhere outside a text field or open popover | Smaller / larger text |
 | `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
+| Unassigned (choose a key in Settings) | Selection, focus or narrated phrase | Copy equation |
+| Unassigned (choose a key in Settings) | Selected text or focused code block | Copy selection / Copy code |
+| Unassigned (choose a key in Settings) | A page with math or code, on HTTPS or localhost | Open Copy menu |
 
 The narration keys are unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The narration slider uses the usual slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`); on the full-book timeline they move by the amounts described under [Reading features](#reading-features).
 

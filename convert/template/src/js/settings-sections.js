@@ -2,7 +2,7 @@
 // reader sees. Keep controls' ids: shortcuts and reader tools use them too.
 const SECTIONS = [
     ['colors', 'Colors', ['#webbook-colors', '#webbook-colors-custom', '#webbook-appearance', '#webbook-color', '#webbook-highlight-style']],
-    ['text', 'Text', ['#webbook-font-family', '#webbook-font-size', '#webbook-text-spacing', '#webbook-dialog-blur-toggle', '#webbook-toolbar-auto-hide']],
+    ['text', 'Text', ['#webbook-font-family', '#webbook-font-size', '#webbook-text-spacing', '#webbook-copy-math', '#webbook-dialog-blur-toggle', '#webbook-toolbar-auto-hide']],
     ['narration', 'Narration', ['#webbook-rate', '#webbook-caption-mode-toggle', '#webbook-skip-settings', '#webbook-structure-sounds']],
     ['notes', 'Notes', ['#webbook-note-references-options', '#webbook-note-auto-return-toggle']],
     ['position', 'Reading position', ['#webbook-resume-toggle']],
