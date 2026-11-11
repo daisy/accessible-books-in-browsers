@@ -70,7 +70,7 @@ export function initSettingsSections() {
         const legend = document.createElement('legend');
         legend.textContent = 'Skip during narration';
         skip.append(legend);
-        for (const kind of ['pagebreak', 'footnote', 'note', 'sidebar']) {
+        for (const kind of ['pagebreak', 'footnote', 'sidebar']) {
             const row = panel.querySelector(`#webbook-skip-${kind}-toggle`)?.closest('div');
             if (row) skip.append(row);
         }

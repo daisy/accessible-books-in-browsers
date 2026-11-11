@@ -138,7 +138,7 @@ function buildSetting() {
     label.textContent = 'Copy equations as';
     const select = document.createElement('select');
     select.id = label.htmlFor;
-    select.append(optionElement('latex', 'LaTeX'), optionElement('mathml', 'MathML'));
+    select.append(optionElement('mathml', 'MathML'), optionElement('latex', 'LaTeX'));
     select.value = copyMathFormat();
     select.addEventListener('change', () => writeSetting(COPY_MATH_FORMAT_KEY, select.value));
     row.append(label, select);
@@ -213,72 +213,21 @@ export function initCopyContent() {
     if (initialized.has(document)) return;
     initialized.add(document);
     buildSetting();
-    let context = null;
-    let contentFocus = null;
-    document.addEventListener('focusin', event => {
-        if (document.querySelector('main')?.contains(event.target)) contentFocus = event.target;
-    });
-    const button = document.createElement('button');
-    button.id = 'webbook-copy-open';
-    button.type = 'button';
-    button.textContent = 'Copy';
-    button.setAttribute('aria-haspopup', 'dialog');
-    button.setAttribute('aria-controls', 'webbook-copy');
-    const panel = document.createElement('section');
-    panel.id = 'webbook-copy';
-    panel.className = 'webbook';
-    panel.setAttribute('popover', 'auto');
-    panel.setAttribute('role', 'dialog');
-    panel.setAttribute('aria-labelledby', 'webbook-copy-heading');
-    const heading = document.createElement('h2');
-    heading.id = 'webbook-copy-heading';
-    heading.textContent = 'Copy';
-    const close = document.createElement('button');
-    close.type = 'button';
-    close.className = 'webbook-popover-close';
-    close.setAttribute('aria-label', 'Close copy');
-    close.textContent = '×';
-    const dismiss = () => { panel.hidePopover?.(); button.focus({ preventScroll: true }); };
-    close.addEventListener('click', dismiss);
-    panel.append(heading, close);
-    const remember = () => {
-        const range = selectedRange();
-        const focus = document.querySelector('main')?.contains(document.activeElement) ? document.activeElement : contentFocus;
-        context = { range, equation: equationHere(range, focus), pre: codeHere(range, focus) };
-    };
-    button.addEventListener('pointerdown', remember);
-    const open = () => {
-        if (!context) remember();
-        panel.showPopover?.();
-        panel.querySelector('button:not(.webbook-popover-close)')?.focus();
-    };
-    button.addEventListener('click', open);
-    panel.addEventListener('toggle', event => { if (event.newState === 'closed') context = null; });
-    const commands = [
-        ['copy-equation', 'Copy equation', () => copyEquation(context?.equation ?? equationHere())],
-        ['copy-selection', 'Copy selection', () => copySelection(context?.range ?? selectedRange())],
-        ['copy-code', 'Copy code', () => copyCode(context?.pre ?? codeHere())]
-    ];
-    for (const [id, label, run] of commands) {
-        const control = document.createElement('button');
-        control.type = 'button';
-        control.textContent = label;
-        control.addEventListener('click', () => { run(); dismiss(); });
-        panel.append(control);
+    // No Copy menu (user, 2026-11-11): the Copy buttons cover display equations and code; for
+    // inline math, selecting it and the browser's own Copy (a long press on a phone) gets whole
+    // equations through handleMathCopy; and these actions take keys of the reader's choosing.
+    for (const [id, label, run] of [
+        ['copy-equation', 'Copy equation', () => copyEquation(equationHere())],
+        ['copy-selection', 'Copy selection', () => copySelection(selectedRange())],
+        ['copy-code', 'Copy code', () => copyCode(codeHere())]
+    ]) {
         registerAction({ id, label, group: 'Reading', isAvailable: clipboardAvailable, run });
     }
-    registerAction({ id: 'open-copy-menu', label: 'Copy menu', group: 'Panels', isAvailable: () => !button.hidden,
-        run: () => { remember(); open(); } });
-    document.getElementById('webbook-top-toolbar')?.append(button);
-    document.body.append(panel);
     const observer = typeof ResizeObserver === 'function' ? new ResizeObserver(updateCopyScroll) : null;
     const refresh = () => {
-        context = null;
-        contentFocus = null;
         enhanceCopyContent();
         observer?.disconnect();
         document.querySelectorAll('main .webbook-copy-source, main .webbook-copy-code pre').forEach(source => observer?.observe(source));
-        button.hidden = !clipboardAvailable() || !document.querySelector('main math, main pre');
     };
     refresh();
     document.addEventListener('webbook:pagechange', refresh);

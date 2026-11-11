@@ -7,8 +7,10 @@ export const COPY_MATH_FORMAT_KEY = 'webbook-copy-math-format';
 let converter = null;
 let loading = null;
 
+// MathML unless the reader chooses LaTeX (user, 2026-11-11): it's the book's own markup, exact,
+// and what screen reader math tools and MathML editors take
 export function copyMathFormat() {
-    return readSetting(COPY_MATH_FORMAT_KEY) === 'mathml' ? 'mathml' : 'latex';
+    return readSetting(COPY_MATH_FORMAT_KEY) === 'latex' ? 'latex' : 'mathml';
 }
 
 export function loadMathConverter() {

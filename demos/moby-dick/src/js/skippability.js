@@ -13,8 +13,9 @@ const SKIP_UNMUTE_BEFORE_TARGET_SECONDS = 0.05;
 // in the flow as well would repeat them (and a book's endnotes section would be read at its end).
 export const SKIPPABLE_STRUCTURE_RULES = [
     { classes: ['epubtype_pagebreak'],               key: 'webbook-skip-pagebreak', id: 'webbook-skip-pagebreak-toggle' },
-    { classes: ['epubtype_footnote', 'epubtype_endnote', 'epubtype_endnotes'], key: 'webbook-skip-footnote', id: 'webbook-skip-footnote-toggle', skipByDefault: true },
-    { classes: ['epubtype_note'],                    key: 'webbook-skip-note',      id: 'webbook-skip-note-toggle' },
+    // All notes in one setting (user, 2026-11-10): the generic note type (epub:type="note") is
+    // rare (one note in 52 EPUBs surveyed) and reads to a reader as the same thing
+    { classes: ['epubtype_footnote', 'epubtype_endnote', 'epubtype_endnotes', 'epubtype_note'], key: 'webbook-skip-footnote', id: 'webbook-skip-footnote-toggle', skipByDefault: true },
     { classes: ['epubtype_sidebar'],                 key: 'webbook-skip-sidebar',   id: 'webbook-skip-sidebar-toggle' },
 ];
 

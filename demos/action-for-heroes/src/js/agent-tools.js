@@ -44,7 +44,6 @@ function settingState() {
         captionMode: checked('#webbook-caption-mode-toggle'),
         skipPageNumbers: checked('#webbook-skip-pagebreak-toggle'),
         skipFootnotes: checked('#webbook-skip-footnote-toggle'),
-        skipNotes: checked('#webbook-skip-note-toggle'),
         skipSidebars: checked('#webbook-skip-sidebar-toggle')
     };
 }
@@ -202,7 +201,8 @@ const OPTION_CONTROLS = {
     caption_mode: ['#webbook-caption-mode-toggle', 'change'],
     skip_page_numbers: ['#webbook-skip-pagebreak-toggle', 'change'],
     skip_footnotes: ['#webbook-skip-footnote-toggle', 'change'],
-    skip_notes: ['#webbook-skip-note-toggle', 'change'],
+    // One setting for all notes; both names reach it
+    skip_notes: ['#webbook-skip-footnote-toggle', 'change'],
     skip_sidebars: ['#webbook-skip-sidebar-toggle', 'change']
 };
 

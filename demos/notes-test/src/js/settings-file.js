@@ -39,7 +39,6 @@ export const SETTINGS_DEFINITIONS = Object.freeze({
     'webbook-caption-mode': boolean,
     'webbook-skip-pagebreak': boolean,
     'webbook-skip-footnote': boolean,
-    'webbook-skip-note': boolean,
     'webbook-skip-sidebar': boolean,
     'webbook-sound-headings': boolean,
     'webbook-sound-notes': boolean,
