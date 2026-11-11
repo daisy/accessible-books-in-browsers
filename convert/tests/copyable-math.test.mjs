@@ -26,7 +26,8 @@ test('conversion copies and rewrites MathML fallback images, deduplicating share
         const doc = new JSDOM(result.bodyHtml).window.document;
         const math = doc.querySelector('math');
         assert.equal(math.getAttribute('altimg'), doc.querySelector('img').getAttribute('src'));
-        assert.equal(math.hasAttribute('alttext'), false);
+        // An empty alttext stays as the book has it
+        assert.equal(math.getAttribute('alttext'), '');
         assert.equal(doc.querySelectorAll('math')[1].getAttribute('alttext'), 'x squared');
         assert.equal(doc.querySelectorAll('math')[1].getAttribute('altimg'), 'https://example.test/formula.png');
         assert.equal(registry.all().length, 1);

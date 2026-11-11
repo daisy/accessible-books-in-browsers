@@ -22,7 +22,7 @@ without JavaScript too. See an [example fileset](https://github.com/daisy/access
   reading position, so browser bookmarks and copied links return there.
 - **Notes:** follow a note reference and come back to exactly where you were; narration reads the
   note and returns.
-- **Skipping:** leave a table, list, figure, sidebar or note with one key; skip page numbers, notes
+- **Skipping:** leave a table, list, figure, equation, sidebar or note with one key; skip page numbers, notes
   or sidebars altogether.
 - **Metadata summary:** About gives the book's title, author, date, cover and your progress
   through it, and the publisher's accessibility information: ways of reading, conformance and more.
@@ -91,7 +91,7 @@ Test books:
   were. While narration plays, it reads the note and goes back. Settings choose whether it goes
   back, and what narration does at a phrase with notes: keep reading, pause briefly, or read each
   note.
-- **Skipping:** **Skip past** leaves a table, list, figure, sidebar or note with one key; page
+- **Skipping:** **Skip past** leaves a table, list, figure, equation, sidebar or note with one key; page
   numbers, notes and sidebars can be skipped altogether (notes are by default).
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
   out of lists and tables, just before the phrase.
@@ -131,7 +131,7 @@ without removing your saved reading positions.
 
 | Shortcut | Where it works | What it does |
 |---|---|---|
-| `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, sidebar, footnote, endnote, or note during narration playback; at the end of a page, go to the next one. While a message from another shortcut is showing, the first `Escape` dismisses the message |
+| `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, equation, sidebar, footnote, endnote, or note during narration playback; at the end of a page, go to the next one. While a message from another shortcut is showing, the first `Escape` dismisses the message |
 | `[` | Anywhere outside a text field or open popover | Previous phrase, continuing onto the previous page from the first phrase of a page |
 | `]` | Anywhere outside a text field or open popover | Next phrase, continuing onto the next page from the last phrase of a page |
 | `\` | Anywhere outside a text field or open popover | Play / pause |

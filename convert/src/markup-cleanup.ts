@@ -26,11 +26,9 @@ export function cleanPublicationMarkup(doc: Document, options: MarkupCleanupOpti
         replacePublicationMains(doc, options);
         repairTabOrder(doc, options);
         repairMedia(doc, options);
-        for (const math of Array.from(doc.querySelectorAll('math[alttext]'))) {
-            if (math.getAttribute('alttext')?.trim()) continue;
-            math.removeAttribute('alttext');
-            options.report.change('Empty MathML text alternatives removed', options.page);
-        }
+        // MathML alttext stays as the book has it, empty or not: an empty one has no meaning in
+        // MathML (unlike alt="" on an image), screen readers read the MathML itself, and copying
+        // treats it as missing (user, 2026-11-10)
     }
     if (options.responsiveTables) wrapTables(doc, options);
 }

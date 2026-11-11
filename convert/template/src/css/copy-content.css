@@ -26,10 +26,12 @@ main .webbook-copy-code {
 }
 main .webbook-copy-button {
     flex: 0 0 auto;
+    display: inline-grid;
+    place-items: center;
     box-sizing: border-box;
     min-width: 2rem;
     min-height: 2rem;
-    padding: .25rem .5rem;
+    padding: .25rem;
     border: 1px solid var(--theme-fg);
     border-radius: 4px;
     background: var(--theme-bg);
@@ -38,7 +40,18 @@ main .webbook-copy-button {
     cursor: pointer;
     user-select: none;
 }
-main .webbook-copy-button::before { content: 'Copy'; }
+/* A copy icon (two sheets, like the reader's other icons), drawn by CSS so the book's text gets no
+   word; the button's name is its aria-label and title (user, 2026-11-11: an icon, not "Copy") */
+main .webbook-copy-button::before {
+    content: '';
+    width: 1.25rem;
+    height: 1.25rem;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5.503 4.627 5.5 6.75v10.504a3.25 3.25 0 0 0 3.25 3.25h8.616a2.251 2.251 0 0 1-2.122 1.5H8.75A4.75 4.75 0 0 1 4 17.254V6.75c0-.98.627-1.815 1.503-2.123ZM17.75 2A2.25 2.25 0 0 1 20 4.25v13a2.25 2.25 0 0 1-2.25 2.25h-9a2.25 2.25 0 0 1-2.25-2.25v-13A2.25 2.25 0 0 1 8.75 2h9Zm0 1.5h-9a.75.75 0 0 0-.75.75v13c0 .414.336.75.75.75h9a.75.75 0 0 0 .75-.75v-13a.75.75 0 0 0-.75-.75Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+@media (forced-colors: active) {
+    main .webbook-copy-button::before { forced-color-adjust: none; background: ButtonText; }
+}
 @media (hover: hover) and (pointer: fine) {
     main .webbook-copy-button { opacity: 0; }
     main .webbook-copy-unit:hover .webbook-copy-button,

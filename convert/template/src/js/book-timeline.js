@@ -20,6 +20,18 @@ let player = { getAudio: () => null, updatePhraseButtons: () => {}, onReady: () 
 export function initBookTimeline(context) {
     ui = context.ui;
     player = context;
+    requestBookAudioMap();
+    document.addEventListener('webbook:pagechange', requestBookAudioMap);
+}
+
+// Asked for once, from the first page with narration: a book without narration has no map, and
+// asking anyway was a 404 on every page (found 2026-11-11, the math sample)
+let audioMapRequested = false;
+function requestBookAudioMap() {
+    const audio = document.querySelector('#webbook-toolbar audio');
+    const narrated = Boolean(audio && (audio.getAttribute('src') || audio.querySelector('source[src]')));
+    if (audioMapRequested || !narrated) return;
+    audioMapRequested = true;
     loadBookAudioMap();
 }
 
