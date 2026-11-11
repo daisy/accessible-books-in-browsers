@@ -2,9 +2,9 @@
 import { elmForCue } from './cue-selector.js';
 import { canPlay, cancelSkipPreroll } from './skippability.js';
 import { highlightElm } from './narration-position.js';
-import { consumePageEntry, stepAcrossPageBoundary } from './page-entry.js';
+import { consumePageEntry, stepAcrossPageBoundary, adjacentPageLink } from './page-entry.js';
 import { stepPhrase } from './player.js';
-import { isInteractiveTarget, isAnyPopoverOpen, pageAudio } from './dom-utils.js';
+import { isAnyPopoverOpen, pageAudio } from './dom-utils.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 
 // Global, including the inline script's choice before first paint.
@@ -142,7 +142,52 @@ function collectManualCaptionItems() {
         .map(elm => ({ elm }));
 }
 
-function captionTextForElement(elm) {
+const NOTE_REFERENCE_SELECTOR = '.epubtype_noteref, [role~="doc-noteref"], a[href]';
+const NOTE_TARGET_SELECTOR = '.epubtype_footnote, .epubtype_endnote, .epubtype_note, [role="doc-footnote"], [role="doc-endnote"]';
+
+function isNoteReference(reference) {
+    if (reference.matches('.epubtype_noteref, [role~="doc-noteref"]')) return true;
+    try {
+        const url = new URL(reference.getAttribute('href'), window.location.href);
+        const here = new URL(window.location.href);
+        if (!url.hash || url.origin !== here.origin || url.pathname !== here.pathname) return false;
+        return Boolean(document.getElementById(decodeURIComponent(url.hash.slice(1)))?.closest(NOTE_TARGET_SELECTOR));
+    } catch { return false; }
+}
+
+// Copy only text and superscripts: publication links, ids, styles and executable markup
+// must not become a second interactive or addressable copy in the caption.
+export function captionContentForElement(elm) {
+    const content = document.createDocumentFragment();
+    function append(source, target, superscript = false) {
+        if (source.nodeType === 3) {
+            target.append(document.createTextNode(source.textContent.replace(/\s+/g, ' ')));
+            return;
+        }
+        if (source.nodeType !== 1 || source.matches('script, style, template')) return;
+        const reference = source.matches(NOTE_REFERENCE_SELECTOR) && isNoteReference(source);
+        if (!superscript && (source.tagName === 'SUP' || reference)) {
+            const sup = document.createElement('sup');
+            target.append(sup);
+            for (const child of source.childNodes) append(child, sup, true);
+        } else {
+            for (const child of source.childNodes) append(child, target, superscript);
+        }
+    }
+    // A cue can name just the number inside a reference.
+    const enclosing = elm.closest(NOTE_REFERENCE_SELECTOR);
+    if (enclosing && isNoteReference(enclosing) && elm.tagName !== 'SUP') {
+        const sup = document.createElement('sup');
+        content.append(sup);
+        append(elm, sup, true);
+    } else append(elm, content);
+    if (!content.textContent.trim() || elm.classList.contains('epubtype_pagebreak')) {
+        content.replaceChildren(document.createTextNode(captionTextForElement(elm)));
+    }
+    return content;
+}
+
+export function captionTextForElement(elm) {
     if (elm.classList.contains('epubtype_pagebreak')) {
         const label = elm.getAttribute('aria-label');
         if (label) return label.trim();
@@ -236,33 +281,42 @@ function showCaptionItem(item) {
     }
 
     captionIndex = captionItems.indexOf(item);
-    captionText.textContent = captionTextForElement(item.elm);
+    captionText.replaceChildren(captionContentForElement(item.elm));
 }
 
 function handleCaptionKeydown(e) {
     if (!captionModeEnabled || e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
     if (!['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(e.key)) return;
-    if (isInteractiveTarget(e.target) || isAnyPopoverOpen()) return;
+    // Closing Settings returns focus to its toolbar button. Buttons do not use arrow
+    // keys, so caption navigation must still work there; inputs keep their native keys.
+    if (e.target.closest?.('input, select, textarea, [contenteditable="true"], [contenteditable=""]') || isAnyPopoverOpen()) return;
 
     e.preventDefault();
     const delta = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : -1;
     // The arrows are caption mode's keys for previous/next phrase; on a page without narration
     // there are no phrases, so they step through the page's text instead
-    if (!stepPhrase(delta)) stepCaption(delta);
+    stepPhrase(delta);
 }
 
-function stepCaption(delta) {
+export function canStepCaption(delta) {
+    if (!captionModeEnabled) return false;
+    if (!captionItems.length) refreshCaptionItems();
+    return findNextCaptionIndex(captionIndex, delta) >= 0 || Boolean(adjacentPageLink(delta));
+}
+
+export function stepCaption(delta) {
+    if (!captionModeEnabled) return false;
     if (!captionItems.length) refreshCaptionItems();
     const nextIndex = findNextCaptionIndex(captionIndex, delta);
     if (nextIndex < 0) {
-        stepAcrossPageBoundary(delta);
-        return;
+        return stepAcrossPageBoundary(delta);
     }
 
     const item = captionItems[nextIndex];
     syncAudioToCaptionItem(item);
     highlightElm(item.elm);
     showCaptionItem(item);
+    return true;
 }
 
 function syncAudioToCaptionItem(item) {

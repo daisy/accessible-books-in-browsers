@@ -45,6 +45,7 @@ export const SETTINGS_DEFINITIONS = Object.freeze({
     'webbook-sound-lists-tables': boolean,
     'webbook-note-references': oneOf('button', 'pause', 'follow'),
     'webbook-note-auto-return': boolean,
+    'webbook-note-wait-sound': boolean,
     'webbook-resume-enabled': boolean,
     'webbook-keyboard-shortcuts': boolean,
     'webbook-keyboard-shortcut-map': shortcutMap,

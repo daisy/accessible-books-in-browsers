@@ -37,7 +37,7 @@ export function initSettingsTransfer() {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = 'reader-settings.json';
+            link.download = 'webbook-settings.json';
             document.body.append(link);
             link.click();
             link.remove();

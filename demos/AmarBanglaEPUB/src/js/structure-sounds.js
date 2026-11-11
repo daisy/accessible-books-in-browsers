@@ -12,6 +12,7 @@ import { appendSetting, settingsSection } from './settings-sections.js';
 import { cueAtTime, elmForCue } from './cue-selector.js';
 import { pageAudio } from './dom-utils.js';
 import { canPlay } from './skippability.js';
+import { readSetting } from './stored-settings.js';
 
 const NOTE_SELECTOR = '.epubtype_footnote, .epubtype_endnote, .epubtype_note, [role="doc-footnote"], [role="doc-endnote"]';
 const NOTES_SECTION_SELECTOR = '.epubtype_endnotes, [role="doc-endnotes"]';
@@ -30,7 +31,8 @@ const SOUNDS = {
     'heading-3': [[523.25, 0, .25, 'piano'], [659.25, .07, .3, 'piano']],
     note: [[1760, 0, .45, 'bell']],
     enter: [[520, 0, .07, 'wood'], [700, .11, .07, 'wood']],
-    exit: [[700, 0, .07, 'wood'], [520, .11, .07, 'wood']]
+    exit: [[700, 0, .07, 'wood'], [520, .11, .07, 'wood']],
+    tick: [[1100, 0, .035, 'wood']]
 };
 const SETTINGS = [
     { key: 'webbook-sound-headings', id: 'webbook-sound-headings-toggle', label: 'Tone before headings', sample: 'heading-1' },
@@ -51,6 +53,11 @@ let expectedSeek = null;
 
 function enabled({ key }) {
     try { return localStorage.getItem(key) === 'true'; } catch { return false; }
+}
+
+function usesAudioCues() {
+    return SETTINGS.some(enabled) || (readSetting('webbook-note-references') === 'pause'
+        && readSetting('webbook-note-wait-sound') === 'true');
 }
 
 function renderNote(data, [frequency, start, length, timbre]) {
@@ -113,6 +120,46 @@ function play(names) {
         when += source.buffer.duration + .05;
     }
     return true;
+}
+
+// A quiet clock tick during the note-choice wait, independent of the optional structure sounds.
+// Schedule against the audio clock, and return a stop function so no ticks survive cancellation.
+export function playNoteWaitSound(seconds) {
+    const sources = [];
+    const audio = pageAudio();
+    let gain = null;
+    const level = () => {
+        if (gain) gain.gain.value = .08 * (audio?.muted ? 0 : audio?.volume ?? 1);
+    };
+    const stop = () => {
+        audio?.removeEventListener('volumechange', level);
+        for (const source of sources.splice(0)) {
+            try { source.stop(); } catch { /* It may already have finished. */ }
+            source.disconnect();
+        }
+        gain?.disconnect();
+        gain = null;
+    };
+    if (!Number.isFinite(seconds) || seconds <= 0) return stop;
+    try {
+        const ctx = audioContext();
+        if (!ctx) return stop;
+        playEvenOnSilent();
+        if (ctx.state !== 'running') ctx.resume().catch(() => {});
+        gain = ctx.createGain();
+        level();
+        gain.connect(ctx.destination);
+        audio?.addEventListener('volumechange', level);
+        const start = ctx.currentTime;
+        for (let offset = 0; offset < seconds; offset += .5) {
+            const source = ctx.createBufferSource();
+            source.buffer = buffer(ctx, 'tick');
+            source.connect(gain);
+            sources.push(source);
+            source.start(start + offset);
+        }
+    } catch { stop(); /* A blocked or unavailable audio context must not affect the wait. */ }
+    return stop;
 }
 
 export function pausedForSound() {
@@ -259,7 +306,7 @@ const UNLOCK_EVENTS = ['pointerup', 'touchend', 'click', 'keydown'];
 
 function unlockOnPress() {
     const unlock = () => {
-        if (!SETTINGS.some(enabled)) return;
+        if (!usesAudioCues()) return;
         const ctx = audioContext();
         if (!ctx) return;
         if (ctx.state !== 'running') {
@@ -278,7 +325,7 @@ function unlockOnPress() {
 // Web Audio on iOS follows the ringer switch, unlike narration, unless the page says it plays media
 function playEvenOnSilent() {
     try {
-        if (navigator.audioSession && SETTINGS.some(enabled)) navigator.audioSession.type = 'playback';
+        if (navigator.audioSession && usesAudioCues()) navigator.audioSession.type = 'playback';
     } catch { /* not supported */ }
 }
 

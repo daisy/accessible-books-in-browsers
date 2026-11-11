@@ -3,9 +3,9 @@ import { appendSetting, settingsSection } from './settings-sections.js';
 import { fetchPage, navigateTo } from './in-place-navigation.js';
 import { cueForElement, elmForCue } from './cue-selector.js';
 import { registerAction } from './reader-actions.js';
-import { allowPlaybackOf, clearPlaybackException, cancelSkipPreroll } from './skippability.js';
+import { allowPlaybackOf, clearPlaybackException, cancelSkipPreroll, canPlay } from './skippability.js';
 import { pageAudio } from './dom-utils.js';
-import { initStructureSounds, keepSoundsForSeek, pausedForSound, soundForNarratedPhrase } from './structure-sounds.js';
+import { initStructureSounds, keepSoundsForSeek, pausedForSound, soundForNarratedPhrase, playNoteWaitSound } from './structure-sounds.js';
 import { showShortcutHint } from './keyboard-shortcuts.js';
 
 // Notes without losing your place. Following a note reference (or the note control that appears
@@ -22,6 +22,7 @@ const BACKLINK_SELECTOR = '[role="doc-backlink"], .epubtype_backlink';
 const REFERENCES_KEY = 'webbook-note-references';
 const REFERENCE_MODES = ['button', 'pause', 'follow'];
 const AUTO_RETURN_KEY = 'webbook-note-auto-return';
+const WAIT_SOUND_KEY = 'webbook-note-wait-sound';
 const NOTE_PAUSE_SECONDS = 2;
 let phraseButton;
 let phraseMenu;
@@ -239,7 +240,15 @@ function handlePhraseEnd() {
     if (currentReturn()) return;
     if (audio.currentTime < phraseEnd.end - .25) return schedulePhraseEnd();
     phraseEnd.done = true;
-    const resumeAt = phraseEnd.end;
+    // An inline note can begin exactly at this phrase's end. Return directly to the
+    // next playable phrase rather than depending on a second cuechange to skip the note.
+    const cues = Array.from(audio.querySelector('track')?.track?.cues || []);
+    const next = cues.find(cue => {
+        if (cue.startTime < phraseEnd.end - .001) return false;
+        const elm = elmForCue(cue);
+        return !elm || canPlay(elm);
+    });
+    const resumeAt = next?.startTime ?? Math.max(phraseEnd.end, cues.at(-1)?.endTime ?? 0);
     const mode = referenceMode();
     if (mode === 'follow') {
         const links = Array.from(document.querySelectorAll('main a[href]'));
@@ -248,18 +257,29 @@ function handlePhraseEnd() {
     } else if (mode === 'pause') {
         pausingForNote = true;
         audio.pause();
-        notePause = { resumeAt, timer: setTimeout(() => {
-            notePause = null;
-            pageAudio()?.play().catch(() => {});
-        }, NOTE_PAUSE_SECONDS * 1000) };
+        const waiting = { resumeAt, stopSound: storedSetting(WAIT_SOUND_KEY, 'false') === 'true'
+            ? playNoteWaitSound(NOTE_PAUSE_SECONDS) : () => {} };
+        notePause = waiting;
+        waiting.timer = setTimeout(() => {
+            if (notePause !== waiting) return;
+            endNotePause();
+            if (pageAudio() === audio) {
+                cancelSkipPreroll(audio);
+                audio.currentTime = resumeAt;
+                audio.play().catch(() => {});
+            }
+        }, NOTE_PAUSE_SECONDS * 1000);
     }
 }
 
 function endNotePause() {
     if (!notePause) return;
     clearTimeout(notePause.timer);
+    notePause.stopSound();
     notePause = null;
 }
+
+export { endNotePause as cancelNotePause };
 
 function handlePlay(e) {
     if (e.target !== pageAudio()) return;
@@ -277,6 +297,7 @@ function handlePause(e) {
         pausingForNote = false;
         return;
     }
+    endNotePause();
     // A moment's wait for a structure sound isn't the reader pausing
     if (pausedForSound()) return;
     // The reader paused while a note was read: stay with the note this time
@@ -397,6 +418,7 @@ export async function handleNarratedPhrase(elm) {
 }
 
 export function hidePhraseNotes() {
+    endNotePause();
     phraseRequest++;
     phraseReferences = [];
     phraseEnd = null;
@@ -464,9 +486,27 @@ function buildSettings() {
     select.value = referenceMode();
     select.addEventListener('change', () => {
         try { localStorage.setItem(REFERENCES_KEY, select.value); } catch { /* this session only */ }
+        if (notePause) {
+            endNotePause();
+            pageAudio()?.play().catch(() => {});
+        }
         schedulePhraseEnd();
     });
     referencesRow.append(referencesLabel, select);
+
+    const waitSoundRow = document.createElement('div');
+    const waitSoundLabel = document.createElement('label');
+    waitSoundLabel.htmlFor = 'webbook-note-wait-sound-toggle';
+    waitSoundLabel.textContent = 'Play ticking while waiting for notes';
+    const waitSoundToggle = document.createElement('input');
+    waitSoundToggle.type = 'checkbox';
+    waitSoundToggle.id = 'webbook-note-wait-sound-toggle';
+    waitSoundToggle.checked = storedSetting(WAIT_SOUND_KEY, 'false') === 'true';
+    waitSoundToggle.addEventListener('change', () => {
+        try { localStorage.setItem(WAIT_SOUND_KEY, String(waitSoundToggle.checked)); } catch { /* this session only */ }
+        if (!waitSoundToggle.checked) notePause?.stopSound();
+    });
+    waitSoundRow.append(waitSoundLabel, waitSoundToggle);
 
     const returnRow = document.createElement('div');
     const returnLabel = document.createElement('label');
@@ -483,6 +523,7 @@ function buildSettings() {
     returnRow.append(returnLabel, toggle);
 
     appendSetting('notes', referencesRow);
+    appendSetting('notes', waitSoundRow);
     appendSetting('notes', returnRow);
 }
 
@@ -541,6 +582,13 @@ export function initNotesInPlace() {
     document.addEventListener('timeupdate', handleTimeUpdate, { capture: true });
     document.addEventListener('play', handlePlay, { capture: true });
     document.addEventListener('pause', handlePause, { capture: true });
+    for (const type of ['seeking', 'ended', 'emptied', 'error']) {
+        document.addEventListener(type, event => {
+            if (event.target === pageAudio()) endNotePause();
+        }, { capture: true });
+    }
+    document.addEventListener('webbook:pageplacing', endNotePause);
+    window.addEventListener('pagehide', endNotePause);
     // A new speed or position moves the end of the note or phrase
     for (const type of ['ratechange', 'seeked']) {
         document.addEventListener(type, e => {
@@ -550,6 +598,7 @@ export function initNotesInPlace() {
         }, { capture: true });
     }
     window.addEventListener('popstate', e => {
+        endNotePause();
         autoReturn = null;
         followQueue = [];
         showBackToText();

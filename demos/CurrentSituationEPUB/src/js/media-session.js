@@ -1,6 +1,7 @@
 import { requestAutoplayForForwardSpineLink, clearAutoplayRequest } from './autoplay.js';
 import { pageAudio } from './dom-utils.js';
 import { cancelSoundPause, pausedForSound } from './structure-sounds.js';
+import { cancelNotePause } from './notes-in-place.js';
 
 export function initMediaSessionControls() {
     try {
@@ -16,6 +17,7 @@ function initMediaSession() {
     setMediaActionHandler('play', () => { playReaderAudio(); });
     setMediaActionHandler('pause', () => {
         cancelSoundPause();
+        cancelNotePause();
         getReaderAudio()?.pause();
     });
     setMediaActionHandler('nexttrack', () => navigateSpine(1));

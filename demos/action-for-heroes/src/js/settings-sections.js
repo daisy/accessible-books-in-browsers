@@ -4,7 +4,7 @@ const SECTIONS = [
     ['colors', 'Colors', ['#webbook-colors', '#webbook-colors-custom', '#webbook-appearance', '#webbook-color', '#webbook-highlight-style']],
     ['text', 'Text', ['#webbook-font-family', '#webbook-font-size', '#webbook-text-spacing', '#webbook-copy-math', '#webbook-dialog-blur-toggle', '#webbook-toolbar-auto-hide']],
     ['narration', 'Narration', ['#webbook-rate', '#webbook-caption-mode-toggle', '#webbook-skip-settings', '#webbook-structure-sounds']],
-    ['notes', 'Notes', ['#webbook-note-references-options', '#webbook-note-auto-return-toggle']],
+    ['notes', 'Notes', ['#webbook-note-references-options', '#webbook-note-wait-sound-toggle', '#webbook-note-auto-return-toggle']],
     ['position', 'Reading position', ['#webbook-resume-toggle']],
     ['keyboard', 'Keyboard', ['#webbook-keyboard-shortcuts-toggle', '.webbook-keyboard-shortcuts-row']],
     ['all', 'All settings', ['.webbook-agent-tools-row', '#webbook-settings-transfer']]

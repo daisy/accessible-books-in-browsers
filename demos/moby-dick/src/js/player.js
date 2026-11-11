@@ -1,7 +1,7 @@
 import { cacheCueElements, cueForElement, cueNeedsTime, elmForCue } from './cue-selector.js';
 import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarget, lastNarratedElement, settlePositionUrlPlacement, highlightedElement } from './narration-position.js';
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
-import { showCaptionForCue, refreshCaptionItemsFromTrack } from './caption-mode.js';
+import { showCaptionForCue, refreshCaptionItemsFromTrack, canStepCaption, stepCaption } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
 import { handleCuePlayability, restoreSkipMute, cancelSkipPreroll, canPlay } from './skippability.js';
 import { playOrOfferToContinue } from './continue-playing.js';
@@ -40,6 +40,7 @@ export function initPlayer() {
             run: () => stepPhrase(delta),
             isAvailable: () => {
                 const cues = pageCues();
+                if (!cues.length) return canStepCaption(delta);
                 return Boolean(cues.length && (playableCueIndex(cues, cueIndexAtOrBefore(audio.currentTime, cues), delta) >= 0 || adjacentPageLink(delta)));
             } });
     }
@@ -138,6 +139,15 @@ function initAudioElement() {
     // Anything can move the audio (caption mode, resume, a hash link, skipping), so the phrase
     // buttons always work from where the audio is rather than from the last phrase they stepped to
     audio.addEventListener('seeked', updatePhraseButtons);
+    // Seeking within the same cue does not fire cuechange. A note's playback exception
+    // may have been cleared since it started, so check it again at the new position.
+    audio.addEventListener('seeked', () => {
+        const cues = pageCues();
+        const index = cues.findIndex(cue => cue.startTime <= audio.currentTime && audio.currentTime < cue.endTime);
+        const cue = cues[index];
+        const elm = cue && elmForCue(cue);
+        if (elm) handleCuePlayability(elm, audio, metadataTrack, index, cue);
+    });
     // Narration moving on, or the reader seeking it, supersedes a place focused while paused
     audio.addEventListener('play', () => { focusedWhilePaused = null; });
     audio.addEventListener('seeking', () => { focusedWhilePaused = null; });
@@ -524,8 +534,7 @@ function handleCueChange(e) {
 
 let phraseStepper = null;
 
-// Previous/next phrase for other parts of the UI (caption mode's arrow keys). Returns false on a
-// page without narration, where there are no phrases to step through.
+// Phrase keys and caption arrows share navigation, including captions without narration.
 export function stepPhrase(delta) {
-    return phraseStepper ? phraseStepper(delta) : false;
+    return phraseStepper ? phraseStepper(delta) : stepCaption(delta);
 }
