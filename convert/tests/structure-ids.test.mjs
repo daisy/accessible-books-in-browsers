@@ -31,6 +31,13 @@ test('uses a main-relative selector without an anchoring structure', () => {
     assert.equal(resolveNarrationSelector(document, selector), target);
 });
 
+test('ARIA active descendants, error messages and reading-flow targets retain their ids', () => {
+    const document = doc('<div aria-activedescendant="active" aria-errormessage="error" aria-flowto="next last"></div><p id="active">Active</p><p id="error">Error</p><p id="next">Next</p><p id="last">Last</p><p id="unused">Unused</p>');
+    applyStructureIds(document, []);
+    for (const id of ['active', 'error', 'next', 'last']) assert.ok(document.getElementById(id));
+    assert.equal(document.getElementById('unused'), null);
+});
+
 test('keep-all-ids retains old fragment selectors and does not generate ids', () => {
     const document = doc('<section><p id="phrase">Words</p></section>');
     const selector = applyStructureIds(document, ['phrase'], [], true).get('phrase');

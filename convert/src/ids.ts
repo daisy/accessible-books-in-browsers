@@ -3,6 +3,7 @@
 
 // Attributes whose value is one or more ids (usemap's starts with '#')
 export const IDREF_ATTRIBUTES = ['aria-describedby', 'aria-labelledby', 'aria-controls', 'aria-details',
+    'aria-activedescendant', 'aria-errormessage', 'aria-flowto',
     'for', 'headers', 'list', 'form', 'usemap'];
 
 // A URL with a scheme (https:, mailto:, data:…) or protocol-relative: not a file of the book

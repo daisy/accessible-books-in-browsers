@@ -15,7 +15,8 @@ without JavaScript too. See an [example fileset](https://github.com/daisy/access
 - **Narration** with the phrase highlighted, carrying on from page to page, also with the screen
   locked; a timeline for the whole book; time left in the chapter and the book; speed control; the
   phone's lock screen and media keys.
-- **Caption mode:** the phrase being read, large, alone on the screen.
+- **Caption mode:** the phrase being read, large, alone on the screen. Arrow keys and phrase
+  shortcuts also step through captions in books without narration.
 - **Getting around:** the book's table of contents as a tree, with a filter; go to print page;
   previous and next page and phrase; search across the book, in any language.
 - **Your place:** reopening a book resumes where you were, and the address always points at the
@@ -89,8 +90,8 @@ Test books:
 - **Resume** where you left off when you reopen a book, to the exact narration time.
 - **Notes:** a note reference goes to the note, and **Back to text** returns to exactly where you
   were. While narration plays, it reads the note and goes back. Settings choose whether it goes
-  back, and what narration does at a phrase with notes: keep reading, pause briefly, or read each
-  note.
+  back, and what narration does at a phrase with notes: keep reading, pause briefly with optional quiet
+  ticking while you choose, or read each note. Caption mode keeps note numbers in superscript.
 - **Skipping:** **Skip past** leaves a table, list, figure, equation, sidebar or note with one key; page
   numbers, notes and sidebars can be skipped altogether (notes are by default).
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
@@ -113,14 +114,14 @@ Test books:
     whether toolbars hide automatically or stay visible, and LaTeX or MathML for copying equations.
   - **Narration:** playback rate, caption mode (also works with text without narration), skip page
     numbers, notes or sidebars, and structure sounds.
-  - **Notes:** what to do at a phrase with notes, and whether to return to the text after a note.
+  - **Notes:** what to do at a phrase with notes, optional waiting ticks (off by default), and whether to return to the text after a note.
   - **Reading position:** resume last position on open.
   - **Keyboard:** enable shortcuts and open the shortcut editor.
   - **All settings:** AI assistant control (where supported), export, import, and reset with a
     second press to confirm.
 
 **Moving your settings:** choose **Export settings** in **All settings** to download
-`reader-settings.json`, then **Import settings** in another browser or on another device. The file
+`webbook-settings.json`, then **Import settings** in another browser or on another device. The file
 includes all preferences and custom keyboard shortcuts, including the time display and contents
 depth; it excludes reading positions. Invalid files leave your settings unchanged. Import and reset
 refresh the current page, keeping your reading location and narration time. Otherwise preferences
