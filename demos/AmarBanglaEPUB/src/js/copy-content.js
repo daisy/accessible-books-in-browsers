@@ -153,6 +153,8 @@ function copyButton(label, run) {
     // The visible word comes from CSS so a narrated paragraph's textContent (captions, reading
     // tools) keeps only the publication's words. The button has its own accessible name.
     button.setAttribute('aria-label', label);
+    // The same name as a tooltip, for mouse users and for saying it to voice control
+    button.title = label;
     button.addEventListener('click', run);
     return button;
 }

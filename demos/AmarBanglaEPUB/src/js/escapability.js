@@ -9,6 +9,9 @@ import { showShortcutHint } from './keyboard-shortcuts.js';
 
 // Escapability: offer a Skip past button for the enclosing structure during playback.
 const ESCAPABLE_STRUCTURE_RULES = [
+    // An equation narration reads on its own (user, 2026-11-11). MathML keeps its tag name lowercase
+    // in an HTML page. webbook-equation: a numbered display equation (plan 24).
+    { classes: ['webbook-equation'], tags: ['math'], label: 'equation' },
     { classes: ['epubtype_table'], tags: ['TABLE'], label: 'table' },
     { classes: ['epubtype_list'], tags: ['OL', 'UL'], label: 'list' },
     { classes: ['epubtype_figure'], tags: ['FIGURE'], label: 'figure' },
@@ -20,7 +23,7 @@ const ESCAPABLE_STRUCTURE_RULES = [
 // Inside a book's endnotes section, Skip past leaves the whole section, not just one note
 const NOTES_SECTION_SELECTOR = '.epubtype_endnotes, [role="doc-endnotes"]';
 
-function findEscapableStructure(elm) {
+export function findEscapableStructure(elm) {
     const notesSection = elm.closest(NOTES_SECTION_SELECTOR);
     if (notesSection && document.querySelector('main')?.contains(notesSection)) return { elm: notesSection, label: 'notes' };
     const main = document.querySelector('main');
