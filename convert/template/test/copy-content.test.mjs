@@ -6,11 +6,14 @@ import { initCopyContent, enhanceCopyContent, equationHere, equationButtonName, 
 import { initReaderActionStatus, getActions } from '../src/js/reader-actions.js';
 import { elmForCue } from '../src/js/cue-selector.js';
 import { exportSettings, importSettings, resetSettings } from '../src/js/settings-file.js';
+import { copyMathFormat } from '../src/js/copy-math.js';
 
 const fixture = readFileSync(new URL('./fixtures/copy-content.html', import.meta.url), 'utf8');
 function setup({ secure = true, rich = true } = {}) {
     const dom = new JSDOM(fixture, { url: secure ? 'https://books.example/chapter.html' : 'http://books.example/chapter.html' });
     for (const name of ['window', 'document', 'localStorage', 'sessionStorage', 'Event', 'Element', 'Node', 'CustomEvent']) globalThis[name] = dom.window[name];
+    // These tests check LaTeX copying; MathML is the default (and tested on its own)
+    localStorage.setItem('webbook-copy-math-format', 'latex');
     Object.defineProperty(globalThis, 'navigator', { value: dom.window.navigator, configurable: true });
     Object.defineProperty(window, 'isSecureContext', { value: secure });
     const writes = [];
@@ -35,8 +38,12 @@ test('display equations and pre get named buttons, inline math and inline code a
     assert.equal(document.querySelector('#inline-code .webbook-copy-button'), null);
     assert.equal(document.getElementById('inline-math').getAttribute('tabindex'), '-1');
     assert.equal(document.getElementById('webbook-copy-math-options').closest('[data-settings-section]').dataset.settingsSection, 'text');
-    const actions = getActions().filter(action => ['copy-equation', 'copy-selection', 'copy-code', 'open-copy-menu'].includes(action.id));
-    assert.equal(actions.length, 4);
+    const actions = getActions().filter(action => ['copy-equation', 'copy-selection', 'copy-code'].includes(action.id));
+    assert.equal(actions.length, 3);
+    // No Copy menu
+    assert.equal(document.getElementById('webbook-copy-open'), null);
+    assert.equal(document.getElementById('webbook-copy'), null);
+    assert.equal(getActions().some(action => action.id === 'open-copy-menu'), false);
     assert.ok(actions.every(action => action.defaultKeys.length === 0));
     enhanceCopyContent();
     assert.equal(document.querySelectorAll('main .webbook-copy-button').length, 4);
@@ -120,7 +127,6 @@ test('plain HTTP hides copy controls and leaves ordinary native copying untouche
     const { dom } = setup({ secure: false });
     initCopyContent();
     assert.equal(document.querySelector('main .webbook-copy-button'), null);
-    assert.equal(document.getElementById('webbook-copy-open').hidden, true);
     assert.equal(getActions().find(action => action.id === 'copy-equation').isAvailable(), false);
     dom.window.close();
 });
@@ -152,5 +158,16 @@ test('the format preference participates in export, validated import and reset',
     resetSettings(); assert.equal(localStorage.getItem('webbook-copy-math-format'), null);
     importSettings(exported); assert.equal(localStorage.getItem('webbook-copy-math-format'), 'mathml');
     assert.throws(() => importSettings({ ...exported, settings: { 'webbook-copy-math-format': 'other' } }), /Invalid value/);
+    dom.window.close();
+});
+
+test('equations copy as MathML unless the reader chooses LaTeX', () => {
+    const { dom } = setup();
+    localStorage.removeItem('webbook-copy-math-format');
+    assert.equal(copyMathFormat(), 'mathml');
+    initCopyContent();
+    assert.equal(document.getElementById('webbook-copy-math-options').value, 'mathml');
+    localStorage.setItem('webbook-copy-math-format', 'latex');
+    assert.equal(copyMathFormat(), 'latex');
     dom.window.close();
 });

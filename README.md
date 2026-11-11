@@ -92,18 +92,18 @@ Test books:
   back, and what narration does at a phrase with notes: keep reading, pause briefly, or read each
   note.
 - **Skipping:** **Skip past** leaves a table, list, figure, sidebar or note with one key; page
-  numbers, notes and sidebars can be skipped altogether (footnotes and endnotes are by default).
+  numbers, notes and sidebars can be skipped altogether (notes are by default).
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
   out of lists and tables, just before the phrase.
 - **Copy equations and code:** display equations and code blocks have a **Copy** button (shown on
-  hover or focus, always visible on touch screens). Equations copy as MathML HTML for rich editors
-  and LaTeX text for calculators, notes and LaTeX tools. **Settings → Text → Copy equations as**
-  changes the plain-text form to MathML when needed. TeX annotations or non-empty alternatives
-  take priority; otherwise the reader converts the MathML, falling back to its source if needed.
-  Selecting text with math and using the browser's Copy command preserves whole equations, with
-  `$…$` LaTeX in the plain text. The top toolbar's **Copy** menu also copies an inline equation at
-  the selection or focus, or in the narrated phrase (the first if there are several), and copies
-  a selection or code block. Inline math adds no Tab stops. Copying requires HTTPS or localhost
+  hover or focus, always visible on touch screens). Equations copy as MathML: as an equation for
+  rich editors, and as MathML source in plain text. **Settings → Text → Copy equations as** changes
+  the plain text to LaTeX, for calculators, notes and LaTeX tools; TeX annotations or non-empty
+  alternatives take priority, otherwise the reader converts the MathML. Selecting text with math
+  and using the browser's Copy command preserves whole equations, with each equation's plain text
+  in the chosen form. Copy equation (a reader action, with a key of your choosing) copies an
+  inline equation at the selection or focus, or in the narrated phrase (the first if there are
+  several). Inline math adds no Tab stops. Copying requires HTTPS or localhost
   and clipboard permission. Code copies exactly, including indentation and line breaks.
 - **Settings:** all sections stay open, with a **Jump to** list at the top. Every preference applies
   to all books on the same website.
@@ -112,7 +112,7 @@ Test books:
   - **Text:** font, size, line, letter and word spacing, line length, dialog backdrop blur, and
     whether toolbars hide automatically or stay visible, and LaTeX or MathML for copying equations.
   - **Narration:** playback rate, caption mode (also works with text without narration), skip page
-    numbers, footnotes and endnotes, notes or sidebars, and structure sounds.
+    numbers, notes or sidebars, and structure sounds.
   - **Notes:** what to do at a phrase with notes, and whether to return to the text after a note.
   - **Reading position:** resume last position on open.
   - **Keyboard:** enable shortcuts and open the shortcut editor.
@@ -153,7 +153,6 @@ without removing your saved reading positions.
 | `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
 | Unassigned (choose a key in Settings) | Selection, focus or narrated phrase | Copy equation |
 | Unassigned (choose a key in Settings) | Selected text or focused code block | Copy selection / Copy code |
-| Unassigned (choose a key in Settings) | A page with math or code, on HTTPS or localhost | Open Copy menu |
 
 The narration keys are unmodified single keys. An earlier version used `Ctrl`+`Alt` combinations, and screen reader users reported clashes with their assistive technology's commands (e.g. JAWS/NVDA table-navigation keys). The narration slider uses the usual slider keys (arrows, `Page Up`/`Page Down`, `Home`/`End`); on the full-book timeline they move by the amounts described under [Reading features](#reading-features).
 

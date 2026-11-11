@@ -46,35 +46,7 @@ main .webbook-copy-button::before { content: 'Copy'; }
 }
 main math:focus-visible,
 main [data-webbook-copy-scroll]:focus-visible,
-main .webbook-copy-button:focus-visible,
-#webbook-copy button:focus-visible,
-#webbook-copy-open:focus-visible {
+main .webbook-copy-button:focus-visible {
     outline: 2px solid var(--webbook-focus-color);
     outline-offset: 3px;
-}
-#webbook-top-toolbar #webbook-copy-open {
-    font: 400 1rem/1.4 system-ui, sans-serif;
-}
-#webbook-top-toolbar #webbook-copy-open[hidden] { display: none; }
-#webbook-copy:popover-open {
-    box-sizing: border-box;
-    inset: 4rem .75rem auto auto;
-    margin: 0;
-    width: min(21rem, calc(100vw - 1.5rem));
-    max-height: calc(100dvh - 5rem);
-    padding: 1rem;
-    h2 { margin: 0 3rem 1rem 0; font-size: 1.25rem; }
-    > button:not(.webbook-popover-close) {
-        display: block;
-        width: 100%;
-        min-height: 2.75rem;
-        margin-block: .5rem;
-        padding: .5rem;
-        border: 1px solid var(--theme-fg);
-        border-radius: 4px;
-        background: var(--theme-bg);
-        color: var(--theme-fg);
-        font: 400 1rem/1.5 system-ui, sans-serif;
-        cursor: pointer;
-    }
 }

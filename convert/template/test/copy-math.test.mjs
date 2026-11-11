@@ -6,6 +6,8 @@ import { mathMLSource, mathPlainText, readyMathText, mathSelectionFragment, sele
 function setup(body) {
     const dom = new JSDOM(`<main>${body}</main>`, { url: 'https://books.example/chapter.html' });
     for (const name of ['window', 'document', 'localStorage']) globalThis[name] = dom.window[name];
+    // These tests check LaTeX copying; MathML is the default (and tested on its own)
+    localStorage.setItem('webbook-copy-math-format', 'latex');
     return dom;
 }
 
