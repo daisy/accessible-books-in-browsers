@@ -47,10 +47,11 @@ export function audioCleanupSettings(enabled: boolean, enhancements: AudioEnhanc
 }
 
 export function parseAudioEnhancements(value: string): AudioEnhancement[] {
+    if (value.trim() === 'none') return [];
     const names = value.split(',').map(name => name.trim()).filter(Boolean);
     const invalid = names.filter(name => !AUDIO_ENHANCEMENTS.includes(name as AudioEnhancement));
     if (invalid.length) {
-        throw new Error(`Invalid --audio-enhance value: ${invalid.join(', ')}. Use ${AUDIO_ENHANCEMENTS.join(', ')}.`);
+        throw new Error(`Invalid --audio-enhance value: ${invalid.join(', ')}. Use ${AUDIO_ENHANCEMENTS.join(', ')}, or none.`);
     }
     return Array.from(new Set(names)) as AudioEnhancement[];
 }

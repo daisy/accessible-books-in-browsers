@@ -1,7 +1,7 @@
 import { Command } from 'commander';
 import path from 'path';
 import { convert } from './convert.js';
-import { parseAudioEnhancements, type AudioEnhancement } from './audio-cleanup.js';
+import { AUDIO_ENHANCEMENTS, parseAudioEnhancements, type AudioEnhancement } from './audio-cleanup.js';
 
 async function main() {
     let program = new Command();
@@ -16,10 +16,12 @@ async function main() {
         .option('--split-chapters', "Split a content document that holds several chapters into one page per chapter, at the table of contents' entries", true)
         .option('--no-split-chapters', 'Do not split content documents into chapter pages')
         .option('--audio-cache [dir]', "Reuse each page's merged narration audio from an earlier conversion when its clips haven't changed (development convenience). Keeps the latest audio per page in dir, or in the system temp folder if no dir is given")
-        .option('--small-audio', 'Encode narration for smaller downloads: mono 24 kHz MP3 at 32 kb/s')
+        // Small audio and every enhancement are the defaults (user, 2026-11-11): what the demos use
+        .option('--small-audio', 'Encode narration for smaller downloads: mono 24 kHz MP3 at 32 kb/s', true)
+        .option('--no-small-audio', "Keep narration's source encoding settings (channels, sample rate, bitrate)")
         .option('--audio-cleanup', 'Smooth joins, remove rumble, and normalize narration loudness', true)
         .option('--no-audio-cleanup', 'Do not smooth joins, remove rumble, or normalize narration loudness')
-        .option('--audio-enhance <list>', 'Optional comma-separated narration filters: warm-eq, compression, noise, deess, declick')
+        .option('--audio-enhance <list>', 'Comma-separated narration filters: warm-eq, compression, noise, deess, declick (default: all), or none')
         .option('--heading-titles', "On by default: when every page's <title> is the book title, title each page by its first other heading", true)
         .option('--no-heading-titles', 'Do not replace repeated book titles with heading titles')
         .option('--language <tag>', "Override the EPUB's declared BCP 47 language")
@@ -36,7 +38,7 @@ async function main() {
             }
             const language = options.language === undefined ? undefined : canonicalLanguage(options.language);
             const audioEnhance: AudioEnhancement[] = options.audioEnhance === undefined
-                ? [] : parseAudioEnhancements(options.audioEnhance);
+                ? (options.audioCleanup ? [...AUDIO_ENHANCEMENTS] : []) : parseAudioEnhancements(options.audioEnhance);
             if (!options.audioCleanup && audioEnhance.length) {
                 throw new Error('--audio-enhance cannot be used with --no-audio-cleanup');
             }

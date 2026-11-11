@@ -235,9 +235,9 @@ and `template` the reader (`convert/template`). Only valid EPUBs are accepted.
 | `--include-non-linear` | Include spine items marked `linear="no"` in the reading order. |
 | `--check` | Also run [Ace](https://daisy.github.io/ace/) on the EPUB and axe on the result, if they're installed. A check that can't run is skipped and explained in the report; it never stops the conversion. |
 | `--audio-cache [dir]` | Reuse each page's merged narration from an earlier conversion when its audio clips haven't changed, kept in `dir` or the system's temp folder. Merging is most of a conversion's time. For development. |
-| `--small-audio` | Make narration smaller for offline reading or expensive data: mono 24 kHz MP3 at 32 kb/s, tuned for speech. |
+| `--no-small-audio` | Keep the narration's source encoding (channels, sample rate and bitrate, encoded once). By default narration is made small for offline reading or expensive data: mono 24 kHz MP3 at 32 kb/s, tuned for speech. |
 | `--no-audio-cleanup` | Leave narration levels and joins unchanged. By default the converter applies 5 ms fades at joins, removes rumble below 90 Hz, softens plosive pops (p, b), and normalizes every page to -18 LUFS with a -1.5 dBTP limit. |
-| `--audio-enhance <list>` | Add one or more comma-separated, optional narration filters: `warm-eq`, `compression`, `noise`, `deess`, or `declick`. These can alter the sound substantially, so compare them by ear. |
+| `--audio-enhance <list>` | Which narration filters to use, comma-separated: `warm-eq`, `compression`, `noise`, `deess`, `declick`, or `none`. By default all five are used, as chosen by ear on the demos; they can alter the sound substantially, so compare them by ear for a book whose recording differs. |
 
 Chapter splitting: several top-level table of contents entries in one document always mark
 chapters; nested entries are used only in long documents (at least 50 KiB), so ordinary chapter
@@ -247,7 +247,7 @@ Every conversion also writes `conversion-report.md` and `conversion-report.json`
 the source and converted narration sizes and encoding settings, every change by page, and warnings
 for a person to review, such as language markup that doesn't match the text, images all marked
 decorative, broken links and heading problems. Narration is cut through lossless PCM and encoded
-once per page. By default it uses source-matched channel, sample-rate and bitrate settings;
-`--small-audio` uses its speech encoding instead.
+once per page. By default it uses the small speech encoding; `--no-small-audio` keeps
+source-matched channel, sample-rate and bitrate settings instead.
 Audio cleanup never changes the PCM-derived page or cue duration. The conversion report includes
 pre-cleanup loudness, peaks, quiet-stretch levels, clipping findings, and the applied filters.

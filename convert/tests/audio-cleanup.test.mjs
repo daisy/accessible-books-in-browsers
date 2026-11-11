@@ -73,3 +73,8 @@ function generate(output, source, filter) {
     const result = spawnSync(ffmpegInstaller.path, args);
     assert.equal(result.status, 0, result.stderr?.toString());
 }
+
+test('"none" turns the optional enhancements off', () => {
+    assert.deepEqual(parseAudioEnhancements('none'), []);
+    assert.throws(() => parseAudioEnhancements('none,warm-eq'), /Invalid --audio-enhance value: none/);
+});

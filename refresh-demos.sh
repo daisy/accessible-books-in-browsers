@@ -16,7 +16,7 @@ for book do
     fi
     (
         if node build/index.js convert "../source-epubs/$book/" "../demos/$book" template --audio-cache \
-            --audio-enhance warm-eq,compression,noise,deess,declick --small-audio > "$logs/$book.log" 2>&1
+            > "$logs/$book.log" 2>&1
         then echo "$book: done"
         else echo "$book: FAILED" > "$logs/$book.failed"; echo "$book: FAILED, last lines of its log:"; tail -20 "$logs/$book.log"
         fi
