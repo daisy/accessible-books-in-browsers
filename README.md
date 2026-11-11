@@ -69,10 +69,6 @@ These demos were created using this [conversion script](https://github.com/daisy
 * **English for Today, Classes 9–10**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/EnglishForTodayEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/EnglishForTodayEPUB)
 * **Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/CurrentSituationEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/CurrentSituationEPUB)
 
-* **Mathematical Optimization for Machine Learning** (De Gruyter, 2025; [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/)): [demo](https://daisy.github.io/accessible-books-in-browsers/demos/math-optimization-ml) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/math-optimization-ml) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/math-optimization-ml)
-
-  No narration; here for its math: about 2,400 MathML expressions, kept as MathML.
-
 Test books:
 
 * **Notes Test Book**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/notes-test) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/notes-test) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/notes-test)
