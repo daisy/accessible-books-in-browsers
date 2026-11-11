@@ -77,53 +77,53 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(10) > span:nth-of-type(3)"}}
 
 20
-00:01:38.217 --> 00:01:46.275
+00:01:38.217 --> 00:01:46.276
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(10) > span:nth-of-type(4)"}}
 
 21
-00:01:46.275 --> 00:01:52.903
+00:01:46.276 --> 00:01:52.904
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(1)"}}
 
 22
-00:01:52.903 --> 00:01:57.132
+00:01:52.904 --> 00:01:57.133
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(2)"}}
 
 23
-00:01:57.132 --> 00:02:00.661
+00:01:57.133 --> 00:02:00.662
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(3)"}}
 
 24
-00:02:00.661 --> 00:02:07.019
+00:02:00.662 --> 00:02:07.020
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(4)"}}
 
 25
-00:02:07.019 --> 00:02:14.297
+00:02:07.020 --> 00:02:14.298
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(5)"}}
 
 26
-00:02:14.297 --> 00:02:22.350
+00:02:14.298 --> 00:02:22.351
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(6)"}}
 
 27
-00:02:22.350 --> 00:02:27.968
+00:02:22.351 --> 00:02:27.969
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(12) > span:nth-of-type(1)"}}
 
 28
-00:02:27.968 --> 00:02:32.152
+00:02:27.969 --> 00:02:32.153
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(12) > span:nth-of-type(2)"}}
 
 29
-00:02:32.152 --> 00:02:35.591
+00:02:32.153 --> 00:02:35.592
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(12) > span:nth-of-type(3)"}}
 
 30
-00:02:35.591 --> 00:02:40.915
+00:02:35.592 --> 00:02:40.916
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(12) > span:nth-of-type(4)"}}
 
 31
-00:02:40.915 --> 00:02:45.768
+00:02:40.916 --> 00:02:45.769
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(12) > span:nth-of-type(5)"}}
 
 32
-00:02:45.768 --> 00:02:49.882
+00:02:45.769 --> 00:02:49.883
 {"selector":{"type":"FragmentSelector","value":"page17"}}

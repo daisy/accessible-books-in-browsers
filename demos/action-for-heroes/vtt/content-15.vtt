@@ -73,165 +73,165 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(3)"}}
 
 19
-00:01:02.346 --> 00:01:05.165
+00:01:02.346 --> 00:01:05.166
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(4)"}}
 
 20
-00:01:05.165 --> 00:01:14.903
+00:01:05.166 --> 00:01:14.904
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(5)"}}
 
 21
-00:01:14.903 --> 00:01:18.682
+00:01:14.904 --> 00:01:18.683
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(6)"}}
 
 22
-00:01:18.682 --> 00:01:21.576
+00:01:18.683 --> 00:01:21.577
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(1)"}}
 
 23
-00:01:21.576 --> 00:01:25.560
+00:01:21.577 --> 00:01:25.561
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(2)"}}
 
 24
-00:01:25.560 --> 00:01:27.649
+00:01:25.561 --> 00:01:27.650
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(3)"}}
 
 25
-00:01:27.649 --> 00:01:32.363
+00:01:27.650 --> 00:01:32.364
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(4)"}}
 
 26
-00:01:32.363 --> 00:01:39.806
+00:01:32.364 --> 00:01:39.807
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(5)"}}
 
 27
-00:01:39.806 --> 00:01:44.960
+00:01:39.807 --> 00:01:44.961
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(6)"}}
 
 28
-00:01:44.960 --> 00:01:48.934
+00:01:44.961 --> 00:01:48.935
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(7)"}}
 
 29
-00:01:48.934 --> 00:01:51.958
+00:01:48.935 --> 00:01:51.959
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(8)"}}
 
 30
-00:01:51.958 --> 00:01:56.817
+00:01:51.959 --> 00:01:56.818
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(9)"}}
 
 31
-00:01:56.817 --> 00:02:03.265
+00:01:56.818 --> 00:02:03.266
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(10)"}}
 
 32
-00:02:03.265 --> 00:02:08.063
+00:02:03.266 --> 00:02:08.064
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(11)"}}
 
 33
-00:02:08.063 --> 00:02:12.332
+00:02:08.064 --> 00:02:12.333
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(12)"}}
 
 34
-00:02:12.332 --> 00:02:14.471
+00:02:12.333 --> 00:02:14.472
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(10) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 35
-00:02:14.471 --> 00:02:19.060
+00:02:14.472 --> 00:02:19.061
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(11) > span:nth-of-type(1)"}}
 
 36
-00:02:19.060 --> 00:02:21.174
+00:02:19.061 --> 00:02:21.175
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(12) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 37
-00:02:21.174 --> 00:02:23.293
+00:02:21.175 --> 00:02:23.294
 {"selector":{"type":"FragmentSelector","value":"dtb646","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(1)"}}}
 
 38
-00:02:23.293 --> 00:02:26.387
+00:02:23.294 --> 00:02:26.388
 {"selector":{"type":"FragmentSelector","value":"dtb646","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(2)"}}}
 
 39
-00:02:26.387 --> 00:02:28.606
+00:02:26.388 --> 00:02:28.607
 {"selector":{"type":"FragmentSelector","value":"dtb646","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1) > span:nth-of-type(3)"}}}
 
 40
-00:02:28.606 --> 00:02:33.315
+00:02:28.607 --> 00:02:33.316
 {"selector":{"type":"FragmentSelector","value":"dtb646","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(2) > p:nth-of-type(1) > span:nth-of-type(1)"}}}
 
 41
-00:02:33.315 --> 00:02:36.764
+00:02:33.316 --> 00:02:36.765
 {"selector":{"type":"FragmentSelector","value":"dtb646","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(3) > p:nth-of-type(1) > span:nth-of-type(1)"}}}
 
 42
-00:02:36.764 --> 00:02:38.843
+00:02:36.765 --> 00:02:38.844
 {"selector":{"type":"FragmentSelector","value":"page38"}}
 
 43
-00:02:38.843 --> 00:02:40.572
+00:02:38.844 --> 00:02:40.573
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(13) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 44
-00:02:40.572 --> 00:02:42.301
+00:02:40.573 --> 00:02:42.302
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(14) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 45
-00:02:42.301 --> 00:02:45.600
+00:02:42.302 --> 00:02:45.601
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(1)"}}
 
 46
-00:02:45.600 --> 00:02:54.698
+00:02:45.601 --> 00:02:54.699
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(2)"}}
 
 47
-00:02:54.698 --> 00:02:57.797
+00:02:54.699 --> 00:02:57.798
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(3)"}}
 
 48
-00:02:57.797 --> 00:03:04.070
+00:02:57.798 --> 00:03:04.071
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(4)"}}
 
 49
-00:03:04.070 --> 00:03:08.484
+00:03:04.071 --> 00:03:08.485
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(5)"}}
 
 50
-00:03:08.484 --> 00:03:11.833
+00:03:08.485 --> 00:03:11.834
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(6)"}}
 
 51
-00:03:11.833 --> 00:03:17.382
+00:03:11.834 --> 00:03:17.383
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(7)"}}
 
 52
-00:03:17.382 --> 00:03:19.311
+00:03:17.383 --> 00:03:19.312
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(8)"}}
 
 53
-00:03:19.311 --> 00:03:22.895
+00:03:19.312 --> 00:03:22.896
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(15) > span:nth-of-type(9)"}}
 
 54
-00:03:22.895 --> 00:03:24.669
+00:03:22.896 --> 00:03:24.670
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(16) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 55
-00:03:24.669 --> 00:03:27.573
+00:03:24.670 --> 00:03:27.574
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(16) > span:nth-of-type(1) > strong:nth-of-type(2)"}}
 
 56
-00:03:27.573 --> 00:03:29.727
+00:03:27.574 --> 00:03:29.728
 {"selector":{"type":"FragmentSelector","value":"page39"}}
 
 57
-00:03:29.727 --> 00:03:32.626
+00:03:29.728 --> 00:03:32.628
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(17) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 58
-00:03:32.626 --> 00:03:35.630
+00:03:32.628 --> 00:03:35.632
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(18) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 59
-00:03:35.630 --> 00:03:39.434
+00:03:35.632 --> 00:03:39.436
 {"selector":{"type":"FragmentSelector","value":"page40"}}

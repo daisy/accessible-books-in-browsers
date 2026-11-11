@@ -101,25 +101,25 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(16) > span:nth-of-type(4)"}}
 
 26
-00:01:54.143 --> 00:01:56.542
+00:01:54.143 --> 00:01:56.543
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(16) > span:nth-of-type(5)"}}
 
 27
-00:01:56.542 --> 00:02:00.061
+00:01:56.543 --> 00:02:00.062
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(17) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 28
-00:02:00.061 --> 00:02:03.085
+00:02:00.062 --> 00:02:03.086
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(18) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 29
-00:02:03.085 --> 00:02:04.909
+00:02:03.086 --> 00:02:04.910
 {"selector":{"type":"FragmentSelector","value":"page11"}}
 
 30
-00:02:04.909 --> 00:02:14.887
+00:02:04.910 --> 00:02:14.888
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(19) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 31
-00:02:14.887 --> 00:02:18.701
+00:02:14.888 --> 00:02:18.702
 {"selector":{"type":"FragmentSelector","value":"page12"}}

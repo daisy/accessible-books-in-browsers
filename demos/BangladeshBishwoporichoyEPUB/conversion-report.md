@@ -1,6 +1,6 @@
 # Conversion report
 
-Changes: 3671. Warnings for review: 77. Optional checks: Ace not requested, axe not requested.
+Changes: 3671. Warnings for review: 80. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
 
@@ -10,8 +10,46 @@ Changes: 3671. Warnings for review: 77. Optional checks: Ace not requested, axe 
 - heading titles: true
 - markup cleanup: true
 - responsive tables: true
+- small audio: true
+- audio cleanup: true
+- audio enhancements: warm-eq,compression,noise,deess,declick
 - keep all ids: false
 - optional checks: false
+
+## Audio
+
+Source audio: 59.1 MB. Converted audio: 39.4 MB.
+Mode: small audio (mp3). Maximum encoder duration difference: 0.002 seconds.
+- MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)
+
+Cleanup: on; target -18 LUFS, true peak -1.5 dBTP.
+Filters: 5 ms fades at joins, asubcut=cutoff=90:order=10, acrossover=split=200[lo][hi];[lo]acompressor=threshold=0.015:ratio=20:attack=0.1:release=40:knee=2[loc];[loc][hi]amix=inputs=2,volume=2, equalizer=f=220:t=q:w=1:g=0.75, equalizer=f=2800:t=q:w=0.7:g=-3, equalizer=f=5200:t=q:w=1:g=-1, acompressor=threshold=0.063:ratio=2:attack=20:release=250:makeup=1.1, afftdn=nr=8:nf=-35, deesser=i=0.2:m=0.5:f=0.5, adeclick, two-pass loudnorm.
+Loudness range before cleanup: 4.2 LU.
+- index.html: -20.8 LUFS; peak -3.3 dBFS; quietest stretch -92.8 dBFS; clipping samples 0
+- package-2.html: -21.2 LUFS; peak -2.4 dBFS; quietest stretch -99.3 dBFS; clipping samples 0
+- package-3.html: -21.6 LUFS; peak -0.5 dBFS; quietest stretch -99.4 dBFS; clipping samples 0
+- package-4.html: -24.8 LUFS; peak -2.8 dBFS; quietest stretch -99.5 dBFS; clipping samples 0
+- package-5.html: -23.2 LUFS; peak -1.3 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-6.html: -23.2 LUFS; peak -2.0 dBFS; quietest stretch -99.9 dBFS; clipping samples 0
+- package-7.html: -23.1 LUFS; peak -5.0 dBFS; quietest stretch -99.8 dBFS; clipping samples 0
+- package-8.html: -23.5 LUFS; peak -2.9 dBFS; quietest stretch -99.7 dBFS; clipping samples 0
+- package-9.html: -22.2 LUFS; peak -1.5 dBFS; quietest stretch -99.7 dBFS; clipping samples 0
+- package-10.html: -21.6 LUFS; peak -1.9 dBFS; quietest stretch -99.8 dBFS; clipping samples 0
+- package-11.html: -21.2 LUFS; peak -1.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-12.html: -20.6 LUFS; peak -0.0 dBFS; quietest stretch -99.8 dBFS; clipping samples 2
+- package-13.html: -21.2 LUFS; peak -0.3 dBFS; quietest stretch -99.8 dBFS; clipping samples 0
+- package-14.html: -21.3 LUFS; peak -0.1 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-15.html: -21.3 LUFS; peak -0.6 dBFS; quietest stretch -99.8 dBFS; clipping samples 0
+- package-16.html: -20.6 LUFS; peak -0.9 dBFS; quietest stretch -99.5 dBFS; clipping samples 0
+- package-17.html: -20.7 LUFS; peak -0.8 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-18.html: -21.0 LUFS; peak -0.1 dBFS; quietest stretch -99.7 dBFS; clipping samples 0
+- package-19.html: -21.0 LUFS; peak -0.5 dBFS; quietest stretch -99.7 dBFS; clipping samples 0
+- package-20.html: -21.4 LUFS; peak -0.9 dBFS; quietest stretch -99.6 dBFS; clipping samples 0
+- package-21.html: -22.2 LUFS; peak -1.9 dBFS; quietest stretch -99.7 dBFS; clipping samples 0
+- package-22.html: -21.8 LUFS; peak -0.6 dBFS; quietest stretch -99.6 dBFS; clipping samples 0
+- package-23.html: -21.2 LUFS; peak -0.4 dBFS; quietest stretch -99.5 dBFS; clipping samples 0
+- package-24.html: -21.0 LUFS; peak 0.0 dBFS; quietest stretch below measurement floor; clipping samples 2
+- package-25.html: -20.8 LUFS; peak 0.1 dBFS; quietest stretch -99.4 dBFS; clipping samples 2
 
 ## Changes (3671)
 
@@ -102,7 +140,7 @@ Changes: 3671. Warnings for review: 77. Optional checks: Ace not requested, axe 
 - package-23.html: 3
 - package-25.html: 1
 
-## Warnings (77)
+## Warnings (80)
 
 ### Element language (10)
 
@@ -151,6 +189,12 @@ Changes: 3671. Warnings for review: 77. Optional checks: Ace not requested, axe 
 ### Paragraphs resembling list items (1)
 
 - package-16.html: 1 finding — “• হাসপাতাল” starts like a list item.
+
+### Audio clipping (3)
+
+- package-12.html: 1 finding — 2 samples are at or near full scale. Cleanup cannot restore clipped detail.
+- package-24.html: 1 finding — 2 samples are at or near full scale. Cleanup cannot restore clipped detail.
+- package-25.html: 1 finding — 2 samples are at or near full scale. Cleanup cannot restore clipped detail.
 
 ### Decorative images (1)
 

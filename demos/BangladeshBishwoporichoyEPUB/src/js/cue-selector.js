@@ -48,8 +48,8 @@ export function elmForCue(cue) {
     }
 }
 
-// Older books identify the exact narrated element with a plain fragment. Its hash is already
-// phrase-precise, so adding the newer audio-time refinement would only change their URL format.
+// A cue whose plain fragment is the narrated element's own id (a heading, say) is already
+// phrase-precise in the hash, so it needs no audio time in the URL.
 export function cueNeedsTime(cue, elm) {
     try {
         const selector = JSON.parse(cue.text).selector;

@@ -119,18 +119,7 @@ async function copyPositionLink() {
     }
 }
 
-function addAboutText() {
-    if (document.getElementById('webbook-bookmark-help')) return;
-    const body = document.querySelector('#webbook-info .webbook-info-body');
-    if (!body) return;
-    const text = document.createElement('p');
-    text.id = 'webbook-bookmark-help';
-    text.textContent = "To bookmark your place, use your browser's bookmark command; the address always points at where you are.";
-    body.append(text);
-}
-
 export function initBrowserBookmarks() {
-    addAboutText();
     window.addEventListener('scroll', () => {
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(updateFromReadingLine, SCROLL_DELAY);

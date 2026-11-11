@@ -5,6 +5,7 @@ import { showCaptionForCue } from './caption-mode.js';
 import { cancelSkipPreroll, canPlay } from './skippability.js';
 import { pageAudio } from './dom-utils.js';
 import { keepSoundsForSeek } from './structure-sounds.js';
+import { showShortcutHint } from './keyboard-shortcuts.js';
 
 // Escapability: offer a Skip past button for the enclosing structure during playback.
 const ESCAPABLE_STRUCTURE_RULES = [
@@ -36,14 +37,16 @@ function matchesStructureRule(elm, rule) {
     return rule.tags.includes(elm.tagName) || rule.classes.some(c => elm.classList.contains(c));
 }
 
-// The first phrase after the structure that the reader's skip settings don't skip
+// The first phrase after the structure that the reader's skip settings don't skip; when the
+// structure runs to the end of the page, the next page
 function getEscapeTarget(ancestor, track, fromIdx) {
     const cues = Array.from(track.cues);
     for (let i = fromIdx + 1; i < cues.length; i++) {
         const elm = elmForCue(cues[i]);
         if (elm && !ancestor.contains(elm) && canPlay(elm)) return { cue: cues[i], elm, track };
     }
-    return null;
+    const nextPage = document.querySelector('#webbook-spine-nav a[rel=next][href]');
+    return nextPage ? { nextPage } : null;
 }
 
 let escapeBtn;
@@ -59,6 +62,7 @@ function showEscape(structure, escapeTime, announce) {
         escapeBtn.hidden = false;
         escapeBtn.disabled = false;
         escapeBtn.dataset.escapeTime = escapeTime;
+        showShortcutHint(escapeBtn, 'skip-past');
     }
     if (announce && escapeStatus) escapeStatus.textContent = `Inside ${label}. Skip past button available.`;
 }
@@ -83,6 +87,19 @@ function activateEscape() {
     const audio = pageAudio();
     if (!target || !audio) {
         hideEscape();
+        return;
+    }
+    // A note narration was sent to: notes-in-place.js takes the reader back to the text instead
+    const skipping = new CustomEvent('webbook:skippast', { cancelable: true, detail: { structure } });
+    if (!document.dispatchEvent(skipping)) {
+        hideEscape();
+        return;
+    }
+    // Following the next-page link keeps narration playing there if it's playing here (player.js)
+    if (target.nextPage) {
+        cancelSkipPreroll(audio);
+        hideEscape();
+        target.nextPage.click();
         return;
     }
     // Focus follows only from where skipping is about the text: the Skip past button (which is
@@ -129,7 +146,7 @@ export function handleEscapableStructure(elm, track, activeCueIdx) {
     const isNew = escapableStructure.elm !== currentEscapableStructure;
     currentEscapableStructure = escapableStructure.elm;
     escapeTarget = target;
-    showEscape(escapableStructure, target.cue.startTime, isNew);
+    showEscape(escapableStructure, target.cue ? target.cue.startTime : 'next-page', isNew);
 }
 
 export function initEscapability() {

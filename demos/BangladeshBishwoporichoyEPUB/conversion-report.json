@@ -9,6 +9,9 @@
     "heading titles": true,
     "markup cleanup": true,
     "responsive tables": true,
+    "small audio": true,
+    "audio cleanup": true,
+    "audio enhancements": "warm-eq,compression,noise,deess,declick",
     "keep all ids": false,
     "optional checks": false
   },
@@ -493,6 +496,21 @@
       "message": "Table has 28 rows and 2 columns but no header cells."
     },
     {
+      "kind": "Audio clipping",
+      "page": "package-12.html",
+      "message": "2 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "package-24.html",
+      "message": "2 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "package-25.html",
+      "message": "2 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
       "kind": "Decorative images",
       "message": "71 of 71 images (100%) have empty alternative text; review whether they are all decorative."
     },
@@ -512,5 +530,210 @@
       "status": "not requested",
       "detail": "Run with --check to request this check."
     }
-  ]
+  ],
+  "audio": {
+    "mode": "small audio (mp3)",
+    "sourceBytes": 61963314,
+    "outputBytes": 41304453,
+    "settings": [
+      "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
+    ],
+    "maximumEncoderDriftSeconds": 0.0018740000001002954,
+    "cleanup": {
+      "enabled": true,
+      "targetLufs": -18,
+      "truePeakDb": -1.5,
+      "filters": [
+        "5 ms fades at joins",
+        "asubcut=cutoff=90:order=10",
+        "acrossover=split=200[lo][hi];[lo]acompressor=threshold=0.015:ratio=20:attack=0.1:release=40:knee=2[loc];[loc][hi]amix=inputs=2,volume=2",
+        "equalizer=f=220:t=q:w=1:g=0.75",
+        "equalizer=f=2800:t=q:w=0.7:g=-3",
+        "equalizer=f=5200:t=q:w=1:g=-1",
+        "acompressor=threshold=0.063:ratio=2:attack=20:release=250:makeup=1.1",
+        "afftdn=nr=8:nf=-35",
+        "deesser=i=0.2:m=0.5:f=0.5",
+        "adeclick",
+        "two-pass loudnorm"
+      ],
+      "loudnessRangeBeforeLu": 4.199999999999999,
+      "pages": [
+        {
+          "page": "index.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -20.8,
+          "noiseFloorDb": -92.834887,
+          "peakDb": -3.286424
+        },
+        {
+          "page": "package-2.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.2,
+          "noiseFloorDb": -99.259566,
+          "peakDb": -2.384111
+        },
+        {
+          "page": "package-3.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.6,
+          "noiseFloorDb": -99.356086,
+          "peakDb": -0.526107
+        },
+        {
+          "page": "package-4.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -24.8,
+          "noiseFloorDb": -99.526691,
+          "peakDb": -2.76314
+        },
+        {
+          "page": "package-5.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -23.2,
+          "noiseFloorDb": null,
+          "peakDb": -1.311394
+        },
+        {
+          "page": "package-6.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -23.2,
+          "noiseFloorDb": -99.877905,
+          "peakDb": -2.001184
+        },
+        {
+          "page": "package-7.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -23.1,
+          "noiseFloorDb": -99.834238,
+          "peakDb": -4.959856
+        },
+        {
+          "page": "package-8.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -23.5,
+          "noiseFloorDb": -99.700779,
+          "peakDb": -2.907706
+        },
+        {
+          "page": "package-9.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -22.2,
+          "noiseFloorDb": -99.66374,
+          "peakDb": -1.47807
+        },
+        {
+          "page": "package-10.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.6,
+          "noiseFloorDb": -99.84698,
+          "peakDb": -1.885149
+        },
+        {
+          "page": "package-11.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.2,
+          "noiseFloorDb": null,
+          "peakDb": -0.980128
+        },
+        {
+          "page": "package-12.html",
+          "clippingSamples": 2,
+          "loudnessLufs": -20.6,
+          "noiseFloorDb": -99.807303,
+          "peakDb": -0.010441
+        },
+        {
+          "page": "package-13.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.2,
+          "noiseFloorDb": -99.824497,
+          "peakDb": -0.340031
+        },
+        {
+          "page": "package-14.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.3,
+          "noiseFloorDb": null,
+          "peakDb": -0.125742
+        },
+        {
+          "page": "package-15.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.3,
+          "noiseFloorDb": -99.768163,
+          "peakDb": -0.627845
+        },
+        {
+          "page": "package-16.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -20.6,
+          "noiseFloorDb": -99.517997,
+          "peakDb": -0.920217
+        },
+        {
+          "page": "package-17.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -20.7,
+          "noiseFloorDb": null,
+          "peakDb": -0.782512
+        },
+        {
+          "page": "package-18.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21,
+          "noiseFloorDb": -99.673997,
+          "peakDb": -0.110171
+        },
+        {
+          "page": "package-19.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21,
+          "noiseFloorDb": -99.719517,
+          "peakDb": -0.491297
+        },
+        {
+          "page": "package-20.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.4,
+          "noiseFloorDb": -99.622714,
+          "peakDb": -0.876418
+        },
+        {
+          "page": "package-21.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -22.2,
+          "noiseFloorDb": -99.65505,
+          "peakDb": -1.900987
+        },
+        {
+          "page": "package-22.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.8,
+          "noiseFloorDb": -99.596732,
+          "peakDb": -0.575006
+        },
+        {
+          "page": "package-23.html",
+          "clippingSamples": 0,
+          "loudnessLufs": -21.2,
+          "noiseFloorDb": -99.546614,
+          "peakDb": -0.446811
+        },
+        {
+          "page": "package-24.html",
+          "clippingSamples": 2,
+          "loudnessLufs": -21,
+          "noiseFloorDb": null,
+          "peakDb": 0.005833
+        },
+        {
+          "page": "package-25.html",
+          "clippingSamples": 2,
+          "loudnessLufs": -20.8,
+          "noiseFloorDb": -99.411178,
+          "peakDb": 0.070598
+        }
+      ]
+    }
+  }
 }

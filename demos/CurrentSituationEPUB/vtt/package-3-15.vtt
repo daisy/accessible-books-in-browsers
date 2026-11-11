@@ -57,11 +57,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_1166","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > p:nth-of-type(3)"}}}
 
 15
-00:01:25.543 --> 00:01:30.757
+00:01:25.543 --> 00:01:30.758
 {"selector":{"type":"FragmentSelector","value":"dtb_1166","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > p:nth-of-type(4)"}}}
 
 16
-00:01:30.757 --> 00:01:35.337
+00:01:30.758 --> 00:01:35.337
 {"selector":{"type":"FragmentSelector","value":"dtb_1166","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2) > p:nth-of-type(5)"}}}
 
 17

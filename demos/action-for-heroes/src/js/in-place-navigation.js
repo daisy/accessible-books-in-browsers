@@ -242,7 +242,6 @@ function swapNarration(doc) {
     const toolbar = document.querySelector('#webbook-toolbar');
     const newAudio = doc.querySelector('#webbook-toolbar audio');
     let audio = document.querySelector('#webbook-toolbar audio');
-    let controls = document.querySelector('#webbook-audio-controls');
 
     if (!newAudio) {
         if (audio) {
@@ -251,7 +250,8 @@ function swapNarration(doc) {
             audio.replaceChildren();
             audio.load();
         }
-        controls?.setAttribute('hidden', '');
+        document.querySelectorAll('#webbook-narration-position, #webbook-audio-controls')
+            .forEach(group => group.setAttribute('hidden', ''));
         return;
     }
 
@@ -261,11 +261,13 @@ function swapNarration(doc) {
         audio = document.importNode(newAudio, true);
         audio.replaceChildren();
         audio.removeAttribute('src');
+        const newPosition = doc.querySelector('#webbook-narration-position');
         const newControls = doc.querySelector('#webbook-audio-controls');
-        controls = newControls ? document.importNode(newControls, true) : null;
         const after = tocButton ? tocButton.nextSibling : toolbar.firstChild;
         toolbar.insertBefore(audio, after);
-        if (controls) toolbar.insertBefore(controls, audio.nextSibling);
+        // The time and slider come first, above the buttons
+        if (newPosition) toolbar.insertBefore(document.importNode(newPosition, true), toolbar.firstChild);
+        if (newControls) toolbar.insertBefore(document.importNode(newControls, true), audio.nextSibling);
     }
     if (!audio) return;
 
@@ -284,12 +286,40 @@ function startPage({ audioTime }) {
     startCaptionModeForPage();
 }
 
+// Back and Forward return to a scroll position, but images without a set size are 0 high until they
+// load, so the page is still short and the position comes out short (about 240 px on English for
+// Today's pages with nothing cached). The position is applied again as images in <main> load, until
+// they all have, or the reader scrolls, or a few seconds have passed.
+let imageScrollAbort = null;
+function keepScrollWhileImagesLoad(scrollY) {
+    imageScrollAbort?.abort();
+    const pending = Array.from(document.querySelectorAll('main img')).filter(img => !img.complete);
+    if (!pending.length) return;
+    const abort = imageScrollAbort = new AbortController();
+    const stop = () => abort.abort();
+    for (const type of ['wheel', 'touchstart', 'keydown', 'pointerdown']) {
+        window.addEventListener(type, stop, { once: true, passive: true, signal: abort.signal });
+    }
+    setTimeout(stop, 5000);
+    let left = pending.length;
+    for (const img of pending) {
+        const settle = () => {
+            if (abort.signal.aborted) return;
+            window.scrollTo(0, scrollY);
+            if (--left === 0) stop();
+        };
+        img.addEventListener('load', settle, { once: true, signal: abort.signal });
+        img.addEventListener('error', settle, { once: true, signal: abort.signal });
+    }
+}
+
 // Where a newly loaded page would put the reader: at the link's target, or at the top
 function placeReader(hash, moveFocus, scrollY) {
     const id = hash ? decodeURIComponent(hash.slice(1)) : '';
     const target = id ? document.getElementById(id) : null;
     if (typeof scrollY === 'number') {
         window.scrollTo(0, scrollY);
+        keepScrollWhileImagesLoad(scrollY);
     } else if (target) {
         target.scrollIntoView();
     } else {

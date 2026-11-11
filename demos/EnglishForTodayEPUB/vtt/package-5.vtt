@@ -77,11 +77,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(6) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 20
-00:00:34.099 --> 00:00:35.773
+00:00:34.099 --> 00:00:35.774
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 21
-00:00:35.773 --> 00:00:37.348
+00:00:35.774 --> 00:00:37.348
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(7) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 22
@@ -97,11 +97,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 25
-00:00:43.601 --> 00:00:45.930
+00:00:43.601 --> 00:00:45.931
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(8) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 26
-00:00:45.930 --> 00:00:47.415
+00:00:45.931 --> 00:00:47.415
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(9) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 27
@@ -161,11 +161,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(13) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 41
-00:01:20.861 --> 00:01:22.580
+00:01:20.861 --> 00:01:22.581
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 42
-00:01:22.580 --> 00:01:25.145
+00:01:22.581 --> 00:01:25.145
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 43
@@ -173,11 +173,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(14) > td:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 44
-00:01:29.279 --> 00:01:31.083
+00:01:29.279 --> 00:01:31.084
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(15) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 45
-00:01:31.083 --> 00:01:33.188
+00:01:31.084 --> 00:01:33.188
 {"selector":{"type":"FragmentSelector","value":"dtb_97","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(15) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 46

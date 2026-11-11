@@ -45,5 +45,5 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(10)"}}}
 
 12
-00:00:42.382 --> 00:00:44.383
+00:00:42.382 --> 00:00:44.384
 {"selector":{"type":"FragmentSelector","value":"id_7","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(11)"}}}

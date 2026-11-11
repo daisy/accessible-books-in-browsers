@@ -13,11 +13,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_4153"}}
 
 4
-00:00:05.543 --> 00:00:09.452
+00:00:05.543 --> 00:00:09.453
 {"selector":{"type":"FragmentSelector","value":"id_44","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1)"}}}
 
 5
-00:00:09.452 --> 00:00:12.942
+00:00:09.453 --> 00:00:12.942
 {"selector":{"type":"FragmentSelector","value":"dtb_4155","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 6
@@ -37,5 +37,5 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_4155","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(5) > p:nth-of-type(1)"}}}
 
 10
-00:00:24.009 --> 00:00:26.063
+00:00:24.009 --> 00:00:26.064
 {"selector":{"type":"FragmentSelector","value":"dtb_4166"}}

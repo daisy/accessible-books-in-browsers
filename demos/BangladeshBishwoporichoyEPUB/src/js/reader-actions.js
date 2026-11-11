@@ -3,8 +3,15 @@
 const actions = new Map();
 
 export function registerAction(action) {
-    actions.set(action.id, { isAvailable: () => true, ...action,
-        defaultKeys: (action.defaultKeys ?? []).map(key => ({ shift: false, alt: false, ctrl: false, meta: false, ...key })) });
+    const defaultKeys = (action.defaultKeys ?? []).map(key => ({ shift: false, alt: false, ctrl: false, meta: false, ...key }));
+    // Two actions given the same key by default: only one of them would ever run
+    const same = (a, b) => a.code === b.code && ['shift', 'alt', 'ctrl', 'meta'].every(name => a[name] === b[name]);
+    for (const other of actions.values()) {
+        if (other.id !== action.id && other.defaultKeys.some(key => defaultKeys.some(mine => same(key, mine)))) {
+            console.warn(`Reader actions ${other.id} and ${action.id} share a default key`);
+        }
+    }
+    actions.set(action.id, { isAvailable: () => true, ...action, defaultKeys });
 }
 
 export function getActions() {
@@ -29,11 +36,56 @@ export function initReaderActionStatus() {
 }
 
 let announcementTimer;
+let noticeTimer;
+const NOTICE_SECONDS = 5;
 
-export function announceReaderAction(message) {
+// Said to screen readers, and shown for a few seconds for everyone else: most actions that announce
+// (time left, print page, link copied) have nothing else to show. A message about something already
+// on screen (a setting in the open panel) passes show: false.
+export function announceReaderAction(message, { show = true } = {}) {
     const status = document.getElementById('webbook-action-status');
     if (!status) return;
     clearTimeout(announcementTimer);
     status.textContent = '';
     announcementTimer = setTimeout(() => { status.textContent = message; }, 30);
+    if (show) showNotice(message);
+}
+
+function showNotice(message) {
+    let notice = document.getElementById('webbook-action-notice');
+    if (!notice) {
+        notice = document.createElement('div');
+        notice.id = 'webbook-action-notice';
+        notice.className = 'webbook';
+        // The status above already says it
+        notice.setAttribute('aria-hidden', 'true');
+        document.body.append(notice);
+    }
+    notice.textContent = message;
+    notice.hidden = false;
+    clearTimeout(noticeTimer);
+    noticeTimer = setTimeout(() => { notice.hidden = true; }, NOTICE_SECONDS * 1000);
+}
+
+function hideNotice() {
+    const notice = document.getElementById('webbook-action-notice');
+    if (!notice || notice.hidden) return false;
+    clearTimeout(noticeTimer);
+    notice.hidden = true;
+    return true;
+}
+
+// The newest thing on screen goes first: while the message shows, Escape dismisses only it (the
+// next Escape is Skip past again). On window, in capture, so it's seen before the shortcuts are.
+// A click or tap on the message dismisses it too.
+export function initReaderActionNotice() {
+    window.addEventListener('keydown', e => {
+        if (e.key !== 'Escape' || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        if (!hideNotice()) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+    }, { capture: true });
+    document.addEventListener('click', e => {
+        if (e.target instanceof Element && e.target.closest('#webbook-action-notice')) hideNotice();
+    });
 }

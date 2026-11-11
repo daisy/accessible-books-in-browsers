@@ -26,8 +26,11 @@ export function highlightElm(elm, placement = 'nearest') {
             currentNarrationHighlight = new Highlight();
             highlights.set(NARRATION_HIGHLIGHT_NAME, currentNarrationHighlight);
         }
+        const previous = currentNarrationHighlight.size ? lastHighlightedElm : null;
         currentNarrationHighlight.clear();
         currentNarrationHighlight.add(range);
+        if (previous && previous !== elm) repaintAround(previous);
+        lastHighlightedElm = elm;
     }
     const rect = elm.getBoundingClientRect();
     const viewport = readingViewport();
@@ -38,7 +41,28 @@ export function highlightElm(elm, placement = 'nearest') {
     }
 }
 
+// Safari (macOS, 2026-11-10) still left a thin line, like an underline, under some phrases after the
+// highlight moved on: it repaints only the phrase's own box, and the highlight paints a little
+// below it. A transparent outline for one frame on the phrase's block makes it repaint the whole
+// block and a few pixels around it. Nothing moves: outlines don't affect layout.
+let lastHighlightedElm = null;
+function repaintAround(elm) {
+    if (!elm.isConnected) return;
+    const block = elm.closest('p, li, dd, dt, td, th, figcaption, caption, blockquote, h1, h2, h3, h4, h5, h6, aside, section, main') ?? elm;
+    // Not a block with focus: its focus outline would blink
+    if (block.style.outline || block === document.activeElement) return;
+    block.style.outline = '4px solid transparent';
+    requestAnimationFrame(() => requestAnimationFrame(() => block.style.removeProperty('outline')));
+}
+
+// The phrase the highlight is on now, or null when there's none
+export function highlightedElement() {
+    return lastHighlightedElm?.isConnected ? lastHighlightedElm : null;
+}
+
 export function clearNarrationHighlight() {
+    if (lastHighlightedElm && currentNarrationHighlight?.size) repaintAround(lastHighlightedElm);
+    lastHighlightedElm = null;
     currentNarrationHighlight?.clear();
     const highlights = customHighlightRegistry();
     const registeredHighlight = highlights?.get?.(NARRATION_HIGHLIGHT_NAME);
@@ -167,7 +191,7 @@ export function positionFromUrl(url = new URL(window.location.href)) {
 }
 
 // The narration time for the place the URL points at: its t, or else the start of the phrase its
-// #id leads to (a book converted before t existed). Narration's own time when it's still within
+// #id leads to (a TOC or other link, which has no t). Narration's own time when it's still within
 // that phrase, so a pause mid-phrase is kept. Narration's time when the URL gives no place.
 export function readingPositionTime(audio) {
     const cues = Array.from(audio?.textTracks?.[0]?.cues || []);

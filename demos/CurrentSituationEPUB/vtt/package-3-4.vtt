@@ -37,11 +37,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(1) > div:nth-of-type(1) > img:nth-of-type(1)"}}}
 
 10
-00:01:15.521 --> 00:01:17.675
+00:01:15.521 --> 00:01:17.676
 {"selector":{"type":"FragmentSelector","value":"dtb_167","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2) > p:nth-of-type(1) > em:nth-of-type(1)"}}}
 
 11
-00:01:17.675 --> 00:01:28.634
+00:01:17.676 --> 00:01:28.634
 {"selector":{"type":"FragmentSelector","value":"dtb_205","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 12

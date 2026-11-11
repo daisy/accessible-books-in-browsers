@@ -10,8 +10,46 @@ Changes: 90. Warnings for review: 41. Optional checks: Ace not requested, axe no
 - heading titles: true
 - markup cleanup: true
 - responsive tables: true
+- small audio: true
+- audio cleanup: true
+- audio enhancements: warm-eq,compression,noise,deess,declick
 - keep all ids: false
 - optional checks: false
+
+## Audio
+
+Source audio: 20.9 MB. Converted audio: 10.4 MB.
+Mode: small audio (mp3). Maximum encoder duration difference: 0.002 seconds.
+- MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)
+
+Cleanup: on; target -18 LUFS, true peak -1.5 dBTP.
+Filters: 5 ms fades at joins, asubcut=cutoff=90:order=10, acrossover=split=200[lo][hi];[lo]acompressor=threshold=0.015:ratio=20:attack=0.1:release=40:knee=2[loc];[loc][hi]amix=inputs=2,volume=2, equalizer=f=220:t=q:w=1:g=0.75, equalizer=f=2800:t=q:w=0.7:g=-3, equalizer=f=5200:t=q:w=1:g=-1, acompressor=threshold=0.063:ratio=2:attack=20:release=250:makeup=1.1, afftdn=nr=8:nf=-35, deesser=i=0.2:m=0.5:f=0.5, adeclick, two-pass loudnorm.
+Loudness range before cleanup: 0.8 LU.
+- index.html: -25.6 LUFS; peak -3.7 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-2.html: -25.7 LUFS; peak -5.1 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3.html: -25.7 LUFS; peak -5.4 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-2.html: -25.8 LUFS; peak -4.1 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-3.html: -25.8 LUFS; peak -4.9 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-4.html: -25.3 LUFS; peak -3.9 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-5.html: -25.4 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-6.html: -25.4 LUFS; peak -5.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-7.html: -25.3 LUFS; peak -3.9 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-8.html: -26.1 LUFS; peak -5.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-9.html: -25.4 LUFS; peak -4.3 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-10.html: -25.7 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-11.html: -25.7 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-12.html: -25.6 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-13.html: -25.7 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-14.html: -25.5 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-15.html: -25.5 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-16.html: -25.6 LUFS; peak -4.0 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-17.html: -25.4 LUFS; peak -4.6 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-18.html: -25.6 LUFS; peak -4.3 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-19.html: -25.5 LUFS; peak -4.2 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-20.html: -25.7 LUFS; peak -3.8 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-21.html: -25.6 LUFS; peak -4.3 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-22.html: -25.3 LUFS; peak -4.5 dBFS; quietest stretch below measurement floor; clipping samples 0
+- package-3-23.html: -25.4 LUFS; peak -3.6 dBFS; quietest stretch below measurement floor; clipping samples 0
 
 ## Changes (90)
 

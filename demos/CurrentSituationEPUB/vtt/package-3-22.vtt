@@ -13,5 +13,5 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_1466","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 4
-00:00:27.546 --> 00:00:36.470
+00:00:27.546 --> 00:00:36.471
 {"selector":{"type":"FragmentSelector","value":"dtb_1466","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(3) > p:nth-of-type(1)"}}}

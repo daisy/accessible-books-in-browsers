@@ -1,13 +1,13 @@
 import { getActions } from './reader-actions.js';
-import { getActionKeys, keySpecForEvent, shortcutRejection, isBrowseModeKey, assignShortcut, shortcutConflicts, restoreActionDefaults, removeShortcut, resetShortcuts, setShortcutCapture, shortcutName, loadKeyboardLayout } from './keyboard-shortcuts.js';
+import { getActionKeys, keySpecForEvent, shortcutRejection, shortcutWarning, assignShortcut, shortcutConflicts, restoreActionDefaults, removeShortcut, resetShortcuts, setShortcutCapture, shortcutName, loadKeyboardLayout } from './keyboard-shortcuts.js';
 
-const BROWSE_MODE_WARNING = 'Warning: this key is a screen reader command in browse mode.';
 const MODIFIER_CODES = /^(Shift|Control|Alt|Meta)(Left|Right)$|^(AltGraph|CapsLock|NumLock|ScrollLock|Fn|FnLock)$/;
 const ACTION_ORDER = [
     'play-pause', 'previous-phrase', 'next-phrase', 'go-to-narration', 'play-from-here', 'skip-past', 'rate-down', 'rate-up',
     'previous-page', 'next-page',
     'open-toc', 'open-settings', 'open-goto-page', 'open-search', 'open-about',
-    'font-smaller', 'font-larger', 'toggle-caption-mode'
+    'font-smaller', 'font-larger', 'toggle-caption-mode',
+    'export-settings', 'import-settings', 'reset-settings'
 ];
 
 // Loaded the first time the reader opens the editor (keyboard-shortcuts.js adds the button), and
@@ -117,7 +117,9 @@ function buildEditor(openButton, settings) {
             row.changeWarning.textContent = '';
             row.restore.hidden = keysMatch(keys, row.action.defaultKeys);
             resetRestoreConfirmation(row);
-            row.warning.hidden = !keys.some(isBrowseModeKey);
+            const warning = keys.map(shortcutWarning).find(Boolean) ?? '';
+            row.warning.textContent = warning;
+            row.warning.hidden = !warning;
         }
     }
 
@@ -148,7 +150,7 @@ function buildEditor(openButton, settings) {
         announce(`Press the new shortcut for ${action.label}, or Escape to cancel.`);
     }
 
-    for (const group of ['Narration', 'Navigation', 'Panels', 'Reading']) {
+    for (const group of ['Narration', 'Navigation', 'Panels', 'Reading', 'Settings']) {
         const actions = getActions()
             .filter(action => action.group === group)
             .sort((first, second) => ACTION_ORDER.indexOf(first.id) - ACTION_ORDER.indexOf(second.id));
@@ -195,7 +197,7 @@ function buildEditor(openButton, settings) {
                 const moved = assignShortcut(action.id, spec);
                 refresh();
                 const name = shortcutName(spec).ariaLabel;
-                announce(`${name} moved from ${moved.map(other => other.label).join(', ')} to ${action.label}.${isBrowseModeKey(spec) ? ` ${BROWSE_MODE_WARNING}` : ''}`);
+                announce(`${name} moved from ${moved.map(other => other.label).join(', ')} to ${action.label}.${shortcutWarning(spec) ? ` ${shortcutWarning(spec)}` : ''}`);
                 button.focus({ preventScroll: true });
             });
             button.addEventListener('blur', () => {
@@ -252,7 +254,7 @@ function buildEditor(openButton, settings) {
             });
             const warning = document.createElement('p');
             warning.className = 'webbook-shortcut-warning';
-            warning.textContent = BROWSE_MODE_WARNING;
+            warning.hidden = true;
             controls.append(button, remove, restore);
             row.append(label, keys, controls, changeWarning, restoreWarning, warning);
             list.append(row);
@@ -309,7 +311,7 @@ function buildEditor(openButton, settings) {
         assignShortcut(action.id, spec);
         refresh();
         const name = shortcutName(spec).ariaLabel;
-        announce(`${name} assigned to ${action.label}.${isBrowseModeKey(spec) ? ` ${BROWSE_MODE_WARNING}` : ''}`);
+        announce(`${name} assigned to ${action.label}.${shortcutWarning(spec) ? ` ${shortcutWarning(spec)}` : ''}`);
     }, { capture: true });
 
     panel.addEventListener('beforetoggle', event => {

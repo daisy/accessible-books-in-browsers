@@ -1,3 +1,4 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { positionAnchor } from './narration-position.js';
 
 const RESUME_ENABLED_KEY = 'webbook-resume-enabled';

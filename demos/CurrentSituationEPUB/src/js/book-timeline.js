@@ -1,3 +1,4 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { cancelSkipPreroll } from './skippability.js';
 import { announceReaderAction } from './reader-actions.js';
 
@@ -61,14 +62,10 @@ async function loadBookAudioMap() {
         if (!response.ok) return;
         const data = await response.json();
         if (data?.version !== 1 || !(data.duration > 0) || !Array.isArray(data.pages) || !Array.isArray(data.chapters)) return;
-        // Only chapters with narration have a place on the timeline (maps written before the
-        // converter dropped the others may still list them)
-        const narrated = new Set(data.pages.filter(page => page.duration > 0).map(page => page.href));
-        data.chapters = data.chapters.filter(chapter => narrated.has(String(chapter.href).split('#')[0]));
         bookAudioMap = data;
         player.onReady();
     } catch {
-        // Older books and offline copies keep the per-page timeline.
+        // Without a map (a copy opened from files, say) the timeline stays per page.
     }
 }
 
@@ -202,6 +199,8 @@ function initTimeDisplayToggle() {
     toggle.id = 'webbook-time-mode';
     ui.timeDisplay.replaceWith(toggle);
     toggle.append(ui.timeDisplay);
+    // Hidden on its own (the slider's value says the same), but in the button it's the name
+    ui.timeDisplay.removeAttribute('aria-hidden');
     toggle.addEventListener('click', () => {
         const index = TIME_DISPLAY_MODES.indexOf(ui.timeDisplayMode);
         ui.timeDisplayMode = TIME_DISPLAY_MODES[(index + 1) % TIME_DISPLAY_MODES.length];

@@ -89,17 +89,17 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(1) > strong:nth-of-type(1)"}}
 
 23
-00:01:36.820 --> 00:01:39.384
+00:01:36.820 --> 00:01:39.385
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(1)"}}
 
 24
-00:01:39.384 --> 00:01:47.576
+00:01:39.385 --> 00:01:47.577
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(2)"}}
 
 25
-00:01:47.576 --> 00:02:03.957
+00:01:47.577 --> 00:02:03.958
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(10) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 26
-00:02:03.957 --> 00:02:08.026
+00:02:03.958 --> 00:02:08.027
 {"selector":{"type":"FragmentSelector","value":"page21"}}

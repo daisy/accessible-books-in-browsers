@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting, settingsSection } from './settings-sections.js';
 import { navigateTo } from './in-place-navigation.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 import { pageAudio } from './dom-utils.js';
@@ -19,7 +21,7 @@ export function keyboardShortcutsEnabled() {
 
 // The UI creates this setting itself, so books converted before it existed get it too
 function initKeyboardShortcuts() {
-    const fieldset = document.querySelector('#webbook-settings fieldset');
+    const fieldset = settingsSection('keyboard');
     if (!fieldset) return;
 
     let toggle = document.querySelector('#webbook-keyboard-shortcuts-toggle');
@@ -32,9 +34,7 @@ function initKeyboardShortcuts() {
         toggle.type = 'checkbox';
         toggle.id = 'webbook-keyboard-shortcuts-toggle';
         row.append(label, toggle);
-        const captionRow = document.querySelector('#webbook-caption-mode-toggle')?.closest('div');
-        if (captionRow?.parentElement === fieldset) captionRow.after(row);
-        else fieldset.append(row);
+        appendSetting('keyboard', row);
     }
 
     toggle.checked = keyboardShortcutsEnabled();
@@ -213,6 +213,7 @@ function initSettingActions() {
 }
 
 export function initSettings() {
+    settingsSection('colors');
     initPageNavigation();
     initPageColors();
     initDialogBackdropBlur();

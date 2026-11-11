@@ -81,11 +81,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 21
-00:00:52.537 --> 00:00:54.822
+00:00:52.537 --> 00:00:54.823
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(10) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 22
-00:00:54.822 --> 00:00:58.520
+00:00:54.823 --> 00:00:58.520
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(11) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 23
@@ -177,11 +177,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(22) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 45
-00:01:59.401 --> 00:02:01.585
+00:01:59.401 --> 00:02:01.586
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(22) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 46
-00:02:01.585 --> 00:02:05.984
+00:02:01.586 --> 00:02:05.984
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(23) > td:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 47
@@ -205,11 +205,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(25) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 52
-00:02:19.423 --> 00:02:22.450
+00:02:19.423 --> 00:02:22.451
 {"selector":{"type":"FragmentSelector","value":"dtb_563","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(1) > p:nth-of-type(1)"}}}
 
 53
-00:02:22.450 --> 00:02:24.506
+00:02:22.451 --> 00:02:24.506
 {"selector":{"type":"FragmentSelector","value":"dtb_383","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(26) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 54

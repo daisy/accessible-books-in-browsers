@@ -1,161 +1,186 @@
 {
   "version": 1,
-  "duration": 2735.0745690000003,
+  "duration": 2735.0786850000004,
   "pages": [
     {
       "href": "index.html",
       "title": "Current Situation Of SRHR Of Persons With Disabilities In Bangladesh In The Context Of SDGs And UNCRPD",
       "start": 0,
-      "duration": 18.597551
+      "duration": 18.597583,
+      "audio": "audio/index.mp3"
     },
     {
       "href": "package-2.html",
       "title": "Current Situation Of SRHR Of Persons With Disabilities In Bangladesh In The Context Of SDGs And UNCRPD",
-      "start": 18.597551,
-      "duration": 8.483968
+      "start": 18.597583,
+      "duration": 8.483958,
+      "audio": "audio/package-2.mp3"
     },
     {
       "href": "package-3.html",
       "title": "Current Situation Of SRHR Of Persons With Disabilities In Bangladesh In The Context Of SDGs And UNCRPD",
-      "start": 27.081519,
-      "duration": 8.978548
+      "start": 27.081541,
+      "duration": 8.978583,
+      "audio": "audio/package-3.mp3"
     },
     {
       "href": "package-3-2.html",
       "title": "United Nations Convention On The Rights Of Persons With Disabilities",
-      "start": 36.060067000000004,
-      "duration": 78.19120099999999
+      "start": 36.060124,
+      "duration": 78.19120799999999,
+      "audio": "audio/package-3-2.mp3"
     },
     {
       "href": "package-3-3.html",
       "title": "The Sustainable Development Goals",
-      "start": 114.251268,
-      "duration": 246.77369500000003
+      "start": 114.25133199999999,
+      "duration": 246.77391500000007,
+      "audio": "audio/package-3-3.mp3"
     },
     {
       "href": "package-3-4.html",
       "title": "Recommended SRHR Targets For SDGs",
-      "start": 361.024963,
-      "duration": 117.679839
+      "start": 361.02524700000004,
+      "duration": 117.67991699999999,
+      "audio": "audio/package-3-4.mp3"
     },
     {
       "href": "package-3-5.html",
       "title": "3.",
-      "start": 478.70480200000003,
-      "duration": 132.02074699999997
+      "start": 478.705164,
+      "duration": 132.02087699999998,
+      "audio": "audio/package-3-5.mp3"
     },
     {
       "href": "package-3-6.html",
       "title": "4.",
-      "start": 610.725549,
-      "duration": 90.673264
+      "start": 610.726041,
+      "duration": 90.67333299999999,
+      "audio": "audio/package-3-6.mp3"
     },
     {
       "href": "package-3-7.html",
       "title": "5.",
-      "start": 701.398813,
-      "duration": 191.23913499999995
+      "start": 701.399374,
+      "duration": 191.23925,
+      "audio": "audio/package-3-7.mp3"
     },
     {
       "href": "package-3-8.html",
       "title": "SDGs and Disability SRHR Scenario",
-      "start": 892.6379479999999,
-      "duration": 51.790338999999996
+      "start": 892.6386239999999,
+      "duration": 51.79041399999999,
+      "audio": "audio/package-3-8.mp3"
     },
     {
       "href": "package-3-9.html",
       "title": "Our Nationwide Research on SRHR of Persons With Disabilities",
-      "start": 944.428287,
-      "duration": 56.157686
+      "start": 944.4290379999999,
+      "duration": 56.15775000000001,
+      "audio": "audio/package-3-9.mp3"
     },
     {
       "href": "package-3-10.html",
       "title": "3.",
-      "start": 1000.585973,
-      "duration": 270.00286500000004
+      "start": 1000.5867879999998,
+      "duration": 270.0037060000001,
+      "audio": "audio/package-3-10.mp3"
     },
     {
       "href": "package-3-11.html",
       "title": "3.",
-      "start": 1270.5888380000001,
-      "duration": 107.40169499999999
+      "start": 1270.590494,
+      "duration": 107.40212099999998,
+      "audio": "audio/package-3-11.mp3"
     },
     {
       "href": "package-3-12.html",
       "title": "3.",
-      "start": 1377.9905330000001,
-      "duration": 138.023986
+      "start": 1377.9926150000001,
+      "duration": 138.02433200000002,
+      "audio": "audio/package-3-12.mp3"
     },
     {
       "href": "package-3-13.html",
       "title": "3.",
-      "start": 1516.014519,
-      "duration": 103.87289700000002
+      "start": 1516.016947,
+      "duration": 103.87328799999996,
+      "audio": "audio/package-3-13.mp3"
     },
     {
       "href": "package-3-14.html",
       "title": "3.",
-      "start": 1619.887416,
-      "duration": 103.289998
+      "start": 1619.890235,
+      "duration": 103.290083,
+      "audio": "audio/package-3-14.mp3"
     },
     {
       "href": "package-3-15.html",
       "title": "3.",
-      "start": 1723.177414,
-      "duration": 96.856188
+      "start": 1723.1803180000002,
+      "duration": 96.85625100000001,
+      "audio": "audio/package-3-15.mp3"
     },
     {
       "href": "package-3-16.html",
       "title": "3.",
-      "start": 1820.033602,
-      "duration": 66.696393
+      "start": 1820.036569,
+      "duration": 66.6965,
+      "audio": "audio/package-3-16.mp3"
     },
     {
       "href": "package-3-17.html",
       "title": "4.",
-      "start": 1886.729995,
-      "duration": 104.60802699999999
+      "start": 1886.7330690000001,
+      "duration": 104.60825000000001,
+      "audio": "audio/package-3-17.mp3"
     },
     {
       "href": "package-3-18.html",
       "title": "5.",
-      "start": 1991.338022,
-      "duration": 86.79163
+      "start": 1991.341319,
+      "duration": 86.79166499999998,
+      "audio": "audio/package-3-18.mp3"
     },
     {
       "href": "package-3-19.html",
       "title": "5.",
-      "start": 2078.129652,
-      "duration": 89.59666500000002
+      "start": 2078.1329840000003,
+      "duration": 89.59675,
+      "audio": "audio/package-3-19.mp3"
     },
     {
       "href": "package-3-20.html",
       "title": "Facilitators To Attain SRHR Specific SDGs",
-      "start": 2167.726317,
-      "duration": 190.57773199999997
+      "start": 2167.7297340000005,
+      "duration": 190.577955,
+      "audio": "audio/package-3-20.mp3"
     },
     {
       "href": "package-3-21.html",
       "title": "Recommendations",
-      "start": 2358.3040490000003,
-      "duration": 117.23576
+      "start": 2358.3076890000007,
+      "duration": 117.235874,
+      "audio": "audio/package-3-21.mp3"
     },
     {
       "href": "package-3-22.html",
       "title": "Acknowledgements",
-      "start": 2475.5398090000003,
-      "duration": 36.470431
+      "start": 2475.5435630000006,
+      "duration": 36.4705,
+      "audio": "audio/package-3-22.mp3"
     },
     {
       "href": "package-3-23.html",
       "title": "References",
-      "start": 2512.0102400000005,
-      "duration": 223.064329
+      "start": 2512.0140630000005,
+      "duration": 223.06462199999999,
+      "audio": "audio/package-3-23.mp3"
     },
     {
       "href": "package-4.html",
       "title": "Current Situation Of SRHR Of Persons With Disabilities In Bangladesh In The Context Of SDGs And UNCRPD",
-      "start": 2735.0745690000003,
+      "start": 2735.0786850000004,
       "duration": 0
     }
   ],
@@ -163,112 +188,229 @@
     {
       "title": "United Nations Convention On The Rights Of Persons With Disabilities",
       "href": "package-3-2.html",
-      "time": 36.060067000000004
+      "time": 36.060124
     },
     {
       "title": "The Sustainable Development Goals",
       "href": "package-3-3.html",
-      "time": 114.251268
+      "time": 114.25133199999999
     },
     {
       "title": "Recommended SRHR Targets For SDGs",
       "href": "package-3-4.html",
-      "time": 361.024963
+      "time": 361.02524700000004
     },
     {
       "title": "3.",
       "href": "package-3-5.html",
-      "time": 478.70480200000003
+      "time": 478.705164
     },
     {
       "title": "4.",
       "href": "package-3-6.html",
-      "time": 610.725549
+      "time": 610.726041
     },
     {
       "title": "5.",
       "href": "package-3-7.html",
-      "time": 701.398813
+      "time": 701.399374
     },
     {
       "title": "SDGs and Disability SRHR Scenario",
       "href": "package-3-8.html",
-      "time": 892.6379479999999
+      "time": 892.6386239999999
     },
     {
       "title": "Our Nationwide Research on SRHR of Persons With Disabilities",
       "href": "package-3-9.html",
-      "time": 944.428287
+      "time": 944.4290379999999
     },
     {
       "title": "3.",
       "href": "package-3-10.html",
-      "time": 1000.585973
+      "time": 1000.5867879999998
     },
     {
       "title": "3.",
       "href": "package-3-11.html",
-      "time": 1270.5888380000001
+      "time": 1270.590494
     },
     {
       "title": "3.",
       "href": "package-3-12.html",
-      "time": 1377.9905330000001
+      "time": 1377.9926150000001
     },
     {
       "title": "3.",
       "href": "package-3-13.html",
-      "time": 1516.014519
+      "time": 1516.016947
     },
     {
       "title": "3.",
       "href": "package-3-14.html",
-      "time": 1619.887416
+      "time": 1619.890235
     },
     {
       "title": "3.",
       "href": "package-3-15.html",
-      "time": 1723.177414
+      "time": 1723.1803180000002
     },
     {
       "title": "3.",
       "href": "package-3-16.html",
-      "time": 1820.033602
+      "time": 1820.036569
     },
     {
       "title": "4.",
       "href": "package-3-17.html",
-      "time": 1886.729995
+      "time": 1886.7330690000001
     },
     {
       "title": "5.",
       "href": "package-3-18.html",
-      "time": 1991.338022
+      "time": 1991.341319
     },
     {
       "title": "5.",
       "href": "package-3-19.html",
-      "time": 2078.129652
+      "time": 2078.1329840000003
     },
     {
       "title": "Facilitators To Attain SRHR Specific SDGs",
       "href": "package-3-20.html",
-      "time": 2167.726317
+      "time": 2167.7297340000005
     },
     {
       "title": "Recommendations",
       "href": "package-3-21.html",
-      "time": 2358.3040490000003
+      "time": 2358.3076890000007
     },
     {
       "title": "Acknowledgements",
       "href": "package-3-22.html",
-      "time": 2475.5398090000003
+      "time": 2475.5435630000006
     },
     {
       "title": "References",
       "href": "package-3-23.html",
-      "time": 2512.0102400000005
+      "time": 2512.0140630000005
+    }
+  ],
+  "toc": [
+    {
+      "href": "package-3.html#dtb_10",
+      "time": 27.081541,
+      "end": 34.810624000000004
+    },
+    {
+      "href": "package-3-2.html",
+      "time": 36.060124,
+      "end": 40.594291
+    },
+    {
+      "href": "package-3-3.html",
+      "time": 114.25133199999999,
+      "end": 116.960624
+    },
+    {
+      "href": "package-3-4.html",
+      "time": 361.02524700000004,
+      "end": 364.86962200000005
+    },
+    {
+      "href": "package-3-5.html",
+      "time": 478.705164,
+      "end": 485.968789
+    },
+    {
+      "href": "package-3-6.html",
+      "time": 610.726041,
+      "end": 620.114416
+    },
+    {
+      "href": "package-3-7.html",
+      "time": 701.399374,
+      "end": 708.207957
+    },
+    {
+      "href": "package-3-8.html",
+      "time": 892.6386239999999,
+      "end": 896.5379569999999
+    },
+    {
+      "href": "package-3-9.html",
+      "time": 944.4290379999999,
+      "end": 949.1982459999999
+    },
+    {
+      "href": "package-3-10.html",
+      "time": 1000.5867879999998,
+      "end": 1008.6053289999999
+    },
+    {
+      "href": "package-3-11.html",
+      "time": 1270.590494,
+      "end": 1278.609035
+    },
+    {
+      "href": "package-3-12.html",
+      "time": 1377.9926150000001,
+      "end": 1386.1461980000001
+    },
+    {
+      "href": "package-3-13.html",
+      "time": 1516.016947,
+      "end": 1524.17053
+    },
+    {
+      "href": "package-3-14.html",
+      "time": 1619.890235,
+      "end": 1628.043818
+    },
+    {
+      "href": "package-3-15.html",
+      "time": 1723.1803180000002,
+      "end": 1731.3339010000002
+    },
+    {
+      "href": "package-3-16.html",
+      "time": 1820.036569,
+      "end": 1828.1901520000001
+    },
+    {
+      "href": "package-3-17.html",
+      "time": 1886.7330690000001,
+      "end": 1894.9516520000002
+    },
+    {
+      "href": "package-3-18.html",
+      "time": 1991.341319,
+      "end": 1999.3248600000002
+    },
+    {
+      "href": "package-3-19.html",
+      "time": 2078.1329840000003,
+      "end": 2086.1165250000004
+    },
+    {
+      "href": "package-3-20.html",
+      "time": 2167.7297340000005,
+      "end": 2172.2190670000005
+    },
+    {
+      "href": "package-3-21.html",
+      "time": 2358.3076890000007,
+      "end": 2360.1871470000006
+    },
+    {
+      "href": "package-3-22.html",
+      "time": 2475.5435630000006,
+      "end": 2477.2930210000004
+    },
+    {
+      "href": "package-3-23.html",
+      "time": 2512.0140630000005,
+      "end": 2513.5884800000003
     }
   ]
 }

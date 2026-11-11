@@ -26,6 +26,7 @@ export function initPopoverActions() {
             isAvailable: () => typeof document.getElementById(popoverId)?.showPopover === 'function',
             run: () => {
                 const popover = document.getElementById(popoverId);
+                openedByPointer.delete(popoverId);
                 // Establish the same focus-return point as opening the panel from its toolbar.
                 document.querySelector(`button[popovertarget="${popoverId}"]:not(.webbook-popover-close)`)?.focus({ preventScroll: true });
                 popover.showPopover();
@@ -144,7 +145,26 @@ function isOnScreen(elm) {
 }
 
 // Track open state on toolbar buttons when their popovers toggle
+// A panel opened with a click or tap: when it closes, the browser returns focus to its toolbar
+// button, and Chrome had focused that button on the click. The toolbars stay shown while one of
+// their controls has focus (so a keyboard user's focus is never on something invisible), which
+// then kept them on screen until the next click, even with Hide toolbars automatically on (user,
+// 2026-11-10). So after a panel opened by pointer closes, the button lets go of focus. Opened from
+// the keyboard (Tab and Enter, or a shortcut), focus stays on the button, as before.
+const openedByPointer = new Set();
+
 export function initPopoverToggleTracking() {
+    document.addEventListener('pointerdown', e => {
+        const button = e.target instanceof Element
+            ? e.target.closest('button[popovertarget]:not(.webbook-popover-close)') : null;
+        if (button) openedByPointer.add(button.getAttribute('popovertarget'));
+    }, { capture: true });
+    document.addEventListener('keydown', e => {
+        const button = e.target instanceof Element
+            ? e.target.closest('button[popovertarget]:not(.webbook-popover-close)') : null;
+        if (button && (e.key === 'Enter' || e.key === ' ')) openedByPointer.delete(button.getAttribute('popovertarget'));
+    }, { capture: true });
+
     WEBBOOK_POPOVER_IDS.forEach(id => {
         const popover = document.querySelector(`#${id}`);
         if (!popover) return;
@@ -183,6 +203,7 @@ export function initPopoverToggleTracking() {
                 }
             } else {
                 btn.classList.remove('open');
+                if (openedByPointer.delete(id) && document.activeElement === btn) btn.blur();
             }
         });
     });

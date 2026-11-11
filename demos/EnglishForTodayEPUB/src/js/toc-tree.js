@@ -1,3 +1,4 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { currentTocEntry } from './popovers.js';
 import { normalizeSearchText } from './search-text.js';
 

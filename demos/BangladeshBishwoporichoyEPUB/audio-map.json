@@ -1,161 +1,186 @@
 {
   "version": 1,
-  "duration": 10323.095569999998,
+  "duration": 10323.101376,
   "pages": [
     {
       "href": "index.html",
       "title": "Bangladesg",
       "start": 0,
-      "duration": 13.342652999999999
+      "duration": 13.342666,
+      "audio": "audio/index.mp3"
     },
     {
       "href": "package-2.html",
       "title": "Bangladesg",
-      "start": 13.342652999999999,
-      "duration": 23.779161000000002
+      "start": 13.342666,
+      "duration": 23.779167,
+      "audio": "audio/package-2.mp3"
     },
     {
       "href": "package-3.html",
       "title": "বাংলাদেশ ও বিশ্ব পরিচয়",
-      "start": 37.121814,
-      "duration": 66.128141
+      "start": 37.121833,
+      "duration": 66.128209,
+      "audio": "audio/package-3.mp3"
     },
     {
       "href": "package-4.html",
       "title": "প্রসঙ্গ কথা",
-      "start": 103.249955,
-      "duration": 181.752221
+      "start": 103.25004200000001,
+      "duration": 181.75229300000004,
+      "audio": "audio/package-4.mp3"
     },
     {
       "href": "package-5.html",
       "title": "নির্দেশনা",
-      "start": 285.00217599999996,
-      "duration": 418.07657699999993
+      "start": 285.002335,
+      "duration": 418.07679100000007,
+      "audio": "audio/package-5.mp3"
     },
     {
       "href": "package-6.html",
       "title": "দক্ষতা ম্যাট্রিক্স",
-      "start": 703.0787529999999,
-      "duration": 463.136781
+      "start": 703.0791260000001,
+      "duration": 463.13700099999994,
+      "audio": "audio/package-6.mp3"
     },
     {
       "href": "package-7.html",
       "title": "সূচিপত্র",
-      "start": 1166.215534,
-      "duration": 95.57027299999999
+      "start": 1166.2161270000001,
+      "duration": 95.57033299999999,
+      "audio": "audio/package-7.mp3"
     },
     {
       "href": "package-8.html",
       "title": "অধ্যায় ১",
-      "start": 1261.785807,
-      "duration": 299.111838
+      "start": 1261.78646,
+      "duration": 299.1120839999999,
+      "audio": "audio/package-8.mp3"
     },
     {
       "href": "package-9.html",
       "title": "অধ্যায় ২",
-      "start": 1560.897645,
-      "duration": 398.18625900000006
+      "start": 1560.898544,
+      "duration": 398.186458,
+      "audio": "audio/package-9.mp3"
     },
     {
       "href": "package-10.html",
       "title": "অধ্যায় ৩",
-      "start": 1959.083904,
-      "duration": 813.5215459999998
+      "start": 1959.0850019999998,
+      "duration": 813.5220850000002,
+      "audio": "audio/package-10.mp3"
     },
     {
       "href": "package-11.html",
       "title": "অধ্যায় ৪",
-      "start": 2772.60545,
-      "duration": 579.7259639999997
+      "start": 2772.607087,
+      "duration": 579.726208,
+      "audio": "audio/package-11.mp3"
     },
     {
       "href": "package-12.html",
       "title": "অধ্যায় ৫",
-      "start": 3352.3314139999998,
-      "duration": 419.59013600000003
+      "start": 3352.333295,
+      "duration": 419.59029100000004,
+      "audio": "audio/package-12.mp3"
     },
     {
       "href": "package-13.html",
       "title": "অধ্যায় ৬",
-      "start": 3771.92155,
-      "duration": 388.04637300000013
+      "start": 3771.923586,
+      "duration": 388.046752,
+      "audio": "audio/package-13.mp3"
     },
     {
       "href": "package-14.html",
       "title": "অধ্যায় ৭",
-      "start": 4159.967923,
-      "duration": 524.4370990000002
+      "start": 4159.970338,
+      "duration": 524.4374570000001,
+      "audio": "audio/package-14.mp3"
     },
     {
       "href": "package-15.html",
       "title": "অধ্যায় ৮",
-      "start": 4684.405022000001,
-      "duration": 646.660045
+      "start": 4684.407795,
+      "duration": 646.6605410000001,
+      "audio": "audio/package-15.mp3"
     },
     {
       "href": "package-16.html",
       "title": "অধ্যায় ৯",
-      "start": 5331.065067,
-      "duration": 329.9267129999999
+      "start": 5331.068336,
+      "duration": 329.9269569999999,
+      "audio": "audio/package-16.mp3"
     },
     {
       "href": "package-17.html",
       "title": "অধ্যায় ১০",
-      "start": 5660.99178,
-      "duration": 320.18805199999997
+      "start": 5660.995293,
+      "duration": 320.1882499999999,
+      "audio": "audio/package-17.mp3"
     },
     {
       "href": "package-18.html",
       "title": "অধ্যায় ১১",
-      "start": 5981.179832,
-      "duration": 842.9298870000001
+      "start": 5981.183543,
+      "duration": 842.9302510000002,
+      "audio": "audio/package-18.mp3"
     },
     {
       "href": "package-19.html",
       "title": "অধ্যায় ১২",
-      "start": 6824.109719,
-      "duration": 628.7750819999998
+      "start": 6824.113794000001,
+      "duration": 628.7753749999998,
+      "audio": "audio/package-19.mp3"
     },
     {
       "href": "package-20.html",
       "title": "অধ্যায় ১৩",
-      "start": 7452.884801,
-      "duration": 461.66047800000007
+      "start": 7452.889169000001,
+      "duration": 461.6607489999999,
+      "audio": "audio/package-20.mp3"
     },
     {
       "href": "package-21.html",
       "title": "অধ্যায় ১৪",
-      "start": 7914.545279,
-      "duration": 479.71242299999994
+      "start": 7914.549918000001,
+      "duration": 479.7127509999998,
+      "audio": "audio/package-21.mp3"
     },
     {
       "href": "package-22.html",
       "title": "অধ্যায় ১৫",
-      "start": 8394.257701999999,
-      "duration": 625.1315629999998
+      "start": 8394.262669,
+      "duration": 625.1317919999997,
+      "audio": "audio/package-22.mp3"
     },
     {
       "href": "package-23.html",
       "title": "অধ্যায় ১৬",
-      "start": 9019.389264999998,
-      "duration": 452.81598600000007
+      "start": 9019.394461,
+      "duration": 452.81629200000003,
+      "audio": "audio/package-23.mp3"
     },
     {
       "href": "package-24.html",
       "title": "নমুনা প্রশ্ন",
-      "start": 9472.205250999998,
-      "duration": 681.6378930000001
+      "start": 9472.210753,
+      "duration": 681.638123,
+      "audio": "audio/package-24.mp3"
     },
     {
       "href": "package-25.html",
       "title": "শব্দ ভান্ডার",
-      "start": 10153.843143999999,
-      "duration": 169.25242599999996
+      "start": 10153.848876,
+      "duration": 169.25249999999994,
+      "audio": "audio/package-25.mp3"
     },
     {
       "href": "package-26.html",
       "title": "Bangladesg",
-      "start": 10323.095569999998,
+      "start": 10323.101376,
       "duration": 0
     }
   ],
@@ -163,117 +188,629 @@
     {
       "title": "বাংলাদেশ ও বিশ্ব পরিচয়",
       "href": "package-3.html#dtb_8",
-      "time": 37.121814
+      "time": 37.121833
     },
     {
       "title": "প্রসঙ্গ কথা",
       "href": "package-4.html#dtb_42",
-      "time": 103.249955
+      "time": 103.25004200000001
     },
     {
       "title": "নির্দেশনা",
       "href": "package-5.html#dtb_65",
-      "time": 285.00217599999996
+      "time": 285.002335
     },
     {
       "title": "দক্ষতা ম্যাট্রিক্স",
       "href": "package-6.html#dtb_140",
-      "time": 703.0787529999999
+      "time": 703.0791260000001
     },
     {
       "title": "সূচিপত্র",
       "href": "package-7.html#dtb_536",
-      "time": 1166.215534
+      "time": 1166.2161270000001
     },
     {
       "title": "অধ্যায় ১",
       "href": "package-8.html#dtb_679",
-      "time": 1261.785807
+      "time": 1261.78646
     },
     {
       "title": "অধ্যায় ২",
       "href": "package-9.html#dtb_847",
-      "time": 1560.897645
+      "time": 1560.898544
     },
     {
       "title": "অধ্যায় ৩",
       "href": "package-10.html#dtb_1070",
-      "time": 1959.083904
+      "time": 1959.0850019999998
     },
     {
       "title": "অধ্যায় ৪",
       "href": "package-11.html#dtb_1484",
-      "time": 2772.60545
+      "time": 2772.607087
     },
     {
       "title": "অধ্যায় ৫",
       "href": "package-12.html#dtb_1902",
-      "time": 3352.3314139999998
+      "time": 3352.333295
     },
     {
       "title": "অধ্যায় ৬",
       "href": "package-13.html#dtb_2227",
-      "time": 3771.92155
+      "time": 3771.923586
     },
     {
       "title": "অধ্যায় ৭",
       "href": "package-14.html#dtb_2446",
-      "time": 4159.967923
+      "time": 4159.970338
     },
     {
       "title": "অধ্যায় ৮",
       "href": "package-15.html#dtb_2778",
-      "time": 4684.405022000001
+      "time": 4684.407795
     },
     {
       "title": "অধ্যায় ৯",
       "href": "package-16.html#dtb_3134",
-      "time": 5331.065067
+      "time": 5331.068336
     },
     {
       "title": "অধ্যায় ১০",
       "href": "package-17.html#dtb_3310",
-      "time": 5660.99178
+      "time": 5660.995293
     },
     {
       "title": "অধ্যায় ১১",
       "href": "package-18.html#dtb_3465",
-      "time": 5981.179832
+      "time": 5981.183543
     },
     {
       "title": "অধ্যায় ১২",
       "href": "package-19.html#dtb_3876",
-      "time": 6824.109719
+      "time": 6824.113794000001
     },
     {
       "title": "অধ্যায় ১৩",
       "href": "package-20.html#dtb_4145",
-      "time": 7452.884801
+      "time": 7452.889169000001
     },
     {
       "title": "অধ্যায় ১৪",
       "href": "package-21.html#dtb_4401",
-      "time": 7914.545279
+      "time": 7914.549918000001
     },
     {
       "title": "অধ্যায় ১৫",
       "href": "package-22.html#dtb_4637",
-      "time": 8394.257701999999
+      "time": 8394.262669
     },
     {
       "title": "অধ্যায় ১৬",
       "href": "package-23.html#dtb_4827",
-      "time": 9019.389264999998
+      "time": 9019.394461
     },
     {
       "title": "নমুনা প্রশ্ন",
       "href": "package-24.html#dtb_5044",
-      "time": 9472.205250999998
+      "time": 9472.210753
     },
     {
       "title": "শব্দ ভান্ডার",
       "href": "package-25.html#dtb_5382",
-      "time": 10153.843143999999
+      "time": 10153.848876
+    }
+  ],
+  "toc": [
+    {
+      "href": "package-3.html#dtb_8",
+      "time": 37.121833,
+      "end": 40.001833000000005
+    },
+    {
+      "href": "package-3.html#dtb_9",
+      "time": 40.001833000000005,
+      "end": 41.731833
+    },
+    {
+      "href": "package-4.html#dtb_42",
+      "time": 103.25004200000001,
+      "end": 104.56208400000001
+    },
+    {
+      "href": "package-5.html#dtb_65",
+      "time": 285.002335,
+      "end": 286.752335
+    },
+    {
+      "href": "package-5.html#dtb_78",
+      "time": 384.744918,
+      "end": 386.024918
+    },
+    {
+      "href": "package-5.html#dtb_85",
+      "time": 418.274793,
+      "end": 419.41220999999996
+    },
+    {
+      "href": "package-5.html#dtb_91",
+      "time": 456.16195999999997,
+      "end": 457.29437699999994
+    },
+    {
+      "href": "package-5.html#dtb_98",
+      "time": 504.481085,
+      "end": 506.57096
+    },
+    {
+      "href": "package-6.html#dtb_140",
+      "time": 703.0791260000001,
+      "end": 704.9091260000001
+    },
+    {
+      "href": "package-7.html#dtb_536",
+      "time": 1166.2161270000001,
+      "end": 1167.556127
+    },
+    {
+      "href": "package-8.html#dtb_679",
+      "time": 1261.78646,
+      "end": 1263.182918
+    },
+    {
+      "href": "package-8.html#dtb_680",
+      "time": 1263.182918,
+      "end": 1266.072918
+    },
+    {
+      "href": "package-8.html#dtb_681",
+      "time": 1266.072918,
+      "end": 1269.79446
+    },
+    {
+      "href": "package-8.html#dtb_769",
+      "time": 1393.693335,
+      "end": 1398.453335
+    },
+    {
+      "href": "package-9.html#dtb_847",
+      "time": 1560.898544,
+      "end": 1562.848544
+    },
+    {
+      "href": "package-9.html#dtb_848",
+      "time": 1562.848544,
+      "end": 1566.048544
+    },
+    {
+      "href": "package-9.html#dtb_849",
+      "time": 1566.048544,
+      "end": 1570.4685439999998
+    },
+    {
+      "href": "package-9.html#dtb_961",
+      "time": 1757.565711,
+      "end": 1763.615586
+    },
+    {
+      "href": "package-10.html#dtb_1070",
+      "time": 1959.0850019999998,
+      "end": 1961.3448769999998
+    },
+    {
+      "href": "package-10.html#dtb_1071",
+      "time": 1961.3448769999998,
+      "end": 1964.060335
+    },
+    {
+      "href": "package-10.html#dtb_1072",
+      "time": 1964.060335,
+      "end": 1966.0103349999997
+    },
+    {
+      "href": "package-10.html#dtb_1172",
+      "time": 2208.636377,
+      "end": 2210.5262519999997
+    },
+    {
+      "href": "package-10.html#dtb_1267",
+      "time": 2388.92917,
+      "end": 2391.3391699999997
+    },
+    {
+      "href": "package-10.html#dtb_1384",
+      "time": 2580.717295,
+      "end": 2583.1396699999996
+    },
+    {
+      "href": "package-11.html#dtb_1484",
+      "time": 2772.607087,
+      "end": 2774.467087
+    },
+    {
+      "href": "package-11.html#dtb_1485",
+      "time": 2774.467087,
+      "end": 2777.277087
+    },
+    {
+      "href": "package-11.html#dtb_1486",
+      "time": 2777.277087,
+      "end": 2780.134712
+    },
+    {
+      "href": "package-11.html#dtb_1629",
+      "time": 3003.892004,
+      "end": 3007.4520039999998
+    },
+    {
+      "href": "package-11.html#dtb_1756",
+      "time": 3197.023003,
+      "end": 3199.982878
+    },
+    {
+      "href": "package-12.html#dtb_1902",
+      "time": 3352.333295,
+      "end": 3354.433295
+    },
+    {
+      "href": "package-12.html#dtb_1903",
+      "time": 3354.433295,
+      "end": 3357.543295
+    },
+    {
+      "href": "package-12.html#dtb_1904",
+      "time": 3357.543295,
+      "end": 3362.3232949999997
+    },
+    {
+      "href": "package-12.html#dtb_2041",
+      "time": 3575.389628,
+      "end": 3578.769503
+    },
+    {
+      "href": "package-13.html#dtb_2227",
+      "time": 3771.923586,
+      "end": 3773.8135859999998
+    },
+    {
+      "href": "package-13.html#dtb_2228",
+      "time": 3773.8135859999998,
+      "end": 3776.053586
+    },
+    {
+      "href": "package-13.html#dtb_2229",
+      "time": 3776.053586,
+      "end": 3779.685836
+    },
+    {
+      "href": "package-13.html#dtb_2351",
+      "time": 3989.519962,
+      "end": 3991.638629
+    },
+    {
+      "href": "package-14.html#dtb_2446",
+      "time": 4159.970338,
+      "end": 4161.990213
+    },
+    {
+      "href": "package-14.html#dtb_2447",
+      "time": 4161.990213,
+      "end": 4164.610088
+    },
+    {
+      "href": "package-14.html#dtb_2448",
+      "time": 4164.610088,
+      "end": 4167.120088
+    },
+    {
+      "href": "package-14.html#dtb_2566",
+      "time": 4347.034796,
+      "end": 4349.844796
+    },
+    {
+      "href": "package-14.html#dtb_2686",
+      "time": 4501.320754,
+      "end": 4506.310754
+    },
+    {
+      "href": "package-15.html#dtb_2778",
+      "time": 4684.407795,
+      "end": 4686.057795
+    },
+    {
+      "href": "package-15.html#dtb_2779",
+      "time": 4686.057795,
+      "end": 4689.627795
+    },
+    {
+      "href": "package-15.html#dtb_2780",
+      "time": 4689.627795,
+      "end": 4692.243128
+    },
+    {
+      "href": "package-15.html#dtb_2893",
+      "time": 4887.289504,
+      "end": 4890.109504
+    },
+    {
+      "href": "package-15.html#dtb_3015",
+      "time": 5097.460921,
+      "end": 5102.570921
+    },
+    {
+      "href": "package-16.html#dtb_3134",
+      "time": 5331.068336,
+      "end": 5333.128211
+    },
+    {
+      "href": "package-16.html#dtb_3135",
+      "time": 5333.128211,
+      "end": 5335.128211
+    },
+    {
+      "href": "package-16.html#dtb_3136",
+      "time": 5335.128211,
+      "end": 5337.467919000001
+    },
+    {
+      "href": "package-16.html#dtb_3230",
+      "time": 5501.661044,
+      "end": 5503.701044
+    },
+    {
+      "href": "package-17.html#dtb_3310",
+      "time": 5660.995293,
+      "end": 5663.015293
+    },
+    {
+      "href": "package-17.html#dtb_3311",
+      "time": 5663.015293,
+      "end": 5666.165293
+    },
+    {
+      "href": "package-17.html#dtb_3312",
+      "time": 5666.165293,
+      "end": 5669.155293
+    },
+    {
+      "href": "package-17.html#dtb_3414",
+      "time": 5834.411626,
+      "end": 5838.378626
+    },
+    {
+      "href": "package-18.html#dtb_3465",
+      "time": 5981.183543,
+      "end": 5983.713543
+    },
+    {
+      "href": "package-18.html#dtb_3466",
+      "time": 5983.713543,
+      "end": 5986.2435430000005
+    },
+    {
+      "href": "package-18.html#dtb_3467",
+      "time": 5986.2435430000005,
+      "end": 5988.613168
+    },
+    {
+      "href": "package-18.html#dtb_3550",
+      "time": 6179.003419,
+      "end": 6181.223419
+    },
+    {
+      "href": "package-18.html#dtb_3656",
+      "time": 6350.621086,
+      "end": 6352.951086
+    },
+    {
+      "href": "package-18.html#dtb_3769",
+      "time": 6619.364753,
+      "end": 6623.104753
+    },
+    {
+      "href": "package-19.html#dtb_3876",
+      "time": 6824.113794000001,
+      "end": 6826.233919000001
+    },
+    {
+      "href": "package-19.html#dtb_3877",
+      "time": 6826.233919000001,
+      "end": 6828.373919000001
+    },
+    {
+      "href": "package-19.html#dtb_3878",
+      "time": 6828.373919000001,
+      "end": 6830.204752000001
+    },
+    {
+      "href": "package-19.html#dtb_3948",
+      "time": 7031.9930030000005,
+      "end": 7035.093003000001
+    },
+    {
+      "href": "package-19.html#dtb_4012",
+      "time": 7223.694961000001,
+      "end": 7226.204961
+    },
+    {
+      "href": "package-20.html#dtb_4145",
+      "time": 7452.889169000001,
+      "end": 7454.569169000001
+    },
+    {
+      "href": "package-20.html#dtb_4146",
+      "time": 7454.569169000001,
+      "end": 7456.949169000001
+    },
+    {
+      "href": "package-20.html#dtb_4147",
+      "time": 7456.949169000001,
+      "end": 7461.989169000001
+    },
+    {
+      "href": "package-20.html#dtb_4282",
+      "time": 7690.856211000001,
+      "end": 7694.746211000001
+    },
+    {
+      "href": "package-21.html#dtb_4401",
+      "time": 7914.549918000001,
+      "end": 7916.449793000001
+    },
+    {
+      "href": "package-21.html#dtb_4402",
+      "time": 7916.449793000001,
+      "end": 7918.439668000001
+    },
+    {
+      "href": "package-21.html#dtb_4403",
+      "time": 7918.439668000001,
+      "end": 7920.599668000001
+    },
+    {
+      "href": "package-21.html#dtb_4533",
+      "time": 8152.404959,
+      "end": 8154.634959000001
+    },
+    {
+      "href": "package-22.html#dtb_4637",
+      "time": 8394.262669,
+      "end": 8396.252669
+    },
+    {
+      "href": "package-22.html#dtb_4638",
+      "time": 8396.252669,
+      "end": 8398.992669
+    },
+    {
+      "href": "package-22.html#dtb_4639",
+      "time": 8398.992669,
+      "end": 8403.327836
+    },
+    {
+      "href": "package-22.html#dtb_4694",
+      "time": 8565.853378,
+      "end": 8570.473378
+    },
+    {
+      "href": "package-22.html#dtb_4759",
+      "time": 8782.878794,
+      "end": 8787.168794
+    },
+    {
+      "href": "package-23.html#dtb_4827",
+      "time": 9019.394461,
+      "end": 9021.065003
+    },
+    {
+      "href": "package-23.html#dtb_4828",
+      "time": 9021.065003,
+      "end": 9023.265003
+    },
+    {
+      "href": "package-23.html#dtb_4829",
+      "time": 9023.265003,
+      "end": 9027.105003
+    },
+    {
+      "href": "package-23.html#dtb_4909",
+      "time": 9179.861294,
+      "end": 9182.341294
+    },
+    {
+      "href": "package-23.html#dtb_4980",
+      "time": 9319.281586,
+      "end": 9324.591461
+    },
+    {
+      "href": "package-24.html#dtb_5044",
+      "time": 9472.210753,
+      "end": 9474.200753
+    },
+    {
+      "href": "package-24.html#dtb_5045",
+      "time": 9474.200753,
+      "end": 9479.250753
+    },
+    {
+      "href": "package-24.html#dtb_5066",
+      "time": 9518.770752999999,
+      "end": 9523.870753
+    },
+    {
+      "href": "package-24.html#dtb_5087",
+      "time": 9563.835586,
+      "end": 9569.475585999999
+    },
+    {
+      "href": "package-24.html#dtb_5108",
+      "time": 9613.685586,
+      "end": 9617.488919
+    },
+    {
+      "href": "package-24.html#dtb_5130",
+      "time": 9651.424336,
+      "end": 9656.094211
+    },
+    {
+      "href": "package-24.html#dtb_5151",
+      "time": 9695.381544,
+      "end": 9699.151544
+    },
+    {
+      "href": "package-24.html#dtb_5172",
+      "time": 9734.541544,
+      "end": 9738.119544
+    },
+    {
+      "href": "package-24.html#dtb_5193",
+      "time": 9773.24071,
+      "end": 9779.04071
+    },
+    {
+      "href": "package-24.html#dtb_5215",
+      "time": 9816.657335,
+      "end": 9820.417335
+    },
+    {
+      "href": "package-24.html#dtb_5236",
+      "time": 9855.99221,
+      "end": 9858.932209999999
+    },
+    {
+      "href": "package-24.html#dtb_5257",
+      "time": 9895.012084999998,
+      "end": 9898.882085
+    },
+    {
+      "href": "package-24.html#dtb_5278",
+      "time": 9937.99196,
+      "end": 9941.099918
+    },
+    {
+      "href": "package-24.html#dtb_5299",
+      "time": 9979.569250999999,
+      "end": 9983.529251
+    },
+    {
+      "href": "package-24.html#dtb_5320",
+      "time": 10023.599126,
+      "end": 10027.639126
+    },
+    {
+      "href": "package-24.html#dtb_5341",
+      "time": 10069.669125999999,
+      "end": 10073.429125999999
+    },
+    {
+      "href": "package-24.html#dtb_5360",
+      "time": 10107.469001,
+      "end": 10111.509000999999
+    },
+    {
+      "href": "package-25.html#dtb_5382",
+      "time": 10153.848876,
+      "end": 10155.718876
     }
   ]
 }

@@ -69,49 +69,49 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(7) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 18
-00:01:22.952 --> 00:01:24.951
+00:01:22.952 --> 00:01:24.952
 {"selector":{"type":"FragmentSelector","value":"page14"}}
 
 19
-00:01:24.951 --> 00:01:27.725
+00:01:24.952 --> 00:01:27.726
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(1)"}}
 
 20
-00:01:27.725 --> 00:01:32.714
+00:01:27.726 --> 00:01:32.715
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(2)"}}
 
 21
-00:01:32.714 --> 00:01:34.328
+00:01:32.715 --> 00:01:34.329
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(3)"}}
 
 22
-00:01:34.328 --> 00:01:37.412
+00:01:34.329 --> 00:01:37.413
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(4)"}}
 
 23
-00:01:37.412 --> 00:01:39.666
+00:01:37.413 --> 00:01:39.667
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(5)"}}
 
 24
-00:01:39.666 --> 00:01:43.775
+00:01:39.667 --> 00:01:43.776
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(1)"}}
 
 25
-00:01:43.775 --> 00:01:49.698
+00:01:43.776 --> 00:01:49.699
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(2)"}}
 
 26
-00:01:49.698 --> 00:01:53.447
+00:01:49.699 --> 00:01:53.448
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(9) > span:nth-of-type(3)"}}
 
 27
-00:01:53.447 --> 00:02:06.224
+00:01:53.448 --> 00:02:06.225
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(10) > span:nth-of-type(1)"}}
 
 28
-00:02:06.224 --> 00:02:12.002
+00:02:06.225 --> 00:02:12.003
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(10) > span:nth-of-type(2)"}}
 
 29
-00:02:12.002 --> 00:02:15.966
+00:02:12.003 --> 00:02:15.967
 {"selector":{"type":"FragmentSelector","value":"page15"}}

@@ -1,5 +1,5 @@
 import { cacheCueElements, cueForElement, cueNeedsTime, elmForCue } from './cue-selector.js';
-import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarget, lastNarratedElement, settlePositionUrlPlacement } from './narration-position.js';
+import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarget, lastNarratedElement, settlePositionUrlPlacement, highlightedElement } from './narration-position.js';
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
 import { showCaptionForCue, refreshCaptionItemsFromTrack } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
@@ -90,13 +90,13 @@ export function startPlayerForPage({ audioTime } = {}) {
     if (!controlsReady) initControls();
     resetTimeline();
 
-    const controls = document.querySelector('#webbook-audio-controls');
+    const controls = document.querySelectorAll('#webbook-narration-position, #webbook-audio-controls');
     const hasAudioSource = Boolean(audio.getAttribute('src') || audio.querySelector('source[src]'));
     if (!hasAudioSource) {
-        controls?.setAttribute('hidden', '');
+        controls.forEach(group => group.setAttribute('hidden', ''));
         return;
     }
-    controls?.removeAttribute('hidden');
+    controls.forEach(group => group.removeAttribute('hidden'));
 
     trackEl = audio.querySelector('track');
     if (!trackEl) return;
@@ -126,6 +126,7 @@ export function startPlayerForPage({ audioTime } = {}) {
 function initAudioElement() {
     audio.addEventListener('play', updatePlayPause);
     audio.addEventListener('pause', updatePlayPause);
+    audio.addEventListener('playing', catchUpHighlight);
     audio.addEventListener('loadedmetadata', setSeekMax);
     audio.addEventListener('ratechange', () => updateTimelineFromAudio(true));
     audio.addEventListener('timeupdate', () => {
@@ -137,6 +138,9 @@ function initAudioElement() {
     // Anything can move the audio (caption mode, resume, a hash link, skipping), so the phrase
     // buttons always work from where the audio is rather than from the last phrase they stepped to
     audio.addEventListener('seeked', updatePhraseButtons);
+    // Narration moving on, or the reader seeking it, supersedes a place focused while paused
+    audio.addEventListener('play', () => { focusedWhilePaused = null; });
+    audio.addEventListener('seeking', () => { focusedWhilePaused = null; });
     audio.addEventListener('ended', () => {
         cancelSkipPreroll(audio);
         clearNarrationHighlight();
@@ -161,8 +165,6 @@ function initControls() {
     ui.playPauseBtn = document.querySelector('#webbook-audio-playpause');
     ui.nextPhraseBtn = document.querySelector('#webbook-next-phrase');
     ui.seekRange = document.querySelector('#webbook-seek');
-    // Books converted from older templates link the slider to a tick-mark datalist; the ticks only add noise
-    ui.seekRange?.removeAttribute('list');
     ui.timeDisplay = document.querySelector('#webbook-time');
     ui.seeking = false;
 
@@ -205,6 +207,7 @@ function initControls() {
 
 // Registered at load, before in-place-navigation.js takes over link clicks, so these see them first
 function initDocumentListeners() {
+    trackReaderFocus();
     // Following a link moves narration with it: a link within this page seeks the audio, and a
     // link to another page of the book during playback keeps playing there
     document.addEventListener('click', e => {
@@ -282,8 +285,53 @@ function updatePlayPause() {
 
 function togglePlayback() {
     if (!metadataTrack) return;
-    if (audio.paused || audio.ended) playOrOfferToContinue(audio);
+    if (audio.paused || audio.ended) {
+        startFromReaderFocus();
+        playOrOfferToContinue(audio);
+    }
     else audio.pause();
+}
+
+// Where the reader moved focus in the text while narration was paused: Tab to a heading, a click
+// on a phrase, a screen reader's cursor. Play starts there instead of where narration stopped.
+// Scrolling doesn't count, nor focus the reader moves itself (placing a bookmark, a page load).
+let focusedWhilePaused = null;
+let lastUserInput = 0;
+const USER_FOCUS_WINDOW = 1000;
+
+function trackReaderFocus() {
+    for (const type of ['keydown', 'pointerdown']) {
+        document.addEventListener(type, () => { lastUserInput = Date.now(); }, { capture: true });
+    }
+    document.addEventListener('focusin', e => {
+        if (!audio || !(audio.paused || audio.ended) || !(e.target instanceof Element)) return;
+        if (!document.querySelector('main')?.contains(e.target)) return;
+        // A screen reader's cursor brings focus to a phrase without any key reaching the page
+        const userMoved = Date.now() - lastUserInput < USER_FOCUS_WINDOW
+            || pageCues().some(cue => elmForCue(cue) === e.target);
+        if (userMoved) focusedWhilePaused = e.target;
+    });
+}
+
+function startFromReaderFocus() {
+    const target = focusedWhilePaused;
+    focusedWhilePaused = null;
+    if (!target?.isConnected) return;
+    const cues = pageCues();
+    const cue = cueForReaderElement(cues, target);
+    const current = cues[cueIndexAtOrBefore(audio.currentTime, cues)];
+    if (cue && cue !== current) seekToCue(cue);
+}
+
+// The phrase for a focused element: the phrase itself or one it holds; for something with no
+// narration of its own (a heading's link icon), its heading or block, else the next phrase after it
+function cueForReaderElement(cues, target) {
+    const block = target.closest('h1, h2, h3, h4, h5, h6, [role="heading"], p, li, td, th, dt, dd, figcaption, caption') ?? target;
+    return cueForElement(cues, target) ?? cueForElement(cues, block)
+        ?? cues.find(cue => {
+            const elm = elmForCue(cue);
+            return elm && Boolean(target.compareDocumentPosition(elm) & Node.DOCUMENT_POSITION_FOLLOWING);
+        }) ?? null;
 }
 
 function pageCues() {
@@ -356,7 +404,7 @@ function goToNarrationPosition() {
 function cueAtReader(cues) {
     const focused = document.activeElement;
     if (focused && focused !== document.body && document.querySelector('main')?.contains(focused)) {
-        const match = cueForElement(cues, focused);
+        const match = cueForReaderElement(cues, focused);
         if (match) return match;
     }
     const located = cues.map(cue => ({ cue, elm: elmForCue(cue) })).filter(({ elm }) => elm);
@@ -413,7 +461,20 @@ function handleTrackReady() {
     // Started here rather than with the autoplay attribute, so a page opened partway through
     // doesn't play its first moments before seeking there
     if (shouldAutoplayThisPage && startsPartway) playOrOfferToContinue(audio);
+    catchUpHighlight();
     document.dispatchEvent(new CustomEvent('webbook:playerready'));
+}
+
+// A page's first phrase starts at 0, so its cue is active as soon as the track loads. Safari on iOS
+// can fire that cuechange before the cue elements are cached (handleCueChange then finds no
+// element), and doesn't fire it again when playback starts: Amar Bangla's first heading played
+// without its highlight (user, 2026-11-10, iPhone). While playing, a cue that's active without its
+// phrase highlighted is handled as if it had just changed.
+function catchUpHighlight() {
+    if (!audio || audio.paused || !metadataTrack) return;
+    const cue = Array.from(metadataTrack.activeCues || []).pop();
+    const elm = cue ? elmForCue(cue) : null;
+    if (elm && elm !== highlightedElement()) handleCueChange({ target: metadataTrack });
 }
 
 // Arriving from a phrase step across the page boundary

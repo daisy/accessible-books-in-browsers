@@ -1,9 +1,11 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 // The reader's own text and background colors for the book (#19): a few reviewed pairs, or their
 // own (the text color can follow the background: black or white, whichever reads better). They
-// replace the book's colors and the reader UI's colors together. The narration highlight, search highlight and focus outlines
+// replace the reader's light or dark theme, for the text and the reader UI together. The narration highlight, search highlight and focus outlines
 // are worked out against the chosen background. A pair under 4.5:1 is warned about, not refused:
 // some readers need low contrast. Under forced colors the system's colors win, as for everything.
 
+import { appendSetting } from './settings-sections.js';
 import { contrastRatio, pageColorTokens, parseColor, readableTextOn, toHex } from './color-contrast.js';
 import { updateHighlightColors } from './highlight-settings.js';
 import { announceReaderAction } from './reader-actions.js';
@@ -13,18 +15,18 @@ const COLORS_KEY = 'webbook-colors';
 const TEXT_KEY = 'webbook-colors-text';
 const TEXT_AUTO_KEY = 'webbook-colors-text-auto';
 const BACKGROUND_KEY = 'webbook-colors-background';
-// Per book: while on, this book's choices are also the default for books without their own
-const SHARE_KEY = 'webbook-colors-share';
-const BOOK_DEFAULT = 'book-default';
 // [value, label, text, background]; each at least 7:1 (WCAG's AAA level for text)
 const PRESETS = [
     ['cream', 'Black on cream', '#000000', '#faf4e1'],
-    ['sepia', 'Dark brown on sepia', '#3b2a1a', '#f4ecd8'],
+    // A real tan, not a second cream: the two looked nearly the same (user, 2026-11-10)
+    ['sepia', 'Dark brown on sepia', '#3b2a1a', '#e9d8b4'],
     ['gray', 'Light gray on dark gray', '#e6e6e6', '#1f1f1f'],
     ['blue', 'Yellow on dark blue', '#ffeb3b', '#0b1f4b']
 ];
+// The default ('') is Automatic: the reader's own light or dark theme, following the system. There
+// was a "Book colors" choice too, but the converter keeps none of a book's CSS, so it was the same
+// as Automatic (user, 2026-11-10). A saved 'auto', from when both existed, reads as the default.
 const STANDARD = [
-    ['auto', 'Automatic (system light or dark)'],
     ['light', 'Light'],
     ['dark', 'Dark']
 ];
@@ -47,27 +49,6 @@ function colorRow(id, text) {
     return [label, input];
 }
 
-function getBookId() {
-    return document.querySelector('meta[name="webbook-book-id"]')?.content?.trim() || '';
-}
-
-export function bookColorSettingKey(key, bookId = getBookId()) {
-    return bookId ? `${key}:${bookId}` : key;
-}
-
-function readBookColorSetting(key) {
-    const bookId = getBookId();
-    const local = bookId ? readSetting(bookColorSettingKey(key, bookId)) : null;
-    if (local !== null) return key === COLORS_KEY && local === BOOK_DEFAULT ? '' : local;
-    return readSetting(key);
-}
-
-function writeBookColorSetting(key, value) {
-    const bookId = getBookId();
-    if (!bookId) writeSetting(key, value);
-    else writeSetting(bookColorSettingKey(key, bookId), key === COLORS_KEY && !value ? BOOK_DEFAULT : value);
-}
-
 // The UI creates these settings itself, so books converted before they existed get them too
 function buildSettings() {
     if (document.getElementById('webbook-colors')) return;
@@ -77,10 +58,10 @@ function buildSettings() {
     row.id = 'webbook-colors';
     const label = document.createElement('label');
     label.htmlFor = 'webbook-colors-options';
-    label.textContent = 'Colors';
+    label.textContent = 'Page colors';
     const select = document.createElement('select');
     select.id = 'webbook-colors-options';
-    select.append(optionElement('', 'Book colors'));
+    select.append(optionElement('', 'Automatic (system light or dark)'));
     for (const [value, text] of STANDARD) select.append(optionElement(value, text));
     for (const [value, text] of PRESETS) select.append(optionElement(value, text));
     select.append(optionElement('custom', 'Custom'));
@@ -100,22 +81,15 @@ function buildSettings() {
     custom.append(...colorRow('webbook-colors-background-picker', 'Background color'), autoLabel, autoToggle,
         ...colorRow('webbook-colors-text-picker', 'Text color'), contrast);
 
-    const shareRow = document.createElement('div');
-    shareRow.id = 'webbook-colors-share';
-    const shareLabel = document.createElement('label');
-    shareLabel.htmlFor = 'webbook-colors-share-toggle';
-    shareLabel.textContent = 'Use these colors for other books';
-    const shareToggle = document.createElement('input');
-    shareToggle.type = 'checkbox';
-    shareToggle.id = 'webbook-colors-share-toggle';
-    shareRow.append(shareLabel, shareToggle);
-    appearance.replaceWith(row, custom, shareRow);
+    appearance.remove();
+    appendSetting('colors', row);
+    appendSetting('colors', custom);
 }
 
-// The light or dark base for a choice: the system's for the book's colors and Automatic, and for
+// The light or dark base for a choice: the system's for Automatic, and for
 // the others whichever their background is
 function schemeFor(choice, background) {
-    if (!choice || choice === 'auto') return 'auto';
+    if (!choice) return 'auto';
     return background ? pageColorTokens(readableTextOn(background), background).scheme : 'auto';
 }
 
@@ -155,7 +129,6 @@ function apply(text, background) {
 }
 
 function presetColors(value) {
-    if (value === 'auto') value = window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     if (value === 'light') return [parseColor('#111111'), parseColor('#fafafa')];
     if (value === 'dark') return [parseColor('#ffffff'), parseColor('#000000')];
     const preset = PRESETS.find(([presetValue]) => presetValue === value);
@@ -170,7 +143,6 @@ export function initPageColors() {
     const autoToggle = document.getElementById('webbook-colors-text-auto-toggle');
     const backgroundPicker = document.getElementById('webbook-colors-background-picker');
     const contrast = document.getElementById('webbook-colors-contrast');
-    const shareToggle = document.getElementById('webbook-colors-share-toggle');
 
     // Before this setting, Appearance chose light or dark; a reader who chose one keeps it. Once:
     // from then on, Appearance follows the colors chosen here.
@@ -179,19 +151,19 @@ export function initPageColors() {
         if (readSetting(COLORS_KEY) === null && (legacy === 'light' || legacy === 'dark')) writeSetting(COLORS_KEY, legacy);
         writeSetting(MIGRATED_KEY, 'true');
     }
-    const savedValue = readBookColorSetting(COLORS_KEY) || '';
+    const savedValue = readSetting(COLORS_KEY) || '';
     const migratedValue = savedValue === 'white' ? 'light' : savedValue === 'black' ? 'dark' : savedValue;
     const value = migratedValue === 'custom' || STANDARD.some(([choice]) => choice === migratedValue)
         || PRESETS.some(([presetValue]) => presetValue === migratedValue) ? migratedValue : '';
-    const savedText = parseColor(readBookColorSetting(TEXT_KEY));
-    const savedBackground = parseColor(readBookColorSetting(BACKGROUND_KEY));
+    const savedText = parseColor(readSetting(TEXT_KEY));
+    const savedBackground = parseColor(readSetting(BACKGROUND_KEY));
     // A custom pair starts from the theme's colors
     const themeText = parseColor(window.getComputedStyle(document.body).color) || parseColor('#111111');
     const themeBackground = parseColor(window.getComputedStyle(document.body).backgroundColor) || parseColor('#fafafa');
     if (textPicker) textPicker.value = toHex(savedText?.a === 1 ? savedText : themeText);
     if (backgroundPicker) backgroundPicker.value = toHex(savedBackground?.a === 1 ? savedBackground : themeBackground);
 
-    if (autoToggle) autoToggle.checked = readBookColorSetting(TEXT_AUTO_KEY) !== 'false';
+    if (autoToggle) autoToggle.checked = readSetting(TEXT_AUTO_KEY) !== 'false';
     // With automatic text, the text picker shows the color in use and can't be changed
     const followBackground = (persist = true) => {
         const auto = autoToggle?.checked ?? false;
@@ -200,7 +172,7 @@ export function initPageColors() {
         if (!auto || !background || !textPicker) return;
         textPicker.value = toHex(readableTextOn(background));
         // Kept, so turning it off starts from the color in use
-        if (persist) writeBookColorSetting(TEXT_KEY, textPicker.value);
+        if (persist) writeSetting(TEXT_KEY, textPicker.value);
     };
     followBackground(false);
 
@@ -216,48 +188,39 @@ export function initPageColors() {
     };
     showChoice(value);
     const systemScheme = window.matchMedia?.('(prefers-color-scheme: dark)');
-    // The book's colors and Automatic follow the system's light or dark as it changes
+    // Automatic follows the system's light or dark as it changes
     systemScheme?.addEventListener('change', () => {
         const choice = select?.value ?? value;
-        if (!choice || choice === 'auto') showChoice(choice);
+        if (!choice) showChoice(choice);
     });
     if (!select) return;
     select.value = value;
-    // While sharing is on, each change here is also the default for other books
-    const shareChoice = () => {
-        if (!shareToggle?.checked) return;
-        writeSetting(COLORS_KEY, select.value);
-        writeSetting(TEXT_KEY, textPicker?.value || '');
-        writeSetting(BACKGROUND_KEY, backgroundPicker?.value || '');
-        writeSetting(TEXT_AUTO_KEY, String(autoToggle?.checked ?? true));
-    };
-    if (shareToggle) shareToggle.checked = readSetting(bookColorSettingKey(SHARE_KEY)) === 'true';
-    shareToggle?.addEventListener('change', () => {
-        writeSetting(bookColorSettingKey(SHARE_KEY), shareToggle.checked ? 'true' : '');
-        shareChoice();
-    });
     select.addEventListener('change', () => {
-        writeBookColorSetting(COLORS_KEY, select.value);
+        writeSetting(COLORS_KEY, select.value);
+        // Save the displayed pair too, so a first Custom choice travels with an export even
+        // when the other browser uses a different system theme.
+        if (select.value === 'custom') {
+            writeSetting(TEXT_KEY, textPicker?.value || '');
+            writeSetting(BACKGROUND_KEY, backgroundPicker?.value || '');
+            writeSetting(TEXT_AUTO_KEY, String(autoToggle?.checked ?? true));
+        }
         showChoice(select.value);
-        shareChoice();
     });
     for (const [picker, key] of [[textPicker, TEXT_KEY], [backgroundPicker, BACKGROUND_KEY]]) {
         // While a color is being picked, the page follows; the ratio is announced once it's chosen
         picker?.addEventListener('input', () => {
             if (picker === backgroundPicker) followBackground();
-            writeBookColorSetting(key, picker.value);
+            writeSetting(key, picker.value);
             showChoice('custom');
-            shareChoice();
         });
         picker?.addEventListener('change', () => {
-            if (contrast) announceReaderAction(contrast.textContent);
+            if (contrast) announceReaderAction(contrast.textContent, { show: false });
         });
     }
     autoToggle?.addEventListener('change', () => {
-        writeBookColorSetting(TEXT_AUTO_KEY, String(autoToggle.checked));
+        writeSetting(TEXT_AUTO_KEY, String(autoToggle.checked));
         followBackground();
         showChoice('custom');
-        shareChoice();
-        if (contrast) announceReaderAction(contrast.textContent);
+        if (contrast) announceReaderAction(contrast.textContent, { show: false });
     });
 }

@@ -65,15 +65,15 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_3145","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(11) > p:nth-of-type(1)"}}}
 
 17
-00:00:55.839 --> 00:00:57.302
+00:00:55.839 --> 00:00:57.303
 {"selector":{"type":"FragmentSelector","value":"dtb_3145","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(12) > p:nth-of-type(1)"}}}
 
 18
-00:00:57.302 --> 00:00:59.332
+00:00:57.303 --> 00:00:59.333
 {"selector":{"type":"FragmentSelector","value":"dtb_3145","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(13) > p:nth-of-type(1)"}}}
 
 19
-00:00:59.332 --> 00:01:11.602
+00:00:59.333 --> 00:01:11.602
 {"selector":{"type":"FragmentSelector","value":"id_53","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2) > span:nth-of-type(1)"}}}
 
 20
@@ -297,29 +297,29 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(10)"}}}
 
 75
-00:05:11.683 --> 00:05:14.761
+00:05:11.683 --> 00:05:14.762
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(11)"}}}
 
 76
-00:05:14.761 --> 00:05:22.161
+00:05:14.762 --> 00:05:22.162
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(12)"}}}
 
 77
-00:05:22.161 --> 00:05:23.491
+00:05:22.162 --> 00:05:23.492
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(13)"}}}
 
 78
-00:05:23.491 --> 00:05:25.051
+00:05:23.492 --> 00:05:25.052
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(14)"}}}
 
 79
-00:05:25.051 --> 00:05:26.631
+00:05:25.052 --> 00:05:26.632
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(15)"}}}
 
 80
-00:05:26.631 --> 00:05:28.011
+00:05:26.632 --> 00:05:28.012
 {"selector":{"type":"FragmentSelector","value":"id_54","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(16)"}}}
 
 81
-00:05:28.011 --> 00:05:29.927
+00:05:28.012 --> 00:05:29.927
 {"selector":{"type":"FragmentSelector","value":"dtb_3309"}}

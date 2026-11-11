@@ -81,13 +81,13 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(6) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 21
-00:01:29.857 --> 00:01:32.096
+00:01:29.857 --> 00:01:32.097
 {"selector":{"type":"FragmentSelector","value":"page46"}}
 
 22
-00:01:32.096 --> 00:01:38.020
+00:01:32.097 --> 00:01:38.021
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(7) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 23
-00:01:38.020 --> 00:01:42.224
+00:01:38.021 --> 00:01:42.225
 {"selector":{"type":"FragmentSelector","value":"page47"}}

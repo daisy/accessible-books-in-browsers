@@ -1,3 +1,4 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { elmForCue } from './cue-selector.js';
 import { canPlay, cancelSkipPreroll } from './skippability.js';
 import { highlightElm } from './narration-position.js';
@@ -6,15 +7,9 @@ import { stepPhrase } from './player.js';
 import { isInteractiveTarget, isAnyPopoverOpen, pageAudio } from './dom-utils.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 
-// Caption mode is remembered per book. The shared key is what the inline script in each page's
-// <head> reads to apply caption mode before first paint; that script can't change, so the shared
-// key is kept equal to the setting of the book being read.
+// Global, including the inline script's choice before first paint.
 const CAPTION_STORAGE_KEY = 'webbook-caption-mode';
 
-function bookCaptionStorageKey() {
-    const bookId = document.querySelector('meta[name="webbook-book-id"]')?.content?.trim();
-    return bookId ? `${CAPTION_STORAGE_KEY}:${bookId}` : CAPTION_STORAGE_KEY;
-}
 const CAPTION_CANDIDATE_SELECTOR = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, figcaption, caption, th, td, .epubtype_pagebreak';
 
 export let captionModeEnabled = false;
@@ -27,11 +22,7 @@ let captionText = null;
 export function initCaptionMode() {
     ensureCaptionView();
     const toggle = document.querySelector('#webbook-caption-mode-toggle');
-    // A book with no choice of its own starts with the setting last used in any book
-    const bookSetting = localStorage.getItem(bookCaptionStorageKey());
-    captionModeEnabled = (bookSetting ?? localStorage.getItem(CAPTION_STORAGE_KEY)) === 'true';
-    localStorage.setItem(bookCaptionStorageKey(), String(captionModeEnabled));
-    localStorage.setItem(CAPTION_STORAGE_KEY, String(captionModeEnabled));
+    captionModeEnabled = localStorage.getItem(CAPTION_STORAGE_KEY) === 'true';
     captionBoundaryEntry = consumePageEntry();
     if (toggle) {
         toggle.checked = captionModeEnabled;
@@ -79,7 +70,6 @@ function ensureCaptionView() {
 function setCaptionMode(enabled, options = {}) {
     captionModeEnabled = enabled;
     if (options.persist !== false) {
-        localStorage.setItem(bookCaptionStorageKey(), String(enabled));
         localStorage.setItem(CAPTION_STORAGE_KEY, String(enabled));
     }
 

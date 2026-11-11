@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "duration": 1403.499999,
+  "duration": 1403.5002100000002,
   "pages": [
     {
       "href": "index.html",
@@ -36,822 +36,824 @@
       "href": "chapter_001.html",
       "title": "Chapter 1. Loomings.",
       "start": 0,
-      "duration": 860.4999989999999
+      "duration": 860.50021,
+      "audio": "audio/chapter_001.mp3"
     },
     {
       "href": "chapter_002.html",
       "title": "Chapter 2. The Carpet-Bag.",
-      "start": 860.4999989999999,
-      "duration": 543
+      "start": 860.50021,
+      "duration": 543,
+      "audio": "audio/chapter_002.mp3"
     },
     {
       "href": "chapter_003.html",
       "title": "Chapter 3. The Spouter-Inn.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_004.html",
       "title": "Chapter 4. The Counterpane.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_005.html",
       "title": "Chapter 5. Breakfast.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_006.html",
       "title": "Chapter 6. The Street.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_007.html",
       "title": "Chapter 7. The Chapel.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_008.html",
       "title": "Chapter 8. The Pulpit.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_009.html",
       "title": "Chapter 9. The Sermon.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_010.html",
       "title": "Chapter 10. A Bosom Friend.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_011.html",
       "title": "Chapter 11. Nightgown.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_012.html",
       "title": "Chapter 12. Biographical.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_013.html",
       "title": "Chapter 13. Wheelbarrow.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_014.html",
       "title": "Chapter 14. Nantucket.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_015.html",
       "title": "Chapter 15. Chowder.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_016.html",
       "title": "Chapter 16. The Ship.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_017.html",
       "title": "Chapter 17. The Ramadan.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_018.html",
       "title": "Chapter 18. His Mark.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_019.html",
       "title": "Chapter 19. The Prophet.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_020.html",
       "title": "Chapter 20. All Astir.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_021.html",
       "title": "Chapter 21. Going Aboard.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_022.html",
       "title": "Chapter 22. Merry Christmas.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_023.html",
       "title": "Chapter 23. The Lee Shore.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_024.html",
       "title": "Chapter 24. The Advocate.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_025.html",
       "title": "Chapter 25. Postscript.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_026.html",
       "title": "Chapter 26. Knights and Squires.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_027.html",
       "title": "Chapter 27. Knights and Squires.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_028.html",
       "title": "Chapter 28. Ahab.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_029.html",
       "title": "Chapter 29. Enter Ahab; to Him, Stubb.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_030.html",
       "title": "Chapter 30. The Pipe.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_031.html",
       "title": "Chapter 31. Queen Mab.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_032.html",
       "title": "Chapter 32. Cetology.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_033.html",
       "title": "Chapter 33. The Specksnyder.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_034.html",
       "title": "Chapter 34. The Cabin-Table.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_035.html",
       "title": "Chapter 35. The Mast-Head.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_036.html",
       "title": "Chapter 36. The Quarter-Deck.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_037.html",
       "title": "Chapter 37. Sunset.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_038.html",
       "title": "Chapter 38. Dusk.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_039.html",
       "title": "Chapter 39. First Night Watch.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_040.html",
       "title": "Chapter 40. Midnight, Forecastle.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_041.html",
       "title": "Chapter 41. Moby Dick.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_042.html",
       "title": "Chapter 42. The Whiteness of The Whale.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_043.html",
       "title": "Chapter 43. Hark!",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_044.html",
       "title": "Chapter 44. The Chart.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_045.html",
       "title": "Chapter 45. The Affidavit.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_046.html",
       "title": "Chapter 46. Surmises.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_047.html",
       "title": "Chapter 47. The Mat-Maker.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_048.html",
       "title": "Chapter 48. The First Lowering.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_049.html",
       "title": "Chapter 49. The Hyena.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_050.html",
       "title": "Chapter 50. Ahab’s Boat and Crew. Fedallah.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_051.html",
       "title": "Chapter 51. The Spirit-Spout.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_052.html",
       "title": "Chapter 52. The Albatross.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_053.html",
       "title": "Chapter 53. The Gam.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_054.html",
       "title": "Chapter 54. The Town-Ho’s Story.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_055.html",
       "title": "Chapter 55. Of the Monstrous Pictures of Whales.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_056.html",
       "title": "Chapter 56. Of the Less Erroneous Pictures of Whales, and the True",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_057.html",
       "title": "Chapter 57. Of Whales in Paint; in Teeth; in Wood; in Sheet-Iron; in",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_058.html",
       "title": "Chapter 58. Brit.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_059.html",
       "title": "Chapter 59. Squid.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_060.html",
       "title": "Chapter 60. The Line.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_061.html",
       "title": "Chapter 61. Stubb Kills a Whale.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_062.html",
       "title": "Chapter 62. The Dart.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_063.html",
       "title": "Chapter 63. The Crotch.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_064.html",
       "title": "Chapter 64. Stubb’s Supper.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_065.html",
       "title": "Chapter 65. The Whale as a Dish.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_066.html",
       "title": "Chapter 66. The Shark Massacre.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_067.html",
       "title": "Chapter 67. Cutting In.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_068.html",
       "title": "Chapter 68. The Blanket.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_069.html",
       "title": "Chapter 69. The Funeral.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_070.html",
       "title": "Chapter 70. The Sphynx.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_071.html",
       "title": "Chapter 71. The Jeroboam’s Story.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_072.html",
       "title": "Chapter 72. The Monkey-Rope.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_073.html",
       "title": "Chapter 73. Stubb and Flask Kill a Right Whale; and Then Have a Talk",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_074.html",
       "title": "Chapter 74. The Sperm Whale’s Head—Contrasted View.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_075.html",
       "title": "Chapter 75. The Right Whale’s Head—Contrasted View.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_076.html",
       "title": "Chapter 76. The Battering-Ram.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_077.html",
       "title": "Chapter 77. The Great Heidelburgh Tun.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_078.html",
       "title": "Chapter 78. Cistern and Buckets.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_079.html",
       "title": "Chapter 79. The Prairie.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_080.html",
       "title": "Chapter 80. The Nut.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_081.html",
       "title": "Chapter 81. The Pequod Meets The Virgin.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_082.html",
       "title": "Chapter 82. The Honour and Glory of Whaling.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_083.html",
       "title": "Chapter 83. Jonah Historically Regarded.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_084.html",
       "title": "Chapter 84. Pitchpoling.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_085.html",
       "title": "Chapter 85. The Fountain.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_086.html",
       "title": "Chapter 86. The Tail.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_087.html",
       "title": "Chapter 87. The Grand Armada.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_088.html",
       "title": "Chapter 88. Schools and Schoolmasters.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_089.html",
       "title": "Chapter 89. Fast-Fish and Loose-Fish.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_090.html",
       "title": "Chapter 90. Heads or Tails.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_091.html",
       "title": "Chapter 91. The Pequod Meets The Rose-Bud.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_092.html",
       "title": "Chapter 92. Ambergris.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_093.html",
       "title": "Chapter 93. The Castaway.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_094.html",
       "title": "Chapter 94. A Squeeze of the Hand.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_095.html",
       "title": "Chapter 95. The Cassock.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_096.html",
       "title": "Chapter 96. The Try-Works.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_097.html",
       "title": "Chapter 97. The Lamp.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_098.html",
       "title": "Chapter 98. Stowing Down and Clearing Up.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_099.html",
       "title": "Chapter 99. The Doubloon.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_100.html",
       "title": "Chapter 100. Leg and Arm.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_101.html",
       "title": "Chapter 101. The Decanter.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_102.html",
       "title": "Chapter 102. A Bower in the Arsacides.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_103.html",
       "title": "Chapter 103. Measurement of The Whale’s Skeleton.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_104.html",
       "title": "Chapter 104. The Fossil Whale.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_105.html",
       "title": "Chapter 105. Does the Whale’s Magnitude Diminish?—Will He Perish?",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_106.html",
       "title": "Chapter 106. Ahab’s Leg.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_107.html",
       "title": "Chapter 107. The Carpenter.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_108.html",
       "title": "Chapter 108. Ahab and the Carpenter.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_109.html",
       "title": "Chapter 109. Ahab and Starbuck in the Cabin.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_110.html",
       "title": "Chapter 110. Queequeg in His Coffin.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_111.html",
       "title": "Chapter 111. The Pacific.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_112.html",
       "title": "Chapter 112. The Blacksmith.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_113.html",
       "title": "Chapter 113. The Forge.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_114.html",
       "title": "Chapter 114. The Gilder.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_115.html",
       "title": "Chapter 115. The Pequod Meets The Bachelor.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_116.html",
       "title": "Chapter 116. The Dying Whale.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_117.html",
       "title": "Chapter 117. The Whale Watch.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_118.html",
       "title": "Chapter 118. The Quadrant.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_119.html",
       "title": "Chapter 119. The Candles.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_120.html",
       "title": "Chapter 120. The Deck Towards the End of the First Night Watch.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_121.html",
       "title": "Chapter 121. Midnight.—The Forecastle Bulwarks.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_122.html",
       "title": "Chapter 122. Midnight Aloft.—Thunder and Lightning.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_123.html",
       "title": "Chapter 123. The Musket.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_124.html",
       "title": "Chapter 124. The Needle.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_125.html",
       "title": "Chapter 125. The Log and Line.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_126.html",
       "title": "Chapter 126. The Life-Buoy.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_127.html",
       "title": "Chapter 127. The Deck.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_128.html",
       "title": "Chapter 128. The Pequod Meets The Rachel.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_129.html",
       "title": "Chapter 129. The Cabin.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_130.html",
       "title": "Chapter 130. The Hat.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_131.html",
       "title": "Chapter 131. The Pequod Meets The Delight.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_132.html",
       "title": "Chapter 132. The Symphony.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_133.html",
       "title": "Chapter 133. The Chase—First Day.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_134.html",
       "title": "Chapter 134. The Chase—Second Day.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_135.html",
       "title": "Chapter 135. The Chase.—Third Day.",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "chapter_136.html",
       "title": "Epilogue",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     },
     {
       "href": "copyright.html",
       "title": "Copyright Page",
-      "start": 1403.499999,
+      "start": 1403.5002100000002,
       "duration": 0
     }
   ],
@@ -864,7 +866,19 @@
     {
       "title": "Chapter 2. The Carpet-Bag.",
       "href": "chapter_002.html",
-      "time": 860.4999989999999
+      "time": 860.50021
+    }
+  ],
+  "toc": [
+    {
+      "href": "chapter_001.html",
+      "time": 0,
+      "end": 4.768
+    },
+    {
+      "href": "chapter_002.html",
+      "time": 860.50021,
+      "end": 864.00021
     }
   ]
 }

@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting } from './settings-sections.js';
 // The narration highlight: its color (automatic, or the reader's), its style (a background, an
 // underline or both), and its contrast. The automatic color is chosen against the background behind
 // the phrase being read, so it stands out (3:1) wherever narration is; the text on a highlight
@@ -88,7 +90,7 @@ function buildStyleSetting() {
     select.id = 'webbook-highlight-style-options';
     for (const [value, text] of STYLES) select.append(optionElement(value, text));
     row.append(label, select);
-    colorRow.after(row);
+    appendSetting('colors', row);
     return select;
 }
 

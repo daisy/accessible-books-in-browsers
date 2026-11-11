@@ -73,9 +73,9 @@ WEBVTT
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(7) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 19
-00:01:07.480 --> 00:01:10.379
+00:01:07.480 --> 00:01:10.380
 {"selector":{"type":"CssSelector","value":":scope > div:nth-of-type(1) > p:nth-of-type(8) > span:nth-of-type(1) > img:nth-of-type(1)"}}
 
 20
-00:01:10.379 --> 00:01:14.483
+00:01:10.380 --> 00:01:14.484
 {"selector":{"type":"FragmentSelector","value":"page44"}}

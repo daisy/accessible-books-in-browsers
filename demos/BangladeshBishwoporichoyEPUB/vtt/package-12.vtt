@@ -277,19 +277,19 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_2129"}}
 
 70
-00:05:31.833 --> 00:05:35.002
+00:05:31.833 --> 00:05:35.003
 {"selector":{"type":"FragmentSelector","value":"id_36","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2)"}}}
 
 71
-00:05:35.002 --> 00:05:42.932
+00:05:35.003 --> 00:05:42.933
 {"selector":{"type":"FragmentSelector","value":"id_36","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3)"}}}
 
 72
-00:05:42.932 --> 00:05:46.772
+00:05:42.933 --> 00:05:46.773
 {"selector":{"type":"FragmentSelector","value":"id_36","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4)"}}}
 
 73
-00:05:46.772 --> 00:06:01.454
+00:05:46.773 --> 00:06:01.454
 {"selector":{"type":"FragmentSelector","value":"id_36","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(5)"}}}
 
 74

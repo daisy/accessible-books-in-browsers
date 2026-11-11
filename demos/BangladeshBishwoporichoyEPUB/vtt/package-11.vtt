@@ -157,35 +157,35 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_1595","refinedBy":{"type":"CssSelector","value":":scope > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 40
-00:03:31.964 --> 00:03:33.883
+00:03:31.964 --> 00:03:33.884
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(19)"}}}
 
 41
-00:03:33.883 --> 00:03:37.023
+00:03:33.884 --> 00:03:37.024
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(20)"}}}
 
 42
-00:03:37.023 --> 00:03:40.473
+00:03:37.024 --> 00:03:40.474
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(21)"}}}
 
 43
-00:03:40.473 --> 00:03:42.663
+00:03:40.474 --> 00:03:42.664
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(22)"}}}
 
 44
-00:03:42.663 --> 00:03:44.663
+00:03:42.664 --> 00:03:44.664
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(23)"}}}
 
 45
-00:03:44.663 --> 00:03:47.173
+00:03:44.664 --> 00:03:47.174
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(24)"}}}
 
 46
-00:03:47.173 --> 00:03:49.683
+00:03:47.174 --> 00:03:49.684
 {"selector":{"type":"FragmentSelector","value":"id_30","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(25)"}}}
 
 47
-00:03:49.683 --> 00:03:51.285
+00:03:49.684 --> 00:03:51.285
 {"selector":{"type":"FragmentSelector","value":"dtb_1628"}}
 
 48
@@ -361,11 +361,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"id_32","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2)"}}}
 
 91
-00:07:30.716 --> 00:07:39.305
+00:07:30.716 --> 00:07:39.306
 {"selector":{"type":"FragmentSelector","value":"id_32","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3)"}}}
 
 92
-00:07:39.305 --> 00:07:42.735
+00:07:39.306 --> 00:07:42.735
 {"selector":{"type":"FragmentSelector","value":"id_32","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4)"}}}
 
 93

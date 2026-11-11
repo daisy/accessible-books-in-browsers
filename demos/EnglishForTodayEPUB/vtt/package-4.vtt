@@ -53,11 +53,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"id_6","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(4)"}}}
 
 14
-00:01:43.591 --> 00:01:50.635
+00:01:43.591 --> 00:01:50.636
 {"selector":{"type":"FragmentSelector","value":"id_6","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(5)"}}}
 
 15
-00:01:50.635 --> 00:01:57.215
+00:01:50.636 --> 00:01:57.215
 {"selector":{"type":"FragmentSelector","value":"id_6","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(5) > span:nth-of-type(1)"}}}
 
 16

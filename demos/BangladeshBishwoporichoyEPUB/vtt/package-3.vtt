@@ -69,11 +69,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"id_5","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(15)"}}}
 
 18
-00:00:48.917 --> 00:00:50.110
+00:00:48.917 --> 00:00:50.111
 {"selector":{"type":"FragmentSelector","value":"id_5","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(16)"}}}
 
 19
-00:00:50.110 --> 00:00:53.862
+00:00:50.111 --> 00:00:53.862
 {"selector":{"type":"FragmentSelector","value":"id_5","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(17)"}}}
 
 20

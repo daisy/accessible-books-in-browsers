@@ -1,3 +1,5 @@
+// Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { appendSetting, settingsSection } from './settings-sections.js';
 // Sounds that tell a listener what kind of content narration is reading, like a screen reader's
 // speech and sounds schemes: two rising piano notes as a heading starts (lower for higher-level
 // headings), a small bell as a footnote or endnote starts, and two wood knocks, rising as narration
@@ -282,10 +284,13 @@ function playEvenOnSilent() {
 
 // The UI creates these settings itself, so books converted before they existed get them too
 function buildSettings() {
-    const fieldset = document.querySelector('#webbook-settings fieldset');
+    const fieldset = settingsSection('narration');
     if (!fieldset) return;
-    let after = (document.getElementById('webbook-note-auto-return-toggle') || document.getElementById('webbook-skip-footnote-toggle'))?.closest('div');
-    if (after?.parentElement !== fieldset) after = null;
+    const group = document.createElement('fieldset');
+    group.id = 'webbook-structure-sounds';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Structure sounds';
+    group.append(legend);
     for (const setting of SETTINGS) {
         if (document.getElementById(setting.id)) continue;
         const row = document.createElement('div');
@@ -305,10 +310,9 @@ function buildSettings() {
             }
         });
         row.append(label, toggle);
-        if (after) after.after(row);
-        else fieldset.append(row);
-        after = row;
+        group.append(row);
     }
+    appendSetting('narration', group);
 }
 
 export function initStructureSounds() {

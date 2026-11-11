@@ -1,5 +1,6 @@
 // Settings kept in localStorage, which can be unavailable (blocked storage, some private modes):
 // then a setting lasts this session only
+// Register new preferences and their accepted values in settings-file.js for export/import/reset.
 export function readSetting(key) {
     try { return localStorage.getItem(key); } catch { return null; }
 }
