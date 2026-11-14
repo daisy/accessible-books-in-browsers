@@ -18,7 +18,8 @@ without JavaScript too. See an [example fileset](https://github.com/daisy/access
 - **Caption mode:** the phrase being read, large, alone on the screen. Arrow keys and phrase
   shortcuts also step through captions in books without narration.
 - **Getting around:** the book's table of contents as a tree, with a filter; go to print page;
-  previous and next page and phrase; search across the book, in any language.
+  previous and next page and phrase; search across the book, in any language; **Where am I?**
+  says what you're in (a footnote, a table in a sidebar, endnote 4) and the heading it's under.
 - **Your place:** reopening a book resumes where you were, and the address always points at the
   reading position, so browser bookmarks and copied links return there.
 - **Notes:** follow a note reference and come back to exactly where you were; narration reads the
@@ -30,7 +31,7 @@ without JavaScript too. See an [example fileset](https://github.com/daisy/access
 
 **Making it yours**
 - Colors (automatic light or dark, reviewed pairs, or your own), highlight color and style, font,
-  text size, line, letter and word spacing, and line length.
+  text size, line, letter and word spacing, and line length; vertical books can be read horizontally.
 - Keyboard shortcuts for every action, which you can change; toolbars that hide or stay.
 - Settings apply to every book on the same website, and can be exported and imported.
 - Structure sounds (off by default): tones at headings, notes, lists and tables.
@@ -69,6 +70,9 @@ These demos were created using this [conversion script](https://github.com/daisy
 * **Bangladesh o Bishwoporichoy, Class 4** (বাংলাদেশ ও বিশ্ব পরিচয় চতুর্থ শ্রেণি): [demo](https://daisy.github.io/accessible-books-in-browsers/demos/BangladeshBishwoporichoyEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/BangladeshBishwoporichoyEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/BangladeshBishwoporichoyEPUB)
 * **English for Today, Classes 9–10**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/EnglishForTodayEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/EnglishForTodayEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/EnglishForTodayEPUB)
 * **Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/CurrentSituationEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/CurrentSituationEPUB)
+* **Kusamakura** (草枕), Natsume Sōseki: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/kusamakura) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/kusamakura) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/kusamakura)
+
+  Japanese in vertical writing, with ruby and narration for chapters 1 and 2. Text CC0; narration by the Assistive Technology Development Organization, [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/).
 
 Test books:
 
@@ -85,6 +89,20 @@ Test books:
 - **Getting around:** the book's own table of contents (nested, with the current section marked
   and a filter to find a section), go to page (the toolbar shows the current print page), and a
   link on every heading.
+- **Where am I?** (the compass button in the top toolbar, or a key you assign) says what structure
+  the reading position is in and the heading it comes under: "Endnote 4, in the endnotes
+  section", "Table ‘Measurements’, in a sidebar. Under ‘Results’", or, in an open panel, "Table of
+  contents. ‘Chapter 3’, level 2". It answers only when asked and moves nothing. The position is
+  the caption in caption mode, else the phrase being narrated, else selected text, else keyboard
+  focus in the text, else what's at the top of the screen. With a screen reader, that is where focus
+  is; a virtual cursor that doesn't move focus is invisible to the page.
+- **Vertical writing and page direction:** a book written vertically (Japanese, Chinese) is shown
+  vertically, read in columns from the right, with the page scrolling sideways; the mouse wheel,
+  Page Down, Space and the up and down arrows move along the text, and the page arrows are in the
+  top toolbar. Its upright numbers in a vertical line, emphasis marks (shown in the text colour),
+  full-width letters and line-breaking rules are kept from its own styles, which EPUB states as
+  `-epub-` properties that browsers ignore. **Settings → Text → Writing direction** shows it
+  horizontally instead. A book whose pages turn right to left has Next on the left.
 - **Bookmarks:** the address bar always points at the reading position, to the phrase in narrated
   books, so the browser's own bookmarks return there. **Copy link to this place** copies it.
 - **Resume** where you left off when you reopen a book, to the exact narration time.
@@ -108,11 +126,13 @@ Test books:
   inline equation at the selection or focus, or in the narrated phrase (the first if there are
   several). Inline math adds no Tab stops. Copying requires HTTPS or localhost
   and clipboard permission. Code copies exactly, including indentation and line breaks.
-- **Settings:** all sections stay open, with a **Jump to** list at the top. Every preference applies
+- **Settings:** all sections stay open, with **Find a setting** at the top (type a word such as
+  "spacing", "speed" or "dark" to see only the settings that match; Escape clears it) and a
+  **Jump to** list. Every preference applies
   to all books on the same website.
   - **Colors:** automatic (system light or dark), light or dark, reviewed pairs, or custom colors
     with automatic black or white text; highlight color and background, underline or both.
-  - **Text:** font, size, line, letter and word spacing, line length, dialog backdrop blur, and
+  - **Text:** font, size, writing direction (vertical books only), line, letter and word spacing, line length, dialog backdrop blur, and
     whether toolbars hide automatically or stay visible, and LaTeX or MathML for copying equations.
   - **Narration:** playback rate, caption mode (also works with text without narration), skip page
     numbers, notes or sidebars, and structure sounds.
@@ -154,6 +174,7 @@ without removing your saved reading positions.
 | `Alt`+`Shift`+`,` / `Alt`+`Shift`+`.` | Anywhere outside a text field or open popover | Narration slower / faster |
 | `Alt`+`Shift`+`-` / `Alt`+`Shift`+`=` | Anywhere outside a text field or open popover | Smaller / larger text |
 | `↑` `↓` `←` `→` | Anywhere outside a form control or open popover, only while Caption mode is on | Same as `[` / `]` (on a page without narration, steps through its text) |
+| Unassigned (choose a key in Settings) | Anywhere outside a text field; in an open panel too, if the key has `Alt`, `Ctrl` or `Cmd` | Where am I? Announce the structure and heading at the reading position, or the panel and item that has focus |
 | Unassigned (choose a key in Settings) | Selection, focus or narrated phrase | Copy equation |
 | Unassigned (choose a key in Settings) | Selected text or focused code block | Copy selection / Copy code |
 

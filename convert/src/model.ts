@@ -21,6 +21,8 @@ export type BookMetadata = {
     identifier: string;
     declaredLanguage: string;
     language: string;
+    // The spine's page-progression-direction (plan 28)
+    pageProgression?: 'ltr' | 'rtl';
     title: string;
 };
 export type TocEntry = {
@@ -81,7 +83,8 @@ type PlannedPage = {
 };
 
 async function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): Promise<SiteModel> {
-    const metadata = buildMetadata(epub.metadata, options.language);
+    const metadata = { ...buildMetadata(epub.metadata, options.language),
+        ...(epub.pageProgression ? { pageProgression: epub.pageProgression } : {}) };
     const bookTitle = collapseWhitespace(metadata.title);
     const sourceToOutput = new Map<string, string>();
     const usedFilenames = new Set<string>();

@@ -5,6 +5,15 @@
     scroll-padding-bottom: calc(var(--webbook-toolbar-height, 4rem) + .5rem);
 }
 /* page container */
+:root {
+    --webbook-page-arrow-gutter: 0px;
+}
+/* An arrow is 3rem wide, .75rem in from the edge (spine-nav.css); .75rem more to the text */
+@media (min-width: 45.0625rem) {
+    :root:is(.webbook-dark, .webbook-light, .webbook-js) {
+        --webbook-page-arrow-gutter: calc(4.5rem + env(safe-area-inset-left, 0px));
+    }
+}
 body {
     background: var(--theme-bg);
     color: var(--theme-fg);
@@ -12,12 +21,14 @@ body {
 
     display: grid;
     grid-template-areas:
-        "topbar"
-        "main"
-        "toolbar";
-    /* Spine arrows are fixed over the viewport margins, outside this grid. One
-       flexible column also keeps no-JS navigation from squeezing the book's text. */
-    grid-template-columns: minmax(0, 1fr);
+        "topbar topbar topbar"
+        ". main ."
+        "toolbar toolbar toolbar";
+    /* The spine arrows are fixed in the side columns, outside the flow. The text keeps clear of
+       them, and the Line length setting's fractions are of the width between them (Wide is all of
+       it). Without JavaScript there are no arrows, and on a small screen they're in the top
+       toolbar, so the columns close. */
+    grid-template-columns: var(--webbook-page-arrow-gutter) minmax(0, 1fr) var(--webbook-page-arrow-gutter);
     /* without this, a short page stretches every row to fill the viewport, toolbar rows included */
     grid-template-rows: auto 1fr auto;
 }
@@ -59,7 +70,7 @@ main {
     grid-area: main;
     box-sizing: border-box;
     width: 100%;
-    /* the Line length setting (text-spacing.js): a fraction of the width the text has */
+    /* the Line length setting (text-spacing.js): characters a line, within the width the text has */
     max-width: var(--webbook-line-length, 45rem);
     margin: auto;
     /* clear of the fixed bottom toolbar */

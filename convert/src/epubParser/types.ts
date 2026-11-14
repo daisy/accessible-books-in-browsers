@@ -26,4 +26,5 @@ export type Epub = {
     packageFilename: string;
     navFilename: string;
     coverDocumentHref?: string;
+    pageProgression?: 'ltr' | 'rtl';
 };

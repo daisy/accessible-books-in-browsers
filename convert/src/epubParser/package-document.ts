@@ -12,6 +12,8 @@ export type PackageDocument = {
     coverDocumentHref?: string;
     metadata: Metadata;
     navFilename: string;
+    // The spine's page-progression-direction, when it says rtl or ltr
+    pageProgression?: 'ltr' | 'rtl';
     spine: SpineItem[];
 };
 
@@ -26,6 +28,7 @@ async function parse(inputFilename: string, options: PackageDocumentParseOptions
         coverDocumentHref: parseGuideCoverHref(inputFilename, doc),
         metadata,
         spine: parseSpine(inputFilename, doc, options),
+        ...pageProgression(doc),
         navFilename: getManifestItemHrefByProperty('nav', doc, inputFilename)
     };
 }
@@ -75,6 +78,12 @@ function parseMetadata(doc: Document, opfFilename: string): Metadata {
     }
 
     return parsedMetadata;
+}
+
+function pageProgression(doc: Document): { pageProgression?: 'ltr' | 'rtl' } {
+    const spine = (select('//opf:spine', doc) as Element[])[0];
+    const value = (spine?.getAttribute('page-progression-direction') ?? '').trim().toLowerCase();
+    return value === 'rtl' || value === 'ltr' ? { pageProgression: value } : {};
 }
 
 function parseSpine(opfFilename: string, doc: Document, options: PackageDocumentParseOptions): SpineItem[] {

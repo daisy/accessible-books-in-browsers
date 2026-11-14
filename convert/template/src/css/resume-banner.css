@@ -19,12 +19,19 @@
 #webbook-action-notice {
     position: fixed;
     top: calc(var(--webbook-top-toolbar-height, 4rem) + .75rem);
-    left: 50%;
-    transform: translateX(-50%);
+    /* Centred by its margins, not left: 50% and a transform: in a vertical book at phone width,
+       left: 50% put it off the screen. It wraps long text rather than overflowing. */
+    left: 1rem;
+    right: 1rem;
+    margin-inline: auto;
     z-index: 30;
     box-sizing: border-box;
-    width: max-content;
-    max-width: calc(100vw - 2rem);
+    width: fit-content;
+    max-width: min(40rem, calc(100% - 2rem));
+    max-height: calc(100dvh - var(--webbook-top-toolbar-height, 4rem) - 1.5rem);
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+    writing-mode: horizontal-tb;
     background: var(--webbook-chrome-bg);
     color: var(--webbook-chrome-fg);
     border: 2px solid var(--webbook-chrome-fg);

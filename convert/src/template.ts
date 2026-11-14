@@ -55,6 +55,7 @@ class TemplateRenderer {
         const printPageBefore = printPageBeforePage(site, page);
         if (printPageBefore) main.setAttribute('data-webbook-print-page-before', printPageBefore);
         main.innerHTML = content.bodyHtml;
+        applyWritingStylesToPage(doc, main, site, content);
 
         renderToc(doc, site, page, options.narratedPages);
         renderSpineNav(doc, site, page);
@@ -70,6 +71,20 @@ class TemplateRenderer {
     private cloneTemplateDocument(): Document {
         return this.templateDocument.cloneNode(true) as Document;
     }
+}
+
+// Plan 28: the book's writing mode, line-breaking rules and page progression go on <html>, for
+// the reader's layout; its direction and its page-wide writing styles on <main>, the book's text
+function applyWritingStylesToPage(doc: Document, main: Element, site: SiteModel, content: TransformedContent): void {
+    const styles = content.writingStyles;
+    const root = doc.documentElement;
+    if (styles.writingMode) root.setAttribute('data-webbook-writing-mode', styles.writingMode);
+    if (styles.writingModes) root.setAttribute('data-webbook-writing-modes', styles.writingModes.join(' '));
+    if (styles.lineBreak) root.setAttribute('data-webbook-line-break', styles.lineBreak);
+    if (styles.wordBreak) root.setAttribute('data-webbook-word-break', styles.wordBreak);
+    if (site.metadata.pageProgression === 'rtl') root.setAttribute('data-webbook-page-progression', 'rtl');
+    if (styles.dir && !main.hasAttribute('dir')) main.setAttribute('dir', styles.dir);
+    styles.mainClasses.forEach(name => main.classList.add(name));
 }
 
 function renderProgress(doc: Document, site: SiteModel, page: SitePage): void {

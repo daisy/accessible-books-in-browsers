@@ -6,7 +6,7 @@ set -e
 cd "$(dirname "$0")/convert"
 npm run build
 if [ "$#" -eq 0 ]; then
-    set -- moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB math-optimization-ml notes-test
+    set -- moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB math-optimization-ml notes-test kusamakura
 fi
 logs=$(mktemp -d)
 for book do

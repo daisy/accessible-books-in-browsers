@@ -1,4 +1,5 @@
 // Saved preferences must also be listed in settings-file.js (export, import and reset).
+import { readingEnd, readingScroll, readingStart, scrollToReading, viewportLength } from './reading-axis.js';
 import { appendSetting, settingsSection } from './settings-sections.js';
 import { fetchPage, navigateTo } from './in-place-navigation.js';
 import { cueForElement, elmForCue } from './cue-selector.js';
@@ -121,7 +122,7 @@ function returnRecord(reference) {
     const playing = Boolean(audio && (!audio.paused || notePause));
     return {
         href: window.location.href.split('#')[0] + (reference.id ? `#${encodeURIComponent(reference.id)}` : ''),
-        scrollY: window.scrollY,
+        scrollY: readingScroll(),
         audioTime: notePause ? notePause.resumeAt : playing ? audio?.currentTime : referenceTime(reference, audio),
         autoplay: playing
     };
@@ -618,7 +619,7 @@ export function initNotesInPlace() {
         const origin = lastNoteReturn;
         if (new URL(origin.href).pathname !== location.pathname) return;
         setTimeout(() => {
-            window.scrollTo(0, origin.scrollY);
+            scrollToReading(origin.scrollY);
             const reference = new URL(origin.href).hash
                 ? document.getElementById(decodeURIComponent(new URL(origin.href).hash.slice(1))) : null;
             reference?.focus({ preventScroll: true });
@@ -643,7 +644,7 @@ export function initNotesInPlace() {
         const note = noteOfReturn();
         if (!note) return;
         const rect = (note.closest(NOTES_SECTION_SELECTOR) || note).getBoundingClientRect();
-        if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) dismissReturn();
+        if (readingEnd(rect) < -viewportLength() || readingStart(rect) > viewportLength() * 2) dismissReturn();
     }, { passive: true });
     registerAction({ id: 'go-to-phrase-note', label: 'Go to note in this phrase', group: 'Narration',
         defaultKeys: [{ code: 'KeyE', alt: true, shift: true }], run: openPhraseNotes, isAvailable: () => phraseReferences.length > 0 });

@@ -336,3 +336,11 @@ function findNextCaptionIndex(fromIndex, delta) {
         if (canPlay(captionItems[index].elm)) return index;
     }
 }
+
+// The book's element the shown caption is from, for Where am I? (plan 26). Read only; null when
+// caption mode is off or nothing is shown.
+export function currentCaptionElement() {
+    if (!captionModeEnabled) return null;
+    const elm = captionItems[captionIndex]?.elm;
+    return elm?.isConnected ? elm : null;
+}

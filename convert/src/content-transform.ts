@@ -13,6 +13,7 @@ import { cleanPublicationMarkup, renameCollidingIds } from './markup-cleanup.js'
 import { cssReferencedIds, isExternalHref } from './ids.js';
 import type { ConversionReport } from './conversion-report.js';
 import { cleanLeftoverAnchors } from './conversion-rules.js';
+import { applyWritingStyles, readPageStylesheets, type WritingStyles } from './book-styles.js';
 
 export type TransformedContent = {
     bodyAttributes: Array<{ name: string; value: string }>;
@@ -20,6 +21,7 @@ export type TransformedContent = {
     title: string;
     narrationSelectors: Map<string, NarrationSelector>;
     renamedIds: Map<string, string>;
+    writingStyles: WritingStyles;
 };
 
 export type ContentCleanupOptions = {
@@ -44,6 +46,9 @@ async function transformContent(
     const doc = dom.window.document;
 
     stripXmlNamespaceAttributes(doc);
+    // On the whole source page, before splitting and cleanup, so the book's selectors match as written
+    const writingStyles = applyWritingStyles(doc, await readPageStylesheets(doc, page.sourcePath),
+        { report: cleanupOptions?.report, page: page.outputFilename });
     translateEpubTypes(doc);
     rewriteImageReferences(doc, page, imageRegistry);
     ensureHeadingIds(doc);
@@ -95,7 +100,8 @@ async function transformContent(
         bodyHtml: doc.body.innerHTML,
         title: doc.querySelector('title')?.textContent?.trim() ?? '',
         narrationSelectors,
-        renamedIds
+        renamedIds,
+        writingStyles
     };
 }
 

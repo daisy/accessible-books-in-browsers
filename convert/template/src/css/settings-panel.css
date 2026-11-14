@@ -21,6 +21,32 @@
         margin: 1rem 0;
         color: var(--webbook-muted-fg);
     }
+    /* Find a setting (settings-filter.js) */
+    .webbook-settings-filter {
+        display: grid;
+        gap: .5rem;
+        margin-bottom: 1.25rem;
+        label { font-weight: 600; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 2.75rem;
+            padding: .4rem .6rem;
+            font: inherit;
+            font-size: 1rem;
+            background: var(--theme-bg);
+            color: var(--theme-fg);
+            border: 1px solid color-mix(in srgb, var(--theme-fg) 65%, var(--theme-bg));
+            border-radius: 4px;
+        }
+        p { color: var(--webbook-muted-fg); }
+        p:empty { display: none; }
+    }
+    .webbook-settings-filtered { display: none !important; }
+    /* While filtering, the sections that are left are the list: Jump to and Back to top lead to
+       hidden sections */
+    &.webbook-settings-filtering :is(.webbook-settings-jump, .webbook-settings-top) { display: none; }
+    &.webbook-settings-filtering .webbook-settings-section { padding-block: 1rem; }
     .webbook-settings-jump {
         padding-bottom: 1.25rem;
         border-bottom: var(--webbook-panel-border);

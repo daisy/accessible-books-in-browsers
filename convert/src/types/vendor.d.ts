@@ -76,3 +76,11 @@ declare module 'vtt-creator' {
         toString(): string;
     }
 }
+
+declare module 'css' {
+    type Node = { type: string; [key: string]: unknown };
+    type Stylesheet = { type: 'stylesheet'; stylesheet?: { rules: Node[] } };
+    function parse(code: string, options?: { silent?: boolean; source?: string }): Stylesheet;
+    const _default: { parse: typeof parse };
+    export default _default;
+}
