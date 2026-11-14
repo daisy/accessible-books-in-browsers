@@ -1,4 +1,5 @@
-import { lastNarratedElement } from './narration-position.js';
+import { lastNarratedElement, readingLine } from './narration-position.js';
+import { readingEnd, readingStart, viewportLength } from './reading-axis.js';
 import { registerAction } from './reader-actions.js';
 import { pageAudio } from './dom-utils.js';
 
@@ -134,14 +135,13 @@ export function readingPositionTest() {
         return target => target === narrated || target.contains(narrated)
             || Boolean(target.compareDocumentPosition(narrated) & Node.DOCUMENT_POSITION_FOLLOWING);
     }
-    const toolbarBottom = document.querySelector('#webbook-top-toolbar')?.getBoundingClientRect().bottom ?? 0;
-    const readingLine = Math.max(0, toolbarBottom) + 48;
-    return target => target.getBoundingClientRect().top <= readingLine;
+    const line = readingLine();
+    return target => readingStart(target.getBoundingClientRect()) <= line;
 }
 
 function isOnScreen(elm) {
     const rect = elm.getBoundingClientRect();
-    return rect.bottom > 0 && rect.top < window.innerHeight;
+    return readingEnd(rect) > 0 && readingStart(rect) < viewportLength();
 }
 
 // Track open state on toolbar buttons when their popovers toggle

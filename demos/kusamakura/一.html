@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja-jp" data-webbook-contract="0" data-webbook-writing-mode="vertical-rl" data-webbook-writing-modes="vertical-rl horizontal-tb" data-webbook-page-progression="rtl"><head>
+    <meta charset="UTF-8">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>一 – 草枕</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="http://www.aozora.gr.jp/cards/000148/card776.html">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a>
+    <!-- Basic navigation for reading without JavaScript; hidden when the reader's script runs -->
+    <nav id="webbook-basic-nav" aria-label="Book">
+        <button type="button" popovertarget="webbook-toc-nav">Contents</button>
+        <a id="webbook-basic-previous" rel="prev" href="index.html">Previous: 草枕</a>
+        <a id="webbook-basic-next" rel="next" href="二.html">Next: 二</a>
+    </nav>
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        
+    </section>
+
+    <main id="webbook-main">
+<!--note
+    ※ 我らが能から…が音声マークアップが欠落。（録音は入っている。）
+    ※ </span> タグの">"の手前で改行されているのは、<span>の前に空白をつくらないため。
+       （CSS3 Text 対応ブラウザは、空白を無視することが期待される。 §4.3.2参照。）
+  -->
+<section class="main_text epubtype_chapter" id="section-1">
+  <h2 class="chapter epubtype_subtitle" id="fgyq_0001" tabindex="-1">一<a href="#fgyq_0001" rel="bookmark" class="webbook" title="Link to 一" aria-label="Link to 一"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h2>
+  <p><span><ruby>山路<rt>やまみち</rt></ruby>を登りながら、こう考えた。</span>
+  </p>
+  <p><span><ruby>智<rt>ち</rt></ruby>に働けば<ruby>角<rt>かど</rt></ruby>が立つ。</span><span><ruby>情<rt>じょう</rt></ruby>に<ruby>棹<rt>さお</rt></ruby>させば流される。</span><span>意地を<ruby>通<rt>とお</rt></ruby>せば<ruby>窮屈<rt>きゅうくつ</rt></ruby>だ。</span><span>とかくに人の世は住みにくい。</span>
+  </p>
+  <p><span>住みにくさが<ruby>高<rt>こう</rt></ruby>じると、安い所へ引き越したくなる。</span><span>どこへ越しても住みにくいと<ruby>悟<rt>さと</rt></ruby>った時、詩が生れて、<ruby>画<rt>え</rt></ruby>が出来る。</span>
+  </p>
+  <p><span><strong class="sesame_dot webbook-style-emphasis-sesame">人の世</strong>を作ったものは神でもなければ鬼でもない。</span><span>やはり向う三軒<ruby>両隣<rt>りょうどな</rt></ruby>りにちらちらするただの人である。</span><span>ただの人が作った<strong class="sesame_dot webbook-style-emphasis-sesame">人の世</strong>が住みにくいからとて、越す国はあるまい。</span><span>あれば<strong class="sesame_dot webbook-style-emphasis-sesame">人でなし</strong>の国へ行くばかりだ。</span><span><strong class="sesame_dot webbook-style-emphasis-sesame">人でなし</strong>の国は<strong class="sesame_dot webbook-style-emphasis-sesame">人の世</strong>よりもなお住みにくかろう。</span>
+  </p>
+  <p><span>越す事のならぬ世が住みにくければ、住みにくい所をどれほどか、<ruby>寛容<rt>くつろげ</rt></ruby>て、<ruby>束<rt>つか</rt></ruby>の<ruby>間<rt>ま</rt></ruby>の命を、束の間でも住みよくせねばならぬ。</span><span>ここに詩人という天職が出来て、ここに画家という使命が<ruby>降<rt>くだ</rt></ruby>る。</span><span>あらゆる芸術の士は人の世を<ruby>長閑<rt>のどか</rt></ruby>にし、人の心を豊かにするが<ruby>故<rt>ゆえ</rt></ruby>に<ruby>尊<rt>たっ</rt></ruby>とい。</span>
+  </p>
+  <p><span>住みにくき世から、住みにくき<ruby>煩<rt>わずら</rt></ruby>いを引き抜いて、ありがたい世界をまのあたりに写すのが詩である、<ruby>画<rt>え</rt></ruby>である。</span><span>あるは音楽と彫刻である。</span><span>こまかに<ruby>云<rt>い</rt></ruby>えば写さないでもよい。</span><span>ただまのあたりに見れば、そこに詩も生き、歌も<ruby>湧<rt>わ</rt></ruby>く。</span><span>着想を紙に落さぬとも<ruby>璆鏘<rt>きゅうそう</rt></ruby>の<ruby>音<rt>おん</rt></ruby>は<ruby>胸裏<rt>きょうり</rt></ruby>に<ruby>起<rt>おこ</rt></ruby>る。</span><span><ruby>丹青<rt>たんせい</rt></ruby>は<ruby>画架<rt>がか</rt></ruby>に向って<ruby>塗抹<rt>とまつ</rt></ruby>せんでも<ruby>五彩<rt>ごさい</rt></ruby>の<ruby>絢爛<rt>けんらん</rt></ruby>は<ruby>自<rt>おのず</rt></ruby>から<ruby>心眼<rt>しんがん</rt></ruby>に映る。</span><span>ただおのが住む世を、かく<ruby>観<rt>かん</rt></ruby>じ得て、<ruby>霊台方寸<rt>れいだいほうすん</rt></ruby>のカメラに<ruby>澆季溷濁<rt>ぎょうきこんだく</rt></ruby>の俗界を清くうららかに収め<ruby>得<rt>う</rt></ruby>れば<ruby>足<rt>た</rt></ruby>る。</span><span>この故に<ruby>無声<rt>むせい</rt></ruby>の詩人には一句なく、<ruby>無色<rt>むしょく</rt></ruby>の画家には<ruby>尺縑<rt>せっけん</rt></ruby>なきも、かく<ruby>人世<rt>じんせい</rt></ruby>を観じ得るの点において、かく<ruby>煩悩<rt>ぼんのう</rt></ruby>を<ruby>解脱<rt>げだつ</rt></ruby>するの点において、かく<ruby>清浄界<rt>しょうじょうかい</rt></ruby>に<ruby>出入<rt>しゅつにゅう</rt></ruby>し得るの点において、またこの<ruby>不同不二<rt>ふどうふじ</rt></ruby>の<ruby>乾坤<rt>けんこん</rt></ruby>を<ruby>建立<rt>こんりゅう</rt></ruby>し得るの点において、<ruby>我利私慾<rt>がりしよく</rt></ruby>の<ruby>覊絆<rt>きはん</rt></ruby>を<ruby>掃蕩<rt>そうとう</rt></ruby>するの点において、<span style="font-family: foobar;">——</span><ruby>千金<rt>せんきん</rt></ruby>の子よりも、<ruby>万乗<rt>ばんじょう</rt></ruby>の君よりも、あらゆる俗界の<ruby>寵児<rt>ちょうじ</rt></ruby>よりも幸福である。</span>
+  </p>
+  <p><span>世に住むこと二十年にして、住むに<ruby>甲斐<rt>かい</rt></ruby>ある世と知った。</span><span>二十五年にして明暗は<ruby>表裏<rt>ひょうり</rt></ruby>のごとく、日のあたる所にはきっと影がさすと悟った。</span><span>三十の<ruby>今日<rt>こんにち</rt></ruby>はこう思うている。</span><span><span style="font-family: foobar;">——</span>喜びの深きとき<ruby>憂<rt>うれい</rt></ruby>いよいよ深く、<ruby>楽<rt>たのし</rt></ruby>みの大いなるほど苦しみも大きい。</span><span>これを切り放そうとすると身が持てぬ。</span><span><ruby>片<rt>かた</rt></ruby>づけようとすれば世が立たぬ。</span><span>金は大事だ、大事なものが<ruby>殖<rt>ふ</rt></ruby>えれば<ruby>寝<rt>ね</rt></ruby>る<ruby>間<rt>ま</rt></ruby>も心配だろう。</span><span>恋はうれしい、嬉しい恋が積もれば、恋をせぬ昔がかえって恋しかろ。</span><span>閣僚の肩は数百万人の足を<ruby>支<rt>ささ</rt></ruby>えている。</span><span><ruby>背中<rt>せなか</rt></ruby>には重い天下がおぶさっている。</span><span>うまい物も食わねば惜しい。</span><span>少し食えば<ruby>飽<rt>あ</rt></ruby>き<ruby>足<rt>た</rt></ruby>らぬ。</span><span>存分食えばあとが不愉快だ。</span><span>……</span>
+  </p>
+  <p><span><ruby>余<rt>よ</rt></ruby>の<ruby>考<rt>かんがえ</rt></ruby>がここまで漂流して来た時に、余の<ruby>右足<rt>うそく</rt></ruby>は突然<ruby>坐<rt>すわ</rt></ruby>りのわるい<ruby>角石<rt>かくいし</rt></ruby>の<ruby>端<rt>はし</rt></ruby>を踏み<ruby>損<rt>そ</rt></ruby>くなった。</span><span><ruby>平衡<rt>へいこう</rt></ruby>を保つために、すわやと前に飛び出した<ruby>左足<rt>さそく</rt></ruby>が、<ruby>仕損<rt>しそん</rt></ruby>じの<ruby>埋<rt>う</rt></ruby>め<ruby>合<rt>あわ</rt></ruby>せをすると共に、余の腰は具合よく<ruby>方<rt>ほう</rt></ruby>三尺ほどな岩の上に<ruby>卸<rt>お</rt></ruby>りた。</span><span>肩にかけた絵の具箱が<ruby>腋<rt>わき</rt></ruby>の下から<ruby>躍<rt>おど</rt></ruby>り出しただけで、幸いと<ruby>何<rt>なん</rt></ruby>の事もなかった。</span>
+  </p>
+  <p><span>立ち上がる時に向うを見ると、<ruby>路<rt>みち</rt></ruby>から左の方にバケツを伏せたような峰が<ruby>聳<rt>そび</rt></ruby>えている。</span><span>杉か<ruby>檜<rt>ひのき</rt></ruby>か分からないが<ruby>根元<rt>ねもと</rt></ruby>から<ruby>頂<rt>いただ</rt></ruby>きまでことごとく<ruby>蒼黒<rt>あおぐろ</rt></ruby>い中に、山桜が薄赤くだんだらに<ruby>棚引<rt>たなび</rt></ruby>いて、<ruby>続<rt>つ</rt></ruby>ぎ<ruby>目<rt>め</rt></ruby>が<ruby>確<rt>しか</rt></ruby>と見えぬくらい<ruby>靄<rt>もや</rt></ruby>が濃い。</span><span>少し手前に<ruby>禿山<rt>はげやま</rt></ruby>が一つ、<ruby>群<rt>ぐん</rt></ruby>をぬきんでて<ruby>眉<rt>まゆ</rt></ruby>に<ruby>逼<rt>せま</rt></ruby>る。</span><span><ruby>禿<rt>は</rt></ruby>げた側面は巨人の<ruby>斧<rt>おの</rt></ruby>で<ruby>削<rt>けず</rt></ruby>り去ったか、鋭どき平面をやけに谷の底に<ruby>埋<rt>うず</rt></ruby>めている。</span><span><ruby>天辺<rt>てっぺん</rt></ruby>に一本見えるのは赤松だろう。</span><span>枝の間の空さえ<ruby>判然<rt>はっきり</rt></ruby>している。</span><span>行く手は二丁ほどで切れているが、高い所から赤い<ruby>毛布<rt>けっと</rt></ruby>が動いて来るのを見ると、登ればあすこへ出るのだろう。</span><span>路はすこぶる<ruby>難義<rt>なんぎ</rt></ruby>だ。</span>
+  </p>
+  <p><span>土をならすだけならさほど<ruby>手間<rt>てま</rt></ruby>も<ruby>入<rt>い</rt></ruby>るまいが、土の中には大きな石がある。</span><span>土は<ruby>平<rt>たい</rt></ruby>らにしても石は平らにならぬ。</span><span>石は切り砕いても、岩は始末がつかぬ。</span><span><ruby>掘崩<rt>ほりくず</rt></ruby>した土の上に<ruby>悠然<rt>ゆうぜん</rt></ruby>と<ruby>峙<rt>そばだ</rt></ruby>って、吾らのために道を譲る<ruby>景色<rt>けしき</rt></ruby>はない。</span><span>向うで聞かぬ上は乗り越すか、廻らなければならん。</span><span><ruby>巌<rt>いわ</rt></ruby>のない所でさえ<ruby>歩<rt>あ</rt></ruby>るきよくはない。</span><span>左右が高くって、中心が<ruby>窪<rt>くぼ</rt></ruby>んで、まるで一間<ruby>幅<rt>はば</rt></ruby>を三角に<ruby>穿<rt>く</rt></ruby>って、その頂点が<ruby>真中<rt>まんなか</rt></ruby>を<ruby>貫<rt>つらぬ</rt></ruby>いていると評してもよい。</span><span>路を行くと云わんより川底を<ruby>渉<rt>わた</rt></ruby>ると云う方が適当だ。</span><span><ruby>固<rt>もと</rt></ruby>より急ぐ旅でないから、ぶらぶらと<ruby>七曲<rt>ななまが</rt></ruby>りへかかる。</span>
+  </p>
+  <p><span>たちまち足の下で<ruby>雲雀<rt>ひばり</rt></ruby>の声がし出した。</span><span>谷を<ruby>見下<rt>みおろ</rt></ruby>したが、どこで鳴いてるか影も形も見えぬ。</span><span>ただ声だけが明らかに聞える。</span><span>せっせと<ruby>忙<rt>せわ</rt></ruby>しく、<ruby>絶間<rt>たえま</rt></ruby>なく鳴いている。</span><span><ruby>方幾里<rt>ほういくり</rt></ruby>の空気が一面に<ruby>蚤<rt>のみ</rt></ruby>に刺されていたたまれないような気がする。</span><span>あの鳥の鳴く<ruby>音<rt>ね</rt></ruby>には瞬時の余裕もない。</span><span>のどかな春の日を鳴き尽くし、鳴きあかし、また鳴き暮らさなければ気が済まんと見える。</span><span>その上どこまでも登って行く、いつまでも登って行く。</span><span>雲雀はきっと雲の中で死ぬに相違ない。</span><span>登り詰めた<ruby>揚句<rt>あげく</rt></ruby>は、流れて雲に<ruby>入<rt>い</rt></ruby>って、<ruby>漂<rt>ただよ</rt></ruby>うているうちに形は消えてなくなって、ただ声だけが空の<ruby>裡<rt>うち</rt></ruby>に残るのかも知れない。</span>
+  </p>
+  <p><span><ruby>巌角<rt>いわかど</rt></ruby>を鋭どく廻って、<ruby>按摩<rt>あんま</rt></ruby>なら<ruby>真逆様<rt>まっさかさま</rt></ruby>に落つるところを、<ruby>際<rt>きわ</rt></ruby>どく右へ切れて、横に<ruby>見下<rt>みおろ</rt></ruby>すと、<ruby>菜<rt>な</rt></ruby>の花が一面に見える。</span><span>雲雀はあすこへ落ちるのかと思った。</span><span>いいや、あの<ruby>黄金<rt>こがね</rt></ruby>の原から飛び上がってくるのかと思った。</span><span>次には落ちる雲雀と、<ruby>上<rt>あが</rt></ruby>る<ruby>雲雀<rt>ひばり</rt></ruby>が十文字にすれ違うのかと思った。</span><span>最後に、落ちる時も、上る時も、また十文字に<ruby>擦<rt>す</rt></ruby>れ違うときにも元気よく鳴きつづけるだろうと思った。</span>
+  </p>
+  <p><span>春は眠くなる。</span><span>猫は鼠を<ruby>捕<rt>と</rt></ruby>る事を忘れ、人間は借金のある事を忘れる。</span><span>時には自分の<ruby>魂<rt>たましい</rt></ruby>の<ruby>居所<rt>いどころ</rt></ruby>さえ忘れて正体なくなる。</span><span>ただ菜の花を遠く望んだときに眼が<ruby>醒<rt>さ</rt></ruby>める。</span><span>雲雀の声を聞いたときに魂のありかが<ruby>判然<rt>はんぜん</rt></ruby>する。</span><span>雲雀の鳴くのは口で鳴くのではない、魂全体が鳴くのだ。</span><span>魂の活動が声にあらわれたもののうちで、あれほど元気のあるものはない。</span><span>ああ愉快だ。</span><span>こう思って、こう愉快になるのが詩である。</span>
+  </p>
+  <p><span>たちまちシェレーの雲雀の詩を思い出して、口のうちで覚えたところだけ<ruby>暗誦<rt>あんしょう</rt></ruby>して見たが、覚えているところは二三句しかなかった。</span><span>その二三句のなかにこんなのがある。</span>
+  </p><blockquote class="poem" lang="en" id="quote-1">
+    <p>
+      <span>We look before and after<br>
+        And pine for what is not:<br>
+        Our sincerest laughter<br>
+        With some pain is fraught;<br>
+        Our sweetest songs are those that tell of saddest thought.</span>
+  </p></blockquote>
+  <p class="translation"><span>「前をみては、<ruby>後<rt>しり</rt></ruby>えを見ては、<ruby>物欲<rt>ものほ</rt></ruby>しと、あこがるるかなわれ。</span><span>腹からの、笑といえど、苦しみの、そこにあるべし。</span><span>うつくしき、<ruby>極<rt>きわ</rt></ruby>みの歌に、悲しさの、極みの<ruby>想<rt>おもい</rt></ruby>、<ruby>籠<rt>こも</rt></ruby>るとぞ知れ」</span>
+  </p>
+  <p><span>なるほどいくら詩人が幸福でも、あの雲雀のように思い切って、一心不乱に、前後を忘却して、わが喜びを歌う<ruby>訳<rt>わけ</rt></ruby>には行くまい。</span><span>西洋の詩は無論の事、支那の詩にも、よく<ruby>万斛<rt>ばんこく</rt></ruby>の<ruby>愁<rt>うれい</rt></ruby>などと云う字がある。</span><span>詩人だから万斛で<ruby>素人<rt>しろうと</rt></ruby>なら一<ruby>合<rt>ごう</rt></ruby>で済むかも知れぬ。</span><span>して見ると詩人は常の人よりも苦労性で、<ruby>凡骨<rt>ぼんこつ</rt></ruby>の倍以上に神経が鋭敏なのかも知れん。</span><span>超俗の喜びもあろうが、無量の<ruby>悲<rt>かなしみ</rt></ruby>も多かろう。</span><span>そんならば詩人になるのも考え物だ。</span>
+  </p>
+  <p><span>しばらくは路が<ruby>平<rt>たいら</rt></ruby>で、右は<ruby>雑木山<rt>ぞうきやま</rt></ruby>、左は菜の花の見つづけである。</span><span>足の下に時々<ruby>蒲公英<rt>たんぽぽ</rt></ruby>を踏みつける。</span><span><ruby>鋸<rt>のこぎり</rt></ruby>のような葉が遠慮なく四方へのして真中に黄色な<ruby>珠<rt>たま</rt></ruby>を擁護している。</span><span>菜の花に気をとられて、踏みつけたあとで、気の毒な事をしたと、振り向いて見ると、黄色な珠は依然として鋸のなかに<ruby>鎮座<rt>ちんざ</rt></ruby>している。</span><span><ruby>呑気<rt>のんき</rt></ruby>なものだ。</span><span>また考えをつづける。</span>
+  </p>
+  <p><span>詩人に<ruby>憂<rt>うれい</rt></ruby>はつきものかも知れないが、あの<ruby>雲雀<rt>ひばり</rt></ruby>を聞く心持になれば<ruby>微塵<rt>みじん</rt></ruby>の<ruby>苦<rt>く</rt></ruby>もない。</span><span>菜の花を見ても、ただうれしくて胸が<ruby>躍<rt>おど</rt></ruby>るばかりだ。</span><span>蒲公英もその通り、桜も——桜はいつか見えなくなった。</span><span>こう山の中へ来て自然の<ruby>景物<rt>けいぶつ</rt></ruby>に接すれば、見るものも聞くものも面白い。</span><span>面白いだけで別段の苦しみも起らぬ。</span><span>起るとすれば足が<ruby>草臥<rt>くたび</rt></ruby>れて、<ruby>旨<rt>うま</rt></ruby>いものが食べられぬくらいの事だろう。</span>
+  </p>
+  <p><span>しかし苦しみのないのはなぜだろう。</span><span>ただこの景色を一<ruby>幅<rt>ぷく</rt></ruby>の<ruby>画<rt>え</rt></ruby>として<ruby>観<rt>み</rt></ruby>、一<ruby>巻<rt>かん</rt></ruby>の詩として読むからである。</span><span><ruby>画<rt>が</rt></ruby>であり詩である以上は<ruby>地面<rt>じめん</rt></ruby>を貰って、開拓する気にもならねば、鉄道をかけて<ruby>一儲<rt>ひともう</rt></ruby>けする<ruby>了見<rt>りょうけん</rt></ruby>も起らぬ。</span><span>ただこの景色が——腹の<ruby>足<rt>た</rt></ruby>しにもならぬ、月給の補いにもならぬこの景色が景色としてのみ、余が心を楽ませつつあるから苦労も心配も<ruby>伴<rt>ともな</rt></ruby>わぬのだろう。</span><span>自然の力はここにおいて<ruby>尊<rt>たっ</rt></ruby>とい。</span><span>吾人の性情を瞬刻に<ruby>陶冶<rt>とうや</rt></ruby>して<ruby>醇乎<rt>じゅんこ</rt></ruby>として醇なる詩境に入らしむるのは自然である。</span>
+  </p>
+  <p><span>恋はうつくしかろ、孝もうつくしかろ、忠君愛国も結構だろう。</span><span>しかし自身がその<ruby>局<rt>きょく</rt></ruby>に当れば利害の<ruby>旋風<rt>つむじ</rt></ruby>に<ruby>捲<rt>ま</rt></ruby>き込まれて、うつくしき事にも、結構な事にも、目は<ruby>眩<rt>くら</rt></ruby>んでしまう。</span><span>したがってどこに詩があるか自身には<ruby>解<rt>げ</rt></ruby>しかねる。</span>
+  </p>
+  <p><span>これがわかるためには、わかるだけの余裕のある第三者の地位に立たねばならぬ。</span><span>三者の地位に立てばこそ芝居は<ruby>観<rt>み</rt></ruby>て面白い。</span><span>小説も見て面白い。</span><span>芝居を見て面白い人も、小説を読んで面白い人も、自己の利害は<ruby>棚<rt>たな</rt></ruby>へ上げている。</span><span>見たり読んだりする間だけは詩人である。</span>
+  </p>
+  <p><span>それすら、普通の芝居や小説では人情を<ruby>免<rt>まぬ</rt></ruby>かれぬ。</span><span>苦しんだり、怒ったり、騒いだり、泣いたりする。</span><span>見るものもいつかその中に同化して苦しんだり、怒ったり、騒いだり、泣いたりする。</span><span><ruby>取柄<rt>とりえ</rt></ruby>は利慾が<ruby>交<rt>まじ</rt></ruby>らぬと云う点に<ruby>存<rt>そん</rt></ruby>するかも知れぬが、交らぬだけにその他の<ruby>情緒<rt>じょうしょ</rt></ruby>は常よりは余計に活動するだろう。</span><span>それが<ruby>嫌<rt>いや</rt></ruby>だ。</span>
+  </p>
+  <p><span>苦しんだり、怒ったり、騒いだり、泣いたりは人の世につきものだ。</span><span>余も三十年の間それを<ruby>仕通<rt>しとお</rt></ruby>して、<ruby>飽々<rt>あきあき</rt></ruby>した。</span><span><ruby>飽<rt>あ</rt></ruby>き飽きした上に芝居や小説で同じ刺激を繰り返しては大変だ。</span><span>余が欲する詩はそんな世間的の人情を<ruby>鼓舞<rt>こぶ</rt></ruby>するようなものではない。</span><span>俗念を放棄して、しばらくでも<ruby>塵界<rt>じんかい</rt></ruby>を離れた心持ちになれる詩である。</span><span>いくら傑作でも人情を離れた芝居はない、理非を絶した小説は少かろう。</span><span>どこまでも世間を出る事が出来ぬのが彼らの特色である。</span><span>ことに西洋の詩になると、人事が根本になるからいわゆる<ruby>詩歌<rt>しいか</rt></ruby>の純粋なるものもこの<ruby>境<rt>きょう</rt></ruby>を<ruby>解脱<rt>げだつ</rt></ruby>する事を知らぬ。</span><span>どこまでも同情だとか、愛だとか、正義だとか、自由だとか、<ruby>浮世<rt>うきよ</rt></ruby>の<ruby>勧工場<rt>かんこうば</rt></ruby>にあるものだけで用を<ruby>弁<rt>べん</rt></ruby>じている。</span><span>いくら詩的になっても地面の上を<ruby>馳<rt>か</rt></ruby>けてあるいて、<ruby>銭<rt>ぜに</rt></ruby>の勘定を忘れるひまがない。</span><span>シェレーが<ruby>雲雀<rt>ひばり</rt></ruby>を聞いて嘆息したのも無理はない。</span>
+  </p>
+  <p><span>うれしい事に東洋の<ruby>詩歌<rt>しいか</rt></ruby>はそこを<ruby>解脱<rt>げだつ</rt></ruby>したのがある。</span><span><ruby>採菊<rt>きくをとる</rt></ruby><ruby>東籬下<rt>とうりのもと</rt></ruby>、<ruby>悠然<rt>ゆうぜんとして</rt></ruby><ruby>見南山<rt>なんざんをみる</rt></ruby>。</span><span>ただそれぎりの<ruby>裏<rt>うち</rt></ruby>に暑苦しい世の中をまるで忘れた光景が出てくる。</span><span>垣の向うに隣りの娘が<ruby>覗<rt>のぞ</rt></ruby>いてる訳でもなければ、<ruby>南山<rt>なんざん</rt></ruby>に親友が奉職している次第でもない。</span><span>超然と<ruby>出世間的<rt>しゅっせけんてき</rt></ruby>に利害損得の汗を流し去った心持ちになれる。</span><span><ruby>独<rt>ひとり</rt></ruby><ruby>坐幽篁裏<rt>ゆうこうのうちにざし</rt></ruby>、<ruby>弾琴<rt>きんをだんじて</rt></ruby><ruby>復長嘯<rt>またちょうしょうす</rt></ruby>、<ruby>深林<rt>しんりん</rt></ruby><ruby>人不知<rt>ひとしらず</rt></ruby>、<ruby>明月来<rt>めいげつきたりて</rt></ruby><ruby>相照<rt>あいてらす</rt></ruby>。</span><span>ただ二十字のうちに<ruby>優<rt>ゆう</rt></ruby>に<ruby>別乾坤<rt>べつけんこん</rt></ruby>を<ruby>建立<rt>こんりゅう</rt></ruby>している。</span><span>この乾坤の<ruby>功徳<rt>くどく</rt></ruby>は「<ruby>不如帰<rt>ほととぎす</rt></ruby>」や「<ruby>金色夜叉<rt>こんじきやしゃ</rt></ruby>」の功徳ではない。</span><span>汽船、汽車、権利、義務、道徳、礼義で疲れ果てた<ruby>後<rt>のち</rt></ruby>に、すべてを忘却してぐっすり寝込むような功徳である。</span>
+  </p>
+  <p><span>二十世紀に睡眠が必要ならば、二十世紀にこの出世間的の詩味は大切である。</span><span>惜しい事に今の詩を作る人も、詩を読む人もみんな、西洋人にかぶれているから、わざわざ<ruby>呑気<rt>のんき</rt></ruby>な<ruby>扁舟<rt>へんしゅう</rt></ruby>を<ruby>泛<rt>うか</rt></ruby>べてこの<ruby>桃源<rt>とうげん</rt></ruby>に<ruby>溯<rt>さかのぼ</rt></ruby>るものはないようだ。</span><span>余は<ruby>固<rt>もと</rt></ruby>より詩人を職業にしておらんから、<ruby>王維<rt>おうい</rt></ruby>や<ruby>淵明<rt>えんめい</rt></ruby>の<ruby>境界<rt>きょうがい</rt></ruby>を今の世に<ruby>布教<rt>ふきょう</rt></ruby>して広げようと云う心掛も何もない。</span><span>ただ自分にはこう云う感興が演芸会よりも舞踏会よりも薬になるように思われる。</span><span>ファウストよりも、ハムレットよりもありがたく考えられる。</span><span>こうやって、ただ<ruby>一人<rt>ひとり</rt></ruby>絵の具箱と<ruby>三脚几<rt>さんきゃくき</rt></ruby>を<ruby>担<rt>かつ</rt></ruby>いで春の<ruby>山路<rt>やまじ</rt></ruby>をのそのそあるくのも全くこれがためである。</span><span>淵明、王維の詩境を直接に自然から吸収して、すこしの<ruby>間<rt>ま</rt></ruby>でも<ruby>非人情<rt>ひにんじょう</rt></ruby>の天地に<ruby>逍遥<rt>しょうよう</rt></ruby>したいからの<ruby>願<rt>ねがい</rt></ruby>。</span><span>一つの<ruby>酔興<rt>すいきょう</rt></ruby>だ。</span>
+  </p>
+  <p><span>もちろん人間の<ruby>一分子<rt>いちぶんし</rt></ruby>だから、いくら好きでも、非人情はそう長く続く<ruby>訳<rt>わけ</rt></ruby>には行かぬ。</span><span>淵明だって<ruby>年<rt>ねん</rt></ruby>が<ruby>年中<rt>ねんじゅう</rt></ruby><ruby>南山<rt>なんざん</rt></ruby>を見詰めていたのでもあるまいし、王維も好んで<ruby>竹藪<rt>たけやぶ</rt></ruby>の中に<ruby>蚊帳<rt>かや</rt></ruby>を釣らずに寝た男でもなかろう。</span><span>やはり余った菊は花屋へ売りこかして、<ruby>生<rt>は</rt></ruby>えた<ruby>筍<rt>たけのこ</rt></ruby>は<ruby>八百屋<rt>やおや</rt></ruby>へ払い下げたものと思う。</span><span>こう云う余もその通り。</span><span>いくら雲雀と菜の花が気に入ったって、山のなかへ野宿するほど非人情が<ruby>募<rt>つの</rt></ruby>ってはおらん。</span><span>こんな所でも人間に<ruby>逢<rt>あ</rt></ruby>う。</span><span>じんじん<ruby>端折<rt>ばしょ</rt></ruby>りの<ruby>頬冠<rt>ほおかむ</rt></ruby>りや、赤い<ruby>腰巻<rt>こしまき</rt></ruby>の<ruby>姉<rt>あね</rt></ruby>さんや、時には人間より顔の長い馬にまで逢う。</span><span>百万本の<ruby>檜<rt>ひのき</rt></ruby>に取り囲まれて、海面を抜く何百尺かの空気を<ruby>呑<rt>の</rt></ruby>んだり吐いたりしても、人の<ruby>臭<rt>にお</rt></ruby>いはなかなか取れない。</span><span>それどころか、山を越えて落ちつく先の、<ruby>今宵<rt>こよい</rt></ruby>の宿は<ruby>那古井<rt>なこい</rt></ruby>の<ruby>温泉場<rt>おんせんば</rt></ruby>だ。</span>
+  </p>
+  <p><span>ただ、物は<ruby>見様<rt>みよう</rt></ruby>でどうでもなる。</span><span>レオナルド・ダ・ヴィンチが弟子に告げた<ruby>言<rt>ことば</rt></ruby>に、あの<ruby>鐘<rt>かね</rt></ruby>の<ruby>音<rt>おと</rt></ruby>を聞け、鐘は一つだが、音はどうとも聞かれるとある。</span><span>一人の男、一人の女も<ruby>見様次第<rt>みようしだい</rt></ruby>でいかようとも見立てがつく。</span><span>どうせ非人情をしに出掛けた旅だから、そのつもりで人間を見たら、<ruby>浮世小路<rt>うきよこうじ</rt></ruby>の何軒目に狭苦しく暮した時とは違うだろう。</span><span>よし全く人情を離れる事が出来んでも、せめて<ruby>御能拝見<rt>おのうはいけん</rt></ruby>の時くらいは淡い心持ちにはなれそうなものだ。</span><span>能にも人情はある。</span><span><ruby>七騎落<rt>しちきおち</rt></ruby>でも、<ruby>墨田川<rt>すみだがわ</rt></ruby>でも泣かぬとは保証が出来ん。</span><span>しかしあれは<ruby>情<rt>じょう</rt></ruby>三<ruby>分芸<rt>ぶげい</rt></ruby>七分で見せるわざだ。我らが能から<ruby>享<rt>う</rt></ruby>けるありがた味は下界の人情をよく<strong class="sesame_dot webbook-style-emphasis-sesame">そのまま</strong>に写す<ruby>手際<rt>てぎわ</rt></ruby>から出てくるのではない。</span><span>そのまま の上へ芸術という着物を何枚も着せて、世の中にあるまじき<ruby>悠長<rt>ゆうちょう</rt></ruby>な<ruby>振舞<rt>ふるまい</rt></ruby>をするからである。</span>
+  </p>
+  <p><span>しばらくこの<ruby>旅中<rt>りょちゅう</rt></ruby>に起る出来事と、旅中に<ruby>出逢<rt>であ</rt></ruby>う人間を能の<ruby>仕組<rt>しくみ</rt></ruby>と能役者の<ruby>所作<rt>しょさ</rt></ruby>に見立てたらどうだろう。</span><span>まるで人情を<ruby>棄<rt>す</rt></ruby>てる訳には行くまいが、根が詩的に出来た旅だから、非人情のやりついでに、なるべく節倹してそこまでは<ruby>漕<rt>こ</rt></ruby>ぎつけたいものだ。</span><span><ruby>南山<rt>なんざん</rt></ruby>や<ruby>幽篁<rt>ゆうこう</rt></ruby>とは<ruby>性<rt>たち</rt></ruby>の違ったものに相違ないし、また<ruby>雲雀<rt>ひばり</rt></ruby>や菜の花といっしょにする事も出来まいが、なるべくこれに近づけて、近づけ得る限りは同じ観察点から人間を<ruby>視<rt>み</rt></ruby>てみたい。</span><span><ruby>芭蕉<rt>ばしょう</rt></ruby>と云う男は<ruby>枕元<rt>まくらもと</rt></ruby>へ馬が<ruby>尿<rt>いばり</rt></ruby>するのをさえ<ruby>雅<rt>が</rt></ruby>な事と見立てて<ruby>発句<rt>ほっく</rt></ruby>にした。</span><span>余もこれから逢う人物を——百姓も、町人も、村役場の書記も、<ruby>爺<rt>じい</rt></ruby>さんも<ruby>婆<rt>ばあ</rt></ruby>さんも——ことごとく大自然の点景として描き出されたものと仮定して取こなして見よう。</span><span>もっとも画中の人物と違って、彼らはおのがじし勝手な<ruby>真似<rt>まね</rt></ruby>をするだろう。</span><span>しかし普通の小説家のようにその勝手な真似の根本を<ruby>探<rt>さ</rt></ruby>ぐって、心理作用に立ち入ったり、<ruby>人事葛藤<rt>じんじかっとう</rt></ruby>の<ruby>詮議立<rt>せんぎだ</rt></ruby>てをしては俗になる。</span><span>動いても構わない。</span><span>画中の人間が動くと見れば<ruby>差<rt>さ</rt></ruby>し<ruby>支<rt>つかえ</rt></ruby>ない。</span><span>画中の人物はどう動いても平面以外に出られるものではない。</span><span>平面以外に飛び出して、立方的に働くと思えばこそ、こっちと衝突したり、利害の交渉が起ったりして面倒になる。</span><span>面倒になればなるほど美的に見ている<ruby>訳<rt>わけ</rt></ruby>に行かなくなる。</span><span>これから逢う人間には超然と遠き上から見物する気で、人情の電気がむやみに双方で起らないようにする。</span><span>そうすれば相手がいくら働いても、こちらの<ruby>懐<rt>ふところ</rt></ruby>には容易に飛び込めない訳だから、つまりは<ruby>画<rt>え</rt></ruby>の前へ立って、画中の人物が画面の<ruby>中<rt>うち</rt></ruby>をあちらこちらと騒ぎ廻るのを見るのと同じ訳になる。</span><span><ruby>間<rt>あいだ</rt></ruby>三尺も<ruby>隔<rt>へだ</rt></ruby>てていれば落ちついて見られる。</span><span>あぶな<ruby>気<rt>げ</rt></ruby>なしに見られる。</span><span><ruby>言<rt>ことば</rt></ruby>を<ruby>換<rt>か</rt></ruby>えて云えば、利害に気を奪われないから、全力を<ruby>挙<rt>あ</rt></ruby>げて彼らの動作を芸術の方面から観察する事が出来る。</span><span>余念もなく美か美でないかと<ruby>鑒識<rt>かんしき</rt></ruby>する事が出来る。</span>
+  </p>
+  <p><span>ここまで決心をした時、空があやしくなって来た。</span><span>煮え切れない雲が、頭の上へ<ruby>靠垂<rt>もた</rt></ruby>れ<ruby>懸<rt>かか</rt></ruby>っていたと思ったが、いつのまにか、<ruby>崩<rt>くず</rt></ruby>れ<ruby>出<rt>だ</rt></ruby>して、<ruby>四方<rt>しほう</rt></ruby>はただ雲の海かと怪しまれる中から、しとしとと春の雨が降り出した。</span><span>菜の花は<ruby>疾<rt>と</rt></ruby>くに通り過して、今は山と山の間を行くのだが、雨の糸が<ruby>濃<rt>こまや</rt></ruby>かでほとんど霧を<ruby>欺<rt>あざむ</rt></ruby>くくらいだから、<ruby>隔<rt>へだ</rt></ruby>たりはどれほどかわからぬ。</span><span>時々風が来て、高い雲を吹き払うとき、薄黒い山の<ruby>背<rt>せ</rt></ruby>が右手に見える事がある。</span><span>何でも谷一つ隔てて向うが脈の走っている所らしい。</span><span>左はすぐ山の<ruby>裾<rt>すそ</rt></ruby>と見える。</span><span>深く<ruby>罩<rt>こ</rt></ruby>める雨の奥から松らしいものが、ちょくちょく顔を出す。</span><span>出すかと思うと、隠れる。</span><span>雨が動くのか、木が動くのか、夢が動くのか、何となく不思議な心持ちだ。</span>
+  </p>
+  <p><span>路は<ruby>存外<rt>ぞんがい</rt></ruby>広くなって、かつ<ruby>平<rt>たいら</rt></ruby>だから、あるくに骨は折れんが、雨具の用意がないので急ぐ。</span><span>帽子から<ruby>雨垂<rt>あまだ</rt></ruby>れがぽたりぽたりと落つる頃、五六間先きから、鈴の音がして、黒い中から、<ruby>馬子<rt>まご</rt></ruby>がふうとあらわれた。</span>
+  </p>
+  <p class="conversation"><span>「ここらに休む所はないかね」</span>
+  </p>
+  <p class="conversation"><span>「もう十五丁行くと茶屋がありますよ。</span><span>だいぶ<ruby>濡<rt>ぬ</rt></ruby>れたね」</span>
+  </p>
+  <p><span>まだ十五丁かと、振り向いているうちに、馬子の姿は<ruby>影画<rt>かげえ</rt></ruby>のように雨につつまれて、またふうと消えた。</span>
+  </p>
+  <p><span><ruby>糠<rt>ぬか</rt></ruby>のように見えた粒は次第に太く長くなって、今は<ruby>一筋<rt>ひとすじ</rt></ruby>ごとに風に<ruby>捲<rt>ま</rt></ruby>かれる<ruby>様<rt>さま</rt></ruby>までが目に<ruby>入<rt>い</rt></ruby>る。</span><span>羽織はとくに濡れ<ruby>尽<rt>つく</rt></ruby>して肌着に<ruby>浸<rt>し</rt></ruby>み込んだ水が、<ruby>身体<rt>からだ</rt></ruby>の<ruby>温度<rt>ぬくもり</rt></ruby>で<ruby>生暖<rt>なまあたたか</rt></ruby>く感ぜられる。</span><span>気持がわるいから、帽を傾けて、すたすた<ruby>歩行<rt>ある</rt></ruby>く。</span>
+  </p>
+  <p><span><ruby>茫々<rt>ぼうぼう</rt></ruby>たる<ruby>薄墨色<rt>うすずみいろ</rt></ruby>の世界を、<ruby>幾条<rt>いくじょう</rt></ruby>の<ruby>銀箭<rt>ぎんせん</rt></ruby>が<ruby>斜<rt>なな</rt></ruby>めに走るなかを、ひたぶるに濡れて行くわれを、われならぬ人の姿と思えば、詩にもなる、句にも<ruby>咏<rt>よ</rt></ruby>まれる。</span><span><ruby>有体<rt>ありてい</rt></ruby>なる<ruby>己<rt>おの</rt></ruby>れを忘れ<ruby>尽<rt>つく</rt></ruby>して純客観に眼をつくる時、始めてわれは画中の人物として、自然の景物と美しき調和を<ruby>保<rt>たも</rt></ruby>つ。</span><span>ただ降る雨の心苦しくて、踏む足の疲れたるを気に掛ける瞬間に、われはすでに詩中の人にもあらず、<ruby>画裡<rt>がり</rt></ruby>の人にもあらず。</span><span>依然として<ruby>市井<rt>しせい</rt></ruby>の一<ruby>豎子<rt>じゅし</rt></ruby>に過ぎぬ。</span><span>雲煙飛動の<ruby>趣<rt>おもむき</rt></ruby>も眼に<ruby>入<rt>い</rt></ruby>らぬ。</span><span><ruby>落花啼鳥<rt>らっかていちょう</rt></ruby>の情けも心に浮ばぬ。</span><span><ruby>蕭々<rt>しょうしょう</rt></ruby>として<ruby>独<rt>ひと</rt></ruby>り<ruby>春山<rt>しゅんざん</rt></ruby>を行く<ruby>吾<rt>われ</rt></ruby>の、いかに美しきかはなおさらに<ruby>解<rt>かい</rt></ruby>せぬ。</span><span>初めは帽を傾けて<ruby>歩行<rt>あるい</rt></ruby>た。</span><span><ruby>後<rt>のち</rt></ruby>にはただ足の<ruby>甲<rt>こう</rt></ruby>のみを見詰めてあるいた。</span><span>終りには肩をすぼめて、恐る恐る歩行た。</span><span>雨は<ruby>満目<rt>まんもく</rt></ruby>の<ruby>樹梢<rt>じゅしょう</rt></ruby>を<ruby>揺<rt>うご</rt></ruby>かして<ruby>四方<rt>しほう</rt></ruby>より<ruby>孤客<rt>こかく</rt></ruby>に<ruby>逼<rt>せま</rt></ruby>る。</span><span>非人情がちと強過ぎたようだ。</span>
+  </p>
+</section>
+
+
+</main>
+
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="index.html" rel="prev" title="Previous: 草枕" aria-label="Previous: 草枕">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+        </a>
+        <a id="webbook-next-document" href="二.html" title="Next: 二" aria-label="Next: 二" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
+        </a>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <button type="button" class="webbook-basic-close" popovertarget="webbook-toc-nav" popovertargetaction="hide">Close</button>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <p id="webbook-toc-narration-key" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"></path></svg> Narrated</p><ol><li id="toc-1"><a href="一.html" aria-current="page" data-webbook-narrated="">一<span class="webbook-narrated-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"></path></svg><span class="sr-only">, narrated</span></span></a></li><li id="toc-2"><a href="二.html" data-webbook-narrated="">二<span class="webbook-narrated-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"></path></svg><span class="sr-only">, narrated</span></span></a></li><li id="toc-3"><a href="三.html">三</a></li><li id="toc-4"><a href="四.html">四</a></li><li id="toc-5"><a href="五.html">五</a></li><li id="toc-6"><a href="六.html">六</a></li><li id="toc-7"><a href="七.html">七</a></li><li id="toc-8"><a href="八.html">八</a></li><li id="toc-9"><a href="九.html">九</a></li><li id="toc-10"><a href="十.html">十</a></li><li id="toc-11"><a href="十一.html">十一</a></li><li id="toc-12"><a href="十二.html">十二</a></li><li id="toc-13"><a href="十三.html">十三</a></li><li id="toc-14"><a href="後付.html">この文書について</a></li></ol>
+    </nav>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Leave <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
+    </div>
+
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
+
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <div id="webbook-narration-position" role="group" aria-label="Narration position">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+        </div>
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/一.mp3" controls=""><track default="" kind="metadata" src="vtt/一.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+        </div>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    
+
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>草枕</dd><dt>Author</dt><dd>夏目 漱石</dd><dt>Date</dt><dd>2012-04-24T00:00:00Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress" data-webbook-page-number="2" data-webbook-page-count="15">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label">Section: 一</p>
+                <progress id="webbook-reading-progress" max="100" value="13" aria-label="Reading progress" aria-valuetext="13%">13%</progress>
+                <p id="webbook-progress-count">13%</p>
+            </section>
+        <section id="webbook-accessibility" aria-labelledby="webbook-accessibility-hd"><h3 id="webbook-accessibility-hd">Accessibility</h3><p class="webbook-accessibility-source">The publisher's accessibility information for the original EPUB.</p><h4>Ways of reading</h4><ul><li>No information about appearance modifiability is available</li><li>No information about nonvisual reading is available</li></ul><h4>Conformance</h4><ul><li>No information is available</li></ul></section></div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <div id="webbook-color">
+            <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+            <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+            <label for="webbook-color-picker">Custom color</label>
+            <input type="color" id="webbook-color-picker" disabled="">
+        </div>
+        <div id="webbook-font-size">
+            <label for="webbook-font-size-range">Font size</label>
+            <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+            <p id="webbook-font-size-value">100%</p>
+            <button type="button" id="webbook-reset-font-size">Reset</button>
+        </div>
+        <div id="webbook-font-family">
+            <label for="webbook-font-family-options">Font</label>
+            <select id="webbook-font-family-options">
+                <option value="system-ui">System UI</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="serif">Serif</option>
+            </select>
+        </div>
+        <div id="webbook-appearance">
+            <label for="webbook-appearance-options">Appearance</label>
+            <select id="webbook-appearance-options">
+                <option value="auto">Auto (system)</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </div>
+        <div>
+            <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+            <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+        </div>
+        <div>
+            <label for="webbook-caption-mode-toggle">Caption mode</label>
+            <input type="checkbox" id="webbook-caption-mode-toggle">
+        </div>
+        <div id="webbook-rate">
+            <label for="webbook-rate-range">Playback rate</label>
+            <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+            <p id="webbook-rate-value">100%</p>
+            <button type="button" id="webbook-reset-rate">Reset</button>
+        </div>
+        <div>
+            <label for="webbook-skip-pagebreak-toggle">Page numbers</label>
+            <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-footnote-toggle">Notes</label>
+            <input type="checkbox" id="webbook-skip-footnote-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-sidebar-toggle">Sidebars</label>
+            <input type="checkbox" id="webbook-skip-sidebar-toggle">
+        </div>
+        <div>
+            <label for="webbook-resume-toggle">Resume last position on open</label>
+            <input type="checkbox" id="webbook-resume-toggle" checked="">
+        </div>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

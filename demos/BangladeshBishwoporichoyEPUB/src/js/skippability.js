@@ -165,6 +165,8 @@ export function initSkippability() {
     for (const { key, id } of SKIPPABLE_STRUCTURE_RULES) {
         const toggle = document.querySelector(`#${id}`);
         if (!toggle) continue;
+        const label = document.querySelector(`label[for="${id}"]`);
+        if (label) label.textContent = id.includes('pagebreak') ? 'Page numbers' : id.includes('footnote') ? 'Notes' : 'Sidebars';
         toggle.checked = skipping(SKIPPABLE_STRUCTURE_RULES.find(rule => rule.key === key));
         toggle.addEventListener('change', () => {
             localStorage.setItem(key, toggle.checked);

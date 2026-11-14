@@ -23,8 +23,8 @@ const SETTINGS = [
     { key: 'webbook-word-spacing', id: 'webbook-word-spacing-options', label: 'Word spacing',
         property: '--webbook-word-spacing', flag: 'data-webbook-word-spacing',
         steps: [['', 'No extra'], ['wider', 'Wider', '0.16em'], ['widest', 'Widest', '0.3em']] },
-    // Fractions of the width the text has (the window, less the page arrows beside the text), the
-    // same at any text size or spacing: Narrow half, Wide all of it, Medium halfway. See lineLength().
+    // A comfortable number of characters a line, kept apart at large text sizes by fractions of the
+    // width the text has (the window, less the page arrows beside it). See lineLength().
     // Medium when nothing's saved (no separate fixed width)
     { key: 'webbook-line-length', id: 'webbook-line-length-options', label: 'Line length',
         property: '--webbook-line-length', initial: 'medium',
@@ -32,16 +32,21 @@ const SETTINGS = [
             ['wide', 'Wide', lineLength('wide')]] }
 ];
 
-// Percentages are of <main>'s grid area, resolved where <main> uses the value. Narrow is never
-// narrower than 20rem (or the whole width, on a smaller screen), so a phone isn't left a column of a
-// few words; Medium stays halfway between Narrow and Wide as they come out. Earlier versions counted
-// characters a line (em, then ch), and at large text sizes the steps ran into the window and
-// looked alike (user, 2026-11-10: "fractions of the window").
+// Percentages are of the text's grid area and ch of its font, resolved where <main> (or the caption)
+// uses the value. Each step is the smaller of a reading measure (Narrow 50 characters, Medium 65:
+// WCAG 1.4.8 asks for 80 at most) and a fraction of the width (Narrow half, Medium three quarters),
+// so at a large text size, where the measures pass the window, the steps still differ. Narrow is
+// never narrower than 20rem (or the whole width, on a smaller screen), so a phone isn't left a
+// column of a few words, and Medium never narrower than Narrow. Wide is all the width.
+// History: em, then ch, ran together at large sizes; fractions alone (user, 2026-11-10: "fractions
+// of the window") gave Medium 110 characters a line on a laptop (user, 2026-11-13: "it used to
+// look different").
 function lineLength(step) {
-    const narrow = 'max(50%, min(100%, 20rem))';
+    const floor = 'min(100%, 20rem)';
+    const narrow = `max(min(50ch, 50%), ${floor})`;
     if (step === 'narrow') return narrow;
     if (step === 'wide') return '100%';
-    return `calc((${narrow} + 100%) / 2)`;
+    return `max(min(65ch, 75%), ${narrow})`;
 }
 
 // The saved step, else the setting's first choice (an old value such as line spacing 1.5 too)
@@ -53,6 +58,8 @@ function stepFor(setting, value) {
 function apply(setting, value) {
     const [stepValue, , css = stepValue] = stepFor(setting, value);
     const root = document.documentElement;
+    // Vertical text's column height has its own steps, in writing-modes.css
+    if (setting.key === 'webbook-line-length') root.setAttribute('data-webbook-line-length', stepValue);
     if (stepValue) {
         root.style.setProperty(setting.property, css);
         if (setting.flag) root.setAttribute(setting.flag, '');

@@ -77,7 +77,8 @@ function hideNotice() {
 
 // The newest thing on screen goes first: while the message shows, Escape dismisses only it (the
 // next Escape is Skip past again). On window, in capture, so it's seen before the shortcuts are.
-// A click or tap on the message dismisses it too.
+// A click or tap anywhere dismisses it too (user, 2026-11-13), and still does what it was for. On
+// pointerdown, so a click on a button that shows a new message (Where am I? again) shows that one.
 export function initReaderActionNotice() {
     window.addEventListener('keydown', e => {
         if (e.key !== 'Escape' || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
@@ -85,7 +86,5 @@ export function initReaderActionNotice() {
         e.preventDefault();
         e.stopImmediatePropagation();
     }, { capture: true });
-    document.addEventListener('click', e => {
-        if (e.target instanceof Element && e.target.closest('#webbook-action-notice')) hideNotice();
-    });
+    window.addEventListener('pointerdown', () => { hideNotice(); }, { capture: true });
 }

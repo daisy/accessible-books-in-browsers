@@ -4,6 +4,7 @@ import { announceReaderAction, registerAction } from './reader-actions.js';
 import { pageAudio } from './dom-utils.js';
 import { playOrOfferToContinue } from './continue-playing.js';
 import { readingLine } from './narration-position.js';
+import { readingEnd, readingScroll, readingStart, scrollToReading } from './reading-axis.js';
 
 const RETURN_KEY = 'webbook-settings-return'; // session-only UI state, never exported
 const READING_BLOCKS = 'h1, h2, h3, h4, h5, h6, p, li, blockquote, td, th, figcaption, dt, dd';
@@ -124,10 +125,10 @@ function prepareReload(message, focusId) {
     // A text block and its position in the viewport survive a font/spacing change better than
     // an absolute scroll offset. The same page's block order stays the same on reload.
     const blocks = readingBlocks();
-    const blockIndex = blocks.findIndex(element => element.getClientRects().length && element.getBoundingClientRect().bottom > readingLine());
+    const blockIndex = blocks.findIndex(element => element.getClientRects().length && readingEnd(element.getBoundingClientRect()) > readingLine());
     const block = blocks[blockIndex]?.getBoundingClientRect();
-    const state = { url: location.href, scrollY: window.scrollY, audioTime: audio?.currentTime ?? 0,
-        blockIndex, blockOffset: block ? block.top - readingLine() : 0,
+    const state = { url: location.href, scrollY: readingScroll(), audioTime: audio?.currentTime ?? 0,
+        blockIndex, blockOffset: block ? readingStart(block) - readingLine() : 0,
         playing: Boolean(audio && !audio.paused), panelScroll: panel.scrollTop, message, focusId };
     // Check session storage before changing any preferences: without it a reload could lose place.
     sessionStorage.setItem(RETURN_KEY, JSON.stringify(state));
@@ -155,9 +156,9 @@ function restoreAfterReload(report) {
         else seek();
         const block = readingBlocks()[state.blockIndex];
         const top = block?.getClientRects().length
-            ? window.scrollY + block.getBoundingClientRect().top - readingLine() - state.blockOffset
+            ? readingScroll() + readingStart(block.getBoundingClientRect()) - readingLine() - state.blockOffset
             : state.scrollY;
-        window.scrollTo(0, top);
+        scrollToReading(top);
         const panel = document.getElementById('webbook-settings');
         // Opening the panel moves focus to its first control (popovers.js, on toggle), so the
         // button the reader used gets it back after that

@@ -118,6 +118,15 @@ body.webbook-light {
     scroll-padding-bottom: calc(var(--webbook-toolbar-height, 4rem) + .5rem);
 }
 /* page container */
+:root {
+    --webbook-page-arrow-gutter: 0px;
+}
+/* An arrow is 3rem wide, .75rem in from the edge (spine-nav.css); .75rem more to the text */
+@media (min-width: 45.0625rem) {
+    :root:is(.webbook-dark, .webbook-light, .webbook-js) {
+        --webbook-page-arrow-gutter: calc(4.5rem + env(safe-area-inset-left, 0px));
+    }
+}
 body {
     background: var(--theme-bg);
     color: var(--theme-fg);
@@ -125,12 +134,14 @@ body {
 
     display: grid;
     grid-template-areas:
-        "topbar"
-        "main"
-        "toolbar";
-    /* Spine arrows are fixed over the viewport margins, outside this grid. One
-       flexible column also keeps no-JS navigation from squeezing the book's text. */
-    grid-template-columns: minmax(0, 1fr);
+        "topbar topbar topbar"
+        ". main ."
+        "toolbar toolbar toolbar";
+    /* The spine arrows are fixed in the side columns, outside the flow. The text keeps clear of
+       them, and the Line length setting's fractions are of the width between them (Wide is all of
+       it). Without JavaScript there are no arrows, and on a small screen they're in the top
+       toolbar, so the columns close. */
+    grid-template-columns: var(--webbook-page-arrow-gutter) minmax(0, 1fr) var(--webbook-page-arrow-gutter);
     /* without this, a short page stretches every row to fill the viewport, toolbar rows included */
     grid-template-rows: auto 1fr auto;
 }
@@ -172,7 +183,7 @@ main {
     grid-area: main;
     box-sizing: border-box;
     width: 100%;
-    /* the Line length setting (text-spacing.js): a fraction of the width the text has */
+    /* the Line length setting (text-spacing.js): characters a line, within the width the text has */
     max-width: var(--webbook-line-length, 45rem);
     margin: auto;
     /* clear of the fixed bottom toolbar */
@@ -518,6 +529,13 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     left: 50%;
     transform: translateX(-50%);
     z-index: 25;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    width: max-content;
+    max-width: calc(100vw - 1.5rem);
 }
 #webbook-escape-status {
     position: absolute;
@@ -577,7 +595,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
     }
 }
 #webbook-note-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-#webbook-back-to-text { position: fixed; z-index: 25; right: .75rem; bottom: calc(var(--webbook-toolbar-height, 4rem) + .75rem); }
+#webbook-back-to-text { flex: 0 0 auto; }
 #webbook-note-menu:popover-open { padding: .5rem; display: grid; gap: .25rem; }
 #webbook-note-menu button { text-align: start; padding: .5rem .75rem; }
 .webbook-note-menu-label,
@@ -609,12 +627,19 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 #webbook-action-notice {
     position: fixed;
     top: calc(var(--webbook-top-toolbar-height, 4rem) + .75rem);
-    left: 50%;
-    transform: translateX(-50%);
+    /* Centred by its margins, not left: 50% and a transform: in a vertical book at phone width,
+       left: 50% put it off the screen. It wraps long text rather than overflowing. */
+    left: 1rem;
+    right: 1rem;
+    margin-inline: auto;
     z-index: 30;
     box-sizing: border-box;
-    width: max-content;
-    max-width: calc(100vw - 2rem);
+    width: fit-content;
+    max-width: min(40rem, calc(100% - 2rem));
+    max-height: calc(100dvh - var(--webbook-top-toolbar-height, 4rem) - 1.5rem);
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+    writing-mode: horizontal-tb;
     background: var(--webbook-chrome-bg);
     color: var(--webbook-chrome-fg);
     border: 2px solid var(--webbook-chrome-fg);
@@ -923,6 +948,32 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         margin: 1rem 0;
         color: var(--webbook-muted-fg);
     }
+    /* Find a setting (settings-filter.js) */
+    .webbook-settings-filter {
+        display: grid;
+        gap: .5rem;
+        margin-bottom: 1.25rem;
+        label { font-weight: 600; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 2.75rem;
+            padding: .4rem .6rem;
+            font: inherit;
+            font-size: 1rem;
+            background: var(--theme-bg);
+            color: var(--theme-fg);
+            border: 1px solid color-mix(in srgb, var(--theme-fg) 65%, var(--theme-bg));
+            border-radius: 4px;
+        }
+        p { color: var(--webbook-muted-fg); }
+        p:empty { display: none; }
+    }
+    .webbook-settings-filtered { display: none !important; }
+    /* While filtering, the sections that are left are the list: Jump to and Back to top lead to
+       hidden sections */
+    &.webbook-settings-filtering :is(.webbook-settings-jump, .webbook-settings-top) { display: none; }
+    &.webbook-settings-filtering .webbook-settings-section { padding-block: 1rem; }
     .webbook-settings-jump {
         padding-bottom: 1.25rem;
         border-bottom: var(--webbook-panel-border);
@@ -1953,5 +2004,181 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
 @container (max-width: 30em) {
     main .webbook-equation-number { grid-column: 1 / -1; grid-row: 2; }
     main .webbook-equation-scroll { grid-column: 1 / -1; }
+}
+
+/* writing-modes.css */
+/* Writing modes and the book's writing styles (plan 28). The converter keeps what a book states
+   about how its text is written (its -epub- properties and their standard forms) as these
+   classes and <html> data attributes; this is the standard CSS for them. */
+
+/* --- The book's writing styles --- */
+/* Tate-chū-yoko: a few characters (usually digits) set side by side in a vertical line */
+.webbook-style-combine {
+    -webkit-text-combine: horizontal;
+    text-combine-upright: all;
+}
+.webbook-style-combine-none {
+    -webkit-text-combine: none;
+    text-combine-upright: none;
+}
+.webbook-style-glyphs-upright { text-orientation: upright; }
+.webbook-style-glyphs-sideways { text-orientation: sideways; }
+.webbook-style-glyphs-mixed { text-orientation: mixed; }
+.webbook-style-horizontal { writing-mode: horizontal-tb; }
+.webbook-style-vertical-rl { writing-mode: vertical-rl; }
+.webbook-style-vertical-lr { writing-mode: vertical-lr; }
+
+/* Emphasis marks (bōten): beside each character, the East Asian counterpart of italics. In the
+   text's colour: the reader's colours own colour, and marks in another colour could fail contrast. */
+.webbook-style-emphasis-dot { -webkit-text-emphasis-style: filled dot; text-emphasis-style: filled dot; }
+.webbook-style-emphasis-dot-open { -webkit-text-emphasis-style: open dot; text-emphasis-style: open dot; }
+.webbook-style-emphasis-circle { -webkit-text-emphasis-style: filled circle; text-emphasis-style: filled circle; }
+.webbook-style-emphasis-circle-open { -webkit-text-emphasis-style: open circle; text-emphasis-style: open circle; }
+.webbook-style-emphasis-double-circle { -webkit-text-emphasis-style: filled double-circle; text-emphasis-style: filled double-circle; }
+.webbook-style-emphasis-double-circle-open { -webkit-text-emphasis-style: open double-circle; text-emphasis-style: open double-circle; }
+.webbook-style-emphasis-triangle { -webkit-text-emphasis-style: filled triangle; text-emphasis-style: filled triangle; }
+.webbook-style-emphasis-triangle-open { -webkit-text-emphasis-style: open triangle; text-emphasis-style: open triangle; }
+.webbook-style-emphasis-sesame { -webkit-text-emphasis-style: filled sesame; text-emphasis-style: filled sesame; }
+.webbook-style-emphasis-sesame-open { -webkit-text-emphasis-style: open sesame; text-emphasis-style: open sesame; }
+.webbook-style-emphasis-filled { -webkit-text-emphasis-style: filled; text-emphasis-style: filled; }
+.webbook-style-emphasis-open { -webkit-text-emphasis-style: open; text-emphasis-style: open; }
+.webbook-style-emphasis-none { -webkit-text-emphasis-style: none; text-emphasis-style: none; }
+[class*="webbook-style-emphasis-"] {
+    -webkit-text-emphasis-color: currentColor;
+    text-emphasis-color: currentColor;
+}
+.webbook-style-emphasis-over { -webkit-text-emphasis-position: over right; text-emphasis-position: over right; }
+.webbook-style-emphasis-under { -webkit-text-emphasis-position: under right; text-emphasis-position: under right; }
+.webbook-style-emphasis-left { -webkit-text-emphasis-position: over left; text-emphasis-position: over left; }
+.webbook-style-emphasis-under-left { -webkit-text-emphasis-position: under left; text-emphasis-position: under left; }
+/* Full-width forms of letters and digits (Chrome doesn't support it, and shows them as they are) */
+.webbook-style-fullwidth { text-transform: full-width; }
+
+/* A language's line-breaking rules, for the whole page */
+:root[data-webbook-line-break="strict"] main { line-break: strict; }
+:root[data-webbook-line-break="loose"] main { line-break: loose; }
+:root[data-webbook-line-break="anywhere"] main { line-break: anywhere; }
+:root[data-webbook-word-break="keep-all"] main { word-break: keep-all; }
+:root[data-webbook-word-break="break-all"] main { word-break: break-all; }
+
+/* --- Vertical text --- */
+/* The page itself is vertical, so it scrolls sideways from the start of the text and the
+   browser's own scrolling, Find and scroll-into-view work. Everything but the text (toolbars,
+   arrows, panels, notices) stays horizontal. html.webbook-vertical is set by the head script
+   before the first paint, from the book's writing mode and the Writing direction setting. */
+:root.webbook-vertical,
+:root.webbook-vertical body {
+    writing-mode: vertical-rl;
+}
+:root.webbook-vertical.webbook-vertical-lr,
+:root.webbook-vertical.webbook-vertical-lr body {
+    writing-mode: vertical-lr;
+}
+:root.webbook-vertical body > :not(main) {
+    writing-mode: horizontal-tb;
+}
+:root.webbook-vertical {
+    scroll-padding: 0 1rem;
+}
+:root.webbook-vertical body {
+    display: block;
+    min-height: 0;
+    height: 100dvh;
+}
+/* In the flow beside the text otherwise */
+:root.webbook-vertical #webbook-top-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+:root.webbook-vertical main {
+    /* The column height is the Line length setting, centred between the toolbars. Padding
+       percentages are of the page's height here (its inline size). */
+    --webbook-column-top: calc(var(--webbook-top-toolbar-height, 4rem) + 1rem);
+    --webbook-column-bottom: calc(var(--webbook-toolbar-height, 4rem) + 1rem);
+    box-sizing: border-box;
+    width: auto;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+    padding-block: 0;
+    padding-inline-start: max(var(--webbook-column-top), calc((100% - var(--webbook-column-length, 100%)) / 2));
+    padding-inline-end: max(var(--webbook-column-bottom), calc((100% - var(--webbook-column-length, 100%)) / 2));
+    /* a margin at the start, and room to finish reading at the end */
+    padding-block-start: max(1rem, env(safe-area-inset-right));
+    padding-block-end: max(3rem, env(safe-area-inset-left));
+}
+/* Each character is about 1em tall, so the steps are characters a column */
+:root.webbook-vertical[data-webbook-line-length="narrow"] main { --webbook-column-length: 20em; }
+:root.webbook-vertical:not([data-webbook-line-length]) main,
+:root.webbook-vertical[data-webbook-line-length="medium"] main { --webbook-column-length: 30em; }
+:root.webbook-vertical[data-webbook-line-length="wide"] main { --webbook-column-length: 100%; }
+:root.webbook-vertical main {
+    img, svg, video {
+        max-width: none;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+    }
+    table {
+        width: auto;
+    }
+}
+/* The page arrows go in the top toolbar, as on a phone: beside vertical text they would sit on
+   it, since it runs the whole width of the window */
+:root.webbook-vertical {
+    --webbook-page-arrow-gutter: 0px;
+}
+:root.webbook-vertical #webbook-spine-nav {
+    top: 0;
+    right: auto;
+    z-index: 21;
+    height: 4rem;
+    align-items: center;
+    gap: .25rem;
+    padding-left: max(.5rem, env(safe-area-inset-left));
+
+    a {
+        color: var(--webbook-chrome-fg);
+    }
+    #webbook-previous-document,
+    #webbook-next-document {
+        margin: 0;
+    }
+}
+@media (max-width: 45rem) {
+    :root.webbook-vertical main {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+/* --- Page progression right to left (Japanese, Arabic, Hebrew books) --- */
+/* Next page is on the left, as the book's pages turn. Not when the reader has set a vertical book
+   horizontal (user, 2026-11-13: "the arrows should look correct"): horizontal text turns pages left
+   to right. A horizontal right-to-left book (Arabic, Hebrew) keeps its direction. */
+:root[data-webbook-page-progression="rtl"]:not([data-webbook-writing-mode^="vertical"]:not(.webbook-vertical)) #webbook-spine-nav {
+    flex-direction: row-reverse;
+
+    #webbook-previous-document {
+        margin-left: 0;
+        margin-right: max(.75rem, env(safe-area-inset-right));
+    }
+    #webbook-next-document {
+        margin-left: max(.75rem, env(safe-area-inset-left));
+        margin-right: auto;
+    }
+    a svg {
+        transform: scaleX(-1);
+    }
+}
+@media (max-width: 45rem) {
+    :root[data-webbook-page-progression="rtl"]:not([data-webbook-writing-mode^="vertical"]:not(.webbook-vertical)) #webbook-spine-nav {
+        #webbook-previous-document,
+        #webbook-next-document {
+            margin: 0;
+        }
+    }
 }
 

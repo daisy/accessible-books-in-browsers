@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US" data-webbook-contract="0"><head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <title>3. – Current Situation Of SRHR Of Persons With Disabilities In Bangladesh In The Context Of SDGs And UNCRPD</title>
     <script>
         (() => {
@@ -23,6 +24,13 @@
                 root.style.setProperty('--webbook-main-font-family', font);
 
                 root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
             } catch { }
         })();
     </script>
@@ -77,7 +85,7 @@
     <div id="webbook-escape-container">
         <div id="webbook-escape-status" role="status"></div>
         <button type="button" id="webbook-escape-btn" hidden="" disabled="">
-            Skip past <span id="webbook-escape-label"></span>
+            Leave <span id="webbook-escape-label"></span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
         </button>
     </div>
@@ -189,15 +197,15 @@
             <button type="button" id="webbook-reset-rate">Reset</button>
         </div>
         <div>
-            <label for="webbook-skip-pagebreak-toggle">Skip page numbers</label>
+            <label for="webbook-skip-pagebreak-toggle">Page numbers</label>
             <input type="checkbox" id="webbook-skip-pagebreak-toggle">
         </div>
         <div>
-            <label for="webbook-skip-footnote-toggle">Skip notes</label>
+            <label for="webbook-skip-footnote-toggle">Notes</label>
             <input type="checkbox" id="webbook-skip-footnote-toggle">
         </div>
         <div>
-            <label for="webbook-skip-sidebar-toggle">Skip sidebars</label>
+            <label for="webbook-skip-sidebar-toggle">Sidebars</label>
             <input type="checkbox" id="webbook-skip-sidebar-toggle">
         </div>
         <div>

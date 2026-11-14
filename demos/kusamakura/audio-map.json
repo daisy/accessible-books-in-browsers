@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "duration": 3603.0310000000004,
+  "pages": [
+    {
+      "href": "index.html",
+      "title": "草枕",
+      "start": 0,
+      "duration": 0
+    },
+    {
+      "href": "一.html",
+      "title": "一",
+      "start": 0,
+      "duration": 2015.0250000000008,
+      "audio": "audio/一.mp3"
+    },
+    {
+      "href": "二.html",
+      "title": "二",
+      "start": 2015.0250000000008,
+      "duration": 1588.0059999999996,
+      "audio": "audio/二.mp3"
+    },
+    {
+      "href": "三.html",
+      "title": "三",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "四.html",
+      "title": "四",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "五.html",
+      "title": "五",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "六.html",
+      "title": "六",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "七.html",
+      "title": "七",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "八.html",
+      "title": "八",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "九.html",
+      "title": "九",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "十.html",
+      "title": "十",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "十一.html",
+      "title": "十一",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "十二.html",
+      "title": "十二",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "十三.html",
+      "title": "十三",
+      "start": 3603.0310000000004,
+      "duration": 0
+    },
+    {
+      "href": "後付.html",
+      "title": "この文書について",
+      "start": 3603.0310000000004,
+      "duration": 0
+    }
+  ],
+  "chapters": [
+    {
+      "title": "一",
+      "href": "一.html",
+      "time": 0
+    },
+    {
+      "title": "二",
+      "href": "二.html",
+      "time": 2015.0250000000008
+    }
+  ],
+  "toc": [
+    {
+      "href": "一.html",
+      "time": 0,
+      "end": 1.979
+    },
+    {
+      "href": "二.html",
+      "time": 2015.0250000000008,
+      "end": 2016.9440000000009
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { cueForElement, cueNeedsTime, elmForCue } from './cue-selector.js';
 import { positionAnchor, readingLine, syncPositionUrl } from './narration-position.js';
+import { readingEnd, readingStart } from './reading-axis.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 import { pageAudio } from './dom-utils.js';
 import { pausedForSound } from './structure-sounds.js';
@@ -25,9 +26,9 @@ export function cueAtReadingLine() {
         const elm = elmForCue(cue);
         if (!elm) continue;
         const rect = elm.getBoundingClientRect();
-        if (rect.top <= line) reached = { cue, elm };
-        if (rect.top <= line && rect.bottom > line) return { cue, elm };
-        if (rect.top > line) break;
+        if (readingStart(rect) <= line) reached = { cue, elm };
+        if (readingStart(rect) <= line && readingEnd(rect) > line) return { cue, elm };
+        if (readingStart(rect) > line) break;
     }
     return reached;
 }
@@ -47,7 +48,7 @@ export function structureAtReadingLine() {
     let reached = null;
     for (const elm of main.querySelectorAll('[id]')) {
         if (elm.closest('[hidden], [aria-hidden="true"]') || isReaderUiId(elm) || !hasLayoutBox(elm)) continue;
-        if (elm.getBoundingClientRect().top <= line) reached = elm;
+        if (readingStart(elm.getBoundingClientRect()) <= line) reached = elm;
         else break;
     }
     return reached;

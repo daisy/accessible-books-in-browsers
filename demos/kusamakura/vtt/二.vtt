@@ -1,0 +1,881 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.919
+{"selector":{"type":"FragmentSelector","value":"dol_1_1_ibcw_0001"}}
+
+2
+00:00:01.919 --> 00:00:07.859
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1) > span:nth-of-type(1)"}}}
+
+3
+00:00:07.859 --> 00:00:15.539
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2) > span:nth-of-type(1)"}}}
+
+4
+00:00:15.539 --> 00:00:19.199
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2) > span:nth-of-type(2)"}}}
+
+5
+00:00:19.199 --> 00:00:30.179
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2) > span:nth-of-type(3)"}}}
+
+6
+00:00:30.179 --> 00:00:40.160
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(2) > span:nth-of-type(4)"}}}
+
+7
+00:00:40.160 --> 00:00:45.140
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3) > span:nth-of-type(1)"}}}
+
+8
+00:00:45.140 --> 00:00:55.400
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3) > span:nth-of-type(2)"}}}
+
+9
+00:00:55.400 --> 00:01:01.340
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3) > span:nth-of-type(3)"}}}
+
+10
+00:01:01.340 --> 00:01:19.459
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3) > span:nth-of-type(4)"}}}
+
+11
+00:01:19.459 --> 00:01:24.319
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(3) > span:nth-of-type(5)"}}}
+
+12
+00:01:24.319 --> 00:01:32.419
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(1)"}}}
+
+13
+00:01:32.419 --> 00:01:37.159
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(2)"}}}
+
+14
+00:01:37.159 --> 00:01:41.479
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(3)"}}}
+
+15
+00:01:41.479 --> 00:01:47.779
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(4)"}}}
+
+16
+00:01:47.779 --> 00:01:58.699
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(5)"}}}
+
+17
+00:01:58.699 --> 00:02:04.481
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(6)"}}}
+
+18
+00:02:04.481 --> 00:02:20.321
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(7)"}}}
+
+19
+00:02:20.321 --> 00:02:24.101
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(4) > span:nth-of-type(8)"}}}
+
+20
+00:02:24.101 --> 00:02:33.521
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(5) > span:nth-of-type(1)"}}}
+
+21
+00:02:33.521 --> 00:02:38.321
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(5) > span:nth-of-type(2)"}}}
+
+22
+00:02:38.321 --> 00:02:42.821
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(1)"}}}
+
+23
+00:02:42.821 --> 00:02:46.661
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(2)"}}}
+
+24
+00:02:46.661 --> 00:02:51.821
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(3)"}}}
+
+25
+00:02:51.821 --> 00:02:56.194
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(4)"}}}
+
+26
+00:02:56.194 --> 00:02:59.313
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(5)"}}}
+
+27
+00:02:59.313 --> 00:03:08.732
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(6)"}}}
+
+28
+00:03:08.732 --> 00:03:18.452
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(7)"}}}
+
+29
+00:03:18.452 --> 00:03:22.471
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(8)"}}}
+
+30
+00:03:22.471 --> 00:03:27.691
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(6) > span:nth-of-type(9)"}}}
+
+31
+00:03:27.691 --> 00:03:34.711
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7) > span:nth-of-type(1)"}}}
+
+32
+00:03:34.711 --> 00:03:40.651
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7) > span:nth-of-type(2)"}}}
+
+33
+00:03:40.651 --> 00:03:51.214
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7) > span:nth-of-type(3)"}}}
+
+34
+00:03:51.214 --> 00:03:56.854
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7) > span:nth-of-type(4)"}}}
+
+35
+00:03:56.854 --> 00:04:12.394
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7) > span:nth-of-type(5)"}}}
+
+36
+00:04:12.394 --> 00:04:19.894
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(7) > span:nth-of-type(6)"}}}
+
+37
+00:04:19.894 --> 00:04:24.634
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(8) > span:nth-of-type(1)"}}}
+
+38
+00:04:24.634 --> 00:04:29.134
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(9) > span:nth-of-type(1)"}}}
+
+39
+00:04:29.134 --> 00:04:32.074
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(10) > span:nth-of-type(1)"}}}
+
+40
+00:04:32.074 --> 00:04:38.133
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(11) > span:nth-of-type(1)"}}}
+
+41
+00:04:38.133 --> 00:04:42.093
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(11) > span:nth-of-type(2)"}}}
+
+42
+00:04:42.093 --> 00:04:47.313
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(11) > span:nth-of-type(3)"}}}
+
+43
+00:04:47.313 --> 00:04:53.493
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(12) > span:nth-of-type(1)"}}}
+
+44
+00:04:53.493 --> 00:04:58.593
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(12) > span:nth-of-type(2)"}}}
+
+45
+00:04:58.593 --> 00:05:02.793
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(13) > span:nth-of-type(1)"}}}
+
+46
+00:05:02.793 --> 00:05:12.393
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(13) > span:nth-of-type(2)"}}}
+
+47
+00:05:12.393 --> 00:05:23.423
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(13) > span:nth-of-type(3)"}}}
+
+48
+00:05:23.423 --> 00:05:29.423
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(13) > span:nth-of-type(4)"}}}
+
+49
+00:05:29.423 --> 00:05:38.243
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(14) > span:nth-of-type(1)"}}}
+
+50
+00:05:38.243 --> 00:05:48.443
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(14) > span:nth-of-type(2)"}}}
+
+51
+00:05:48.443 --> 00:05:56.722
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(15) > span:nth-of-type(1)"}}}
+
+52
+00:05:56.722 --> 00:06:05.196
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(15) > span:nth-of-type(2)"}}}
+
+53
+00:06:05.196 --> 00:06:13.596
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(16) > span:nth-of-type(1)"}}}
+
+54
+00:06:13.596 --> 00:06:22.896
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(16) > span:nth-of-type(2)"}}}
+
+55
+00:06:22.896 --> 00:06:25.896
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(17) > span:nth-of-type(1)"}}}
+
+56
+00:06:25.896 --> 00:06:30.636
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(18) > span:nth-of-type(1)"}}}
+
+57
+00:06:30.636 --> 00:06:33.636
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(19) > span:nth-of-type(1)"}}}
+
+58
+00:06:33.636 --> 00:06:37.776
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(20) > span:nth-of-type(1)"}}}
+
+59
+00:06:37.776 --> 00:06:41.520
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(20) > span:nth-of-type(2)"}}}
+
+60
+00:06:41.520 --> 00:06:43.559
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(21) > span:nth-of-type(1)"}}}
+
+61
+00:06:43.559 --> 00:06:48.478
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(21) > span:nth-of-type(2)"}}}
+
+62
+00:06:48.478 --> 00:06:55.018
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(22) > span:nth-of-type(1)"}}}
+
+63
+00:06:55.018 --> 00:07:05.637
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(23) > span:nth-of-type(1)"}}}
+
+64
+00:07:05.637 --> 00:07:08.277
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(24) > span:nth-of-type(1)"}}}
+
+65
+00:07:08.277 --> 00:07:12.237
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(24) > span:nth-of-type(2)"}}}
+
+66
+00:07:12.237 --> 00:07:22.497
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(24) > span:nth-of-type(3)"}}}
+
+67
+00:07:22.497 --> 00:07:29.841
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(25) > span:nth-of-type(1)"}}}
+
+68
+00:07:29.841 --> 00:07:34.041
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(26) > span:nth-of-type(1)"}}}
+
+69
+00:07:34.041 --> 00:07:38.061
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(26) > span:nth-of-type(2)"}}}
+
+70
+00:07:38.061 --> 00:08:05.980
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(27) > span:nth-of-type(1)"}}}
+
+71
+00:08:05.980 --> 00:08:17.080
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(1)"}}}
+
+72
+00:08:17.080 --> 00:08:29.020
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(2)"}}}
+
+73
+00:08:29.020 --> 00:08:37.000
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(3)"}}}
+
+74
+00:08:37.000 --> 00:08:44.200
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(4)"}}}
+
+75
+00:08:44.200 --> 00:08:55.119
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(5)"}}}
+
+76
+00:08:55.119 --> 00:09:00.999
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(6)"}}}
+
+77
+00:09:00.999 --> 00:09:12.279
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(7)"}}}
+
+78
+00:09:12.279 --> 00:09:21.699
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(8)"}}}
+
+79
+00:09:21.699 --> 00:09:39.519
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(9)"}}}
+
+80
+00:09:39.519 --> 00:09:48.458
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(28) > span:nth-of-type(10)"}}}
+
+81
+00:09:48.458 --> 00:09:59.323
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(29) > span:nth-of-type(1)"}}}
+
+82
+00:09:59.323 --> 00:10:01.183
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(30) > span:nth-of-type(1)"}}}
+
+83
+00:10:01.183 --> 00:10:12.555
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(30) > span:nth-of-type(2)"}}}
+
+84
+00:10:12.555 --> 00:10:17.715
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(31) > span:nth-of-type(1)"}}}
+
+85
+00:10:17.715 --> 00:10:28.755
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(31) > span:nth-of-type(2)"}}}
+
+86
+00:10:28.755 --> 00:10:33.435
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(32) > span:nth-of-type(1)"}}}
+
+87
+00:10:33.435 --> 00:10:37.287
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(32) > span:nth-of-type(2)"}}}
+
+88
+00:10:37.287 --> 00:10:45.146
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(33) > span:nth-of-type(1)"}}}
+
+89
+00:10:45.146 --> 00:10:52.466
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(34) > span:nth-of-type(1)"}}}
+
+90
+00:10:52.466 --> 00:10:56.846
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(34) > span:nth-of-type(2)"}}}
+
+91
+00:10:56.846 --> 00:10:59.606
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(35) > span:nth-of-type(1)"}}}
+
+92
+00:10:59.606 --> 00:11:03.806
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(35) > span:nth-of-type(2)"}}}
+
+93
+00:11:03.806 --> 00:11:09.086
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(36) > span:nth-of-type(1)"}}}
+
+94
+00:11:09.086 --> 00:11:12.806
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(37) > span:nth-of-type(1)"}}}
+
+95
+00:11:12.806 --> 00:11:18.986
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(38) > span:nth-of-type(1)"}}}
+
+96
+00:11:18.986 --> 00:11:26.066
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(38) > span:nth-of-type(2)"}}}
+
+97
+00:11:26.066 --> 00:11:30.686
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(39) > span:nth-of-type(1)"}}}
+
+98
+00:11:30.686 --> 00:11:34.226
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(40) > span:nth-of-type(1)"}}}
+
+99
+00:11:34.226 --> 00:11:39.746
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(41) > span:nth-of-type(1)"}}}
+
+100
+00:11:39.746 --> 00:11:43.586
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(42) > span:nth-of-type(1)"}}}
+
+101
+00:11:43.586 --> 00:11:56.966
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(42) > span:nth-of-type(2)"}}}
+
+102
+00:11:56.966 --> 00:12:04.706
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(42) > span:nth-of-type(3)"}}}
+
+103
+00:12:04.706 --> 00:12:13.106
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(42) > span:nth-of-type(4)"}}}
+
+104
+00:12:13.106 --> 00:12:19.225
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(42) > span:nth-of-type(5)"}}}
+
+105
+00:12:19.225 --> 00:12:25.944
+{"selector":{"type":"FragmentSelector","value":"quote-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1) > span:nth-of-type(1)"}}}
+
+106
+00:12:25.944 --> 00:12:28.358
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(43) > span:nth-of-type(1)"}}}
+
+107
+00:12:28.358 --> 00:12:34.053
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(43) > span:nth-of-type(2)"}}}
+
+108
+00:12:34.053 --> 00:12:41.012
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(43) > span:nth-of-type(3)"}}}
+
+109
+00:12:41.012 --> 00:12:44.852
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(43) > span:nth-of-type(4)"}}}
+
+110
+00:12:44.852 --> 00:12:52.771
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(44) > span:nth-of-type(1)"}}}
+
+111
+00:12:52.771 --> 00:13:01.110
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(44) > span:nth-of-type(2)"}}}
+
+112
+00:13:01.110 --> 00:13:07.530
+{"selector":{"type":"FragmentSelector","value":"quote-2","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1) > span:nth-of-type(1)"}}}
+
+113
+00:13:07.530 --> 00:13:16.050
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(45) > span:nth-of-type(1)"}}}
+
+114
+00:13:16.050 --> 00:13:23.730
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(46) > span:nth-of-type(1)"}}}
+
+115
+00:13:23.730 --> 00:13:31.650
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(47) > span:nth-of-type(1)"}}}
+
+116
+00:13:31.650 --> 00:13:47.670
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(47) > span:nth-of-type(2)"}}}
+
+117
+00:13:47.670 --> 00:14:07.649
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(47) > span:nth-of-type(3)"}}}
+
+118
+00:14:07.649 --> 00:14:15.089
+{"selector":{"type":"FragmentSelector","value":"quote-3","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1) > span:nth-of-type(1)"}}}
+
+119
+00:14:15.089 --> 00:14:29.489
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(48) > span:nth-of-type(1)"}}}
+
+120
+00:14:29.489 --> 00:14:46.349
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(48) > span:nth-of-type(2)"}}}
+
+121
+00:14:46.349 --> 00:14:54.387
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(49) > span:nth-of-type(1)"}}}
+
+122
+00:14:54.387 --> 00:14:56.737
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(50) > span:nth-of-type(1)"}}}
+
+123
+00:14:56.737 --> 00:14:59.180
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(50) > span:nth-of-type(2)"}}}
+
+124
+00:14:59.180 --> 00:15:03.859
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(51) > span:nth-of-type(1)"}}}
+
+125
+00:15:03.859 --> 00:15:12.799
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(52) > span:nth-of-type(1)"}}}
+
+126
+00:15:12.799 --> 00:15:15.799
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(53) > span:nth-of-type(1)"}}}
+
+127
+00:15:15.799 --> 00:15:18.139
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(53) > span:nth-of-type(2)"}}}
+
+128
+00:15:18.139 --> 00:15:22.999
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(53) > span:nth-of-type(3)"}}}
+
+129
+00:15:22.999 --> 00:15:25.639
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(53) > span:nth-of-type(4)"}}}
+
+130
+00:15:25.639 --> 00:15:30.859
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(54) > span:nth-of-type(1)"}}}
+
+131
+00:15:30.859 --> 00:15:34.639
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(54) > span:nth-of-type(2)"}}}
+
+132
+00:15:34.639 --> 00:15:38.599
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(55) > span:nth-of-type(1)"}}}
+
+133
+00:15:38.599 --> 00:15:43.459
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(55) > span:nth-of-type(2)"}}}
+
+134
+00:15:43.459 --> 00:15:47.059
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(56) > span:nth-of-type(1)"}}}
+
+135
+00:15:47.059 --> 00:15:50.059
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(56) > span:nth-of-type(2)"}}}
+
+136
+00:15:50.059 --> 00:15:54.199
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(56) > span:nth-of-type(3)"}}}
+
+137
+00:15:54.199 --> 00:15:58.579
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(57) > span:nth-of-type(1)"}}}
+
+138
+00:15:58.579 --> 00:16:05.479
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(58) > span:nth-of-type(1)"}}}
+
+139
+00:16:05.479 --> 00:16:12.499
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(59) > span:nth-of-type(1)"}}}
+
+140
+00:16:12.499 --> 00:16:34.285
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(60) > span:nth-of-type(1)"}}}
+
+141
+00:16:34.285 --> 00:16:40.045
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(60) > span:nth-of-type(2)"}}}
+
+142
+00:16:40.045 --> 00:16:50.605
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(61) > span:nth-of-type(1)"}}}
+
+143
+00:16:50.605 --> 00:16:53.905
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(62) > span:nth-of-type(1)"}}}
+
+144
+00:16:53.905 --> 00:17:02.245
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(62) > span:nth-of-type(2)"}}}
+
+145
+00:17:02.245 --> 00:17:08.425
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(62) > span:nth-of-type(3)"}}}
+
+146
+00:17:08.425 --> 00:17:11.965
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(63) > span:nth-of-type(1)"}}}
+
+147
+00:17:11.965 --> 00:17:14.485
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(63) > span:nth-of-type(2)"}}}
+
+148
+00:17:14.485 --> 00:17:19.465
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(63) > span:nth-of-type(3)"}}}
+
+149
+00:17:19.465 --> 00:17:34.045
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(64) > span:nth-of-type(1)"}}}
+
+150
+00:17:34.045 --> 00:17:37.825
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(65) > span:nth-of-type(1)"}}}
+
+151
+00:17:37.825 --> 00:17:43.225
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(65) > span:nth-of-type(2)"}}}
+
+152
+00:17:43.225 --> 00:17:52.764
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(65) > span:nth-of-type(3)"}}}
+
+153
+00:17:52.764 --> 00:17:59.783
+{"selector":{"type":"FragmentSelector","value":"quote-4","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1) > span:nth-of-type(1)"}}}
+
+154
+00:17:59.783 --> 00:18:02.423
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(66) > span:nth-of-type(1)"}}}
+
+155
+00:18:02.423 --> 00:18:16.883
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(66) > span:nth-of-type(2)"}}}
+
+156
+00:18:16.883 --> 00:18:34.163
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(66) > span:nth-of-type(3)"}}}
+
+157
+00:18:34.163 --> 00:18:40.823
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(66) > span:nth-of-type(4)"}}}
+
+158
+00:18:40.823 --> 00:19:04.703
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(66) > span:nth-of-type(5)"}}}
+
+159
+00:19:04.703 --> 00:19:11.388
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(66) > span:nth-of-type(6)"}}}
+
+160
+00:19:11.388 --> 00:19:18.948
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(67) > span:nth-of-type(1)"}}}
+
+161
+00:19:18.948 --> 00:19:22.188
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(68) > span:nth-of-type(1)"}}}
+
+162
+00:19:22.188 --> 00:19:26.508
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(68) > span:nth-of-type(2)"}}}
+
+163
+00:19:26.508 --> 00:19:32.868
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(69) > span:nth-of-type(1)"}}}
+
+164
+00:19:32.868 --> 00:19:36.828
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(69) > span:nth-of-type(2)"}}}
+
+165
+00:19:36.828 --> 00:19:39.888
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(69) > span:nth-of-type(3)"}}}
+
+166
+00:19:39.888 --> 00:19:43.127
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(70) > span:nth-of-type(1)"}}}
+
+167
+00:19:43.127 --> 00:19:47.927
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(71) > span:nth-of-type(1)"}}}
+
+168
+00:19:47.927 --> 00:19:54.767
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(72) > span:nth-of-type(1)"}}}
+
+169
+00:19:54.767 --> 00:20:06.587
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(73) > span:nth-of-type(1)"}}}
+
+170
+00:20:06.587 --> 00:20:13.758
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(73) > span:nth-of-type(2)"}}}
+
+171
+00:20:13.758 --> 00:20:23.777
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(74) > span:nth-of-type(1)"}}}
+
+172
+00:20:23.777 --> 00:20:38.896
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(74) > span:nth-of-type(2)"}}}
+
+173
+00:20:38.896 --> 00:20:42.256
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(74) > span:nth-of-type(3)"}}}
+
+174
+00:20:42.256 --> 00:20:45.856
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(75) > span:nth-of-type(1)"}}}
+
+175
+00:20:45.856 --> 00:20:48.736
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(75) > span:nth-of-type(2)"}}}
+
+176
+00:20:48.736 --> 00:20:53.716
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(76) > span:nth-of-type(1)"}}}
+
+177
+00:20:53.716 --> 00:21:00.496
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(76) > span:nth-of-type(2)"}}}
+
+178
+00:21:00.496 --> 00:21:04.696
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(77) > span:nth-of-type(1)"}}}
+
+179
+00:21:04.696 --> 00:21:11.776
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(77) > span:nth-of-type(2)"}}}
+
+180
+00:21:11.776 --> 00:21:14.596
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(78) > span:nth-of-type(1)"}}}
+
+181
+00:21:14.596 --> 00:21:17.056
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(78) > span:nth-of-type(2)"}}}
+
+182
+00:21:17.056 --> 00:21:23.956
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(79) > span:nth-of-type(1)"}}}
+
+183
+00:21:23.956 --> 00:21:29.896
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(79) > span:nth-of-type(2)"}}}
+
+184
+00:21:29.896 --> 00:21:32.536
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(79) > span:nth-of-type(3)"}}}
+
+185
+00:21:32.536 --> 00:21:38.416
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(80) > span:nth-of-type(1)"}}}
+
+186
+00:21:38.416 --> 00:21:40.756
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(81) > span:nth-of-type(1)"}}}
+
+187
+00:21:40.756 --> 00:21:42.076
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(82) > span:nth-of-type(1)"}}}
+
+188
+00:21:42.076 --> 00:21:45.796
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(82) > span:nth-of-type(2)"}}}
+
+189
+00:21:45.796 --> 00:21:51.735
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(83) > span:nth-of-type(1)"}}}
+
+190
+00:21:51.735 --> 00:22:01.455
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(84) > span:nth-of-type(1)"}}}
+
+191
+00:22:01.455 --> 00:22:03.975
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(85) > span:nth-of-type(1)"}}}
+
+192
+00:22:03.975 --> 00:22:11.775
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(86) > span:nth-of-type(1)"}}}
+
+193
+00:22:11.775 --> 00:22:13.935
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(87) > span:nth-of-type(1)"}}}
+
+194
+00:22:13.935 --> 00:22:27.795
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(88) > span:nth-of-type(1)"}}}
+
+195
+00:22:27.795 --> 00:22:40.094
+{"selector":{"type":"FragmentSelector","value":"quote-5","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(1) > span:nth-of-type(1)"}}}
+
+196
+00:22:40.094 --> 00:22:47.534
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(89) > span:nth-of-type(1)"}}}
+
+197
+00:22:47.534 --> 00:23:01.754
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(90) > span:nth-of-type(1)"}}}
+
+198
+00:23:01.754 --> 00:23:10.274
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(91) > span:nth-of-type(1)"}}}
+
+199
+00:23:10.274 --> 00:23:16.514
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(91) > span:nth-of-type(2)"}}}
+
+200
+00:23:16.514 --> 00:23:22.694
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(92) > span:nth-of-type(1)"}}}
+
+201
+00:23:22.694 --> 00:23:27.854
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(92) > span:nth-of-type(2)"}}}
+
+202
+00:23:27.854 --> 00:23:34.178
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(93) > span:nth-of-type(1)"}}}
+
+203
+00:23:34.178 --> 00:23:47.549
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(93) > span:nth-of-type(2)"}}}
+
+204
+00:23:47.549 --> 00:23:52.708
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(94) > span:nth-of-type(1)"}}}
+
+205
+00:23:52.708 --> 00:24:06.481
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(95) > span:nth-of-type(1)"}}}
+
+206
+00:24:06.481 --> 00:24:12.420
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(96) > span:nth-of-type(1)"}}}
+
+207
+00:24:12.420 --> 00:24:34.103
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(97) > span:nth-of-type(1)"}}}
+
+208
+00:24:34.103 --> 00:24:41.963
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(97) > span:nth-of-type(2)"}}}
+
+209
+00:24:41.963 --> 00:24:48.263
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(97) > span:nth-of-type(3)"}}}
+
+210
+00:24:48.263 --> 00:24:56.603
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(97) > span:nth-of-type(4)"}}}
+
+211
+00:24:56.603 --> 00:25:10.823
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(97) > span:nth-of-type(5)"}}}
+
+212
+00:25:10.823 --> 00:25:12.083
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(97) > span:nth-of-type(6)"}}}
+
+213
+00:25:12.083 --> 00:25:18.563
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(98) > span:nth-of-type(1)"}}}
+
+214
+00:25:18.563 --> 00:25:28.043
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(98) > span:nth-of-type(2)"}}}
+
+215
+00:25:28.043 --> 00:25:41.063
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(98) > span:nth-of-type(3)"}}}
+
+216
+00:25:41.063 --> 00:25:52.463
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(98) > span:nth-of-type(4)"}}}
+
+217
+00:25:52.463 --> 00:26:05.140
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(99) > span:nth-of-type(1)"}}}
+
+218
+00:26:05.140 --> 00:26:14.266
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(100) > span:nth-of-type(1)"}}}
+
+219
+00:26:14.266 --> 00:26:20.386
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(100) > span:nth-of-type(2)"}}}
+
+220
+00:26:20.386 --> 00:26:28.006
+{"selector":{"type":"FragmentSelector","value":"section-1","refinedBy":{"type":"CssSelector","value":":scope > p:nth-of-type(100) > span:nth-of-type(3)"}}}

@@ -1,4 +1,5 @@
 import { cueAtTime, elmForCue } from './cue-selector.js';
+import { isVerticalText, readingEnd, readingLength, readingScroll, readingStart, scrollToReading, viewportLength } from './reading-axis.js';
 
 const NARRATION_HIGHLIGHT_NAME = 'narration';
 
@@ -36,7 +37,7 @@ export function highlightElm(elm, placement = 'nearest') {
     const viewport = readingViewport();
     if (placement === 'reading-line') {
         scrollToReadingLine(elm);
-    } else if (placement !== 'none' && (rect.top < viewport.top || rect.bottom > viewport.bottom)) {
+    } else if (placement !== 'none' && (readingStart(rect) < viewport.top || readingEnd(rect) > viewport.bottom)) {
         scrollIntoReadingViewport(elm, viewport);
     }
 }
@@ -74,7 +75,13 @@ function customHighlightRegistry() {
     return CSS.highlights;
 }
 
+// The part of the window the text can be read in, along the reading direction. Vertical text runs
+// between the page arrows, not under the toolbars.
 function readingViewport() {
+    if (isVerticalText()) {
+        const gutter = sideGutter();
+        return { top: gutter, bottom: Math.max(gutter, viewportLength() - gutter) };
+    }
     const top = visibleOverlayHeight('#webbook-top-toolbar');
     const bottomToolbarHeight = visibleOverlayHeight('#webbook-toolbar');
 
@@ -101,24 +108,30 @@ function visibleOverlayHeight(selector) {
     return overlay.getBoundingClientRect().height || overlay.offsetHeight || 0;
 }
 
-function scrollIntoReadingViewport(elm, viewport) {
-    const rect = elm.getBoundingClientRect();
-    const elementCenter = window.scrollY + rect.top + (rect.height / 2);
-    const viewportCenter = viewport.top + ((viewport.bottom - viewport.top) / 2);
-
-    window.scrollTo({
-        top: Math.max(0, elementCenter - viewportCenter),
-    });
+// Vertical text runs the whole width of the window (the page arrows are in the top toolbar), with
+// a margin at each side
+function sideGutter() {
+    return 16;
 }
 
+function scrollIntoReadingViewport(elm, viewport) {
+    const rect = elm.getBoundingClientRect();
+    const elementCenter = readingScroll() + readingStart(rect) + (readingLength(rect) / 2);
+    const viewportCenter = viewport.top + ((viewport.bottom - viewport.top) / 2);
+    scrollToReading(elementCenter - viewportCenter);
+}
+
+// Where the reader reads from, along the reading direction from the window's start edge: below
+// the top toolbar, or in vertical text, inside the page arrow at the right (vertical-rl)
 export function readingLine() {
+    if (isVerticalText()) return sideGutter() + 24;
     const bottom = document.querySelector('#webbook-top-toolbar')?.getBoundingClientRect().bottom || 0;
     return Math.max(0, bottom) + 48;
 }
 
 function scrollToReadingLine(elm) {
     const rect = elm.getBoundingClientRect();
-    window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - readingLine()) });
+    scrollToReading(readingScroll() + readingStart(rect) - readingLine());
 }
 
 // Track loading and toolbar setup can change layout immediately after the initial hash seek. Place

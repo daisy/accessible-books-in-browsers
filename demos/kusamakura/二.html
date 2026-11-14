@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja-jp" data-webbook-contract="0" data-webbook-writing-mode="vertical-rl" data-webbook-writing-modes="vertical-rl horizontal-tb" data-webbook-page-progression="rtl"><head>
+    <meta charset="UTF-8">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>二 – 草枕</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="http://www.aozora.gr.jp/cards/000148/card776.html">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+
+<body>
+    <a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a>
+    <!-- Basic navigation for reading without JavaScript; hidden when the reader's script runs -->
+    <nav id="webbook-basic-nav" aria-label="Book">
+        <button type="button" popovertarget="webbook-toc-nav">Contents</button>
+        <a id="webbook-basic-previous" rel="prev" href="一.html">Previous: 一</a>
+        <a id="webbook-basic-next" rel="next" href="三.html">Next: 三</a>
+    </nav>
+    <section id="webbook-top-toolbar" class="webbook" aria-label="Top toolbar">
+        <button type="button" popovertarget="webbook-search" title="Search" aria-label="Search">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+        </button>
+        
+    </section>
+
+    <main id="webbook-main">
+<section class="main_text epubtype_chapter" id="section-1">
+  <h2 class="chapter epubtype_subtitle" id="dol_1_1_ibcw_0001" tabindex="-1">二<a href="#dol_1_1_ibcw_0001" rel="bookmark" class="webbook" title="Link to 二" aria-label="Link to 二"><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"></path></g></svg></a></h2>
+  <p class="conversation"><span>「おい」と声を掛けたが返事がない。</span></p>
+  <p><span><ruby>軒下<rt>のきした</rt></ruby>から奥を<ruby>覗<rt>のぞ</rt></ruby>くと<ruby>煤<rt>すす</rt></ruby>けた<ruby>障子<rt>しょうじ</rt></ruby>が立て切ってある。</span><span>向う側は見えない。</span><span>五六足の<ruby>草鞋<rt>わらじ</rt></ruby>が<ruby>淋<rt>さび</rt></ruby>しそうに<ruby>庇<rt>ひさし</rt></ruby>から<ruby>吊<rt>つる</rt></ruby>されて、<ruby>屈托気<rt>くったくげ</rt></ruby>にふらりふらりと揺れる。</span><span>下に<ruby>駄菓子<rt>だがし</rt></ruby>の箱が三つばかり並んで、そばに五厘銭と<ruby>文久銭<rt>ぶんきゅうせん</rt></ruby>が散らばっている。</span></p>
+  <p class="conversation"><span>「おい」とまた声をかける。</span><span>土間の<ruby>隅<rt>すみ</rt></ruby>に片寄せてある<ruby>臼<rt>うす</rt></ruby>の上に、ふくれていた<ruby>鶏<rt>にわとり</rt></ruby>が、驚ろいて眼をさます。</span><span>ククク、クククと騒ぎ出す。</span><span>敷居の外に<ruby>土竈<rt>どべっつい</rt></ruby>が、今しがたの雨に濡れて、半分ほど色が変ってる上に、真黒な<ruby>茶釜<rt>ちゃがま</rt></ruby>がかけてあるが、土の茶釜か、銀の茶釜かわからない。</span><span>幸い下は<ruby>焚<rt>た</rt></ruby>きつけてある。</span></p>
+  <p><span>返事がないから、無断でずっと<ruby>這入<rt>はい</rt></ruby>って、<ruby>床几<rt>しょうぎ</rt></ruby>の上へ腰を<ruby>卸<rt>おろ</rt></ruby>した。</span><span><ruby>鶏<rt>にわとり</rt></ruby>は<ruby>羽摶<rt>はばた</rt></ruby>きをして<ruby>臼<rt>うす</rt></ruby>から飛び下りる。</span><span>今度は畳の上へあがった。</span><span><ruby>障子<rt>しょうじ</rt></ruby>がしめてなければ奥まで<ruby>馳<rt>か</rt></ruby>けぬける気かも知れない。</span><span>雄が太い声でこけっこっこと云うと、雌が細い声でけけっこっこと云う。</span><span>まるで余を狐か<ruby>狗<rt>いぬ</rt></ruby>のように考えているらしい。</span><span>床几の上には<ruby>一升枡<rt>いっしょうます</rt></ruby>ほどな<ruby>煙草盆<rt>たばこぼん</rt></ruby>が閑静に控えて、中にはとぐろを<ruby>捲<rt>ま</rt></ruby>いた線香が、日の移るのを知らぬ顔で、すこぶる<ruby>悠長<rt>ゆうちょう</rt></ruby>に<ruby>燻<rt>いぶ</rt></ruby>っている。</span><span>雨はしだいに収まる。</span></p>
+  <p><span>しばらくすると、奥の方から足音がして、<ruby>煤<rt>すす</rt></ruby>けた障子がさらりと<ruby>開<rt>あ</rt></ruby>く。</span><span>なかから一人の婆さんが出る。</span></p>
+  <p><span>どうせ誰か出るだろうとは思っていた。</span><span><ruby>竈<rt>へつい</rt></ruby>に火は燃えている。</span><span>菓子箱の上に銭が散らばっている。</span><span>線香は<ruby>呑気<rt>のんき</rt></ruby>に燻っている。</span><span>どうせ出るにはきまっている。</span><span>しかし自分の<ruby>見世<rt>みせ</rt></ruby>を<ruby>明<rt>あ</rt></ruby>け放しても苦にならないと見えるところが、少し都とは違っている。</span><span>返事がないのに床几に腰をかけて、いつまでも待ってるのも少し二十世紀とは受け取れない。</span><span>ここらが非人情で面白い。</span><span>その上出て来た婆さんの顔が気に入った。</span></p>
+  <p><span>二三年前<ruby>宝生<rt>ほうしょう</rt></ruby>の舞台で<ruby>高砂<rt>たかさご</rt></ruby>を見た事がある。</span><span>その時これはうつくしい<ruby>活人画<rt>かつじんが</rt></ruby>だと思った。</span><span><ruby>箒<rt>ほうき</rt></ruby>を<ruby>担<rt>かつ</rt></ruby>いだ爺さんが<ruby>橋懸<rt>はしがか</rt></ruby>りを五六歩来て、そろりと<ruby>後向<rt>うしろむき</rt></ruby>になって、婆さんと向い合う。</span><span>その向い合うた姿勢が今でも眼につく。</span><span>余の席からは婆さんの顔がほとんど<ruby>真<rt>ま</rt></ruby>むきに見えたから、ああうつくしいと思った時に、その表情はぴしゃりと心のカメラへ焼き付いてしまった。</span><span>茶店の婆さんの顔はこの写真に血を通わしたほど似ている。</span></p>
+  <p class="conversation"><span>「御婆さん、ここをちょっと借りたよ」 </span>
+  </p>
+  <p class="conversation"><span>「はい、これは、いっこう存じませんで」 </span>
+  </p>
+  <p class="conversation"><span>「だいぶ降ったね」 </span>
+  </p>
+  <p class="conversation"><span>「あいにくな御天気で、さぞ御困りで御座んしょ。</span><span>おおおおだいぶお<ruby>濡<rt>ぬ</rt></ruby>れなさった。</span><span>今火を<ruby>焚<rt>た</rt></ruby>いて<ruby>乾<rt>かわ</rt></ruby>かして上げましょ」 </span>
+  </p>
+  <p class="conversation"><span>「そこをもう少し<ruby>燃<rt>も</rt></ruby>しつけてくれれば、あたりながら乾かすよ。</span><span>どうも少し休んだら寒くなった」 </span>
+  </p>
+  <p class="conversation"><span>「へえ、ただいま焚いて上げます。</span><span>まあ御茶を一つ」<br>と立ち上がりながら、しっしっと<ruby>二声<rt>ふたこえ</rt></ruby>で<ruby>鶏<rt>にわとり</rt></ruby>を追い<ruby>下<rt>さ</rt></ruby>げる。</span><span>ここここと<ruby>馳<rt>か</rt></ruby>け出した夫婦は、<ruby>焦茶色<rt>こげちゃいろ</rt></ruby>の畳から、駄菓子箱の中を踏みつけて、往来へ飛び出す。</span><span>雄の方が逃げるとき駄菓子の上へ<ruby>糞<rt>ふん</rt></ruby>を<ruby>垂<rt>た</rt></ruby>れた。</span></p>
+  <p class="conversation"><span>「まあ一つ」と婆さんはいつの<ruby>間<rt>ま</rt></ruby>にか<ruby>刳<rt>く</rt></ruby>り抜き盆の上に茶碗をのせて出す。</span><span>茶の色の黒く<ruby>焦<rt>こ</rt></ruby>げている底に、<ruby>一筆<rt>ひとふで</rt></ruby>がきの梅の花が三輪<ruby>無雑作<rt>むぞうさ</rt></ruby>に焼き付けられている。</span></p>
+  <p class="conversation"><span>「御菓子を」と今度は鶏の踏みつけた<ruby>胡麻<rt>ごま</rt></ruby>ねじと<ruby>微塵棒<rt>みじんぼう</rt></ruby>を持ってくる。</span><span><ruby>糞<rt>ふん</rt></ruby>はどこぞに着いておらぬかと<ruby>眺<rt>なが</rt></ruby>めて見たが、それは箱のなかに取り残されていた。</span></p>
+  <p><span>婆さんは<ruby>袖無<rt>そでな</rt></ruby>しの上から、<ruby>襷<rt>たすき</rt></ruby>をかけて、<ruby>竈<rt>へっつい</rt></ruby>の前へうずくまる。</span><span>余は<ruby>懐<rt>ふところ</rt></ruby>から写生帖を取り出して、婆さんの横顔を写しながら、話しをしかける。</span></p>
+  <p class="conversation"><span>「閑静でいいね」 </span>
+  </p>
+  <p class="conversation"><span>「へえ、御覧の通りの<ruby>山里<rt>やまざと</rt></ruby>で」 </span>
+  </p>
+  <p class="conversation"><span>「<ruby>鶯<rt>うぐいす</rt></ruby>は鳴くかね」 </span>
+  </p>
+  <p class="conversation"><span>「ええ毎日のように鳴きます。</span><span><ruby>此辺<rt>ここら</rt></ruby>は夏も鳴きます」 </span>
+  </p>
+  <p class="conversation"><span>「聞きたいな。</span><span>ちっとも聞えないとなお聞きたい」 </span>
+  </p>
+  <p class="conversation"><span>「あいにく<ruby>今日<rt>きょう</rt></ruby>は——<ruby>先刻<rt>さっき</rt></ruby>の雨でどこぞへ逃げました」 </span>
+  </p>
+  <p><span>折りから、竈のうちが、ぱちぱちと鳴って、赤い火が<ruby>颯<rt>さっ</rt></ruby>と風を起して一尺あまり吹き出す。</span></p>
+  <p class="conversation"><span>「さあ、<ruby>御<rt>お</rt></ruby>あたり。</span><span>さぞ御寒かろ」と云う。</span><span><ruby>軒端<rt>のきば</rt></ruby>を見ると青い煙りが、突き当って<ruby>崩<rt>くず</rt></ruby>れながらに、<ruby>微<rt>かす</rt></ruby>かな<ruby>痕<rt>あと</rt></ruby>をまだ<ruby>板庇<rt>いたびさし</rt></ruby>にからんでいる。</span></p>
+  <p class="conversation"><span>「ああ、<ruby>好<rt>い</rt></ruby>い心持ちだ、<ruby>御蔭<rt>おかげ</rt></ruby>で生き返った」 </span>
+  </p>
+  <p class="conversation"><span>「いい具合に雨も晴れました。</span><span>そら<ruby>天狗巌<rt>てんぐいわ</rt></ruby>が見え出しました」 </span>
+  </p>
+  <p><span><ruby>逡巡<rt>しゅんじゅん</rt></ruby>として曇り勝ちなる春の空を、もどかしとばかりに吹き払う山嵐の、思い切りよく通り抜けた<ruby>前山<rt>ぜんざん</rt></ruby>の<ruby>一角<rt>いっかく</rt></ruby>は、未練もなく晴れ尽して、<ruby>老嫗<rt>ろうう</rt></ruby>の指さす<ruby>方<rt>かた</rt></ruby>に<ruby>巑岏<rt>さんがん</rt></ruby>と、あら<ruby>削<rt>けず</rt></ruby>りの柱のごとく<ruby>聳<rt>そび</rt></ruby>えるのが天狗岩だそうだ。</span></p>
+  <p><span>余はまず天狗巌を<ruby>眺<rt>なが</rt></ruby>めて、次に婆さんを眺めて、三度目には<ruby>半々<rt>はんはん</rt></ruby>に両方を<ruby>見比<rt>みくら</rt></ruby>べた。</span><span>画家として余が頭のなかに存在する婆さんの顔は<ruby>高砂<rt>たかさご</rt></ruby>の<ruby>媼<rt>ばば</rt></ruby>と、<ruby>蘆雪<rt>ろせつ</rt></ruby>のかいた<ruby>山姥<rt>やまうば</rt></ruby>のみである。</span><span>蘆雪の図を見たとき、理想の婆さんは<ruby>物凄<rt>ものすご</rt></ruby>いものだと感じた。</span><span><ruby>紅葉<rt>もみじ</rt></ruby>のなかか、寒い月の下に置くべきものと考えた。</span><span><ruby>宝生<rt>ほうしょう</rt></ruby>の<ruby>別会能<rt>べつかいのう</rt></ruby>を観るに及んで、なるほど老女にもこんな優しい表情があり得るものかと驚ろいた。</span><span>あの<ruby>面<rt>めん</rt></ruby>は定めて名人の刻んだものだろう。</span><span>惜しい事に作者の名は聞き落したが、老人もこうあらわせば、豊かに、<ruby>穏<rt>おだ</rt></ruby>やかに、あたたかに見える。</span><span><ruby>金屏<rt>きんびょう</rt></ruby>にも、<ruby>春風<rt>はるかぜ</rt></ruby>にも、あるは桜にもあしらって<ruby>差<rt>さ</rt></ruby>し<ruby>支<rt>つかえ</rt></ruby>ない道具である。</span><span>余は天狗岩よりは、腰をのして、手を<ruby>翳<rt>かざ</rt></ruby>して、遠く向うを<ruby>指<rt>ゆびさ</rt></ruby>している、袖無し姿の婆さんを、春の<ruby>山路<rt>やまじ</rt></ruby>の景物として<ruby>恰好<rt>かっこう</rt></ruby>なものだと考えた。</span><span>余が写生帖を取り上げて、今しばらくという<ruby>途端<rt>とたん</rt></ruby>に、婆さんの姿勢は崩れた。</span></p>
+  <p><span><ruby>手持無沙汰<rt>てもちぶさた</rt></ruby>に写生帖を、火にあてて<ruby>乾<rt>かわ</rt></ruby>かしながら、<br>「御婆さん、丈夫そうだね」と<ruby>訊<rt>たず</rt></ruby>ねた。</span></p>
+  <p class="conversation"><span>「はい。</span><span>ありがたい事に達者で——針も持ちます、<ruby>苧<rt>お</rt></ruby>もうみます、<ruby>御団子<rt>おだんご</rt></ruby>の<ruby>粉<rt>こ</rt></ruby>も<ruby>磨<rt>ひ</rt></ruby>きます」 </span>
+  </p>
+  <p><span>この御婆さんに<ruby>石臼<rt>いしうす</rt></ruby>を<ruby>挽<rt>ひ</rt></ruby>かして見たくなった。</span><span>しかしそんな注文も出来ぬから、<br>「ここから<ruby>那古井<rt>なこい</rt></ruby>までは一里<ruby>足<rt>た</rt></ruby>らずだったね」と別な事を聞いて見る。</span></p>
+  <p class="conversation"><span>「はい、二十八丁と申します。</span><span><ruby>旦那<rt>だんな</rt></ruby>は<ruby>湯治<rt>とうじ</rt></ruby>に<ruby>御越<rt>おこ</rt></ruby>しで……」 </span>
+  </p>
+  <p class="conversation"><span>「込み合わなければ、少し<ruby>逗留<rt>とうりゅう</rt></ruby>しようかと思うが、まあ気が向けばさ」 </span>
+  </p>
+  <p class="conversation"><span>「いえ、戦争が始まりましてから、<ruby>頓<rt>とん</rt></ruby>と参るものは御座いません。</span><span>まるで締め切り同様で御座います」 </span>
+  </p>
+  <p class="conversation"><span>「妙な事だね。</span><span>それじゃ<ruby>泊<rt>と</rt></ruby>めてくれないかも知れんね」 </span>
+  </p>
+  <p class="conversation"><span>「いえ、御頼みになればいつでも<ruby>宿<rt>と</rt></ruby>めます」 </span>
+  </p>
+  <p class="conversation"><span>「宿屋はたった一軒だったね」 </span>
+  </p>
+  <p class="conversation"><span>「へえ、<ruby>志保田<rt>しほだ</rt></ruby>さんと御聞きになればすぐわかります。</span><span>村のものもちで、湯治場だか、隠居所だかわかりません」 </span>
+  </p>
+  <p class="conversation"><span>「じゃ御客がなくても平気な訳だ」 </span>
+  </p>
+  <p class="conversation"><span>「旦那は始めてで」 </span>
+  </p>
+  <p class="conversation"><span>「いや、久しい以前ちょっと行った事がある」 </span>
+  </p>
+  <p><span>会話はちょっと<ruby>途切<rt>とぎ</rt></ruby>れる。</span><span>帳面をあけて<ruby>先刻<rt>さっき</rt></ruby>の鶏を静かに写生していると、落ちついた耳の底へじゃらんじゃらんと云う馬の鈴が<ruby>聴<rt>きこ</rt></ruby>え出した。</span><span>この声がおのずと、<ruby>拍子<rt>ひょうし</rt></ruby>をとって頭の中に一種の調子が出来る。</span><span>眠りながら、夢に隣りの臼の音に誘われるような心持ちである。</span><span>余は鶏の写生をやめて、同じページの<ruby>端<rt>はじ</rt></ruby>に、 </span>
+  </p><blockquote class="haiku" id="quote-1">
+    <p>
+      <span>春風や<ruby>惟然<rt>いねん</rt></ruby>が耳に馬の鈴 </span>
+  </p></blockquote><p class="continued_sentence"><span>と書いて見た。</span><span>山を登ってから、馬には五六匹逢った。</span><span>逢った五六匹は皆腹掛をかけて、鈴を鳴らしている。</span><span>今の世の馬とは思われない。</span></p>
+  <p><span>やがて<ruby>長閑<rt>のどか</rt></ruby>な<ruby>馬子唄<rt>まごうた</rt></ruby>が、春に<ruby>更<rt>ふ</rt></ruby>けた<ruby>空山一路<rt>くうざんいちろ</rt></ruby>の夢を破る。</span><span>憐れの底に気楽な響がこもって、どう考えても<ruby>画<rt>え</rt></ruby>にかいた声だ。</span></p><blockquote class="haiku" id="quote-2">
+    <p>
+      <span><ruby>馬子唄<rt>まごうた</rt></ruby>の<ruby>鈴鹿<rt>すずか</rt></ruby>越ゆるや春の雨 </span>
+  </p></blockquote><p class="continued_sentence"><span>と、今度は<ruby>斜<rt>はす</rt></ruby>に書きつけたが、書いて見て、これは自分の句でないと気がついた。</span></p>
+  <p class="conversation"><span>「また誰ぞ来ました」と婆さんが<ruby>半<rt>なか</rt></ruby>ば<ruby>独<rt>ひと</rt></ruby>り<ruby>言<rt>ごと</rt></ruby>のように云う。</span></p>
+  <p><span>ただ<ruby>一条<rt>ひとすじ</rt></ruby>の春の路だから、行くも帰るも皆近づきと見える。</span><span>最前<ruby>逢<rt>お</rt></ruby>うた五六匹のじゃらんじゃらんもことごとくこの婆さんの腹の中でまた誰ぞ来たと思われては山を<ruby>下<rt>くだ</rt></ruby>り、思われては山を登ったのだろう。</span><span>路<ruby>寂寞<rt>じゃくまく</rt></ruby>と<ruby>古今<rt>ここん</rt></ruby>の春を<ruby>貫<rt>つらぬ</rt></ruby>いて、花を<ruby>厭<rt>いと</rt></ruby>えば足を着くるに地なき<ruby>小村<rt>こむら</rt></ruby>に、婆さんは<ruby>幾年<rt>いくねん</rt></ruby>の昔からじゃらん、じゃらんを数え尽くして、<ruby>今日<rt>こんにち</rt></ruby>の<ruby>白頭<rt>はくとう</rt></ruby>に至ったのだろう。</span></p><blockquote class="haiku" id="quote-3">
+    <p>
+      <span><ruby>馬子<rt>まご</rt></ruby>唄や<ruby>白髪<rt>しらが</rt></ruby>も染めで暮るる春 </span>
+  </p></blockquote><p class="continued_sentence"><span>と次のページへ<ruby>認<rt>したた</rt></ruby>めたが、これでは自分の感じを云い<ruby>終<rt>おお</rt></ruby>せない、もう少し<ruby>工夫<rt>くふう</rt></ruby>のありそうなものだと、鉛筆の先を見詰めながら考えた。</span><span>何でも<strong class="sesame_dot webbook-style-emphasis-sesame">白髪</strong>という字を入れて、<strong class="sesame_dot webbook-style-emphasis-sesame">幾代の節</strong>と云う句を入れて、<strong class="sesame_dot webbook-style-emphasis-sesame">馬子唄</strong>という題も入れて、春の<ruby>季<rt>き</rt></ruby>も加えて、それを十七字に<ruby>纏<rt>まと</rt></ruby>めたいと工夫しているうちに、 </span>
+  </p>
+  <p class="conversation"><span>「はい、今日は」と実物の馬子が店先に<ruby>留<rt>とま</rt></ruby>って大きな声をかける。</span></p>
+  <p class="conversation"><span>「おや源さんか。</span><span>また城下へ行くかい」 </span>
+  </p>
+  <p class="conversation"><span>「何か買物があるなら頼まれて上げよ」 </span>
+  </p>
+  <p class="conversation"><span>「そうさ、<ruby>鍛冶町<rt>かじちょう</rt></ruby>を通ったら、娘に<ruby>霊厳寺<rt>れいがんじ</rt></ruby>の<ruby>御札<rt>おふだ</rt></ruby>を一枚もらってきておくれなさい」 </span>
+  </p>
+  <p class="conversation"><span>「はい、貰ってきよ。</span><span>一枚か。</span><span>——<ruby>御秋<rt>おあき</rt></ruby>さんは<ruby>善<rt>よ</rt></ruby>い所へ片づいて仕合せだ。</span><span>な、<ruby>御叔母<rt>おば</rt></ruby>さん」 </span>
+  </p>
+  <p class="conversation"><span>「ありがたい事に<ruby>今日<rt>こんにち</rt></ruby>には困りません。</span><span>まあ仕合せと云うのだろか」 </span>
+  </p>
+  <p class="conversation"><span>「仕合せとも、御前。</span><span>あの<ruby>那古井<rt>なこい</rt></ruby>の嬢さまと比べて御覧」 </span>
+  </p>
+  <p class="conversation"><span>「本当に御気の毒な。</span><span>あんな器量を持って。</span><span>近頃はちっとは具合がいいかい」 </span>
+  </p>
+  <p class="conversation"><span>「なあに、相変らずさ」 </span>
+  </p>
+  <p class="conversation"><span>「困るなあ」と婆さんが大きな息をつく。</span></p>
+  <p class="conversation"><span>「困るよう」と源さんが馬の鼻を<ruby>撫<rt>な</rt></ruby>でる。</span></p>
+  <p><span><ruby>枝繁<rt>えだしげ</rt></ruby>き山桜の葉も花も、深い空から落ちたままなる雨の<ruby>塊<rt>かた</rt></ruby>まりを、しっぽりと宿していたが、この時わたる風に足をすくわれて、いたたまれずに、<ruby>仮<rt>か</rt></ruby>りの<ruby>住居<rt>すまい</rt></ruby>を、さらさらと<ruby>転<rt>ころ</rt></ruby>げ落ちる。</span><span>馬は驚ろいて、長い<ruby>鬣<rt>たてがみ</rt></ruby>を<ruby>上下<rt>うえした</rt></ruby>に振る。</span></p>
+  <p class="conversation"><span>「コーラッ」と<ruby>叱<rt>しか</rt></ruby>りつける源さんの声が、じゃらん、じゃらんと共に余の<ruby>冥想<rt>めいそう</rt></ruby>を破る。</span></p>
+  <p><span>御婆さんが云う。</span><span>「源さん、わたしゃ、お嫁入りのときの姿が、まだ<ruby>眼前<rt>めさき</rt></ruby>に散らついている。</span><span><ruby>裾模様<rt>すそもよう</rt></ruby>の<ruby>振袖<rt>ふりそで</rt></ruby>に、<ruby>高島田<rt>たかしまだ</rt></ruby>で、馬に乗って……」 </span>
+  </p>
+  <p class="conversation"><span>「そうさ、船ではなかった。</span><span>馬であった。</span><span>やはりここで休んで行ったな、<ruby>御叔母<rt>おば</rt></ruby>さん」 </span>
+  </p>
+  <p class="conversation"><span>「あい、その桜の下で嬢様の馬がとまったとき、桜の花がほろほろと落ちて、せっかくの島田に<ruby>斑<rt>ふ</rt></ruby>が出来ました」 </span>
+  </p>
+  <p><span>余はまた写生帖をあける。</span><span>この景色は<ruby>画<rt>え</rt></ruby>にもなる、詩にもなる。</span><span>心のうちに花嫁の姿を浮べて、当時の様を想像して見てしたり顔に、 </span>
+  </p><blockquote class="haiku" id="quote-4">
+    <p>
+      <span>花の頃を越えてかしこし馬に嫁 </span>
+  </p></blockquote><p class="continued_sentence"><span>と書きつける。</span><span>不思議な事には<ruby>衣装<rt>いしょう</rt></ruby>も髪も馬も桜もはっきりと目に映じたが、花嫁の顔だけは、どうしても思いつけなかった。</span><span>しばらくあの顔か、この顔か、と思案しているうちに、ミレーのかいた、オフェリヤの<ruby>面影<rt>おもかげ</rt></ruby>が<ruby>忽然<rt>こつぜん</rt></ruby>と出て来て、高島田の下へすぽりとはまった。</span><span>これは駄目だと、せっかくの図面を<ruby>早速<rt>さっそく</rt></ruby>取り<ruby>崩<rt>くず</rt></ruby>す。</span><span>衣装も髪も馬も桜も一瞬間に心の道具立から<ruby>奇麗<rt>きれい</rt></ruby>に立ち<ruby>退<rt>の</rt></ruby>いたが、オフェリヤの合掌して水の上を流れて行く姿だけは、<ruby>朦朧<rt>もうろう</rt></ruby>と胸の底に残って、<ruby>棕梠箒<rt>しゅろぼうき</rt></ruby>で煙を払うように、さっぱりしなかった。</span><span>空に尾を<ruby>曳<rt>ひ</rt></ruby>く<ruby>彗星<rt>すいせい</rt></ruby>の何となく妙な気になる。</span></p>
+  <p class="conversation"><span>「それじゃ、まあ御免」と源さんが<ruby>挨拶<rt>あいさつ</rt></ruby>する。</span></p>
+  <p class="conversation"><span>「帰りにまた<ruby>御寄<rt>およ</rt></ruby>り。</span><span>あいにくの降りで<ruby>七曲<rt>ななまが</rt></ruby>りは難義だろ」 </span>
+  </p>
+  <p class="conversation"><span>「はい、少し骨が折れよ」と源さんは<ruby>歩行<rt>あるき</rt></ruby>出す。</span><span>源さんの馬も歩行出す。</span><span>じゃらんじゃらん。</span></p>
+  <p class="conversation"><span>「あれは<ruby>那古井<rt>なこい</rt></ruby>の男かい」 </span>
+  </p>
+  <p class="conversation"><span>「はい、那古井の源兵衛で御座んす」 </span>
+  </p>
+  <p class="conversation"><span>「あの男がどこぞの嫁さんを馬へ乗せて、<ruby>峠<rt>とうげ</rt></ruby>を越したのかい」 </span>
+  </p>
+  <p class="conversation"><span>「志保田の嬢様が城下へ<ruby>御輿入<rt>おこしいれ</rt></ruby>のときに、嬢様を<ruby>青馬<rt>あお</rt></ruby>に乗せて、源兵衛が<ruby>覊絏<rt>はづな</rt></ruby>を<ruby>牽<rt>ひ</rt></ruby>いて通りました。</span><span>——月日の立つのは早いもので、もう今年で五年になります」 </span>
+  </p>
+  <p><span>鏡に<ruby>対<rt>むか</rt></ruby>うときのみ、わが頭の白きを<ruby>喞<rt>かこ</rt></ruby>つものは幸の部に属する人である。</span><span>指を折って始めて、五年の流光に、転輪の<ruby>疾<rt>と</rt></ruby>き<ruby>趣<rt>おもむき</rt></ruby>を解し得たる婆さんは、人間としてはむしろ<ruby>仙<rt>せん</rt></ruby>に近づける方だろう。</span><span>余はこう答えた。</span></p>
+  <p class="conversation"><span>「さぞ美くしかったろう。</span><span>見にくればよかった」 </span>
+  </p>
+  <p class="conversation"><span>「ハハハ今でも御覧になれます。</span><span><ruby>湯治場<rt>とうじば</rt></ruby>へ御越しなされば、きっと出て御挨拶をなされましょう」 </span>
+  </p>
+  <p class="conversation"><span>「はあ、今では里にいるのかい。</span><span>やはり<ruby>裾模様<rt>すそもよう</rt></ruby>の<ruby>振袖<rt>ふりそで</rt></ruby>を着て、高島田に<ruby>結<rt>い</rt></ruby>っていればいいが」 </span>
+  </p>
+  <p class="conversation"><span>「たのんで御覧なされ。</span><span>着て見せましょ」 </span>
+  </p>
+  <p><span>余はまさかと思ったが、婆さんの様子は存外<ruby>真面目<rt>まじめ</rt></ruby>である。</span><span>非人情の旅にはこんなのが出なくては面白くない。</span><span>婆さんが云う。</span></p>
+  <p class="conversation"><span>「嬢様と<ruby>長良<rt>ながら</rt></ruby>の<ruby>乙女<rt>おとめ</rt></ruby>とはよく似ております」 </span>
+  </p>
+  <p class="conversation"><span>「顔がかい」 </span>
+  </p>
+  <p class="conversation"><span>「いいえ。</span><span>身の成り行きがで御座んす」 </span>
+  </p>
+  <p class="conversation"><span>「へえ、その長良の乙女と云うのは何者かい」 </span>
+  </p>
+  <p class="conversation"><span>「<ruby>昔<rt>むか</rt></ruby>しこの村に長良の乙女と云う、美くしい<ruby>長者<rt>ちょうじゃ</rt></ruby>の娘が御座りましたそうな」 </span>
+  </p>
+  <p class="conversation"><span>「へえ」 </span>
+  </p>
+  <p class="conversation"><span>「ところがその娘に二人の男が一度に<ruby>懸想<rt>けそう</rt></ruby>して、あなた」 </span>
+  </p>
+  <p class="conversation"><span>「なるほど」 </span>
+  </p>
+  <p class="conversation"><span>「ささだ男に<ruby>靡<rt>なび</rt></ruby>こうか、ささべ男に靡こうかと、娘はあけくれ思い<ruby>煩<rt>わずら</rt></ruby>ったが、どちらへも靡きかねて、とうとう </span>
+  </p><blockquote class="haiku" id="quote-5">
+    <p>
+      <span>あきづけばをばなが上に置く露の、けぬべくもわは、おもほゆるかも </span>
+  </p></blockquote><p class="continued_sentence"><span>と云う歌を<ruby>咏<rt>よ</rt></ruby>んで、<ruby>淵川<rt>ふちかわ</rt></ruby>へ身を投げて<ruby>果<rt>は</rt></ruby>てました」 </span>
+  </p>
+  <p><span>余はこんな山里へ来て、こんな婆さんから、こんな<ruby>古雅<rt>こが</rt></ruby>な言葉で、こんな古雅な話をきこうとは思いがけなかった。</span></p>
+  <p class="conversation"><span>「これから五丁東へ<ruby>下<rt>くだ</rt></ruby>ると、<ruby>道端<rt>みちばた</rt></ruby>に<ruby>五輪塔<rt>ごりんのとう</rt></ruby>が御座んす。</span><span>ついでに<ruby>長良<rt>ながら</rt></ruby>の<ruby>乙女<rt>おとめ</rt></ruby>の墓を見て御行きなされ」 </span>
+  </p>
+  <p><span>余は心のうちに是非見て行こうと決心した。</span><span>婆さんは、そのあとを語りつづける。</span></p>
+  <p class="conversation"><span>「那古井の嬢様にも二人の男が<ruby>祟<rt>たた</rt></ruby>りました。</span><span>一人は嬢様が京都へ修行に出て<ruby>御出<rt>おい</rt></ruby>での頃<ruby>御逢<rt>おあ</rt></ruby>いなさったので、一人はここの城下で随一の物持ちで御座んす」 </span>
+  </p>
+  <p class="conversation"><span>「はあ、御嬢さんはどっちへ靡いたかい」 </span>
+  </p>
+  <p class="conversation"><span>「御自身は是非京都の方へと御望みなさったのを、そこには色々な<ruby>理由<rt>わけ</rt></ruby>もありましたろが、親ご様が無理にこちらへ取りきめて……」 </span>
+  </p>
+  <p class="conversation"><span>「めでたく、<ruby>淵川<rt>ふちかわ</rt></ruby>へ身を投げんでも済んだ訳だね」 </span>
+  </p>
+  <p class="conversation"><span>「ところが——<ruby>先方<rt>さき</rt></ruby>でも器量望みで<ruby>御貰<rt>おもら</rt></ruby>いなさったのだから、随分大事にはなさったかも知れませぬが、もともと<ruby>強<rt>し</rt></ruby>いられて御出なさったのだから、どうも<ruby>折合<rt>おりあい</rt></ruby>がわるくて、御親類でもだいぶ御心配の様子で御座んした。</span><span>ところへ今度の戦争で、旦那様の勤めて御出の銀行がつぶれました。</span><span>それから嬢様はまた那古井の方へ御帰りになります。</span><span>世間では嬢様の事を不人情だとか、薄情だとか色々申します。</span><span>もとは<ruby>極々<rt>ごくごく</rt></ruby><ruby>内気<rt>うちき</rt></ruby>の優しいかたが、この頃ではだいぶ気が荒くなって、何だか心配だと源兵衛が来るたびに申します。</span><span>……」 </span>
+  </p>
+  <p><span>これからさきを聞くと、せっかくの<ruby>趣向<rt>しゅこう</rt></ruby>が<ruby>壊<rt>こわ</rt></ruby>れる。</span><span>ようやく仙人になりかけたところを、誰か来て<ruby>羽衣<rt>はごろも</rt></ruby>を帰せ帰せと<ruby>催促<rt>さいそく</rt></ruby>するような気がする。</span><span><ruby>七曲<rt>ななまが</rt></ruby>りの険を<ruby>冒<rt>おか</rt></ruby>して、やっとの<ruby>思<rt>おもい</rt></ruby>で、ここまで来たものを、そうむやみに俗界に引きずり<ruby>下<rt>おろ</rt></ruby>されては、<ruby>飄然<rt>ひょうぜん</rt></ruby>と家を出た<ruby>甲斐<rt>かい</rt></ruby>がない。</span><span>世間話しもある程度以上に立ち入ると、浮世の<ruby>臭<rt>にお</rt></ruby>いが<ruby>毛孔<rt>けあな</rt></ruby>から<ruby>染込<rt>しみこ</rt></ruby>んで、<ruby>垢<rt>あか</rt></ruby>で<ruby>身体<rt>からだ</rt></ruby>が重くなる。</span></p>
+  <p class="conversation"><span>「御婆さん、那古井へは一筋道だね」と十銭銀貨を一枚<ruby>床几<rt>しょうぎ</rt></ruby>の上へかちりと投げ出して立ち上がる。</span></p>
+  <p class="conversation"><span>「<ruby>長良<rt>ながら</rt></ruby>の五輪塔から右へ<ruby>御下<rt>おくだ</rt></ruby>りなさると、六丁ほどの近道になります。</span><span><ruby>路<rt>みち</rt></ruby>はわるいが、御若い方にはその<ruby>方<rt>ほう</rt></ruby>がよろしかろ。</span><span>——これは多分に御茶代を——気をつけて御越しなされ」 </span>
+  </p>
+</section>
+
+
+</main>
+
+    <nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="一.html" rel="prev" title="Previous: 一" aria-label="Previous: 一">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.707 4.293a1 1 0 0 1 0 1.414L9.414 12l6.293 6.293a1 1 0 0 1-1.414 1.414l-7-7a1 1 0 0 1 0-1.414l7-7a1 1 0 0 1 1.414 0Z" fill="currentColor"></path></svg>
+        </a>
+        <a id="webbook-next-document" href="三.html" title="Next: 三" aria-label="Next: 三" class="webbook-lightup" rel="next">
+            <svg role="img" aria-hidden="true" width="36" height="36" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="currentColor"></path></svg>
+        </a>
+    </nav>
+
+    <nav popover="" id="webbook-toc-nav" class="webbook" aria-labelledby="webbook-toc-nav-hd">
+        <div id="webbook-toc-header">
+            <h2 id="webbook-toc-nav-hd">Table of Contents</h2>
+            <button type="button" class="webbook-basic-close" popovertarget="webbook-toc-nav" popovertargetaction="hide">Close</button>
+            <a id="webbook-cover-link" href="index.html">Cover</a>
+        </div>
+        <p id="webbook-toc-narration-key" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"></path></svg> Narrated</p><ol><li id="toc-1"><a href="一.html" data-webbook-narrated="">一<span class="webbook-narrated-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"></path></svg><span class="sr-only">, narrated</span></span></a></li><li id="toc-2"><a href="二.html" aria-current="page" data-webbook-narrated="">二<span class="webbook-narrated-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Zm4.54 3.46a5 5 0 0 1 0 7.07l-1.41-1.41a3 3 0 0 0 0-4.24l1.41-1.42Zm2.83-2.83a9 9 0 0 1 0 12.73l-1.42-1.42a7 7 0 0 0 0-9.9l1.42-1.41Z"></path></svg><span class="sr-only">, narrated</span></span></a></li><li id="toc-3"><a href="三.html">三</a></li><li id="toc-4"><a href="四.html">四</a></li><li id="toc-5"><a href="五.html">五</a></li><li id="toc-6"><a href="六.html">六</a></li><li id="toc-7"><a href="七.html">七</a></li><li id="toc-8"><a href="八.html">八</a></li><li id="toc-9"><a href="九.html">九</a></li><li id="toc-10"><a href="十.html">十</a></li><li id="toc-11"><a href="十一.html">十一</a></li><li id="toc-12"><a href="十二.html">十二</a></li><li id="toc-13"><a href="十三.html">十三</a></li><li id="toc-14"><a href="後付.html">この文書について</a></li></ol>
+    </nav>
+
+    <div id="webbook-escape-container">
+        <div id="webbook-escape-status" role="status"></div>
+        <button type="button" id="webbook-escape-btn" hidden="" disabled="">
+            Leave <span id="webbook-escape-label"></span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.293 5.293a1 1 0 0 1 1.414 0L12 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414L13.414 12l5.293 5.293a1 1 0 0 1-1.414 1.414L12 13.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L10.586 12 5.293 6.707a1 1 0 0 1 0-1.414Z"></path></svg>
+        </button>
+    </div>
+
+    <div id="webbook-resume-banner" role="status" hidden=""></div>
+
+    <section id="webbook-toolbar" class="webbook" aria-label="Toolbar">
+        <div id="webbook-narration-position" role="group" aria-label="Narration position">
+            <span id="webbook-time" aria-hidden="true">0:00</span>
+            <input type="range" id="webbook-seek" min="0" max="0" step="any" value="0" aria-label="Seek">
+        </div>
+        <button type="button" popovertarget="webbook-toc-nav" title="Table of contents" aria-label="Table of contents">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><path d="M3 17h18a1 1 0 0 1 .117 1.993L21 19H3a1 1 0 0 1-.117-1.993L3 17h18H3Zm0-6 18-.002a1 1 0 0 1 .117 1.993l-.117.007L3 13a1 1 0 0 1-.117-1.993L3 11l18-.002L3 11Zm0-6h18a1 1 0 0 1 .117 1.993L21 7H3a1 1 0 0 1-.117-1.993L3 5h18H3Z" fill="currentColor"></path></svg>
+        </button>
+        <audio preload="metadata" src="audio/二.mp3" controls=""><track default="" kind="metadata" src="vtt/二.vtt"></audio>
+        <div id="webbook-audio-controls" role="group" aria-label="Audio playback">
+            <button type="button" id="webbook-previous-phrase" title="Previous phrase" aria-label="Previous phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.78 6.47a.75.75 0 0 1 0 1.06L7.06 11.25H19a.75.75 0 0 1 0 1.5H7.06l3.72 3.72a.75.75 0 1 1-1.06 1.06l-5-5a.75.75 0 0 1 0-1.06l5-5a.75.75 0 0 1 1.06 0Z"></path></svg>
+            </button>
+            <button type="button" id="webbook-audio-playpause" title="Play" aria-label="Play"></button>
+            <button type="button" id="webbook-next-phrase" title="Next phrase" aria-label="Next phrase" disabled="">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.22 6.47a.75.75 0 0 1 1.06 0l5 5a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 1 1-1.06-1.06l3.72-3.72H5a.75.75 0 0 1 0-1.5h11.94l-3.72-3.72a.75.75 0 0 1 0-1.06Z"></path></svg>
+            </button>
+        </div>
+        <button type="button" popovertarget="webbook-info" title="About this publication" aria-label="About this publication">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H18a2.5 2.5 0 0 1 2.5 2.5v14.25a.75.75 0 0 1-.75.75H5.5a1 1 0 0 0 1 1h13.25a.75.75 0 0 1 0 1.5H6.5A2.5 2.5 0 0 1 4 19.5v-15ZM12.25 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-.75 1.75v5a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-1.5 0Z" fill="currentColor"></path></svg>
+        </button>
+        <button type="button" popovertarget="webbook-settings" title="Settings" aria-label="Settings">
+            <svg role="img" aria-hidden="true" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.012 2.25c.734.008 1.465.093 2.182.253a.75.75 0 0 1 .582.649l.17 1.527a1.384 1.384 0 0 0 1.927 1.116l1.401-.615a.75.75 0 0 1 .85.174 9.792 9.792 0 0 1 2.204 3.792.75.75 0 0 1-.271.825l-1.242.916a1.381 1.381 0 0 0 0 2.226l1.243.915a.75.75 0 0 1 .272.826 9.797 9.797 0 0 1-2.204 3.792.75.75 0 0 1-.848.175l-1.407-.617a1.38 1.38 0 0 0-1.926 1.114l-.169 1.526a.75.75 0 0 1-.572.647 9.518 9.518 0 0 1-4.406 0 .75.75 0 0 1-.572-.647l-.168-1.524a1.382 1.382 0 0 0-1.926-1.11l-1.406.616a.75.75 0 0 1-.849-.175 9.798 9.798 0 0 1-2.204-3.796.75.75 0 0 1 .272-.826l1.243-.916a1.38 1.38 0 0 0 0-2.226l-1.243-.914a.75.75 0 0 1-.271-.826 9.793 9.793 0 0 1 2.204-3.792.75.75 0 0 1 .85-.174l1.4.615a1.387 1.387 0 0 0 1.93-1.118l.17-1.526a.75.75 0 0 1 .583-.65c.717-.159 1.45-.243 2.201-.252ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" fill="currentColor"></path></svg>
+        </button>
+    </section>
+
+    
+
+    <section popover="" id="webbook-search" class="webbook" aria-labelledby="webbook-search-hd">
+        <h2 id="webbook-search-hd">Search</h2>
+        <form id="webbook-search-form" role="search">
+            <input type="search" id="webbook-search-input" placeholder="Search..." aria-label="Search book">
+            <button type="submit" title="Search" aria-label="Search">
+                <svg role="img" aria-hidden="true" width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 2.5a7.5 7.5 0 0 1 5.964 12.048l4.743 4.745a1 1 0 0 1-1.32 1.497l-.094-.083-4.745-4.743A7.5 7.5 0 1 1 10 2.5Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z" fill="currentColor"></path></svg>
+            </button>
+        </form>
+        <ol id="webbook-search-results" aria-live="polite" aria-label="Search results"></ol>
+    </section>
+
+    <section id="webbook-info" aria-labelledby="webbook-info-hd" popover="" class="webbook">
+        <img id="webbook-cover" alt="" aria-hidden="true" hidden="">
+        <div class="webbook-info-body">
+            <h2 id="webbook-info-hd">About</h2>
+            <dl><dt>Title</dt><dd>草枕</dd><dt>Author</dt><dd>夏目 漱石</dd><dt>Date</dt><dd>2012-04-24T00:00:00Z</dd></dl>
+            <section id="webbook-progress" aria-label="Reading progress" data-webbook-page-number="3" data-webbook-page-count="15">
+                <h3>Progress</h3>
+                <p id="webbook-current-page-label">Section: 二</p>
+                <progress id="webbook-reading-progress" max="100" value="20" aria-label="Reading progress" aria-valuetext="20%">20%</progress>
+                <p id="webbook-progress-count">20%</p>
+            </section>
+        <section id="webbook-accessibility" aria-labelledby="webbook-accessibility-hd"><h3 id="webbook-accessibility-hd">Accessibility</h3><p class="webbook-accessibility-source">The publisher's accessibility information for the original EPUB.</p><h4>Ways of reading</h4><ul><li>No information about appearance modifiability is available</li><li>No information about nonvisual reading is available</li></ul><h4>Conformance</h4><ul><li>No information is available</li></ul></section></div>
+    </section>
+
+    <section popover="" id="webbook-settings" class="webbook" aria-labelledby="webbook-settings-hd">
+        <h2 id="webbook-settings-hd">Settings</h2>
+        <div id="webbook-color">
+            <label for="webbook-highlight-auto-toggle">Auto highlight color</label>
+            <input type="checkbox" id="webbook-highlight-auto-toggle" checked="">
+            <label for="webbook-color-picker">Custom color</label>
+            <input type="color" id="webbook-color-picker" disabled="">
+        </div>
+        <div id="webbook-font-size">
+            <label for="webbook-font-size-range">Font size</label>
+            <input type="range" id="webbook-font-size-range" min="50" max="200" value="100" step="5">
+            <p id="webbook-font-size-value">100%</p>
+            <button type="button" id="webbook-reset-font-size">Reset</button>
+        </div>
+        <div id="webbook-font-family">
+            <label for="webbook-font-family-options">Font</label>
+            <select id="webbook-font-family-options">
+                <option value="system-ui">System UI</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="serif">Serif</option>
+            </select>
+        </div>
+        <div id="webbook-appearance">
+            <label for="webbook-appearance-options">Appearance</label>
+            <select id="webbook-appearance-options">
+                <option value="auto">Auto (system)</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+            </select>
+        </div>
+        <div>
+            <label for="webbook-dialog-blur-toggle">Blur background behind dialogs</label>
+            <input type="checkbox" id="webbook-dialog-blur-toggle" checked="">
+        </div>
+        <div>
+            <label for="webbook-caption-mode-toggle">Caption mode</label>
+            <input type="checkbox" id="webbook-caption-mode-toggle">
+        </div>
+        <div id="webbook-rate">
+            <label for="webbook-rate-range">Playback rate</label>
+            <input type="range" id="webbook-rate-range" min="50" max="200" value="100" step="5">
+            <p id="webbook-rate-value">100%</p>
+            <button type="button" id="webbook-reset-rate">Reset</button>
+        </div>
+        <div>
+            <label for="webbook-skip-pagebreak-toggle">Page numbers</label>
+            <input type="checkbox" id="webbook-skip-pagebreak-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-footnote-toggle">Notes</label>
+            <input type="checkbox" id="webbook-skip-footnote-toggle">
+        </div>
+        <div>
+            <label for="webbook-skip-sidebar-toggle">Sidebars</label>
+            <input type="checkbox" id="webbook-skip-sidebar-toggle">
+        </div>
+        <div>
+            <label for="webbook-resume-toggle">Resume last position on open</label>
+            <input type="checkbox" id="webbook-resume-toggle" checked="">
+        </div>
+    </section>
+
+    <script type="module" src="src/js/main.js"></script>
+
+
+
+</body></html>

@@ -1,3 +1,5 @@
+import { readingScroll, scrollToReading } from './reading-axis.js';
+import { applyWritingMode } from './writing-mode.js';
 import { startPlayerForPage } from './player.js';
 import { startCaptionModeForPage } from './caption-mode.js';
 import { hideEscape } from './escapability.js';
@@ -49,7 +51,7 @@ export function navigateTo(href, { push = true, moveFocus = true, audioTime, aut
         if (push) history.pushState(state, '', url.href);
         else history.replaceState(state, '', url.href);
         const target = url.hash ? document.getElementById(decodeURIComponent(url.hash.slice(1))) : null;
-        if (typeof scrollY === 'number') window.scrollTo(0, scrollY);
+        if (typeof scrollY === 'number') scrollToReading(scrollY);
         else target?.scrollIntoView();
         if (moveFocus && target) {
             if (!target.matches('a[href], button, input, select, textarea, [tabindex]')) target.setAttribute('tabindex', '-1');
@@ -132,7 +134,7 @@ async function loadInPlace(url, { push, moveFocus, scrollY, audioTime, state = n
         const playing = narrated ? !audio.paused : false;
         history.replaceState({
             ...history.state,
-            webbookScrollY: window.scrollY,
+            webbookScrollY: readingScroll(),
             webbookAudioTime: narrated ? (playing ? audio.currentTime : readingPositionTime(audio)) : undefined,
             webbookWasPlaying: playing
         }, '');
@@ -193,6 +195,14 @@ function swapIn(doc) {
     document.title = doc.title;
     const lang = doc.documentElement.getAttribute('lang');
     if (lang) document.documentElement.setAttribute('lang', lang);
+    // The page's writing mode and line-breaking rules (plan 28), before it's placed
+    for (const name of ['data-webbook-writing-mode', 'data-webbook-writing-modes', 'data-webbook-line-break',
+        'data-webbook-word-break', 'data-webbook-page-progression']) {
+        const value = doc.documentElement.getAttribute(name);
+        if (value) document.documentElement.setAttribute(name, value);
+        else document.documentElement.removeAttribute(name);
+    }
+    applyWritingMode();
 
     // Same <main> element, new content and attributes. Caption mode's aria-hidden stays.
     const main = document.querySelector('main');
@@ -305,7 +315,7 @@ function keepScrollWhileImagesLoad(scrollY) {
     for (const img of pending) {
         const settle = () => {
             if (abort.signal.aborted) return;
-            window.scrollTo(0, scrollY);
+            scrollToReading(scrollY);
             if (--left === 0) stop();
         };
         img.addEventListener('load', settle, { once: true, signal: abort.signal });
@@ -318,12 +328,12 @@ function placeReader(hash, moveFocus, scrollY) {
     const id = hash ? decodeURIComponent(hash.slice(1)) : '';
     const target = id ? document.getElementById(id) : null;
     if (typeof scrollY === 'number') {
-        window.scrollTo(0, scrollY);
+        scrollToReading(scrollY);
         keepScrollWhileImagesLoad(scrollY);
     } else if (target) {
         target.scrollIntoView();
     } else {
-        window.scrollTo(0, 0);
+        scrollToReading(0);
     }
     const main = document.querySelector('main');
     // Not into the page text while caption mode hides it

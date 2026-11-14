@@ -2,7 +2,7 @@
 // reader sees. Keep controls' ids: shortcuts and reader tools use them too.
 const SECTIONS = [
     ['colors', 'Colors', ['#webbook-colors', '#webbook-colors-custom', '#webbook-appearance', '#webbook-color', '#webbook-highlight-style']],
-    ['text', 'Text', ['#webbook-font-family', '#webbook-font-size', '#webbook-text-spacing', '#webbook-copy-math', '#webbook-dialog-blur-toggle', '#webbook-toolbar-auto-hide']],
+    ['text', 'Text', ['#webbook-font-family', '#webbook-font-size', '#webbook-writing-mode', '#webbook-text-spacing', '#webbook-copy-math', '#webbook-dialog-blur-toggle', '#webbook-toolbar-auto-hide']],
     ['narration', 'Narration', ['#webbook-rate', '#webbook-caption-mode-toggle', '#webbook-skip-settings', '#webbook-structure-sounds']],
     ['notes', 'Notes', ['#webbook-note-references-options', '#webbook-note-wait-sound-toggle', '#webbook-note-auto-return-toggle']],
     ['position', 'Reading position', ['#webbook-resume-toggle']],
@@ -68,7 +68,7 @@ export function initSettingsSections() {
         skip = document.createElement('fieldset');
         skip.id = 'webbook-skip-settings';
         const legend = document.createElement('legend');
-        legend.textContent = 'Skip during narration';
+        legend.textContent = 'Exclude from narration';
         skip.append(legend);
         for (const kind of ['pagebreak', 'footnote', 'sidebar']) {
             const row = panel.querySelector(`#webbook-skip-${kind}-toggle`)?.closest('div');
@@ -76,6 +76,8 @@ export function initSettingsSections() {
         }
         panel.append(skip);
     }
+    const skipLegend = skip?.querySelector('legend');
+    if (skipLegend) skipLegend.textContent = 'Exclude from narration';
     for (const [name, , selectors] of SECTIONS) {
         for (const selector of selectors) {
             for (const element of panel.querySelectorAll(selector)) {

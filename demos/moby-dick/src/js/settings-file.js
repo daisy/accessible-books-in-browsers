@@ -32,6 +32,7 @@ export const SETTINGS_DEFINITIONS = Object.freeze({
     'webbook-letter-spacing': oneOf('', 'wider', 'widest'),
     'webbook-word-spacing': oneOf('', 'wider', 'widest'),
     'webbook-line-length': oneOf('narrow', 'medium', 'wide'),
+    'webbook-writing-mode': oneOf('horizontal'),
     'webbook-copy-math-format': oneOf('latex', 'mathml'),
     'webbook-dialog-backdrop-blur': boolean,
     'webbook-toolbar-auto-hide': boolean,

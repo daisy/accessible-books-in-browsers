@@ -20,6 +20,9 @@ import { initReaderActionNotice } from './reader-actions.js';
 import { initSettingsTransfer } from './settings-transfer.js';
 import { initCopyContent } from './copy-content.js';
 import { initResponsiveEquations } from './responsive-equations.js';
+import { initWhereAmI } from './where-am-i.js';
+import { initWritingMode } from './writing-mode.js';
+import { initSettingsFilter } from './settings-filter.js';
 
 initEscapability();
 initResumePosition();
@@ -27,6 +30,8 @@ initPopoverCloseButtons();
 initPopoverToggleTracking();
 initTocInPageLinks();
 initSettings();
+initWritingMode();
+initSettingsFilter();
 initSkippability();
 initResumeSetting();
 initCaptionMode();
@@ -39,6 +44,8 @@ initNotesInPlace();
 initCopyContent();
 initResponsiveEquations();
 initSettingsTransfer();
+// Before the shortcuts start: they read saved keys only for actions already registered
+initWhereAmI();
 initKeyboardShortcuts();
 initKeyboardShortcutEditorButton();
 initSearchOnDemand();
