@@ -92,8 +92,10 @@ Test books:
   were. While narration plays, it reads the note and goes back. Settings choose whether it goes
   back, and what narration does at a phrase with notes: keep reading, pause briefly with optional quiet
   ticking while you choose, or read each note. Caption mode keeps note numbers in superscript.
-- **Skipping:** **Skip past** leaves a table, list, figure, equation, sidebar or note with one key; page
-  numbers, notes and sidebars can be skipped altogether (notes are by default).
+- **Leaving structures:** **Leave** exits the current table, list, figure, equation, sidebar or note.
+  A note opened from a reference shows **Back to text** instead; browsing endnotes offers **Leave notes** to exit the whole section.
+- **Exclusion:** **Exclude from narration** omits selected page numbers, notes and sidebars. Notes
+  are excluded by default. This preference is independent of the controls for leaving structures.
 - **Structure sounds** (off by default): a tone at headings, a bell at notes, and knocks into and
   out of lists and tables, just before the phrase.
 - **Copy equations and code:** display equations and code blocks have a **Copy** button (shown on
@@ -132,7 +134,7 @@ without removing your saved reading positions.
 
 | Shortcut | Where it works | What it does |
 |---|---|---|
-| `Escape` | Anywhere, only while the "Skip past" notification is showing | Skip past the current table, list, figure, equation, sidebar, footnote, endnote, or note during narration playback; at the end of a page, go to the next one. While a message from another shortcut is showing, the first `Escape` dismisses the message |
+| `Escape` | While narration is positioned in an escapable structure | Leave the current structure, or return from a note visit to the text. At a page boundary, continue onto the next page; at the end of the book, stop. While a message from another shortcut is showing, the first `Escape` dismisses the message |
 | `[` | Anywhere outside a text field or open popover | Previous phrase, continuing onto the previous page from the first phrase of a page |
 | `]` | Anywhere outside a text field or open popover | Next phrase, continuing onto the next page from the last phrase of a page |
 | `\` | Anywhere outside a text field or open popover | Play / pause |
@@ -159,14 +161,14 @@ The narration keys are unmodified single keys. An earlier version used `Ctrl`+`A
 
 Open **Settings**, then choose **Change keyboard shortcuts** to open the shortcut editor. Choose **Change** next to an action and press its new key, with any modifiers. Escape cancels a change. If another action already uses the key, the editor shows and announces a warning before asking you to confirm the move. **Remove** clears an action's shortcut; **Restore default** restores one action, and **Reset to defaults** restores the table above. Choices are shared across books on the same website and remembered when you return.
 
-On a Mac, `Alt` is `Option`. Escape closes an open panel. The panel, narration position, speed and text size keys use `Alt`+`Shift` because NVDA, JAWS, Narrator and VoiceOver don't use it with letters or punctuation, and Chrome, Edge and Safari don't use these letters with it; `Shift`+`,` and `Shift`+`.` would have clashed with NVDA's and JAWS's browse-mode commands. Escape stays reserved for **Skip past**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when a key is also a screen reader browse-mode command (an unmodified letter or some punctuation, or `Shift`+`,` and `Shift`+`.`). Caption mode's arrow keys remain fixed.
+On a Mac, `Alt` is `Option`. Escape closes an open panel. The panel, narration position, speed and text size keys use `Alt`+`Shift` because NVDA, JAWS, Narrator and VoiceOver don't use it with letters or punctuation, and Chrome, Edge and Safari don't use these letters with it; `Shift`+`,` and `Shift`+`.` would have clashed with NVDA's and JAWS's browse-mode commands. Escape stays reserved for **Leave current structure**; Tab (including Shift+Tab), Enter and Space are reserved for using controls. The editor warns when a key is also a screen reader browse-mode command (an unmodified letter or some punctuation, or `Shift`+`,` and `Shift`+`.`). Caption mode's arrow keys remain fixed.
 
 More about `[`, `]` and `\`:
 
 - **Screen readers:** the keys were chosen because NVDA and JAWS don't use them on their own in browse mode, so they don't take away a screen reader command. In browse mode a screen reader may still keep them from reaching the page; they work in focus mode, and the hardware play/pause and previous/next track keys work in either mode.
 - **Keyboard layouts:** they're matched by the physical key, not the character it types. On a US keyboard they're the three keys to the right of `P`. On other layouts the same physical keys work even though they type different characters (on a German keyboard, `Ü`, `+` and `#`), so they never need `AltGr`.
 - **With `Shift`**, `[` and `]` move by page and `\` turns caption mode on or off. With any other modifier they do nothing unless you assign that exact combination.
-- **Turning them off:** the "Keyboard shortcuts" setting disables all assigned shortcuts, including Skip past, as WCAG 2.1.4 (Character Key Shortcuts) requires. You can still edit shortcuts while they are off. Caption mode's arrow keys and the standard keys for controls keep working.
+- **Turning them off:** the "Keyboard shortcuts" setting disables all assigned shortcuts, including Leave current structure, as WCAG 2.1.4 (Character Key Shortcuts) requires. You can still edit shortcuts while they are off. Caption mode's arrow keys and the standard keys for controls keep working.
 
 The hardware media keys are separate from these: play/pause plays and pauses, and previous/next track move to the previous or next page.
 

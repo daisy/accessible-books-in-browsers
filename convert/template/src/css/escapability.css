@@ -6,6 +6,13 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 25;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    width: max-content;
+    max-width: calc(100vw - 1.5rem);
 }
 #webbook-escape-status {
     position: absolute;

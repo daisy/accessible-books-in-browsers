@@ -20,7 +20,7 @@ test('every template keeps controls under ordered h3 headings below Settings', (
             ['H2', 'Settings'], ...['Colors', 'Text', 'Narration', 'Notes', 'Reading position', 'Keyboard', 'All settings'].map(title => ['H3', title])
         ]);
         for (const [id, section] of [['webbook-font-family-options', 'text'], ['webbook-color-picker', 'colors'], ['webbook-caption-mode-toggle', 'narration']]) assert.equal(document.getElementById(id).closest('[data-settings-section]').dataset.settingsSection, section);
-        assert.equal(document.getElementById('webbook-skip-footnote-toggle').closest('fieldset').querySelector('legend').textContent, 'Skip during narration');
+        assert.equal(document.getElementById('webbook-skip-footnote-toggle').closest('fieldset').querySelector('legend').textContent, 'Exclude from narration');
         assert.equal(panel.querySelector(':scope > fieldset'), null);
         assert.ok(Array.from(panel.querySelectorAll('h3')).every(h => h.tabIndex === -1));
         dom.window.close();

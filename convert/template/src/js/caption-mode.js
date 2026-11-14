@@ -91,7 +91,7 @@ function setCaptionMode(enabled, options = {}) {
     }
 }
 
-function clearCaption() {
+export function clearCaption() {
     if (captionText) captionText.textContent = '';
 }
 

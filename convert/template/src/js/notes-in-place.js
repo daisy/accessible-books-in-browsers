@@ -7,6 +7,7 @@ import { allowPlaybackOf, clearPlaybackException, cancelSkipPreroll, canPlay } f
 import { pageAudio } from './dom-utils.js';
 import { initStructureSounds, keepSoundsForSeek, pausedForSound, soundForNarratedPhrase, playNoteWaitSound } from './structure-sounds.js';
 import { showShortcutHint } from './keyboard-shortcuts.js';
+import { refreshCurrentEscape } from './escapability.js';
 
 // Notes without losing your place. Following a note reference (or the note control that appears
 // while narration reads a phrase with references) goes to the note, wherever it is in the book.
@@ -139,7 +140,8 @@ function goToNote(reference, overrides = {}) {
 }
 
 function openNote(url, origin) {
-    endNotePause();
+    // Remove the originating phrase's prompt before the seek/page load completes.
+    hidePhraseNotes();
     // Which note this return belongs to: the address follows narration, so it can't tell
     origin.noteId = decodeURIComponent(url.hash.slice(1));
     lastNoteReturn = origin;
@@ -210,7 +212,7 @@ function handleTimeUpdate() {
     clearTimeout(noteEndTimer);
     noteEndTimer = 0;
     if (!stop) {
-        backToText();
+        backToText({ continueNotes: true });
         return;
     }
     // Stop after the note; Back to text, or Play, carries on from here
@@ -321,6 +323,7 @@ function showBackToText() {
     if (button) button.hidden = !currentReturn();
     if (button && !button.hidden) showShortcutHint(button, 'back-to-text');
     document.documentElement.classList.toggle('webbook-note-return', Boolean(currentReturn()));
+    refreshCurrentEscape();
 }
 
 function dismissReturn() {
@@ -333,14 +336,14 @@ function dismissReturn() {
     lastNoteReturn = null;
 }
 
-async function backToText({ keepPlaying = false } = {}) {
+async function backToText({ keepPlaying = false, continueNotes = false } = {}) {
     const stored = currentReturn();
     if (!stored) return false;
     const origin = keepPlaying ? { ...stored, autoplay: true } : stored;
     autoReturn = null;
     clearPlaybackException();
     // Narration went to a phrase's notes by itself: the next one, then back to the text
-    if (followQueue.length && origin.autoplay) {
+    if (continueNotes && followQueue.length && origin.autoplay) {
         const doc = new URL(origin.href).pathname === location.pathname ? document : await fetchPage(new URL(origin.href)).catch(() => null);
         const reference = doc?.querySelectorAll('main a[href]')[followQueue.shift()];
         const url = reference && new URL(reference.getAttribute('href'), origin.href);
@@ -355,6 +358,12 @@ async function backToText({ keepPlaying = false } = {}) {
     lastNoteReturn = null;
     showBackToText();
     return true;
+}
+
+// A note visit has its own way out, even if the note is on the book's final page.
+export function canReturnFromNote(structure) {
+    const note = noteOfReturn();
+    return Boolean(note && structure && (structure === note || structure.contains(note)));
 }
 
 function referencesInPhrase(elm) {
@@ -467,7 +476,8 @@ function buildUi() {
     back.textContent = 'Back to text';
     back.hidden = true;
     back.addEventListener('click', backToText);
-    document.body.append(phraseMenu, back);
+    document.body.append(phraseMenu);
+    escapeContainer.append(back);
 }
 
 // The UI creates these settings itself, so books converted before they existed get them too
@@ -486,6 +496,7 @@ function buildSettings() {
     select.value = referenceMode();
     select.addEventListener('change', () => {
         try { localStorage.setItem(REFERENCES_KEY, select.value); } catch { /* this session only */ }
+        waitSoundToggle.disabled = select.value !== 'pause';
         if (notePause) {
             endNotePause();
             pageAudio()?.play().catch(() => {});
@@ -497,11 +508,12 @@ function buildSettings() {
     const waitSoundRow = document.createElement('div');
     const waitSoundLabel = document.createElement('label');
     waitSoundLabel.htmlFor = 'webbook-note-wait-sound-toggle';
-    waitSoundLabel.textContent = 'Play ticking while waiting for notes';
+    waitSoundLabel.textContent = 'Play ticking sound while paused';
     const waitSoundToggle = document.createElement('input');
     waitSoundToggle.type = 'checkbox';
     waitSoundToggle.id = 'webbook-note-wait-sound-toggle';
     waitSoundToggle.checked = storedSetting(WAIT_SOUND_KEY, 'false') === 'true';
+    waitSoundToggle.disabled = select.value !== 'pause';
     waitSoundToggle.addEventListener('change', () => {
         try { localStorage.setItem(WAIT_SOUND_KEY, String(waitSoundToggle.checked)); } catch { /* this session only */ }
         if (!waitSoundToggle.checked) notePause?.stopSound();
@@ -621,9 +633,8 @@ export function initNotesInPlace() {
     // with "Go back to the text after a note" off. Skipping a note means leaving it, and after it
     // in the book is usually only the next note or chapter (user, 2026-11-10: narration stopped).
     document.addEventListener('webbook:skippast', e => {
-        const note = autoReturn?.note;
         const structure = e.detail?.structure;
-        if (!note || !structure || !(structure === note || structure.contains(note) || note.contains(structure))) return;
+        if (!canReturnFromNote(structure)) return;
         e.preventDefault();
         backToText({ keepPlaying: true });
     });

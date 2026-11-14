@@ -1,16 +1,17 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { JSDOM } from 'jsdom';
-import { initNotesInPlace, handleNarratedPhrase, hidePhraseNotes } from '../src/js/notes-in-place.js';
+import { initNotesInPlace, handleNarratedPhrase, hidePhraseNotes, canReturnFromNote } from '../src/js/notes-in-place.js';
 import { initMediaSessionControls } from '../src/js/media-session.js';
 import { runAction } from '../src/js/reader-actions.js';
 import { initInPlaceNavigation } from '../src/js/in-place-navigation.js';
 import { clearPlaybackException } from '../src/js/skippability.js';
+import { initEscapability, handleEscapableStructure, canActivateCurrentEscape } from '../src/js/escapability.js';
 
 test('the brief note wait ticks quietly and stops on completion, play, pause, seeking, following a note and navigation', async t => {
     const dom = new JSDOM(`<main><p id="phrase">Text<a href="#note" role="doc-noteref">1</a>.</p>
         <aside id="note" role="doc-footnote" class="epubtype_footnote"><p>A note.</p></aside><p id="next">Next phrase.</p></main>
-        <div id="webbook-escape-container"></div><section id="webbook-settings"></section>
+        <div id="webbook-escape-container"><button id="webbook-escape-btn" hidden><span id="webbook-escape-label"></span></button><span id="webbook-escape-status"></span></div><section id="webbook-settings"></section>
         <section id="webbook-toolbar"><audio src="chapter.mp3"><track></audio></section>`,
     { url: 'https://books.example/chapter.html' });
     for (const name of ['window', 'document', 'history', 'location', 'localStorage', 'Event', 'CustomEvent', 'Element', 'Option']) globalThis[name] = dom.window[name];
@@ -62,11 +63,14 @@ test('the brief note wait ticks quietly and stops on completion, play, pause, se
     Object.defineProperty(document.querySelector('track'), 'track', { value: { cues: [cue, noteCue, nextCue], activeCues: [cue] } });
     t.mock.timers.enable({ apis: ['setTimeout'] });
     try {
+        initEscapability();
         initNotesInPlace();
         initInPlaceNavigation();
         initMediaSessionControls();
         const toggle = document.getElementById('webbook-note-wait-sound-toggle');
         assert.equal(toggle.checked, false);
+        assert.equal(toggle.disabled, false);
+        assert.equal(document.querySelector(`label[for="${toggle.id}"]`).textContent, 'Play ticking sound while paused');
         document.body.dispatchEvent(new Event('click', { bubbles: true }));
         assert.equal(context, undefined, 'silent waits do not initialize Web Audio');
         const beginWait = async (expectedTicks = 4) => {
@@ -160,11 +164,44 @@ test('the brief note wait ticks quietly and stops on completion, play, pause, se
         select.dispatchEvent(new Event('change'));
         assert.ok(ticks.every(source => source.stops === 1));
         assert.equal(paused, false);
+        assert.equal(toggle.disabled, true);
+        assert.equal(toggle.checked, true);
+        assert.equal(localStorage.getItem('webbook-note-wait-sound'), 'true');
+        select.value = 'follow';
+        select.dispatchEvent(new Event('change'));
+        assert.equal(toggle.disabled, true);
+        select.value = 'pause';
+        select.dispatchEvent(new Event('change'));
+        assert.equal(toggle.disabled, false);
+        assert.equal(toggle.checked, true);
+        select.value = 'button';
+        select.dispatchEvent(new Event('change'));
         const before = sources.length;
         audio.currentTime = 4.94;
         await handleNarratedPhrase(document.getElementById('phrase'));
         t.mock.timers.tick(3000);
         assert.equal(sources.length, before, 'Keep reading makes no waiting ticks');
+
+        // A final-page note has no following cue or page, but Skip past must still
+        // use the note visit's return point and keep narration playing.
+        document.getElementById('next').remove();
+        const track = document.querySelector('track').track;
+        track.cues = [cue, noteCue];
+        Object.defineProperty(document.querySelector('track'), 'readyState', { value: 2 });
+        await beginWait();
+        runAction('go-to-phrase-note');
+        const nestedTable = document.createElement('table');
+        document.getElementById('note').append(nestedTable);
+        assert.equal(canReturnFromNote(nestedTable), false, 'leaving a nested structure is distinct from returning to text');
+        nestedTable.remove();
+        handleEscapableStructure(document.getElementById('note'), track, 1);
+        assert.equal(canActivateCurrentEscape(), true);
+        assert.equal(document.getElementById('webbook-escape-btn').hidden, true, 'a reference visit has only Back to text');
+        assert.equal(document.getElementById('webbook-back-to-text').hidden, false);
+        assert.equal(runAction('skip-past'), true);
+        assert.equal(history.state?.webbookNoteReturn, undefined);
+        assert.equal(paused, false);
+        assert.equal(audio.currentTime, 8);
     } finally {
         hidePhraseNotes();
         t.mock.timers.reset();

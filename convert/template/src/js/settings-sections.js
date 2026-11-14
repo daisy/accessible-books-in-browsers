@@ -68,7 +68,7 @@ export function initSettingsSections() {
         skip = document.createElement('fieldset');
         skip.id = 'webbook-skip-settings';
         const legend = document.createElement('legend');
-        legend.textContent = 'Skip during narration';
+        legend.textContent = 'Exclude from narration';
         skip.append(legend);
         for (const kind of ['pagebreak', 'footnote', 'sidebar']) {
             const row = panel.querySelector(`#webbook-skip-${kind}-toggle`)?.closest('div');
@@ -76,6 +76,8 @@ export function initSettingsSections() {
         }
         panel.append(skip);
     }
+    const skipLegend = skip?.querySelector('legend');
+    if (skipLegend) skipLegend.textContent = 'Exclude from narration';
     for (const [name, , selectors] of SECTIONS) {
         for (const selector of selectors) {
             for (const element of panel.querySelectorAll(selector)) {
