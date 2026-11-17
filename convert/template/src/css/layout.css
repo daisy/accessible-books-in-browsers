@@ -49,23 +49,24 @@ body {
 
 /* text spacing settings (text-spacing.js): set only when the reader chooses a step, and then over
    the book's own CSS. Line spacing brings paragraph spacing (WCAG 1.4.12: 2 times the font size). */
-:root[data-webbook-line-height] main,
-:root[data-webbook-line-height] main * {
+:root:not([data-webbook-appearance="published"])[data-webbook-line-height] main,
+:root:not([data-webbook-appearance="published"])[data-webbook-line-height] main * {
     line-height: var(--webbook-line-height) !important;
 }
-:root[data-webbook-line-height] main p {
+:root:not([data-webbook-appearance="published"])[data-webbook-line-height] main p {
     margin-block-end: 2em !important;
 }
-:root[data-webbook-letter-spacing] main,
-:root[data-webbook-letter-spacing] main * {
+:root:not([data-webbook-appearance="published"])[data-webbook-letter-spacing] main,
+:root:not([data-webbook-appearance="published"])[data-webbook-letter-spacing] main * {
     letter-spacing: var(--webbook-letter-spacing) !important;
 }
-:root[data-webbook-word-spacing] main,
-:root[data-webbook-word-spacing] main * {
+:root:not([data-webbook-appearance="published"])[data-webbook-word-spacing] main,
+:root:not([data-webbook-appearance="published"])[data-webbook-word-spacing] main * {
     word-spacing: var(--webbook-word-spacing) !important;
 }
 
 /* publication text */
+@layer reader-base {
 main {
     grid-area: main;
     box-sizing: border-box;
@@ -134,6 +135,28 @@ main {
     }
 }
 
+}
+/* The frame stays with the reader even when publisher typography is retained. */
+main { position: relative; isolation: isolate; z-index: 0; grid-area: main; box-sizing: border-box; width: 100%; min-width: 0; margin: auto; padding-bottom: 9rem; }
+:root:not([data-webbook-appearance="published"])[data-webbook-line-length] main { max-width: var(--webbook-line-length, 45rem); }
+:root:not([data-webbook-appearance="published"])[data-webbook-font-family] main { font-family: var(--webbook-main-font-family); }
+:root:not([data-webbook-appearance="published"])[data-webbook-font-size] main { font-size: var(--webbook-main-font-size) !important; }
+/* Publisher defaults sit below its stylesheet. Every saved reader value stays available,
+   but cannot influence the publication while the design is on. */
+:root[data-webbook-appearance="published"] {
+    --webbook-main-font-family: serif !important;
+    --webbook-main-font-size: 1rem !important;
+    --webbook-font-scale: 1 !important;
+    --webbook-line-length: 100% !important;
+}
+/* A publisher percentage/em font starts from the browser's root size, not the UI's
+   larger body text. Reader controls keep their own inherited typography. */
+:root[data-webbook-appearance="published"] body { font-size: 1rem; }
+:root[data-webbook-appearance="published"] body > :not(main) { font-size: var(--size-step-1); }
+@layer reader-base {
+    :root[data-webbook-appearance="published"] main { font-family: serif; font-size: 1rem; line-height: normal; color: #000; background: #fff; max-width: none; }
+    :root[data-webbook-appearance="published"] main :not([data-webbook-reader], .webbook, .webbook *) { all: revert-layer; }
+}
 /* Publication tables remain intact and scroll instead of widening a phone-sized page. JS removes
    the region and tab stop when the table fits, but the wrapper works without JS too. */
 .webbook-table-scroll {
@@ -147,8 +170,8 @@ main {
 /* the reader's text and background colors (page-colors.js): one palette for the publication and
    the reader UI. As under forced colors, backgrounds inside the text go, so a sidebar's own can't
    leave the chosen text unreadable. */
-:root[data-webbook-colors],
-:root[data-webbook-colors] body {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors],
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] body {
     --theme-bg: var(--webbook-page-bg);
     --theme-fg: var(--webbook-page-fg);
     --webbook-chrome-bg: var(--webbook-page-bg);
@@ -159,23 +182,41 @@ main {
     --webbook-search-highlight-fg: var(--webbook-page-search-fg);
     color-scheme: var(--webbook-page-scheme);
 }
-:root[data-webbook-colors] body {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] body {
     background: var(--webbook-page-bg);
     color: var(--webbook-page-fg);
 }
-:root[data-webbook-colors] :is(main, main :not(svg *, img)) {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] :is(main, main :not(svg *, img)) {
     color: var(--webbook-page-fg) !important;
     background-color: transparent !important;
     background-image: none !important;
     border-color: color-mix(in srgb, var(--webbook-page-fg) 40%, transparent) !important;
 }
+/* As published, the reader's UI takes the book's own colours (published-colors.js), so the page is one
+   surface. The text inside <main> keeps the publisher's colours. */
+:root[data-webbook-appearance="published"][data-webbook-published-colors],
+:root[data-webbook-appearance="published"][data-webbook-published-colors] body {
+    --theme-bg: var(--webbook-published-bg);
+    --theme-fg: var(--webbook-published-fg);
+    --webbook-chrome-bg: var(--webbook-published-bg);
+    --webbook-chrome-fg: var(--webbook-published-fg);
+    --webbook-muted-fg: var(--webbook-published-muted);
+    --webbook-focus-color: var(--webbook-published-focus);
+    --webbook-search-highlight-bg: var(--webbook-published-search-bg);
+    --webbook-search-highlight-fg: var(--webbook-published-search-fg);
+    color-scheme: var(--webbook-published-scheme);
+}
+:root[data-webbook-appearance="published"][data-webbook-published-colors] body {
+    background: var(--webbook-published-bg);
+    color: var(--webbook-published-fg);
+}
 /* the browser's own focus ring may not stand out on the chosen background (WCAG 1.4.11) */
-:root[data-webbook-colors] main :focus-visible {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] main :focus-visible {
     outline: 3px solid var(--webbook-focus-color) !important;
     outline-offset: 2px;
 }
 /* links can't be told apart by color any more (WCAG 1.4.1) */
-:root[data-webbook-colors] main a:any-link {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] main a:any-link {
     text-decoration-line: underline !important;
 }
 /* small screens */
@@ -184,6 +225,13 @@ main {
         padding-left: var(--size-step-0);
         padding-right: var(--size-step-0);
     }
+}
+/* The publisher styles has no line length, so its text would run up to the app's edges: a little room
+   left and right at every width (user, 2026-11-16). Physical sides, also in vertical text. Unlayered,
+   so the publisher's CSS can't take it away. */
+:root[data-webbook-appearance="published"] main {
+    padding-left: var(--size-step-0);
+    padding-right: var(--size-step-0);
 }
 
 /* Reading without JavaScript. The reader's script is running when <html> has webbook-dark or

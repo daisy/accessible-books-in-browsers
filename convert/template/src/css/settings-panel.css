@@ -1,3 +1,11 @@
+.webbook-appearance-hidden { display: none !important; }
+#webbook-settings #webbook-publisher-appearance { margin: 0; padding: 0; border: 0; gap: .25rem; }
+/* A hint, like the panel's "These settings apply to every book" */
+#webbook-publisher-appearance-note { margin: .25rem 0 0; color: var(--webbook-muted-fg); }
+#webbook-publisher-appearance-scope { margin: 0 0 .25rem; color: var(--webbook-muted-fg); }
+#webbook-settings #webbook-publisher-appearance > div { display: flex; align-items: center; justify-content: flex-start; gap: .6rem; }
+#webbook-publisher-appearance input { inline-size: 1.25rem; block-size: 1.25rem; }
+#webbook-publisher-appearance label { padding-block: .5rem; }
 /* Settings stay open, with headings for screen readers and links for short screens. */
 #webbook-settings:popover-open {
     margin: 0;

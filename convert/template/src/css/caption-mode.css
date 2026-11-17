@@ -42,3 +42,10 @@ body.webbook-caption-mode #webbook-caption-view {
         font-size: calc(1.5rem * var(--webbook-font-scale, 1));
     }
 }
+/* Caption mode keeps working while the publisher design pauses text preferences. */
+:root[data-webbook-appearance="published"] #webbook-caption-text {
+    font-family: system-ui;
+    line-height: 1.25;
+    letter-spacing: normal;
+    word-spacing: normal;
+}

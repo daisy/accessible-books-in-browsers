@@ -15,6 +15,7 @@ for book do
         continue
     fi
     (
+        # Every demo includes the publisher styles (user, 2026-11-16)
         if node build/index.js convert "../source-epubs/$book/" "../demos/$book" template --audio-cache \
             > "$logs/$book.log" 2>&1
         then echo "$book: done"

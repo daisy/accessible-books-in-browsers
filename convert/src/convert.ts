@@ -18,6 +18,7 @@ import * as fileio from './file-io.js';
 import { ConversionReport, writeConversionReport } from './conversion-report.js';
 import { rewriteRenamedFragment } from './markup-cleanup.js';
 import { isExternalHref } from './ids.js';
+import { createHash } from 'crypto';
 import { JSDOM } from 'jsdom';
 import { runOptionalChecks } from './optional-checks.js';
 import { audioCleanupSettings, cleanupFilters, type AudioEnhancement, type AudioCleanupSettings } from './audio-cleanup.js';
@@ -31,11 +32,8 @@ export type ConvertOptions = {
     headingTitles?: boolean;
     identifier?: string;
     includeNonLinear?: boolean;
-    splitChapters?: boolean;
-    keepAllIds?: boolean;
+    publisherStyles?: boolean;
     language?: string;
-    markupCleanup?: boolean;
-    responsiveTables?: boolean;
     smallAudio?: boolean;
     check?: boolean;
 };
@@ -55,11 +53,10 @@ async function convert(input: string, output: string, template: string, options:
             includeNonLinear: options.includeNonLinear,
             warn: message => winston.warn(message)
         });
-        if (options.splitChapters === false) winston.info('Chapter splitting is off');
         const site = await buildSiteModel(epub, {
             identifier: options.identifier,
             headingTitles: options.headingTitles !== false,
-            splitChapters: options.splitChapters !== false,
+            splitChapters: true,
             language: options.language,
             warn: message => winston.warn(message),
             onSplit: (sourcePath, pieces) => winston.info(
@@ -81,16 +78,14 @@ async function convert(input: string, output: string, template: string, options:
             ...(options.language ? { override: site.metadata.language } : {}),
             effective: site.metadata.language
         }, {
-            'split chapters': options.splitChapters !== false,
+            ...(options.publisherStyles === false ? { '--no-publisher-styles': true } : { 'publisher styles': true }),
             'heading titles': options.headingTitles !== false,
-            'markup cleanup': options.markupCleanup !== false,
-            'responsive tables': options.responsiveTables !== false,
             'small audio': options.smallAudio === true,
             'audio cleanup': options.audioCleanup !== false,
             'audio enhancements': options.audioEnhance?.join(',') || false,
-            'keep all ids': options.keepAllIds === true,
             'optional checks': options.check === true
         });
+        await imageRegistry.configureFonts(epub.basedir, epub.packageFilename, report);
         const audioCache = openAudioCache(options.audioCache, site.bookId);
         const cleanup = audioCleanupSettings(options.audioCleanup !== false, options.audioEnhance ?? []);
         const accessibility = await readAccessibilityInfo(epub.packageFilename);
@@ -136,11 +131,12 @@ async function convert(input: string, output: string, template: string, options:
             const mediaSegments = mediaSegmentsByPage.get(page.outputFilename) ?? [];
             const narratedTargetIds = mediaSegments.map(segment => utils.getFrag(segment.textSrc)).filter(Boolean);
             const content = await transformContent(page, site, imageRegistry, searchData, narratedTargetIds,
-                referencedIdsByPage.get(page.outputFilename) ?? [], options.keepAllIds === true, {
-                    cleanup: options.markupCleanup !== false,
+                referencedIdsByPage.get(page.outputFilename) ?? [], false, {
+                    publisherStyles: options.publisherStyles !== false,
+                    cleanup: true,
                     report,
                     reservedIds: renderer.reservedContentIds(),
-                    responsiveTables: options.responsiveTables !== false
+                    responsiveTables: true
                 });
             const audio = await createAudioForPage(
                 page, outputPaths, mediaSegments, audioCache, content.narrationSelectors, options.smallAudio === true, cleanup
@@ -152,13 +148,27 @@ async function convert(input: string, output: string, template: string, options:
 
         const contentDocuments = rewriteRenamedTargets(site, transformed, renamesByPage);
 
+        const hasPublished = Array.from(transformed.values()).some(result => Boolean(result.content.publisherCss));
+        const writtenDesigns = new Map<string, string>();
         for (const page of site.pages) {
             const result = transformed.get(page.outputFilename)!;
+            let publisherHref = '';
+            if (result.content.publisherCss) {
+                const digest = createHash('sha256').update(result.content.publisherCss).digest('hex').slice(0, 20);
+                publisherHref = `styles/publisher-${digest}.css`;
+                if (!writtenDesigns.has(digest)) {
+                    await fs.ensureDir(path.join(outputPaths.stagingDir, 'styles'));
+                    await fs.writeFile(outputPath(outputPaths, publisherHref), result.content.publisherCss);
+                    writtenDesigns.set(digest, publisherHref);
+                }
+            }
             pageAudioSources.set(page.outputFilename, { audio: result.audio, bodyHtml: result.content.bodyHtml });
             const html = renderer.renderPage(site, page, result.content, result.audio, {
                 coverHref: coverAsset?.href ?? '',
                 narratedPages,
-                accessibility
+                accessibility,
+                publisherHref,
+                hasPublished
             });
             await fs.writeFile(outputPath(outputPaths, page.outputFilename), html);
         }

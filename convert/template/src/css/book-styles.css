@@ -1,0 +1,76 @@
+:root:not([data-webbook-appearance="published"]) {
+/* Meaningful publisher styles translated into reader-controlled classes. */
+.webbook-style-italic { font-style: italic; }
+.webbook-style-not-italic { font-style: normal; }
+.webbook-style-bold { font-weight: 700; }
+.webbook-style-unbold { font-weight: 400; }
+.webbook-style-small-caps { font-variant-caps: small-caps; }
+.webbook-style-no-small-caps { font-variant-caps: normal; }
+.webbook-style-underline { text-decoration-line: underline; }
+.webbook-style-strike { text-decoration-line: line-through; }
+.webbook-style-underline.webbook-style-strike { text-decoration-line: underline line-through; }
+.webbook-style-super { vertical-align: super; font-size: .8em; }
+.webbook-style-sub { vertical-align: sub; font-size: .8em; }
+.webbook-style-center { text-align: center; }
+.webbook-style-end { text-align: end; }
+.webbook-style-start { text-align: start; }
+.webbook-style-indent-1 { margin-inline-start: min(1em, 20%); }
+.webbook-style-indent-2 { margin-inline-start: min(2em, 20%); }
+.webbook-style-indent-3 { margin-inline-start: min(3em, 20%); }
+.webbook-style-indent-4 { margin-inline-start: min(4em, 20%); }
+.webbook-style-hang { padding-inline-start: min(2em, 20%); text-indent: calc(-1 * min(2em, 20%)); --webbook-text-indent: 0px; }
+.webbook-style-pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.webbook-style-uppercase { text-transform: uppercase; }
+.webbook-style-uppercase.webbook-style-fullwidth { text-transform: uppercase full-width; }
+.webbook-style-no-transform { text-transform: none; }
+.webbook-style-list-upper-roman { list-style-type: upper-roman; }
+.webbook-style-list-lower-roman { list-style-type: lower-roman; }
+.webbook-style-list-upper-alpha { list-style-type: upper-alpha; }
+.webbook-style-list-lower-alpha { list-style-type: lower-alpha; }
+.webbook-style-list-none { list-style-type: none; }
+.webbook-style-list-decimal { list-style-type: decimal; }
+.webbook-style-list-disc { list-style-type: disc; }
+.webbook-style-list-circle { list-style-type: circle; }
+.webbook-style-list-square { list-style-type: square; }
+.webbook-box, main .epubtype_sidebar {
+    border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+    background-color: color-mix(in srgb, var(--theme-fg) 5%, var(--theme-bg));
+    padding: 1em; margin-block: 1em; margin-inline: 0; box-sizing: border-box; max-inline-size: 100%;
+    overflow-wrap: anywhere;
+}
+@media (forced-colors: active) {
+    .webbook-box, main .epubtype_sidebar { border-color: CanvasText; background: Canvas; color: CanvasText; }
+}
+
+.webbook-style-no-text-indent { text-indent: 0; --webbook-text-indent: 0px; }
+.webbook-style-text-indent-1 { text-indent: min(1em, 20%); --webbook-text-indent: min(1em, 20%); }
+.webbook-style-padding-1 { padding-inline-start: min(1em, 20%); }
+.webbook-style-text-indent-2 { text-indent: min(2em, 20%); --webbook-text-indent: min(2em, 20%); }
+.webbook-style-padding-2 { padding-inline-start: min(2em, 20%); }
+.webbook-style-text-indent-3 { text-indent: min(3em, 20%); --webbook-text-indent: min(3em, 20%); }
+.webbook-style-padding-3 { padding-inline-start: min(3em, 20%); }
+.webbook-style-text-indent-4 { text-indent: min(4em, 20%); --webbook-text-indent: min(4em, 20%); }
+.webbook-style-padding-4 { padding-inline-start: min(4em, 20%); }
+
+/* An inline image can fill a paragraph's width, so its first-line indent must be
+   deducted from that space. Otherwise a formula/thumbnail overflows at large text. */
+main :is(img, svg, video):not(.webbook-copy-button *, a.webbook *) {
+    max-inline-size: min(100%, calc(100% - var(--webbook-text-indent, 0px)));
+}
+
+/* Physical publisher sides remain physical in RTL and vertical text. */
+.webbook-style-left { text-align: left; }
+.webbook-style-right { text-align: right; }
+.webbook-style-margin-left-1 { margin-left: min(1em, 20%); }
+.webbook-style-padding-left-1 { padding-left: min(1em, 20%); }
+.webbook-style-margin-left-2 { margin-left: min(2em, 20%); }
+.webbook-style-padding-left-2 { padding-left: min(2em, 20%); }
+.webbook-style-margin-left-3 { margin-left: min(3em, 20%); }
+.webbook-style-padding-left-3 { padding-left: min(3em, 20%); }
+.webbook-style-margin-left-4 { margin-left: min(4em, 20%); }
+.webbook-style-padding-left-4 { padding-left: min(4em, 20%); }
+.webbook-publisher-only { display: none !important; }
+}
+.webbook-style-hidden { display: none !important; }
+.webbook-style-invisible { visibility: hidden !important; }
+.webbook-style-visible { visibility: visible !important; }

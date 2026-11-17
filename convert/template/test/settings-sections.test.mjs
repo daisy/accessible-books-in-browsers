@@ -16,8 +16,11 @@ test('every template keeps controls under ordered h3 headings below Settings', (
     for (const page of ['index.html', 'chapter-1.html', 'chapter-2.html', 'chapter-3.html']) {
         const dom = setup(page);
         const panel = document.getElementById('webbook-settings');
+        // Appearance comes first, hidden in templates (no publisher styles)
+        assert.equal(panel.querySelector('[data-settings-section="appearance"]').hidden, true);
+        assert.equal(panel.querySelector('[data-settings-link="appearance"]').hidden, true);
         assert.deepEqual(Array.from(panel.querySelectorAll('h2, h3'), h => [h.tagName, h.textContent]), [
-            ['H2', 'Settings'], ...['Colors', 'Text', 'Narration', 'Notes', 'Reading position', 'Keyboard', 'All settings'].map(title => ['H3', title])
+            ['H2', 'Settings'], ...['Appearance option', 'Colors', 'Text', 'Narration', 'Notes', 'Reading position', 'Keyboard', 'All settings'].map(title => ['H3', title])
         ]);
         for (const [id, section] of [['webbook-font-family-options', 'text'], ['webbook-color-picker', 'colors'], ['webbook-caption-mode-toggle', 'narration']]) assert.equal(document.getElementById(id).closest('[data-settings-section]').dataset.settingsSection, section);
         assert.equal(document.getElementById('webbook-skip-footnote-toggle').closest('fieldset').querySelector('legend').textContent, 'Exclude from narration');
@@ -39,7 +42,7 @@ test('row order does not depend on module startup order', () => {
         'webbook-font-family', 'webbook-font-size', 'webbook-text-spacing', 'webbook-dialog-blur-toggle', 'webbook-toolbar-auto-hide'
     ]);
     initSettingsSections();
-    assert.equal(document.querySelectorAll('.webbook-settings-section').length, 7);
+    assert.equal(document.querySelectorAll('.webbook-settings-section').length, 8);
     dom.window.close();
 });
 

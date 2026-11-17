@@ -79,8 +79,9 @@ declare module 'vtt-creator' {
 
 declare module 'css' {
     type Node = { type: string; [key: string]: unknown };
-    type Stylesheet = { type: 'stylesheet'; stylesheet?: { rules: Node[] } };
+    type Stylesheet = { type: 'stylesheet'; stylesheet?: { rules: Node[]; parsingErrors?: Array<{ reason: string }> } };
     function parse(code: string, options?: { silent?: boolean; source?: string }): Stylesheet;
-    const _default: { parse: typeof parse };
+    function stringify(tree: Stylesheet): string;
+    const _default: { parse: typeof parse; stringify: typeof stringify };
     export default _default;
 }

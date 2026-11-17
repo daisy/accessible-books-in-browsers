@@ -124,7 +124,7 @@ test('a repeated id stays on its first element, and a repeated structure gets it
     assert.equal(resolveNarrationSelector(document, selectors.get('phrase')), document.querySelector('span'));
 });
 
-test('with --keep-all-ids, repeated ids are renamed as before', () => {
+test('in original mode, repeated ids are renamed as before', () => {
     const { document, renamed } = renameAfterStructureIds(
         '<p id="twice">One</p><p id="twice">Two</p>', [], [], true);
     assert.deepEqual(Array.from(document.querySelectorAll('p'), p => p.id), ['twice', 'twice-content']);

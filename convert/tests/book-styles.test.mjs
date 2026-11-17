@@ -80,13 +80,8 @@ test('full-width, speech hints, string marks counted, and direction from the bod
     assert(report.data().changes.some(change => change.kind.includes('not kept') && change.count === 1));
 });
 
-test('alternate stylesheets tagged horizontal or vertical are offered, the preferred first', () => {
-    const { result } = run('<html><body><p>x</p></body></html>', [
-        'html { -epub-writing-mode: vertical-rl }',
-        { css: 'html { writing-mode: horizontal-tb }', alternateTags: ['horizontal'] }]);
+test('the preferred writing mode is kept without alternate-style metadata', () => {
+    const { result } = run('<html><body><p>x</p></body></html>', ['html { -epub-writing-mode: vertical-rl }']);
     assert.equal(result.writingMode, 'vertical-rl');
-    assert.deepEqual(result.writingModes, ['vertical-rl', 'horizontal-tb']);
-    const plain = run('<html><body><p>x</p></body></html>', ['p { color: red }']).result;
-    assert.equal(plain.writingMode, undefined);
-    assert.equal(plain.writingModes, undefined);
+    assert.equal(result.writingModes, undefined);
 });

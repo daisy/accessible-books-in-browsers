@@ -1,3 +1,4 @@
+:root:not([data-webbook-appearance="published"]) {
 /* Writing modes and the book's writing styles (plan 28). The converter keeps what a book states
    about how its text is written (its -epub- properties and their standard forms) as these
    classes and <html> data attributes; this is the standard CSS for them. */
@@ -15,9 +16,6 @@
 .webbook-style-glyphs-upright { text-orientation: upright; }
 .webbook-style-glyphs-sideways { text-orientation: sideways; }
 .webbook-style-glyphs-mixed { text-orientation: mixed; }
-.webbook-style-horizontal { writing-mode: horizontal-tb; }
-.webbook-style-vertical-rl { writing-mode: vertical-rl; }
-.webbook-style-vertical-lr { writing-mode: vertical-lr; }
 
 /* Emphasis marks (bōten): beside each character, the East Asian counterpart of italics. In the
    text's colour: the reader's colours own colour, and marks in another colour could fail contrast. */
@@ -44,6 +42,11 @@
 .webbook-style-emphasis-under-left { -webkit-text-emphasis-position: under left; text-emphasis-position: under left; }
 /* Full-width forms of letters and digits (Chrome doesn't support it, and shows them as they are) */
 .webbook-style-fullwidth { text-transform: full-width; }
+
+}
+.webbook-style-horizontal { writing-mode: horizontal-tb; }
+.webbook-style-vertical-rl { writing-mode: vertical-rl; }
+.webbook-style-vertical-lr { writing-mode: vertical-lr; }
 
 /* A language's line-breaking rules, for the whole page */
 :root[data-webbook-line-break="strict"] main { line-break: strict; }
@@ -101,10 +104,10 @@
     padding-block-end: max(3rem, env(safe-area-inset-left));
 }
 /* Each character is about 1em tall, so the steps are characters a column */
-:root.webbook-vertical[data-webbook-line-length="narrow"] main { --webbook-column-length: 20em; }
+:root:not([data-webbook-appearance="published"]).webbook-vertical[data-webbook-line-length="narrow"] main { --webbook-column-length: 20em; }
 :root.webbook-vertical:not([data-webbook-line-length]) main,
-:root.webbook-vertical[data-webbook-line-length="medium"] main { --webbook-column-length: 30em; }
-:root.webbook-vertical[data-webbook-line-length="wide"] main { --webbook-column-length: 100%; }
+:root:not([data-webbook-appearance="published"]).webbook-vertical[data-webbook-line-length="medium"] main { --webbook-column-length: 30em; }
+:root:not([data-webbook-appearance="published"]).webbook-vertical[data-webbook-line-length="wide"] main { --webbook-column-length: 100%; }
 :root.webbook-vertical main {
     img, svg, video {
         max-width: none;

@@ -97,6 +97,9 @@ test('reset removes preferences and retains reading state and unrelated storage'
     for (const key of Object.keys(SETTINGS_DEFINITIONS)) store.setItem(key, 'saved');
     const untouched = { 'webbook-resume:book': 'position', 'webbook-autoplay': 'true', 'another-app': 'value' };
     for (const [key, value] of Object.entries(untouched)) store.setItem(key, value);
+    // Each book's Appearance choice isn't exported, but Reset clears it
+    store.setItem('webbook-appearance:book-a', 'published');
+    store.setItem('webbook-appearance:book-b', 'settings');
     resetSettings(store);
     assert.deepEqual(snapshot(store), untouched);
 });

@@ -1,3 +1,4 @@
+@layer reader-base {
 :root {
     --size-step-0: 1rem;
     --size-step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
@@ -71,4 +72,6 @@ blockquote {
 
 blockquote {
     max-width: 50ch;
+}
+
 }

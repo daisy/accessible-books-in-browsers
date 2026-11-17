@@ -10,6 +10,8 @@ import { validateTemplateContract } from './template-contract.js';
 export type RenderOptions = {
     // The source EPUB's accessibility claims, for the About panel
     accessibility?: AccessibilitySection[];
+    publisherHref?: string;
+    hasPublished?: boolean;
     coverHref: string;
     // Output filenames of the pages that have narration
     narratedPages: Set<string>;
@@ -45,6 +47,14 @@ class TemplateRenderer {
     ): string {
         const doc = this.cloneTemplateDocument();
         doc.documentElement.setAttribute('lang', site.metadata.language);
+        if (options.hasPublished) doc.documentElement.setAttribute('data-webbook-has-published', '');
+        if (options.publisherHref) {
+            const link = doc.createElement('link');
+            link.rel = 'stylesheet';
+            link.setAttribute('data-webbook-publisher-style', '');
+            link.href = options.publisherHref;
+            doc.head.append(link);
+        }
         setText(doc.querySelector('title'), documentTitle(site, page, content));
         doc.querySelector('meta[name="webbook-book-id"]')?.setAttribute('content', site.bookId);
 
@@ -79,7 +89,6 @@ function applyWritingStylesToPage(doc: Document, main: Element, site: SiteModel,
     const styles = content.writingStyles;
     const root = doc.documentElement;
     if (styles.writingMode) root.setAttribute('data-webbook-writing-mode', styles.writingMode);
-    if (styles.writingModes) root.setAttribute('data-webbook-writing-modes', styles.writingModes.join(' '));
     if (styles.lineBreak) root.setAttribute('data-webbook-line-break', styles.lineBreak);
     if (styles.wordBreak) root.setAttribute('data-webbook-word-break', styles.wordBreak);
     if (site.metadata.pageProgression === 'rtl') root.setAttribute('data-webbook-page-progression', 'rtl');

@@ -1,4 +1,5 @@
 import path from 'path';
+import { PublisherSelectors } from './publisher-selectors.js';
 import { JSDOM } from 'jsdom';
 import type { ImageAssetRegistry } from './assets.js';
 import type { SiteModel, SitePage } from './model.js';
@@ -13,6 +14,7 @@ import { cleanPublicationMarkup, renameCollidingIds } from './markup-cleanup.js'
 import { cssReferencedIds, isExternalHref } from './ids.js';
 import type { ConversionReport } from './conversion-report.js';
 import { cleanLeftoverAnchors } from './conversion-rules.js';
+import { publisherStyles, captureInlineStyles } from './publisher-styles.js';
 import { applyWritingStyles, readPageStylesheets, type WritingStyles } from './book-styles.js';
 
 export type TransformedContent = {
@@ -22,9 +24,11 @@ export type TransformedContent = {
     narrationSelectors: Map<string, NarrationSelector>;
     renamedIds: Map<string, string>;
     writingStyles: WritingStyles;
+    publisherCss?: string;
 };
 
 export type ContentCleanupOptions = {
+    publisherStyles?: boolean;
     cleanup: boolean;
     report: ConversionReport;
     reservedIds: Set<string>;
@@ -47,18 +51,36 @@ async function transformContent(
 
     stripXmlNamespaceAttributes(doc);
     // On the whole source page, before splitting and cleanup, so the book's selectors match as written
-    const writingStyles = applyWritingStyles(doc, await readPageStylesheets(doc, page.sourcePath),
-        { report: cleanupOptions?.report, page: page.outputFilename });
+    const includePublisherStyles = cleanupOptions?.publisherStyles !== false;
+    const sheets = await readPageStylesheets(doc, page.sourcePath, message => cleanupOptions?.report.warning('Book stylesheet', message, page.outputFilename));
+    const rootIds = [doc.documentElement.id, doc.body.id].filter(Boolean);
+    const stylesheetIds = sheets.flatMap(sheet => cssReferencedIds(sheet.css));
+    const selectors = includePublisherStyles ? new PublisherSelectors(doc, sheets, message => cleanupOptions?.report.warning('Publisher styles selector', message, page.outputFilename)) : null;
+    const writingStyles = applyWritingStyles(doc, sheets,
+        { report: cleanupOptions?.report, page: page.outputFilename, repaired: true });
+    const inlineStyles = selectors ? captureInlineStyles(doc) : [];
+    if (!selectors) doc.querySelectorAll('[style]').forEach(elm => { if (!elm.closest('svg, math')) elm.removeAttribute('style'); });
+    let publisherCss: string | undefined;
+    // The rewritten head style is the only publisher CSS in the output; an unscoped
+    // style/link in the source body must not be able to style reader controls.
+    doc.querySelectorAll('style, link[rel~="stylesheet" i]').forEach(elm => { if (!elm.closest('svg, math')) elm.remove(); });
+    for (const name of Array.from(doc.documentElement.classList)) doc.body.classList.add(name);
+    for (const elm of Array.from(doc.querySelectorAll('*'))) {
+        const types = elm.getAttribute('epub:type');
+        if (types) elm.setAttribute('data-webbook-epub-type', types);
+    }
     translateEpubTypes(doc);
     rewriteImageReferences(doc, page, imageRegistry);
     ensureHeadingIds(doc);
+    selectors?.checkpoint('cleanup');
     if (page.split) extractDocumentPiece(doc, page.split, page.split.piece);
+    selectors?.checkpoint('splitting');
     removeIdsOwnedByOtherPages(doc, page, site);
     rewriteInternalLinks(doc, page, site);
     const navigationIds = [
         ...navigationFragmentIds(site, page.outputFilename),
         ...externallyReferencedIds,
-        ...await stylesheetReferencedIds(doc, page.sourcePath)
+        ...stylesheetIds
     ];
     const markupOptions = cleanupOptions ? {
         bookLanguage: site.metadata.language,
@@ -67,7 +89,9 @@ async function transformContent(
         protectedIds: navigationIds,
         narratedTargetIds,
         responsiveTables: cleanupOptions.responsiveTables,
-        report: cleanupOptions.report
+        report: cleanupOptions.report,
+        publisherStyled: selectors ? (elm: Element) => selectors.styledElement(elm) || elm.hasAttribute('data-webbook-inline-style') : undefined,
+        onTransform: (stage: 'cleanup' | 'table wrapper') => selectors?.checkpoint(stage)
     } : undefined;
     if (markupOptions) cleanPublicationMarkup(doc, markupOptions);
     if (markupOptions?.cleanup) {
@@ -76,51 +100,54 @@ async function transformContent(
         markupOptions.report.change('Empty heading permalinks omitted', page.outputFilename, emptyHeadings);
     }
     selfAnchorHeadings(doc, cleanupOptions?.cleanup === true);
+    selectors?.checkpoint('permalink');
     if (page.split && cleanupOptions) {
         const cut = page.split.cutIds[page.split.piece - (page.split.leading ? 1 : 0)];
         if (cut && page.split.blockBoundaryIds?.includes(cut)) {
             cleanupOptions.report.change('Chapter boundaries kept outside blocks', page.outputFilename);
         }
     }
+    // The shell owns #webbook-main. Keep referenced source-root ids as top anchors,
+    // before building narration paths or freezing child/sibling selectors.
+    for (const root of [doc.documentElement, doc.body]) {
+        if (!root.id) continue;
+        const anchor = doc.createElement('span'); anchor.id = root.id;
+        root.removeAttribute('id'); doc.body.prepend(anchor);
+    }
+    selectors?.checkpoint('cleanup');
     if (searchData) collectSearchPassages(searchData, doc, page, narratedTargetIds);
     // The CSS paths in narration selectors are worked out here, on the cleaned-up markup, which
     // is what the book contains
     const narrationSelectors = applyStructureIds(doc, narratedTargetIds, navigationIds, keepAllIds,
         markupOptions?.cleanup ? targets => cleanLeftoverAnchors(doc, markupOptions, targets) : undefined);
     // After the structure-id pass, so only ids that stay in the book are renamed
-    const renamedIds = cleanupOptions?.cleanup
+    const renamedIds = cleanupOptions
         ? renameCollidingIds(doc, narrationSelectors, cleanupOptions.reservedIds, page.outputFilename, cleanupOptions.report)
         : new Map<string, string>();
+    if (selectors) {
+        selectors.checkpoint('cleanup');
+        const counts = selectors.finish();
+        cleanupOptions?.report.publisherRules(page.outputFilename, counts);
+        publisherCss = await publisherStyles(doc, sheets, imageRegistry,
+            message => cleanupOptions?.report.warning('Book stylesheet', message, page.outputFilename),
+            page.sourcePath, { rootIds, renamedIds, selectors: selectors, inlineStyles, page: page.outputFilename });
+
+    }
+    // HTML-root classes frozen after cleanup must reach the publication's main element too.
+    for (const name of Array.from(doc.documentElement.classList)) doc.body.classList.add(name);
     if (searchData) updateNarratedSearchSelectors(searchData, page.index, narrationSelectors);
 
     return {
-        bodyAttributes: page.split
-            ? Array.from(doc.body.attributes, attribute => ({ name: attribute.name, value: attribute.value }))
-            : [],
+        bodyAttributes: Array.from(doc.body.attributes, attribute => ({ name: attribute.name, value: attribute.value })),
         bodyHtml: doc.body.innerHTML,
         title: doc.querySelector('title')?.textContent?.trim() ?? '',
         narrationSelectors,
         renamedIds,
-        writingStyles
+        writingStyles,
+        publisherCss
     };
 }
 
-async function stylesheetReferencedIds(doc: Document, sourcePath: string): Promise<string[]> {
-    const ids = new Set<string>();
-    for (const link of Array.from(doc.querySelectorAll('link[rel~="stylesheet"][href]'))) {
-        const href = (link.getAttribute('href') || '').split(/[?#]/)[0];
-        if (!href || isExternalHref(href)) continue;
-        try {
-            const cssPath = path.resolve(path.dirname(sourcePath), decodeURIComponent(href));
-            const css = await fileio.readToString(cssPath);
-            cssReferencedIds(css).forEach(id => ids.add(id));
-        } catch {
-            // Resource rewriting reports missing publication assets. An unreadable stylesheet
-            // must not make this final id-retention pass fail independently.
-        }
-    }
-    return Array.from(ids);
-}
 
 function navigationFragmentIds(site: SiteModel, outputFilename: string): string[] {
     const entries: Array<{ href: string }> = [...site.pageList];

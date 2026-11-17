@@ -246,13 +246,20 @@ npm run convert -- <input> <output> template [options]
 `<input>` is an EPUB file or an unzipped EPUB folder, `<output>` the folder to write the book to,
 and `template` the reader (`convert/template`). Only valid EPUBs are accepted.
 
+Every book has one repaired content tree and two looks. **Appearance**, at the top of Settings,
+lets you choose **My settings** (the default) or **As published**, using the publisher's CSS.
+Alt+Shift+D switches between them; the shortcut is remappable and the choice is global.
+Switching preserves the words, reading position and uninterrupted narration. As published hides
+color, font, text size, spacing, line length and writing direction controls; their saved choices
+return with My settings. Highlight, captions and narration settings work in both looks.
+Find a setting can find Appearance by the hidden settings' names. Without JavaScript, My settings
+always shows. Publisher styling is not required to meet WCAG AA; the reader interface must still
+pass, including its controls inside the book. IDPF and Adobe font obfuscation is removed on copying.
+
 | Option | What it does |
 |---|---|
-| `--no-split-chapters` | Keep each content document as one page. By default, a document that holds several chapters is split into a page per chapter, at its table of contents entries. |
+| `--no-publisher-styles` | Leave out the publisher stylesheet and Appearance group. |
 | `--no-heading-titles` | Keep the EPUB's page titles. By default, when every page's title is just the book title, each page is titled by its first other heading. |
-| `--no-markup-cleanup` | Leave the book's markup as it is. By default the converter copies `xml:lang` to `lang` where the text is in that language's script, unwraps empty spans, removes empty paragraphs, adds `scope` to header cells, makes a book's own `<main>` a `div`, renames ids that clash with the reader's, makes positive `tabindex` 0, and removes autoplay from the book's media. It also removes unused unlinked anchors and empty nonsemantic wrappers after retaining link targets, makes title-only headings visible, removes redundant heading titles, and gives numbered equations a responsive layout. Chapter splitting always keeps paragraphs, headings, list items, tables, figures, definition items and blockquotes whole. |
-| `--no-responsive-tables` | Leave tables as they are. By default, each table scrolls sideways in its own region instead of widening the page. |
-| `--keep-all-ids` | Keep every id from the EPUB. By default, only structures (headings, sections, notes, tables, lists and the like) and anything referred to keep theirs; narration finds other phrases from the nearest of those. |
 | `--language <tag>` | Use this BCP 47 language instead of the one the EPUB declares, for the pages, search and accessibility information. |
 | `--identifier <id>` | Key saved reading positions by this book ID instead of the EPUB's identifier. |
 | `--include-non-linear` | Include spine items marked `linear="no"` in the reading order. |

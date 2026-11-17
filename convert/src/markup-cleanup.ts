@@ -1,3 +1,4 @@
+import { SOURCE_ID } from './publisher-selectors.js';
 import type { ConversionReport } from './conversion-report.js';
 import { IDREF_ATTRIBUTES, decodeFragment, referencedIds, uniqueId } from './ids.js';
 import type { NarrationSelector } from './structure-ids.js';
@@ -11,6 +12,8 @@ export type MarkupCleanupOptions = {
     narratedTargetIds: string[];
     responsiveTables: boolean;
     report: ConversionReport;
+    publisherStyled?: (elm: Element) => boolean;
+    onTransform?: (stage: 'cleanup' | 'table wrapper') => void;
 };
 
 // Ids are renamed separately, after the structure-id pass (renameCollidingIds), so only ids that
@@ -33,7 +36,9 @@ export function cleanPublicationMarkup(doc: Document, options: MarkupCleanupOpti
         // MathML (unlike alt="" on an image), screen readers read the MathML itself, and copying
         // treats it as missing (user, 2026-11-10)
     }
+    options.onTransform?.('cleanup');
     if (options.responsiveTables) wrapTables(doc, options);
+    options.onTransform?.('table wrapper');
 }
 
 function repairLanguages(doc: Document, options: MarkupCleanupOptions): void {
@@ -66,7 +71,8 @@ function repairLanguages(doc: Document, options: MarkupCleanupOptions): void {
 function unwrapEmptySpans(doc: Document, options: MarkupCleanupOptions): void {
     const spans = Array.from(doc.querySelectorAll('span')).reverse();
     for (const span of spans) {
-        if (span.attributes.length) continue;
+        if (Array.from(span.attributes).some(attribute => attribute.name !== SOURCE_ID)) continue;
+        if (options.publisherStyled?.(span)) { options.report.change('Publisher-styled spans retained', options.page); continue; }
         span.replaceWith(...Array.from(span.childNodes));
         options.report.change('Empty spans unwrapped', options.page);
     }
@@ -75,6 +81,11 @@ function unwrapEmptySpans(doc: Document, options: MarkupCleanupOptions): void {
 function removeEmptyParagraphs(doc: Document, protectedIds: Set<string>, options: MarkupCleanupOptions): void {
     for (const paragraph of Array.from(doc.querySelectorAll('p'))) {
         if ((paragraph.textContent ?? '').trim() || paragraph.children.length) continue;
+        if (options.publisherStyled?.(paragraph)) {
+            paragraph.classList.add('webbook-publisher-only');
+            options.report.change('Publisher-styled empty paragraphs retained', options.page);
+            continue;
+        }
         if (paragraph.id && protectedIds.has(paragraph.id)) continue;
         paragraph.remove();
         options.report.change('Empty paragraphs removed', options.page);
@@ -150,8 +161,8 @@ function wrapTables(doc: Document, options: MarkupCleanupOptions): void {
     });
 }
 
-// Ids the reader's own page uses, and repeated ids (left only by --keep-all-ids; the structure-id
-// pass keeps an id on its first element), get "-content" added. References to them in the page,
+// Ids the reader's own page uses, and any repeated ids left by the structure-id pass,
+// get "-content" added. References to them in the page,
 // and narration selectors anchored on them, follow; the caller updates other pages' links.
 export function renameCollidingIds(doc: Document, selectors: Map<string, NarrationSelector>,
     reserved: Set<string>, page: string, report: ConversionReport): Map<string, string> {

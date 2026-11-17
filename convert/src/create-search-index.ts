@@ -59,6 +59,7 @@ function collectSearchPassages(
         : nonNarratedPassages(doc);
     const seen = new Set<Element>();
     const passages = elements.filter(elm => {
+        if (elm.closest('[hidden], .webbook-style-hidden') || elm.closest('.webbook-style-invisible, .webbook-style-visible')?.classList.contains('webbook-style-invisible')) return false;
         if (seen.has(elm) || elm.matches('.epubtype_pagebreak') || !searchableText(elm)) return false;
         seen.add(elm);
         return true;

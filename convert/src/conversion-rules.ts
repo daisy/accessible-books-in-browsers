@@ -1,3 +1,4 @@
+import { SOURCE_ID } from './publisher-selectors.js';
 import type { MarkupCleanupOptions } from './markup-cleanup.js';
 
 const HEADING = 'h1, h2, h3, h4, h5, h6, [role="heading"]';
@@ -72,9 +73,10 @@ export function markNumberedEquations(doc: Document, options: MarkupCleanupOptio
 // Run after id retention, before narration paths and search passages are finalized.
 export function cleanLeftoverAnchors(doc: Document, options: MarkupCleanupOptions, narratedTargets: ReadonlySet<Element>): void {
     for (const anchor of Array.from(doc.querySelectorAll('a:not([href]), span, div')).reverse()) {
+        if (options.publisherStyled?.(anchor)) continue;
         if (anchor.id || hasSemantics(anchor) || narratedTargets.has(anchor) || anchor.closest('svg, math')) continue;
         // Names, focus behavior and hidden content can carry meaning independently of text.
-        if (Array.from(anchor.attributes).some(attribute => !['class', 'title', 'style'].includes(attribute.name))) continue;
+        if (Array.from(anchor.attributes).some(attribute => !['class', 'title', 'style', SOURCE_ID].includes(attribute.name))) continue;
         const content = anchor.textContent?.trim() || anchor.children.length;
         if (anchor.tagName !== 'A' && content) continue;
         if (content) anchor.replaceWith(...Array.from(anchor.childNodes));

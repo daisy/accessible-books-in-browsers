@@ -1,3 +1,4 @@
+import type { PublisherCounts } from './publisher-selectors.js';
 import fs from 'fs-extra';
 import type { OutputPaths } from './output.js';
 import { outputPath } from './output.js';
@@ -14,6 +15,8 @@ export type ReportCheck = {
     detail: string;
 };
 
+type AssetCounts = { fonts: { count: number; bytes: number }; images: { count: number; bytes: number } };
+type PublisherPage = PublisherCounts & AssetCounts;
 export type ConversionReportData = {
     version: 1;
     language: { declared: string; override?: string; effective: string };
@@ -21,6 +24,7 @@ export type ConversionReportData = {
     changes: Array<{ kind: string; count: number; pages: Record<string, number> }>;
     warnings: ReportWarning[];
     checks: ReportCheck[];
+    publisherStyles?: { pages: Record<string, PublisherPage>; totals: PublisherPage };
     audio?: {
         mode: string;
         sourceBytes: number;
@@ -45,6 +49,21 @@ export type ConversionReportData = {
 };
 
 export class ConversionReport {
+    private publisherPages = new Map<string, PublisherPage>();
+    private publisherAssetTotals: AssetCounts = { fonts: { count: 0, bytes: 0 }, images: { count: 0, bytes: 0 } };
+    publisherRules(page: string, counts: PublisherCounts): void { this.publisherPages.set(page, { ...counts, fonts: { count: 0, bytes: 0 }, images: { count: 0, bytes: 0 } }); }
+    publisherAssets(page: string, counts: AssetCounts): void { const item = this.publisherPages.get(page); if (item) Object.assign(item, counts); }
+    publisherAssetsTotal(counts: AssetCounts): void { this.publisherAssetTotals = counts; }
+    private publisherData(): ConversionReportData['publisherStyles'] {
+        if (!this.publisherPages.size) return undefined;
+        const totals: PublisherPage = { kept: 0, frozen: 0, unapplied: 0, causes: {}, examples: [], ...this.publisherAssetTotals };
+        for (const [name, page] of this.publisherPages) {
+            if (totals.examples.length < 10) totals.examples.push(...page.examples.slice(0, 10 - totals.examples.length).map(example => `${name}: ${example}`));
+            totals.kept += page.kept; totals.frozen += page.frozen; totals.unapplied += page.unapplied;
+            for (const [cause, count] of Object.entries(page.causes)) totals.causes[cause as keyof PublisherCounts['causes']] = (totals.causes[cause as keyof PublisherCounts['causes']] ?? 0) + (count ?? 0);
+        }
+        return { pages: Object.fromEntries(this.publisherPages), totals };
+    }
     private readonly changes = new Map<string, Map<string, number>>();
     readonly warnings: ReportWarning[] = [];
     readonly checks: ReportCheck[] = [];
@@ -112,6 +131,7 @@ export class ConversionReport {
             })).sort((a, b) => a.kind.localeCompare(b.kind)),
             warnings: this.warnings,
             checks: this.checks,
+            ...(this.publisherData() ? { publisherStyles: this.publisherData() } : {}),
             ...(this.audio ? { audio: this.audio } : {})
         };
     }
@@ -133,6 +153,17 @@ export function reportMarkdown(data: ConversionReportData): string {
         `- Effective language: ${data.language.effective}`,
         ...(data.language.override ? [`- Language override: ${data.language.override}`] : []),
         ...Object.entries(data.options).map(([name, value]) => `- ${name}: ${String(value)}`), '',
+        ...(data.publisherStyles ? [
+            "## Publisher styles (As published)", '',
+            'Counts are selector rules; shared assets are counted once in the total.',
+            ...Object.entries({ Total: data.publisherStyles.totals, ...data.publisherStyles.pages }).flatMap(([page, counts]) => [
+                `### ${page}`, '',
+                `Rules kept: ${counts.kept}. Frozen: ${counts.frozen}. Unapplied: ${counts.unapplied}.`,
+                `Frozen by step: ${JSON.stringify(counts.causes)}.`,
+                `Fonts copied: ${counts.fonts.count} (${counts.fonts.bytes} bytes). Images copied: ${counts.images.count} (${counts.images.bytes} bytes).`,
+                ...counts.examples.map(example => `- ${example}`), ''
+            ])
+        ] : []),
         ...(data.audio ? [
             '## Audio', '',
             `Source audio: ${formatBytes(data.audio.sourceBytes)}. Converted audio: ${formatBytes(data.audio.outputBytes)}.`,

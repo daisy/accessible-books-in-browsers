@@ -1,5 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
+import { deobfuscateFont, readFontEncryption, type FontEncryption } from './font-obfuscation.js';
+import type { ConversionReport } from './conversion-report.js';
 import { OutputLayout } from './output.js';
 import type { OutputPaths } from './output.js';
 import * as utils from './utils.js';
@@ -13,6 +15,40 @@ export type ImageAsset = {
 };
 
 class ImageAssetRegistry {
+    private encryption = new Map<string, FontEncryption>();
+    private publisherUses = new Map<string, Map<string, 'fonts' | 'images'>>();
+    private report?: ConversionReport;
+    async configureFonts(root: string, packageFilename: string, report: ConversionReport): Promise<void> {
+        this.report = report;
+        this.encryption = await readFontEncryption(root, packageFilename);
+    }
+    registerPublisherAsset(source: string, page: string, font = false): ImageAsset | null {
+        const normalized = path.resolve(source), policy = this.encryption.get(normalized);
+        if (policy && !policy.key) { this.report?.warning('Publisher styles font not copied', `${path.basename(source)}: ${policy.reason}`, page); return null; }
+        const uses = this.publisherUses.get(page) ?? new Map<string, 'fonts' | 'images'>();
+        uses.set(normalized, font || /\.(?:ttf|otf|woff2?|eot)$/i.test(source) ? 'fonts' : 'images');
+        this.publisherUses.set(page, uses);
+        return this.register(source);
+    }
+    async copyAsset(asset: ImageAsset, destination: string): Promise<void> {
+        const policy = this.encryption.get(asset.sourcePath);
+        if (policy && !policy.key) return;
+        if (policy?.key) await fs.writeFile(destination, deobfuscateFont(await fs.readFile(asset.sourcePath), policy.key, policy.algorithm));
+        else await fs.copy(asset.sourcePath, destination);
+    }
+    async reportPublisherAssets(): Promise<void> {
+        const total = new Map<string, 'fonts' | 'images'>();
+        for (const [page, uses] of this.publisherUses) {
+            const counts = { fonts: { count: 0, bytes: 0 }, images: { count: 0, bytes: 0 } };
+            for (const [source, kind] of uses) {
+                try { counts[kind].bytes += (await fs.stat(source)).size; counts[kind].count++; total.set(source, kind); } catch { /* copy reports missing resource */ }
+            }
+            this.report?.publisherAssets(page, counts);
+        }
+        const counts = { fonts: { count: 0, bytes: 0 }, images: { count: 0, bytes: 0 } };
+        for (const [source, kind] of total) { counts[kind].count++; counts[kind].bytes += (await fs.stat(source)).size; }
+        this.report?.publisherAssetsTotal(counts);
+    }
     private assetsBySource = new Map<string, ImageAsset>();
     private usedFilenames = new Set<string>();
 
@@ -106,8 +142,9 @@ async function writeServiceWorkerStub(outputPaths: OutputPaths): Promise<void> {
 
 async function copyImageAssets(registry: ImageAssetRegistry, outputPaths: OutputPaths): Promise<void> {
     await Promise.all(registry.all().map(async asset => {
-        await fs.copy(asset.sourcePath, path.join(outputPaths.imagesDir, asset.outputFilename));
+        await registry.copyAsset(asset, path.join(outputPaths.imagesDir, asset.outputFilename));
     }));
+    await registry.reportPublisherAssets();
 }
 
 export {

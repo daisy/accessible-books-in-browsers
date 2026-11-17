@@ -1,3 +1,4 @@
+@layer reader-base, publisher;
 @import "reset.css";
 @import "tokens.css";
 @import "layout.css";
@@ -20,3 +21,5 @@
 @import "copy-content.css";
 @import "equations.css";
 @import "writing-modes.css";
+
+@import "book-styles.css";
