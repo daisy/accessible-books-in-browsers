@@ -1310,7 +1310,9 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 #webbook-info:popover-open {
     margin: 0;
     inset: 0 0 0 auto;
-    width: min(340px, 92vw);
+    /* Wide enough for its metadata and accessibility text; long values wrap rather than being cut
+       off (user, 2026-11-16: "some text gets cut off") */
+    width: min(30rem, 92vw);
     height: 100dvh;
     padding: 0;
     display: grid;
@@ -1327,6 +1329,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
         border-bottom: var(--webbook-panel-border);
     }
     .webbook-info-body {
+        overflow-wrap: anywhere;
         padding: 1.5rem;
         display: flex;
         flex-direction: column;
