@@ -1,6 +1,8 @@
 // The panel's sections and row order live here, so module startup order never decides what a
 // reader sees. Keep controls' ids: shortcuts and reader tools use them too.
 const SECTIONS = [
+    // Only in books with publisher styles (appearance.js); the section hides itself otherwise
+    ['appearance', 'Appearance option', ['#webbook-publisher-appearance']],
     ['colors', 'Colors', ['#webbook-colors', '#webbook-colors-custom', '#webbook-appearance', '#webbook-color', '#webbook-highlight-style']],
     ['text', 'Text', ['#webbook-font-family', '#webbook-font-size', '#webbook-writing-mode', '#webbook-text-spacing', '#webbook-copy-math', '#webbook-dialog-blur-toggle', '#webbook-toolbar-auto-hide']],
     ['narration', 'Narration', ['#webbook-rate', '#webbook-caption-mode-toggle', '#webbook-skip-settings', '#webbook-structure-sounds']],
@@ -15,7 +17,7 @@ export function initSettingsSections() {
     if (!panel || panel.querySelector('.webbook-settings-section')) return;
     const description = document.createElement('p');
     description.className = 'webbook-settings-scope';
-    description.textContent = 'These settings apply to every book on this website.';
+    description.textContent = 'These settings apply to every book on this website, except as noted.';
     const jump = document.createElement('nav');
     jump.className = 'webbook-settings-jump';
     jump.setAttribute('aria-label', 'Jump to settings sections');
@@ -121,7 +123,7 @@ export function updateSettingsSections() {
         const visible = Array.from(section.querySelectorAll('input, select, button')).some(control => {
             // Don't count the section's own hidden state: it may have just received its first row.
             for (let node = control; node && node !== section; node = node.parentElement) {
-                if (node.hidden) return false;
+                if (node.hidden || node.classList.contains('webbook-appearance-hidden')) return false;
             }
             return true;
         });

@@ -10,6 +10,7 @@ const FILTERED = 'webbook-settings-filtered';
 
 // Other words people use for a setting, by the selector of its row or group
 const KEYWORDS = {
+    '#webbook-publisher-appearance': 'colors colour font size spacing line length writing direction publisher original',
     '#webbook-colors': 'theme dark light mode contrast background appearance',
     '#webbook-colors-custom': 'theme colour color background text',
     '#webbook-color': 'highlight narration colour color',
@@ -61,14 +62,14 @@ function filterRow(row, words, sectionText) {
     for (const groupRow of groupRows) {
         const found = matches(`${sectionText} ${legend} ${searchText(groupRow)}`, words);
         show(groupRow, found);
-        any ||= found && !groupRow.hidden;
+        any ||= found && !groupRow.closest('[hidden], .webbook-appearance-hidden');
     }
     return show(row, any);
 }
 
 function show(element, visible) {
     element.classList.toggle(FILTERED, !visible);
-    return visible && !element.hidden;
+    return visible && !element.closest('[hidden], .webbook-appearance-hidden');
 }
 
 let announceTimer;
@@ -89,7 +90,9 @@ export function applySettingsFilter(query) {
                 row.querySelectorAll(`.${FILTERED}`).forEach(node => node.classList.remove(FILTERED));
                 continue;
             }
-            if (filterRow(row, words, title)) found += row.matches('fieldset') ? row.querySelectorAll(`:scope > div:not(.${FILTERED}):not([hidden])`).length : 1;
+            // Appearance is one choice, found by the settings it replaces too (its keywords)
+            if (row.id === 'webbook-publisher-appearance') { if (show(row, matches(`${title} ${searchText(row)}`, words))) found++; continue; }
+            if (filterRow(row, words, title)) found += row.matches('fieldset') ? Array.from(row.querySelectorAll(`:scope > div:not(.${FILTERED})`)).filter(node => !node.closest('[hidden], .webbook-appearance-hidden')).length : 1;
         }
         section.classList.toggle(FILTERED, filtering && found === 0);
         if (!section.hidden) count += found;

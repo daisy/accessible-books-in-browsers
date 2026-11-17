@@ -235,8 +235,8 @@ export function initKeyboardShortcuts() {
         if (isTextEntryTarget(event.target)) return;
         const key = keySpecForEvent(event);
         const action = getActions().find(action => getActionKeys(action.id).some(spec => sameKey(spec, key)));
-        // Shortcuts rest while a panel is open, so its own keys work. An action that describes the
-        // panel (Where am I?) runs there too, on a key with Alt, Ctrl or Cmd, never a plain key.
+        // Shortcuts rest while a panel is open, so its own keys work. Explicitly panel-available
+        // actions run there only with Alt, Ctrl or Cmd, never on a plain key.
         if (isAnyPopoverOpen() && !(action?.inPanels && (key.alt || key.ctrl || key.meta))) return;
         if (!action || (event.repeat && !REPEAT_ACTIONS.has(action.id)) || !action.isAvailable()) return;
         event.preventDefault();

@@ -1,6 +1,7 @@
 import { initEscapability } from './escapability.js';
 import { initResumePosition, initResumeSetting } from './resume-position.js';
 import { initPopoverCloseButtons, initPopoverToggleTracking, initTocInPageLinks, initPopoverActions } from './popovers.js';
+import { initAppearance } from './appearance.js';
 import { initSettings } from './settings.js';
 import { initSkippability } from './skippability.js';
 import { initCaptionMode } from './caption-mode.js';
@@ -31,6 +32,7 @@ initPopoverToggleTracking();
 initTocInPageLinks();
 initSettings();
 initWritingMode();
+initAppearance();
 initSettingsFilter();
 initSkippability();
 initResumeSetting();

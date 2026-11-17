@@ -1,20 +1,170 @@
 # Conversion report
 
-Changes: 1064. Warnings for review: 1. Optional checks: Ace not requested, axe not requested.
+Changes: 7064. Warnings for review: 1. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
 
 - Declared language: en-US
 - Effective language: en-US
-- split chapters: true
+- publisher styles: true
 - heading titles: true
-- markup cleanup: true
-- responsive tables: true
 - small audio: true
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
-- keep all ids: false
 - optional checks: false
+
+## Publisher styles (As published)
+
+Counts are selector rules; shared assets are counted once in the total.
+### Total
+
+Rules kept: 1800. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### index.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-2.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-3.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-4.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-5.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-6.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-7.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-8.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-9.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-10.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-11.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-12.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-13.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-14.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-15.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-16.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-17.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-18.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-19.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-20.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-21.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-22.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-23.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### content-24.html
+
+Rules kept: 75. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
 
 ## Audio
 
@@ -50,7 +200,115 @@ Loudness range before cleanup: 0.7 LU.
 - content-23.html: -20.6 LUFS; peak -3.2 dBFS; quietest stretch below measurement floor; clipping samples 0
 - content-24.html: -20.3 LUFS; peak -3.5 dBFS; quietest stretch below measurement floor; clipping samples 0
 
-## Changes (1064)
+## Changes (7064)
+
+### Book styles kept as reader classes (font-style) (24)
+
+- index.html: 1
+- content-2.html: 1
+- content-3.html: 1
+- content-4.html: 1
+- content-5.html: 1
+- content-6.html: 1
+- content-7.html: 1
+- content-8.html: 1
+- content-9.html: 1
+- content-10.html: 1
+- content-11.html: 1
+- content-12.html: 1
+- content-13.html: 1
+- content-14.html: 1
+- content-15.html: 1
+- content-16.html: 1
+- content-17.html: 1
+- content-18.html: 1
+- content-19.html: 1
+- content-20.html: 1
+- content-21.html: 1
+- content-22.html: 1
+- content-23.html: 1
+- content-24.html: 1
+
+### Book styles kept as reader classes (font-weight) (2544)
+
+- index.html: 106
+- content-2.html: 106
+- content-3.html: 106
+- content-4.html: 106
+- content-5.html: 106
+- content-6.html: 106
+- content-7.html: 106
+- content-8.html: 106
+- content-9.html: 106
+- content-10.html: 106
+- content-11.html: 106
+- content-12.html: 106
+- content-13.html: 106
+- content-14.html: 106
+- content-15.html: 106
+- content-16.html: 106
+- content-17.html: 106
+- content-18.html: 106
+- content-19.html: 106
+- content-20.html: 106
+- content-21.html: 106
+- content-22.html: 106
+- content-23.html: 106
+- content-24.html: 106
+
+### Book styles kept as reader classes (list-style-type) (2016)
+
+- index.html: 84
+- content-2.html: 84
+- content-3.html: 84
+- content-4.html: 84
+- content-5.html: 84
+- content-6.html: 84
+- content-7.html: 84
+- content-8.html: 84
+- content-9.html: 84
+- content-10.html: 84
+- content-11.html: 84
+- content-12.html: 84
+- content-13.html: 84
+- content-14.html: 84
+- content-15.html: 84
+- content-16.html: 84
+- content-17.html: 84
+- content-18.html: 84
+- content-19.html: 84
+- content-20.html: 84
+- content-21.html: 84
+- content-22.html: 84
+- content-23.html: 84
+- content-24.html: 84
+
+### Book styles kept as reader classes (text-align) (1416)
+
+- index.html: 59
+- content-2.html: 59
+- content-3.html: 59
+- content-4.html: 59
+- content-5.html: 59
+- content-6.html: 59
+- content-7.html: 59
+- content-8.html: 59
+- content-9.html: 59
+- content-10.html: 59
+- content-11.html: 59
+- content-12.html: 59
+- content-13.html: 59
+- content-14.html: 59
+- content-15.html: 59
+- content-16.html: 59
+- content-17.html: 59
+- content-18.html: 59
+- content-19.html: 59
+- content-20.html: 59
+- content-21.html: 59
+- content-22.html: 59
+- content-23.html: 59
+- content-24.html: 59
 
 ### Chapter boundaries kept outside blocks (23)
 

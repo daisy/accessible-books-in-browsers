@@ -1,4 +1,5 @@
 import { readingScroll, scrollToReading } from './reading-axis.js';
+import { applyAppearance } from './appearance.js';
 import { applyWritingMode } from './writing-mode.js';
 import { startPlayerForPage } from './player.js';
 import { startCaptionModeForPage } from './caption-mode.js';
@@ -117,6 +118,9 @@ async function loadInPlace(url, { push, moveFocus, scrollY, audioTime, state = n
         return;
     }
 
+    await prepareDesignStyles(doc);
+    if (navigation !== navigationCount) return;
+
     // Position-tracking features must not react to the focus and scroll changes used to place
     // the incoming page before its requested hash or Back/Forward position is established.
     document.dispatchEvent(new CustomEvent('webbook:pageplacing'));
@@ -180,9 +184,23 @@ function canSwapIn(doc) {
     if (root.dataset.webbookContract !== document.documentElement.dataset.webbookContract) return false;
     const bookId = d => d.querySelector('meta[name="webbook-book-id"]')?.content?.trim() || '';
     if (bookId(doc) !== bookId(document)) return false;
-    const stylesheets = d => Array.from(d.querySelectorAll('link[rel~="stylesheet"]'), link => link.getAttribute('href')).join('\n');
+    const stylesheets = d => Array.from(d.querySelectorAll('link[rel~="stylesheet"]:not([data-webbook-publisher-style])'), link => link.getAttribute('href')).join('\n');
     if (stylesheets(doc) !== stylesheets(document)) return false;
     return Boolean(doc.querySelector('main') && doc.querySelector('#webbook-toolbar') && document.querySelector('main'));
+}
+
+async function prepareDesignStyles(doc) {
+    const incoming = Array.from(doc.querySelectorAll('link[data-webbook-publisher-style]'));
+    const hrefs = new Set(incoming.map(link => link.getAttribute('href')));
+    const current = Array.from(document.querySelectorAll('link[data-webbook-publisher-style]'));
+    await Promise.all(incoming.filter(link => !current.some(old => old.getAttribute('href') === link.getAttribute('href'))).map(link => new Promise(resolve => {
+        const added = document.importNode(link, true);
+        const timer = setTimeout(resolve, 3000);
+        added.addEventListener('load', () => { clearTimeout(timer); resolve(); }, { once: true });
+        added.addEventListener('error', () => { clearTimeout(timer); resolve(); }, { once: true });
+        document.head.append(added);
+    })));
+    current.filter(link => !hrefs.has(link.getAttribute('href'))).forEach(link => link.remove());
 }
 
 function swapIn(doc) {
@@ -196,13 +214,13 @@ function swapIn(doc) {
     const lang = doc.documentElement.getAttribute('lang');
     if (lang) document.documentElement.setAttribute('lang', lang);
     // The page's writing mode and line-breaking rules (plan 28), before it's placed
-    for (const name of ['data-webbook-writing-mode', 'data-webbook-writing-modes', 'data-webbook-line-break',
-        'data-webbook-word-break', 'data-webbook-page-progression']) {
+    for (const name of ['data-webbook-writing-mode', 'data-webbook-line-break',
+        'data-webbook-word-break', 'data-webbook-page-progression', 'data-webbook-has-published']) {
         const value = doc.documentElement.getAttribute(name);
-        if (value) document.documentElement.setAttribute(name, value);
+        if (doc.documentElement.hasAttribute(name)) document.documentElement.setAttribute(name, value ?? '');
         else document.documentElement.removeAttribute(name);
     }
-    applyWritingMode();
+    applyAppearance();
 
     // Same <main> element, new content and attributes. Caption mode's aria-hidden stays.
     const main = document.querySelector('main');

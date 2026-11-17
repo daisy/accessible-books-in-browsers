@@ -5,17 +5,134 @@
     "effective": "en-US"
   },
   "options": {
-    "split chapters": true,
+    "publisher styles": true,
     "heading titles": true,
-    "markup cleanup": true,
-    "responsive tables": true,
     "small audio": true,
     "audio cleanup": true,
     "audio enhancements": "warm-eq,compression,noise,deess,declick",
-    "keep all ids": false,
     "optional checks": false
   },
   "changes": [
+    {
+      "kind": "Book styles kept as reader classes (font-style)",
+      "count": 24,
+      "pages": {
+        "index.html": 1,
+        "content-2.html": 1,
+        "content-3.html": 1,
+        "content-4.html": 1,
+        "content-5.html": 1,
+        "content-6.html": 1,
+        "content-7.html": 1,
+        "content-8.html": 1,
+        "content-9.html": 1,
+        "content-10.html": 1,
+        "content-11.html": 1,
+        "content-12.html": 1,
+        "content-13.html": 1,
+        "content-14.html": 1,
+        "content-15.html": 1,
+        "content-16.html": 1,
+        "content-17.html": 1,
+        "content-18.html": 1,
+        "content-19.html": 1,
+        "content-20.html": 1,
+        "content-21.html": 1,
+        "content-22.html": 1,
+        "content-23.html": 1,
+        "content-24.html": 1
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (font-weight)",
+      "count": 2544,
+      "pages": {
+        "index.html": 106,
+        "content-2.html": 106,
+        "content-3.html": 106,
+        "content-4.html": 106,
+        "content-5.html": 106,
+        "content-6.html": 106,
+        "content-7.html": 106,
+        "content-8.html": 106,
+        "content-9.html": 106,
+        "content-10.html": 106,
+        "content-11.html": 106,
+        "content-12.html": 106,
+        "content-13.html": 106,
+        "content-14.html": 106,
+        "content-15.html": 106,
+        "content-16.html": 106,
+        "content-17.html": 106,
+        "content-18.html": 106,
+        "content-19.html": 106,
+        "content-20.html": 106,
+        "content-21.html": 106,
+        "content-22.html": 106,
+        "content-23.html": 106,
+        "content-24.html": 106
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (list-style-type)",
+      "count": 2016,
+      "pages": {
+        "index.html": 84,
+        "content-2.html": 84,
+        "content-3.html": 84,
+        "content-4.html": 84,
+        "content-5.html": 84,
+        "content-6.html": 84,
+        "content-7.html": 84,
+        "content-8.html": 84,
+        "content-9.html": 84,
+        "content-10.html": 84,
+        "content-11.html": 84,
+        "content-12.html": 84,
+        "content-13.html": 84,
+        "content-14.html": 84,
+        "content-15.html": 84,
+        "content-16.html": 84,
+        "content-17.html": 84,
+        "content-18.html": 84,
+        "content-19.html": 84,
+        "content-20.html": 84,
+        "content-21.html": 84,
+        "content-22.html": 84,
+        "content-23.html": 84,
+        "content-24.html": 84
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (text-align)",
+      "count": 1416,
+      "pages": {
+        "index.html": 59,
+        "content-2.html": 59,
+        "content-3.html": 59,
+        "content-4.html": 59,
+        "content-5.html": 59,
+        "content-6.html": 59,
+        "content-7.html": 59,
+        "content-8.html": 59,
+        "content-9.html": 59,
+        "content-10.html": 59,
+        "content-11.html": 59,
+        "content-12.html": 59,
+        "content-13.html": 59,
+        "content-14.html": 59,
+        "content-15.html": 59,
+        "content-16.html": 59,
+        "content-17.html": 59,
+        "content-18.html": 59,
+        "content-19.html": 59,
+        "content-20.html": 59,
+        "content-21.html": 59,
+        "content-22.html": 59,
+        "content-23.html": 59,
+        "content-24.html": 59
+      }
+    },
     {
       "kind": "Chapter boundaries kept outside blocks",
       "count": 23,
@@ -176,6 +293,385 @@
       "detail": "Run with --check to request this check."
     }
   ],
+  "publisherStyles": {
+    "pages": {
+      "index.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-2.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-3.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-4.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-5.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-6.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-7.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-8.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-9.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-10.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-11.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-12.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-13.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-14.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-15.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-16.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-17.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-18.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-19.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-20.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-21.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-22.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-23.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "content-24.html": {
+        "kept": 75,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      }
+    },
+    "totals": {
+      "kept": 1800,
+      "frozen": 0,
+      "unapplied": 0,
+      "causes": {},
+      "examples": [],
+      "fonts": {
+        "count": 0,
+        "bytes": 0
+      },
+      "images": {
+        "count": 0,
+        "bytes": 0
+      }
+    }
+  },
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 36338184,

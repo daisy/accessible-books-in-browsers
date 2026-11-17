@@ -5,9 +5,11 @@
 // are worked out against the chosen background. A pair under 4.5:1 is warned about, not refused:
 // some readers need low contrast. Under forced colors the system's colors win, as for everything.
 
+import { publishedAppearanceActive } from './appearance-state.js';
 import { appendSetting } from './settings-sections.js';
 import { contrastRatio, pageColorTokens, parseColor, readableTextOn, toHex } from './color-contrast.js';
 import { updateHighlightColors } from './highlight-settings.js';
+import { applyPublishedColors, watchPublishedStyles } from './published-colors.js';
 import { announceReaderAction } from './reader-actions.js';
 import { optionElement, readSetting, writeSetting } from './stored-settings.js';
 
@@ -24,8 +26,8 @@ const PRESETS = [
     ['blue', 'Yellow on dark blue', '#ffeb3b', '#0b1f4b']
 ];
 // The default ('') is Automatic: the reader's own light or dark theme, following the system. There
-// was a "Book colors" choice too, but the converter keeps none of a book's CSS, so it was the same
-// as Automatic (user, 2026-11-10). A saved 'auto', from when both existed, reads as the default.
+// was a "Book colors" choice before publisher CSS was kept. Old Original and unknown saved
+// choices use Automatic. As published pauses every palette override.
 const STANDARD = [
     ['light', 'Light'],
     ['dark', 'Dark']
@@ -151,7 +153,8 @@ export function initPageColors() {
         if (readSetting(COLORS_KEY) === null && (legacy === 'light' || legacy === 'dark')) writeSetting(COLORS_KEY, legacy);
         writeSetting(MIGRATED_KEY, 'true');
     }
-    const savedValue = readSetting(COLORS_KEY) || '';
+    const saved = readSetting(COLORS_KEY);
+    const savedValue = saved === 'original' ? '' : saved ?? '';
     const migratedValue = savedValue === 'white' ? 'light' : savedValue === 'black' ? 'dark' : savedValue;
     const value = migratedValue === 'custom' || STANDARD.some(([choice]) => choice === migratedValue)
         || PRESETS.some(([presetValue]) => presetValue === migratedValue) ? migratedValue : '';
@@ -182,11 +185,16 @@ export function initPageColors() {
     const showChoice = choice => {
         if (custom) custom.hidden = choice !== 'custom';
         const [text, background] = current(choice);
-        apply(text, background);
-        applyScheme(schemeFor(choice, background));
+        apply(...(publishedAppearanceActive() ? [null, null] : [text, background]));
+        // As published, the toolbars and panels take the book's colours (published-colors.js), and
+        // the saved light or dark theme is left as it is for books shown with My settings
+        if (!applyPublishedColors()) applyScheme(schemeFor(choice, background));
         if (contrast && choice === 'custom' && text && background) contrast.textContent = contrastMessage(text, background);
     };
     showChoice(value);
+    const refresh = () => { watchPublishedStyles(refresh); showChoice(select?.value ?? value); };
+    watchPublishedStyles(refresh);
+    document.addEventListener('webbook:appearancechange', refresh);
     const systemScheme = window.matchMedia?.('(prefers-color-scheme: dark)');
     // Automatic follows the system's light or dark as it changes
     systemScheme?.addEventListener('change', () => {
@@ -196,7 +204,7 @@ export function initPageColors() {
     if (!select) return;
     select.value = value;
     select.addEventListener('change', () => {
-        writeSetting(COLORS_KEY, select.value);
+        writeSetting(COLORS_KEY, select.value || 'auto');
         // Save the displayed pair too, so a first Custom choice travels with an export even
         // when the other browser uses a different system theme.
         if (select.value === 'custom') {

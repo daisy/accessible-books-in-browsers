@@ -5,6 +5,7 @@ import { registerAction, announceReaderAction } from './reader-actions.js';
 import { pageAudio } from './dom-utils.js';
 import { initHighlightSettings } from './highlight-settings.js';
 import { initTextSpacing } from './text-spacing.js';
+import { optionElement, readSetting, writeSetting } from './stored-settings.js';
 import { initPageColors } from './page-colors.js';
 const KEYBOARD_SHORTCUTS_STORAGE_KEY = 'webbook-keyboard-shortcuts';
 let shortcutsEnabled = true;
@@ -96,9 +97,10 @@ function initFontSize() {
     const reset = document.querySelector('#webbook-reset-font-size');
     if (!range) return;
 
-    const size = localStorage.getItem('webbook-font-size') || '100';
+    const saved = readSetting('webbook-font-size');
+    const size = saved && saved !== 'original' ? saved : '100';
     range.value = size;
-    applyFontSize(size);
+    applyFontSize(size, false);
 
     range.addEventListener('input', () => applyFontSize(range.value));
     reset?.addEventListener('click', () => {
@@ -107,10 +109,11 @@ function initFontSize() {
     });
 }
 
-function applyFontSize(size) {
+function applyFontSize(size, persist = true) {
     const numericSize = parseInt(size, 10);
     const normalizedSize = Number.isFinite(numericSize) ? numericSize : 100;
-    localStorage.setItem('webbook-font-size', String(normalizedSize));
+    if (persist) writeSetting('webbook-font-size', String(normalizedSize));
+    document.documentElement.toggleAttribute('data-webbook-font-size', true);
     document.documentElement.style.setProperty('--webbook-main-font-size', `${normalizedSize}%`);
     // Unitless form for text outside <main> that scales from its own base size, like caption mode
     document.documentElement.style.setProperty('--webbook-font-scale', String(normalizedSize / 100));
@@ -119,7 +122,7 @@ function applyFontSize(size) {
     if (range) range.setAttribute('aria-valuetext', `${normalizedSize}%`);
 
     const main = document.querySelector('main');
-    if (main) main.style.fontSize = `${normalizedSize}%`;
+    if (main) main.style.removeProperty('font-size');
 
     const display = document.querySelector('#webbook-font-size-value');
     if (display) display.textContent = `${normalizedSize}%`;
@@ -130,19 +133,21 @@ function initFontFamily() {
     const select = document.querySelector('#webbook-font-family-options');
     if (!select) return;
 
-    const font = localStorage.getItem('webbook-font-family') || 'system-ui';
+    const savedFont = readSetting('webbook-font-family');
+    const font = ['system-ui', 'sans-serif', 'serif'].includes(savedFont) ? savedFont : 'system-ui';
     select.value = font;
     applyFontFamily(font);
 
     select.addEventListener('change', () => {
-        localStorage.setItem('webbook-font-family', select.value);
+        writeSetting('webbook-font-family', select.value);
         applyFontFamily(select.value);
     });
 }
 function applyFontFamily(font) {
+    document.documentElement.toggleAttribute('data-webbook-font-family', true);
     document.documentElement.style.setProperty('--webbook-main-font-family', font);
     const main = document.querySelector('main');
-    if (main) main.style.fontFamily = font;
+    if (main) main.style.removeProperty('font-family');
     document.dispatchEvent(new document.defaultView.CustomEvent('webbook:layoutchange'));
 }
 

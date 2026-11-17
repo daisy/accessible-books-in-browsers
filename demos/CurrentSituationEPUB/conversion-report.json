@@ -5,14 +5,11 @@
     "effective": "en-US"
   },
   "options": {
-    "split chapters": true,
+    "publisher styles": true,
     "heading titles": true,
-    "markup cleanup": true,
-    "responsive tables": true,
     "small audio": true,
     "audio cleanup": true,
     "audio enhancements": "warm-eq,compression,noise,deess,declick",
-    "keep all ids": false,
     "optional checks": false
   },
   "changes": [
@@ -33,6 +30,13 @@
         "package-3-17.html": 1,
         "package-3-18.html": 1,
         "package-3-19.html": 1
+      }
+    },
+    {
+      "kind": "Empty nonsemantic wrappers removed",
+      "count": 1,
+      "pages": {
+        "package-2.html": 1
       }
     },
     {
@@ -350,6 +354,415 @@
       "detail": "Run with --check to request this check."
     }
   ],
+  "publisherStyles": {
+    "pages": {
+      "index.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-2.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-2.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-3.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-4.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-5.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-6.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-7.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-8.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-9.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-10.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-11.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-12.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-13.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-14.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-15.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-16.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-17.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-18.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-19.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-20.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-21.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-22.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-3-23.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "package-4.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      }
+    },
+    "totals": {
+      "kept": 0,
+      "frozen": 0,
+      "unapplied": 0,
+      "causes": {},
+      "examples": [],
+      "fonts": {
+        "count": 0,
+        "bytes": 0
+      },
+      "images": {
+        "count": 0,
+        "bytes": 0
+      }
+    }
+  },
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 21893294,

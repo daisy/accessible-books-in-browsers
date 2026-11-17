@@ -32,6 +32,8 @@ function skipping({ key, skipByDefault }) {
 }
 
 export function canPlay(elm) {
+    if (elm.closest('[hidden], .webbook-style-hidden')) return false;
+    if (elm.closest('.webbook-style-invisible, .webbook-style-visible')?.classList.contains('webbook-style-invisible')) return false;
     if (playableExceptionId && elm.closest(`[id="${CSS.escape(playableExceptionId)}"]`)) return true;
     for (const rule of SKIPPABLE_STRUCTURE_RULES) {
         if (findClosestWithAnyClass(elm, rule.classes)) return !skipping(rule);

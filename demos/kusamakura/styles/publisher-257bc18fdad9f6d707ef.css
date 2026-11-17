@@ -1,0 +1,206 @@
+@layer publisher { @layer source, inline, source-important, inline-important;
+@layer source {@font-face {
+  font-family: webbook-publisher-font-1;
+  src: url("../images/foobar.ttf");
+  unicode-range: U+2013-2016;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(#webbook-main:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  font-family: webbook-publisher-font-1, "HiraMinProN-W3", "@ＭＳ 明朝", serif, sans-serif;
+  font-size: 14pt;
+  background-color: #fff4e7;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(h1:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  font-weight: normal;
+  line-height: 2;
+  font-size: 2em;
+  margin-top: 2em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(h2:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  font-weight: normal;
+  font-size: 1.25em;
+  text-indent: 0em;
+  margin-right: 3em;
+  margin-left: 1em;
+  margin-top: 2em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(p:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  margin: 0;
+  line-height: 1.75;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(ul:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  line-height: 2;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(dl:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  line-height: 2;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(cite:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  font-style: normal;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(blockquote:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  margin: 2em 0 0;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(rt:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  font-size: 50%;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(p.logo:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-align: right;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.block:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  display: inline-block;
+  height: 4em;
+  margin-left: 2em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.block img:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  height: 100%;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.author_desc:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  min-width: 10em;
+  max-height: 100%;
+  margin-right: 3em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(img.author_portrait:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  float: left;
+  height: 50%;
+  font-size: inherit;
+  margin-bottom: 1em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.author_desc p:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  font-size: 0.8em;
+  line-height: 1.5;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.author_desc .en_name:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,.webbook-publisher-specificity) {
+  color: #0000FF;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(p.author:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  font-weight: normal;
+  font-size: 1.25em;
+  text-align: right;
+  text-indent: 0em;
+  margin-bottom: 2em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.main_text:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  font-size: 1em;
+  line-height: 1.75;
+  text-align: justify;
+  clear: both;
+  margin-left: 12em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.main_text > p:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-indent: 1em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.about >p:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-indent: 1em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.main_text p.conversation:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-indent: 0em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.main_text p.translation:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-indent: 0em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.main_text p.continued_sentence:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-indent: 0em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(span.notes:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  font-size: smaller;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(strong.sesame_dot:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  font-weight: normal;
+  text-emphasis-style: sesame;
+  color: #0000FF;
+  text-emphasis-color: #FF0000;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(span.tcy:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-combine-upright: all;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(span.tcy.blue:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  color: #0000FF;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.about:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  margin-right: 1em;
+  margin-left: 1em;
+  font-size: 0.9em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.about h2:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  margin-top: 0em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.about h2:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity):before {
+  content: "◆";
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.original_information:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  border: 1px solid #D9D9D9;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.bibliographical_information:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  margin-top: 2em;
+  margin-right: 2em;
+  margin-left: 2em;
+  font-size: 0.8em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.notation_notes:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  margin-top: 2em;
+  margin-right: 2em;
+  margin-left: 2em;
+  font-size: 0.8em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(dl.history:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  font-size: 0.9em;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(del.hidden:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  display: none;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.TableOfContents ol:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  list-style-type: none;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.TableOfContents a:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-decoration: none;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(.TableOfContents a:hover:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity):is(*,.webbook-publisher-specificity):is(*,webbook-publisher-specificity) {
+  text-decoration: underline;
+}}
+@layer source-important {}
+@layer inline {:where(:root[data-webbook-appearance="published"]) :where([data-webbook-inline-style="1"]:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  font-family: webbook-publisher-font-1;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where([data-webbook-inline-style="2"]:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  font-family: webbook-publisher-font-1;
+}}
+@layer inline-important {}
+}

@@ -5,6 +5,7 @@
 // The head script sets html.webbook-vertical before the first paint; this keeps it in step with the
 // setting and with pages loaded in place, and makes the mouse wheel and the paging keys move along
 // the text.
+import { publishedAppearanceActive } from './appearance-state.js';
 import { appendSetting, settingsSection } from './settings-sections.js';
 import { optionElement, readSetting, writeSetting } from './stored-settings.js';
 import { isVerticalText, scrollAlongText, scrollToReading, viewportLength } from './reading-axis.js';
@@ -22,14 +23,14 @@ function bookWritingMode() {
 export function applyWritingMode() {
     const root = document.documentElement;
     const book = bookWritingMode();
-    const vertical = Boolean(book) && readSetting(KEY) !== 'horizontal';
+    const vertical = Boolean(book) && (publishedAppearanceActive() || readSetting(KEY) !== 'horizontal');
     const changed = vertical !== root.classList.contains('webbook-vertical');
     root.classList.toggle('webbook-vertical', vertical);
     root.classList.toggle('webbook-vertical-lr', vertical && book === 'vertical-lr');
     const row = document.getElementById(ROW_ID);
     if (row) row.hidden = !book;
     const select = document.getElementById(SELECT_ID);
-    if (select) select.value = vertical || !book ? 'vertical' : 'horizontal';
+    if (select) select.value = readSetting(KEY) === 'horizontal' ? 'horizontal' : 'vertical';
     if (changed) document.dispatchEvent(new CustomEvent('webbook:layoutchange'));
 }
 
@@ -49,7 +50,7 @@ function buildSetting() {
         writeSetting(KEY, select.value === 'horizontal' ? 'horizontal' : '');
         applyWritingMode();
         // From the start of the page: a scroll position along one axis means nothing along the other
-        scrollToReading(0);
+        if (!publishedAppearanceActive()) scrollToReading(0);
     });
 }
 

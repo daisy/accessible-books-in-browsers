@@ -1,4 +1,6 @@
+@layer reader-base, publisher;
 /* reset.css */
+@layer reader-base {
 :root {
     --size-step-0: 1rem;
     --size-step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
@@ -71,6 +73,8 @@ blockquote {
 
 blockquote {
     max-width: 50ch;
+}
+
 }
 
 /* tokens.css */
@@ -162,23 +166,24 @@ body {
 
 /* text spacing settings (text-spacing.js): set only when the reader chooses a step, and then over
    the book's own CSS. Line spacing brings paragraph spacing (WCAG 1.4.12: 2 times the font size). */
-:root[data-webbook-line-height] main,
-:root[data-webbook-line-height] main * {
+:root:not([data-webbook-appearance="published"])[data-webbook-line-height] main,
+:root:not([data-webbook-appearance="published"])[data-webbook-line-height] main * {
     line-height: var(--webbook-line-height) !important;
 }
-:root[data-webbook-line-height] main p {
+:root:not([data-webbook-appearance="published"])[data-webbook-line-height] main p {
     margin-block-end: 2em !important;
 }
-:root[data-webbook-letter-spacing] main,
-:root[data-webbook-letter-spacing] main * {
+:root:not([data-webbook-appearance="published"])[data-webbook-letter-spacing] main,
+:root:not([data-webbook-appearance="published"])[data-webbook-letter-spacing] main * {
     letter-spacing: var(--webbook-letter-spacing) !important;
 }
-:root[data-webbook-word-spacing] main,
-:root[data-webbook-word-spacing] main * {
+:root:not([data-webbook-appearance="published"])[data-webbook-word-spacing] main,
+:root:not([data-webbook-appearance="published"])[data-webbook-word-spacing] main * {
     word-spacing: var(--webbook-word-spacing) !important;
 }
 
 /* publication text */
+@layer reader-base {
 main {
     grid-area: main;
     box-sizing: border-box;
@@ -247,6 +252,28 @@ main {
     }
 }
 
+}
+/* The frame stays with the reader even when publisher typography is retained. */
+main { position: relative; isolation: isolate; z-index: 0; grid-area: main; box-sizing: border-box; width: 100%; min-width: 0; margin: auto; padding-bottom: 9rem; }
+:root:not([data-webbook-appearance="published"])[data-webbook-line-length] main { max-width: var(--webbook-line-length, 45rem); }
+:root:not([data-webbook-appearance="published"])[data-webbook-font-family] main { font-family: var(--webbook-main-font-family); }
+:root:not([data-webbook-appearance="published"])[data-webbook-font-size] main { font-size: var(--webbook-main-font-size) !important; }
+/* Publisher defaults sit below its stylesheet. Every saved reader value stays available,
+   but cannot influence the publication while the design is on. */
+:root[data-webbook-appearance="published"] {
+    --webbook-main-font-family: serif !important;
+    --webbook-main-font-size: 1rem !important;
+    --webbook-font-scale: 1 !important;
+    --webbook-line-length: 100% !important;
+}
+/* A publisher percentage/em font starts from the browser's root size, not the UI's
+   larger body text. Reader controls keep their own inherited typography. */
+:root[data-webbook-appearance="published"] body { font-size: 1rem; }
+:root[data-webbook-appearance="published"] body > :not(main) { font-size: var(--size-step-1); }
+@layer reader-base {
+    :root[data-webbook-appearance="published"] main { font-family: serif; font-size: 1rem; line-height: normal; color: #000; background: #fff; max-width: none; }
+    :root[data-webbook-appearance="published"] main :not([data-webbook-reader], .webbook, .webbook *) { all: revert-layer; }
+}
 /* Publication tables remain intact and scroll instead of widening a phone-sized page. JS removes
    the region and tab stop when the table fits, but the wrapper works without JS too. */
 .webbook-table-scroll {
@@ -260,8 +287,8 @@ main {
 /* the reader's text and background colors (page-colors.js): one palette for the publication and
    the reader UI. As under forced colors, backgrounds inside the text go, so a sidebar's own can't
    leave the chosen text unreadable. */
-:root[data-webbook-colors],
-:root[data-webbook-colors] body {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors],
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] body {
     --theme-bg: var(--webbook-page-bg);
     --theme-fg: var(--webbook-page-fg);
     --webbook-chrome-bg: var(--webbook-page-bg);
@@ -272,23 +299,41 @@ main {
     --webbook-search-highlight-fg: var(--webbook-page-search-fg);
     color-scheme: var(--webbook-page-scheme);
 }
-:root[data-webbook-colors] body {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] body {
     background: var(--webbook-page-bg);
     color: var(--webbook-page-fg);
 }
-:root[data-webbook-colors] :is(main, main :not(svg *, img)) {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] :is(main, main :not(svg *, img)) {
     color: var(--webbook-page-fg) !important;
     background-color: transparent !important;
     background-image: none !important;
     border-color: color-mix(in srgb, var(--webbook-page-fg) 40%, transparent) !important;
 }
+/* As published, the reader's UI takes the book's own colours (published-colors.js), so the page is one
+   surface. The text inside <main> keeps the publisher's colours. */
+:root[data-webbook-appearance="published"][data-webbook-published-colors],
+:root[data-webbook-appearance="published"][data-webbook-published-colors] body {
+    --theme-bg: var(--webbook-published-bg);
+    --theme-fg: var(--webbook-published-fg);
+    --webbook-chrome-bg: var(--webbook-published-bg);
+    --webbook-chrome-fg: var(--webbook-published-fg);
+    --webbook-muted-fg: var(--webbook-published-muted);
+    --webbook-focus-color: var(--webbook-published-focus);
+    --webbook-search-highlight-bg: var(--webbook-published-search-bg);
+    --webbook-search-highlight-fg: var(--webbook-published-search-fg);
+    color-scheme: var(--webbook-published-scheme);
+}
+:root[data-webbook-appearance="published"][data-webbook-published-colors] body {
+    background: var(--webbook-published-bg);
+    color: var(--webbook-published-fg);
+}
 /* the browser's own focus ring may not stand out on the chosen background (WCAG 1.4.11) */
-:root[data-webbook-colors] main :focus-visible {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] main :focus-visible {
     outline: 3px solid var(--webbook-focus-color) !important;
     outline-offset: 2px;
 }
 /* links can't be told apart by color any more (WCAG 1.4.1) */
-:root[data-webbook-colors] main a:any-link {
+:root:not([data-webbook-appearance="published"])[data-webbook-colors] main a:any-link {
     text-decoration-line: underline !important;
 }
 /* small screens */
@@ -297,6 +342,13 @@ main {
         padding-left: var(--size-step-0);
         padding-right: var(--size-step-0);
     }
+}
+/* The publisher styles has no line length, so its text would run up to the app's edges: a little room
+   left and right at every width (user, 2026-11-16). Physical sides, also in vertical text. Unlayered,
+   so the publisher's CSS can't take it away. */
+:root[data-webbook-appearance="published"] main {
+    padding-left: var(--size-step-0);
+    padding-right: var(--size-step-0);
 }
 
 /* Reading without JavaScript. The reader's script is running when <html> has webbook-dark or
@@ -474,6 +526,13 @@ body.webbook-caption-mode #webbook-caption-view {
     #webbook-caption-text {
         font-size: calc(1.5rem * var(--webbook-font-scale, 1));
     }
+}
+/* Caption mode keeps working while the publisher design pauses text preferences. */
+:root[data-webbook-appearance="published"] #webbook-caption-text {
+    font-family: system-ui;
+    line-height: 1.25;
+    letter-spacing: normal;
+    word-spacing: normal;
 }
 
 /* popover-base.css */
@@ -925,6 +984,14 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 }
 
 /* settings-panel.css */
+.webbook-appearance-hidden { display: none !important; }
+#webbook-settings #webbook-publisher-appearance { margin: 0; padding: 0; border: 0; gap: .25rem; }
+/* A hint, like the panel's "These settings apply to every book" */
+#webbook-publisher-appearance-note { margin: .25rem 0 0; color: var(--webbook-muted-fg); }
+#webbook-publisher-appearance-scope { margin: 0 0 .25rem; color: var(--webbook-muted-fg); }
+#webbook-settings #webbook-publisher-appearance > div { display: flex; align-items: center; justify-content: flex-start; gap: .6rem; }
+#webbook-publisher-appearance input { inline-size: 1.25rem; block-size: 1.25rem; }
+#webbook-publisher-appearance label { padding-block: .5rem; }
 /* Settings stay open, with headings for screen readers and links for short screens. */
 #webbook-settings:popover-open {
     margin: 0;
@@ -2007,6 +2074,7 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
 }
 
 /* writing-modes.css */
+:root:not([data-webbook-appearance="published"]) {
 /* Writing modes and the book's writing styles (plan 28). The converter keeps what a book states
    about how its text is written (its -epub- properties and their standard forms) as these
    classes and <html> data attributes; this is the standard CSS for them. */
@@ -2024,9 +2092,6 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
 .webbook-style-glyphs-upright { text-orientation: upright; }
 .webbook-style-glyphs-sideways { text-orientation: sideways; }
 .webbook-style-glyphs-mixed { text-orientation: mixed; }
-.webbook-style-horizontal { writing-mode: horizontal-tb; }
-.webbook-style-vertical-rl { writing-mode: vertical-rl; }
-.webbook-style-vertical-lr { writing-mode: vertical-lr; }
 
 /* Emphasis marks (bōten): beside each character, the East Asian counterpart of italics. In the
    text's colour: the reader's colours own colour, and marks in another colour could fail contrast. */
@@ -2053,6 +2118,11 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
 .webbook-style-emphasis-under-left { -webkit-text-emphasis-position: under left; text-emphasis-position: under left; }
 /* Full-width forms of letters and digits (Chrome doesn't support it, and shows them as they are) */
 .webbook-style-fullwidth { text-transform: full-width; }
+
+}
+.webbook-style-horizontal { writing-mode: horizontal-tb; }
+.webbook-style-vertical-rl { writing-mode: vertical-rl; }
+.webbook-style-vertical-lr { writing-mode: vertical-lr; }
 
 /* A language's line-breaking rules, for the whole page */
 :root[data-webbook-line-break="strict"] main { line-break: strict; }
@@ -2110,10 +2180,10 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
     padding-block-end: max(3rem, env(safe-area-inset-left));
 }
 /* Each character is about 1em tall, so the steps are characters a column */
-:root.webbook-vertical[data-webbook-line-length="narrow"] main { --webbook-column-length: 20em; }
+:root:not([data-webbook-appearance="published"]).webbook-vertical[data-webbook-line-length="narrow"] main { --webbook-column-length: 20em; }
 :root.webbook-vertical:not([data-webbook-line-length]) main,
-:root.webbook-vertical[data-webbook-line-length="medium"] main { --webbook-column-length: 30em; }
-:root.webbook-vertical[data-webbook-line-length="wide"] main { --webbook-column-length: 100%; }
+:root:not([data-webbook-appearance="published"]).webbook-vertical[data-webbook-line-length="medium"] main { --webbook-column-length: 30em; }
+:root:not([data-webbook-appearance="published"]).webbook-vertical[data-webbook-line-length="wide"] main { --webbook-column-length: 100%; }
 :root.webbook-vertical main {
     img, svg, video {
         max-width: none;
@@ -2181,4 +2251,82 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
         }
     }
 }
+
+/* book-styles.css */
+:root:not([data-webbook-appearance="published"]) {
+/* Meaningful publisher styles translated into reader-controlled classes. */
+.webbook-style-italic { font-style: italic; }
+.webbook-style-not-italic { font-style: normal; }
+.webbook-style-bold { font-weight: 700; }
+.webbook-style-unbold { font-weight: 400; }
+.webbook-style-small-caps { font-variant-caps: small-caps; }
+.webbook-style-no-small-caps { font-variant-caps: normal; }
+.webbook-style-underline { text-decoration-line: underline; }
+.webbook-style-strike { text-decoration-line: line-through; }
+.webbook-style-underline.webbook-style-strike { text-decoration-line: underline line-through; }
+.webbook-style-super { vertical-align: super; font-size: .8em; }
+.webbook-style-sub { vertical-align: sub; font-size: .8em; }
+.webbook-style-center { text-align: center; }
+.webbook-style-end { text-align: end; }
+.webbook-style-start { text-align: start; }
+.webbook-style-indent-1 { margin-inline-start: min(1em, 20%); }
+.webbook-style-indent-2 { margin-inline-start: min(2em, 20%); }
+.webbook-style-indent-3 { margin-inline-start: min(3em, 20%); }
+.webbook-style-indent-4 { margin-inline-start: min(4em, 20%); }
+.webbook-style-hang { padding-inline-start: min(2em, 20%); text-indent: calc(-1 * min(2em, 20%)); --webbook-text-indent: 0px; }
+.webbook-style-pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.webbook-style-uppercase { text-transform: uppercase; }
+.webbook-style-uppercase.webbook-style-fullwidth { text-transform: uppercase full-width; }
+.webbook-style-no-transform { text-transform: none; }
+.webbook-style-list-upper-roman { list-style-type: upper-roman; }
+.webbook-style-list-lower-roman { list-style-type: lower-roman; }
+.webbook-style-list-upper-alpha { list-style-type: upper-alpha; }
+.webbook-style-list-lower-alpha { list-style-type: lower-alpha; }
+.webbook-style-list-none { list-style-type: none; }
+.webbook-style-list-decimal { list-style-type: decimal; }
+.webbook-style-list-disc { list-style-type: disc; }
+.webbook-style-list-circle { list-style-type: circle; }
+.webbook-style-list-square { list-style-type: square; }
+.webbook-box, main .epubtype_sidebar {
+    border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
+    background-color: color-mix(in srgb, var(--theme-fg) 5%, var(--theme-bg));
+    padding: 1em; margin-block: 1em; margin-inline: 0; box-sizing: border-box; max-inline-size: 100%;
+    overflow-wrap: anywhere;
+}
+@media (forced-colors: active) {
+    .webbook-box, main .epubtype_sidebar { border-color: CanvasText; background: Canvas; color: CanvasText; }
+}
+
+.webbook-style-no-text-indent { text-indent: 0; --webbook-text-indent: 0px; }
+.webbook-style-text-indent-1 { text-indent: min(1em, 20%); --webbook-text-indent: min(1em, 20%); }
+.webbook-style-padding-1 { padding-inline-start: min(1em, 20%); }
+.webbook-style-text-indent-2 { text-indent: min(2em, 20%); --webbook-text-indent: min(2em, 20%); }
+.webbook-style-padding-2 { padding-inline-start: min(2em, 20%); }
+.webbook-style-text-indent-3 { text-indent: min(3em, 20%); --webbook-text-indent: min(3em, 20%); }
+.webbook-style-padding-3 { padding-inline-start: min(3em, 20%); }
+.webbook-style-text-indent-4 { text-indent: min(4em, 20%); --webbook-text-indent: min(4em, 20%); }
+.webbook-style-padding-4 { padding-inline-start: min(4em, 20%); }
+
+/* An inline image can fill a paragraph's width, so its first-line indent must be
+   deducted from that space. Otherwise a formula/thumbnail overflows at large text. */
+main :is(img, svg, video):not(.webbook-copy-button *, a.webbook *) {
+    max-inline-size: min(100%, calc(100% - var(--webbook-text-indent, 0px)));
+}
+
+/* Physical publisher sides remain physical in RTL and vertical text. */
+.webbook-style-left { text-align: left; }
+.webbook-style-right { text-align: right; }
+.webbook-style-margin-left-1 { margin-left: min(1em, 20%); }
+.webbook-style-padding-left-1 { padding-left: min(1em, 20%); }
+.webbook-style-margin-left-2 { margin-left: min(2em, 20%); }
+.webbook-style-padding-left-2 { padding-left: min(2em, 20%); }
+.webbook-style-margin-left-3 { margin-left: min(3em, 20%); }
+.webbook-style-padding-left-3 { padding-left: min(3em, 20%); }
+.webbook-style-margin-left-4 { margin-left: min(4em, 20%); }
+.webbook-style-padding-left-4 { padding-left: min(4em, 20%); }
+.webbook-publisher-only { display: none !important; }
+}
+.webbook-style-hidden { display: none !important; }
+.webbook-style-invisible { visibility: hidden !important; }
+.webbook-style-visible { visibility: visible !important; }
 

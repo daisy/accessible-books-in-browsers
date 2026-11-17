@@ -192,10 +192,10 @@ export function enhanceCopyContent() {
         if (!isDisplayEquation(math) || math.closest('[data-webbook-copy-unit]')) continue;
         const label = equationButtonName(math);
         const unit = document.createElement('span');
-        unit.className = 'webbook-copy-unit';
+        unit.className = 'webbook-copy-unit'; unit.setAttribute('data-webbook-reader', '');
         unit.dataset.webbookCopyUnit = '';
         const source = document.createElement('span');
-        source.className = 'webbook-copy-source';
+        source.className = 'webbook-copy-source'; source.setAttribute('data-webbook-reader', '');
         math.before(unit);
         source.append(math);
         unit.append(source, copyButton(label, () => copyEquation({ math, count: 1 })));
@@ -203,7 +203,7 @@ export function enhanceCopyContent() {
     for (const pre of main.querySelectorAll('pre')) {
         if (pre.closest('[data-webbook-copy-unit]')) continue;
         const unit = document.createElement('div');
-        unit.className = 'webbook-copy-unit webbook-copy-code';
+        unit.className = 'webbook-copy-unit webbook-copy-code'; unit.setAttribute('data-webbook-reader', '');
         unit.dataset.webbookCopyUnit = '';
         pre.before(unit);
         unit.append(pre, copyButton('Copy code', () => copyCode(pre)));

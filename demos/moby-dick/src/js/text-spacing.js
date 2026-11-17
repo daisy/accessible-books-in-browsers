@@ -3,7 +3,7 @@ import { appendSetting, settingsSection } from './settings-sections.js';
 // Text spacing settings: line spacing, letter spacing, word spacing and line length, for the book's
 // text and caption mode (WCAG 1.4.12's values are among the steps). Each is a few named steps
 // rather than a slider, which is easier by screen reader and by voice. Every option names its value:
-// no "Book default" (the converter keeps none of a book's CSS), and no "Normal" or "Default" (one
+// no "Normal" or "Default" (one
 // sounds better than the others, the other means something else once a setting is global) (user,
 // 2026-11-10). The first spacing steps (stored '') set nothing, so the reader's own CSS applies:
 // line height 1.6 (layout.css), no extra letter or word spacing.
@@ -61,7 +61,7 @@ function apply(setting, value) {
     // Vertical text's column height has its own steps, in writing-modes.css
     if (setting.key === 'webbook-line-length') root.setAttribute('data-webbook-line-length', stepValue);
     if (stepValue) {
-        root.style.setProperty(setting.property, css);
+        root.style.setProperty(setting.property, css || ({'webbook-line-height':'1.6', 'webbook-letter-spacing':'0em', 'webbook-word-spacing':'0em'}[setting.key] ?? css));
         if (setting.flag) root.setAttribute(setting.flag, '');
     } else {
         root.style.removeProperty(setting.property);
@@ -98,14 +98,16 @@ function buildSettings() {
 export function initTextSpacing() {
     buildSettings();
     for (const setting of SETTINGS) {
-        const value = stepFor(setting, readSetting(setting.key) || '')[0];
+        const stored = readSetting(setting.key);
+        const value = stepFor(setting, stored || '')[0];
         apply(setting, value);
         const select = document.getElementById(setting.id);
         if (!select) continue;
         select.value = value;
         select.addEventListener('change', () => {
-            writeSetting(setting.key, select.value);
-            apply(setting, select.value);
+            const value = select.value;
+            writeSetting(setting.key, value);
+            apply(setting, value);
         });
     }
 }

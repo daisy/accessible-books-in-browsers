@@ -19,7 +19,7 @@ function shortcutMap(value) {
 }
 
 export const SETTINGS_DEFINITIONS = Object.freeze({
-    'webbook-colors': oneOf('', 'auto', 'light', 'dark', 'white', 'black', 'cream', 'sepia', 'gray', 'blue', 'custom'),
+    'webbook-colors': oneOf( '', 'auto', 'light', 'dark', 'white', 'black', 'cream', 'sepia', 'gray', 'blue', 'custom'),
     'webbook-colors-text': color,
     'webbook-colors-background': color,
     'webbook-colors-text-auto': boolean,
@@ -28,9 +28,9 @@ export const SETTINGS_DEFINITIONS = Object.freeze({
     'webbook-highlight-style': oneOf('background', 'underline', 'both'),
     'webbook-font-family': oneOf('system-ui', 'sans-serif', 'serif'),
     'webbook-font-size': percent,
-    'webbook-line-height': oneOf('', '1.8', '2'),
-    'webbook-letter-spacing': oneOf('', 'wider', 'widest'),
-    'webbook-word-spacing': oneOf('', 'wider', 'widest'),
+    'webbook-line-height': oneOf( '', '1.8', '2'),
+    'webbook-letter-spacing': oneOf( '', 'wider', 'widest'),
+    'webbook-word-spacing': oneOf( '', 'wider', 'widest'),
     'webbook-line-length': oneOf('narrow', 'medium', 'wide'),
     'webbook-writing-mode': oneOf('horizontal'),
     'webbook-copy-math-format': oneOf('latex', 'mathml'),
@@ -108,5 +108,8 @@ export function importSettings(file, storage = localStorage) {
 }
 
 export function resetSettings(storage = localStorage) {
-    writeSettings(Object.fromEntries(Object.keys(SETTINGS_DEFINITIONS).map(key => [key, null])), storage);
+    // Each book's Appearance choice (appearance.js) isn't in a settings file, but Reset clears it too
+    const appearance = [];
+    for (let i = 0; i < storage.length; i++) if (storage.key(i)?.startsWith('webbook-appearance:')) appearance.push(storage.key(i));
+    writeSettings(Object.fromEntries([...Object.keys(SETTINGS_DEFINITIONS), ...appearance].map(key => [key, null])), storage);
 }

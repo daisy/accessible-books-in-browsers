@@ -5,14 +5,11 @@
     "effective": "en"
   },
   "options": {
-    "split chapters": true,
+    "publisher styles": true,
     "heading titles": true,
-    "markup cleanup": true,
-    "responsive tables": true,
     "small audio": true,
     "audio cleanup": true,
     "audio enhancements": "warm-eq,compression,noise,deess,declick",
-    "keep all ids": false,
     "optional checks": false
   },
   "changes": [
@@ -40,6 +37,85 @@
       "detail": "Run with --check to request this check."
     }
   ],
+  "publisherStyles": {
+    "pages": {
+      "index.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "chapter1.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "chapter2.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "endnotes.html": {
+        "kept": 0,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      }
+    },
+    "totals": {
+      "kept": 0,
+      "frozen": 0,
+      "unapplied": 0,
+      "causes": {},
+      "examples": [],
+      "fonts": {
+        "count": 0,
+        "bytes": 0
+      },
+      "images": {
+        "count": 0,
+        "bytes": 0
+      }
+    }
+  },
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 1199294,

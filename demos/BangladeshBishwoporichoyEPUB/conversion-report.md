@@ -1,20 +1,182 @@
 # Conversion report
 
-Changes: 3671. Warnings for review: 80. Optional checks: Ace not requested, axe not requested.
+Changes: 3672. Warnings for review: 80. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
 
 - Declared language: en-US
 - Effective language: en-US
-- split chapters: true
+- publisher styles: true
 - heading titles: true
-- markup cleanup: true
-- responsive tables: true
 - small audio: true
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
-- keep all ids: false
 - optional checks: false
+
+## Publisher styles (As published)
+
+Counts are selector rules; shared assets are counted once in the total.
+### Total
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### index.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-2.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-3.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-4.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-5.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-6.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-7.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-8.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-9.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-10.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-11.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-12.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-13.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-14.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-15.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-16.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-17.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-18.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-19.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-20.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-21.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-22.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-23.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-24.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-25.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### package-26.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
 
 ## Audio
 
@@ -51,7 +213,11 @@ Loudness range before cleanup: 4.2 LU.
 - package-24.html: -21.0 LUFS; peak 0.0 dBFS; quietest stretch below measurement floor; clipping samples 2
 - package-25.html: -20.8 LUFS; peak 0.1 dBFS; quietest stretch -99.4 dBFS; clipping samples 2
 
-## Changes (3671)
+## Changes (3672)
+
+### Empty nonsemantic wrappers removed (1)
+
+- package-2.html: 1
 
 ### Empty paragraphs removed (2)
 

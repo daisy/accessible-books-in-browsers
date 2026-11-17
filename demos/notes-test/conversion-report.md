@@ -6,15 +6,45 @@ Changes: 4. Warnings for review: 0. Optional checks: Ace not requested, axe not 
 
 - Declared language: en
 - Effective language: en
-- split chapters: true
+- publisher styles: true
 - heading titles: true
-- markup cleanup: true
-- responsive tables: true
 - small audio: true
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
-- keep all ids: false
 - optional checks: false
+
+## Publisher styles (As published)
+
+Counts are selector rules; shared assets are counted once in the total.
+### Total
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### index.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### chapter1.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### chapter2.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
+
+### endnotes.html
+
+Rules kept: 0. Frozen: 0. Unapplied: 0.
+Frozen by step: {}.
+Fonts copied: 0 (0 bytes). Images copied: 0 (0 bytes).
 
 ## Audio
 

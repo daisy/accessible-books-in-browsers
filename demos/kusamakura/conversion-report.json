@@ -5,17 +5,98 @@
     "effective": "ja-jp"
   },
   "options": {
-    "split chapters": true,
+    "publisher styles": true,
     "heading titles": true,
-    "markup cleanup": true,
-    "responsive tables": true,
     "small audio": true,
     "audio cleanup": true,
     "audio enhancements": "warm-eq,compression,noise,deess,declick",
-    "keep all ids": false,
     "optional checks": false
   },
   "changes": [
+    {
+      "kind": "Book styles kept as reader classes (box)",
+      "count": 1,
+      "pages": {
+        "後付.html": 1
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (font-style)",
+      "count": 4,
+      "pages": {
+        "index.html": 2,
+        "後付.html": 2
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (font-weight)",
+      "count": 38,
+      "pages": {
+        "index.html": 2,
+        "一.html": 7,
+        "二.html": 4,
+        "三.html": 3,
+        "四.html": 5,
+        "五.html": 2,
+        "六.html": 2,
+        "七.html": 2,
+        "八.html": 1,
+        "九.html": 1,
+        "十.html": 1,
+        "十一.html": 1,
+        "十二.html": 1,
+        "十三.html": 2,
+        "後付.html": 4
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (margin-left)",
+      "count": 34,
+      "pages": {
+        "一.html": 2,
+        "二.html": 2,
+        "三.html": 2,
+        "四.html": 3,
+        "五.html": 2,
+        "六.html": 2,
+        "七.html": 2,
+        "八.html": 2,
+        "九.html": 2,
+        "十.html": 2,
+        "十一.html": 2,
+        "十二.html": 2,
+        "十三.html": 2,
+        "後付.html": 7
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (text-align)",
+      "count": 2,
+      "pages": {
+        "index.html": 2
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (text-indent)",
+      "count": 1087,
+      "pages": {
+        "index.html": 1,
+        "一.html": 36,
+        "二.html": 101,
+        "三.html": 41,
+        "四.html": 159,
+        "五.html": 127,
+        "六.html": 27,
+        "七.html": 23,
+        "八.html": 99,
+        "九.html": 121,
+        "十.html": 68,
+        "十一.html": 109,
+        "十二.html": 99,
+        "十三.html": 72,
+        "後付.html": 4
+      }
+    },
     {
       "kind": "Book writing styles kept (vertical-rl text)",
       "count": 15,
@@ -141,6 +222,250 @@
       "detail": "Run with --check to request this check."
     }
   ],
+  "publisherStyles": {
+    "pages": {
+      "index.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "一.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "二.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "三.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "四.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "五.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "六.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "七.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "八.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "九.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "十.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "十一.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "十二.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "十三.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "後付.html": {
+        "kept": 39,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 1,
+          "bytes": 2488
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      }
+    },
+    "totals": {
+      "kept": 585,
+      "frozen": 0,
+      "unapplied": 0,
+      "causes": {},
+      "examples": [],
+      "fonts": {
+        "count": 1,
+        "bytes": 2488
+      },
+      "images": {
+        "count": 0,
+        "bytes": 0
+      }
+    }
+  },
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 18015720,
