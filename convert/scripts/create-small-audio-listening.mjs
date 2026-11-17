@@ -5,12 +5,12 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
+import ffmpegPath from 'ffmpeg-static';
 
 const convertRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repoRoot = path.resolve(convertRoot, '..');
 const output = path.resolve(process.argv[2] ?? '/private/tmp/abb-small-audio-listening');
-const ffmpeg = ffmpegInstaller.path;
+const ffmpeg = ffmpegPath;
 const samples = [
     { id: 'english', title: 'English for Today', start: 0,
         source: 'source-epubs/EnglishForTodayEPUB/EPUB/audio/aud092.mp3' },

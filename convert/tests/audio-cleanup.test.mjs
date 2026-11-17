@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { test } from 'node:test';
-import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
+import ffmpegPath from 'ffmpeg-static';
 import {
     DEPLOSIVE_FILTER, analyzeAudio, audioCleanupSettings, cleanupFilters, fadeFilters,
     loudnormFilter, parseAudioEnhancements
@@ -70,7 +70,7 @@ function generate(output, source, filter) {
     const args = ['-hide_banner', '-loglevel', 'error', '-f', 'lavfi', '-i', source];
     if (filter) args.push('-af', filter);
     args.push('-c:a', 'pcm_s16le', output);
-    const result = spawnSync(ffmpegInstaller.path, args);
+    const result = spawnSync(ffmpegPath, args);
     assert.equal(result.status, 0, result.stderr?.toString());
 }
 

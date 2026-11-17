@@ -1,5 +1,8 @@
 import { spawn } from 'child_process';
-import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
+import ffmpegStatic from 'ffmpeg-static';
+
+// ffmpeg-static's default export is the binary's path (its types don't say so under Node16 modules)
+const FFMPEG_PATH = (ffmpegStatic as unknown as string | null) ?? 'ffmpeg';
 
 export const AUDIO_ENHANCEMENTS = ['warm-eq', 'compression', 'noise', 'deess', 'declick'] as const;
 export type AudioEnhancement = typeof AUDIO_ENHANCEMENTS[number];
@@ -144,7 +147,7 @@ function matchNumber(value: string, pattern: RegExp): number | null {
 
 function runFfmpeg(args: string[]): Promise<string> {
     return new Promise((resolve, reject) => {
-        const child = spawn(ffmpegInstaller.path, args, { stdio: ['ignore', 'ignore', 'pipe'] });
+        const child = spawn(FFMPEG_PATH, args, { stdio: ['ignore', 'ignore', 'pipe'] });
         let stderr = '';
         child.stderr.setEncoding('utf8');
         child.stderr.on('data', chunk => { stderr += chunk; });
