@@ -1,0 +1,316 @@
+@charset "UTF-8"; 
+@import url('NotoSans.css');
+* {
+  font-family: 'noto-sans', sans-serif;
+  line-height: 130%;
+}
+.ltr {
+  text-align: left;
+}
+.monospace {
+  font-family: 'Consolas', 'Lucida Console', 'SF Mono', 'Courier', monospace;
+}
+section.chapter, section.footnotes {
+  page-break-before: always;
+}
+* {
+  line-height: 130%;
+}
+h1, h2, h3, h4, h5 {
+  text-align: left;
+  page-break-after: avoid;
+}
+h1 {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+h2 {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-left: 0;
+}
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 0;
+}
+h4 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1.5em 0 0.5em 0;
+}
+h5 {
+  font-size: 1em;
+  font-weight: normal;
+  font-style: italic;
+  margin-left: 0;
+}
+p, h1, h2, h3, h4, h5 {
+  text-align: left;
+}
+.indent {
+  text-indent: 1.8em;
+  margin-top: 0;
+}
+p.book-title, p.book-title, p.imprint {
+  text-indent: 0;
+}
+p {
+  margin-bottom: 0;
+}
+.label {
+  margin: 0 0.3em 0 0;
+  font-weight: bold;
+  color: inherit;
+}
+li span.label {
+  float: left;
+}
+li > p {
+  text-indent: 0;
+  margin-left: 0.75em;
+  margin-top: 0;
+}
+dt {
+  float: left;
+  clear: left;
+  margin-right: 1em;
+  min-width: 6.5em;
+}
+dd {
+  margin-left: 7.5em;
+}
+dd p {
+  margin: 0;
+}
+div.table-wrap, figure {
+  margin: 2em 0;
+  margin-block: 0;
+  margin-inline: 0;
+  text-align: center;
+  page-break-inside: avoid;
+}
+figure img {
+  width: 100%;
+}
+table {
+  line-height: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+}
+td {
+  border-bottom: 1px solid #000;
+  padding: 0.25em 0.75em;
+  text-align: left;
+  vertical-align: top;
+}
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+figure {
+  width: 100%;
+}
+div.table-caption {
+  margin: 1em 0;
+}
+div.fn p {
+  margin-left: 2em;
+}
+div.fn .note-mark, aside.fn .note-mark {
+  float: left;
+  width: 2em;
+  margin: 0 1em 0 0;
+  font-weight: bold;
+}
+aside > p {
+  text-align: left;
+  text-indent: 0em;
+  margin-left: 4em;
+}
+span.disp-formula, div.disp-formula {
+  display: block;
+  margin: 1em 0;
+  text-align: center;
+}
+span.disp-formula span.label, div.disp-formula span.label {
+  float: right;
+  font-size: 0.8em;
+  margin: 0;
+}
+span.inline-formula {
+  margin: 0 0.05em;
+}
+div.disp-formula, span.inline-formula {
+  font-weight: normal;
+  font-style: normal;
+}
+p.ref {
+  margin: 0.5em 0 0.5em 0;
+  text-indent: 0;
+}
+.statement {
+  margin: 1em 0;
+}
+.statement p {
+  margin-top: 0;
+}
+.kwd-group {
+  margin-top: 1em;
+}
+div.title-group, div.book-title-group {
+  margin: 0 0 2em 0;
+}
+div.black-bar-top {
+  width: 2.5em;
+  border-top: 0.25em solid #000;
+  margin: 0 0 1em 0;
+}
+p.contrib, div.contrib {
+  margin: 0;
+  text-indent: 0;
+}
+p.editors-ack {
+  margin: 1em 0 0.5em 0;
+}
+p.halftitle {
+  margin: 0;
+  line-height: 130%;
+}
+p.halftitle.book-title {
+  font-weight: bold;
+  line-height: 130%;
+}
+p.collection-title, p.volume-in-collection {
+  font-size: 1.5em;
+  line-height: 130%;
+  font-weight: bold;
+  margin: 0;
+}
+p.volume-in-collection {
+  font-size: 1.5em;
+  margin: 1em 0 0 0;
+}
+h1.book-title {
+  font-size: 1.8em;
+  line-height: 130%;
+  font-weight: bold;
+  margin: 0 0 0.5em 0;
+}
+p.book-subtitle {
+  font-size: 1em;
+  line-height: 130%;
+  font-weight: normal;
+}
+.title-page p.contrib, .title-page div.contrib {
+  font-size: 1em;
+  line-height: 130%;
+}
+div.publisher {
+  margin: 5em 0 0 0;
+  width: 20%;
+}
+img.publisher-logo {
+  width: 100%;
+}
+p.halftitle, p.collection-title, div.contrib, p.contrib, h1.book-title, p.book-subtitle {
+  word-break: keep-all;
+}
+p.imprint {
+  margin: 0;
+}
+p.imprint.dnb-title {
+  font-weight: bold;
+  margin: 1em 0 0 0;
+}
+p.imprint.copyright {
+  margin: 1em 0;
+}
+nav ol {
+  list-style-type: none;
+  padding-left: 0;
+}
+li.toc2, li.toc3 {
+  font-weight: normal;
+  margin-top: 0.25em;
+}
+li.toc1, li.toc2 {
+  margin-top: 1em;
+  font-weight: bold;
+  color: inherit;
+}
+span.toc-authors {
+  display: block;
+  font-weight: normal;
+  color: black;
+}
+li.toc2 {
+  margin-left: 1em;
+}
+li.toc3 {
+  margin-left: 2em;
+}
+div.contrib span.given-names, div.contrib span.surname, div.contrib span.degrees {
+  font-weight: bold;
+}
+div.contrib {
+  margin-top: 0.5em;
+}
+a.toc-link, a.toc-link:hover, a.toc-link:visited, a.toc-link:active, a.fn-link, a.fn-link:hover, a.fn-link:visited, a.fn-link:active, a.fn-ref, a.fn-ref:hover, a.fn-ref:visited, a.fn-ref:active, a.ref-link, a.ref-link:hover, a.ref-link:visited, a.ref-link:active, a.index-link, a.index-link:hover, a.index-link:visited, a.index-link:active, a.xref, a.xref:hover, a.xref:visited, a.xref:active {
+  color: inherit;
+  text-decoration: none;
+}
+.toc-link.toc-part {
+  font-size: 1.2em;
+}
+a.ext-link::before, a.xref::before {
+  content: "→";
+  text-decoration: none;
+}
+h4.index-subheading {
+  margin-top: 2em;
+}
+section.index ul {
+  padding-left: 0;
+}
+li.ie {
+  margin-left: 3em;
+  text-indent: -3em;
+}
+li.ie2 {
+  margin-left: 0;
+}
+li.ie2 span::before {
+  content: "– ";
+}
+li.ie ul.index-entry-list {
+  padding-left: 1em;
+}
+ul.index-entry-list {
+  list-style-type: none;
+}
+span.indexterm {
+  margin: 0.5em 1em 0 0;
+}
+a.orcid {
+  padding-left: 0.05em;
+}
+.theorem-title {
+  font-weight: bold;
+  display: block;
+}
+.bold {
+  font-weight: bold;
+}
+.sc {
+  font-variant: small-caps;
+}
+.monospace {
+  font-family: monospace;
+}
+sub {
+  line-height: 0.8em;
+}
+.margin-top-none {
+  margin-top: 0;
+}

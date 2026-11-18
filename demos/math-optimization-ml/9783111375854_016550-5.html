@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>3 Methods – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_016550-5.html"><meta name="webbook-page-number" content="23"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 3 Methods"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-3-4">Contents</a><a href="about.html">About</a><a href="9783111375854_016550-4.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_016550-6.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-003_s_004">
+            <h2 id="d73047e17812" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">3</span> <a></a>Methods<a href="#d73047e17812" rel="bookmark" class="webbook" title="Link to 3 Methods" aria-label="Link to 3 Methods" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <section id="b_9783111376776-003_s_005">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-7" tabindex="-1"><span class="label webbook-style-bold">3.1</span> <a id="d28651e18146"></a>Variation on graphs<a href="#h-7" rel="bookmark" class="webbook" title="Link to 3.1 Variation on graphs" aria-label="Link to 3.1 Variation on graphs" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">We fix a graph <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒢=(𝒱,ℰ)" altimg="images/b_9783111376776-003_ineq_038.png"><mi mathvariant="script">G</mi><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="script">V</mi><mo mathvariant="normal">,</mo><mi mathvariant="script">E</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> in order to avoid cumbersome notation. The TV of a signal <i>f</i> (on <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒢" altimg="images/b_9783111376776-003_ineq_039.png"><mi mathvariant="script">G</mi></math></span></span>) at a node <i>v</i> is defined as </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation"> <span class="label webbook-style-bold webbook-equation-number">(3.5)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (3.5)" tabindex="0" id="section-1" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_eq_005.png"><mtable displaystyle="true"><mtr><mtd><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>:</mo><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><msub><mrow><mi mathvariant="italic">d</mi></mrow><mrow><mi mathvariant="italic">v</mi></mrow></msub></mrow></mfrac></mstyle><munder><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">u</mi><mo stretchy="false">∈</mo><mi mathvariant="script">N</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></munder><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><mspace width="0.1667em"></mspace><mi mathvariant="italic">f</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">u</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>−</mo><mi mathvariant="italic">f</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><mo>.</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> This is a signal on the same graph with interesting properties. First, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="TVf" altimg="images/b_9783111376776-003_ineq_040.png"><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup></math></span></span> is subadditive and absolutely homogeneous, that is, for any signals <i>f</i>, <i>g</i>, real numbers <i>α</i>, <i>β</i>, and every node <i>v</i>, we have </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-003_eq_006"> <span class="label webbook-style-bold webbook-equation-number">(3.6)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (3.6)" tabindex="0" id="section-2" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_eq_006.png"><mtable displaystyle="true"><mtr><mtd><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">α</mi><mi mathvariant="italic">f</mi><mo>+</mo><mi mathvariant="italic">β</mi><mi mathvariant="italic">g</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">≤</mo><mfenced separators="" open="|" close="|"><mrow><mi mathvariant="italic">α</mi></mrow></mfenced><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><mfenced separators="" open="|" close="|"><mrow><mi mathvariant="italic">β</mi></mrow></mfenced><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">g</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>.</mo></mtd></mtr></mtable></math></span></span> 
+              </div> 
+              <p class="webbook-style-left">It can be used to define a seminorm on the space of signals <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_ineq_041.png"><mi mathvariant="script">F</mi><mo>:</mo><mo>=</mo><mo fence="true" stretchy="false">{</mo><mspace width="0.1667em"></mspace><mi mathvariant="italic">f</mi><mo stretchy="false">∣</mo><mi mathvariant="italic">f</mi><mo>:</mo><mi mathvariant="script">G</mi><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi><mo fence="true" stretchy="false">}</mo></math></span></span> as </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation"> <span class="label webbook-style-bold webbook-equation-number">(3.7)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (3.7)" tabindex="0" id="section-3" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_eq_007.png"><mtable displaystyle="true"><mtr><mtd><msub><mrow><mo>‖</mo><mspace width="0.1667em"></mspace><mi mathvariant="italic">f</mi><mo>‖</mo></mrow><mrow><mtext>TV</mtext></mrow></msub><mo>:</mo><mo>=</mo><munder><mrow><mo movablelimits="false">max</mo></mrow><mrow><mi mathvariant="italic">v</mi><mo stretchy="false">∈</mo><mi mathvariant="script">V</mi></mrow></munder><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>.</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="‖ f‖TV" altimg="images/b_9783111376776-003_ineq_042.png"><msub><mrow><mo>‖</mo><mspace width="0.1667em"></mspace><mi mathvariant="italic">f</mi><mo>‖</mo></mrow><mrow><mtext>TV</mtext></mrow></msub></math></span></span> inherits the properties of subadditivity and absolute homogeneity from <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="TVf(·)" altimg="images/b_9783111376776-003_ineq_043.png"><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo>·</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. Call two functions in <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℱ" altimg="images/b_9783111376776-003_ineq_044.png"><mi mathvariant="script">F</mi></math></span></span> equivalent if their difference is a constant. This partitions the signal space into equivalence classes. Thus, a function has norm 0 if and only if it is a constant, which is in the equivalence class of 0. We have proved the following.</p> 
+              <div class="statement lemma statement"> 
+                <h4 class="webbook-style-left webbook-style-bold" id="h-8" tabindex="-1"><a></a>Lemma 3.1.<a href="#h-8" rel="bookmark" class="webbook" title="Link to Lemma 3.1." aria-label="Link to Lemma 3.1." data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h4> 
+                <p class="webbook-style-left"> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="‖ f‖TV" altimg="images/b_9783111376776-003_ineq_045.png"><msub><mrow><mo>‖</mo><mspace width="0.1667em"></mspace><mi mathvariant="italic">f</mi><mo>‖</mo></mrow><mrow><mtext mathvariant="italic">TV</mtext></mrow></msub></math></span></span> <i>is a norm on the set of equivalence classes of signals on a specific graph</i> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒢" altimg="images/b_9783111376776-003_ineq_046.png"><mi mathvariant="script">G</mi></math></span></span><i>.</i></p>
+              </div> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">Intuitively, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="TVf(v)" altimg="images/b_9783111376776-003_ineq_047.png"><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> captures the oscillation of the signal <i>f</i> in the neighborhood of <i>v</i>. It is easy to see that <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="TVf(v)=0" altimg="images/b_9783111376776-003_ineq_048.png"><msup><mrow><mtext>TV</mtext></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mn>0</mn></math></span></span> implies that the signal <i>f</i> is constant on <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="δ({v})" altimg="images/b_9783111376776-003_ineq_049.png"><mi mathvariant="italic">δ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo fence="true" stretchy="false">{</mo><mi mathvariant="italic">v</mi><mo fence="true" stretchy="false">}</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, whereas nodes with high TV show jumps or oscillatory behavior on their respective coboundaries. Thus, the TV offers a simple way to cluster nodes on the graph by demarcating those nodes <i>v</i> that have high TV on <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="δ({v})" altimg="images/b_9783111376776-003_ineq_050.png"><mi mathvariant="italic">δ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo fence="true" stretchy="false">{</mo><mi mathvariant="italic">v</mi><mo fence="true" stretchy="false">}</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. From Eq. (<a href="#b_9783111376776-003_eq_006" class="xref">3.6</a>), we conclude that as long as two signals are affinely dependent they produce the same clusters. Apropos our hypothesis, oscillatory WSS is expected to be localized near bifurcations or bottlenecks and high TV<span class="indexterm-anchor" id="it_b_9783111376776-003_index-term_013" title="total variation on graphs"></span> nodes are expected to reproduce this behavior.</p> 
+            </section> 
+            <section id="b_9783111376776-003_s_006">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-9" tabindex="-1"><span class="label webbook-style-bold">3.2</span> <a id="d28651e18606"></a>GNN model and training<a href="#h-9" rel="bookmark" class="webbook" title="Link to 3.2 GNN model and training" aria-label="Link to 3.2 GNN model and training" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">The data consists of 159 simulations of blood flow that are performed on patient based meshes created by RPTU Kaiserslautern-Landau in Landau and the University of Jena [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_008" class="xref" id="xref_d28617e32182">8</a>], [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_033" class="xref" id="xref_d28617e32185">33</a>], [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_035" class="xref" id="xref_d28617e32188">35</a>]. The database is available online [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_009" class="xref" id="xref_d28617e32191">9</a>]. The data set is labeled to form a binary categorization with 61 points labeled as at risk based on an estimated stenosis degree (cf. [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_010" class="xref" id="xref_d28617e32194">10</a>], [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_011" class="xref" id="xref_d28617e32198">11</a>], [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_034" class="xref" id="xref_d28617e32201">34</a>] for estimation details) of higher than <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="50 %" altimg="images/b_9783111376776-003_ineq_051.png"><mn>50</mn><mspace width="0.1667em"></mspace><mi mathvariant="normal">%</mi></math></span></span>. For cross validation, the data set is split into <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="75 %" altimg="images/b_9783111376776-003_ineq_052.png"><mn>75</mn><mspace width="0.1667em"></mspace><mi mathvariant="normal">%</mi></math></span></span> training and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="25 %" altimg="images/b_9783111376776-003_ineq_053.png"><mn>25</mn><mspace width="0.1667em"></mspace><mi mathvariant="normal">%</mi></math></span></span> testing subsets. Adjacency and edge weight matrices for each simulation are computed and stored in sparse matrix format.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">The model is comprised of a single GraphSAGE layer followed by a TV based clustering<span class="indexterm-anchor" id="it_b_9783111376776-003_index-term_014" title="graph clustering"></span> layer, several GraphSAGE layers, and then a feedforward layer. The implementation details of the clustering layer are now described. The top <i>n</i> nodes, ranked in terms of the total variation, and their immediate neighbors are extracted to form a subset <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="V′" altimg="images/b_9783111376776-003_ineq_054.png"><msup><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mo>′</mo></mrow></msup></math></span></span> of the vertices <i>V</i> by a function we call <span class="monospace">RankTV</span>.</p> 
+              <p class="webbook-style-left">This creates a subgraph <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒢′" altimg="images/b_9783111376776-003_ineq_055.png"><msup><mrow><mi mathvariant="script">G</mi></mrow><mrow><mo>′</mo></mrow></msup></math></span></span> upon adjoining the set of edges <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_ineq_056.png"><mo fence="true" stretchy="false">{</mo><mo fence="true" stretchy="false">[</mo><mi mathvariant="italic">u</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">v</mi><mo fence="true" stretchy="false">]</mo><mo stretchy="false">∈</mo><mi mathvariant="italic">E</mi><mo stretchy="false">∣</mo><mi mathvariant="italic">u</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mo>′</mo></mrow></msup><mtext>and</mtext><mspace width="2.5pt"></mspace><mi mathvariant="italic">v</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mo>′</mo></mrow></msup><mo fence="true" stretchy="false">}</mo></math></span></span>. If this subgraph is disconnected, we find the shortest path between a pair of clusters <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ci" altimg="images/b_9783111376776-003_ineq_057.png"><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Cj" altimg="images/b_9783111376776-003_ineq_058.png"><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span> as </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation"> <span class="label webbook-style-bold webbook-equation-number">(3.8)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (3.8)" tabindex="0" id="section-4" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_eq_008.png"><mtable displaystyle="true"><mtr><mtd><mi mathvariant="italic">d</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>:</mo><mo>=</mo><munder><mrow><mo movablelimits="false">min</mo></mrow><mrow><mi mathvariant="italic">u</mi><mo stretchy="false">∈</mo><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mi mathvariant="italic">v</mi><mo stretchy="false">∈</mo><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></mrow></munder><mi mathvariant="italic">d</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">u</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="d(u,v)" altimg="images/b_9783111376776-003_ineq_059.png"><mi mathvariant="italic">d</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">u</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">v</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> is the shortest path between nodes <i>u</i> and <i>v</i>. If two clusters are closer than a stipulated path length, they are connected, possibly adding nodes along the shortest path if necessary. Finally, the layer updates the nodes and edges to return the subgraph <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒢′" altimg="images/b_9783111376776-003_ineq_060.png"><msup><mrow><mi mathvariant="script">G</mi></mrow><mrow><mo>′</mo></mrow></msup></math></span></span>.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">The clustering layer<span class="indexterm-anchor" id="it_b_9783111376776-003_index-term_015" title="graph clustering"></span> produces a compressed localized representation of the entire graph. Compression of the graph is necessary for two reasons: from a computational perspective, this reduces the memory footprint of the algorithm, especially stemming from the computation of gradients on such large graphs. Second, this prioritizes the receptive field of the network on the nodes that are likely to be associated with the generation of stenosis. As a direct consequence of the above, clustering proves to be a remedy for the oversquashing problem that plagues GNNs [<a href="9783111375854_016550-7.html#b_9783111376776-003_ref_002" class="xref" id="xref_d28617e32644">2</a>]. Moreover, learning from these clusters would also support our hypothesis that the local structure around areas of high WSS gradient are especially important to the prediction of stroke risk. In <a href="#b_9783111376776-003_fig_001" class="xref">Figure 3.1</a>, we show the results of the clustering layer on some simulations.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-003_fig_001">
+                <img alt="" src="images/b_9783111376776-003_fig_001.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 3.1</span> Results of the clustering layer. On top is the raw WSS data for a simulation. After message passing, points with highest total variation are clustered and extracted (bottom).</p></figcaption>
+              </figure> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">We now describe the rest of the neural network. The subgraph <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒢′" altimg="images/b_9783111376776-003_ineq_061.png"><msup><mrow><mi mathvariant="script">G</mi></mrow><mrow><mo>′</mo></mrow></msup></math></span></span> forms the input to a set of <i>T</i> GraphSAGE convolutions. The output <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="H(T)" altimg="images/b_9783111376776-003_ineq_062.png"><msup><mrow><mi mathvariant="italic">H</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">T</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span> is pooled using the global mean pool operator (which is equivalent to taking the average of the rows of the matrix <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="H(T)" altimg="images/b_9783111376776-003_ineq_063.png"><msup><mrow><mi mathvariant="italic">H</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">T</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span>) and then transformed into a binary class using a simple feedforward layer. The loss function that is optimized is the BCE between the ground truth label and the label predicted by the GNN.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">The pseudocode of the overall model is shown in <a href="#b_9783111376776-003_fig_002" class="xref">Algorithm 3.1</a>. Note some of the notation used therein: We denote the matrix of node features at layer <i>k</i> as <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="H(k)" altimg="images/b_9783111376776-003_ineq_064.png"><msup><mrow><mi mathvariant="italic">H</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">k</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span>, which has size <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="n×f(k)" altimg="images/b_9783111376776-003_ineq_065.png"><mi mathvariant="italic">n</mi><mo>×</mo><msup><mrow><mi mathvariant="italic">f</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">k</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span>, where <i>n</i> is the number of nodes and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="f(k)" altimg="images/b_9783111376776-003_ineq_066.png"><msup><mrow><mi mathvariant="italic">f</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">k</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span> is the number of features at layer <i>k</i>. Thus, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-003_ineq_067.png"><msubsup><mrow><mi mathvariant="italic">H</mi></mrow><mrow><mi mathvariant="italic">u</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">k</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup></math></span></span> denotes the row <i>u</i> in this matrix or the features of node <i>u</i>.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-003_fig_002">
+                <img alt="" src="images/b_9783111376776-003_fig_002.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Algorithm 3.1</span> GNN model for stroke risk prediction.</p></figcaption>
+              </figure> 
+            </section> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_016550-4.html" rel="prev" title="Previous: 2 Background" aria-label="Previous: 2 Background">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_016550-6.html" title="Next: 4 Results" aria-label="Next: 4 Results" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

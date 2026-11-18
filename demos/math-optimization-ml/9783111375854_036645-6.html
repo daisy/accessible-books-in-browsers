@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>4 Results – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_036645-6.html"><meta name="webbook-page-number" content="44"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 4 Results"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-6-5">Contents</a><a href="about.html">About</a><a href="9783111375854_036645-5.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_036645-7.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-006_s_008">
+            <h2 id="d73047e40016" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">4</span> <a></a>Results<a href="#d73047e40016" rel="bookmark" class="webbook" title="Link to 4 Results" aria-label="Link to 4 Results" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <section id="b_9783111376776-006_s_009">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-11" tabindex="-1"><span class="label webbook-style-bold">4.1</span> <a id="d28651e41465"></a>Pendulum<a href="#h-11" rel="bookmark" class="webbook" title="Link to 4.1 Pendulum" aria-label="Link to 4.1 Pendulum" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">While a relatively simple system, accurately training a PINN to predict the movement of a pendulum<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_010" title="pendulum"></span> for long times presents challenges [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_029" class="xref" id="xref_d28617e72877">29</a>]. The pendulum movement is governed by a system of two first-order ODEs for <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="t∈[0,T]" altimg="images/b_9783111376776-006_ineq_064.png"><mi mathvariant="italic">t</mi><mo stretchy="false">∈</mo><mo fence="true" stretchy="false">[</mo><mn>0</mn><mo mathvariant="normal">,</mo><mi mathvariant="italic">T</mi><mo fence="true" stretchy="false">]</mo></math></span></span>, </p>
+              <div class="disp-formula-group"> 
+                <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-006_eq_011"> <span class="label webbook-style-bold webbook-equation-number">(6.8)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.8)" tabindex="0" id="section-1" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_011.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mstyle displaystyle="true"><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>1</mn></mrow></msub></mrow><mrow><mi mathvariant="italic">d</mi><mi mathvariant="italic">t</mi></mrow></mfrac></mstyle></mtd><mtd><mo>=</mo><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span></span> 
+                </div> 
+                <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-006_eq_012"> <span class="label webbook-style-bold webbook-equation-number">(6.9)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.9)" tabindex="0" id="section-2" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_012.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mstyle displaystyle="true"><mfrac><mrow><mi mathvariant="italic">d</mi><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>2</mn></mrow></msub></mrow><mrow><mi mathvariant="italic">d</mi><mi mathvariant="italic">t</mi></mrow></mfrac></mstyle></mtd><mtd><mo>=</mo><mo>−</mo><mstyle displaystyle="true"><mfrac><mrow><mi mathvariant="italic">b</mi></mrow><mrow><mi mathvariant="italic">m</mi></mrow></mfrac></mstyle><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>−</mo><mstyle displaystyle="true"><mfrac><mrow><mi mathvariant="italic">g</mi></mrow><mrow><mi mathvariant="italic">L</mi></mrow></mfrac></mstyle><mo movablelimits="false">sin</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span></span> 
+                </div> 
+              </div>
+              <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s1" altimg="images/b_9783111376776-006_ineq_065.png"><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>1</mn></mrow></msub></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s2" altimg="images/b_9783111376776-006_ineq_066.png"><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> are the position and velocity of the pendulum, respectively. We employ the same parameters used in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_029" class="xref" id="xref_d28617e73170">29</a>], that is, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="m=L=1" altimg="images/b_9783111376776-006_ineq_067.png"><mi mathvariant="italic">m</mi><mo>=</mo><mi mathvariant="italic">L</mi><mo>=</mo><mn>1</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="b=0.05" altimg="images/b_9783111376776-006_ineq_068.png"><mi mathvariant="italic">b</mi><mo>=</mo><mn>0.05</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="g=9.81" altimg="images/b_9783111376776-006_ineq_069.png"><mi mathvariant="italic">g</mi><mo>=</mo><mn>9.81</mn></math></span></span>, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="T=20" altimg="images/b_9783111376776-006_ineq_070.png"><mi mathvariant="italic">T</mi><mo>=</mo><mn>20</mn></math></span></span>. We take <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s1(0)=s2(0)=1" altimg="images/b_9783111376776-006_ineq_071.png"><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>0</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>0</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mn>1</mn></math></span></span>. We compare the results with those for the stacking PINN from [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e73293">13</a>], which uses the same multifidelity architecture but only a single PINN on each level. As shown in <a href="#b_9783111376776-006_fig_003" class="xref">Figure 6.3</a>, the stacking FBPINN is able to reach a significantly lower relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_072.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error. In addition, each network in the stacking FBPINN is significantly smaller than the networks used in the stacking PINN with the result that, at three stacking layers, the stacking FBPINN reaches a relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_073.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="7.4·10−3" altimg="images/b_9783111376776-006_ineq_074.png"><mn>7.4</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>3</mn></mrow></msup></math></span></span> with only 34 570 trainable parameters. In comparison, the best case stacking PINN from [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e73366">13</a>] requires four stacking levels to reach a relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_075.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1.3·10−2" altimg="images/b_9783111376776-006_ineq_076.png"><mn>1.3</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>2</mn></mrow></msup></math></span></span> with 63 018 trainable parameters.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-006_fig_003">
+                <img alt="" src="images/b_9783111376776-006_fig_003.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 6.3</span> Stacking FBPINN results for the pendulum problem: <b>Left:</b> Stacking FBPINN results for an illustrative example of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s1" altimg="images/b_9783111376776-006_ineq_077.png"><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>1</mn></mrow></msub></math></span></span> (top) and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s2" altimg="images/b_9783111376776-006_ineq_078.png"><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> (bottom) as a function of time for the pendulum problem up to five stacking FBPINN levels. <b>Right:</b> Pendulum relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_079.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> training errors comparing the work in the current paper (solid line) with the approach from [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e73496">13</a>] (dashed lines).</p></figcaption>
+              </figure> 
+            </section> 
+            <section id="b_9783111376776-006_s_010">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-12" tabindex="-1"><span class="label webbook-style-bold">4.2</span> <a id="d28651e41830"></a>Multiscale problem<a href="#h-12" rel="bookmark" class="webbook" title="Link to 4.2 Multiscale problem" aria-label="Link to 4.2 Multiscale problem" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">We now consider a toy model problem with a low and high frequency component,<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_011" title="multiscale problem"></span> inspired by [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_022" class="xref" id="xref_d28617e73520">22</a>]: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_013.png"><mtable displaystyle="true" columnspacing="0pt" columnalign="right left"><mtr><mtd><mstyle displaystyle="true"><mfrac><mrow><mi mathvariant="italic">d</mi><mi mathvariant="italic">s</mi></mrow><mrow><mi mathvariant="italic">d</mi><mi mathvariant="italic">x</mi></mrow></mfrac></mstyle></mtd><mtd><mo>=</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>1</mn></mrow></msub><mo movablelimits="false">cos</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>1</mn></mrow></msub><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>2</mn></mrow></msub><mo movablelimits="false">cos</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>2</mn></mrow></msub><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mi mathvariant="italic">s</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>0</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mn>0</mn><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> on domain <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ω=[0,20]" altimg="images/b_9783111376776-006_ineq_080.png"><mi mathvariant="normal">Ω</mi><mo>=</mo><mo fence="true" stretchy="false">[</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>20</mn><mo fence="true" stretchy="false">]</mo></math></span></span> with <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ω1=1" altimg="images/b_9783111376776-006_ineq_081.png"><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>1</mn></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ω2=15" altimg="images/b_9783111376776-006_ineq_082.png"><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mn>15</mn></math></span></span>. The exact solution for this problem is <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_083.png"><mi mathvariant="italic">s</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo movablelimits="false">sin</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>1</mn></mrow></msub><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><mo movablelimits="false">sin</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mn>2</mn></mrow></msub><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">The results are shown in <a href="#b_9783111376776-006_fig_004" class="xref">Figure 6.4</a>. After two stacking levels, the stacking FBPINN reaches a relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_084.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="4.2·10−3" altimg="images/b_9783111376776-006_ineq_085.png"><mn>4.2</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>3</mn></mrow></msup></math></span></span>, with 7 822 trainable parameters. A comparable relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_086.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="6.1·10−3" altimg="images/b_9783111376776-006_ineq_087.png"><mn>6.1</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>3</mn></mrow></msup></math></span></span> is reached after 10 stacking levels with a stacking PINN with 11 179 trainable parameters. Also shown in <a href="#b_9783111376776-006_fig_004" class="xref">Figure 6.4</a> (right) is the best case SF network from [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e73940">13</a>], which has a relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_088.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="9.5·10−2" altimg="images/b_9783111376776-006_ineq_089.png"><mn>9.5</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>2</mn></mrow></msup></math></span></span> with 16 833 trainable parameters. The stacking FBPINN outperforms the SF PINN with an error more than an order of magnitude lower, with less than half the trainable parameters. Additionally, the final stacking FBPINN reaches a relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_090.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="8.3·10−4" altimg="images/b_9783111376776-006_ineq_091.png"><mn>8.3</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>4</mn></mrow></msup></math></span></span>, an order of magnitude lower than the final stacking PINN.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-006_fig_004">
+                <img alt="" src="images/b_9783111376776-006_fig_004.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 6.4</span> Stacking FBPINN results for the multiscale problem: <b>Left:</b> Stacking FBPINN results for the single fidelity level 0 and the first four stacking FBPINN levels. <b>Right:</b> Multiscale relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_092.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> training errors comparing the work in the current paper with [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e74073">13</a>].</p></figcaption>
+              </figure> 
+            </section> 
+            <section id="b_9783111376776-006_s_011">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-13" tabindex="-1"><span class="label webbook-style-bold">4.3</span> <a id="d28651e42157"></a>Allen–Cahn equation<a href="#h-13" rel="bookmark" class="webbook" title="Link to 4.3 Allen–Cahn equation" aria-label="Link to 4.3 Allen–Cahn equation" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">Our third example is based on the Allen–Cahn equation<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_012" title="Allen–Cahn equation"></span> and is given by </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_014.png"><mtable displaystyle="true" columnspacing="0pt 10pt 0pt" columnalign="right left right left"><mtr><mtd><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mi mathvariant="italic">t</mi></mrow></msub><mo>−</mo><mn>0.0001</mn><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mi mathvariant="italic">x</mi><mi mathvariant="italic">x</mi></mrow></msub><mo>+</mo><mn>5</mn><msup><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mn>3</mn></mrow></msup><mo>−</mo><mn>5</mn><mi mathvariant="italic">s</mi></mtd><mtd><mo>=</mo><mn>0</mn><mo mathvariant="normal">,</mo></mtd><mtd></mtd><mtd><mi mathvariant="italic">t</mi><mo stretchy="false">∈</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><mo fence="true" stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mi mathvariant="italic">s</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mn>0</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><msup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msup><mo movablelimits="false">cos</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">π</mi><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd><mtd></mtd><mtd><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><mo fence="true" stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mi mathvariant="italic">s</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">t</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mi mathvariant="italic">s</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo>−</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">t</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd><mtd></mtd><mtd><mi mathvariant="italic">t</mi><mo stretchy="false">∈</mo><mo fence="true" stretchy="false">[</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo><mi mathvariant="italic">x</mi><mo>=</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mi mathvariant="italic">x</mi><mo>=</mo><mn>1</mn><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mi mathvariant="italic">x</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">t</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><msub><mrow><mi mathvariant="italic">s</mi></mrow><mrow><mi mathvariant="italic">x</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo>−</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">t</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd><mtd></mtd><mtd><mi mathvariant="italic">t</mi><mo stretchy="false">∈</mo><mo fence="true" stretchy="false">[</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo><mi mathvariant="italic">x</mi><mo>=</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mi mathvariant="italic">x</mi><mo>=</mo><mn>1</mn><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> The Allen–Cahn equation presents difficulties for PINNs when attempting to learn the full solution from <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="t=0" altimg="images/b_9783111376776-006_ineq_093.png"><mi mathvariant="italic">t</mi><mo>=</mo><mn>0</mn></math></span></span> to 1 with a single PINN; see, for example, [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_032" class="xref" id="xref_d28617e74580">32</a>], [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_020" class="xref" id="xref_d28617e74583">20</a>], [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_026" class="xref" id="xref_d28617e74587">26</a>].</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">We solve the Allen–Cahn equation by dividing the time domain into subdomains, as presented in Section <a href="9783111375854_036645-5.html#b_9783111376776-006_s_007" class="xref">3</a>. The corresponding results for the stacking FBPINN are shown in <a href="#b_9783111376776-006_fig_005" class="xref">Figure 6.5</a>. The relative <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℓ2" altimg="images/b_9783111376776-006_ineq_094.png"><msub><mrow><mi>ℓ</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> error for applying two levels of the stacking FBPINN is <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="5.9·10−3" altimg="images/b_9783111376776-006_ineq_095.png"><mn>5.9</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>3</mn></mrow></msup></math></span></span>. Previously reported values for the relative error in literature include <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1.68·10−2" altimg="images/b_9783111376776-006_ineq_096.png"><mn>1.68</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>2</mn></mrow></msup></math></span></span> for the backward compatible PINN [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_020" class="xref" id="xref_d28617e74672">20</a>] and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="2.33·10−2" altimg="images/b_9783111376776-006_ineq_097.png"><mn>2.33</mn><mo>·</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>2</mn></mrow></msup></math></span></span> for PINNs with adaptive resampling [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_032" class="xref" id="xref_d28617e74701">32</a>].</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-006_fig_005">
+                <img alt="" src="images/b_9783111376776-006_fig_005.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 6.5</span> Stacking FBPINN results for the Allen–Cahn equation. <b>Left:</b> Stacking FBPINN results for the single fidelity level 0 and the first two stacking FBPINN levels. <b>Right:</b> Line plots of the results from the stacking FBPINN at <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="t=0.25" altimg="images/b_9783111376776-006_ineq_098.png"><mi mathvariant="italic">t</mi><mo>=</mo><mn>0.25</mn></math></span></span> (top) and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="t=0.75" altimg="images/b_9783111376776-006_ineq_099.png"><mi mathvariant="italic">t</mi><mo>=</mo><mn>0.75</mn></math></span></span> (bottom).</p></figcaption>
+              </figure> 
+            </section> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_036645-5.html" rel="prev" title="Previous: 3 Domain decomposition in time" aria-label="Previous: 3 Domain decomposition in time">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_036645-7.html" title="Next: 5 Extension to DeepONets" aria-label="Next: 5 Extension to DeepONets" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

@@ -26,8 +26,8 @@ function workerCommand(worker, command, data = {}, onProgress = () => {}) {
 async function foregroundDownload(worker, data, onProgress, signal) {
     signal?.throwIfAborted();
     const lease = await workerCommand(worker, 'begin-save', data);
-    let runner, rejectReady, running = false, cancelled = false;
-    const abort = () => { cancelled = true; if (running) workerCommand(runner, 'cancel').catch(() => {}); else rejectReady?.(new DOMException('Download cancelled.', 'AbortError')); };
+    let runner, rejectReady, running = false, canceled = false;
+    const abort = () => { canceled = true; if (running) workerCommand(runner, 'cancel').catch(() => {}); else rejectReady?.(new DOMException('Download canceled.', 'AbortError')); };
     const cancel = event => { if (event.data?.cancelDownload === lease.cache) abort(); };
     signal?.addEventListener('abort', abort, { once: true });
     navigator.serviceWorker.addEventListener('message', cancel);
@@ -45,7 +45,7 @@ async function foregroundDownload(worker, data, onProgress, signal) {
             });
             runner.postMessage({ webbookDownload: 1, ...lease });
         });
-        if (cancelled) throw new DOMException('Download cancelled.', 'AbortError');
+        if (canceled) throw new DOMException('Download canceled.', 'AbortError');
         running = true; return await workerCommand(runner, 'save', data, onProgress);
     } finally {
         runner?.terminate(); signal?.removeEventListener('abort', abort); navigator.serviceWorker.removeEventListener('message', cancel);
@@ -111,7 +111,7 @@ export function initOfflineReading() {
     confirmation.append(question, no, yes);
     function open() { document.getElementById('webbook-info')?.showPopover?.(); heading.focus({ preventScroll: true }); heading.scrollIntoView({ block: 'start' }); }
     function report(message) { if (status.textContent !== message) status.textContent = message; }
-    function fail(error) { if (error.name === 'AbortError') report('Download cancelled.'); else report(error.message || 'Offline reading is unavailable.'); }
+    function fail(error) { if (error.name === 'AbortError') report('Download canceled.'); else report(error.message || 'Offline reading is unavailable.'); }
     function render() {
         const operating = busy || remoteBusy, focused = document.activeElement;
         indicator.hidden = serverReachable !== false;

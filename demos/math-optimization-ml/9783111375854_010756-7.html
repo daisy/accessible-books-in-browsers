@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>5 Conclusion – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_010756-7.html"><meta name="webbook-page-number" content="18"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 5 Conclusion"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-2-6">Contents</a><a href="about.html">About</a><a href="9783111375854_010756-6.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_016550.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section class="book-part chapter" id="section-1"><div><section id="b_9783111376776-002_s_019">
+            <h2 id="d73047e15610" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">5</span> <a></a>Conclusion<a href="#d73047e15610" rel="bookmark" class="webbook" title="Link to 5 Conclusion" aria-label="Link to 5 Conclusion" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="webbook-style-left">The Macro–Micro method proposed in [<a href="#b_9783111376776-002_ref_005" class="xref" id="xref_d28617e27876">5</a>] requires the approximation of value functions, which can be performed using a database composed of points <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="(a,b,Vi(a,b))" altimg="images/b_9783111376776-002_ineq_116.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">b</mi><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">b</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. We present two numerical methods to create such a database. The first one, based on the computation of the value functions <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Vi(a,b)" altimg="images/b_9783111376776-002_ineq_117.png"><msub><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">b</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> for a set of given pairs <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="(a,b)" altimg="images/b_9783111376776-002_ineq_118.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">b</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, requires to find an initial costate <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="p′" altimg="images/b_9783111376776-002_ineq_119.png"><msup><mrow><mi mathvariant="italic">p</mi></mrow><mrow><mo>′</mo></mrow></msup></math></span></span> solution of the shooting equation that appears in the indirect method. The second method consists in evaluating the exponential map <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-002_ineq_120.png"><msub><mrow><mo movablelimits="false">exp</mo></mrow><mrow><mover accent="true"><mrow><mi mathvariant="italic">h</mi></mrow><mo stretchy="false">→</mo></mover></mrow></msub></math></span></span> for a set of given pairs <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="(a,p)" altimg="images/b_9783111376776-002_ineq_121.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">p</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, where <i>p</i> is the initial costate to get a final state <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="b′" altimg="images/b_9783111376776-002_ineq_122.png"><msup><mrow><mi mathvariant="italic">b</mi></mrow><mrow><mo>′</mo></mrow></msup></math></span></span> and the corresponding cost <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-002_ineq_123.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">c</mi></mrow><mo stretchy="false">¯</mo></mover></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">p</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, which under Hypothesis <a href="9783111375854_010756-4.html#b_9783111376776-002_stat_001" class="xref">2.1</a>, is the optimal one: <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-002_ineq_124.png"><msub><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">b</mi></mrow><mrow><mo>′</mo></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">c</mi></mrow><mo stretchy="false">¯</mo></mover></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">p</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>.</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">The pros and cons of both methods are gathered in <a href="#b_9783111376776-002_tab_001" class="xref">Table 2.1</a>. The uncontrolled distribution obtained by Method 2 can be balanced by its favorable computation cost. Indeed, in our application, for at least the same number of calls to the exponential map as in Method 1, it appears that the domain of reachable final states is well covered. This makes this Method 2 really competitive.</p> 
+            <div class="table-wrap webbook-style-center" id="b_9783111376776-002_tab_001">
+              <div class="table-caption caption">
+                <p class="webbook-style-left"><span class="label webbook-style-bold">Table 2.1</span>Pros and cons of Method 1 and Method 2.</p>
+              </div>
+              <div class="webbook-table-scroll" role="region" tabindex="0" aria-label="Table 1" data-webbook-reader=""><table id="table-1"> <thead> <tr> 
+                    <td class="webbook-style-left"></td> 
+                    <td class="webbook-style-left">Method 1</td> 
+                    <td class="webbook-style-left">Method 2</td> </tr> </thead> <tbody> <tr> 
+                    <td class="webbook-style-left">Pros</td> 
+                    <td class="webbook-style-left">Controlled distribution</td> 
+                    <td class="webbook-style-left">Computation cost</td> </tr> <tr> 
+                    <td rowspan="2" class="webbook-style-left">Cons</td> 
+                    <td class="webbook-style-left">Prior knowledge of admissible domain</td> 
+                    <td class="webbook-style-left">Prior knowledge of initial costate range</td> </tr> <tr> 
+                    <td class="webbook-style-left">Computation cost</td> 
+                    <td class="webbook-style-left">Non controlled distribution</td> </tr> </tbody> 
+              </table></div>
+            </div> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">Once the database is created, the associated value function approximation <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ci" altimg="images/b_9783111376776-002_ineq_125.png"><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> has to be built. A wide range of methods can be used such as neural networks models. The latter are renowned for their generalization capacities and their ability to provide the gradient of the approximation <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ci" altimg="images/b_9783111376776-002_ineq_126.png"><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> through the retropropagation technique. Indeed, the availability of this gradient should ease the resolution of the problem (Macro) and provide a good initialization for the resolution of the optimal control problems of the problem (Micro) by the indirect method.</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">Another perspective is to use the gradient of the value function to improve the fitting of the approximations <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ci" altimg="images/b_9783111376776-002_ineq_127.png"><msub><mrow><mi mathvariant="italic">C</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span>. Indeed, it can be shown under some assumptions that the gradient of the value function <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Vi(xi,xi+1)" altimg="images/b_9783111376776-002_ineq_128.png"><msub><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> is the vector <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="(−pi,pi+1)" altimg="images/b_9783111376776-002_ineq_129.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo>−</mo><msub><mrow><mi mathvariant="italic">p</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">p</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. Therefore, the computation of the Hamiltonian flow <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-002_ineq_130.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">p</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><msub><mrow><mo movablelimits="false">exp</mo></mrow><mrow><mover accent="true"><mrow><mi mathvariant="italic">h</mi></mrow><mo stretchy="false">→</mo></mover></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">p</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> provides the optimal cost transition <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Vi(xi,xi+1)" altimg="images/b_9783111376776-002_ineq_131.png"><msub><mrow><mi mathvariant="italic">V</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> as well as its associated gradient. An extended database containing this additional information on the gradient could then be created without additional cost and used for instance to train Physics-Informed Neural Networks (PINNs).</p> 
+          </section> 
+        </div> 
+        <div> 
+          <section role="doc-bibliography" data-webbook-epub-type="bibliography" class="epubtype_bibliography" id="section-2"><a></a> 
+            <h2 id="d73047e16110" class="webbook-style-left webbook-style-bold" tabindex="-1"><a></a>Bibliography<a href="#d73047e16110" rel="bookmark" class="webbook" title="Link to Bibliography" aria-label="Link to Bibliography" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_001" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[1]</span><span class="mixed-citation">A. A. Agrachev and Y. L. Sachkov. <i>Control Theory from the Geometric Viewpoint</i>. Springer, Berlin Heidelberg, 2004. <a href="9783111375854_010756-4.html#xref_d28617e24238" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_002" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[2]</span><span class="mixed-citation">R. Bellman. <i>Dynamic Programming</i>. Dover Publications, 1957. <a href="9783111375854_010756-3.html#xref_d28617e18890" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_003" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[3]</span><span class="mixed-citation">O. Bokanowski, A. Désilles, and H. Zidani. Relationship between maximum principle and dynamic programming in presence of intermediate and final state constraints. <i>ESAIM. Control, Optimisation and Calculus of Variations</i>, 27:91, 2021. <a href="9783111375854_010756-4.html#xref_d28617e25031" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_004" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[4]</span><span class="mixed-citation">J.-B. Caillau, R. Ferretti, E. Trélat, and H. Zidani. An algorithmic guide for finite-dimensional optimal control problems. In: <i>Handbook of Numerical Analysis: Numerical Control, Part B</i>. North-Holland, 2022. <a href="9783111375854_010756-3.html#xref_d28617e18906" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_005" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[5]</span><span class="mixed-citation">O. Cots, R. Dutto, S. Laporte, and S. Jan. A bilevel optimal control method and application to the hybrid electric vehicle, 2023. <a href="9783111375854_010756-3.html#xref_d28617e18916" class="ref-link">a</a>, <a href="9783111375854_010756-4.html#xref_d28617e18950" class="ref-link">b</a>, <a href="9783111375854_010756-4.html#xref_d28617e18956" class="ref-link">c</a>, <a href="9783111375854_010756-4.html#xref_d28617e19045" class="ref-link">d</a>, <a href="9783111375854_010756-4.html#xref_d28617e19075" class="ref-link">e</a>, <a href="9783111375854_010756-4.html#xref_d28617e21272" class="ref-link">f</a>, <a href="9783111375854_010756-4.html#xref_d28617e21303" class="ref-link">g</a>, <a href="9783111375854_010756-6.html#xref_d28617e26901" class="ref-link">h</a>, <a href="9783111375854_010756-6.html#xref_d28617e27812" class="ref-link">i</a>, <a href="9783111375854_010756-6.html#xref_d28617e27815" class="ref-link">j</a>, <a href="#xref_d28617e27876" class="ref-link">k</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_006" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[6]</span><span class="mixed-citation">O. Cots, R. Dutto, S. Laporte, and S. Jan. Geometric preconditioner for indirect shooting and application to hybrid vehicle, 2024. <a href="9783111375854_010756-4.html#xref_d28617e25367" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_007" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[7]</span><span class="mixed-citation">E. Cristiani and P. Martinon. Initialization of the shooting method via the Hamilton–Jacobi–Bellman approach. <i>Journal of Optimization Theory and Applications</i>, 146(2):321–346, 2010. <a href="9783111375854_010756-4.html#xref_d28617e25364" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_008" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[8]</span><span class="mixed-citation">A. Didier and A. Svensson. A short state of the art on multi-leader-follower games. In: <i>Bilevel Optimization: Advances and Next Challenges</i>, pages 53–76. Springer, 2020. Chapter 3. <a href="9783111375854_010756-4.html#xref_d28617e21275" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_009" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[9]</span><span class="mixed-citation">L. Johannesson, M. Asbogard, and B. Egardt. Assessing the potential of predictive control for hybrid vehicle powertrains using stochastic dynamic programming. In: <i>Proceedings. 2005 IEEE Intelligent Transportation Systems</i>, pages 366–371, 2005. <a href="9783111375854_010756-6.html#xref_d28617e26872" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_010" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[10]</span><span class="mixed-citation">N. Kim, S. Cha, and H. Peng. Optimal control of hybrid electric vehicles based on Pontryagin’s minimum principle. <i>IEEE Transactions on Control Systems Technology</i>, 19(5):1279–1287, 2011. <a href="9783111375854_010756-6.html#xref_d28617e26875" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_011" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[11]</span><span class="mixed-citation">A. A. Malikopoulos. Supervisory power management control algorithms for hybrid electric vehicles: a survey. <i>IEEE Transactions on Intelligent Transportation Systems</i>, 15(5):1869–1885, 2014. <a href="9783111375854_010756-6.html#xref_d28617e26878" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_012" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[12]</span><span class="mixed-citation">L. S. Pontryagin, V. G. Boltyanskii, R. V. Gamkrelidze, and E. F. Mishechenko. <i>The Mathematical Theory of Optimal Processes</i>. New York, 1962. <a href="9783111375854_010756-3.html#xref_d28617e18903" class="ref-link">a</a>, <a href="9783111375854_010756-4.html#xref_d28617e22393" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_013" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[13]</span><span class="mixed-citation">G. Rousseau. <i>Véhicule hybride et commande optimale</i>. PhD thesis, ENMP 2008. <a href="9783111375854_010756-6.html#xref_d28617e26881" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_014" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[14]</span><span class="mixed-citation">R. S. Sutton and A. G. Barto. <i>Reinforcement Learning: An Introduction</i>. The MIT Press, 2018. <a href="9783111375854_010756-3.html#xref_d28617e18893" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_015" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[15]</span><span class="mixed-citation">X. Wang, H. He, F. Sun, and J. Zhang. Application study on the dynamic programming algorithm for energy management of plug-in hybrid electric vehicles. <i>Energies</i>, 8(4):3225–3244, 2015. <a href="9783111375854_010756-6.html#xref_d28617e26885" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-002_ref_016" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[16]</span><span class="mixed-citation">S. G. Wirasingha and A. Emadi. Classification and review of control strategies for plug-in hybrid electric vehicles. <i>IEEE Transactions on Vehicular Technology</i>, 60(1):111–122, 2011. <a href="9783111375854_010756-6.html#xref_d28617e26888" class="ref-link">→</a></span></p> 
+          </section> 
+        </div> 
+        <section id="d73047e16322" class="footnotes epubtype_footnotes" role="doc-endnotes" data-webbook-epub-type="footnotes">
+          <h2 id="d73047e16323" class="footnote-heading webbook-style-left webbook-style-bold" tabindex="-1">Notes<a href="#d73047e16323" rel="bookmark" class="webbook" title="Link to Notes" aria-label="Link to Notes" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2>
+          <aside id="fn_1" class="fn epubtype_footnote" role="doc-footnote" data-webbook-epub-type="footnote"><span class="note-mark webbook-style-bold"><a href="9783111375854_010756-4.html#fna_1" class="fn-link epubtype_noteref" role="doc-noteref" id="d73047e16327" data-webbook-epub-type="noteref">1</a></span> 
+            <p class="webbook-style-left webbook-style-no-text-indent webbook-style-margin-left-4"> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="AC([t0,tf],ℝn)" altimg="images/b_9783111376776-002_ineq_011.png"><mi mathvariant="normal">AC</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo fence="true" stretchy="false">[</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>0</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msub><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> is the set of absolutely continuous functions on <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="[t0,tf]" altimg="images/b_9783111376776-002_ineq_012.png"><mo fence="true" stretchy="false">[</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>0</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msub><mo fence="true" stretchy="false">]</mo></math></span></span> valued in <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℝn" altimg="images/b_9783111376776-002_ineq_013.png"><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>.</p>
+          </aside>
+          <aside id="fn_2" class="fn epubtype_footnote" role="doc-footnote" data-webbook-epub-type="footnote"><span class="note-mark webbook-style-bold"><a href="9783111375854_010756-4.html#fna_2" class="fn-link epubtype_noteref" role="doc-noteref" id="d73047e16406" data-webbook-epub-type="noteref">2</a></span> 
+            <p class="webbook-style-left webbook-style-no-text-indent webbook-style-margin-left-4"> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="L∞([t0,tf],ℝm)" altimg="images/b_9783111376776-002_ineq_015.png"><msup><mrow><mi mathvariant="normal">L</mi></mrow><mrow><mi>∞</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo fence="true" stretchy="false">[</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>0</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msub><mo fence="true" stretchy="false">]</mo><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">m</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> is the set of essentially bounded functions on <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="[t0,tf]" altimg="images/b_9783111376776-002_ineq_016.png"><mo fence="true" stretchy="false">[</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mn>0</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">f</mi></mrow></msub><mo fence="true" stretchy="false">]</mo></math></span></span> valued in <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℝm" altimg="images/b_9783111376776-002_ineq_017.png"><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">m</mi></mrow></msup></math></span></span>.</p>
+          </aside>
+          <aside id="fn_3" class="fn epubtype_footnote" role="doc-footnote" data-webbook-epub-type="footnote"><span class="note-mark webbook-style-bold"><a href="9783111375854_010756-4.html#fna_3" class="fn-link epubtype_noteref" role="doc-noteref" id="d73047e16489" data-webbook-epub-type="noteref">3</a></span> 
+            <p class="webbook-style-left webbook-style-no-text-indent webbook-style-margin-left-4">The pair <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="(a,b)" altimg="images/b_9783111376776-002_ineq_022.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">a</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">b</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> is admissible for (OCP<sub><i>i</i>,<i>a</i>,<i>b</i></sub>) if <i>b</i> is reachable at time <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ti+1" altimg="images/b_9783111376776-002_ineq_023.png"><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub></math></span></span> from <i>a</i> at <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ti" altimg="images/b_9783111376776-002_ineq_024.png"><msub><mrow><mi mathvariant="italic">t</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span>.</p>
+          </aside>
+        </section>
+      </section></main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_010756-6.html" rel="prev" title="Previous: 4 Results" aria-label="Previous: 4 Results">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_016550.html" title="Next: Graph neural networks to predict strokes from blood flow simulations" aria-label="Next: Graph neural networks to predict strokes from blood flow simulations" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

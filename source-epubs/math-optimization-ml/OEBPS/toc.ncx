@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/"
+     version="2005-1"
+     xml:lang="en-US">
+   <head>
+      <meta name="dtb:uid" content="9783111377742"/>
+   </head>
+   <docTitle>
+      <text>Mathematical Optimization for Machine Learning</text>
+   </docTitle>
+   <navMap>
+      <navPoint id="i1" class="h1" playOrder="1">
+         <navLabel>
+            <text>Title Page</text>
+         </navLabel>
+         <content src="content/titlepage.xhtml#d73047e21"/>
+      </navPoint>
+      <navPoint id="i2" class="h1" playOrder="2">
+         <navLabel>
+            <text>Copyright</text>
+         </navLabel>
+         <content src="content/imprint.xhtml#d73047e52"/>
+      </navPoint>
+      <navPoint id="i3" class="h1" playOrder="3">
+         <navLabel>
+            <text>Contents</text>
+         </navLabel>
+         <content src="content/toc.xhtml#toc"/>
+      </navPoint>
+      <navPoint id="i4" class="h1" playOrder="4">
+         <navLabel>
+            <text>Preface</text>
+         </navLabel>
+         <content src="content/toc.xhtml#d73047e853"/>
+         <navPoint id="i5" class="h2" playOrder="5">
+            <navLabel>
+               <text>Machine Learning for Scientific and Engineering Applications</text>
+            </navLabel>
+            <content src="content/toc.xhtml#b_9783111376776_s_001"/>
+         </navPoint>
+         <navPoint id="i6" class="h2" playOrder="6">
+            <navLabel>
+               <text>Optimization in Machine Learning and Control</text>
+            </navLabel>
+            <content src="content/toc.xhtml#b_9783111376776_s_002"/>
+         </navPoint>
+         <navPoint id="i7" class="h2" playOrder="7">
+            <navLabel>
+               <text>Theoretical Foundations of Optimization Algorithms</text>
+            </navLabel>
+            <content src="content/toc.xhtml#b_9783111376776_s_003"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i8" class="h1" playOrder="8">
+         <navLabel>
+            <text>Acknowledgment</text>
+         </navLabel>
+         <content src="content/toc.xhtml#b_9783111376776-202_ack_001"/>
+      </navPoint>
+      <navPoint id="i9" class="h1" playOrder="9">
+         <navLabel>
+            <text>A framework to solve inverse problems for parametric PDEs using adaptive finite elements and neural networks</text>
+         </navLabel>
+         <content src="content/9783111375854_001001.xhtml#d73047e1002"/>
+         <navPoint id="i10" class="h2" playOrder="10">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_001001.xhtml#b_9783111376776-001_s_001"/>
+         </navPoint>
+         <navPoint id="i11" class="h2" playOrder="11">
+            <navLabel>
+               <text>2 An adaptive finite elements—neural networks method for the direct problem</text>
+            </navLabel>
+            <content src="content/9783111375854_001001.xhtml#b_9783111376776-001_s_002"/>
+         </navPoint>
+         <navPoint id="i12" class="h2" playOrder="12">
+            <navLabel>
+               <text>3 A framework for parameter identification</text>
+            </navLabel>
+            <content src="content/9783111375854_001001.xhtml#b_9783111376776-001_s_003"/>
+         </navPoint>
+         <navPoint id="i13" class="h2" playOrder="13">
+            <navLabel>
+               <text>4 Numerical experiments</text>
+            </navLabel>
+            <content src="content/9783111375854_001001.xhtml#b_9783111376776-001_s_006"/>
+         </navPoint>
+         <navPoint id="i14" class="h2" playOrder="14">
+            <navLabel>
+               <text>5 Conclusions and perspectives</text>
+            </navLabel>
+            <content src="content/9783111375854_001001.xhtml#b_9783111376776-001_s_012"/>
+         </navPoint>
+         <navPoint id="i15" class="h2" playOrder="15">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_001001.xhtml#d73047e10431"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i16" class="h1" playOrder="16">
+         <navLabel>
+            <text>Generation of value function data for bilevel optimal control and application to hybrid electric vehicle</text>
+         </navLabel>
+         <content src="content/9783111375854_010756.xhtml#d73047e10757"/>
+         <navPoint id="i17" class="h2" playOrder="17">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#b_9783111376776-002_ack_001"/>
+         </navPoint>
+         <navPoint id="i18" class="h2" playOrder="18">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#b_9783111376776-002_s_001"/>
+         </navPoint>
+         <navPoint id="i19" class="h2" playOrder="19">
+            <navLabel>
+               <text>2 Motivations</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#b_9783111376776-002_s_002"/>
+         </navPoint>
+         <navPoint id="i20" class="h2" playOrder="20">
+            <navLabel>
+               <text>3 Data generation</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#b_9783111376776-002_s_006"/>
+         </navPoint>
+         <navPoint id="i21" class="h2" playOrder="21">
+            <navLabel>
+               <text>4 Results</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#b_9783111376776-002_s_015"/>
+         </navPoint>
+         <navPoint id="i22" class="h2" playOrder="22">
+            <navLabel>
+               <text>5 Conclusion</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#b_9783111376776-002_s_019"/>
+         </navPoint>
+         <navPoint id="i23" class="h2" playOrder="23">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#d73047e16106"/>
+         </navPoint>
+         <navPoint id="i24" class="h2" playOrder="24">
+            <navLabel>
+               <text>Notes</text>
+            </navLabel>
+            <content src="content/9783111375854_010756.xhtml#d73047e16322"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i25" class="h1" playOrder="25">
+         <navLabel>
+            <text>Graph neural networks to predict strokes from blood flow simulations</text>
+         </navLabel>
+         <content src="content/9783111375854_016550.xhtml#d73047e16551"/>
+         <navPoint id="i26" class="h2" playOrder="26">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#b_9783111376776-003_ack_001"/>
+         </navPoint>
+         <navPoint id="i27" class="h2" playOrder="27">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#b_9783111376776-003_s_001"/>
+         </navPoint>
+         <navPoint id="i28" class="h2" playOrder="28">
+            <navLabel>
+               <text>2 Background</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#b_9783111376776-003_s_003"/>
+         </navPoint>
+         <navPoint id="i29" class="h2" playOrder="29">
+            <navLabel>
+               <text>3 Methods</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#b_9783111376776-003_s_004"/>
+         </navPoint>
+         <navPoint id="i30" class="h2" playOrder="30">
+            <navLabel>
+               <text>4 Results</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#b_9783111376776-003_s_007"/>
+         </navPoint>
+         <navPoint id="i31" class="h2" playOrder="31">
+            <navLabel>
+               <text>5 Conclusion</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#b_9783111376776-003_s_008"/>
+         </navPoint>
+         <navPoint id="i32" class="h2" playOrder="32">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_016550.xhtml#d73047e18864"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i33" class="h1" playOrder="33">
+         <navLabel>
+            <text>Capturing the macroscopic behavior of molecular dynamics with membership functions</text>
+         </navLabel>
+         <content src="content/9783111375854_019400.xhtml#d73047e19401"/>
+         <navPoint id="i34" class="h2" playOrder="34">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#b_9783111376776-004_ack_001"/>
+         </navPoint>
+         <navPoint id="i35" class="h2" playOrder="35">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#b_9783111376776-004_s_001"/>
+         </navPoint>
+         <navPoint id="i36" class="h2" playOrder="36">
+            <navLabel>
+               <text>2 Theory of macroscopic exit rates</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#b_9783111376776-004_s_002"/>
+         </navPoint>
+         <navPoint id="i37" class="h2" playOrder="37">
+            <navLabel>
+               <text>3 Extracting reaction paths from simulations</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#b_9783111376776-004_s_006"/>
+         </navPoint>
+         <navPoint id="i38" class="h2" playOrder="38">
+            <navLabel>
+               <text>4 Illustrative example: opioid receptor</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#b_9783111376776-004_s_007"/>
+         </navPoint>
+         <navPoint id="i39" class="h2" playOrder="39">
+            <navLabel>
+               <text>5 Conclusion</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#b_9783111376776-004_s_010"/>
+         </navPoint>
+         <navPoint id="i40" class="h2" playOrder="40">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_019400.xhtml#d73047e25590"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i41" class="h1" playOrder="41">
+         <navLabel>
+            <text>Adaptive gradient-enhanced Gaussian process surrogates for inverse problems</text>
+         </navLabel>
+         <content src="content/9783111375854_025891.xhtml#d73047e25892"/>
+         <navPoint id="i42" class="h2" playOrder="42">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#b_9783111376776-005_s_001"/>
+         </navPoint>
+         <navPoint id="i43" class="h2" playOrder="43">
+            <navLabel>
+               <text>2 Surrogate-based parameter identification</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#b_9783111376776-005_s_002"/>
+         </navPoint>
+         <navPoint id="i44" class="h2" playOrder="44">
+            <navLabel>
+               <text>3 Adaptive training data generation</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#b_9783111376776-005_s_008"/>
+         </navPoint>
+         <navPoint id="i45" class="h2" playOrder="45">
+            <navLabel>
+               <text>4 Numerical examples</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#b_9783111376776-005_s_012"/>
+         </navPoint>
+         <navPoint id="i46" class="h2" playOrder="46">
+            <navLabel>
+               <text>5 Conclusion</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#b_9783111376776-005_s_022"/>
+         </navPoint>
+         <navPoint id="i47" class="h2" playOrder="47">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#d73047e36169"/>
+         </navPoint>
+         <navPoint id="i48" class="h2" playOrder="48">
+            <navLabel>
+               <text>Notes</text>
+            </navLabel>
+            <content src="content/9783111375854_025891.xhtml#d73047e36634"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i49" class="h1" playOrder="49">
+         <navLabel>
+            <text>Multifidelity domain decomposition-based physics-informed neural networks and operators for time-dependent problems</text>
+         </navLabel>
+         <content src="content/9783111375854_036645.xhtml#d73047e36646"/>
+         <navPoint id="i50" class="h2" playOrder="50">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_ack_001"/>
+         </navPoint>
+         <navPoint id="i51" class="h2" playOrder="51">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_001"/>
+         </navPoint>
+         <navPoint id="i52" class="h2" playOrder="52">
+            <navLabel>
+               <text>2 Methodology</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_002"/>
+         </navPoint>
+         <navPoint id="i53" class="h2" playOrder="53">
+            <navLabel>
+               <text>3 Domain decomposition in time</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_007"/>
+         </navPoint>
+         <navPoint id="i54" class="h2" playOrder="54">
+            <navLabel>
+               <text>4 Results</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_008"/>
+         </navPoint>
+         <navPoint id="i55" class="h2" playOrder="55">
+            <navLabel>
+               <text>5 Extension to DeepONets</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_012"/>
+         </navPoint>
+         <navPoint id="i56" class="h2" playOrder="56">
+            <navLabel>
+               <text>6 Discussion</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_013"/>
+         </navPoint>
+         <navPoint id="i57" class="h2" playOrder="57">
+            <navLabel>
+               <text>7 Training parameters</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#b_9783111376776-006_s_014"/>
+         </navPoint>
+         <navPoint id="i58" class="h2" playOrder="58">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_036645.xhtml#d73047e41981"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i59" class="h1" playOrder="59">
+         <navLabel>
+            <text>Constrained piecewise linear optimization by an active signature method</text>
+         </navLabel>
+         <content src="content/9783111375854_042422.xhtml#d73047e42423"/>
+         <navPoint id="i60" class="h2" playOrder="60">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_042422.xhtml#b_9783111376776-007_ack_001"/>
+         </navPoint>
+         <navPoint id="i61" class="h2" playOrder="61">
+            <navLabel>
+               <text>1 Introduction and definitions</text>
+            </navLabel>
+            <content src="content/9783111375854_042422.xhtml#b_9783111376776-007_s_001"/>
+         </navPoint>
+         <navPoint id="i62" class="h2" playOrder="62">
+            <navLabel>
+               <text>2 The constrained active signature method</text>
+            </navLabel>
+            <content src="content/9783111375854_042422.xhtml#b_9783111376776-007_s_002"/>
+         </navPoint>
+         <navPoint id="i63" class="h2" playOrder="63">
+            <navLabel>
+               <text>3 Numerical results</text>
+            </navLabel>
+            <content src="content/9783111375854_042422.xhtml#b_9783111376776-007_s_009"/>
+         </navPoint>
+         <navPoint id="i64" class="h2" playOrder="64">
+            <navLabel>
+               <text>4 Summary and outlook</text>
+            </navLabel>
+            <content src="content/9783111375854_042422.xhtml#b_9783111376776-007_s_010"/>
+         </navPoint>
+         <navPoint id="i65" class="h2" playOrder="65">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_042422.xhtml#d73047e49796"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i66" class="h1" playOrder="66">
+         <navLabel>
+            <text>Parallel trust-region approaches in neural network training</text>
+         </navLabel>
+         <content src="content/9783111375854_050068.xhtml#d73047e50069"/>
+         <navPoint id="i67" class="h2" playOrder="67">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_050068.xhtml#b_9783111376776-008_ack_001"/>
+         </navPoint>
+         <navPoint id="i68" class="h2" playOrder="68">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_050068.xhtml#b_9783111376776-008_s_001"/>
+         </navPoint>
+         <navPoint id="i69" class="h2" playOrder="69">
+            <navLabel>
+               <text>2 Training methods</text>
+            </navLabel>
+            <content src="content/9783111375854_050068.xhtml#b_9783111376776-008_s_002"/>
+         </navPoint>
+         <navPoint id="i70" class="h2" playOrder="70">
+            <navLabel>
+               <text>3 Numerical results</text>
+            </navLabel>
+            <content src="content/9783111375854_050068.xhtml#b_9783111376776-008_s_005"/>
+         </navPoint>
+         <navPoint id="i71" class="h2" playOrder="71">
+            <navLabel>
+               <text>4 Conclusion</text>
+            </navLabel>
+            <content src="content/9783111375854_050068.xhtml#b_9783111376776-008_s_009"/>
+         </navPoint>
+         <navPoint id="i72" class="h2" playOrder="72">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_050068.xhtml#d73047e52960"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i73" class="h1" playOrder="73">
+         <navLabel>
+            <text>Trustworthy optimization learning: a brief overview</text>
+         </navLabel>
+         <content src="content/9783111375854_053575.xhtml#d73047e53576"/>
+         <navPoint id="i74" class="h2" playOrder="74">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_ack_001"/>
+         </navPoint>
+         <navPoint id="i75" class="h2" playOrder="75">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_001"/>
+         </navPoint>
+         <navPoint id="i76" class="h2" playOrder="76">
+            <navLabel>
+               <text>2 Optimization proxies</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_002"/>
+         </navPoint>
+         <navPoint id="i77" class="h2" playOrder="77">
+            <navLabel>
+               <text>3 Quality guarantees</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_005"/>
+         </navPoint>
+         <navPoint id="i78" class="h2" playOrder="78">
+            <navLabel>
+               <text>4 Scalability</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_006"/>
+         </navPoint>
+         <navPoint id="i79" class="h2" playOrder="79">
+            <navLabel>
+               <text>5 Compositionality</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_007"/>
+         </navPoint>
+         <navPoint id="i80" class="h2" playOrder="80">
+            <navLabel>
+               <text>6 The impact of optimization proxies</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_008"/>
+         </navPoint>
+         <navPoint id="i81" class="h2" playOrder="81">
+            <navLabel>
+               <text>7 Conclusion</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#b_9783111376776-009_s_009"/>
+         </navPoint>
+         <navPoint id="i82" class="h2" playOrder="82">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#d73047e56713"/>
+         </navPoint>
+         <navPoint id="i83" class="h2" playOrder="83">
+            <navLabel>
+               <text>Notes</text>
+            </navLabel>
+            <content src="content/9783111375854_053575.xhtml#d73047e57087"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i84" class="h1" playOrder="84">
+         <navLabel>
+            <text>Compression-aware training of neural networks using Frank–Wolfe</text>
+         </navLabel>
+         <content src="content/9783111375854_057097.xhtml#d73047e57098"/>
+         <navPoint id="i85" class="h2" playOrder="85">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_057097.xhtml#b_9783111376776-010_ack_001"/>
+         </navPoint>
+         <navPoint id="i86" class="h2" playOrder="86">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_057097.xhtml#b_9783111376776-010_s_001"/>
+         </navPoint>
+         <navPoint id="i87" class="h2" playOrder="87">
+            <navLabel>
+               <text>2 Methodology: compression-aware training</text>
+            </navLabel>
+            <content src="content/9783111375854_057097.xhtml#b_9783111376776-010_s_004"/>
+         </navPoint>
+         <navPoint id="i88" class="h2" playOrder="88">
+            <navLabel>
+               <text>3 Experimental results</text>
+            </navLabel>
+            <content src="content/9783111375854_057097.xhtml#b_9783111376776-010_s_010"/>
+         </navPoint>
+         <navPoint id="i89" class="h2" playOrder="89">
+            <navLabel>
+               <text>4 Discussion and outlook</text>
+            </navLabel>
+            <content src="content/9783111375854_057097.xhtml#b_9783111376776-010_s_014"/>
+         </navPoint>
+         <navPoint id="i90" class="h2" playOrder="90">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_057097.xhtml#d73047e60798"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i91" class="h1" playOrder="91">
+         <navLabel>
+            <text>Approximation of generalized frequency response functions via vector fitting</text>
+         </navLabel>
+         <content src="content/9783111375854_071706.xhtml#d73047e71707"/>
+         <navPoint id="i92" class="h2" playOrder="92">
+            <navLabel>
+               <text>1 Introduction and background</text>
+            </navLabel>
+            <content src="content/9783111375854_071706.xhtml#b_9783111376776-011_s_001"/>
+         </navPoint>
+         <navPoint id="i93" class="h2" playOrder="93">
+            <navLabel>
+               <text>2 Formulation</text>
+            </navLabel>
+            <content src="content/9783111375854_071706.xhtml#b_9783111376776-011_s_002"/>
+         </navPoint>
+         <navPoint id="i94" class="h2" playOrder="94">
+            <navLabel>
+               <text>3 Numerical examples and discussion</text>
+            </navLabel>
+            <content src="content/9783111375854_071706.xhtml#b_9783111376776-011_s_006"/>
+         </navPoint>
+         <navPoint id="i95" class="h2" playOrder="95">
+            <navLabel>
+               <text>4 Conclusions</text>
+            </navLabel>
+            <content src="content/9783111375854_071706.xhtml#b_9783111376776-011_s_009"/>
+         </navPoint>
+         <navPoint id="i96" class="h2" playOrder="96">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_071706.xhtml#d73047e77760"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i97" class="h1" playOrder="97">
+         <navLabel>
+            <text>On the nonsmooth regularity condition LIKQ for different abs-normal representations</text>
+         </navLabel>
+         <content src="content/9783111375854_078094.xhtml#d73047e78095"/>
+         <navPoint id="i98" class="h2" playOrder="98">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#b_9783111376776-012_ack_001"/>
+         </navPoint>
+         <navPoint id="i99" class="h2" playOrder="99">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#b_9783111376776-012_s_001"/>
+         </navPoint>
+         <navPoint id="i100" class="h2" playOrder="100">
+            <navLabel>
+               <text>2 Development of different abs-smooth forms</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#b_9783111376776-012_s_002"/>
+         </navPoint>
+         <navPoint id="i101" class="h2" playOrder="101">
+            <navLabel>
+               <text>3 Transitioning between abs-smooth forms</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#b_9783111376776-012_s_003"/>
+         </navPoint>
+         <navPoint id="i102" class="h2" playOrder="102">
+            <navLabel>
+               <text>4 Equivalence of the LIKQ conditions</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#b_9783111376776-012_s_004"/>
+         </navPoint>
+         <navPoint id="i103" class="h2" playOrder="103">
+            <navLabel>
+               <text>5 Summary</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#b_9783111376776-012_s_005"/>
+         </navPoint>
+         <navPoint id="i104" class="h2" playOrder="104">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_078094.xhtml#d73047e88061"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i105" class="h1" playOrder="105">
+         <navLabel>
+            <text>Divergence of the ADAM algorithm with fixed-stepsize: a (very) simple example</text>
+         </navLabel>
+         <content src="content/9783111375854_088272.xhtml#d73047e88273"/>
+         <navPoint id="i106" class="h2" playOrder="106">
+            <navLabel>
+               <text>Acknowledgement</text>
+            </navLabel>
+            <content src="content/9783111375854_088272.xhtml#b_9783111376776-013_ack_001"/>
+         </navPoint>
+         <navPoint id="i107" class="h2" playOrder="107">
+            <navLabel>
+               <text>1 Introduction</text>
+            </navLabel>
+            <content src="content/9783111375854_088272.xhtml#b_9783111376776-013_s_001"/>
+         </navPoint>
+         <navPoint id="i108" class="h2" playOrder="108">
+            <navLabel>
+               <text>2 The example</text>
+            </navLabel>
+            <content src="content/9783111375854_088272.xhtml#b_9783111376776-013_s_002"/>
+         </navPoint>
+         <navPoint id="i109" class="h2" playOrder="109">
+            <navLabel>
+               <text>Bibliography</text>
+            </navLabel>
+            <content src="content/9783111375854_088272.xhtml#d73047e90642"/>
+         </navPoint>
+      </navPoint>
+      <navPoint id="i110" class="h1" playOrder="110">
+         <navLabel>
+            <text>Subject Index</text>
+         </navLabel>
+         <content src="content/index.xhtml#d73047e90718"/>
+      </navPoint>
+   </navMap>
+</ncx>

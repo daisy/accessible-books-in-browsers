@@ -321,8 +321,8 @@ main { position: relative; isolation: isolate; z-index: 0; grid-area: main; box-
     background-image: none !important;
     border-color: color-mix(in srgb, var(--webbook-page-fg) 40%, transparent) !important;
 }
-/* As published, the reader's UI takes the book's own colours (published-colors.js), so the page is one
-   surface. The text inside <main> keeps the publisher's colours. */
+/* As published, the reader's UI takes the book's own colors (published-colors.js), so the page is one
+   surface. The text inside <main> keeps the publisher's colors. */
 :root[data-webbook-appearance="published"][data-webbook-published-colors],
 :root[data-webbook-appearance="published"][data-webbook-published-colors] body {
     --theme-bg: var(--webbook-published-bg);
@@ -698,7 +698,7 @@ body.webbook-dialog-backdrop-blur .webbook[popover]:popover-open::backdrop {
 #webbook-action-notice {
     position: fixed;
     top: calc(var(--webbook-top-toolbar-height, 4rem) + .75rem);
-    /* Centred by its margins, not left: 50% and a transform: in a vertical book at phone width,
+    /* Centered by its margins, not left: 50% and a transform: in a vertical book at phone width,
        left: 50% put it off the screen. It wraps long text rather than overflowing. */
     left: 1rem;
     right: 1rem;
@@ -2053,6 +2053,11 @@ main .webbook-copy-button:focus-visible {
    Grid placement changes the visual order only; the publication's DOM order stays intact. */
 main math {
     max-width: 100%;
+}
+/* Only an equation wider than its line scrolls: responsive-equations.js marks it and gives it a Tab
+   stop. Scrolling every inline equation (as overflow-x: auto did) also made each one scroll
+   vertically by the height of its glyphs, so nearly every equation needed a Tab stop. */
+main math[data-webbook-math-wide] {
     overflow-x: auto;
 }
 /* Display equations already have an outer scrolling region. Keep their natural
@@ -2125,7 +2130,7 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
 .webbook-style-glyphs-mixed { text-orientation: mixed; }
 
 /* Emphasis marks (bōten): beside each character, the East Asian counterpart of italics. In the
-   text's colour: the reader's colours own colour, and marks in another colour could fail contrast. */
+   text's color: the reader's colors own color, and marks in another color could fail contrast. */
 .webbook-style-emphasis-dot { -webkit-text-emphasis-style: filled dot; text-emphasis-style: filled dot; }
 .webbook-style-emphasis-dot-open { -webkit-text-emphasis-style: open dot; text-emphasis-style: open dot; }
 .webbook-style-emphasis-circle { -webkit-text-emphasis-style: filled circle; text-emphasis-style: filled circle; }
@@ -2194,7 +2199,7 @@ main .webbook-equation[data-webbook-equation-stacked] > .webbook-equation-scroll
     right: 0;
 }
 :root.webbook-vertical main {
-    /* The column height is the Line length setting, centred between the toolbars. Padding
+    /* The column height is the Line length setting, centered between the toolbars. Padding
        percentages are of the page's height here (its inline size). */
     --webbook-column-top: calc(var(--webbook-top-toolbar-height, 4rem) + 1rem);
     --webbook-column-bottom: calc(var(--webbook-toolbar-height, 4rem) + 1rem);

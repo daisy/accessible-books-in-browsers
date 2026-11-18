@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>2 Development of different abs-smooth forms – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_078094-4.html"><meta name="webbook-page-number" content="83"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 2 Development of different abs-smooth forms"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-12-3">Contents</a><a href="about.html">About</a><a href="9783111375854_078094-3.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_078094-5.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-012_s_002">
+            <h2 id="d73047e78315" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">2</span> <a></a>Development of different abs-smooth forms<a href="#d73047e78315" rel="bookmark" class="webbook" title="Link to 2 Development of different abs-smooth forms" aria-label="Link to 2 Development of different abs-smooth forms" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="webbook-style-left">Throughout, we consider the minimization problems of the form </p>
+            <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-012_eq_001"> <span class="label webbook-style-bold webbook-equation-number">(12.1)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (12.1)" tabindex="0" id="section-1" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_001.png"><mtable displaystyle="true"><mtr><mtd><munder><mrow><mo movablelimits="false">min</mo></mrow><mrow><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></mrow></munder><mspace width="2.38387pt"></mspace><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd></mtr></mtable></math></span></span> 
+            </div>
+            <p class="webbook-style-left"> for a function <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="φ:ℝn→ℝ" altimg="images/b_9783111376776-012_ineq_004.png"><mi mathvariant="italic">φ</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="y=φ(x)" altimg="images/b_9783111376776-012_ineq_005.png"><mi mathvariant="italic">y</mi><mo>=</mo><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> that exhibit so-called Level-1 nonsmoothness. Namely, the objective function <i>φ</i> is defined as a composition of smooth elemental functions and the absolute value function <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="abs(x)=|x|" altimg="images/b_9783111376776-012_ineq_006.png"><mtext>abs</mtext><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo stretchy="false">|</mo><mi mathvariant="italic">x</mi><mo stretchy="false">|</mo></math></span></span> as introduced in [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_006" class="xref" id="xref_d28617e142569">6</a>]. From an AD perspective, any such function can be stated as shown in <a href="#b_9783111376776-012_tab_001" class="xref">Table 12.1</a>. Here, all consecutive smooth elemental functions are combined into larger smooth elemental functions <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ψi(.)" altimg="images/b_9783111376776-012_ineq_007.png"><msub><mrow><mi mathvariant="italic">ψ</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo>.</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> such that all evaluations of the absolute value function can be clearly identified and exploited. The number of absolute values occurring during the function evaluation will be denoted by <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s∈ℕ" altimg="images/b_9783111376776-012_ineq_008.png"><mi mathvariant="italic">s</mi><mo stretchy="false">∈</mo><mi mathvariant="double-struck">N</mi></math></span></span>. The arguments <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="zi=zi(x)" altimg="images/b_9783111376776-012_ineq_009.png"><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo>=</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> of the absolute value functions cause the switches in the corresponding derivative values and therefore, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="z=(zi)∈ℝs" altimg="images/b_9783111376776-012_ineq_010.png"><mi mathvariant="italic">z</mi><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> is called switching vector. The values of <i>z</i> always depend on the value of <i>x</i>. However, for notational simplicity, we skip this dependence in the notation. The switching vector defines the signature vector <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="σ=(σi)=(sign(zi(x)))∈ℝs" altimg="images/b_9783111376776-012_ineq_011.png"><mi mathvariant="italic">σ</mi><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">σ</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mtext>sign</mtext><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span>.</p> 
+            <div class="table-wrap webbook-style-center" id="b_9783111376776-012_tab_001">
+              <div class="table-caption caption">
+                <p class="webbook-style-left"><span class="label webbook-style-bold">Table 12.1</span>Evaluation procedure including absolute value evaluations.</p>
+              </div>
+              <img alt="" src="images/b_9783111376776-012_fig_001.jpg" class="web-only graphic">
+            </div> 
+            <p class="webbook-style-left">An evaluation procedure as shown in <a href="#b_9783111376776-012_tab_001" class="xref">Table 12.1</a>, where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="zj" altimg="images/b_9783111376776-012_ineq_012.png"><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span> can only influence <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="zi" altimg="images/b_9783111376776-012_ineq_013.png"><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> if <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="j<i" altimg="images/b_9783111376776-012_ineq_014.png"><mi mathvariant="italic">j</mi><mo mathvariant="normal">&lt;</mo><mi mathvariant="italic">i</mi></math></span></span>, was the starting point to derive abs-smooth forms. The calculation of derivative information for such an extended evaluation procedure in the sense of AD was analyzed in [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_003" class="xref" id="xref_d28617e142905">3</a>]. However, to build mathematical theory on top of it, an evaluation procedure is not a beneficial representation of a function. Therefore, in [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_004" class="xref" id="xref_d28617e142909">4</a>], [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_006" class="xref" id="xref_d28617e142912">6</a>], the so-called <i>abs-normal form</i><span class="indexterm-anchor" id="it_b_9783111376776-012_index-term_001" title="abs-normal form"></span> was introduced covering all functions that can be evaluated by a pseudocode as given in <a href="#b_9783111376776-012_tab_001" class="xref">Table 12.1</a>. For that purpose, the calculation of all switching variables is formulated as an equality constraint by means of a function <i>F</i>. Furthermore, the vector of the absolute values of the switching variables is introduced as an extra argument of the target function <i>f</i> and the constraining function <i>F</i>. Thus, we obtain the following representation: </p>
+            <div class="disp-formula-group"> 
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-012_eq_002"> <span class="label webbook-style-bold">(12.2a)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_002.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mi mathvariant="italic">y</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mi mathvariant="italic">f</mi><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-012_eq_003"> <span class="label webbook-style-bold">(12.2b)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_003.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mi mathvariant="italic">z</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">F</mi><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+            </div>
+            <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="f:ℝn+s→ℝ" altimg="images/b_9783111376776-012_ineq_015.png"><mi mathvariant="italic">f</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>+</mo><mi mathvariant="italic">s</mi></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="F:ℝn+s→ℝs" altimg="images/b_9783111376776-012_ineq_016.png"><mi mathvariant="italic">F</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>+</mo><mi mathvariant="italic">s</mi></mrow></msup><mo stretchy="false">→</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> are at least once differentiable in the region of interest. Here and throughout, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="|z|" altimg="images/b_9783111376776-012_ineq_017.png"><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo></math></span></span> denotes the componentwise modulus of a vector <i>z</i>. Furthermore, sometimes <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="|z|" altimg="images/b_9783111376776-012_ineq_018.png"><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo></math></span></span> and similar vectors of absolute values are considered as variable vectors in their own right. With this reformulation, the unconstrained problem in (<a href="#b_9783111376776-012_eq_001" class="xref">12.1</a>) can be stated as a constrained optimization problem with the equality constraints given by (<a href="#b_9783111376776-012_eq_003" class="xref">12.2b</a>).</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">As mentioned already above, Equation (<a href="#b_9783111376776-012_eq_002" class="xref">12.2</a>) was called abs-normal form in earlier papers like [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_004" class="xref" id="xref_d28617e143201">4</a>], [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_006" class="xref" id="xref_d28617e143204">6</a>]. To unify the notation, we will call such a representation of <i>φ</i> now <i>abs-smooth form of type</i> (<a href="#b_9783111376776-012_eq_002" class="xref">12.2</a>).</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">Since Equation (<a href="#b_9783111376776-012_eq_003" class="xref">12.2b</a>) defines the arguments of the absolute value function and hence also causes nonsmoothness, this equation is called <i>switching equation</i><span class="indexterm-anchor" id="it_b_9783111376776-012_index-term_002" title="switching equation"></span>. Motivated by the evaluation procedure, it is assumed that for the calculation of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="zi" altimg="images/b_9783111376776-012_ineq_019.png"><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> only values <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="zj" altimg="images/b_9783111376776-012_ineq_020.png"><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1≤j<i" altimg="images/b_9783111376776-012_ineq_021.png"><mn>1</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">j</mi><mo mathvariant="normal">&lt;</mo><mi mathvariant="italic">i</mi></math></span></span>, are needed. Hence, <i>z</i> is uniquely determined by Equation (<a href="#b_9783111376776-012_eq_003" class="xref">12.2b</a>). Furthermore, we assume that all components of <i>z</i> are used as arguments of the absolute value function, that is, they are all used for the calculation of the objective function, such that they indeed cause nonsmoothness. If this assumption does not hold, the corresponding component of <i>z</i> can be eliminated yielding a reduced function representation without further impact.</p> 
+            <p class="webbook-style-left">Depending on the specific application at hand it might be a bit restrictive to allow only absolute values of the vector <i>z</i> as argument of <i>F</i> and <i>f</i>, respectively. An explicit dependence on <i>z</i> might also lead to larger but much sparser derivative matrices. For a discussion of this effect see, for example, [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_009" class="xref" id="xref_d28617e143322">9</a>]. Therefore, an alternative to the abs-smooth form of type (<a href="#b_9783111376776-012_eq_002" class="xref">12.2</a>) is given by </p>
+            <div class="disp-formula-group"> 
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-012_eq_004"> <span class="label webbook-style-bold">(12.3a)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_004.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mi mathvariant="italic">y</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-012_eq_005"> <span class="label webbook-style-bold">(12.3b)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_005.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover></mtd><mtd><mo>=</mo><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+            </div>
+            <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_022.png"><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>+</mo><mi mathvariant="italic">s</mi><mo>+</mo><mi mathvariant="italic">s</mi></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_023.png"><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>+</mo><mi mathvariant="italic">s</mi><mo>+</mo><mi mathvariant="italic">s</mi></mrow></msup><mo stretchy="false">→</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> are again at least once differentiable in the region of interest. As above, we assume that <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_024.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> only depends on values <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_025.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1≤j<i" altimg="images/b_9783111376776-012_ineq_026.png"><mn>1</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">j</mi><mo mathvariant="normal">&lt;</mo><mi mathvariant="italic">i</mi></math></span></span>, such that <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_027.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover></math></span></span> is uniquely determined by Equation (<a href="#b_9783111376776-012_eq_005" class="xref">12.3b</a>) and that all <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_028.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> serve as argument of an absolute value evaluation that is used to calculate the value of the target function. We will call this representation of an element of the function class considered in this paper <i>abs-smooth form of type</i> (<a href="#b_9783111376776-012_eq_004" class="xref">12.3</a>).</p> 
+            <p class="webbook-style-left">As it turned out in the theoretical analysis, it might be advantageous to allow the absolute value function only in the switching equation. This setting was considered, for example, in [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_008" class="xref" id="xref_d28617e143774">8</a>], [<a href="9783111375854_078094-7.html#b_9783111376776-012_ref_011" class="xref" id="xref_d28617e143777">11</a>] yielding the representation </p>
+            <div class="disp-formula-group"> 
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-012_eq_006"> <span class="label webbook-style-bold">(12.4a)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_006.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mi mathvariant="italic">y</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-012_eq_007"> <span class="label webbook-style-bold">(12.4b)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_007.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mtd><mtd><mo>=</mo><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+            </div>
+            <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_029.png"><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">˜</mo></mover><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>+</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">s</mi><mo>+</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_030.png"><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">˜</mo></mover><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>+</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">s</mi><mo>+</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">s</mi><mo>+</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo stretchy="false">→</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi><mo>+</mo><mn>1</mn></mrow></msup></math></span></span> are again at least once differentiable in the region of interest. Once more, we assume that <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_031.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></math></span></span> is uniquely determined by Equation (<a href="#b_9783111376776-012_eq_007" class="xref">12.4b</a>) in that for computing <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_032.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> only values <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_033.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1≤j<i" altimg="images/b_9783111376776-012_ineq_034.png"><mn>1</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">j</mi><mo mathvariant="normal">&lt;</mo><mi mathvariant="italic">i</mi></math></span></span> are used. We will call this representation of an element of the function class considered in this paper <i>abs-smooth form of type</i> (<a href="#b_9783111376776-012_eq_006" class="xref">12.4</a>). It is important to note that for the abs-smooth form of type (<a href="#b_9783111376776-012_eq_006" class="xref">12.4</a>), the last element of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_035.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></math></span></span>, that is, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_036.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mi mathvariant="italic">s</mi><mo>+</mo><mn>1</mn></mrow></msub></math></span></span>, is not used as an argument of the absolute value. Hence, it does not cause any nonsmoothness. This observation also motivates our notation <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_037.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal">,</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mi mathvariant="italic">s</mi><mo>+</mo><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, where all components of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_038.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> are assumed to be used as arguments of the absolute value similar to the abs-smooth forms of type (<a href="#b_9783111376776-012_eq_002" class="xref">12.2</a>) and (<a href="#b_9783111376776-012_eq_004" class="xref">12.3</a>).</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">To illustrate our later results, we consider the following target function that can be seen as prototype of a very simple neural network.</p> 
+            <div class="statement example statement" id="b_9783111376776-012_stat_001"> 
+              <h3 class="webbook-style-left webbook-style-bold" id="h-5" tabindex="-1"><a></a>Example 12.1.<a href="#h-5" rel="bookmark" class="webbook" title="Link to Example 12.1." aria-label="Link to Example 12.1." data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">Let <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="n:=4" altimg="images/b_9783111376776-012_ineq_039.png"><mi mathvariant="italic">n</mi><mo>:</mo><mo>=</mo><mn>4</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s:=2" altimg="images/b_9783111376776-012_ineq_040.png"><mi mathvariant="italic">s</mi><mo>:</mo><mo>=</mo><mn>2</mn></math></span></span>. For <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="x∈ℝ4" altimg="images/b_9783111376776-012_ineq_041.png"><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mn>4</mn></mrow></msup></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_042.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mn>2</mn><mo>+</mo><mn>1</mn></mrow></msup></math></span></span>, define </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_008.png"><mtable displaystyle="true" columnspacing="0pt" columnalign="right left"><mtr><mtd><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mtd><mtd><mo>:</mo><mo>=</mo><mfenced separators="" open="[" close="]"><mrow><mtable equalrows="false" equalcolumns="false" columnalign="center"><mtr><mtd><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub></mtd></mtr><mtr><mtd><mstyle displaystyle="false"><mfrac><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mo stretchy="false">|</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">|</mo><mo>+</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>−</mo><mn>2</mn></mtd></mtr><mtr><mtd><mo stretchy="false">|</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo></mtd></mtr></mtable></mrow></mfenced><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>:</mo><mo>=</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>3</mn></mrow></msub><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> For <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_043.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></math></span></span> as a solution to the switching equation (<a href="#b_9783111376776-012_eq_007" class="xref">12.4b</a>), that is, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_044.png"><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo>=</mo><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, using </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_009.png"><mtable displaystyle="true"><mtr><mtd><mrow><mi mathvariant="normal">ReLU</mi></mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">w</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo movablelimits="false">max</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">w</mi><mo mathvariant="normal">,</mo><mn>0</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mo stretchy="false">|</mo><mi mathvariant="italic">w</mi><mo stretchy="false">|</mo><mo>+</mo><mi mathvariant="italic">w</mi><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo mathvariant="normal" stretchy="false">/</mo><mn>2</mn></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> yields </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_eq_010.png"><mtable displaystyle="true" columnspacing="0pt" columnalign="right left"><mtr><mtd><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mo fence="true" maxsize="2.03em" minsize="2.03em" stretchy="true">|</mo><mstyle displaystyle="true"><mfrac><mrow><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>3</mn></mrow></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mo stretchy="false">|</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">|</mo><mo>+</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>−</mo><mn>2</mn><mo fence="true" maxsize="2.03em" minsize="2.03em" stretchy="true">|</mo></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>3</mn></mrow></msub><mrow><mi mathvariant="normal">ReLU</mi></mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">z</mi></mrow><mo stretchy="false">˜</mo></mover></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>−</mo><mn>2</mn><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo></mtd></mtr><mtr><mtd></mtd><mtd><mo>=</mo><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>3</mn></mrow></msub><mrow><mi mathvariant="normal">ReLU</mi></mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>−</mo><mn>2</mn><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> Thus, the functions <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_045.png"><mover accent="true"><mrow><mi mathvariant="italic">f</mi></mrow><mo stretchy="false">˜</mo></mover></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_046.png"><mover accent="true"><mrow><mi mathvariant="italic">F</mi></mrow><mo stretchy="false">˜</mo></mover></math></span></span> represent <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-012_ineq_047.png"><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>3</mn></mrow></msub><mrow><mi mathvariant="normal">ReLU</mi></mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>−</mo><mn>2</mn><mo stretchy="false">|</mo></math></span></span>.</p>
+            </div> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_078094-3.html" rel="prev" title="Previous: 1 Introduction" aria-label="Previous: 1 Introduction">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_078094-5.html" title="Next: 3 Transitioning between abs-smooth forms" aria-label="Next: 3 Transitioning between abs-smooth forms" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

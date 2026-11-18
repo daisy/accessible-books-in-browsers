@@ -49,7 +49,7 @@ through the book, control narration and settings, and search and read it.
 
 ## Demos
 
-These demos were created using this [conversion script](https://github.com/daisy/accessible-books-in-browsers/tree/main/convert). 
+Made with the [converter](convert/). Who each book belongs to, and its license: [About the demos](demos/README.md).
 
 * **Action for Heroes**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/action-for-heroes) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/action-for-heroes) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/action-for-heroes)
 * **Moby Dick**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/moby-dick) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/moby-dick) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/moby-dick)
@@ -59,7 +59,13 @@ These demos were created using this [conversion script](https://github.com/daisy
 * **Current Situation of SRHR of Persons with Disabilities in Bangladesh in the Context of SDGs and UNCRPD**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/CurrentSituationEPUB) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/CurrentSituationEPUB) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/CurrentSituationEPUB)
 * **Kusamakura** (草枕), Natsume Sōseki: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/kusamakura) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/kusamakura) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/kusamakura)
 
-  Japanese in vertical writing, with ruby and narration for chapters 1 and 2. Text CC0; narration by the Assistive Technology Development Organization, [CC BY-NC-SA 3.0](http://creativecommons.org/licenses/by-nc-sa/3.0/).
+  Japanese in vertical writing, with ruby and narration for chapters 1 and 2.
+* **Mathematical Optimization for Machine Learning**, De Gruyter: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/math-optimization-ml) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/math-optimization-ml) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/math-optimization-ml)
+
+  A math textbook with MathML: copying equations, and long pages.
+* **The Real Mother Goose**: [demo](https://daisy.github.io/accessible-books-in-browsers/demos/real-mother-goose) · [HTML fileset](https://github.com/daisy/accessible-books-in-browsers/tree/main/demos/real-mother-goose) · [original EPUB](https://github.com/daisy/accessible-books-in-browsers/tree/main/source-epubs/real-mother-goose)
+
+  A fixed-layout picture book, which the converter doesn't support yet: it shows how one converts today.
 
 Test books:
 

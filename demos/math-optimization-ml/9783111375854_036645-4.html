@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>2 Methodology – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_036645-4.html"><meta name="webbook-page-number" content="42"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 2 Methodology"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-6-3">Contents</a><a href="about.html">About</a><a href="9783111375854_036645-3.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_036645-5.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-006_s_002">
+            <h2 id="d73047e36853" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">2</span> <a></a>Methodology<a href="#d73047e36853" rel="bookmark" class="webbook" title="Link to 2 Methodology" aria-label="Link to 2 Methodology" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <section id="b_9783111376776-006_s_003">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-5" tabindex="-1"><span class="label webbook-style-bold">2.1</span> <a id="d28651e38211"></a>Physics-informed neural networks<a href="#h-5" rel="bookmark" class="webbook" title="Link to 2.1 Physics-informed neural networks" aria-label="Link to 2.1 Physics-informed neural networks" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">We consider a generic differential equation-based problem in residual form: Find <i>u</i> such that </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-006_eq_001"> <span class="label webbook-style-bold webbook-equation-number">(6.1)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.1)" tabindex="0" id="section-1" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_001.png"><mtable displaystyle="true" columnspacing="0pt" columnalign="right left"><mtr><mtd><mi mathvariant="script">A</mi><mi mathvariant="italic">u</mi></mtd><mtd><mo>=</mo><mn>0</mn><mspace width="1em"></mspace><mtext>in</mtext><mspace width="2.5pt"></mspace><mi mathvariant="normal">Ω</mi><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mi mathvariant="script">B</mi><mi mathvariant="italic">u</mi></mtd><mtd><mo>=</mo><mn>0</mn><mspace width="1em"></mspace><mtext>on</mtext><mspace width="2.5pt"></mspace><mi>∂</mi><mi mathvariant="normal">Ω</mi><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒜" altimg="images/b_9783111376776-006_ineq_001.png"><mi mathvariant="script">A</mi></math></span></span> is a differential operator and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℬ" altimg="images/b_9783111376776-006_ineq_002.png"><mi mathvariant="script">B</mi></math></span></span> an operator for specifying the initial or boundary conditions. The solution <i>u</i> is defined on the domain Ω and should have sufficient regularity to apply <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒜" altimg="images/b_9783111376776-006_ineq_003.png"><mi mathvariant="script">A</mi></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℬ" altimg="images/b_9783111376776-006_ineq_004.png"><mi mathvariant="script">B</mi></math></span></span>. In order to solve Eq. (<a href="#b_9783111376776-006_eq_001" class="xref">6.1</a>), we follow [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_017" class="xref" id="xref_d28617e67226">17</a>] and employ a collocation approach. In particular, we exploit that solving Eq. (<a href="#b_9783111376776-006_eq_001" class="xref">6.1</a>) is equivalent to solving <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="arg minℬu=0  on  ∂Ω∫Ω(𝒜u(x))2 dx" altimg="images/b_9783111376776-006_ineq_005.png"><msub><mrow><mo movablelimits="false">arg min</mo></mrow><mrow><mi mathvariant="script">B</mi><mi mathvariant="italic">u</mi><mo>=</mo><mn>0</mn><mspace width="2.5pt"></mspace><mtext>on</mtext><mspace width="2.5pt"></mspace><mi>∂</mi><mi mathvariant="normal">Ω</mi></mrow></msub><msub><mrow><mo largeop="false" movablelimits="false">∫</mo></mrow><mrow><mi mathvariant="normal">Ω</mi></mrow></msub><msup><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="script">A</mi><mi mathvariant="italic">u</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mspace width="0.1667em"></mspace><mi mathvariant="italic">d</mi><mi mathvariant="bold">x</mi></math></span></span>. We discretize the solution using a neural network<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_001" title="neural network"></span> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_006.png"><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, with parameters <i>θ</i>, and the integral is approximated by the sum </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_002.png"><mtable displaystyle="true"><mtr><mtd><munder><mrow><mo movablelimits="false">arg min</mo></mrow><mrow><mi mathvariant="script">B</mi><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mn>0</mn><mspace width="2.5pt"></mspace><mtext>on</mtext><mspace width="2.5pt"></mspace><mi>∂</mi><mi mathvariant="normal">Ω</mi></mrow></munder><mspace width="0.1667em"></mspace><munder><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo stretchy="false">∈</mo><mi mathvariant="normal">Ω</mi></mrow></munder><msup><mrow><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="script">A</mi><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> where the collocation points <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="xi" altimg="images/b_9783111376776-006_ineq_007.png"><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> are sampled from Ω. Different types of neural network architectures may be employed, and we will employ a combination of the approaches explained in Sections <a href="#b_9783111376776-006_s_004" class="xref">2.2</a> and <a href="#b_9783111376776-006_s_005" class="xref">2.3</a>.</p> 
+              <p class="webbook-style-left">The initial or boundary conditions in the second equation of Eq. (<a href="#b_9783111376776-006_eq_001" class="xref">6.1</a>) can be enforced via hard or soft constraints. In the approach of hard constraints, they are explicitly implemented in the neural network function; cf. [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_017" class="xref" id="xref_d28617e67576">17</a>]. In this paper, we employ the approach of soft constraints instead, in which we incorporate the constraints into the loss function<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_002" title="loss function"></span>: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-006_eq_003"> <span class="label webbook-style-bold webbook-equation-number">(6.2)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.2)" tabindex="0" id="section-2" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_003.png"><mtable displaystyle="true"><mtr><mtd><munder><mrow><mo movablelimits="false">arg min</mo></mrow><mrow><mi mathvariant="italic">θ</mi></mrow></munder><mspace width="0.1667em"></mspace><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">r</mi></mrow></msub><munder><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo stretchy="false">∈</mo><mi mathvariant="normal">Ω</mi></mrow></munder><msup><mrow><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="script">A</mi><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">b</mi><mi mathvariant="italic">c</mi></mrow></msub><munder><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo stretchy="false">∈</mo><mi>∂</mi><mi mathvariant="normal">Ω</mi></mrow></munder><msup><mrow><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="script">B</mi><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mrow><mrow><mn>2</mn></mrow></msup></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> Here, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="λr" altimg="images/b_9783111376776-006_ineq_008.png"><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">r</mi></mrow></msub></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="λbc" altimg="images/b_9783111376776-006_ineq_009.png"><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">b</mi><mi mathvariant="italic">c</mi></mrow></msub></math></span></span> weight the residual of the differential equation and the initial and boundary conditions in the loss function, respectively. As discussed, for instance in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_028" class="xref" id="xref_d28617e67888">28</a>], an appropriate weighting is crucial for the convergence in optimizing Eq. (<a href="#b_9783111376776-006_eq_003" class="xref">6.2</a>) using a gradient-based optimization method. <i>θ</i> denotes all the trainable parameters in the network.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">This approach has also been denoted as physics-informed neural networks (PINNs)<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_003" title="physics-informed neural network"></span><span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_004" title="PINN"></span> in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_025" class="xref" id="xref_d28617e67907">25</a>].</p> 
+            </section> 
+            <section id="b_9783111376776-006_s_004">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-6" tabindex="-1"><span class="label webbook-style-bold">2.2</span> <a id="d28651e38694"></a>Multifidelity stacking PINNs<a href="#h-6" rel="bookmark" class="webbook" title="Link to 2.2 Multifidelity stacking PINNs" aria-label="Link to 2.2 Multifidelity stacking PINNs" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">Multifidelity<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_005" title="multifidelity model"></span> PINNs use two NNs to learn the correlation between low- and high-fidelity physics [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_021" class="xref" id="xref_d28617e67926">21</a>]. The goal is to train a linear network (with no activation function) to learn the linear correlation between the low- and high-fidelity models, and a nonlinear network to learn the nonlinear correlation. By training a linear network, the resulting model is more expressive than just assuming that the correlation between the models is the identity. Moreover, under the assumption that the main part of the correlation is linear, separating the network into the linear and nonlinear parts allows for a smaller nonlinear network.</p> 
+              <p class="webbook-style-left">To train a multifidelity PINN, we first train a standard single fidelity PINN <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_010.png"><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">SF</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="normal">SF</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. In a second step, we then train a multifidelity network <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_011.png"><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msup></math></span></span>, which consists of linear and nonlinear subnetworks that learn the correlation between the single fidelity PINN <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_012.png"><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">SF</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="normal">SF</mi></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> and the solution: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation"> <span class="label webbook-style-bold webbook-equation-number">(6.3)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.3)" tabindex="0" id="section-3" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_004.png"><mtable displaystyle="true"><mtr><mtd><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>=</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mn>1</mn><mo>−</mo><mo stretchy="false">|</mo><mi mathvariant="italic">α</mi><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">linear</mi></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">SF</mi></mrow></msup><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>+</mo><mo stretchy="false">|</mo><mi mathvariant="italic">α</mi><mo stretchy="false">|</mo><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">nonlinear</mi></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="normal">SF</mi></mrow></msup><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="normal">MF</mi></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>.</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> The linear network does not have activation functions to force learning a linear correlation, and can be very small. <i>α</i> is a trainable parameter to enforce maximizing the linear correlation.</p> 
+              <p class="webbook-style-left">The loss function in Eq. (<a href="#b_9783111376776-006_eq_003" class="xref">6.2</a>) is modified to include the penalty <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="α4" altimg="images/b_9783111376776-006_ineq_013.png"><msup><mrow><mi mathvariant="italic">α</mi></mrow><mrow><mn>4</mn></mrow></msup></math></span></span>: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation"> <span class="label webbook-style-bold webbook-equation-number">(6.4)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.4)" tabindex="0" id="section-4" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_005.png"><mtable displaystyle="true"><mtr><mtd><munder><mrow><mo movablelimits="false">arg min</mo></mrow><mrow><mi mathvariant="italic">θ</mi></mrow></munder><mspace width="0.1667em"></mspace><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">r</mi></mrow></msub><munder><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo stretchy="false">∈</mo><mi mathvariant="normal">Ω</mi></mrow></munder><msup><mrow><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="script">A</mi><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">b</mi><mi mathvariant="italic">c</mi></mrow></msub><munder><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo stretchy="false">∈</mo><mi>∂</mi><mi mathvariant="normal">Ω</mi></mrow></munder><msup><mrow><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="script">B</mi><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="bold">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mrow><mrow><mn>2</mn></mrow></msup><mo>+</mo><msub><mrow><mi mathvariant="italic">λ</mi></mrow><mrow><mi mathvariant="italic">α</mi></mrow></msub><msup><mrow><mi mathvariant="italic">α</mi></mrow><mrow><mn>4</mn></mrow></msup></mtd></mtr></mtable></math></span></span> 
+              </div> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">In multifidelity stacking PINNs as presented in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e68674">13</a>], multifidelity PINNs are trained recursively, each taking the output of the previously trained stacking layer as input. In this way, the previous layer serves as the low-fidelity model for the new stacking layer. The difference between [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e68677">13</a>] and the current work is that [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_013" class="xref" id="xref_d28617e68680">13</a>] does not consider domain decomposition, so each stacking layer has a single multifidelity PINN covering the entire domain. The approach considered here is more flexible, and as we will show in Section <a href="9783111375854_036645-6.html#b_9783111376776-006_s_008" class="xref">4</a>, results in smaller relative errors when trained on the same equations.</p> 
+            </section> 
+            <section id="b_9783111376776-006_s_005">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-7" tabindex="-1"><span class="label webbook-style-bold">2.3</span> <a id="d28651e39120"></a>Domain decomposition-based neural network architectures<a href="#h-7" rel="bookmark" class="webbook" title="Link to 2.3 Domain decomposition-based neural network architectures" aria-label="Link to 2.3 Domain decomposition-based neural network architectures" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">It has been observed in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_022" class="xref" id="xref_d28617e68698">22</a>] that the high frequency components in the solution can be learned better if a domain decomposition<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_006" title="domain decomposition"></span> is introduced into the PINN approach. To scale to larger numbers of subdomains, this approach has first been extended to two-levels in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_007" class="xref" id="xref_d28617e68705">7</a>] and then to an arbitrary number of levels in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_008" class="xref" id="xref_d28617e68708">8</a>]. The general idea of the domain decomposition-based finite basis PINNs (FBPINNs)<span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_007" title="finite basis physics-informed neural network"></span><span class="indexterm-anchor" id="it_b_9783111376776-006_index-term_008" title="FBPINN"></span> is to decompose the computational domain Ω into <i>J</i> overlapping subdomains <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ωj" altimg="images/b_9783111376776-006_ineq_014.png"><msub><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_015.png"><mi mathvariant="normal">Ω</mi><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">⋃</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">J</mi></mrow></msubsup><msub><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span>. As before, Ω may be a space-time domain, and in this work we will focus on domain decomposition in time. On each subdomain, we define a space of network functions <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_016.png"><msub><mrow><mi mathvariant="script">V</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo>=</mo><mo fence="true" stretchy="false">{</mo><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">∣</mo><mi mathvariant="bold">x</mi><mo stretchy="false">∈</mo><msub><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo stretchy="false">∈</mo><msub><mrow><mi mathvariant="normal">Θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo fence="true" stretchy="false">}</mo></math></span></span>, where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_017.png"><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> denotes a PINN model, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_018.png"><msub><mrow><mi mathvariant="normal">Θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo>=</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><msub><mrow><mi mathvariant="italic">k</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></mrow></msup></math></span></span> is the space of all trainable neural network parameters, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="kj" altimg="images/b_9783111376776-006_ineq_019.png"><msub><mrow><mi mathvariant="italic">k</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span> is the number of network parameters.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">In order to represent the global solution of a given problem, we define window functions <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ωj" altimg="images/b_9783111376776-006_ineq_020.png"><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span> with <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="supp(ωj)⊂Ωj" altimg="images/b_9783111376776-006_ineq_021.png"><mtext>supp</mtext><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">⊂</mo><msub><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span> such that <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_022.png"><msubsup><mrow><mo fence="true" stretchy="false">{</mo><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo fence="true" stretchy="false">}</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">J</mi></mrow></msubsup></math></span></span> form a partition of unity, that is, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_023.png"><msubsup><mrow><mo largeop="false" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">J</mi></mrow></msubsup><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo>=</mo><mn>1</mn><mspace width="2.5pt"></mspace><mtext>on</mtext><mspace width="2.5pt"></mspace><mi mathvariant="normal">Ω</mi></math></span></span>. Then we can define a global neural network space <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_024.png"><mi mathvariant="script">V</mi><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">J</mi></mrow></msubsup><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><msub><mrow><mi mathvariant="script">V</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub></math></span></span>, and the global FBPINN function reads <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_025.png"><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">J</mi></mrow></msubsup><msub><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><msub><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. It has been observed that this approach may significantly improve the performance of PINNs; cf. [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_022" class="xref" id="xref_d28617e69450">22</a>]. However, similar to classical domain decomposition methods [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_027" class="xref" id="xref_d28617e69453">27</a>], the one-level approach is not scalable to large numbers of subdomains; see [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_007" class="xref" id="xref_d28617e69456">7</a>], [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_008" class="xref" id="xref_d28617e69459">8</a>].</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">To improve the scalability and the performance for multiscale problems, a hierarchy of domain decompositions may be employed. Define <i>L</i> levels of domain decompositions, with the overlapping domain decomposition at level <i>l</i> denoted by <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_026.png"><msup><mrow><mi mathvariant="italic">D</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo>=</mo><msubsup><mrow><mo fence="true" stretchy="false">{</mo><msubsup><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo fence="true" stretchy="false">}</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></msubsup></math></span></span>, where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_027.png"><mi mathvariant="normal">Ω</mi><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">⋃</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></msubsup><msubsup><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="J(l)" altimg="images/b_9783111376776-006_ineq_028.png"><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span> is the number of subdomains at level <i>l</i>; cf. <a href="#b_9783111376776-006_fig_001" class="xref">Figure 6.1</a>. Even though there is generally no restriction on the overlapping domain decompositions, we choose <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="J(1)=1" altimg="images/b_9783111376776-006_ineq_029.png"><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo>=</mo><mn>1</mn></math></span></span>, so the first level corresponds to a single global subdomain, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="J(l)<J(l+1)" altimg="images/b_9783111376776-006_ineq_030.png"><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal">&lt;</mo><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo>+</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span> for all <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="l=1,…,L" altimg="images/b_9783111376776-006_ineq_031.png"><mi mathvariant="italic">l</mi><mo>=</mo><mn>1</mn><mo mathvariant="normal">,</mo><mo>…</mo><mo mathvariant="normal">,</mo><mi mathvariant="italic">L</mi></math></span></span>.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-006_fig_001">
+                <img alt="" src="images/b_9783111376776-006_fig_001.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 6.1</span> Multilevel overlapping domain decomposition of Ω with <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="L=3" altimg="images/b_9783111376776-006_ineq_032.png"><mi mathvariant="italic">L</mi><mo>=</mo><mn>3</mn></math></span></span> levels.</p></figcaption>
+              </figure> 
+              <p class="webbook-style-left">Now, on each level <i>l</i> we define window functions <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_033.png"><msubsup><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup></math></span></span> to be a partition of unity, so <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_034.png"><msubsup><mrow><mo largeop="false" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></msubsup><msubsup><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo>=</mo><mn>1</mn></math></span></span>, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_035.png"><mtext>supp</mtext><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msubsup><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">⊂</mo><msubsup><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup></math></span></span>. Similar to the one-level case, this yields the global neural network space <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_036.png"><mi mathvariant="script">V</mi><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">l</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">L</mi></mrow></msubsup><msubsup><mrow><mo largeop="false" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></msubsup><msubsup><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><msubsup><mrow><mi mathvariant="script">V</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup></math></span></span> and the global network function defined in terms of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_037.png"><mi mathvariant="italic">θ</mi><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">⋃</mo></mrow><mrow><mi mathvariant="italic">l</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">L</mi></mrow></msubsup><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_038.png"><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo>=</mo><msubsup><mrow><mo largeop="false" movablelimits="false">⋃</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></msubsup><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup></math></span></span>: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-006_eq_006"> <span class="label webbook-style-bold webbook-equation-number">(6.5)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.5)" tabindex="0" id="section-5" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_006.png"><mtable displaystyle="true"><mtr><mtd><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">θ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mi mathvariant="italic">L</mi></mrow></mfrac></mstyle><munderover accentunder="false" accent="false"><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">l</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">L</mi></mrow></munderover><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mspace width="1em"></mspace><mtext>with</mtext><mspace width="2.5pt"></mspace><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>=</mo><munderover accentunder="false" accent="false"><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></munderover><msubsup><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>.</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> It has been observed in [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_007" class="xref" id="xref_d28617e70696">7</a>], [<a href="9783111375854_036645-9.html#b_9783111376776-006_ref_008" class="xref" id="xref_d28617e70699">8</a>] that due to increased communication between the subdomain models, the multilevel FBPINN approach may significantly improve the performance over the one-level approach.</p> 
+            </section> 
+            <section id="b_9783111376776-006_s_006">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-8" tabindex="-1"><span class="label webbook-style-bold">2.4</span> <a id="d28651e40235"></a>Stacking FBPINNs<a href="#h-8" rel="bookmark" class="webbook" title="Link to 2.4 Stacking FBPINNs" aria-label="Link to 2.4 Stacking FBPINNs" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">We combine the multifidelity stacking PINNs and the FBPINNs as follows: In the first level, we train a standard single fidelity PINN across the full domain <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ω(0)=Ω" altimg="images/b_9783111376776-006_ineq_039.png"><msup><mrow><mi mathvariant="normal">Ω</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>0</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo>=</mo><mi mathvariant="normal">Ω</mi></math></span></span>. Then, for each level <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="l>0" altimg="images/b_9783111376776-006_ineq_040.png"><mi mathvariant="italic">l</mi><mo mathvariant="normal">&gt;</mo><mn>0</mn></math></span></span>, we use a FBPINN network architecture modified to consist of multifidelity networks that takes as input the network from the previous level <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="l−1" altimg="images/b_9783111376776-006_ineq_041.png"><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn></math></span></span>: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-006_eq_007"> <span class="label webbook-style-bold webbook-equation-number">(6.6)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (6.6)" tabindex="0" id="section-6" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_007.png"><mtable displaystyle="true"><mtr><mtd><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>=</mo><munderover accentunder="false" accent="false"><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">j</mi><mo>=</mo><mn>1</mn></mrow><mrow><msup><mrow><mi mathvariant="italic">J</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup></mrow></munderover><msubsup><mrow><mi mathvariant="italic">ω</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">F</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal">,</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>.</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> We note that Eq. (<a href="#b_9783111376776-006_eq_007" class="xref">6.6</a>) differs from Eq. (<a href="#b_9783111376776-006_eq_006" class="xref">6.5</a>) by a factor of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1∕L" altimg="images/b_9783111376776-006_ineq_042.png"><mn>1</mn><mo mathvariant="normal" stretchy="false">/</mo><mi mathvariant="italic">L</mi></math></span></span>, because the output of FBPINNs is the sum of the networks trained at all levels, while the output of stacking FBPINNs is the sum of the networks for the final level. The networks at level <i>l</i> learn the correlation between the output of the <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="l−1" altimg="images/b_9783111376776-006_ineq_043.png"><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn></math></span></span> level and the solution, and take as input the previously learned solution <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_ineq_044.png"><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-006_eq_008.png"><mtable displaystyle="true"><mtr><mtd><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">F</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>=</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mn>1</mn><mo>−</mo><mo stretchy="false">|</mo><mi mathvariant="italic">α</mi><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi><mo mathvariant="normal">,</mo><mi mathvariant="normal">lin</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal">,</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>+</mo><mo stretchy="false">|</mo><mi mathvariant="italic">α</mi><mo stretchy="false">|</mo><msubsup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mi mathvariant="italic">j</mi><mo mathvariant="normal">,</mo><mi mathvariant="normal">nonlin</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="bold">x</mi><mo mathvariant="normal">,</mo><msup><mrow><mover accent="true"><mrow><mi mathvariant="italic">u</mi></mrow><mo stretchy="false">ˆ</mo></mover></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo>−</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msup><mo mathvariant="normal">,</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">j</mi></mrow><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">l</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow></msubsup><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div> 
+            </section> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_036645-3.html" rel="prev" title="Previous: 1 Introduction" aria-label="Previous: 1 Introduction">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_036645-5.html" title="Next: 3 Domain decomposition in time" aria-label="Next: 3 Domain decomposition in time" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

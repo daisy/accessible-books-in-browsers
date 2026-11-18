@@ -1,0 +1,25 @@
+@charset "UTF-8"; 
+@font-face {
+  font-family: 'noto-sans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('../fonts/NotoSans-Regular.otf');
+}
+@font-face {
+  font-family: 'noto-sans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('../fonts/NotoSans-Bold.otf');
+}
+@font-face {
+  font-family: 'noto-sans';
+  font-style: italic;
+  font-weight: normal;
+  src: url('../fonts/NotoSans-Italic.otf');
+}
+@font-face {
+  font-family: 'noto-sans';
+  font-style: italic;
+  font-weight: bold;
+  src: url('../fonts/NotoSans-BoldItalic.otf');
+}

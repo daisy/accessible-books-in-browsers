@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>4 Conclusion – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_050068-6.html"><meta name="webbook-page-number" content="59"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 4 Conclusion"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-8-5">Contents</a><a href="about.html">About</a><a href="9783111375854_050068-5.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_053575.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section class="book-part chapter" id="section-1"><div><section id="b_9783111376776-008_s_009">
+            <h2 id="d73047e52948" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">4</span> <a></a>Conclusion<a href="#d73047e52948" rel="bookmark" class="webbook" title="Link to 4 Conclusion" aria-label="Link to 4 Conclusion" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="webbook-style-left">In this work, we employed APTS method, which utilized the decomposition of the NN’s parameters, to efficiently train neural networks. Our numerical study reveals that the proposed APTS method attains comparable or superior generalization capabilities to traditional optimizers like SGD, LBFGS, and Adam. The strength of the developed APTS method lies in absent hyper-parameter tuning and in its parallelization capabilities. Moreover, the APTS achieves faster convergence with a growing number of subdomains, showing encouraging algorithmic scalability.</p> 
+          </section> 
+        </div> 
+        <div> 
+          <section role="doc-bibliography" data-webbook-epub-type="bibliography" class="epubtype_bibliography" id="section-2"><a></a> 
+            <h2 id="d73047e52964" class="webbook-style-left webbook-style-bold" tabindex="-1"><a></a>Bibliography<a href="#d73047e52964" rel="bookmark" class="webbook" title="Link to Bibliography" aria-label="Link to Bibliography" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_001" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[1]</span><span class="mixed-citation">M. Ainsworth and Y. Shin. Plateau phenomenon in gradient descent training of ReLU networks: explanation, quantification and avoidance. <i>SIAM Journal on Scientific Computing</i>, 43(5):A3438–A3468, 2021. <a href="9783111375854_050068-5.html#xref_d28617e95858" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_002" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[2]</span><span class="mixed-citation">T. Ben-Nun and T. Hoefler. Demystifying parallel and distributed deep learning: an in-depth concurrency analysis. <i>ACM Computing Surveys</i>, 52(4):1–43, 2019. <a href="9783111375854_050068-3.html#xref_d28617e91972" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91982" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_003" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[3]</span><span class="mixed-citation">A. S. Berahas, M. Jahani, P. Richtárik, and M. Takáč. Quasi-Newton methods for machine learning: forget the past, just sample. <i>Optimization Methods &amp; Software</i>, 37(5):1668–1704, 2022. <a href="9783111375854_050068-3.html#xref_d28617e91893" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_004" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[4]</span><span class="mixed-citation">A. S. Berahas, J. Nocedal, and M. Takáč. A multi-batch L-BFGS method for machine learning. In: <i>Advances in Neural Information Processing Systems</i>, volume 29, 2016. <a href="9783111375854_050068-3.html#xref_d28617e91890" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_005" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[5]</span><span class="mixed-citation">A. Blum and R. Rivest. Training a 3-node neural network is NP-complete. In: <i>Advances in Neural Information Processing Systems</i>, volume 1, 1988. <a href="9783111375854_050068-3.html#xref_d28617e91934" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_006" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[6]</span><span class="mixed-citation">L. Bottou, F. E. Curtis, and J. Nocedal. Optimization methods for large-scale machine learning. <i>SIAM Review</i>, 60(2):223–311, 2018. <a href="9783111375854_050068-3.html#xref_d28617e91852" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91874" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_007" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[7]</span><span class="mixed-citation">J. Brust, J. B. Erway, and R. F. Marcia. On solving L-SR1 trust-region subproblems. <i>Computational Optimization and Applications</i>, 66:245–266, 2017. <a href="9783111375854_050068-4.html#xref_d28617e93027" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_008" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[8]</span><span class="mixed-citation">X. C. Cai and D. E. Keyes. Nonlinearly preconditioned inexact Newton algorithms. <i>SIAM Journal on Scientific Computing</i>, 24(1):183–200, 2002. <a href="9783111375854_050068-3.html#xref_d28617e92004" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_009" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[9]</span><span class="mixed-citation">J. Catlett. Mega induction: a test flight. In: <i>Machine Learning Proceedings 1991</i>, pages 596–599. Morgan Kaufmann, 1991. <a href="9783111375854_050068-3.html#xref_d28617e91931" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_010" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[10]</span><span class="mixed-citation">T. F. Chan and J. Zou. Additive Schwarz domain decomposition methods for elliptic problems on unstructured meshes. <i>Numerical Algorithms</i>, 8(2):329–346, 1994. <a href="9783111375854_050068-3.html#xref_d28617e91988" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_011" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[11]</span><span class="mixed-citation">A. R. Conn, N. I. Gould, and P. L. Toint. <i>Trust Region Methods</i>. Society for Industrial and Applied Mathematics, 2000. <a href="9783111375854_050068-3.html#xref_d28617e91896" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91903" class="ref-link">b</a>, <a href="9783111375854_050068-4.html#xref_d28617e92112" class="ref-link">c</a>, <a href="9783111375854_050068-4.html#xref_d28617e92999" class="ref-link">d</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_012" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[12]</span><span class="mixed-citation">S. A. Cruz Alegría and K. Trotti. ML_APTS, 2023. https://github.com/cruzas/ML_APTS. <a href="9783111375854_050068-5.html#xref_d28617e94842" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_013" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[13]</span><span class="mixed-citation">F. E. Curtis, K. Scheinberg, and R. Shi. A stochastic trust region algorithm based on careful step normalization. <i>INFORMS Journal on Optimization</i>, 1(3):200–220, 2019. <a href="9783111375854_050068-3.html#xref_d28617e91912" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_014" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[14]</span><span class="mixed-citation">X. Dai and Y. Zhu. Towards theoretical understanding of large batch training in stochastic gradient descent. arXiv:1812.00542, 2018. <a href="9783111375854_050068-3.html#xref_d28617e91855" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91877" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_015" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[15]</span><span class="mixed-citation">T. G. Dietterich. Ensemble methods in machine learning. In: <i>International Workshop on Multiple Classifier Systems</i>, pages 1–15. Springer Berlin Heidelberg, Berlin, Heidelberg, 2000. <a href="9783111375854_050068-3.html#xref_d28617e91959" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_016" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[16]</span><span class="mixed-citation">V. Dolean, M. J. Gander, W. Kheriji, F. Kwok, and R. Masson. Nonlinear preconditioning: how to use a nonlinear Schwarz method to precondition Newton’s method. <i>SIAM Journal on Scientific Computing</i>, 38(6):A3357–A3380, 2016. <a href="9783111375854_050068-3.html#xref_d28617e92010" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_017" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[17]</span><span class="mixed-citation">J. Erhel, M. J. Gander, L. Halpern, G. Pichot, T. Sassi, and O. Widlund. <i>Domain Decomposition Methods in Science and Engineering XXI</i>. Springer, 2014. <a href="9783111375854_050068-3.html#xref_d28617e91998" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_018" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[18]</span><span class="mixed-citation">J. B. Erway and R. F. Marcia. On efficiently computing the eigenvalues of limited-memory quasi-Newton matrices. <i>SIAM Journal on Matrix Analysis and Applications</i>, 36(3):1338–1359, 2015. <a href="9783111375854_050068-4.html#xref_d28617e93005" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_019" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[19]</span><span class="mixed-citation">M. J. Gander. Optimized Schwarz methods. <i>SIAM Journal on Numerical Analysis</i>, 44(2):699–731, 2006. <a href="9783111375854_050068-3.html#xref_d28617e91995" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_020" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[20]</span><span class="mixed-citation">Y. Gao and M. K. Ng. A momentum accelerated adaptive cubic regularization method for nonconvex optimization. arXiv:2210.05987, 2022. <a href="9783111375854_050068-3.html#xref_d28617e91915" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_021" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[21]</span><span class="mixed-citation">I. Goodfellow, Y. Bengio, and A. Courville. <i>Deep Learning</i>. MIT Press, 2016. http://www.deeplearningbook.org. <a href="9783111375854_050068-3.html#xref_d28617e91819" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_022" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[22]</span><span class="mixed-citation">S. Gratton, S. Jerad, and P. L. Toint. Complexity of a class of first-order objective-function-free optimization algorithms, 2023. <a href="9783111375854_050068-3.html#xref_d28617e91919" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_023" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[23]</span><span class="mixed-citation">S. Gratton, A. Kopaničáková, and P. L. Toint. Multilevel objective-function-free optimization with an application to neural networks training. <i>SIAM Journal on Optimization</i>, 33(4):2772–2800, 2023. <a href="9783111375854_050068-3.html#xref_d28617e91922" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_024" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[24]</span><span class="mixed-citation">C. Groß. <i>A unifying theory for nonlinear additively and multiplicatively preconditioned globalization strategies convergence results and examples from the field of nonlinear elastostatics and elastodynamics</i>. PhD thesis, Bonn International Graduate School, University of Bonn, 2009. URN: https://nbn-resolving.org/urn:nbn:de:hbz:5N-18682. Available online at: [Online-Publikationen an deutschen Hochschulen, Bonn, Univ., Diss., 2009]. <a href="9783111375854_050068-3.html#xref_d28617e92014" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e92041" class="ref-link">b</a>, <a href="9783111375854_050068-4.html#xref_d28617e93088" class="ref-link">c</a>, <a href="9783111375854_050068-4.html#xref_d28617e94689" class="ref-link">d</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_025" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[25]</span><span class="mixed-citation">C. Gross and R. Krause. On the convergence of recursive trust-region methods for multiscale nonlinear optimization and applications to nonlinear mechanics. <i>SIAM Journal on Numerical Analysis</i>, 47(4):3044–3069, 2009. <a href="9783111375854_050068-3.html#xref_d28617e91906" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_026" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[26]</span><span class="mixed-citation">C. Groß and R. Krause. On the globalization of ASPIN employing trust-region control strategies—convergence analysis and numerical examples. arXiv:2104.05672, 2021. <a href="9783111375854_050068-3.html#xref_d28617e92007" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_027" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[27]</span><span class="mixed-citation">R. Grosse. CSC321 Lecture 6: Backpropagation. Lecture at the University of Toronto, 2018. <a href="9783111375854_050068-3.html#xref_d28617e91940" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_028" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[28]</span><span class="mixed-citation">L. Gu, W. Zhang, J. Liu, and X. C. Cai. Decomposition and composition of deep convolutional neural networks and training acceleration via sub-network transfer learning. <i>Electronic Transactions on Numerical Analysis</i>, 56:157–186, 2022. <a href="9783111375854_050068-3.html#xref_d28617e92023" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_029" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[29]</span><span class="mixed-citation">L. Gu, W. Zhang, J. Liu, and X. C. Cai. Decomposition and preconditioning of deep convolutional neural networks for training acceleration. In: <i>Domain Decomposition Methods in Science and Engineering XXVI</i>, pages 153–160. Springer, Cham, 2023. <a href="9783111375854_050068-3.html#xref_d28617e92026" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_030" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[30]</span><span class="mixed-citation">S. Gunther, L. Ruthotto, J. B. Schroder, E. C. Cyr, and N. R. Gauger. Layer-parallel training of deep residual neural networks. <i>SIAM Journal on Mathematics of Data Science</i>, 2(1):1–23, 2020. <a href="9783111375854_050068-3.html#xref_d28617e92029" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_031" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[31]</span><span class="mixed-citation">L. K. Hansen and P. Salamon. Neural network ensembles. <i>IEEE Transactions on Pattern Analysis and Machine Intelligence</i>, 12(10):993–1001, 1990. <a href="9783111375854_050068-3.html#xref_d28617e91956" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_032" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[32]</span><span class="mixed-citation">D. P. Kingma and J. Ba. Adam: a method for stochastic optimization. arXiv:1412.6980, 2014. <a href="9783111375854_050068-3.html#xref_d28617e91858" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91881" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_033" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[33]</span><span class="mixed-citation">A. Klawonn, M. Lanser, and J. Weber. A domain decomposition-based CNN-DNN architecture for model parallel training applied to image recognition problems. arXiv:2302.06564, 2023. <a href="9783111375854_050068-3.html#xref_d28617e92035" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_034" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[34]</span><span class="mixed-citation">A. Kopaničáková and R. Krause. Globally convergent multilevel training of deep residual networks. <i>SIAM Journal on Scientific Computing</i>, 0:S254–S280, 2022. <a href="9783111375854_050068-3.html#xref_d28617e91925" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_035" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[35]</span><span class="mixed-citation">A. Kopaničáková, H. Kothari, G. E. Karniadakis, and R. Krause. Enhancing training of physics-informed neural networks using domain decomposition–based preconditioning strategies. <i>SIAM Journal on Scientific Computing</i>, 46(5):S46–S67, 2024. <a href="9783111375854_050068-3.html#xref_d28617e92032" class="ref-link">a</a>, <a href="9783111375854_050068-4.html#xref_d28617e93091" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_036" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[36]</span><span class="mixed-citation">A. Krizhevsky. Learning multiple layers of features from tiny images. Technical report, University of Toronto, 2009. <a href="9783111375854_050068-5.html#xref_d28617e95891" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_037" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[37]</span><span class="mixed-citation">Y. LeCun, L. Bottou, Y. Bengio, and P. Haffner. Gradient-based learning applied to document recognition. <i>Proceedings of the IEEE</i>, 86(11):2278–2324, 1998. <a href="9783111375854_050068-5.html#xref_d28617e95741" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_038" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[38]</span><span class="mixed-citation">G. Malinovsky, K. Yi, and P. Richtárik. Variance reduced Proxskip: algorithm, theory and application to federated learning. In: <i>Advances in Neural Information Processing Systems</i>, volume 35, pages 15176–15189, 2022. <a href="9783111375854_050068-3.html#xref_d28617e91969" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_039" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[39]</span><span class="mixed-citation">T. P. Mathew. <i>Domain Decomposition Methods for the Numerical Solution of Partial Differential Equations</i>. Springer, 2008. <a href="9783111375854_050068-3.html#xref_d28617e92001" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_040" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[40]</span><span class="mixed-citation">B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas. Communication-efficient learning of deep networks from decentralized data. In: <i>Artificial Intelligence and Statistics</i>, pages 1273–1282. PMLR, April 2017. <a href="9783111375854_050068-3.html#xref_d28617e91962" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_041" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[41]</span><span class="mixed-citation">K. Mishchenko, G. Malinovsky, S. Stich, and P. Richtárik. Proxskip: yes! Local gradient steps provably lead to communication acceleration! finally! In: <i>International Conference on Machine Learning</i>, pages 15750–15769. PMLR, June 2022. <a href="9783111375854_050068-3.html#xref_d28617e91966" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_042" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[42]</span><span class="mixed-citation">K. P. Murphy. <i>Machine Learning: A Probabilistic Perspective</i>. MIT Press, 2012. <a href="9783111375854_050068-3.html#xref_d28617e91829" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_043" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[43]</span><span class="mixed-citation">D. Nichols, S. Singh, S. H. Lin, and A. Bhatele. A survey and empirical evaluation of parallel deep learning frameworks. arXiv:2111.04949, 2021. <a href="9783111375854_050068-3.html#xref_d28617e91950" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91985" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_044" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[44]</span><span class="mixed-citation">J. Nocedal and S. J. Wright. <i>Numerical Optimization</i>. Springer New York, New York, NY, 1999. <a href="9783111375854_050068-3.html#xref_d28617e91868" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91887" class="ref-link">b</a>, <a href="9783111375854_050068-3.html#xref_d28617e91900" class="ref-link">c</a>, <a href="9783111375854_050068-4.html#xref_d28617e92109" class="ref-link">d</a>, <a href="9783111375854_050068-4.html#xref_d28617e93008" class="ref-link">e</a>, <a href="9783111375854_050068-4.html#xref_d28617e94692" class="ref-link">f</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_045" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[45]</span><span class="mixed-citation">J. Rafati, O. DeGuchy, and R. F. Marcia. Trust-region minimization algorithm for training responses (TRMinATR): the rise of machine learning techniques. In: <i>2018 26th European Signal Processing Conference (EUSIPCO)</i>, pages 2015–2019. IEEE, 2018. <a href="9783111375854_050068-3.html#xref_d28617e91909" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_046" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[46]</span><span class="mixed-citation">S. J. Reddi, S. Kale, and S. Kumar. On the convergence of Adam and beyond. arXiv:1904.09237, 2019. <a href="9783111375854_050068-3.html#xref_d28617e91862" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91884" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_047" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[47]</span><span class="mixed-citation">S. Ruder. An overview of gradient descent optimization algorithms. arXiv:1609.04747, 2016. <a href="9783111375854_050068-3.html#xref_d28617e91865" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_048" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[48]</span><span class="mixed-citation">C. J. Shallue, J. Lee, J. Antognini, J. Sohl-Dickstein, R. Frostig, and G. E. Dahl. Measuring the effects of data parallelism on neural network training. arXiv:1811.03600, 2018. <a href="9783111375854_050068-3.html#xref_d28617e91943" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91979" class="ref-link">b</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_049" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[49]</span><span class="mixed-citation">R. K. Srivastava, K. Greff, and J. Schmidhuber. Training very deep networks. In C. Cortes, N. Lawrence, D. Lee, M. Sugiyama and R. Garnett, editors, <i>Advances in Neural Information Processing Systems</i>, volume 28. Curran Associates, Inc., 2015. <a href="9783111375854_050068-3.html#xref_d28617e91937" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_050" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[50]</span><span class="mixed-citation">A. Toselli and O. Widlund. <i>Domain Decomposition Methods—Algorithms and Theory</i>, volume 34. Springer, 2004. <a href="9783111375854_050068-3.html#xref_d28617e91991" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_051" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[51]</span><span class="mixed-citation">S. Zhang, A. E. Choromanska, and Y. LeCun. Deep learning with elastic averaging SGD. In: <i>Advances in Neural Information Processing Systems</i>, volume 28, 2015. <a href="9783111375854_050068-3.html#xref_d28617e91953" class="ref-link">→</a></span></p> 
+            <p class="ref webbook-style-left epubtype_biblioentry" id="b_9783111376776-008_ref_052" data-webbook-epub-type="biblioentry"><span class="label webbook-style-bold">[52]</span><span class="mixed-citation">M. Zinkevich, M. Weimer, L. Li, and A. Smola. Parallelized stochastic gradient descent. In: <i>Advances in Neural Information Processing Systems</i>, volume 23, 2010. <a href="9783111375854_050068-3.html#xref_d28617e91849" class="ref-link">a</a>, <a href="9783111375854_050068-3.html#xref_d28617e91871" class="ref-link">b</a>, <a href="9783111375854_050068-3.html#xref_d28617e91947" class="ref-link">c</a></span></p> 
+          </section> 
+        </div> 
+      </section></main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_050068-5.html" rel="prev" title="Previous: 3 Numerical results" aria-label="Previous: 3 Numerical results">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_053575.html" title="Next: Trustworthy optimization learning: a brief overview" aria-label="Next: Trustworthy optimization learning: a brief overview" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

@@ -156,7 +156,7 @@ self.WebbookOfflineWorker = { protocol: 1, version: '1', start(options = {}) {
         try {
             const row = await state();
             if (foreground) {
-                if (row.job?.cache !== name || row.job.owner !== foreground.owner || row.job.cancelled) throw new DOMException('Download cancelled.', 'AbortError');
+                if (row.job?.cache !== name || row.job.owner !== foreground.owner || row.job.cancelled) throw new DOMException('Download canceled.', 'AbortError');
                 heartbeat = setInterval(() => renewLease(name).then(valid => { if (!valid) activeJob.controller.abort(); }).catch(() => activeJob.controller.abort()), 30000);
             } else {
                 if (await liveLease(row.job)) throw new Error('Another tab is downloading this book.');
@@ -233,7 +233,7 @@ self.WebbookOfflineWorker = { protocol: 1, version: '1', start(options = {}) {
             await db('snapshots', name, snapshot);
             const committed = await bookTransaction(latest => {
                 signal.throwIfAborted();
-                if (foreground && (latest.job?.cache !== name || latest.job.cancelled)) throw new DOMException('Download cancelled.', 'AbortError');
+                if (foreground && (latest.job?.cache !== name || latest.job.cancelled)) throw new DOMException('Download canceled.', 'AbortError');
                 if (!foreground && latest.job !== name) throw new Error('This download no longer owns its staging copy.');
                 delete latest.job; const previousPending = latest.pending;
                 if (latest.active) latest.pending = name; else latest.active = name;
@@ -298,7 +298,7 @@ self.WebbookOfflineWorker = { protocol: 1, version: '1', start(options = {}) {
             else if (data.command === 'activate') result = await activate(client.id);
             else throw new Error('Unsupported offline command.');
             reply({ result });
-        })().catch(error => reply({ error: error.name === 'AbortError' ? 'Download cancelled.' : error.name === 'SecurityError' ? 'Browser storage is blocked. Online reading still works.' : error.name === 'QuotaExceededError' ? 'There is not enough storage. The previous saved copy is unchanged.' : error.message || 'Offline storage failed.' }));
+        })().catch(error => reply({ error: error.name === 'AbortError' ? 'Download canceled.' : error.name === 'SecurityError' ? 'Browser storage is blocked. Online reading still works.' : error.name === 'QuotaExceededError' ? 'There is not enough storage. The previous saved copy is unchanged.' : error.message || 'Offline storage failed.' }));
         if (typeof event.waitUntil === 'function') event.waitUntil(operation);
     });
     if (foreground) return;

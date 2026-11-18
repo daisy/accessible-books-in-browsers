@@ -1,9 +1,9 @@
 // As published, the reader's toolbars, panels and the margins around the text take the book's own
-// colours, so the page is one surface; Page colors is hidden then, and the reader's theme
+// colors, so the page is one surface; Page colors is hidden then, and the reader's theme
 // would otherwise sit around the publisher's page (user, 2026-11-16). The book's background and
-// text colour are read from <main>, where the publisher's CSS puts them (white and black when it
-// sets none), and turned into the same tokens custom page colours use. The UI must still pass
-// WCAG AA: where the publisher's text colour is too faint on its background, the UI uses black or
+// text color are read from <main>, where the publisher's CSS puts them (white and black when it
+// sets none), and turned into the same tokens custom page colors use. The UI must still pass
+// WCAG AA: where the publisher's text color is too faint on its background, the UI uses black or
 // white instead. Read again on each page, since a book's pages can differ.
 import { MIN_TEXT_CONTRAST, composite, contrastRatio, pageColorTokens, parseColor, readableTextOn, toHex } from './color-contrast.js';
 import { publishedAppearanceActive } from './appearance-state.js';
@@ -32,14 +32,14 @@ function clear(root) {
     for (const property of PROPERTIES) root.style.removeProperty(property);
 }
 
-// Called by page-colors.js whenever the colours are applied; returns the scheme in use, or null
+// Called by page-colors.js whenever the colors are applied; returns the scheme in use, or null
 export function applyPublishedColors() {
     const root = document.documentElement;
     if (!publishedAppearanceActive()) {
         clear(root);
         return null;
     }
-    // Read the publisher's colours without our own on the page, so nothing feeds back
+    // Read the publisher's colors without our own on the page, so nothing feeds back
     clear(root);
     const pair = bookColors();
     if (!pair) return null;
@@ -58,7 +58,7 @@ export function applyPublishedColors() {
     return tokens.scheme;
 }
 
-// The publisher's stylesheets can finish loading after the reader starts; read the colours again then
+// The publisher's stylesheets can finish loading after the reader starts; read the colors again then
 export function watchPublishedStyles(update) {
     for (const link of document.querySelectorAll('link[data-webbook-publisher-style]')) {
         if (link.dataset.webbookColorsWatched) continue;

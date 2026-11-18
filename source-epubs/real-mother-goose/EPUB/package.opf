@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package version="3.0" xmlns="http://www.idpf.org/2007/opf" unique-identifier="BookId" prefix="rendition: http://www.idpf.org/vocab/rendition/#">
+<metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="BookId">urn:uuid:c66e5bc6-f0ff-4435-bef6-376a6196ca81</dc:identifier>
+    <meta refines="#BookId" property="identifier-type" scheme="xsd:string">uuid</meta>
+    <dc:title id="metadata_id_title">The Real Mother Goose</dc:title>
+    <meta refines="#metadata_id_title" property="title-type">main</meta>
+    <dc:language>en-gb</dc:language>
+    <dc:creator id="metadata_id_creator">Mother Goose</dc:creator>
+    <meta refines="#metadata_id_creator" property="role" scheme="marc:relators" id="role">aut</meta>
+    <dc:publisher>BB eBooks</dc:publisher>
+    <dc:date>2016-01-03</dc:date>
+    <meta property="dcterms:modified">2016-01-03T13:35:16Z</meta>
+    <meta name="cover" content="My_Cover_ID" />
+    <dc:description>Old Mother Goose is still the reigning favorite of the nursery, and this big, lovely book with the famous Blanche Fisher Wright illustrations is the perfect introduction to her charms for little children.</dc:description>
+    <dc:rights>Public Domain</dc:rights>
+    <dc:coverage>Worldwide</dc:coverage>
+    <dc:subject>Children’s</dc:subject>
+    <dc:subject>Classics</dc:subject>
+    <dc:contributor id="metadata_id_contributor1">Blanche Fisher Wright</dc:contributor>
+    <meta refines="#metadata_id_contributor1" property="role" scheme="marc:relators">ill</meta>
+    <meta refines="#metadata_id_contributor1" property="display-seq">1</meta>
+    <dc:contributor id="metadata_id_contributor2">BB eBooks</dc:contributor>
+    <meta refines="#metadata_id_contributor2" property="role" scheme="marc:relators">bkd</meta>
+    <meta refines="#metadata_id_contributor2" property="display-seq">2</meta>
+    <meta property="rendition:layout">pre-paginated</meta>
+    <meta property="rendition:orientation">auto</meta>
+    <meta property="rendition:spread">auto</meta>
+  </metadata>
+  <manifest>
+    <item href="coverpage.xhtml" id="htmlcoverpage" media-type="application/xhtml+xml" />
+    <item href="cover.jpg" id="My_Cover_ID" media-type="image/jpeg" properties="cover-image" />
+    <item href="nav.xhtml" id="epub3_nav" media-type="application/xhtml+xml" properties="nav" />
+    <item href="toc.ncx" id="epub2_ncx" media-type="application/x-dtbncx+xml" />
+    <item href="c/c1.xhtml" id="c1_id" media-type="application/xhtml+xml" />
+    <item href="c/c2.xhtml" id="c2_id" media-type="application/xhtml+xml" />
+    <item href="c/c3.xhtml" id="c3_id" media-type="application/xhtml+xml" />
+    <item href="c/c4.xhtml" id="c4_id" media-type="application/xhtml+xml" />
+    <item href="c/c5.xhtml" id="c5_id" media-type="application/xhtml+xml" />
+    <item href="c/c6.xhtml" id="c6_id" media-type="application/xhtml+xml" />
+    <item href="c/c7.xhtml" id="c7_id" media-type="application/xhtml+xml" />
+    <item href="c/c8.xhtml" id="c8_id" media-type="application/xhtml+xml" />
+    <item href="c/c9.xhtml" id="c9_id" media-type="application/xhtml+xml" />
+    <item href="c/c10.xhtml" id="c10_id" media-type="application/xhtml+xml" />
+    <item href="c/c11.xhtml" id="c11_id" media-type="application/xhtml+xml" />
+    <item href="c/c12.xhtml" id="c12_id" media-type="application/xhtml+xml" />
+    <item href="c/c13.xhtml" id="c13_id" media-type="application/xhtml+xml" />
+    <item href="c/c14.xhtml" id="c14_id" media-type="application/xhtml+xml" />
+    <item href="c/c15.xhtml" id="c15_id" media-type="application/xhtml+xml" />
+    <item href="c/c16.xhtml" id="c16_id" media-type="application/xhtml+xml" />
+    <item href="c/c17.xhtml" id="c17_id" media-type="application/xhtml+xml" />
+    <item href="c/c18.xhtml" id="c18_id" media-type="application/xhtml+xml" />
+    <item href="c/c19.xhtml" id="c19_id" media-type="application/xhtml+xml" />
+    <item href="c/c20.xhtml" id="c20_id" media-type="application/xhtml+xml" />
+    <item href="c/c21.xhtml" id="c21_id" media-type="application/xhtml+xml" />
+    <item href="c/c22.xhtml" id="c22_id" media-type="application/xhtml+xml" />
+    <item href="c/c23.xhtml" id="c23_id" media-type="application/xhtml+xml" />
+    <item href="c/c24.xhtml" id="c24_id" media-type="application/xhtml+xml" />
+    <item href="c/c25.xhtml" id="c25_id" media-type="application/xhtml+xml" />
+    <item href="c/c26.xhtml" id="c26_id" media-type="application/xhtml+xml" />
+    <item href="c/c27.xhtml" id="c27_id" media-type="application/xhtml+xml" />
+    <item href="c/c28.xhtml" id="c28_id" media-type="application/xhtml+xml" />
+    <item href="c/c29.xhtml" id="c29_id" media-type="application/xhtml+xml" />
+    <item href="c/c30.xhtml" id="c30_id" media-type="application/xhtml+xml" />
+    <item href="c/c31.xhtml" id="c31_id" media-type="application/xhtml+xml" />
+    <item href="c/c32.xhtml" id="c32_id" media-type="application/xhtml+xml" />
+    <item href="c/c33.xhtml" id="c33_id" media-type="application/xhtml+xml" />
+    <item href="c/c34.xhtml" id="c34_id" media-type="application/xhtml+xml" />
+    <item href="c/c35.xhtml" id="c35_id" media-type="application/xhtml+xml" />
+    <item href="c/c36.xhtml" id="c36_id" media-type="application/xhtml+xml" />
+    <item href="c/c37.xhtml" id="c37_id" media-type="application/xhtml+xml" />
+    <item href="c/c38.xhtml" id="c38_id" media-type="application/xhtml+xml" />
+    <item href="c/c39.xhtml" id="c39_id" media-type="application/xhtml+xml" />
+    <item href="c/c40.xhtml" id="c40_id" media-type="application/xhtml+xml" />
+    <item href="c/c41.xhtml" id="c41_id" media-type="application/xhtml+xml" />
+    <item href="c/c42.xhtml" id="c42_id" media-type="application/xhtml+xml" />
+    <item href="c/c43.xhtml" id="c43_id" media-type="application/xhtml+xml" />
+    <item href="c/c44.xhtml" id="c44_id" media-type="application/xhtml+xml" />
+    <item href="c/c45.xhtml" id="c45_id" media-type="application/xhtml+xml" />
+    <item href="c/c46.xhtml" id="c46_id" media-type="application/xhtml+xml" />
+    <item href="c/c47.xhtml" id="c47_id" media-type="application/xhtml+xml" />
+    <item href="c/c48.xhtml" id="c48_id" media-type="application/xhtml+xml" />
+    <item href="c/c49.xhtml" id="c49_id" media-type="application/xhtml+xml" />
+    <item href="c/c50.xhtml" id="c50_id" media-type="application/xhtml+xml" />
+    <item href="c/c51.xhtml" id="c51_id" media-type="application/xhtml+xml" />
+    <item href="c/c52.xhtml" id="c52_id" media-type="application/xhtml+xml" />
+    <item href="c/c53.xhtml" id="c53_id" media-type="application/xhtml+xml" />
+    <item href="c/c54.xhtml" id="c54_id" media-type="application/xhtml+xml" />
+    <item href="c/c55.xhtml" id="c55_id" media-type="application/xhtml+xml" />
+    <item href="c/c56.xhtml" id="c56_id" media-type="application/xhtml+xml" />
+    <item href="c/c57.xhtml" id="c57_id" media-type="application/xhtml+xml" />
+    <item href="c/c58.xhtml" id="c58_id" media-type="application/xhtml+xml" />
+    <item href="c/c59.xhtml" id="c59_id" media-type="application/xhtml+xml" />
+    <item href="c/c60.xhtml" id="c60_id" media-type="application/xhtml+xml" />
+    <item href="c/c61.xhtml" id="c61_id" media-type="application/xhtml+xml" />
+    <item href="c/c62.xhtml" id="c62_id" media-type="application/xhtml+xml" />
+    <item href="c/c63.xhtml" id="c63_id" media-type="application/xhtml+xml" />
+    <item href="c/c64.xhtml" id="c64_id" media-type="application/xhtml+xml" />
+    <item href="c/c65.xhtml" id="c65_id" media-type="application/xhtml+xml" />
+    <item href="c/c66.xhtml" id="c66_id" media-type="application/xhtml+xml" />
+    <item href="c/c67.xhtml" id="c67_id" media-type="application/xhtml+xml" />
+    <item href="c/c68.xhtml" id="c68_id" media-type="application/xhtml+xml" />
+    <item href="c/c69.xhtml" id="c69_id" media-type="application/xhtml+xml" />
+    <item href="c/c70.xhtml" id="c70_id" media-type="application/xhtml+xml" />
+    <item href="c/c71.xhtml" id="c71_id" media-type="application/xhtml+xml" />
+    <item href="c/c72.xhtml" id="c72_id" media-type="application/xhtml+xml" />
+    <item href="c/c73.xhtml" id="c73_id" media-type="application/xhtml+xml" />
+    <item href="c/c74.xhtml" id="c74_id" media-type="application/xhtml+xml" />
+    <item href="c/c75.xhtml" id="c75_id" media-type="application/xhtml+xml" />
+    <item href="c/c76.xhtml" id="c76_id" media-type="application/xhtml+xml" />
+    <item href="c/c77.xhtml" id="c77_id" media-type="application/xhtml+xml" />
+    <item href="c/c78.xhtml" id="c78_id" media-type="application/xhtml+xml" />
+    <item href="c/c79.xhtml" id="c79_id" media-type="application/xhtml+xml" />
+    <item href="c/c80.xhtml" id="c80_id" media-type="application/xhtml+xml" />
+    <item href="c/c81.xhtml" id="c81_id" media-type="application/xhtml+xml" />
+    <item href="c/c82.xhtml" id="c82_id" media-type="application/xhtml+xml" />
+    <item href="c/c83.xhtml" id="c83_id" media-type="application/xhtml+xml" />
+    <item href="c/c84.xhtml" id="c84_id" media-type="application/xhtml+xml" />
+    <item href="c/c85.xhtml" id="c85_id" media-type="application/xhtml+xml" />
+    <item href="c/c86.xhtml" id="c86_id" media-type="application/xhtml+xml" />
+    <item href="c/c87.xhtml" id="c87_id" media-type="application/xhtml+xml" />
+    <item href="c/c88.xhtml" id="c88_id" media-type="application/xhtml+xml" />
+    <item href="c/c89.xhtml" id="c89_id" media-type="application/xhtml+xml" />
+    <item href="c/c90.xhtml" id="c90_id" media-type="application/xhtml+xml" />
+    <item href="c/c91.xhtml" id="c91_id" media-type="application/xhtml+xml" />
+    <item href="c/c92.xhtml" id="c92_id" media-type="application/xhtml+xml" />
+    <item href="c/c93.xhtml" id="c93_id" media-type="application/xhtml+xml" />
+    <item href="c/c94.xhtml" id="c94_id" media-type="application/xhtml+xml" />
+    <item href="c/c95.xhtml" id="c95_id" media-type="application/xhtml+xml" />
+    <item href="c/c96.xhtml" id="c96_id" media-type="application/xhtml+xml" />
+    <item href="c/c97.xhtml" id="c97_id" media-type="application/xhtml+xml" />
+    <item href="c/c98.xhtml" id="c98_id" media-type="application/xhtml+xml" />
+    <item href="c/c99.xhtml" id="c99_id" media-type="application/xhtml+xml" />
+    <item href="c/c100.xhtml" id="c100_id" media-type="application/xhtml+xml" />
+    <item href="c/c101.xhtml" id="c101_id" media-type="application/xhtml+xml" />
+    <item href="c/c102.xhtml" id="c102_id" media-type="application/xhtml+xml" />
+    <item href="c/c103.xhtml" id="c103_id" media-type="application/xhtml+xml" />
+    <item href="c/c104.xhtml" id="c104_id" media-type="application/xhtml+xml" />
+    <item href="c/c105.xhtml" id="c105_id" media-type="application/xhtml+xml" />
+    <item href="c/c106.xhtml" id="c106_id" media-type="application/xhtml+xml" />
+    <item href="c/c107.xhtml" id="c107_id" media-type="application/xhtml+xml" />
+    <item href="c/c108.xhtml" id="c108_id" media-type="application/xhtml+xml" />
+    <item href="c/c109.xhtml" id="c109_id" media-type="application/xhtml+xml" />
+    <item href="c/c110.xhtml" id="c110_id" media-type="application/xhtml+xml" />
+    <item href="c/c111.xhtml" id="c111_id" media-type="application/xhtml+xml" />
+    <item href="c/c112.xhtml" id="c112_id" media-type="application/xhtml+xml" />
+    <item href="c/c113.xhtml" id="c113_id" media-type="application/xhtml+xml" />
+    <item href="c/c114.xhtml" id="c114_id" media-type="application/xhtml+xml" />
+    <item href="c/c115.xhtml" id="c115_id" media-type="application/xhtml+xml" />
+    <item href="c/c116.xhtml" id="c116_id" media-type="application/xhtml+xml" />
+    <item href="c/c117.xhtml" id="c117_id" media-type="application/xhtml+xml" />
+    <item href="c/c118.xhtml" id="c118_id" media-type="application/xhtml+xml" />
+    <item href="c/c119.xhtml" id="c119_id" media-type="application/xhtml+xml" />
+    <item href="c/c120.xhtml" id="c120_id" media-type="application/xhtml+xml" />
+    <item href="c/c121.xhtml" id="c121_id" media-type="application/xhtml+xml" />
+    <item href="c/c122.xhtml" id="c122_id" media-type="application/xhtml+xml" />
+    <item href="c/c123.xhtml" id="c123_id" media-type="application/xhtml+xml" />
+    <item href="c/c124.xhtml" id="c124_id" media-type="application/xhtml+xml" />
+    <item href="c/c125.xhtml" id="c125_id" media-type="application/xhtml+xml" />
+    <item href="c/c126.xhtml" id="c126_id" media-type="application/xhtml+xml" />
+    <item href="c/c127.xhtml" id="c127_id" media-type="application/xhtml+xml" />
+    <item href="c/c128.xhtml" id="c128_id" media-type="application/xhtml+xml" />
+    <item href="c/c129.xhtml" id="c129_id" media-type="application/xhtml+xml" />
+    <item href="c/c130.xhtml" id="c130_id" media-type="application/xhtml+xml" />
+    <item href="c/c131.xhtml" id="c131_id" media-type="application/xhtml+xml" />
+    <item href="c/c132.xhtml" id="c132_id" media-type="application/xhtml+xml" />
+    <item href="s/s.css" id="css_id" media-type="text/css" />
+    <item href="i/audiobutton.png" id="i1_id" media-type="image/png" />
+    <item href="i/backmatter1.png" id="i2_id" media-type="image/png" />
+    <item href="i/blank.jpg" id="i3_id" media-type="image/jpeg" />
+    <item href="i/page02.jpg" id="i4_id" media-type="image/jpeg" />
+    <item href="i/page03.jpg" id="i5_id" media-type="image/jpeg" />
+    <item href="i/page06.jpg" id="i6_id" media-type="image/jpeg" />
+    <item href="i/page07.jpg" id="i7_id" media-type="image/jpeg" />
+    <item href="i/page08.jpg" id="i8_id" media-type="image/jpeg" />
+    <item href="i/page09.jpg" id="i9_id" media-type="image/jpeg" />
+    <item href="i/page10.jpg" id="i10_id" media-type="image/jpeg" />
+    <item href="i/page11.jpg" id="i11_id" media-type="image/jpeg" />
+    <item href="i/page12.jpg" id="i12_id" media-type="image/jpeg" />
+    <item href="i/page13.jpg" id="i13_id" media-type="image/jpeg" />
+    <item href="i/page14.jpg" id="i14_id" media-type="image/jpeg" />
+    <item href="i/page15.jpg" id="i15_id" media-type="image/jpeg" />
+    <item href="i/page16.jpg" id="i16_id" media-type="image/jpeg" />
+    <item href="i/page17.jpg" id="i17_id" media-type="image/jpeg" />
+    <item href="i/page18.jpg" id="i18_id" media-type="image/jpeg" />
+    <item href="i/page19.jpg" id="i19_id" media-type="image/jpeg" />
+    <item href="i/page20.jpg" id="i20_id" media-type="image/jpeg" />
+    <item href="i/page21.jpg" id="i21_id" media-type="image/jpeg" />
+    <item href="i/page22.jpg" id="i22_id" media-type="image/jpeg" />
+    <item href="i/page23.jpg" id="i23_id" media-type="image/jpeg" />
+    <item href="i/page24.jpg" id="i24_id" media-type="image/jpeg" />
+    <item href="i/page25.jpg" id="i25_id" media-type="image/jpeg" />
+    <item href="i/page26.jpg" id="i26_id" media-type="image/jpeg" />
+    <item href="i/page27.jpg" id="i27_id" media-type="image/jpeg" />
+    <item href="i/page28.jpg" id="i28_id" media-type="image/jpeg" />
+    <item href="i/page29.jpg" id="i29_id" media-type="image/jpeg" />
+    <item href="i/page30.jpg" id="i30_id" media-type="image/jpeg" />
+    <item href="i/page31.jpg" id="i31_id" media-type="image/jpeg" />
+    <item href="i/page32.jpg" id="i32_id" media-type="image/jpeg" />
+    <item href="i/page33.jpg" id="i33_id" media-type="image/jpeg" />
+    <item href="i/page34.jpg" id="i34_id" media-type="image/jpeg" />
+    <item href="i/page35.jpg" id="i35_id" media-type="image/jpeg" />
+    <item href="i/page36.jpg" id="i36_id" media-type="image/jpeg" />
+    <item href="i/page37.jpg" id="i37_id" media-type="image/jpeg" />
+    <item href="i/page38.jpg" id="i38_id" media-type="image/jpeg" />
+    <item href="i/page40.jpg" id="i39_id" media-type="image/jpeg" />
+    <item href="i/page41.jpg" id="i40_id" media-type="image/jpeg" />
+    <item href="i/page42.jpg" id="i41_id" media-type="image/jpeg" />
+    <item href="i/page43.jpg" id="i42_id" media-type="image/jpeg" />
+    <item href="i/page44.jpg" id="i43_id" media-type="image/jpeg" />
+    <item href="i/page45.jpg" id="i44_id" media-type="image/jpeg" />
+    <item href="i/page46.jpg" id="i45_id" media-type="image/jpeg" />
+    <item href="i/page47.jpg" id="i46_id" media-type="image/jpeg" />
+    <item href="i/page48.jpg" id="i47_id" media-type="image/jpeg" />
+    <item href="i/page49.jpg" id="i48_id" media-type="image/jpeg" />
+    <item href="i/page50.jpg" id="i49_id" media-type="image/jpeg" />
+    <item href="i/page51.jpg" id="i50_id" media-type="image/jpeg" />
+    <item href="i/page52.jpg" id="i51_id" media-type="image/jpeg" />
+    <item href="i/page53.jpg" id="i52_id" media-type="image/jpeg" />
+    <item href="i/page54.jpg" id="i53_id" media-type="image/jpeg" />
+    <item href="i/page55.jpg" id="i54_id" media-type="image/jpeg" />
+    <item href="i/page56.jpg" id="i55_id" media-type="image/jpeg" />
+    <item href="i/page57.jpg" id="i56_id" media-type="image/jpeg" />
+    <item href="i/page58.jpg" id="i57_id" media-type="image/jpeg" />
+    <item href="i/page59.jpg" id="i58_id" media-type="image/jpeg" />
+    <item href="i/page60.jpg" id="i59_id" media-type="image/jpeg" />
+    <item href="i/page61.jpg" id="i60_id" media-type="image/jpeg" />
+    <item href="i/page62.jpg" id="i61_id" media-type="image/jpeg" />
+    <item href="i/page63.jpg" id="i62_id" media-type="image/jpeg" />
+    <item href="i/page64.jpg" id="i63_id" media-type="image/jpeg" />
+    <item href="i/page65.jpg" id="i64_id" media-type="image/jpeg" />
+    <item href="i/page66.jpg" id="i65_id" media-type="image/jpeg" />
+    <item href="i/page67.jpg" id="i66_id" media-type="image/jpeg" />
+    <item href="i/page68.jpg" id="i67_id" media-type="image/jpeg" />
+    <item href="i/page69.jpg" id="i68_id" media-type="image/jpeg" />
+    <item href="i/page70.jpg" id="i69_id" media-type="image/jpeg" />
+    <item href="i/page71.jpg" id="i70_id" media-type="image/jpeg" />
+    <item href="i/page72.jpg" id="i71_id" media-type="image/jpeg" />
+    <item href="i/page73.jpg" id="i72_id" media-type="image/jpeg" />
+    <item href="i/page74.jpg" id="i73_id" media-type="image/jpeg" />
+    <item href="i/page75.jpg" id="i74_id" media-type="image/jpeg" />
+    <item href="i/page76.jpg" id="i75_id" media-type="image/jpeg" />
+    <item href="i/page77.jpg" id="i76_id" media-type="image/jpeg" />
+    <item href="i/page78.jpg" id="i77_id" media-type="image/jpeg" />
+    <item href="i/page79.jpg" id="i78_id" media-type="image/jpeg" />
+    <item href="i/page80.jpg" id="i79_id" media-type="image/jpeg" />
+    <item href="i/page81.jpg" id="i80_id" media-type="image/jpeg" />
+    <item href="i/page82.jpg" id="i81_id" media-type="image/jpeg" />
+    <item href="i/page83.jpg" id="i82_id" media-type="image/jpeg" />
+    <item href="i/page84.jpg" id="i83_id" media-type="image/jpeg" />
+    <item href="i/page85.jpg" id="i84_id" media-type="image/jpeg" />
+    <item href="i/page86.jpg" id="i85_id" media-type="image/jpeg" />
+    <item href="i/page87.jpg" id="i86_id" media-type="image/jpeg" />
+    <item href="i/page88.jpg" id="i87_id" media-type="image/jpeg" />
+    <item href="i/page89.jpg" id="i88_id" media-type="image/jpeg" />
+    <item href="i/page90.jpg" id="i89_id" media-type="image/jpeg" />
+    <item href="i/page91.jpg" id="i90_id" media-type="image/jpeg" />
+    <item href="i/page92.jpg" id="i91_id" media-type="image/jpeg" />
+    <item href="i/page93.jpg" id="i92_id" media-type="image/jpeg" />
+    <item href="i/page94.jpg" id="i93_id" media-type="image/jpeg" />
+    <item href="i/page95.jpg" id="i94_id" media-type="image/jpeg" />
+    <item href="i/page96.jpg" id="i95_id" media-type="image/jpeg" />
+    <item href="i/page97.jpg" id="i96_id" media-type="image/jpeg" />
+    <item href="i/page98.jpg" id="i97_id" media-type="image/jpeg" />
+    <item href="i/page99.jpg" id="i98_id" media-type="image/jpeg" />
+    <item href="i/page100.jpg" id="i99_id" media-type="image/jpeg" />
+    <item href="i/page101.jpg" id="i100_id" media-type="image/jpeg" />
+    <item href="i/page102.jpg" id="i101_id" media-type="image/jpeg" />
+    <item href="i/page103.jpg" id="i102_id" media-type="image/jpeg" />
+    <item href="i/page104.jpg" id="i103_id" media-type="image/jpeg" />
+    <item href="i/page105.jpg" id="i104_id" media-type="image/jpeg" />
+    <item href="i/page106.jpg" id="i105_id" media-type="image/jpeg" />
+    <item href="i/page107.jpg" id="i106_id" media-type="image/jpeg" />
+    <item href="i/page108.jpg" id="i107_id" media-type="image/jpeg" />
+    <item href="i/page109.jpg" id="i108_id" media-type="image/jpeg" />
+    <item href="i/page110.jpg" id="i109_id" media-type="image/jpeg" />
+    <item href="i/page111.jpg" id="i110_id" media-type="image/jpeg" />
+    <item href="i/page112.jpg" id="i111_id" media-type="image/jpeg" />
+    <item href="i/page113.jpg" id="i112_id" media-type="image/jpeg" />
+    <item href="i/page114.jpg" id="i113_id" media-type="image/jpeg" />
+    <item href="i/page115.jpg" id="i114_id" media-type="image/jpeg" />
+    <item href="i/page116.jpg" id="i115_id" media-type="image/jpeg" />
+    <item href="i/page117.jpg" id="i116_id" media-type="image/jpeg" />
+    <item href="i/page118.jpg" id="i117_id" media-type="image/jpeg" />
+    <item href="i/page119.jpg" id="i118_id" media-type="image/jpeg" />
+    <item href="i/page120.jpg" id="i119_id" media-type="image/jpeg" />
+    <item href="i/page121.jpg" id="i120_id" media-type="image/jpeg" />
+    <item href="i/page122.jpg" id="i121_id" media-type="image/jpeg" />
+    <item href="i/page123.jpg" id="i122_id" media-type="image/jpeg" />
+    <item href="i/page124.jpg" id="i123_id" media-type="image/jpeg" />
+    <item href="fonts/Alegreya-Italic.otf" id="f1_id" media-type="application/vnd.ms-opentype" />
+    <item href="fonts/Alegreya-Regular.otf" id="f2_id" media-type="application/vnd.ms-opentype" />
+    <item href="fonts/AlegreyaLicense.txt" id="f3_id" media-type="text/plain" />
+    <item href="fonts/AlegreyaSC-Bold.otf" id="f4_id" media-type="application/vnd.ms-opentype" />
+    <item href="fonts/AlegreyaSC-Regular.otf" id="f5_id" media-type="application/vnd.ms-opentype" />
+    <item href="fonts/SourceSansLicense.txt" id="f6_id" media-type="text/plain" />
+    <item href="fonts/SourceSansPro-Bold.otf" id="f7_id" media-type="application/vnd.ms-opentype" />
+    <item href="fonts/SourceSansPro-It.otf" id="f8_id" media-type="application/vnd.ms-opentype" />
+    <item href="fonts/SourceSansPro-Regular.otf" id="f9_id" media-type="application/vnd.ms-opentype" />
+    <item href="m/threeblindmice.mp3" id="m1_id" media-type="audio/mpeg" />
+  </manifest>
+  <spine toc="epub2_ncx">
+    <itemref idref="htmlcoverpage" />
+    <itemref idref="c1_id" />
+    <itemref idref="c2_id" />
+    <itemref idref="c3_id" />
+    <itemref idref="c4_id" />
+    <itemref idref="c5_id" />
+    <itemref idref="c6_id" />
+    <itemref idref="c7_id" />
+    <itemref idref="c8_id" />
+    <itemref idref="c9_id" />
+    <itemref idref="c10_id" />
+    <itemref idref="c11_id" />
+    <itemref idref="c12_id" />
+    <itemref idref="c13_id" />
+    <itemref idref="c14_id" />
+    <itemref idref="c15_id" />
+    <itemref idref="c16_id" />
+    <itemref idref="c17_id" />
+    <itemref idref="c18_id" />
+    <itemref idref="c19_id" />
+    <itemref idref="c20_id" />
+    <itemref idref="c21_id" />
+    <itemref idref="c22_id" />
+    <itemref idref="c23_id" />
+    <itemref idref="c24_id" />
+    <itemref idref="c25_id" />
+    <itemref idref="c26_id" />
+    <itemref idref="c27_id" />
+    <itemref idref="c28_id" />
+    <itemref idref="c29_id" />
+    <itemref idref="c30_id" />
+    <itemref idref="c31_id" />
+    <itemref idref="c32_id" />
+    <itemref idref="c33_id" />
+    <itemref idref="c34_id" />
+    <itemref idref="c35_id" />
+    <itemref idref="c36_id" />
+    <itemref idref="c37_id" />
+    <itemref idref="c38_id" />
+    <itemref idref="c39_id" />
+    <itemref idref="c40_id" />
+    <itemref idref="c41_id" />
+    <itemref idref="c42_id" />
+    <itemref idref="c43_id" />
+    <itemref idref="c44_id" />
+    <itemref idref="c45_id" />
+    <itemref idref="c46_id" />
+    <itemref idref="c47_id" />
+    <itemref idref="c48_id" />
+    <itemref idref="c49_id" />
+    <itemref idref="c50_id" />
+    <itemref idref="c51_id" />
+    <itemref idref="c52_id" />
+    <itemref idref="c53_id" />
+    <itemref idref="c54_id" />
+    <itemref idref="c55_id" />
+    <itemref idref="c56_id" />
+    <itemref idref="c57_id" />
+    <itemref idref="c58_id" />
+    <itemref idref="c59_id" />
+    <itemref idref="c60_id" />
+    <itemref idref="c61_id" />
+    <itemref idref="c62_id" />
+    <itemref idref="c63_id" />
+    <itemref idref="c64_id" />
+    <itemref idref="c65_id" />
+    <itemref idref="c66_id" />
+    <itemref idref="c67_id" />
+    <itemref idref="c68_id" />
+    <itemref idref="c69_id" />
+    <itemref idref="c70_id" />
+    <itemref idref="c71_id" />
+    <itemref idref="c72_id" />
+    <itemref idref="c73_id" />
+    <itemref idref="c74_id" />
+    <itemref idref="c75_id" />
+    <itemref idref="c76_id" />
+    <itemref idref="c77_id" />
+    <itemref idref="c78_id" />
+    <itemref idref="c79_id" />
+    <itemref idref="c80_id" />
+    <itemref idref="c81_id" />
+    <itemref idref="c82_id" />
+    <itemref idref="c83_id" />
+    <itemref idref="c84_id" />
+    <itemref idref="c85_id" />
+    <itemref idref="c86_id" />
+    <itemref idref="c87_id" />
+    <itemref idref="c88_id" />
+    <itemref idref="c89_id" />
+    <itemref idref="c90_id" />
+    <itemref idref="c91_id" />
+    <itemref idref="c92_id" />
+    <itemref idref="c93_id" />
+    <itemref idref="c94_id" />
+    <itemref idref="c95_id" />
+    <itemref idref="c96_id" />
+    <itemref idref="c97_id" />
+    <itemref idref="c98_id" />
+    <itemref idref="c99_id" />
+    <itemref idref="c100_id" />
+    <itemref idref="c101_id" />
+    <itemref idref="c102_id" />
+    <itemref idref="c103_id" />
+    <itemref idref="c104_id" />
+    <itemref idref="c105_id" />
+    <itemref idref="c106_id" />
+    <itemref idref="c107_id" />
+    <itemref idref="c108_id" />
+    <itemref idref="c109_id" />
+    <itemref idref="c110_id" />
+    <itemref idref="c111_id" />
+    <itemref idref="c112_id" />
+    <itemref idref="c113_id" />
+    <itemref idref="c114_id" />
+    <itemref idref="c115_id" />
+    <itemref idref="c116_id" />
+    <itemref idref="c117_id" />
+    <itemref idref="c118_id" />
+    <itemref idref="c119_id" />
+    <itemref idref="c120_id" />
+    <itemref idref="c121_id" />
+    <itemref idref="c122_id" />
+    <itemref idref="c123_id" />
+    <itemref idref="c124_id" />
+    <itemref idref="c125_id" />
+    <itemref idref="c126_id" />
+    <itemref idref="c127_id" />
+    <itemref idref="c128_id" />
+    <itemref idref="c129_id" />
+    <itemref idref="c130_id" />
+    <itemref idref="c131_id" />
+    <itemref idref="c132_id" />
+  </spine>
+  <guide>
+    <reference href="coverpage.xhtml" type="cover" title="Cover" />
+    <reference href="c/c2.xhtml#h1_0" type="text" title="Beginning" />
+  </guide>
+</package>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>3 Numerical results – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_042422-5.html"><meta name="webbook-page-number" content="52"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 3 Numerical results"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-7-4">Contents</a><a href="about.html">About</a><a href="9783111375854_042422-4.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_042422-6.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-007_s_009">
+            <h2 id="d73047e48167" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">3</span> <a></a>Numerical results<a href="#d73047e48167" rel="bookmark" class="webbook" title="Link to 3 Numerical results" aria-label="Link to 3 Numerical results" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="webbook-style-left">We implemented <a href="9783111375854_042422-4.html#b_9783111376776-007_fig_001" class="xref">Algorithm 7.1</a> in Matlab and illustrate its performance by means of three constrained PL test problems.</p> 
+            <div class="statement example statement" id="b_9783111376776-007_stat_006"> 
+              <h3 class="webbook-style-left webbook-style-bold" id="h-18" tabindex="-1"><a></a>Example 7.6 (Constrained HUL).<a href="#h-18" rel="bookmark" class="webbook" title="Link to Example 7.6 (Constrained HUL)." aria-label="Link to Example 7.6 (Constrained HUL)." data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">In [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_012" class="xref" id="xref_d28617e87368">12</a>], Hiriart-Urruty and Lemaréchal considered the piecewise linear and convex function <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="φ:ℝn→ℝ" altimg="images/b_9783111376776-007_ineq_128.png"><mi mathvariant="italic">φ</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi></math></span></span>, </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_031.png"><mtable displaystyle="true" columnalign="right"><mtr><mtd><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo movablelimits="false">max</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">{</mo><mo movablelimits="false">max</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">{</mo><mo>−</mo><mn>100</mn><mo mathvariant="normal">,</mo><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><mn>5</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">}</mo><mo mathvariant="normal">,</mo><mn>3</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><mn>2</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">}</mo><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> To test our algorithm, we add the two constraints </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_032.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><msub><mrow><mi mathvariant="italic">H</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mo>−</mo><mn>0.25</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>−</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>−</mo><mn>10</mn><mo stretchy="false">≤</mo><mn>0</mn><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><msub><mrow><mi mathvariant="italic">H</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mn>2</mn><mo>−</mo><mn>0.2</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><mn>9</mn><mo stretchy="false">|</mo><mo>−</mo><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>+</mo><mn>1</mn><mo stretchy="false">|</mo><mo stretchy="false">≤</mo><mn>0</mn><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> and choose the feasible starting point <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="x0=(9,−2.5)" altimg="images/b_9783111376776-007_ineq_129.png"><msup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>0</mn></mrow></msup><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>9</mn><mo mathvariant="normal">,</mo><mo>−</mo><mn>2.5</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>. After reformulation of the max functions by means of the absolute value, this optimization problem requires the six switching variables and the target function </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_033.png"><mtable displaystyle="true" columnalign="right left right left" columnspacing="0pt 0pt 0pt"><mtr><mtd><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>1</mn></mrow></msub></mtd><mtd><mo>=</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal">,</mo></mtd><mtd><mspace width="1em"></mspace><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>2</mn></mrow></msub></mtd><mtd><mo>=</mo><mo>−</mo><mn>100</mn><mo>−</mo><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>−</mo><mn>5</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>3</mn></mrow></msub></mtd><mtd><mo>=</mo><mo>−</mo><mn>50</mn><mo>−</mo><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><mn>0.5</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">|</mo><mo>+</mo><mn>0.5</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd><mtd><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>4</mn></mrow></msub></mtd><mtd><mo>=</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><mn>9</mn><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>5</mn></mrow></msub></mtd><mtd><mo>=</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>+</mo><mn>1</mn><mo mathvariant="normal">,</mo></mtd><mtd><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>6</mn></mrow></msub></mtd><mtd><mo>=</mo><mn>2.25</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo stretchy="false">|</mo><mo>+</mo><mn>0.25</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo><mo>+</mo><mn>0.5</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>3</mn></mrow></msub><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mi mathvariant="italic">y</mi></mtd><mtd><mo>=</mo><mo>−</mo><mn>25</mn><mo>+</mo><mn>2</mn><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>6</mn></mrow></msub><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> for example, one has <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="n=2" altimg="images/b_9783111376776-007_ineq_130.png"><mi mathvariant="italic">n</mi><mo>=</mo><mn>2</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s=6" altimg="images/b_9783111376776-007_ineq_131.png"><mi mathvariant="italic">s</mi><mo>=</mo><mn>6</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="m=0" altimg="images/b_9783111376776-007_ineq_132.png"><mi mathvariant="italic">m</mi><mo>=</mo><mn>0</mn></math></span></span>, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="p=2" altimg="images/b_9783111376776-007_ineq_133.png"><mi mathvariant="italic">p</mi><mo>=</mo><mn>2</mn></math></span></span>.</p> 
+              <p class="webbook-style-left">Using <a href="9783111375854_042422-4.html#b_9783111376776-007_fig_001" class="xref">Algorithm 7.1</a>, 15 iterations are needed. <a href="#b_9783111376776-007_fig_002" class="xref">Figure 7.1</a> shows a plot of the resulting kinks originating from the objective function (blue lines) and from the constraints (cyan blue lines). The inequality constraints are marked by the red lines and, therefore, the red area represents the feasible set. Finally, the iterates generated by <a href="9783111375854_042422-4.html#b_9783111376776-007_fig_001" class="xref">Algorithm 7.1</a> are denoted by the black dots. In the plot, only 8 of the 15 iterations are marked. This is due to the fact that some of the iterations duplicate the point <i>x</i> when <i>σ</i> and <i>ω</i> are restricted or relaxed, that is, kinks or constraints are activated or deactivated.</p>
+            </div> 
+            <figure class="fig webbook-style-center" id="b_9783111376776-007_fig_002">
+              <img alt="" src="images/b_9783111376776-007_fig_002.jpg" class="web-only graphic"><figcaption class="caption">
+                <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 7.1</span> Iterates generated by <a href="9783111375854_042422-4.html#b_9783111376776-007_fig_001" class="xref">Algorithm 7.1</a> for Example <a href="#b_9783111376776-007_stat_006" class="xref">7.6</a>.</p></figcaption>
+            </figure> 
+            <div class="statement example statement" id="b_9783111376776-007_stat_007"> 
+              <h3 class="webbook-style-left webbook-style-bold" id="h-19" tabindex="-1"><a></a>Example 7.7 (Constrained Rosenbrock–Nesterov II).<a href="#h-19" rel="bookmark" class="webbook" title="Link to Example 7.7 (Constrained Rosenbrock–Nesterov II)." aria-label="Link to Example 7.7 (Constrained Rosenbrock–Nesterov II)." data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">According to [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_010" class="xref" id="xref_d28617e88368">10</a>], Nesterov suggested the Rosenbrock-like test function: </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_034.png"><mtable displaystyle="true" columnalign="right"><mtr><mtd><mi mathvariant="italic">φ</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi><mo mathvariant="normal">,</mo><mspace width="1em"></mspace><mi mathvariant="italic">φ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>4</mn></mrow></mfrac></mstyle><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>−</mo><mn>1</mn><mo stretchy="false">|</mo><mo>+</mo><munderover accentunder="false" accent="false"><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">n</mi><mo>−</mo><mn>1</mn></mrow></munderover><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>−</mo><mn>2</mn><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo stretchy="false">|</mo><mo>+</mo><mn>1</mn><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> that is PL and nonconvex. It has the global minimizer <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_134.png"><msup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mo>∗</mo></mrow></msup><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>1</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo mathvariant="normal">,</mo><mo>…</mo><mo mathvariant="normal">,</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="2n−1−1" altimg="images/b_9783111376776-007_ineq_135.png"><msup><mrow><mn>2</mn></mrow><mrow><mi mathvariant="italic">n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></math></span></span> other Clarke stationary points none of which is a local minimizer [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_010" class="xref" id="xref_d28617e88658">10</a>]. From the literature [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_010" class="xref" id="xref_d28617e88662">10</a>], it is known that the starting point <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_136.png"><msubsup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow><mrow><mn>0</mn></mrow></msubsup><mo>=</mo><mo>−</mo><mn>1</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_137.png"><msubsup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow><mrow><mn>0</mn></mrow></msubsup><mo>=</mo><mn>1</mn></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="2≤i≤n" altimg="images/b_9783111376776-007_ineq_138.png"><mn>2</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">i</mi><mo stretchy="false">≤</mo><mi mathvariant="italic">n</mi></math></span></span> is particularly challenging, since the nonoptimal, stationary points tend to lie on the way to the only minimizer. In this paper, we consider constrained problems, therefore we add the PL constraint </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_035.png"><mtable displaystyle="true"><mtr><mtd><munderover accentunder="false" accent="false"><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">n</mi></mrow></munderover><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo>−</mo><mn>1</mn><mo stretchy="false">|</mo><mo stretchy="false">≥</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi mathvariant="italic">n</mi></mrow></mfrac></mstyle><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> Hence, there is an <i>n</i>-dimensional rhombus around the global minimizer, which is cut out of the <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℝn" altimg="images/b_9783111376776-007_ineq_139.png"><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>. The remaining <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="2n−1−1" altimg="images/b_9783111376776-007_ineq_140.png"><msup><mrow><mn>2</mn></mrow><mrow><mi mathvariant="italic">n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>−</mo><mn>1</mn></math></span></span> stationary points are still feasible and the minimizer is given by </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_036.png"><mtable displaystyle="true"><mtr><mtd><msubsup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow><mrow><mo>∗</mo></mrow></msubsup><mo>=</mo><mn>1</mn><mo>−</mo><mstyle displaystyle="true"><mfrac><mrow><msup><mrow><mn>2</mn></mrow><mrow><mi mathvariant="italic">i</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><mrow><msup><mrow><mn>2</mn></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo>−</mo><mn>1</mn></mrow></mfrac></mstyle><mo>·</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi mathvariant="italic">n</mi></mrow></mfrac></mstyle><mo stretchy="false">∈</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mspace width="1em"></mspace><mtext>for</mtext><mspace width="2.5pt"></mspace><mn>1</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">i</mi><mo stretchy="false">≤</mo><mi mathvariant="italic">n</mi><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> For <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1≤n≤20" altimg="images/b_9783111376776-007_ineq_141.png"><mn>1</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">n</mi><mo stretchy="false">≤</mo><mn>20</mn></math></span></span>, the number of iterations required by CASM is shown in <a href="#b_9783111376776-007_tab_001" class="xref">Table 7.1</a>. The number of switches is given by <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="s=3n−1" altimg="images/b_9783111376776-007_ineq_142.png"><mi mathvariant="italic">s</mi><mo>=</mo><mn>3</mn><mi mathvariant="italic">n</mi><mo>−</mo><mn>1</mn></math></span></span>. Hence, the number of visited polyhedra is much less than the total number of polyhedra given by <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="2s" altimg="images/b_9783111376776-007_ineq_143.png"><msup><mrow><mn>2</mn></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span>. We also applied the MPBNGC solver [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_017" class="xref" id="xref_d28617e89115">17</a>] that implements a multiobjective proximal bundle method for nonconvex, nonsmooth, and generally constrained minimization. For <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="n=1" altimg="images/b_9783111376776-007_ineq_144.png"><mi mathvariant="italic">n</mi><mo>=</mo><mn>1</mn></math></span></span>, MPBNGC needed seven iterations, already for <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="n=2" altimg="images/b_9783111376776-007_ineq_145.png"><mi mathvariant="italic">n</mi><mo>=</mo><mn>2</mn></math></span></span>, the solver got stuck after seven iterations at a nonoptimal, stationary point. The same behavior was observed for larger values of <i>n</i>.</p>
+            </div> 
+            <div class="table-wrap webbook-style-center" id="b_9783111376776-007_tab_001">
+              <div class="table-caption caption">
+                <p class="webbook-style-left"><span class="label webbook-style-bold">Table 7.1</span>Number of iterations of CASM needed for Example <a href="#b_9783111376776-007_stat_007" class="xref">7.7</a> and different values of <i>n</i>.</p>
+              </div>
+              <div class="webbook-table-scroll" role="region" tabindex="0" aria-label="Table 1" data-webbook-reader=""><table id="table-1"> <thead> <tr> 
+                    <td class="webbook-style-left"><i>n</i></td> 
+                    <td class="webbook-style-left">1</td> 
+                    <td class="webbook-style-left">2</td> 
+                    <td class="webbook-style-left">3</td> 
+                    <td class="webbook-style-left">4</td> 
+                    <td class="webbook-style-left">5</td> 
+                    <td class="webbook-style-left">6</td> 
+                    <td class="webbook-style-left">7</td> 
+                    <td class="webbook-style-left">8</td> 
+                    <td class="webbook-style-left">9</td> 
+                    <td class="webbook-style-left">10</td> </tr> </thead> <tbody> <tr> 
+                    <td class="webbook-style-left">#</td> 
+                    <td class="webbook-style-left">2</td> 
+                    <td class="webbook-style-left">5</td> 
+                    <td class="webbook-style-left">14</td> 
+                    <td class="webbook-style-left">27</td> 
+                    <td class="webbook-style-left">64</td> 
+                    <td class="webbook-style-left">117</td> 
+                    <td class="webbook-style-left">238</td> 
+                    <td class="webbook-style-left">439</td> 
+                    <td class="webbook-style-left">856</td> 
+                    <td class="webbook-style-left">1685</td> </tr> </tbody> 
+              </table></div>
+              <div class="webbook-table-scroll" role="region" tabindex="0" aria-label="Table 2" data-webbook-reader=""><table id="table-2"> <thead> <tr> 
+                    <td class="webbook-style-left"><i>n</i></td> 
+                    <td class="webbook-style-left">11</td> 
+                    <td class="webbook-style-left">12</td> 
+                    <td class="webbook-style-left">13</td> 
+                    <td class="webbook-style-left">14</td> 
+                    <td class="webbook-style-left">15</td> 
+                    <td class="webbook-style-left">16</td> 
+                    <td class="webbook-style-left">17</td> 
+                    <td class="webbook-style-left">18</td> 
+                    <td class="webbook-style-left">19</td> 
+                    <td class="webbook-style-left">20</td> </tr> </thead> <tbody> <tr> 
+                    <td class="webbook-style-left">#</td> 
+                    <td class="webbook-style-left">3382</td> 
+                    <td class="webbook-style-left">6807</td> 
+                    <td class="webbook-style-left">13592</td> 
+                    <td class="webbook-style-left">26285</td> 
+                    <td class="webbook-style-left">42994</td> 
+                    <td class="webbook-style-left">82995</td> 
+                    <td class="webbook-style-left">131096</td> 
+                    <td class="webbook-style-left">262173</td> 
+                    <td class="webbook-style-left">605342</td> 
+                    <td class="webbook-style-left">1119907</td> </tr> </tbody> 
+              </table></div>
+            </div> 
+            <div class="statement example statement"> 
+              <h3 class="webbook-style-left webbook-style-bold" id="h-20" tabindex="-1"><a></a>Example 7.8.<a href="#h-20" rel="bookmark" class="webbook" title="Link to Example 7.8." aria-label="Link to Example 7.8." data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">Next, we consider a linear complementarity problem given by </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation"> <span class="label webbook-style-bold webbook-equation-number">(7.12)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (7.12)" tabindex="0" id="section-1" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_037.png"><mtable displaystyle="true"><mtr><mtd><mi mathvariant="italic">M</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">q</mi><mo stretchy="false">≥</mo><mn>0</mn><mspace width="1em"></mspace><mspace width="2.5pt"></mspace><mtext>and</mtext><mspace width="2.5pt"></mspace><mspace width="1em"></mspace><msup><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mo>⊤</mo></mrow></msup><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">q</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mn>0</mn></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> for <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="0≤x∈ℝn" altimg="images/b_9783111376776-007_ineq_146.png"><mn>0</mn><mo stretchy="false">≤</mo><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="M∈ℝn×n" altimg="images/b_9783111376776-007_ineq_147.png"><mi mathvariant="italic">M</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi><mo>×</mo><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="q∈ℝn" altimg="images/b_9783111376776-007_ineq_148.png"><mi mathvariant="italic">q</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>. In [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_002" class="xref" id="xref_d28617e89526">2</a>], the linear complementarity problem (LCP) is formulated as a system of PL equations </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic webbook-equation" id="b_9783111376776-007_eq_038"> <span class="label webbook-style-bold webbook-equation-number">(7.13)</span><span class="webbook-equation-scroll" role="region" aria-label="Equation (7.13)" tabindex="0" id="section-2" data-webbook-reader=""><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_038.png"><mtable displaystyle="true" columnalign="right"><mtr><mtd><mo movablelimits="false">min</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">q</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span></span> 
+              </div>
+              <p class="webbook-style-left"> where the minimum operator acts componentwise. In the same paper, the authors present an algorithm that can be viewed as a semismooth Newton method and show nonconvergence, for example, for <i>M</i> set to </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_039.png"><mtable displaystyle="true"><mtr><mtd><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>3</mn></mrow></msub><mo>=</mo><mfenced separators="" open="[" close="]"><mrow><mtable columnspacing="10.0pt 10.0pt" equalrows="false" columnlines="none none" equalcolumns="false" columnalign="center center center"><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>2</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>2</mn></mtd><mtd><mn>1</mn></mtd></mtr></mtable></mrow></mfenced><mspace width="1em"></mspace><mtext>and</mtext><mspace width="1em"></mspace><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>4</mn></mrow></msub><mo>=</mo><mfenced separators="" open="[" close="]"><mrow><mtable columnspacing="10.0pt 10.0pt 10.0pt" equalrows="false" columnlines="none none none" equalcolumns="false" columnalign="center center center center"><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mtd><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mstyle></mtd></mtr><mtr><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mstyle></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mtd></mtr><mtr><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mtd><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mstyle></mtd><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mtd><mtd><mstyle displaystyle="false"><mfrac><mrow><mn>4</mn></mrow><mrow><mn>3</mn></mrow></mfrac></mstyle></mtd><mtd><mn>1</mn></mtd></mtr></mtable></mrow></mfenced><mo>.</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> Furthermore, they pointed out that the LCP has a unique solution for any <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="q∈ℝn" altimg="images/b_9783111376776-007_ineq_149.png"><mi mathvariant="italic">q</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span> if and only if <i>M</i> is a <b>P</b>-matrix, that is, <i>M</i> has positive principal minors <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="detMII" altimg="images/b_9783111376776-007_ineq_150.png"><mi mathvariant="normal">det</mi><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mi mathvariant="italic">I</mi><mi mathvariant="italic">I</mi></mrow></msub></math></span></span> for all nonempty <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="I⊂{1,…,n}" altimg="images/b_9783111376776-007_ineq_151.png"><mi mathvariant="italic">I</mi><mo stretchy="false">⊂</mo><mo fence="true" stretchy="false">{</mo><mn>1</mn><mo mathvariant="normal">,</mo><mo>…</mo><mo mathvariant="normal">,</mo><mi mathvariant="italic">n</mi><mo fence="true" stretchy="false">}</mo></math></span></span>. To solve (<a href="#b_9783111376776-007_eq_038" class="xref">7.13</a>) with CASM, we reformulate the LCP as </p>
+              <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_040.png"><mtable displaystyle="true"><mtr><mtd><munder><mrow><mo movablelimits="false">min</mo></mrow><mrow><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></mrow></munder><munderover accentunder="false" accent="false"><mrow><mo largeop="true" movablelimits="false">∑</mo></mrow><mrow><mi mathvariant="italic">i</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi mathvariant="italic">n</mi></mrow></munderover><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><mo movablelimits="false">min</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">q</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+              </div>
+              <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="q=1" altimg="images/b_9783111376776-007_ineq_152.png"><mi mathvariant="italic">q</mi><mo>=</mo><mn mathvariant="bold">1</mn></math></span></span> as the vector with 1 in every component of appropriate dimension. For the starting point set to the first unit vector in <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℝn" altimg="images/b_9783111376776-007_ineq_153.png"><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span> as also proposed in [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_002" class="xref" id="xref_d28617e90206">2</a>], CASM needs five iterations in both cases, that is, for <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="M=M3" altimg="images/b_9783111376776-007_ineq_154.png"><mi mathvariant="italic">M</mi><mo>=</mo><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>3</mn></mrow></msub></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="M=M4" altimg="images/b_9783111376776-007_ineq_155.png"><mi mathvariant="italic">M</mi><mo>=</mo><msub><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mn>4</mn></mrow></msub></math></span></span>, respectively, to reach the solution, that is, the zero vector of the appropriate dimension. In [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_002" class="xref" id="xref_d28617e90261">2</a>, Proposition 3.7], it is shown that the algorithm proposed in that paper does not converge but generates a circle of three and four reoccurring iterates, respectively, for these settings.</p>
+            </div> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_042422-4.html" rel="prev" title="Previous: 2 The constrained active signature method" aria-label="Previous: 2 The constrained active signature method">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_042422-6.html" title="Next: 4 Summary and outlook" aria-label="Next: 4 Summary and outlook" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

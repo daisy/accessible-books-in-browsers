@@ -186,7 +186,7 @@ export function initPageColors() {
         if (custom) custom.hidden = choice !== 'custom';
         const [text, background] = current(choice);
         apply(...(publishedAppearanceActive() ? [null, null] : [text, background]));
-        // As published, the toolbars and panels take the book's colours (published-colors.js), and
+        // As published, the toolbars and panels take the book's colors (published-colors.js), and
         // the saved light or dark theme is left as it is for books shown with My settings
         if (!applyPublishedColors()) applyScheme(schemeFor(choice, background));
         if (contrast && choice === 'custom' && text && background) contrast.textContent = contrastMessage(text, background);

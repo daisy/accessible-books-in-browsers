@@ -50,7 +50,7 @@ export function clearPlaybackException() {
 }
 
 // Missing/unloaded cues or unresolved selectors are not evidence that a page is
-// excluded. Explicitly following a note still honours its playback exception.
+// excluded. Explicitly following a note still honors its playback exception.
 export function allNarrationSkipped(track) {
     const cues = Array.from(track?.cues || []);
     return cues.length > 0 && cues.every(cue => {

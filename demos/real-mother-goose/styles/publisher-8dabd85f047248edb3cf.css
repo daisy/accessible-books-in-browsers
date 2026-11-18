@@ -1,0 +1,17 @@
+@layer publisher { @layer source, inline, source-important, inline-important;
+@layer source {:where(:root[data-webbook-appearance="published"]) :where(div:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  padding: 0;
+  margin: 0;
+}
+
+:where(:root[data-webbook-appearance="published"]) :where(img:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,webbook-publisher-specificity) {
+  padding: 0;
+  margin: 0;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+}}
+@layer source-important {}
+@layer inline {}
+@layer inline-important {}
+}

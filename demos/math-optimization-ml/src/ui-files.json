@@ -1,0 +1,387 @@
+{
+  "version": 1,
+  "contract": 0,
+  "revision": "899189e2d3fe4dd5e8e35c88dd12033e3db7763311f8e465a230f66e1c6a3ec1",
+  "files": [
+    {
+      "href": "src/css/offline-books.css",
+      "bytes": 971,
+      "sha256": "87d0f4dbb1748b8dbbba1df1538e936012e623c390c1e5f9a729c96601984a5b"
+    },
+    {
+      "href": "src/css/style.css",
+      "bytes": 81909,
+      "sha256": "68bc4a78c31d234e56f55ba2d353aaa38d1b3bbae0b795f4c533303dde0e0116"
+    },
+    {
+      "href": "src/icons/book.svg",
+      "bytes": 384,
+      "sha256": "31a31f579efab8bdba6de584729dc2fe1c54b2b9a2bd76dd5876219ea80d54d0"
+    },
+    {
+      "href": "src/js/agent-tools.js",
+      "bytes": 18929,
+      "sha256": "6dce4a892f44c741612bf16f3fabe59581470cf09b333a18e0a60f264aec9cba"
+    },
+    {
+      "href": "src/js/appearance-state.js",
+      "bytes": 207,
+      "sha256": "eff67c5b894808ecde40bb2e84c738c1937b40b994f7d7944e8cc4db886ca7dc"
+    },
+    {
+      "href": "src/js/appearance.js",
+      "bytes": 8498,
+      "sha256": "0aaa31c8b5672f711800c2ced4b1d689ff0297b3a24152bfc57117d766a4dbbf"
+    },
+    {
+      "href": "src/js/autoplay.js",
+      "bytes": 1322,
+      "sha256": "fd1707f3cbb44594faee36337a30e1817d3a3cb3545d401fcf6fc92dd9894c5f"
+    },
+    {
+      "href": "src/js/book-timeline.js",
+      "bytes": 15247,
+      "sha256": "7ae2e9ecd71a94eac2ecc2ddcf544f43ca4ecaeba8c514f6ca63be723fa43b42"
+    },
+    {
+      "href": "src/js/bootstrap-policy.js",
+      "bytes": 4950,
+      "sha256": "a15abd37a5ea7a5414eee1216f3d3d124a7ac5dabcf88c29eb6ed3452093a76e"
+    },
+    {
+      "href": "src/js/bootstrap-source.js",
+      "bytes": 11972,
+      "sha256": "159c9aa1ed523ac2264e713fb226ba433fb8e128edf59f8e42de12ad59646674"
+    },
+    {
+      "href": "src/js/bootstrap.js",
+      "bytes": 15661,
+      "sha256": "d362d0ce76cdae046963f11ffa6970ff4a536ecef00b55124a324eb1c5188015"
+    },
+    {
+      "href": "src/js/browser-bookmarks.js",
+      "bytes": 5599,
+      "sha256": "81fa52634d359f0856db0810f034f0df51725e00495241de229f51506da1c736"
+    },
+    {
+      "href": "src/js/caption-mode.js",
+      "bytes": 13223,
+      "sha256": "6ca7fc66b8bdb91dafc35e5dd6468015fb6ae4cb560301841d249da73461af35"
+    },
+    {
+      "href": "src/js/color-contrast.js",
+      "bytes": 8213,
+      "sha256": "f05cd1d260744e265213aa25d45f0b16f0fcfdff00ff3c44d1d7b91067867821"
+    },
+    {
+      "href": "src/js/continue-playing.js",
+      "bytes": 1450,
+      "sha256": "bf9dc13014de21d1e015cdbda1fb8defc380d6439c61d9e31a6f35a7c75eea6a"
+    },
+    {
+      "href": "src/js/copy-content.js",
+      "bytes": 12815,
+      "sha256": "857c6b4dc65b9b89e63116babb4990949d8785c13b0d20e374676f3c2b3ed204"
+    },
+    {
+      "href": "src/js/copy-math.js",
+      "bytes": 6960,
+      "sha256": "c6326c61d3e0611124a7c600e93d86ce67a4d312b68482c7696e4c77267e8873"
+    },
+    {
+      "href": "src/js/cue-selector.js",
+      "bytes": 2394,
+      "sha256": "ce3c33385edf2a25a68fcd8c97cb41589666ed8c8f0cd7934ecc91e775d2c0e4"
+    },
+    {
+      "href": "src/js/current-print-page.js",
+      "bytes": 3999,
+      "sha256": "e5652c76ae23080835cbf09c915dac5e24719e3471a300703640099a4a8df2e3"
+    },
+    {
+      "href": "src/js/dom-utils.js",
+      "bytes": 1142,
+      "sha256": "cf89ae9bbe7fe872a7297d11b66d39f8ac9a74814e1c4f33e94b55a41f8135a9"
+    },
+    {
+      "href": "src/js/escapability.js",
+      "bytes": 9604,
+      "sha256": "f81dfb87d3defbb6301228317c3c20de078ac171ba6994ef0e4630feeb65771b"
+    },
+    {
+      "href": "src/js/highlight-settings.js",
+      "bytes": 6611,
+      "sha256": "dd024f30a2e758b9bbc028e21cb168ebed1b526e8d35ac99cc1574d5b91ea0ce"
+    },
+    {
+      "href": "src/js/in-place-navigation.js",
+      "bytes": 17645,
+      "sha256": "f3f1cab8d73249de0a564c37a6f02a094ee71dc6581caad87c05413c7470caac"
+    },
+    {
+      "href": "src/js/keyboard-shortcut-settings.js",
+      "bytes": 16311,
+      "sha256": "4ee936862f3d4e55a1be76d84037cff8400fc0813dae41600b78af3e40a21e4e"
+    },
+    {
+      "href": "src/js/keyboard-shortcuts.js",
+      "bytes": 11952,
+      "sha256": "8e8b2e4487018d269792911b2b08470af2f66440c4dd4898c3df83eba10dc5c0"
+    },
+    {
+      "href": "src/js/main.js",
+      "bytes": 4893,
+      "sha256": "35e1f88262f68462d522d2400dd3e9873a499a923240f60dbbcbf70cc98b53b5"
+    },
+    {
+      "href": "src/js/media-session.js",
+      "bytes": 2686,
+      "sha256": "e4270043bc2cd6ffffd23bd17948f0e503c69d4f9e0c00c4b5a3d5f2a61d9114"
+    },
+    {
+      "href": "src/js/narration-position.js",
+      "bytes": 12119,
+      "sha256": "52295f9fbc8da68570b7f62e75c5660f1443eabfd350aed90fa9934c49f7852e"
+    },
+    {
+      "href": "src/js/notes-in-place.js",
+      "bytes": 29100,
+      "sha256": "8c964d6f21d04933a7a2afd66773afe5c0c3ab244df0be51a73b65a23130e9fe"
+    },
+    {
+      "href": "src/js/offline-books.js",
+      "bytes": 7635,
+      "sha256": "3653dd324217dfb24e0bbe2342131b8d2183fd92bc76047cec356f1e6ac413b6"
+    },
+    {
+      "href": "src/js/offline-connectivity.js",
+      "bytes": 808,
+      "sha256": "967a364f1db022c40a14dd910fc6fa4e511dcf23859b69a9c4db13af2d29717f"
+    },
+    {
+      "href": "src/js/offline-discovery.js",
+      "bytes": 9641,
+      "sha256": "ba5342681c3095f09865052b69059dd4e68fcf20ef431bf512092a6daaeec2e0"
+    },
+    {
+      "href": "src/js/offline-download-worker.js",
+      "bytes": 1726,
+      "sha256": "293678fa5afd97958ce93f788edae6f00c957d211c90fe76d80783b50c51910e"
+    },
+    {
+      "href": "src/js/offline-network.js",
+      "bytes": 790,
+      "sha256": "4464de89556a0810f9f0148b0e0fcc9caeda2740e41d71440732f3dc8ab935c0"
+    },
+    {
+      "href": "src/js/offline-range.js",
+      "bytes": 1748,
+      "sha256": "cb5e2940e240b1fa6879157ce220a3ad9e21c22257445e23d4cb903ea74a01e7"
+    },
+    {
+      "href": "src/js/offline-resources.js",
+      "bytes": 5876,
+      "sha256": "911a23b5f57f11b72c8f085ecdf72f47ac2bc78677ca450f0ab26ba9fd6ac75c"
+    },
+    {
+      "href": "src/js/offline-worker-core.js",
+      "bytes": 28539,
+      "sha256": "a1f22f20ce34e6ff65236c56a83eb917c586f32ec06be77e0440139561d963c4"
+    },
+    {
+      "href": "src/js/offline-worker.js",
+      "bytes": 1570,
+      "sha256": "4369bd919dc50a6af4a3e5f42053c9b7a46cfd9a9e4568f1b41d56f08d540722"
+    },
+    {
+      "href": "src/js/offline.js",
+      "bytes": 19956,
+      "sha256": "53dc598664122c0f1888bb948cb17eb0923c333bb7a9175b79c398292d577e98"
+    },
+    {
+      "href": "src/js/page-colors.js",
+      "bytes": 12237,
+      "sha256": "3fe7242c1f120d00bdd349533d4430c3d375110518a3b4d465831cb55d57b589"
+    },
+    {
+      "href": "src/js/page-entry.js",
+      "bytes": 2063,
+      "sha256": "450ea5aa96a5cb61f2292213590adedba3854e0e1ed8e6428d56b01d3dc8efb3"
+    },
+    {
+      "href": "src/js/player.js",
+      "bytes": 25113,
+      "sha256": "6aa07710d5d7efc4d7ef6034251d24391dd50ed3a7d6397765c4c99b89708a36"
+    },
+    {
+      "href": "src/js/popovers.js",
+      "bytes": 10970,
+      "sha256": "5bc46ddb5b42ca4ebb73b6193206646a31406963677d1cc2fb7291c763aacecd"
+    },
+    {
+      "href": "src/js/published-colors.js",
+      "bytes": 3660,
+      "sha256": "85b0de90a4bde72235ce856de43193ecf5eac0ca45d3ec35c614b44ad2063883"
+    },
+    {
+      "href": "src/js/reader-actions.js",
+      "bytes": 4808,
+      "sha256": "046d618c4941b3dd797a12388203bf94d3eae53dcbacbbfe7fe372c5f056f8a2"
+    },
+    {
+      "href": "src/js/reader-shell.js",
+      "bytes": 7061,
+      "sha256": "f5401588bd4c688520fe63fe4bc61a33eb5f1d026cf43eaad2cdb785766b6fee"
+    },
+    {
+      "href": "src/js/reader-updates.js",
+      "bytes": 2614,
+      "sha256": "613deb20ca8daa10be28ddf8011a311eafc91edc34a912fc943291ee1763253b"
+    },
+    {
+      "href": "src/js/reading-axis.js",
+      "bytes": 2835,
+      "sha256": "4748a485d130702c6e07840b4eb94c1e8a3ed24557a9d61e51554be4c888ac71"
+    },
+    {
+      "href": "src/js/remote-ui.js",
+      "bytes": 3245,
+      "sha256": "20efb9b40df8086b0a798564dc1d8b5178bc972a5ac81657c759a053fae62d87"
+    },
+    {
+      "href": "src/js/responsive-equations.js",
+      "bytes": 3254,
+      "sha256": "8a3c978043b9c66ee2c80388b0262a5bbc57df466aba743a384f30c42b6ca501"
+    },
+    {
+      "href": "src/js/responsive-tables.js",
+      "bytes": 2284,
+      "sha256": "7f16e7214d78173121e86c2dcdc9a0d4c69e43c44dd0bfcbc70bee6c16e8e25d"
+    },
+    {
+      "href": "src/js/resume-position.js",
+      "bytes": 5675,
+      "sha256": "778ca2dfe3abdf31a398de4109ef1e4ea51c4e52a2554fa8b0281ec46b48e4c4"
+    },
+    {
+      "href": "src/js/search-anchor.js",
+      "bytes": 1915,
+      "sha256": "be23bf84819bb706221891c00372538c7247b5ff3c79e7f8180c0fbeacc98cf3"
+    },
+    {
+      "href": "src/js/search-ranking.js",
+      "bytes": 831,
+      "sha256": "8c0dc4a817c8a3870787991e64f9256723bcaa5a6fed52c79574dc95748a09e3"
+    },
+    {
+      "href": "src/js/search-text.js",
+      "bytes": 5395,
+      "sha256": "5ddf3509140eccced34beb520930ac4e8fef8ddd4648d0693eff09bec7c8c91a"
+    },
+    {
+      "href": "src/js/search.js",
+      "bytes": 12582,
+      "sha256": "a3faa9ed5af20a91f49ac0d8797f1253139d3143b7d1ddd3ccb7e73c5fb77491"
+    },
+    {
+      "href": "src/js/settings-file.js",
+      "bytes": 5871,
+      "sha256": "0e15dcd9c0f6e4e4832f50b794888874a1a401dbacca67ea5f880b997d22a8fd"
+    },
+    {
+      "href": "src/js/settings-filter.js",
+      "bytes": 7552,
+      "sha256": "bcfb390e160566e5d75590ff500720825e14f3bb908ec0d6d5bf0a02acec0073"
+    },
+    {
+      "href": "src/js/settings-sections.js",
+      "bytes": 6951,
+      "sha256": "d9258cedb1f75741587a366d641911a20d2e1641bd88d1438ba8a4b0c3816ba3"
+    },
+    {
+      "href": "src/js/settings-transfer.js",
+      "bytes": 9511,
+      "sha256": "7880f5a53d73aff3e9afc691df73cbb404064956156b045063ad2a992e5b2262"
+    },
+    {
+      "href": "src/js/settings.js",
+      "bytes": 9673,
+      "sha256": "6a53de66c5f2ad665bd67966fd0e36188664958529b747acc16e61d7809c8069"
+    },
+    {
+      "href": "src/js/skip-link.js",
+      "bytes": 1163,
+      "sha256": "a36c8f14b4c75ee381fb37aa666a3a6431e4adb34e307ecc226cf2d54ddded3e"
+    },
+    {
+      "href": "src/js/skippability.js",
+      "bytes": 8543,
+      "sha256": "08e6fb56317dc69a388255f16d10e8532aa03eb413b11c278451f0ae7e18c648"
+    },
+    {
+      "href": "src/js/stored-settings.js",
+      "bytes": 847,
+      "sha256": "d0a9266c1438b92f5411306b03284597adead6921c5302bf23fc24e718c9aa3c"
+    },
+    {
+      "href": "src/js/structure-context.js",
+      "bytes": 10192,
+      "sha256": "fc664d986329a2ca71883e510e05002da21af17542bb6632408543e0dfd81eaf"
+    },
+    {
+      "href": "src/js/structure-sounds.js",
+      "bytes": 16720,
+      "sha256": "2e80fee5cde9b78f23139011497b721a8873530b374df33b7184977d5a363735"
+    },
+    {
+      "href": "src/js/text-spacing.js",
+      "bytes": 6138,
+      "sha256": "373a15877d9ef8ae842066450610841973ce127b0158e5d96da2d7e043a76221"
+    },
+    {
+      "href": "src/js/toc-tree.js",
+      "bytes": 15962,
+      "sha256": "90fe68dd40a15d85b49ef121863294c1dcf1f514b317899bf17db936c0f49b55"
+    },
+    {
+      "href": "src/js/toolbar.js",
+      "bytes": 4081,
+      "sha256": "d85414eb03f4229accb71a26cd4e440af1cf1b99df4917a1a5f08e69b364058a"
+    },
+    {
+      "href": "src/js/vendor/mathml-to-latex.README.md",
+      "bytes": 977,
+      "sha256": "f73ab47d2c63b992af710b8a1ba2f64f91a7d36da70374a3761fd3efe349dde1"
+    },
+    {
+      "href": "src/js/vendor/mathml-to-latex.js",
+      "bytes": 169560,
+      "sha256": "84957dc66835a363956e32d4859958f4da0f319166bb1f2925d30ba6362d1869"
+    },
+    {
+      "href": "src/js/vendor/minisearch.js",
+      "bytes": 79205,
+      "sha256": "34cba81abaa42a614734150cdc912bf444d7fa5a6558113d6f560e1c7f714e82"
+    },
+    {
+      "href": "src/js/where-am-i.js",
+      "bytes": 8133,
+      "sha256": "4cd17ef92913a2f55d0595d90139601e15e34673f57d9af8ecf01cfe04dc8c11"
+    },
+    {
+      "href": "src/js/writing-mode.js",
+      "bytes": 5529,
+      "sha256": "87d63b94dceb37e6a11776f726e742bda8a87a5a957f74d2e5b887e8b29ae581"
+    },
+    {
+      "href": "src/offline-books.html",
+      "bytes": 680,
+      "sha256": "20921a24cf09f4a2246145fb523a6c2ea6094daf8f18f83933a8d62cfa065c33"
+    },
+    {
+      "href": "src/reader-shell.html",
+      "bytes": 12662,
+      "sha256": "683269917453dfbe1b04951be8843abb95c3c75300cd780f6d30252b53fb8cd3"
+    }
+  ]
+}

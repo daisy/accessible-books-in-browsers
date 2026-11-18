@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>3 Numerical results – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_050068-5.html"><meta name="webbook-page-number" content="58"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 3 Numerical results"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-8-4">Contents</a><a href="about.html">About</a><a href="9783111375854_050068-4.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_050068-6.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-008_s_005">
+            <h2 id="d73047e52222" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">3</span> <a></a>Numerical results<a href="#d73047e52222" rel="bookmark" class="webbook" title="Link to 3 Numerical results" aria-label="Link to 3 Numerical results" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="webbook-style-left">In this section, we compare the performance of APTS against well-established training algorithms such as SGD, LBFGS, and Adam. All tests, accessible through the repository in [<a href="9783111375854_050068-6.html#b_9783111376776-008_ref_012" class="xref" id="xref_d28617e94842">12</a>], were conducted using Python 3.9, with the implementation leveraging PyTorch version 2.0.1+cu117. For SGD, LBFGS, and Adam, we utilized the standard optimizers provided by PyTorch.</p> 
+            <p class="webbook-style-left">We tuned the hyperparameters of SGD, LBFGS, and Adam to ensure a fair comparison, recording the average best results in 10 trials across various parameter configurations. Specifically: </p>
+            <ul id="list-1">
+              <li> 
+                <p class="webbook-style-left webbook-style-margin-left-1">For SGD, we evaluated 63 combinations, varying the learning rate in <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="[10−4,1]" altimg="images/b_9783111376776-008_ineq_064.png"><mo fence="true" stretchy="false">[</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>4</mn></mrow></msup><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo></math></span></span> and the momentum in [0.1,0.9].</p> </li>
+              <li> 
+                <p class="webbook-style-left webbook-style-margin-left-1">For LBFGS, we considered 45 combinations, adjusting both the learning rate within the interval <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="[10−4,1]" altimg="images/b_9783111376776-008_ineq_065.png"><mo fence="true" stretchy="false">[</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>4</mn></mrow></msup><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">]</mo></math></span></span> and the history size (the amount of stored updates of the Hessian) within [3,50]. Note that we set the <span class="monospace">line_search_fn</span> parameter to <span class="monospace">strong_wolfe</span>.</p> </li>
+              <li> 
+                <p class="webbook-style-left webbook-style-margin-left-1">For Adam, we examined 13 different learning rates within the interval <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="[10−5,10−1]" altimg="images/b_9783111376776-008_ineq_066.png"><mo fence="true" stretchy="false">[</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>5</mn></mrow></msup><mo mathvariant="normal">,</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo fence="true" stretchy="false">]</mo></math></span></span>.</p> </li>
+            </ul>
+            <p class="webbook-style-left"> For these three algorithms, all other input parameters were kept as their standard PyTorch default values. Moreover, the selected optimal parameters are shown in the legend of the figures. In contrast, APTS and TR were consistently run with the same set of input parameters across all tests. Detailed descriptions of these settings can be found in the next section.</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">Afterwards, we provide a detailed analysis of the obtained results, highlighting the characteristics of APTS in comparison to SGD, LBFGS, Adam, and TR. Note that in the absence of the mini-batch strategy, the SGD optimizer simplifies to the traditional Gradient Descent (GD) algorithm. We remark that one epoch of APTS consists in the preconditioning step and the global step in lines 5–18 of <a href="9783111375854_050068-4.html#b_9783111376776-008_fig_001" class="xref">Algorithm 8.1</a>.</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">Finally, some of the following plots will depict the average test accuracy and training loss (represented by a solid line) alongside the variance observed in the worst and best runs (indicated by dashed lines) across 10 independent trials, each initialized with different random NN parameters.</p> 
+            <section id="b_9783111376776-008_s_006">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-8" tabindex="-1"><span class="label webbook-style-bold">3.1</span> <a id="d28651e54276"></a>APTS implementation details and parameter configuration<a href="#h-8" rel="bookmark" class="webbook" title="Link to 3.1 APTS implementation details and parameter configuration" aria-label="Link to 3.1 APTS implementation details and parameter configuration" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">The PyTorch programming environment imposes certain constraints on the level of control one has over parameter training. Parameters are configured in vectors, with entire vectors designated as either trainable or nontrainable. This means that, for instance, a fully connected layer, which consists of weights and biases, is stored as a structure composed by two distinct vectors of learnable parameters, and they can be configured to be trained independently. Therefore, the projectors <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Ri" altimg="images/b_9783111376776-008_ineq_067.png"><msub><mrow><mi mathvariant="italic">R</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span> in Equation (<a href="9783111375854_050068-4.html#b_9783111376776-008_eq_004" class="xref">8.4</a>) are built in a way to maximize the efficiency in training, that is, there will not be two weights belonging to the same PyTorch vectors with different trainable/non-trainable settings. Furthermore, the projectors are randomly generated, that is, if we have a total of <i>M</i> vectors of parameters and we want to split them across <i>N</i> models, each model will have approximately round <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-008_ineq_068.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mstyle displaystyle="false"><mfrac><mrow><mi mathvariant="italic">M</mi></mrow><mrow><mi mathvariant="italic">N</mi></mrow></mfrac></mstyle><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> randomly selected trainable vectors.</p> 
+              <p class="webbook-style-left">Key configurations in our implementation of the APTS algorithm are as follows: </p>
+              <ul id="list-2">
+                <li> 
+                  <p class="webbook-style-left webbook-style-margin-left-1">In step 8 of APTS, that is, <a href="9783111375854_050068-4.html#b_9783111376776-008_fig_001" class="xref">Algorithm 8.1</a>, the amount of subdomains (submodels <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒩i" altimg="images/b_9783111376776-008_ineq_069.png"><msub><mrow><mi mathvariant="script">N</mi></mrow><mrow><mi mathvariant="italic">i</mi></mrow></msub></math></span></span>) is specified in the legend of the figures in Section <a href="#b_9783111376776-008_s_005" class="xref">3</a> and the trainable weight vectors are randomly selected.</p> </li>
+                <li> 
+                  <p class="webbook-style-left webbook-style-margin-left-1">In step 10, concerning the <i>local</i> TR, we configured:</p> 
+                  <ul id="list-3">
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">A maximum amount of iterations to <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ν=5" altimg="images/b_9783111376776-008_ineq_070.png"><mi mathvariant="italic">ν</mi><mo>=</mo><mn>5</mn></math></span></span>.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">A minimum radius of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-008_ineq_071.png"><msubsup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mo movablelimits="false">min</mo></mrow><mrow><mi mathvariant="italic">L</mi></mrow></msubsup><mo>=</mo><mn>0</mn></math></span></span>, an initial radius equal to the current global TR radius <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ΔL=ΔG" altimg="images/b_9783111376776-008_ineq_072.png"><msup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mi mathvariant="italic">L</mi></mrow></msup><mo>=</mo><msup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mi mathvariant="italic">G</mi></mrow></msup></math></span></span>, and a dynamically adjusted maximum radius <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-008_ineq_073.png"><msubsup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mo movablelimits="false">max</mo></mrow><mrow><mi mathvariant="italic">L</mi></mrow></msubsup><mo>=</mo><msup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mi mathvariant="italic">G</mi></mrow></msup><mo>−</mo><mo stretchy="false">‖</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo mathvariant="normal">,</mo><mn>0</mn></mrow><mrow><mi mathvariant="italic">k</mi></mrow></msubsup><mo>−</mo><msubsup><mrow><mi mathvariant="italic">θ</mi></mrow><mrow><mi mathvariant="italic">i</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">j</mi></mrow><mrow><mi mathvariant="italic">k</mi></mrow></msubsup><mo stretchy="false">‖</mo></math></span></span> at the <i>j</i>th iteration to ensure that the cumulative step remains bounded by the global TR radius.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">Whenever a quadratic model (<a href="9783111375854_050068-4.html#b_9783111376776-008_eq_002" class="xref">8.2</a>) is considered, history size for the SR1 Hessian is set to 5. Moreover, at the start of the preconditioning iteration, the local Hessian history is synchronized with the global one.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">The reduction and acceptance ratios <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="0<η1<η2<1" altimg="images/b_9783111376776-008_ineq_074.png"><mn>0</mn><mo mathvariant="normal">&lt;</mo><msub><mrow><mi mathvariant="italic">η</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal">&lt;</mo><msub><mrow><mi mathvariant="italic">η</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal">&lt;</mo><mn>1</mn></math></span></span> are the standard values for TR, that is, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="η1=0.25" altimg="images/b_9783111376776-008_ineq_075.png"><msub><mrow><mi mathvariant="italic">η</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>=</mo><mn>0.25</mn></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="η2=0.75" altimg="images/b_9783111376776-008_ineq_076.png"><msub><mrow><mi mathvariant="italic">η</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>=</mo><mn>0.75</mn></math></span></span>.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">The decrease and increase factors <i>α</i> and <i>β</i> are set to 0.5 and 2, respectively.</p> </li>
+                  </ul> </li>
+                <li> 
+                  <p class="webbook-style-left webbook-style-margin-left-1">In step 17, which involves the <i>global</i> TR:</p> 
+                  <ul id="list-4">
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">Minimum, maximum, and initial radii are set to <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-008_ineq_077.png"><msubsup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mo movablelimits="false">min</mo></mrow><mrow><mi mathvariant="italic">G</mi></mrow></msubsup><mo>=</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>4</mn></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-008_ineq_078.png"><msubsup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mo movablelimits="false">max</mo></mrow><mrow><mi mathvariant="italic">G</mi></mrow></msubsup><mo>=</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>1</mn></mrow></msup></math></span></span>, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ΔG=10−2" altimg="images/b_9783111376776-008_ineq_079.png"><msup><mrow><mi mathvariant="normal">Δ</mi></mrow><mrow><mi mathvariant="italic">G</mi></mrow></msup><mo>=</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>−</mo><mn>2</mn></mrow></msup></math></span></span>, respectively.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">The values of <i>α</i>, <i>β</i>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="η1" altimg="images/b_9783111376776-008_ineq_080.png"><msub><mrow><mi mathvariant="italic">η</mi></mrow><mrow><mn>1</mn></mrow></msub></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="η2" altimg="images/b_9783111376776-008_ineq_081.png"><msub><mrow><mi mathvariant="italic">η</mi></mrow><mrow><mn>2</mn></mrow></msub></math></span></span> match the ones of the local TR.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">The reduction and acceptance ratios match those of the local TR.</p> </li>
+                    <li> 
+                      <p class="webbook-style-left webbook-style-margin-left-1">Whenever a quadratic model (<a href="9783111375854_050068-4.html#b_9783111376776-008_eq_002" class="xref">8.2</a>) is considered, history size for the SR1 approximated Hessian is set to 5.</p> </li>
+                  </ul> </li>
+              </ul>
+              <p class="webbook-style-left"> Note that both the global and local TR use the infinity norm to compute the length of the steps. This does not conflict with 2-norm used by the OBS method, as the 2-norm is bounded by the infinity-norm.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">In the numerical results Section <a href="#b_9783111376776-008_s_005" class="xref">3</a>, the TR method as stand-alone solver, denoted by TR in the figures, has the same settings as the global TR method in APTS.</p> 
+            </section> 
+            <section id="b_9783111376776-008_s_007">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-9" tabindex="-1"><span class="label webbook-style-bold">3.2</span> <a id="d28651e54739"></a>MNIST<a href="#h-9" rel="bookmark" class="webbook" title="Link to 3.2 MNIST" aria-label="Link to 3.2 MNIST" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">We conducted some preliminary experiments using the MNIST data set [<a href="9783111375854_050068-6.html#b_9783111376776-008_ref_037" class="xref" id="xref_d28617e95741">37</a>]. This data set comprises 60,000 training images and 10,000 test images of handwritten digits, each of which is a 28×28 pixel grayscale image. For this experiment, we considered a Fully Connected Neural Network (FCNN) trained on the entire data set, that is, without the use of a mini-batch strategy.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">The FCNN used in our experiments consists of three fully connected layers (6 PyTorch vectors), resulting in a total of 26,506 parameters. To investigate the performance of APTS, we configured it with 2, 4, and 6 subdomains and with an enabled/disabled forced-decreasing-loss parameter (<span class="monospace">fdl</span>), while other parameters are reported in Section <a href="#b_9783111376776-008_s_006" class="xref">3.1</a>.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">Observing <a href="#b_9783111376776-008_fig_002" class="xref">Figure 8.1</a>a, we note that Adam, LBFGS, and GD achieve comparable levels of accuracy. However, GD exhibits a marginally higher number of epochs to converge and a greater variance in its results. The TR variants, utilizing both first- and second-order information in Equation (<a href="9783111375854_050068-4.html#b_9783111376776-008_eq_002" class="xref">8.2</a>) (denoted by <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=1" altimg="images/b_9783111376776-008_ineq_082.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>1</mn></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=2" altimg="images/b_9783111376776-008_ineq_083.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>2</mn></math></span></span>, respectively), demonstrate a slower convergence compared to the benchmark algorithms. TR( <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=2" altimg="images/b_9783111376776-008_ineq_084.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>2</mn></math></span></span>) overtakes its first-order counterpart TR( <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=1" altimg="images/b_9783111376776-008_ineq_085.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>1</mn></math></span></span>) after 70 epochs. This can be attributed to the enhanced reliability of the approximated Hessian close to a minimizer of the training loss, which has a flatter landscape in comparison to the initial training phase. Moreover, the introduction of second-order information tends to stabilize the variation among TR iterations compared to the first-order approach.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-008_fig_002">
+                <img alt="" src="images/b_9783111376776-008_fig_002.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 8.1</span> Comparison of APTS variants and baseline optimizers on FCNN trained on MNIST.</p></figcaption>
+              </figure> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">In <a href="#b_9783111376776-008_fig_002" class="xref">Figure 8.1</a>b, the APTS variants employing first- and second-order derivatives with <span class="monospace">fdl</span> turned off are presented. The use of second-order derivatives seems to facilitate a smoother progression of the loss function over the training epochs. Conversely, reliance on first-order derivatives results in more fluctuating loss values. Nonetheless, both variants converge to comparable levels of loss and accuracy, with a limited variance suggesting a consistent convergence pattern across different runs.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">Figures <a href="#b_9783111376776-008_fig_002" class="xref">8.1</a>c and <a href="#b_9783111376776-008_fig_002" class="xref">8.1</a>d showcase the APTS variants with <span class="monospace">fdl</span> enabled. Here, the application of second-order information leads to reduced variance and marginally superior accuracy relative to the first-order variant. Additionally, an increase in the number of subdomains correlates with improved performance. APTS with 6 subdomains not only slightly outperforms the 2 and 4 subdomain configurations in terms of accuracy, but also shows a reduced variance. This enhanced performance likely results from the added subdomains enabling more thorough exploration of the loss landscape through independent parameter adjustments, in contrast to the constrained exploration provided by a lower count of subdomains. This concept aligns with prior studies advocating for distinct weight and bias training strategies to improve training dynamics [<a href="9783111375854_050068-6.html#b_9783111376776-008_ref_001" class="xref" id="xref_d28617e95858">1</a>].</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">A comparison of Figures <a href="#b_9783111376776-008_fig_002" class="xref">8.1</a>a, <a href="#b_9783111376776-008_fig_002" class="xref">8.1</a>b, and <a href="#b_9783111376776-008_fig_002" class="xref">8.1</a>c reveals that APTS with six subdomains, with <span class="monospace">fdl</span> disabled and first-order information, attains similar performances to Adam, with Adam reaching the maximum accuracy slightly faster, and a marginally superior accuracy and lower loss than its counterpart with <span class="monospace">fdl</span> enabled. This highlights the importance of unrestricted parameter exploration in improving training efficiency, similar to the exploration afforded by a higher subdomain count.</p> 
+            </section> 
+            <section id="b_9783111376776-008_s_008">
+              <h3 class="webbook-style-left webbook-style-bold" id="h-10" tabindex="-1"><span class="label webbook-style-bold">3.3</span> <a id="d28651e54867"></a>CIFAR-10<a href="#h-10" rel="bookmark" class="webbook" title="Link to 3.3 CIFAR-10" aria-label="Link to 3.3 CIFAR-10" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">Following our MNIST investigation, we evaluated the solution strategies using the CIFAR-10 data set [<a href="9783111375854_050068-6.html#b_9783111376776-008_ref_036" class="xref" id="xref_d28617e95891">36</a>], containing 50,000 training and 10,000 test 32×32 color images across 10 classes. For these experiments, we employed the ResNet18 architecture from the PyTorch library with 11,689,512 parameters stored in 62 PyTorch vectors. Training was conducted using a mini-batch strategy, with 20 overlapping mini-batches, each containing 2,975 samples, which were created with a <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="1 %" altimg="images/b_9783111376776-008_ineq_086.png"><mn>1</mn><mspace width="0.1667em"></mspace><mi mathvariant="normal">%</mi></math></span></span> overlap between the mini-batches in order to reduce variance.</p> 
+              <figure class="fig webbook-style-center" id="b_9783111376776-008_fig_003">
+                <img alt="" src="images/b_9783111376776-008_fig_003.jpg" class="web-only graphic"><figcaption class="caption">
+                  <p class="webbook-style-left"><span class="label webbook-style-bold">Figure 8.2</span> Comparison of APTS variants and baseline optimizers on CNN trained on CIFAR-10.</p></figcaption>
+              </figure> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">In <a href="#b_9783111376776-008_fig_003" class="xref">Figure 8.2</a>, we present a comparative analysis between stochastic Adam and various configurations of SAPTS. Specifically, <a href="#b_9783111376776-008_fig_003" class="xref">Figure 8.2</a>a features SAPTS with 2, 15, and 30 subdomains, a first-order TR approach for the subproblems, and with the feature <span class="monospace">fdl</span> deactivated. In <a href="#b_9783111376776-008_fig_003" class="xref">Figure 8.2</a>b, the number of subdomains is set to 60 while we vary parameters such as <span class="monospace">fdl</span> and <span class="monospace">order</span>. We do not provide results for SGD here as Adam achieved a higher test accuracy, and our aim is to provide a comparison with APTS.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">Our primary focus was on configurations with <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚏𝚍𝚕=𝙵𝚊𝚕𝚜𝚎" altimg="images/b_9783111376776-008_ineq_087.png"><mtext mathvariant="monospace">fdl</mtext><mo>=</mo><mtext mathvariant="monospace">False</mtext></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=1" altimg="images/b_9783111376776-008_ineq_088.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>1</mn></math></span></span>. The rationale behind this is that activating <span class="monospace">fdl</span> (as shown in <a href="#b_9783111376776-008_fig_003" class="xref">Figure 8.2</a>b) leads to a deterioration in the generalization abilities of SAPTS, albeit with a higher reduction in loss compared to other SAPTS variants. Regarding <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=2" altimg="images/b_9783111376776-008_ineq_089.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>2</mn></math></span></span>, SAPTS exhibited poor generalization and did not significantly reduce the loss. However, it maintained a smoother loss curve compared to other tested SAPTS variants as in the previous nonstochastic cases.</p> 
+              <p class="indent webbook-style-left webbook-style-text-indent-2">When analyzing SAPTS with <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚏𝚍𝚕=𝙵𝚊𝚕𝚜𝚎" altimg="images/b_9783111376776-008_ineq_090.png"><mtext mathvariant="monospace">fdl</mtext><mo>=</mo><mtext mathvariant="monospace">False</mtext></math></span></span> and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝚘𝚛𝚍=1" altimg="images/b_9783111376776-008_ineq_091.png"><mtext mathvariant="monospace">ord</mtext><mo>=</mo><mn>1</mn></math></span></span> across different numbers of subdomains, we observe a correlation similar to that in non-stochastic tests: SAPTS’ performance improves with an increased number of subdomains. Additionally, when comparing SAPTS with 60 subdomains against Adam, we find that SAPTS demonstrates marginally better generalization over a longer period and requires only a few more epochs to match the performance level of Adam.</p> 
+            </section> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_050068-4.html" rel="prev" title="Previous: 2 Training methods" aria-label="Previous: 2 Training methods">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_050068-6.html" title="Next: 4 Conclusion" aria-label="Next: 4 Conclusion" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

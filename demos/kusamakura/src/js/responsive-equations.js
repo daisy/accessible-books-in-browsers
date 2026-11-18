@@ -24,17 +24,17 @@ function updateEquation(equation) {
 
 export function updateResponsiveEquations() {
     document.querySelectorAll('.webbook-equation').forEach(updateEquation);
-    // Wide inline MathML can scroll on its own. Keep its native math semantics,
-    // and add a Tab stop only while that scrolling is needed.
+    // Inline MathML wider than its line scrolls on its own (equations.css), keeping its native math
+    // semantics, with a Tab stop only while it's that wide. Display equations scroll in their wrapper.
     document.querySelectorAll('main math').forEach(math => {
-        if (!math.clientWidth) return;
+        if (!math.clientWidth || math.closest('table, .webbook-equation-scroll, .webbook-copy-source')) return;
         const attribute = 'data-webbook-math-tabindex';
-        const overflows = ['auto', 'scroll'].includes(getComputedStyle(math).overflowX)
-            && (math.scrollWidth > math.clientWidth + 1 || math.scrollHeight > math.clientHeight + 1);
-        if (overflows && math.tabIndex < 0) {
+        const wide = math.scrollWidth > math.clientWidth + 1;
+        math.toggleAttribute('data-webbook-math-wide', wide);
+        if (wide && math.tabIndex < 0) {
             if (!math.hasAttribute(attribute)) math.setAttribute(attribute, math.getAttribute('tabindex') ?? '');
             math.setAttribute('tabindex', '0');
-        } else if (!overflows && math.hasAttribute(attribute)) {
+        } else if (!wide && math.hasAttribute(attribute)) {
             const previous = math.getAttribute(attribute);
             if (previous) math.setAttribute('tabindex', previous);
             else math.removeAttribute('tabindex');

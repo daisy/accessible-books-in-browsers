@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png" type="image/png" sizes="64x64">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>1 Introduction and definitions – Mathematical Optimization for Machine Learning</title>
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <meta name="webbook-book-id" content="9783111377742">
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-88dfda746667bf92886e.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;math-optimization-ml&quot;,&quot;identifier&quot;:&quot;9783111377742&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="9783111375854_042422-3.html"><meta name="webbook-page-number" content="50"><meta name="webbook-page-count" content="91"><meta name="webbook-page-label" content="Section: 1 Introduction and definitions"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-7-2">Contents</a><a href="about.html">About</a><a href="9783111375854_042422-2.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="9783111375854_042422-4.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="collection ltr webbook-style-left webbook-publisher-r2" dir="ltr"><section id="b_9783111376776-007_s_001">
+            <h2 id="d73047e42526" class="webbook-style-left webbook-style-bold" tabindex="-1"><span class="label webbook-style-bold">1</span> <a></a>Introduction and definitions<a href="#d73047e42526" rel="bookmark" class="webbook" title="Link to 1 Introduction and definitions" aria-label="Link to 1 Introduction and definitions" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2> 
+            <p class="webbook-style-left">Motivated by numerous applications, there has been a growing interest in optimization problems that lack differentiability. One important class of such problems is given by piecewise linear functions, where corresponding optimization tasks arise, for example, as local models [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_016" class="xref" id="xref_d28617e77439">16</a>] or in the training of deep neural networks with the Rectified Linear Unit (ReLU) as the activation function [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_020" class="xref" id="xref_d28617e77442">20</a>].</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">So far, there is only a limited number of algorithms to solve constrained nonsmooth optimization problems available. Possible approaches comprise, for example, quasi-Newton methods [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_004" class="xref" id="xref_d28617e77448">4</a>] and bundle methods [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_017" class="xref" id="xref_d28617e77451">17</a>]. They all have in common that they do not exploit the structure that is available in the nonsmooth setting. For unconstrained optimization problems with piecewise linear (PL) objective functions, the so-called Active Signature Method (ASM)<span class="indexterm-anchor" id="it_b_9783111376776-007_index-term_001" title="Active Signature Method (ASM)"></span> for determining local minima has been proposed in [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_008" class="xref" id="xref_d28617e77458">8</a>]. This approach explicitly builds on the nonsmooth structure yielding optimality conditions that can be verified in polynomial time. In [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_011" class="xref" id="xref_d28617e77461">11</a>], the general setting of nonlinear, so-called abs-smooth constrained optimization problems was considered and optimality conditions that can be also verified in polynomial time were given. However, no solution algorithm was proposed.</p> 
+            <p class="webbook-style-left">In this paper, an extension of ASM will be presented, which, in addition to the PL objective function, also takes PL (in)equality constraints into account. It exploits explicitly the nonsmooth structure of the optimization problem such that it can guarantee that a local minimizer is reached by the algorithm. Using the reformulations </p>
+            <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_001.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mo movablelimits="false">max</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>+</mo><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>−</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mspace width="1em"></mspace><mtext>and</mtext></mtd></mtr><mtr><mtd><mo movablelimits="false">min</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal">,</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">)</mo></mtd><mtd><mo>=</mo><mstyle displaystyle="true"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>+</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo>−</mo><mo stretchy="false">|</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>1</mn></mrow></msub><mo>−</mo><msub><mrow><mi mathvariant="italic">x</mi></mrow><mrow><mn>2</mn></mrow></msub><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo></mtd></mtr></mtable></math></span> 
+            </div>
+            <p class="webbook-style-left"> as well as [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_019" class="xref" id="xref_d28617e77769">19</a>, Prop. 2.2.2], it follows that every continuous PL function can be represented in an abs-linear form<span class="indexterm-anchor" id="it_b_9783111376776-007_index-term_002" title="abs-linear form"></span> as introduced for the first time in [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_006" class="xref" id="xref_d28617e77776">6</a>].</p> 
+            <div class="statement definition statement"> 
+              <h3 class="webbook-style-left webbook-style-bold" id="h-4" tabindex="-1"><a></a>Definition 7.1.<a href="#h-4" rel="bookmark" class="webbook" title="Link to Definition 7.1." aria-label="Link to Definition 7.1." data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h3> 
+              <p class="webbook-style-left">A continuous PL function <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="f:ℝn→ℝ" altimg="images/b_9783111376776-007_ineq_001.png"><mi mathvariant="italic">f</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">→</mo><mi mathvariant="double-struck">R</mi></math></span></span> is in <i>abs-linear form</i> if <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="y=f(x)" altimg="images/b_9783111376776-007_ineq_002.png"><mi mathvariant="italic">y</mi><mo>=</mo><mi mathvariant="italic">f</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span> is given by </p>
+              <div class="disp-formula-group"> 
+                <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-007_eq_002"> <span class="label webbook-style-bold">(7.1a)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_002.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mi mathvariant="italic">y</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">d</mi><mo>+</mo><msup><mrow><mi mathvariant="italic">a</mi></mrow><mrow><mo>⊤</mo></mrow></msup><mi mathvariant="italic">x</mi><mo>+</mo><msup><mrow><mi mathvariant="italic">b</mi></mrow><mrow><mo>⊤</mo></mrow></msup><mi mathvariant="italic">z</mi><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+                </div> 
+                <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-007_eq_003"> <span class="label webbook-style-bold">(7.1b)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_003.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><mi mathvariant="italic">z</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">c</mi><mo>+</mo><mi mathvariant="italic">Z</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">z</mi><mo>+</mo><mi mathvariant="italic">L</mi><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+                </div> 
+              </div>
+              <p class="webbook-style-left"> with the <i>switching vector</i> <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="z∈ℝs" altimg="images/b_9783111376776-007_ineq_003.png"><mi mathvariant="italic">z</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> containing the switching variables, and constants <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="d∈ℝ" altimg="images/b_9783111376776-007_ineq_004.png"><mi mathvariant="italic">d</mi><mo stretchy="false">∈</mo><mi mathvariant="double-struck">R</mi></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="a∈ℝn" altimg="images/b_9783111376776-007_ineq_005.png"><mi mathvariant="italic">a</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="b,c∈ℝs" altimg="images/b_9783111376776-007_ineq_006.png"><mi mathvariant="italic">b</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">c</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Z∈ℝs×n" altimg="images/b_9783111376776-007_ineq_007.png"><mi mathvariant="italic">Z</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi><mo>×</mo><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="L,M∈ℝs×s" altimg="images/b_9783111376776-007_ineq_008.png"><mi mathvariant="italic">L</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">M</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi><mo>×</mo><mi mathvariant="italic">s</mi></mrow></msup></math></span></span>, where <i>L</i> and <i>M</i> are strictly lower triangular. Equation (<a href="#b_9783111376776-007_eq_003" class="xref">7.1b</a>) is called <i>a switching system</i>. The <i>signature vector</i> is defined as <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_009.png"><mi mathvariant="italic">σ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="bold">sgn</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mn>1</mn></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal">,</mo><mo>…</mo><mo mathvariant="normal">,</mo><mi mathvariant="bold">sgn</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><msub><mrow><mi mathvariant="italic">z</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msub><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo stretchy="false">∈</mo><msup><mrow><mo fence="true" stretchy="false">{</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">}</mo></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> and the <i>signature matrix</i> as <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Σ(x)=diag(σ(x))" altimg="images/b_9783111376776-007_ineq_010.png"><mi mathvariant="normal">Σ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo movablelimits="false">diag</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">σ</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>.</p>
+            </div> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">Here and throughout, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="|z|" altimg="images/b_9783111376776-007_ineq_011.png"><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo></math></span></span> denotes the componentwise modulus of a vector <i>z</i>. Without loss of generality, we can set <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="d=0" altimg="images/b_9783111376776-007_ineq_012.png"><mi mathvariant="italic">d</mi><mo>=</mo><mn>0</mn></math></span></span>. In contrast to previous publications, for example, [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_008" class="xref" id="xref_d28617e78415">8</a>], a slightly different abs-linear form is defined to cover more general formulations of the target function and to unify the formulation of the constraints considered in this paper. Frequently, fixed signature vectors <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_013.png"><mi mathvariant="italic">σ</mi><mo stretchy="false">∈</mo><mo fence="true" stretchy="false">{</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">}</mo></math></span></span> and corresponding fixed signature matrices <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Σ=diagσ" altimg="images/b_9783111376776-007_ineq_014.png"><mi mathvariant="normal">Σ</mi><mo>=</mo><mo movablelimits="false">diag</mo><mi mathvariant="italic">σ</mi></math></span></span> are considered that do not depend of <i>x</i>. Therefore, the dependence on <i>x</i> is explicitly stated if there is one.</p> 
+            <p class="webbook-style-left">It is possible to decompose the <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℝn" altimg="images/b_9783111376776-007_ineq_015.png"><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span> into polyhedra as follows (cf. [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_009" class="xref" id="xref_d28617e78502">9</a>]): For a fixed <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_016.png"><mi mathvariant="italic">σ</mi><mo stretchy="false">∈</mo><msup><mrow><mo fence="true" stretchy="false">{</mo><mo>−</mo><mn>1</mn><mo mathvariant="normal">,</mo><mn>0</mn><mo mathvariant="normal">,</mo><mn>1</mn><mo fence="true" stretchy="false">}</mo></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></math></span></span> and the resulting signature matrix <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="Σ=diag(σ)" altimg="images/b_9783111376776-007_ineq_017.png"><mi mathvariant="normal">Σ</mi><mo>=</mo><mo movablelimits="false">diag</mo><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">σ</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo></math></span></span>, we define the <i>signature domain</i> </p>
+            <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic"> <span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_004.png"><mtable displaystyle="true"><mtr><mtd><msub><mrow><mi mathvariant="script">P</mi></mrow><mrow><mi mathvariant="italic">σ</mi></mrow></msub><mo>:</mo><mo>=</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">{</mo><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">∣</mo><mi mathvariant="bold">sgn</mi><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">(</mo><mi mathvariant="italic">z</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo mathvariant="normal" fence="true" maxsize="1.19em" minsize="1.19em">)</mo><mo>=</mo><mi mathvariant="italic">σ</mi><mo fence="true" maxsize="1.19em" minsize="1.19em">}</mo><mo stretchy="false">⊂</mo><msub><mrow><mi mathvariant="script">P</mi></mrow><mrow><mi mathvariant="italic">σ</mi></mrow></msub><mo>:</mo><mo>=</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">{</mo><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">∣</mo><mi mathvariant="normal">Σ</mi><mi mathvariant="italic">z</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>=</mo><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><mi mathvariant="italic">z</mi><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo fence="true" maxsize="1.19em" minsize="1.19em" stretchy="true">|</mo><mo fence="true" maxsize="1.19em" minsize="1.19em">}</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+            </div>
+            <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒫σ" altimg="images/b_9783111376776-007_ineq_018.png"><msub><mrow><mi mathvariant="script">P</mi></mrow><mrow><mi mathvariant="italic">σ</mi></mrow></msub></math></span></span> is called <i>extended signature domain</i>. The sets <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒫σ" altimg="images/b_9783111376776-007_ineq_019.png"><msub><mrow><mi mathvariant="script">P</mi></mrow><mrow><mi mathvariant="italic">σ</mi></mrow></msub></math></span></span> are given as inverse images of <i>σ</i> representing a disjoint decomposition of <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="ℝn" altimg="images/b_9783111376776-007_ineq_020.png"><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup></math></span></span> into relatively open polyhedra. The boundaries of the polyhedra <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="𝒫σ" altimg="images/b_9783111376776-007_ineq_021.png"><msub><mrow><mi mathvariant="script">P</mi></mrow><mrow><mi mathvariant="italic">σ</mi></mrow></msub></math></span></span> are usually the sets where the PL function <i>f</i> is nonsmooth. Motivated by the graphical representation in low dimensions, these sets of points are called kinks.</p> 
+            <p class="webbook-style-left">The optimization problem for which we will present and analyze a solution algorithm, that is, the <i>constrained abs-linear optimization problem</i> (CALOP), has the structure </p>
+            <div class="disp-formula webbook-style-center webbook-style-unbold webbook-style-not-italic" id="b_9783111376776-007_eq_005"> <span class="label webbook-style-bold">(CALOP)</span><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_eq_005.png"><mtable displaystyle="true" columnalign="right left" columnspacing="0pt"><mtr><mtd><munder><mrow><mo movablelimits="false">min</mo></mrow><mrow><mi mathvariant="italic">x</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo mathvariant="normal">,</mo><mi mathvariant="italic">z</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">s</mi></mrow></msup></mrow></munder></mtd><mtd><mspace width="1em"></mspace><msup><mrow><mi mathvariant="italic">a</mi></mrow><mrow><mo>⊤</mo></mrow></msup><mi mathvariant="italic">x</mi><mo>+</mo><msup><mrow><mi mathvariant="italic">b</mi></mrow><mrow><mo>⊤</mo></mrow></msup><mi mathvariant="italic">z</mi><mspace width="1em"></mspace><mtext>such that</mtext></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mo>=</mo><mi mathvariant="italic">g</mi><mo>+</mo><mi mathvariant="italic">A</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">B</mi><mi mathvariant="italic">z</mi><mo>+</mo><mi mathvariant="italic">C</mi><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mo stretchy="false">≥</mo><mi mathvariant="italic">h</mi><mo>+</mo><mi mathvariant="italic">D</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">E</mi><mi mathvariant="italic">z</mi><mo>+</mo><mi mathvariant="italic">F</mi><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd></mtr><mtr><mtd><mi mathvariant="italic">z</mi></mtd><mtd><mo>=</mo><mi mathvariant="italic">c</mi><mo>+</mo><mi mathvariant="italic">Z</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">M</mi><mi mathvariant="italic">z</mi><mo>+</mo><mi mathvariant="italic">L</mi><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal">,</mo></mtd></mtr></mtable></math></span> 
+            </div>
+            <p class="webbook-style-left"> where <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="g∈ℝm" altimg="images/b_9783111376776-007_ineq_022.png"><mi mathvariant="italic">g</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">m</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="h∈ℝp" altimg="images/b_9783111376776-007_ineq_023.png"><mi mathvariant="italic">h</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">p</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="A∈ℝm×n" altimg="images/b_9783111376776-007_ineq_024.png"><mi mathvariant="italic">A</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">m</mi><mo>×</mo><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="B,C∈ℝm×s" altimg="images/b_9783111376776-007_ineq_025.png"><mi mathvariant="italic">B</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">C</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">m</mi><mo>×</mo><mi mathvariant="italic">s</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="D∈ℝp×n" altimg="images/b_9783111376776-007_ineq_026.png"><mi mathvariant="italic">D</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">p</mi><mo>×</mo><mi mathvariant="italic">n</mi></mrow></msup></math></span></span>, and <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="E,F∈ℝp×s" altimg="images/b_9783111376776-007_ineq_027.png"><mi mathvariant="italic">E</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">F</mi><mo stretchy="false">∈</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">p</mi><mo>×</mo><mi mathvariant="italic">s</mi></mrow></msup></math></span></span>. As can be seen, we assume that the objective function combined with the switching system in the last constraint is in abs-linear form; cf. Equation (<a href="#b_9783111376776-007_eq_002" class="xref">7.1</a>). For later use, we define <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="H:ℝn→ℝp" altimg="images/b_9783111376776-007_ineq_028.png"><mi mathvariant="italic">H</mi><mo>:</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">n</mi></mrow></msup><mo stretchy="false">→</mo><msup><mrow><mi mathvariant="double-struck">R</mi></mrow><mrow><mi mathvariant="italic">p</mi></mrow></msup></math></span></span>, <span class="inline-formula webbook-style-unbold webbook-style-not-italic"><span class="alternatives"><math alttext="" altimg="images/b_9783111376776-007_ineq_029.png"><mo mathvariant="normal" fence="true" stretchy="false">(</mo><mi mathvariant="italic">x</mi><mo mathvariant="normal">,</mo><mi mathvariant="italic">z</mi><mo mathvariant="normal">,</mo><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo><mo mathvariant="normal" fence="true" stretchy="false">)</mo><mo>↦</mo><mi mathvariant="italic">h</mi><mo>+</mo><mi mathvariant="italic">D</mi><mi mathvariant="italic">x</mi><mo>+</mo><mi mathvariant="italic">E</mi><mi mathvariant="italic">z</mi><mo>+</mo><mi mathvariant="italic">F</mi><mo stretchy="false">|</mo><mi mathvariant="italic">z</mi><mo stretchy="false">|</mo></math></span></span>.</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">It is important to note that for the application of the algorithm proposed in this paper the user does not have to state the function evaluation in the form (<a href="#b_9783111376776-007_eq_005" class="xref">CALOP</a>), since correspondingly adapted AD tools like ADOL-C [<a href="9783111375854_042422-6.html#b_9783111376776-007_ref_007" class="xref" id="xref_d28617e79479">7</a>] can generate this representation from a given code segment evaluating the piecewise target function and the piecewise linear (in)equality constraints.</p> 
+            <p class="indent webbook-style-left webbook-style-text-indent-2">The remainder of the paper is organized as follows: In Section <a href="9783111375854_042422-4.html#b_9783111376776-007_s_002" class="xref">2</a>, the ASM is extended to cover also PL constrained optimization problems of the form (<a href="#b_9783111376776-007_eq_005" class="xref">CALOP</a>) as one main contribution of the paper. This includes also a statement on finite convergence for the new algorithm. Numerical results for different test problems are presented in Section <a href="9783111375854_042422-5.html#b_9783111376776-007_s_009" class="xref">3</a>. Finally, the paper concludes with a summary and an outlook in Section <a href="9783111375854_042422-6.html#b_9783111376776-007_s_010" class="xref">4</a>.</p> 
+          </section> 
+          </main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="9783111375854_042422-2.html" rel="prev" title="Previous: Acknowledgement" aria-label="Previous: Acknowledgement">Previous</a>
+        <a id="webbook-next-document" href="9783111375854_042422-4.html" title="Next: 2 The constrained active signature method" aria-label="Next: 2 The constrained active signature method" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

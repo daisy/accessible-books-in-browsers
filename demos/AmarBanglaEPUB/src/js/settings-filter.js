@@ -1,7 +1,7 @@
 // Find a setting: a filter at the top of Settings (user, 2026-11-13: "the settings are getting long").
 // Typing narrows the panel to the settings whose label, choices, group or section match every word;
 // a section whose title matches shows whole. It only hides what doesn't match, with its own class,
-// so a setting the panel hides for its own reasons (custom colours, a horizontal book's Writing
+// so a setting the panel hides for its own reasons (custom colors, a horizontal book's Writing
 // direction) stays hidden. The number found is announced politely; Escape clears the filter before it
 // closes the panel; closing the panel clears it.
 const INPUT_ID = 'webbook-settings-filter';
