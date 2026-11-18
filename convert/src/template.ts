@@ -6,8 +6,10 @@ import { collapseWhitespace, type SiteModel, type SitePage } from './model.js';
 import type { TransformedContent } from './content-transform.js';
 import * as fileio from './file-io.js';
 import { validateTemplateContract } from './template-contract.js';
+import { GENERIC_BOOK_FAVICON, type BookFavicon } from './favicon.js';
 
 export type RenderOptions = {
+    favicon?: BookFavicon;
     // The source EPUB's accessibility claims, for the About panel
     accessibility?: AccessibilitySection[];
     publisherHref?: string;
@@ -46,6 +48,13 @@ class TemplateRenderer {
         options: RenderOptions
     ): string {
         const doc = this.cloneTemplateDocument();
+        const icons = Array.from(doc.querySelectorAll<HTMLLinkElement>('link[rel~="icon"]'));
+        const icon = icons.shift() ?? doc.createElement('link');
+        icons.forEach(link => link.remove());
+        const favicon = options.favicon ?? GENERIC_BOOK_FAVICON;
+        icon.rel = 'icon'; icon.href = favicon.href; icon.type = favicon.type;
+        icon.setAttribute('sizes', favicon.sizes);
+        if (!icon.parentNode) doc.head.append(icon);
         doc.documentElement.setAttribute('lang', site.metadata.language);
         if (options.hasPublished) doc.documentElement.setAttribute('data-webbook-has-published', '');
         if (options.publisherHref) {

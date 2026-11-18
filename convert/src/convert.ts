@@ -5,6 +5,7 @@ import * as epubParser from './epubParser/index.js';
 import * as logger from './logger/index.js';
 import { ImageAssetRegistry, copyImageAssets, copyUiAssets, writeServiceWorkerStub } from './assets.js';
 import { TemplateRenderer } from './template.js';
+import { createBookFavicon } from './favicon.js';
 import { buildSiteModel } from './model.js';
 import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
 import { openAudioCache } from './audio-cache.js';
@@ -97,6 +98,7 @@ async function convert(input: string, output: string, template: string, options:
 
         await copyUiAssets(template, outputPaths);
         await writeServiceWorkerStub(outputPaths);
+        const favicon = await createBookFavicon(site.metadata.coverPath, outputPaths);
 
         // Read ahead, so every page's table of contents can mark the narrated pages
         const mediaSegmentsByPage = new Map<string, MediaSegment[]>(site.pages.map(page => [page.outputFilename, []]));
@@ -165,6 +167,7 @@ async function convert(input: string, output: string, template: string, options:
             pageAudioSources.set(page.outputFilename, { audio: result.audio, bodyHtml: result.content.bodyHtml });
             const html = renderer.renderPage(site, page, result.content, result.audio, {
                 coverHref: coverAsset?.href ?? '',
+                favicon,
                 narratedPages,
                 accessibility,
                 publisherHref,

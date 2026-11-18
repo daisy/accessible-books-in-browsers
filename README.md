@@ -332,3 +332,5 @@ once per page. By default it uses the small speech encoding; `--no-small-audio` 
 source-matched channel, sample-rate and bitrate settings instead.
 Audio cleanup never changes the PCM-derived page or cue duration. The conversion report includes
 pre-cleanup loudness, peaks, quiet-stretch levels, clipping findings, and the applied filters.
+
+Converted books get a small favicon made from the cover (a 64 × 64 PNG, preserving its proportions). Books without a usable cover use a generic book icon. Favicons are included in offline saves.
