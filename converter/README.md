@@ -13,7 +13,7 @@ How it works:
   - basic EPUB checks, plus a confirmation that the EPUB passes EPUBCheck, which can't run in a
     browser;
   - the converter's options;
-  - a preview of one chapter, optionally with its first 5 minutes of narration only;
+  - a preview of one of the book’s content documents (often a chapter), optionally with its first 5 minutes of narration only;
   - the whole book, as a zip download.
 - Computers only: narrated books need more memory than phones and tablets have.
 

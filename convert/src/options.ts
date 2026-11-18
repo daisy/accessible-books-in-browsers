@@ -3,6 +3,9 @@
 // it, so a new option or a changed default appears in both. Each option says how it appears on the
 // web page, or why it doesn't. No Node imports: the browser converter bundles this file.
 
+// The reader update channel the converter uses: one channel per reader contract (v0 for contract 0)
+export const UI_CHANNEL_VERSION = 'v0';
+
 export type WebGroup = 'reader' | 'narration' | 'pages' | 'advanced';
 
 export type WebControl =
@@ -74,12 +77,12 @@ export const CONVERTER_OPTIONS: ConverterOption[] = [
         key: 'audioCleanup', flag: '--audio-cleanup', defaultValue: true,
         help: 'Smooth joins, remove rumble, and normalize narration loudness',
         negation: { flag: '--no-audio-cleanup', help: 'Do not smooth joins, remove rumble, or normalize narration loudness' },
-        web: { kind: 'checkbox', group: 'narration', label: 'Clean up the narration', hint: 'Always: smooths the joins between clips, removes low rumble, softens “p” and “b” pops and evens out loudness.' }
+        web: { kind: 'checkbox', group: 'narration', label: 'Clean up the narration', hint: 'Smooths the joins between clips, removes low rumble, softens “p” and “b” pops and evens out loudness. Untick to keep the narration as recorded.' }
     },
     {
         key: 'audioEnhance', flag: '--audio-enhance <list>',
         help: 'Comma-separated narration filters: warm-eq, compression, noise, deess, declick (default: all), or none',
-        web: { kind: 'list', group: 'narration', parent: 'audioCleanup', label: 'Extra enhancements', hint: 'Optional, on top of the cleanup. Untick them all to clean up without changing the voice’s tone.', items: AUDIO_ENHANCEMENT_LABELS }
+        web: { kind: 'list', group: 'narration', parent: 'audioCleanup', label: 'Extra enhancements', hint: 'Optional, on top of the cleanup, and only with it. Untick them all to clean up without changing the voice’s tone.', items: AUDIO_ENHANCEMENT_LABELS }
     },
     {
         key: 'headingTitles', flag: '--heading-titles', defaultValue: true,
@@ -111,16 +114,16 @@ export const CONVERTER_OPTIONS: ConverterOption[] = [
     // Reader updates from the beta channel by default, never silently (user, 2026-11-17)
     {
         key: 'remoteUi', flag: '--remote-ui', defaultValue: true,
-        help: 'Use the beta reader-update channel (default); keep the source EPUB',
+        help: `Get reader updates from the ${UI_CHANNEL_VERSION} update channel (default); keep the source EPUB`,
         negation: { flag: '--no-remote-ui', help: 'Choose a fixed bundled reader instead of receiving channel updates' },
         web: { kind: 'choice', group: 'reader', label: 'Reader updates', hint: '', choices: [
-            { value: true, label: 'Keep the reader up to date (recommended)', hint: 'The book loads the latest reader from this project’s beta channel when it’s online, and uses its own copy when it isn’t, or if the channel is unavailable. The channel’s address may change during the beta.' },
+            { value: true, label: 'Keep the reader up to date (recommended)', hint: `The book loads the latest reader from the ${UI_CHANNEL_VERSION} update channel when it’s online, and uses its own copy when it isn’t, or if the channel is unavailable. The channel’s address may change during the beta.` },
             { value: false, label: 'Always use the reader included in the book', hint: 'The book never loads anything from elsewhere. It keeps today’s reader; newer features need converting again.' }
         ] }
     },
     {
         key: 'uiBaseUrl', flag: '--ui-base-url <url>',
-        help: 'Beta UI channel directory URL; also enables remote UI',
-        web: { omitted: 'The page always uses this project’s beta channel.' }
+        help: 'Get reader updates from this update channel (a directory URL) instead',
+        web: { omitted: `The page always uses the ${UI_CHANNEL_VERSION} update channel.` }
     }
 ];

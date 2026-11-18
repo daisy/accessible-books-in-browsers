@@ -48,12 +48,15 @@ details[open] summary { margin-bottom: .6rem; }
 .file { display: block; border: 2px dashed var(--border); border-radius: .5rem; padding: 1rem; cursor: pointer; }
 .file:focus-within, .file:hover { border-color: var(--accent); }
 .file-label { display: block; font-weight: 700; }
-.file input { margin-top: .5rem; font: inherit; max-width: 100%; }
+.file-hint { display: block; color: var(--muted); font-size: .95rem; margin-top: .15rem; }
+.file input { display: block; margin-top: .75rem; font: inherit; max-width: 100%; }
 .file input::file-selector-button { font: inherit; font-weight: 600; padding: .45rem 1rem; margin-right: .75rem; border-radius: .4rem; border: 1px solid var(--accent); background: var(--surface); color: var(--accent); cursor: pointer; }
-.book-info { margin-top: 1rem; }
-.book-info dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; margin: 0; }
-.book-info dt { font-weight: 600; }
+.book-info { margin-top: 1rem; padding: .75rem 1rem; border-radius: .5rem; background: var(--notice); }
+.book-info dl { display: grid; grid-template-columns: auto 1fr; gap: .3rem 1.25rem; margin: 0; }
+.book-info dt { color: var(--muted); }
 .book-info dd { margin: 0; overflow-wrap: anywhere; }
+.book-info .hint { margin: .5rem 0 0; }
+.check.confirm { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
 button, .button { display: inline-block; font: inherit; font-weight: 700; padding: .65rem 1.4rem; border-radius: .45rem; border: 2px solid var(--accent); background: var(--accent); color: var(--accent-fg); cursor: pointer; text-decoration: none; }
 button.secondary { background: transparent; color: var(--accent); margin-top: 1rem; }
 button:disabled { opacity: .55; cursor: not-allowed; }

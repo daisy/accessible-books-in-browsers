@@ -27179,6 +27179,7 @@ async function crossPageReferencedIds(site) {
 
 // ../convert/build/options.js
 init_globals();
+var UI_CHANNEL_VERSION = "v0";
 var AUDIO_ENHANCEMENT_LABELS = [
   { value: "warm-eq", label: "Warm tone (gentle equalizer)" },
   { value: "compression", label: "Compression (steadier volume)" },
@@ -27226,13 +27227,13 @@ var CONVERTER_OPTIONS = [
     defaultValue: true,
     help: "Smooth joins, remove rumble, and normalize narration loudness",
     negation: { flag: "--no-audio-cleanup", help: "Do not smooth joins, remove rumble, or normalize narration loudness" },
-    web: { kind: "checkbox", group: "narration", label: "Clean up the narration", hint: "Always: smooths the joins between clips, removes low rumble, softens \u201Cp\u201D and \u201Cb\u201D pops and evens out loudness." }
+    web: { kind: "checkbox", group: "narration", label: "Clean up the narration", hint: "Smooths the joins between clips, removes low rumble, softens \u201Cp\u201D and \u201Cb\u201D pops and evens out loudness. Untick to keep the narration as recorded." }
   },
   {
     key: "audioEnhance",
     flag: "--audio-enhance <list>",
     help: "Comma-separated narration filters: warm-eq, compression, noise, deess, declick (default: all), or none",
-    web: { kind: "list", group: "narration", parent: "audioCleanup", label: "Extra enhancements", hint: "Optional, on top of the cleanup. Untick them all to clean up without changing the voice\u2019s tone.", items: AUDIO_ENHANCEMENT_LABELS }
+    web: { kind: "list", group: "narration", parent: "audioCleanup", label: "Extra enhancements", hint: "Optional, on top of the cleanup, and only with it. Untick them all to clean up without changing the voice\u2019s tone.", items: AUDIO_ENHANCEMENT_LABELS }
   },
   {
     key: "headingTitles",
@@ -27273,18 +27274,18 @@ var CONVERTER_OPTIONS = [
     key: "remoteUi",
     flag: "--remote-ui",
     defaultValue: true,
-    help: "Use the beta reader-update channel (default); keep the source EPUB",
+    help: `Get reader updates from the ${UI_CHANNEL_VERSION} update channel (default); keep the source EPUB`,
     negation: { flag: "--no-remote-ui", help: "Choose a fixed bundled reader instead of receiving channel updates" },
     web: { kind: "choice", group: "reader", label: "Reader updates", hint: "", choices: [
-      { value: true, label: "Keep the reader up to date (recommended)", hint: "The book loads the latest reader from this project\u2019s beta channel when it\u2019s online, and uses its own copy when it isn\u2019t, or if the channel is unavailable. The channel\u2019s address may change during the beta." },
+      { value: true, label: "Keep the reader up to date (recommended)", hint: `The book loads the latest reader from the ${UI_CHANNEL_VERSION} update channel when it\u2019s online, and uses its own copy when it isn\u2019t, or if the channel is unavailable. The channel\u2019s address may change during the beta.` },
       { value: false, label: "Always use the reader included in the book", hint: "The book never loads anything from elsewhere. It keeps today\u2019s reader; newer features need converting again." }
     ] }
   },
   {
     key: "uiBaseUrl",
     flag: "--ui-base-url <url>",
-    help: "Beta UI channel directory URL; also enables remote UI",
-    web: { omitted: "The page always uses this project\u2019s beta channel." }
+    help: "Get reader updates from this update channel (a directory URL) instead",
+    web: { omitted: `The page always uses the ${UI_CHANNEL_VERSION} update channel.` }
   }
 ];
 

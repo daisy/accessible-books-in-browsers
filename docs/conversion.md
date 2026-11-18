@@ -277,8 +277,8 @@ ffmpeg.wasm does the fades, joins, cleanup and encode. The results and measureme
 The converter page offers every option above except the audio cache and the optional checks (Reader
 updates, the UI channel, is always shown and starts on the channel), asks
 the person converting to confirm the EPUB passes EPUBCheck (the browser can't run it), and works in
-two steps: a **preview** of one chapter, converted from a copy of the EPUB whose reading order is
-just that chapter and shown on the page, then the **whole book**, offered as a zip of the files to
+two steps: a **preview** of one of the book's content documents (often a chapter), converted from a copy
+of the EPUB whose reading order is just that document and shown on the page, then the **whole book**, offered as a zip of the files to
 put on any website. Nothing is kept in the browser. A preview can stop the narration after its first
 5 minutes (the default), keeping only the phrases that start within them, so it converts in seconds
 instead of as long as the chapter's narration.

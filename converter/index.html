@@ -13,18 +13,19 @@
   <p class="lede">Turn an accessible EPUB, including a narrated one, into a web book that reads in any browser, with highlighted narration, search, bookmarks and offline reading.</p>
 </header>
 <main>
+  <div class="notice warning" id="device-notice" role="alert" hidden>
+    <p><strong>Converting needs a computer.</strong> This device looks like a phone or tablet, which doesn’t have enough memory to convert a book. Open this page on a computer instead.</p>
+  </div>
+  
   <div class="notice" role="note">
     <h2>Before you start</h2>
     <ul>
-      <li><strong>Your book stays on this computer.</strong> Converting happens in this page; nothing is uploaded.</li>
-      <li><strong>This is a beta.</strong> Converted books may need converting again from the EPUB when the format changes, so keep your EPUB files.</li>
-      <li><strong>Preview first.</strong> Convert one chapter and read and listen to it here, then convert the whole book. The result is a zip of the web book’s files, to put on any website.</li>
-      <li><strong>Use a computer.</strong> Narrated books need more memory than phones and tablets have. Narration takes about 2½ seconds per minute of audio: a 6-hour book takes about 15 minutes.</li>
+      <li><strong>Your book stays on this computer.</strong> Nothing is uploaded.</li>
+      <li><strong>This is a beta.</strong> Your feedback is valuable.</li>
+      <li><strong>Keep your EPUBs</strong> You may want to reconvert them in the future as the converter improves.</li>
+      <li><strong>Preview first.</strong> Convert one of the book’s content documents and read and listen to it here, then convert the whole book. The result is a zip of the web book’s files, to put on any website.</li>
+      <li><strong>Use a computer.</strong> Narrated books need more memory than phones and tablets have.</li>
     </ul>
-  </div>
-
-  <div class="notice warning" id="device-notice" role="alert" hidden>
-    <p><strong>Converting needs a computer.</strong> This device looks like a phone or tablet, which doesn’t have enough memory to convert a book. Open this page on a computer instead.</p>
   </div>
 
   <form id="convert-form" novalidate>
@@ -54,22 +55,22 @@
     </section>
 
     <section aria-labelledby="preview-heading">
-      <h2 id="preview-heading"><span class="step" aria-hidden="true">3</span> Preview a chapter</h2>
-      <p class="hint">Convert one chapter with these options, and read and listen to it here. Links to other chapters won’t work in the preview.</p>
+      <h2 id="preview-heading"><span class="step" aria-hidden="true">3</span> Preview a content document</h2>
+      <p class="hint">Convert one of the book’s content documents with these options, and read and listen to it here. A book’s content documents are often its chapters. Links to other content documents won’t work in the preview.</p>
       <div class="field">
-        <label for="chapter">Chapter</label>
+        <label for="chapter">Content document</label>
         <select id="chapter" disabled aria-describedby="chapter-hint"></select>
         <p class="hint" id="chapter-hint">Choose an EPUB first.</p>
       </div>
       <div class="check">
         <input type="checkbox" id="preview-short" checked aria-describedby="preview-short-hint">
         <label for="preview-short">Only the first 5 minutes of narration (quicker)</label>
-        <p class="hint" id="preview-short-hint">The whole chapter’s text, with narration that stops after about 5 minutes. Untick to hear the whole chapter; the preview then takes about as long as converting that much narration.</p>
+        <p class="hint" id="preview-short-hint">The whole content document’s text, with narration that stops after about 5 minutes. Untick to hear all of it; the preview then takes about as long as converting that much narration.</p>
       </div>
-      <button type="button" id="preview-button" class="secondary-solid">Preview this chapter</button>
+      <button type="button" id="preview-button" class="secondary-solid">Preview this content document</button>
       <div id="preview-area" hidden>
         <p id="preview-summary"></p>
-        <iframe id="preview-frame" title="Preview of the chapter"></iframe>
+        <iframe id="preview-frame" title="Preview of the content document"></iframe>
         <p><a id="preview-open" target="_blank" rel="noopener">Open the preview in a new tab</a></p>
       </div>
     </section>

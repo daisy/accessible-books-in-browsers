@@ -16,8 +16,12 @@ function loadTemplate() {
         fetch('dist/template.json').then(r => r.json()).then(files => {
             for (const [rel, b64] of Object.entries(files)) vfs.writeFileSync(`/template/${rel}`, Uint8Array.from(atob(b64), c => c.charCodeAt(0)));
         }),
-        // The converter reads its version from its package.json, next to its build
-        fetch('dist/converter-package.json').then(r => r.text()).then(text => vfs.writeFileSync('/package.json', text))
+        // The converter reads its version from the package.json above its own module (convert.ts:
+        // new URL('../package.json', import.meta.url)). In the bundle that's relative to
+        // dist/converter.js, so its path depends on where the page is hosted: /package.json at a
+        // server's root, /accessible-books-in-browsers/converter/package.json on GitHub Pages.
+        fetch('dist/converter-package.json').then(r => r.text()).then(text =>
+            vfs.writeFileSync(decodeURIComponent(new URL('../package.json', new URL('dist/converter.js', document.baseURI)).pathname), text))
     ]);
     return templateLoaded;
 }
@@ -166,9 +170,9 @@ function initPage() {
             return;
         }
         book = { file, bytes, check };
-        const rows = [['Title', check.book.title], ['Language', check.book.language], ['Pages', String(check.book.pages)],
+        const rows = [['Title', check.book.title], ['Language', check.book.language],
             ['Narration', check.book.narrationSeconds ? minutesText(check.book.narrationSeconds) : 'none'],
-            ['Converting the whole book takes', `${estimateText(check.book.narrationSeconds)} on a recent computer`]];
+            ['Conversion time', `${estimateText(check.book.narrationSeconds)} on a recent computer`]];
         const dl = document.createElement('dl');
         for (const [term, value] of rows) { const dt = document.createElement('dt'), dd = document.createElement('dd'); dt.textContent = term; dd.textContent = value; dl.append(dt, dd); }
         info.append(dl);
@@ -188,7 +192,8 @@ function initPage() {
         const first = chapters.find(chapter => chapter.narrated) ?? chapters[0];
         if (first) chapterSelect.value = String(first.index);
         chapterSelect.disabled = !chapters.length;
-        $('chapter-hint').textContent = narrated ? 'The first narrated chapter is chosen; pick any other.' : 'This book has no narration.';
+        $('chapter-hint').textContent = chapters.length === 1 ? 'This book is a single content document, so the preview is the whole book.'
+            : narrated ? 'The first narrated content document is chosen; pick any other.' : 'This book has no narration.';
     });
 
     const options = readOptions;
@@ -212,7 +217,7 @@ function initPage() {
         if (!chosen) return;
         if (!previewAvailable()) { fail('Previews need a secure page (https or localhost) with browser storage turned on. You can still convert the whole book.'); return; }
         const chapter = book.check.book.chapters.find(item => String(item.index) === chapterSelect.value);
-        if (!chapter) { fail('Choose a chapter to preview.', chapterSelect); return; }
+        if (!chapter) { fail('Choose a content document to preview.', chapterSelect); return; }
         // A preview of the book under its own ID would share the book's saved reading positions
         const identifier = `${chosen.identifier || book.check.book.identifier} (preview)`;
         // Partial narration (user, 2026-11-17): the first 5 minutes, unless the person asks for all of it
