@@ -24,11 +24,16 @@ function loadTemplate() {
 
 // The beta reader channel (plan 11)
 const UI_CHANNEL = 'https://daisy.github.io/accessible-books-in-browsers/v0/';
-// The command line's defaults (convert/src/index.ts)
-export const CLI_DEFAULTS = { smallAudio: true, audioCleanup: true, audioEnhance: ['warm-eq', 'compression', 'noise', 'deess', 'declick'], headingTitles: true, publisherStyles: true, includeNonLinear: false, splitChapters: true };
+// The converter's options, listed once in convert/src/options.ts: the command line and this page's
+// form both come from it. Defaults are the command line's.
+const OPTIONS = globalThis.spike.options, OPTION_GROUPS = globalThis.spike.optionGroups;
+export const CLI_DEFAULTS = Object.fromEntries(OPTIONS.flatMap(option =>
+    option.web.kind === 'list' ? [[option.key, option.web.items.map(item => item.value)]]
+        : typeof option.defaultValue === 'boolean' ? [[option.key, option.defaultValue]] : []));
 // Converts EPUB bytes; returns the output as { path: Uint8Array }
 export async function convertBytes(bytes, options = {}, fileName = 'book.epub') {
     options = { ...CLI_DEFAULTS, ...options, audioCache: false };
+    if (options.remoteUi && !options.uiBaseUrl) options.uiBaseUrl = UI_CHANNEL;
     await loadTemplate();
     vfs.removeSync('/in'); vfs.removeSync('/out');
     // The converter records the EPUB's file name in the report and each page, so keep the person's own
@@ -46,13 +51,76 @@ globalThis.convertBytes = convertBytes;
 const form = document.getElementById('convert-form');
 if (form) initPage();
 
+// The option controls, built from the options list: fieldsets with legends, labelled checkboxes,
+// radio buttons and text fields, and hints tied to them with aria-describedby
+function buildOptionForm(container) {
+    const el = (tag, props = {}, ...children) => { const node = Object.assign(document.createElement(tag), props); node.append(...children); return node; };
+    const hint = (id, text) => el('p', { className: 'hint', id, textContent: text });
+    const check = (type, id, name, checked, label, hintText, value) => {
+        const input = el('input', { type, id, name: name ?? '', checked });
+        if (value !== undefined) input.value = String(value);
+        const row = el('div', { className: 'check' }, input, el('label', { htmlFor: id, textContent: label }));
+        if (hintText) { input.setAttribute('aria-describedby', id + '-hint'); row.append(hint(id + '-hint', hintText)); }
+        return row;
+    };
+    const control = option => {
+        const web = option.web;
+        if (web.kind === 'checkbox') return [check('checkbox', option.key, null, option.defaultValue === true, web.label, web.hint)];
+        if (web.kind === 'choice') return web.choices.map(choice => check('radio', `${option.key}-${choice.value ? 'yes' : 'no'}`, option.key,
+            choice.value === (option.defaultValue === true), choice.label, choice.hint, choice.value));
+        if (web.kind === 'text') {
+            const input = el('input', { type: 'text', id: option.key, autocomplete: 'off', spellcheck: false });
+            input.setAttribute('aria-describedby', `${option.key}-hint ${option.key}-error`);
+            return [el('div', { className: 'field' }, el('label', { htmlFor: option.key, textContent: web.label }), hint(option.key + '-hint', web.hint), input,
+                el('p', { className: 'field-error', id: option.key + '-error' }))];
+        }
+        if (web.kind === 'list') {
+            const set = el('fieldset', { id: option.key + '-items', className: 'nested' }, el('legend', { textContent: web.label }), hint(option.key + '-items-hint', web.hint));
+            set.setAttribute('aria-describedby', option.key + '-items-hint');
+            for (const item of web.items) set.append(check('checkbox', `${option.key}-${item.value}`, null, true, item.label, '', item.value));
+            return [set];
+        }
+        return [];
+    };
+    for (const group of OPTION_GROUPS) {
+        const members = OPTIONS.filter(option => !('omitted' in option.web) && option.web.group === group.id);
+        if (!members.length) continue;
+        const parts = members.flatMap(control);
+        if (group.id === 'advanced') { container.append(el('details', {}, el('summary', { textContent: group.legend }), ...parts)); continue; }
+        const set = el('fieldset', { id: 'group-' + group.id }, el('legend', { textContent: group.legend }));
+        if (group.hint) { set.append(hint(`group-${group.id}-hint`, group.hint)); set.setAttribute('aria-describedby', `group-${group.id}-hint`); }
+        if (group.id === 'narration') set.append(Object.assign(hint('no-narration', 'This book has no narration, so these don’t apply.'), { hidden: true }));
+        set.append(...parts);
+        container.append(set);
+    }
+}
+
+// The chosen options, read from the form the same way it was built; the language is checked
+function readOptions() {
+    const result = {};
+    for (const option of OPTIONS) {
+        const web = option.web, control = document.getElementById(option.key);
+        if ('omitted' in web) continue;
+        if (web.kind === 'checkbox') result[option.key] = control.checked;
+        else if (web.kind === 'choice') result[option.key] = document.querySelector(`input[name="${option.key}"]:checked`)?.value === 'true';
+        else if (web.kind === 'text') { const value = control.value.trim(); if (value) result[option.key] = value; }
+        else if (web.kind === 'list') result[option.key] = document.getElementById(web.parent).checked
+            ? web.items.filter(item => document.getElementById(`${option.key}-${item.value}`).checked).map(item => item.value) : [];
+    }
+    if (result.language) result.language = Intl.getCanonicalLocales(result.language)[0];   // throws on a bad tag
+    // Reader updates (user, 2026-11-17): the beta channel unless the person chooses the bundled reader
+    if (result.remoteUi) result.uiBaseUrl = UI_CHANNEL;
+    return result;
+}
+
 function initPage() {
     const $ = id => document.getElementById(id);
+    buildOptionForm($('option-groups'));
     const fileInput = $('book'), info = $('book-info'), checkErrors = $('check-errors');
     const status = $('status'), errorBox = $('error');
     const progressSection = $('progress-section'), progress = $('progress'), progressDetail = $('progress-detail');
     const result = $('result'), download = $('download'), report = $('report');
-    const cleanup = $('audioCleanup'), enhancements = $('enhancements');
+    const cleanup = $('audioCleanup'), enhancements = $('audioEnhance-items');
     const confirmBox = $('confirm-valid'), confirmError = $('confirm-error');
     const language = $('language'), languageError = $('language-error');
     const chapterSelect = $('chapter'), previewArea = $('preview-area'), previewFrame = $('preview-frame');
@@ -108,7 +176,7 @@ function initPage() {
         info.hidden = false;
         const narrated = check.book.narrationSeconds > 0;
         $('no-narration').hidden = narrated;
-        for (const element of $('narration-options').querySelectorAll('input')) element.disabled = !narrated || (element.closest('#enhancements') && !cleanup.checked);
+        for (const element of $('group-narration').querySelectorAll('input')) element.disabled = !narrated || (element.closest('#audioEnhance-items') && !cleanup.checked);
         // The chapters to preview: the first narrated one is chosen, so a narrated book previews its narration
         const chapters = check.book.chapters.filter(chapter => chapter.linear);
         for (const chapter of chapters) {
@@ -123,17 +191,7 @@ function initPage() {
         $('chapter-hint').textContent = narrated ? 'The first narrated chapter is chosen; pick any other.' : 'This book has no narration.';
     });
 
-    function options() {
-        const audioEnhance = cleanup.checked ? [...enhancements.querySelectorAll('input:checked')].map(input => input.value) : [];
-        // Reader updates (user, 2026-11-17): the beta channel unless the person chooses the bundled reader
-        const channel = $('ui-channel').checked ? { remoteUi: true, uiBaseUrl: UI_CHANNEL } : { remoteUi: false };
-        const result = { ...channel, smallAudio: $('smallAudio').checked, audioCleanup: cleanup.checked, audioEnhance, publisherStyles: $('publisherStyles').checked, headingTitles: $('headingTitles').checked, splitChapters: $('splitChapters').checked, includeNonLinear: $('includeNonLinear').checked };
-        const tag = language.value.trim();
-        if (tag) result.language = Intl.getCanonicalLocales(tag)[0];
-        const id = $('identifier').value.trim();
-        if (id) result.identifier = id;
-        return result;
-    }
+    const options = readOptions;
 
     function fail(message, focusTarget) {
         errorBox.replaceChildren(Object.assign(document.createElement('p'), { textContent: message }));

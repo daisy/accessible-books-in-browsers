@@ -49,83 +49,8 @@
       <h2 id="options-heading"><span class="step" aria-hidden="true">2</span> Options</h2>
       <p class="hint">The defaults suit most books.</p>
 
-      <fieldset id="reader-updates" aria-describedby="reader-updates-hint">
-        <legend>Reader updates</legend>
-        <p class="hint" id="reader-updates-hint">How the book gets the reader: the toolbars, settings, narration controls and so on. The book’s text never changes.</p>
-        <div class="check">
-          <input type="radio" name="ui" id="ui-channel" value="channel" checked aria-describedby="ui-channel-hint">
-          <label for="ui-channel">Keep the reader up to date (recommended)</label>
-          <p class="hint" id="ui-channel-hint">The book loads the latest reader from this project’s beta channel when it’s online, and uses its own copy when it isn’t, or if the channel is unavailable. The channel’s address may change during the beta.</p>
-        </div>
-        <div class="check">
-          <input type="radio" name="ui" id="ui-bundled" value="bundled" aria-describedby="ui-bundled-hint">
-          <label for="ui-bundled">Always use the reader included in the book</label>
-          <p class="hint" id="ui-bundled-hint">The book never loads anything from elsewhere. It keeps today’s reader; newer features need converting again.</p>
-        </div>
-      </fieldset>
-
-      <fieldset id="narration-options">
-        <legend>Narration</legend>
-        <p class="hint" id="no-narration" hidden>This book has no narration, so these don’t apply.</p>
-        <div class="check">
-          <input type="checkbox" id="smallAudio" checked aria-describedby="smallAudio-hint">
-          <label for="smallAudio">Smaller audio files</label>
-          <p class="hint" id="smallAudio-hint">Mono MP3 at 24 kHz and 32 kb/s: quicker to download and save offline. Turn off to keep the narration’s own quality.</p>
-        </div>
-        <div class="check">
-          <input type="checkbox" id="audioCleanup" checked aria-describedby="audioCleanup-hint">
-          <label for="audioCleanup">Clean up the narration</label>
-          <p class="hint" id="audioCleanup-hint">Always: smooths the joins between clips, removes low rumble, softens “p” and “b” pops and evens out loudness.</p>
-        </div>
-        <fieldset id="enhancements" class="nested" aria-describedby="enhancements-hint">
-          <legend>Extra enhancements</legend>
-          <p class="hint" id="enhancements-hint">Optional, on top of the cleanup. Untick them all to clean up without changing the voice’s tone.</p>
-          <div class="check"><input type="checkbox" id="enh-warm-eq" value="warm-eq" checked><label for="enh-warm-eq">Warm tone (gentle equaliser)</label></div>
-          <div class="check"><input type="checkbox" id="enh-compression" value="compression" checked><label for="enh-compression">Compression (steadier volume)</label></div>
-          <div class="check"><input type="checkbox" id="enh-noise" value="noise" checked><label for="enh-noise">Noise reduction</label></div>
-          <div class="check"><input type="checkbox" id="enh-deess" value="deess" checked><label for="enh-deess">De-essing (softer “s” sounds)</label></div>
-          <div class="check"><input type="checkbox" id="enh-declick" value="declick" checked><label for="enh-declick">Click removal</label></div>
-        </fieldset>
-      </fieldset>
-
-      <fieldset>
-        <legend>Appearance and pages</legend>
-        <div class="check">
-          <input type="checkbox" id="publisherStyles" checked aria-describedby="publisherStyles-hint">
-          <label for="publisherStyles">Include the publisher’s styles</label>
-          <p class="hint" id="publisherStyles-hint">Readers can switch each book between their own settings and the book as published.</p>
-        </div>
-        <div class="check">
-          <input type="checkbox" id="headingTitles" checked aria-describedby="headingTitles-hint">
-          <label for="headingTitles">Title pages by their headings</label>
-          <p class="hint" id="headingTitles-hint">When every page has the book title as its own title, change the page title to be the first heading on that page.</p>
-        </div>
-        <div class="check">
-          <input type="checkbox" id="splitChapters" checked aria-describedby="splitChapters-hint">
-          <label for="splitChapters">Split long documents into chapters</label>
-          <p class="hint" id="splitChapters-hint">Where the table of contents points to places inside one document, make a page for each. Untick to keep each document as one page.</p>
-        </div>
-      </fieldset>
-
-      <details>
-        <summary>Advanced</summary>
-        <div class="check">
-          <input type="checkbox" id="includeNonLinear" aria-describedby="includeNonLinear-hint">
-          <label for="includeNonLinear">Include non-linear pages in the reading order</label>
-          <p class="hint" id="includeNonLinear-hint">Pages the EPUB marks as outside the main reading order, such as answer keys or pop-ups.</p>
-        </div>
-        <div class="field">
-          <label for="language">Language</label>
-          <p class="hint" id="language-hint">Leave empty to use the book’s own. A language tag such as <code>en</code>, <code>fr-CA</code> or <code>bn</code>.</p>
-          <input type="text" id="language" autocomplete="off" spellcheck="false" aria-describedby="language-hint language-error">
-          <p class="field-error" id="language-error"></p>
-        </div>
-        <div class="field">
-          <label for="identifier">Book ID</label>
-          <p class="hint" id="identifier-hint">Leave empty to use the EPUB’s identifier. Reading positions and bookmarks are kept per book ID, so keep it the same when you convert the book again.</p>
-          <input type="text" id="identifier" autocomplete="off" spellcheck="false" aria-describedby="identifier-hint">
-        </div>
-      </details>
+      <!-- Built by page.js from the converter's option list (convert/src/options.ts) -->
+      <div id="option-groups"></div>
     </section>
 
     <section aria-labelledby="preview-heading">

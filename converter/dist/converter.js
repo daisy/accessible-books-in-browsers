@@ -27177,9 +27177,120 @@ async function crossPageReferencedIds(site) {
   return new Map(Array.from(result, ([output2, ids]) => [output2, Array.from(ids)]));
 }
 
+// ../convert/build/options.js
+init_globals();
+var AUDIO_ENHANCEMENT_LABELS = [
+  { value: "warm-eq", label: "Warm tone (gentle equaliser)" },
+  { value: "compression", label: "Compression (steadier volume)" },
+  { value: "noise", label: "Noise reduction" },
+  { value: "deess", label: "De-essing (softer \u201Cs\u201D sounds)" },
+  { value: "declick", label: "Click removal" }
+];
+var WEB_GROUPS = [
+  { id: "reader", legend: "Reader updates", hint: "How the book gets the reader: the toolbars, settings, narration controls and so on. The book\u2019s text never changes." },
+  { id: "narration", legend: "Narration" },
+  { id: "pages", legend: "Appearance and pages" },
+  { id: "advanced", legend: "Advanced" }
+];
+var CONVERTER_OPTIONS = [
+  {
+    key: "includeNonLinear",
+    flag: "--include-non-linear",
+    help: 'Include OPF spine items marked linear="no" in the generated reading order',
+    web: { kind: "checkbox", group: "advanced", label: "Include non-linear pages in the reading order", hint: "Pages the EPUB marks as outside the main reading order, such as answer keys or pop-ups." }
+  },
+  {
+    key: "identifier",
+    flag: "--identifier <id>",
+    help: "Book ID used to key saved reading positions; defaults to the EPUB's identifier",
+    web: { kind: "text", group: "advanced", label: "Book ID", hint: "Leave empty to use the EPUB\u2019s identifier. Reading positions and bookmarks are kept per book ID, so keep it the same when you convert the book again." }
+  },
+  {
+    key: "audioCache",
+    flag: "--audio-cache [dir]",
+    help: "Reuse each page's merged narration audio from an earlier conversion when its clips haven't changed (development convenience). Keeps the latest audio per page in dir, or in the system temp folder if no dir is given",
+    web: { omitted: "A development convenience that needs a folder on disk." }
+  },
+  // Small audio and every enhancement are the defaults (user, 2026-11-11): what the demos use
+  {
+    key: "smallAudio",
+    flag: "--small-audio",
+    defaultValue: true,
+    help: "Encode narration for smaller downloads: mono 24 kHz MP3 at 32 kb/s",
+    negation: { flag: "--no-small-audio", help: "Keep narration's source encoding settings (channels, sample rate, bitrate)" },
+    web: { kind: "checkbox", group: "narration", label: "Smaller audio files", hint: "Mono MP3 at 24 kHz and 32 kb/s: quicker to download and save offline. Turn off to keep the narration\u2019s own quality." }
+  },
+  {
+    key: "audioCleanup",
+    flag: "--audio-cleanup",
+    defaultValue: true,
+    help: "Smooth joins, remove rumble, and normalize narration loudness",
+    negation: { flag: "--no-audio-cleanup", help: "Do not smooth joins, remove rumble, or normalize narration loudness" },
+    web: { kind: "checkbox", group: "narration", label: "Clean up the narration", hint: "Always: smooths the joins between clips, removes low rumble, softens \u201Cp\u201D and \u201Cb\u201D pops and evens out loudness." }
+  },
+  {
+    key: "audioEnhance",
+    flag: "--audio-enhance <list>",
+    help: "Comma-separated narration filters: warm-eq, compression, noise, deess, declick (default: all), or none",
+    web: { kind: "list", group: "narration", parent: "audioCleanup", label: "Extra enhancements", hint: "Optional, on top of the cleanup. Untick them all to clean up without changing the voice\u2019s tone.", items: AUDIO_ENHANCEMENT_LABELS }
+  },
+  {
+    key: "headingTitles",
+    flag: "--heading-titles",
+    defaultValue: true,
+    help: "On by default: when every page's <title> is the book title, title each page by its first other heading",
+    negation: { flag: "--no-heading-titles", help: "Do not replace repeated book titles with heading titles" },
+    web: { kind: "checkbox", group: "pages", label: "Title pages by their headings", hint: "When every page has the book title as its own title, change the page title to be the first heading on that page." }
+  },
+  {
+    key: "splitChapters",
+    flag: "--split-chapters",
+    defaultValue: true,
+    help: "On by default: split a content document into a page per chapter where the table of contents points into it",
+    negation: { flag: "--no-split-chapters", help: "Keep each content document as one page, even when the table of contents points to places inside it" },
+    web: { kind: "checkbox", group: "pages", label: "Split long documents into chapters", hint: "Where the table of contents points to places inside one document, make a page for each. Untick to keep each document as one page." }
+  },
+  {
+    key: "language",
+    flag: "--language <tag>",
+    help: "Override the EPUB's declared BCP 47 language",
+    web: { kind: "text", group: "advanced", label: "Language", hint: "Leave empty to use the book\u2019s own. A language tag such as en, fr-CA or bn." }
+  },
+  {
+    key: "publisherStyles",
+    defaultValue: true,
+    negation: { flag: "--no-publisher-styles", help: "Omit publisher stylesheets and the Appearance group" },
+    web: { kind: "checkbox", group: "pages", label: "Include the publisher\u2019s styles", hint: "Readers can switch each book between their own settings and the book as published." }
+  },
+  {
+    key: "check",
+    flag: "--check",
+    help: "Run optional Ace and axe accessibility checks when their tools are available",
+    web: { omitted: "Ace and axe are command-line tools; the browser can\u2019t run them." }
+  },
+  // Reader updates from the beta channel by default, never silently (user, 2026-11-17)
+  {
+    key: "remoteUi",
+    flag: "--remote-ui",
+    defaultValue: true,
+    help: "Use the beta reader-update channel (default); keep the source EPUB",
+    negation: { flag: "--no-remote-ui", help: "Choose a fixed bundled reader instead of receiving channel updates" },
+    web: { kind: "choice", group: "reader", label: "Reader updates", hint: "", choices: [
+      { value: true, label: "Keep the reader up to date (recommended)", hint: "The book loads the latest reader from this project\u2019s beta channel when it\u2019s online, and uses its own copy when it isn\u2019t, or if the channel is unavailable. The channel\u2019s address may change during the beta." },
+      { value: false, label: "Always use the reader included in the book", hint: "The book never loads anything from elsewhere. It keeps today\u2019s reader; newer features need converting again." }
+    ] }
+  },
+  {
+    key: "uiBaseUrl",
+    flag: "--ui-base-url <url>",
+    help: "Beta UI channel directory URL; also enables remote UI",
+    web: { omitted: "The page always uses this project\u2019s beta channel." }
+  }
+];
+
 // entry.js
 init_fs();
-globalThis.spike = { ...globalThis.spike, convert, vfs, log };
+globalThis.spike = { ...globalThis.spike, convert, vfs, log, options: CONVERTER_OPTIONS, optionGroups: WEB_GROUPS };
 /*! Bundled license information:
 
 ieee754/index.js:
