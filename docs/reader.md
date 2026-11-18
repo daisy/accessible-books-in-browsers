@@ -2,7 +2,7 @@
 
 The reader is the interface every converted book shares: toolbars, panels, narration, search,
 settings. It lives in [`convert/template/`](../convert/template/), and the converter copies it into
-each book's `src/` folder. What readers can do is described in the [README](../README.md#reading-features);
+each book's `src/` folder. What readers can do is described in the [README](../README.md#features);
 this explains how each feature is built and where its code is.
 
 Written for people working on the reader. Code links are to files; search a file for the function
