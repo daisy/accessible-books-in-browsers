@@ -35,7 +35,7 @@ test('audio cache keys include the merge version and every encoding setting', as
         const cleanupChanged = await cacheKey(segments, base, audioCleanupSettings(false, []));
         assert.notEqual(original, changed);
         assert.notEqual(original, cleanupChanged);
-        assert.equal(MERGE_VERSION, 5);
+        assert.equal(MERGE_VERSION, 6);
     } finally {
         await fs.rm(dir, { recursive: true });
     }
