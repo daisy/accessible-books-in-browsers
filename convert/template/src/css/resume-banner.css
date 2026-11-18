@@ -19,7 +19,7 @@
 #webbook-action-notice {
     position: fixed;
     top: calc(var(--webbook-top-toolbar-height, 4rem) + .75rem);
-    /* Centred by its margins, not left: 50% and a transform: in a vertical book at phone width,
+    /* Centered by its margins, not left: 50% and a transform: in a vertical book at phone width,
        left: 50% put it off the screen. It wraps long text rather than overflowing. */
     left: 1rem;
     right: 1rem;

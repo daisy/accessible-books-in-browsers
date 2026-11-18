@@ -204,7 +204,7 @@ function buildEditor(openButton, settings) {
             button.addEventListener('blur', () => {
                 if (capture?.button !== button) return;
                 endCapture({ focus: false });
-                announce('Shortcut change cancelled.');
+                announce('Shortcut change canceled.');
             });
             const remove = document.createElement('button');
             remove.type = 'button';
@@ -287,7 +287,7 @@ function buildEditor(openButton, settings) {
         const { action } = capture;
         if (event.code === 'Escape') {
             endCapture();
-            announce('Shortcut change cancelled.');
+            announce('Shortcut change canceled.');
             return;
         }
         const spec = keySpecForEvent(event);

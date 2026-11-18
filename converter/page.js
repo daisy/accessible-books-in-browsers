@@ -51,7 +51,7 @@ globalThis.convertBytes = convertBytes;
 const form = document.getElementById('convert-form');
 if (form) initPage();
 
-// The option controls, built from the options list: fieldsets with legends, labelled checkboxes,
+// The option controls, built from the options list: fieldsets with legends, labeled checkboxes,
 // radio buttons and text fields, and hints tied to them with aria-describedby
 function buildOptionForm(container) {
     const el = (tag, props = {}, ...children) => { const node = Object.assign(document.createElement(tag), props); node.append(...children); return node; };
@@ -259,7 +259,7 @@ function initPage() {
         status.textContent = `Converting ${whole ? 'the whole book' : `a preview of ${title}`}. ${narration ? `${estimateText(narration)[0].toUpperCase()}${estimateText(narration).slice(1)}.` : ''}`;
         const started = performance.now();
         // Progress follows the audio work: each clip is cut, then faded, and each narrated page takes
-        // about five more steps (join, measure, normalise, encode, check). Counted from this run's start.
+        // about five more steps (join, measure, normalize, encode, check). Counted from this run's start.
         const steps = clips * 2 + pages * 5;
         const base = { ...(globalThis.spike.wasmStats ?? {}) };
         const done = () => { const stats = globalThis.spike.wasmStats ?? {}; return ((stats.cuts ?? 0) - (base.cuts ?? 0)) + ((stats.commands ?? 0) - (base.commands ?? 0)); };

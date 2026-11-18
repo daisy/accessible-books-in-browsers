@@ -31,7 +31,7 @@ export type ConverterOption = {
 };
 
 export const AUDIO_ENHANCEMENT_LABELS: Array<{ value: string; label: string }> = [
-    { value: 'warm-eq', label: 'Warm tone (gentle equaliser)' },
+    { value: 'warm-eq', label: 'Warm tone (gentle equalizer)' },
     { value: 'compression', label: 'Compression (steadier volume)' },
     { value: 'noise', label: 'Noise reduction' },
     { value: 'deess', label: 'De-essing (softer “s” sounds)' },

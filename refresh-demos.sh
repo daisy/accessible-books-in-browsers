@@ -1,12 +1,12 @@
 #!/bin/sh
 # Regenerates the demos from source-epubs/, all books at once (each is a separate conversion;
 # with the audio cache, the whole set takes under a minute). Name books to regenerate only those.
-# A book whose source isn't here (the math sample is kept out of git for now) is skipped.
+# A book whose source isn't here is skipped.
 set -e
 cd "$(dirname "$0")/convert"
 npm run build
 if [ "$#" -eq 0 ]; then
-    set -- moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB math-optimization-ml notes-test kusamakura
+    set -- moby-dick action-for-heroes AmarBanglaEPUB BangladeshBishwoporichoyEPUB CurrentSituationEPUB EnglishForTodayEPUB math-optimization-ml notes-test kusamakura real-mother-goose
 fi
 logs=$(mktemp -d)
 for book do

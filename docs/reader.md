@@ -12,7 +12,7 @@ named.
 
 - **WCAG 2.2 AA at least**, and judged against the higher bar of the best reading experience for
   people who use assistive technology daily. Every demo page is checked with axe; screen reader
-  behaviour is checked by people.
+  behavior is checked by people.
 - **Every page reads without JavaScript,** with the browser's own audio player. The script adds to
   working HTML; it never builds the book.
 - **The book's markup is the publisher's.** The reader adds controls around `main`, never inside
@@ -87,8 +87,8 @@ decides layout.
 ### Styles
 
 [`style.css`](../convert/template/src/css/style.css) imports the rest; the converter combines them
-into one file. Colours and sizes are tokens ([`tokens.css`](../convert/template/src/css/tokens.css)),
-which the colour settings and As published replace. The book's publisher CSS, when present, sits in
+into one file. Colors and sizes are tokens ([`tokens.css`](../convert/template/src/css/tokens.css)),
+which the color settings and As published replace. The book's publisher CSS, when present, sits in
 cascade layers below the reader's settings.
 
 ## Features
@@ -103,7 +103,7 @@ cascade layers below the reader's settings.
 | The whole-book timeline, time left in chapter and book, from the converter's audio map | [`book-timeline.js`](../convert/template/src/js/book-timeline.js) |
 | Previous and next phrase, and stepping across a page boundary | [`page-entry.js`](../convert/template/src/js/page-entry.js) |
 | Lock screen and media keys (Media Session) | [`media-session.js`](../convert/template/src/js/media-session.js) |
-| Highlight colour and style | [`highlight-settings.js`](../convert/template/src/js/highlight-settings.js), contrast maths in [`color-contrast.js`](../convert/template/src/js/color-contrast.js) |
+| Highlight color and style | [`highlight-settings.js`](../convert/template/src/js/highlight-settings.js), contrast math in [`color-contrast.js`](../convert/template/src/js/color-contrast.js) |
 
 Cue times come from the converter, built from exact sample counts, so the highlight stays with the
 voice over long pages (see [How a book is converted](conversion.md#7-make-each-pages-narration)).
@@ -155,9 +155,9 @@ Both work from the converter's `epubtype_*` classes and DPUB-ARIA roles.
 | Setting | Code |
 |---|---|
 | The settings panel, and Find a setting | [`settings.js`](../convert/template/src/js/settings.js), [`settings-filter.js`](../convert/template/src/js/settings-filter.js), [`settings-sections.js`](../convert/template/src/js/settings-sections.js) |
-| Colours: automatic, light, dark, reviewed pairs, or your own with readable text worked out | [`page-colors.js`](../convert/template/src/js/page-colors.js), [`color-contrast.js`](../convert/template/src/js/color-contrast.js) |
+| Colors: automatic, light, dark, reviewed pairs, or your own with readable text worked out | [`page-colors.js`](../convert/template/src/js/page-colors.js), [`color-contrast.js`](../convert/template/src/js/color-contrast.js) |
 | Font, size, line, letter and word spacing, line length | [`text-spacing.js`](../convert/template/src/js/text-spacing.js), [`settings.js`](../convert/template/src/js/settings.js) |
-| As published or My settings, per book; with As published, the toolbars take the book's colours | [`appearance.js`](../convert/template/src/js/appearance.js), [`appearance-state.js`](../convert/template/src/js/appearance-state.js), [`published-colors.js`](../convert/template/src/js/published-colors.js) |
+| As published or My settings, per book; with As published, the toolbars take the book's colors | [`appearance.js`](../convert/template/src/js/appearance.js), [`appearance-state.js`](../convert/template/src/js/appearance-state.js), [`published-colors.js`](../convert/template/src/js/published-colors.js) |
 | Keyboard shortcuts, and the editor (loaded on first use) | [`keyboard-shortcuts.js`](../convert/template/src/js/keyboard-shortcuts.js), [`keyboard-shortcut-settings.js`](../convert/template/src/js/keyboard-shortcut-settings.js), [`reader-actions.js`](../convert/template/src/js/reader-actions.js) |
 | Export, import and reset settings | [`settings-file.js`](../convert/template/src/js/settings-file.js), [`settings-transfer.js`](../convert/template/src/js/settings-transfer.js) |
 

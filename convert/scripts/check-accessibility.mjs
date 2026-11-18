@@ -25,6 +25,10 @@ const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/cs
     '.mp3': 'audio/mpeg', '.vtt': 'text/vtt', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
     '.svg': 'image/svg+xml', '.gif': 'image/gif', '.webp': 'image/webp' };
 
+// Books spot-checked on these pages only: the math book has hundreds of pages and thousands of
+// equations; its representative page has 243 expressions (AGENTS.md)
+const SPOT_CHECKS = { 'math-optimization-ml': ['index.html', '9783111375854_001001-5.html'] };
+
 const args = process.argv.slice(2);
 const option = name => { const i = args.indexOf(name); return i >= 0 ? args.splice(i, 2)[1] : undefined; };
 const pageLimit = Number(option('--pages')) || Infinity;
@@ -45,7 +49,9 @@ const chrome = await launchChrome(viewportWidth);
 const results = [];
 try {
     for (const book of books) {
-        const pages = readdirSync(path.join(root, book)).filter(file => file.endsWith('.html')).sort(indexFirst).slice(0, pageLimit);
+        const all = readdirSync(path.join(root, book)).filter(file => file.endsWith('.html')).sort(indexFirst);
+        // A very large book is spot-checked on its representative pages (AGENTS.md), not swept page by page
+        const pages = (SPOT_CHECKS[book] ? all.filter(file => SPOT_CHECKS[book].includes(file)) : all).slice(0, pageLimit);
         for (const [i, page] of pages.entries()) {
             const url = `${server.url}/${book}/${page}`;
             results.push(...await checkPage(chrome, url, `${book}/${page}`, { panels: i === 0, themes: i === 0 ? ['light', 'dark', 'cream', 'sepia', 'gray', 'blue'] : ['light'] }));

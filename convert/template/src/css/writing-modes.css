@@ -18,7 +18,7 @@
 .webbook-style-glyphs-mixed { text-orientation: mixed; }
 
 /* Emphasis marks (bōten): beside each character, the East Asian counterpart of italics. In the
-   text's colour: the reader's colours own colour, and marks in another colour could fail contrast. */
+   text's color: the reader's colors own color, and marks in another color could fail contrast. */
 .webbook-style-emphasis-dot { -webkit-text-emphasis-style: filled dot; text-emphasis-style: filled dot; }
 .webbook-style-emphasis-dot-open { -webkit-text-emphasis-style: open dot; text-emphasis-style: open dot; }
 .webbook-style-emphasis-circle { -webkit-text-emphasis-style: filled circle; text-emphasis-style: filled circle; }
@@ -87,7 +87,7 @@
     right: 0;
 }
 :root.webbook-vertical main {
-    /* The column height is the Line length setting, centred between the toolbars. Padding
+    /* The column height is the Line length setting, centered between the toolbars. Padding
        percentages are of the page's height here (its inline size). */
     --webbook-column-top: calc(var(--webbook-top-toolbar-height, 4rem) + 1rem);
     --webbook-column-bottom: calc(var(--webbook-toolbar-height, 4rem) + 1rem);

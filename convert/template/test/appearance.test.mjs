@@ -103,7 +103,7 @@ test('the Appearance choice is remembered for each book, and says so',()=>{
  dom.window.close();
 });
 
-test('As published, the reader UI takes the book page colours, readable, and My settings gives them back',()=>{
+test('As published, the reader UI takes the book page colors, readable, and My settings gives them back',()=>{
  const dom=setup();
  const main=document.querySelector('main');main.style.backgroundColor='rgb(32, 32, 32)';main.style.color='rgb(70, 70, 70)';
  applyAppearance({persist:true});

@@ -204,8 +204,8 @@ main { position: relative; isolation: isolate; z-index: 0; grid-area: main; box-
     background-image: none !important;
     border-color: color-mix(in srgb, var(--webbook-page-fg) 40%, transparent) !important;
 }
-/* As published, the reader's UI takes the book's own colours (published-colors.js), so the page is one
-   surface. The text inside <main> keeps the publisher's colours. */
+/* As published, the reader's UI takes the book's own colors (published-colors.js), so the page is one
+   surface. The text inside <main> keeps the publisher's colors. */
 :root[data-webbook-appearance="published"][data-webbook-published-colors],
 :root[data-webbook-appearance="published"][data-webbook-published-colors] body {
     --theme-bg: var(--webbook-published-bg);

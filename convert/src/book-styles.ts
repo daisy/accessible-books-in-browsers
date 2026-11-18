@@ -391,7 +391,7 @@ export async function readPageStylesheets(doc: Document, sourcePath: string, unr
 }
 
 // Repaired mode uses the same matched declarations as writing styles. Classes express only
-// meaning, never the publisher's colours, font sizes or layout dimensions.
+// meaning, never the publisher's colors, font sizes or layout dimensions.
 function applyMeaningfulStyles(doc: Document, found: Map<Element, Declaration[]>, options: WritingStylesOptions): void {
     const block = 'div, section, article, aside, blockquote, address, header, footer, main';
     const add = (elm: Element, property: string, ...names: string[]) => {

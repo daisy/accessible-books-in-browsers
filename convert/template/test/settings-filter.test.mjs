@@ -18,7 +18,7 @@ const shown = elm => !elm.closest('.webbook-settings-filtered') && !elm.closest(
 const shownSections = () => Array.from(panel.querySelectorAll('.webbook-settings-section'))
     .filter(shown).map(section => section.dataset.settingsSection);
 
-test('the filter is labelled, at the top, before Jump to', () => {
+test('the filter is labeled, at the top, before Jump to', () => {
     const input = document.getElementById('webbook-settings-filter');
     assert.equal(input.type, 'search');
     assert.equal(panel.querySelector('label[for="webbook-settings-filter"]').textContent, 'Find a setting');

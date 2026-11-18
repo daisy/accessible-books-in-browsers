@@ -139,7 +139,7 @@ DOM, in this order:
 7. **Markup cleanup** ([`cleanPublicationMarkup`](../convert/src/markup-cleanup.ts#L21)), the small
    mechanical fixes, each counted in the report:
    - a heading's `title` attribute: shown as its text when the heading is otherwise empty, dropped
-     when it repeats the text, and an empty heading that only repeats its neighbour removed
+     when it repeats the text, and an empty heading that only repeats its neighbor removed
      ([`repairHeadingTitles`](../convert/src/conversion-rules.ts#L10));
    - `xml:lang`, which HTML ignores, is copied to `lang` where the element's text is in the
      expected script, and removed; where the script disagrees it isn't copied, and the report says
@@ -184,7 +184,7 @@ narrated page:
 3. **Join** the clips, byte for byte, into one WAV ([`joinPcmFiles`](../convert/src/audio.ts#L252)).
 4. **Clean up** ([`cleanupFilters`](../convert/src/audio-cleanup.ts#L68)): a steep cut below 90 Hz
    (rumble), softening of "p" and "b" pops, then the chosen enhancements (warm EQ, compression,
-   noise reduction, de-essing, click removal), then two-pass loudness normalisation to −18 LUFS
+   noise reduction, de-essing, click removal), then two-pass loudness normalization to −18 LUFS
    ([`measureLoudnorm`](../convert/src/audio-cleanup.ts#L115),
    [`loudnormFilter`](../convert/src/audio-cleanup.ts#L126)).
 5. **Encode once** to the output format: with `--small-audio` (the default) mono MP3, 24 kHz,

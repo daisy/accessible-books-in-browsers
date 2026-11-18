@@ -54,7 +54,7 @@ async function showBook(root, row) {
             await command('save', files, value => { progress.max = value.total; progress.value = value.done; }, controller.signal);
             const state = await command('status'); use.hidden = !state.pending;
             message.textContent = state.pending ? 'Update ready. Choose Use update when you are ready.' : 'Saved for offline reading.';
-        } catch (error) { message.textContent = controller.signal.aborted ? 'Refresh cancelled. Your saved copy is kept.' : `${error.message} Your saved copy is kept.`; }
+        } catch (error) { message.textContent = controller.signal.aborted ? 'Refresh canceled. Your saved copy is kept.' : `${error.message} Your saved copy is kept.`; }
         finally { busy = false; render(); (use.hidden ? refresh : use).focus(); }
     });
     const cancel = button(actions, 'Cancel refresh', async () => { controller?.abort(); await command('cancel'); });

@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 import {JSDOM} from 'jsdom';
 import {initOfflineReading} from '../src/js/offline.js';
 import {getActions} from '../src/js/reader-actions.js';
-test('offline UI is a labelled About section, unavailable storage preserves ordinary reading and all actions are remappable',()=>{
+test('offline UI is a labeled About section, unavailable storage preserves ordinary reading and all actions are remappable',()=>{
  const dom=new JSDOM(readFileSync(new URL('../index.html',import.meta.url),'utf8'),{url:'https://books.example/book/index.html'});
  for(const name of ['window','document','localStorage','location'])globalThis[name]=dom.window[name];
  try{

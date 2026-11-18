@@ -59,7 +59,7 @@ Present for narrated books:
 - **maximum encoder duration difference:** how far an encoded page's length is from the length its
   cues add up to. Normally under a few milliseconds; over 0.1 s is a warning in the log;
 - **cleanup:** on or off, the loudness target and true peak limit, and the filters used;
-- **loudness range before cleanup:** how much the pages' loudness differed before normalising;
+- **loudness range before cleanup:** how much the pages' loudness differed before normalizing;
 - **per page:** loudness (LUFS), peak (dBFS), the quietest stretch (an estimate of the noise floor)
   and the number of clipped samples.
 
@@ -75,7 +75,7 @@ Each kind of change, with its total and per-page counts. The kinds:
 | Chapter boundaries kept outside blocks | A chapter split fell inside a block; the block was kept whole, on one page |
 | Controls added to publication media | Audio or video in the book had no controls |
 | Publication media autoplay removed | Audio or video in the book would have played by itself |
-| Heading titles made visible / Redundant heading titles removed / Duplicate title-only headings removed | A heading's `title` attribute: shown as its text when the heading was empty, dropped when it repeated the text, or an empty heading that only repeated its neighbour removed |
+| Heading titles made visible / Redundant heading titles removed / Duplicate title-only headings removed | A heading's `title` attribute: shown as its text when the heading was empty, dropped when it repeated the text, or an empty heading that only repeated its neighbor removed |
 | Empty heading permalinks omitted | Empty headings get no self-link |
 | Empty paragraphs removed / Empty spans unwrapped | Markup with no content and no purpose |
 | Publisher-styled empty paragraphs retained / Publisher-styled spans retained | The same, but the publisher's CSS uses them: kept, the paragraphs shown only As published |

@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { JSDOM } from 'jsdom';
 import { updateResponsiveEquations } from '../src/js/responsive-equations.js';
 
-test('overflowing MathML is keyboard reachable without replacing math semantics, and restores focus hooks when it fits', () => {
+test('inline MathML wider than its line scrolls and is keyboard reachable without replacing math semantics; tall glyphs alone add no Tab stop; focus hooks return when it fits', () => {
     const dom = new JSDOM('<main><math tabindex="-1" style="overflow-x:auto"><mi>x</mi></math><math style="overflow-x:auto"><mfrac><mi>x</mi><mi>y</mi></mfrac></math><math style="overflow-x:auto"><mi>z</mi></math></main>');
     globalThis.document = dom.window.document;
     // jsdom's style resolver does not support MathML roots.
@@ -20,7 +20,10 @@ test('overflowing MathML is keyboard reachable without replacing math semantics,
     }
     updateResponsiveEquations();
     assert.equal(wide.getAttribute('tabindex'), '0');
-    assert.equal(tall.getAttribute('tabindex'), '0');
+    // Taller than its box only through its glyphs: not a scroll region, so no Tab stop
+    assert.equal(tall.hasAttribute('tabindex'), false);
+    assert.equal(wide.hasAttribute('data-webbook-math-wide'), true);
+    assert.equal(tall.hasAttribute('data-webbook-math-wide'), false);
     assert.equal(fits.hasAttribute('tabindex'), false);
     assert.equal(wide.hasAttribute('role'), false);
     assert.equal(tall.hasAttribute('role'), false);
@@ -30,5 +33,6 @@ test('overflowing MathML is keyboard reachable without replacing math semantics,
     assert.equal(wide.getAttribute('tabindex'), '-1');
     assert.equal(tall.hasAttribute('tabindex'), false);
     assert.equal(wide.hasAttribute('data-webbook-math-tabindex'), false);
+    assert.equal(wide.hasAttribute('data-webbook-math-wide'), false);
     dom.window.close();
 });

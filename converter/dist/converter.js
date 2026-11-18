@@ -27180,7 +27180,7 @@ async function crossPageReferencedIds(site) {
 // ../convert/build/options.js
 init_globals();
 var AUDIO_ENHANCEMENT_LABELS = [
-  { value: "warm-eq", label: "Warm tone (gentle equaliser)" },
+  { value: "warm-eq", label: "Warm tone (gentle equalizer)" },
   { value: "compression", label: "Compression (steadier volume)" },
   { value: "noise", label: "Noise reduction" },
   { value: "deess", label: "De-essing (softer \u201Cs\u201D sounds)" },

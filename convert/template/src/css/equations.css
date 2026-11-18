@@ -2,6 +2,11 @@
    Grid placement changes the visual order only; the publication's DOM order stays intact. */
 main math {
     max-width: 100%;
+}
+/* Only an equation wider than its line scrolls: responsive-equations.js marks it and gives it a Tab
+   stop. Scrolling every inline equation (as overflow-x: auto did) also made each one scroll
+   vertically by the height of its glyphs, so nearly every equation needed a Tab stop. */
+main math[data-webbook-math-wide] {
     overflow-x: auto;
 }
 /* Display equations already have an outer scrolling region. Keep their natural

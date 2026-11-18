@@ -155,7 +155,7 @@ test('the brief note wait ticks quietly and stops on completion, play, pause, se
             cancel();
             assert.ok(ticks.every(source => source.stops === 1));
             t.mock.timers.tick(3000);
-            assert.equal(plays, before, 'cancelled waits must not restart narration');
+            assert.equal(plays, before, 'canceled waits must not restart narration');
         }
 
         ticks = await beginWait();
