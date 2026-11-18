@@ -13,5 +13,3 @@ button { font: inherit; padding: .5rem .75rem; min-height: 2.75rem; cursor: poin
 .actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
 progress { width: 100%; }
 :focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
-#converted-section { margin-top: 2rem; }
-#converted-section h3 { font-size: 1.1rem; margin: 0; }

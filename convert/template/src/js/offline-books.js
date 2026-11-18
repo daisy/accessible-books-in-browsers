@@ -71,31 +71,6 @@ async function showBook(root, row) {
     });
     item.append(confirmation); render(); list.append(item);
 }
-// Books kept by a browser converter on this site (plan 19, "Open it here"): its library keeps an
-// index of them in Cache Storage. Listed here so one page shows everything saved on the site; they
-// are managed in the converter's Your books page. Returns how many were listed.
-async function showConvertedBooks() {
-    if (!(await caches.has('webbook-library-1'))) return 0;
-    const cache = await caches.open('webbook-library-1'), books = [];
-    for (const request of await cache.keys()) {
-        if (!request.url.endsWith('/library/index.json')) continue;
-        const converter = request.url.slice(0, -'library/index.json'.length);
-        try { for (const entry of await (await cache.match(request)).json()) books.push({ ...entry, converter }); } catch { /* an unreadable index lists nothing */ }
-    }
-    const target = document.getElementById('converted-books');
-    for (const book of books.sort((a, b) => String(b.savedAt).localeCompare(String(a.savedAt)))) {
-        const item = document.createElement('li'), heading = document.createElement('h3'), open = document.createElement('a');
-        open.href = new URL('index.html', book.root).href; open.textContent = book.title; heading.append(open); item.append(heading);
-        const detail = document.createElement('p'); detail.textContent = `${sizeText(book.bytes)} · Converted ${new Date(book.savedAt).toLocaleString()}`; item.append(detail);
-        const manage = document.createElement('a'); manage.href = new URL('books.html', book.converter).href; manage.textContent = 'Your books';
-        manage.setAttribute('aria-label', `Download or remove ${book.title} in Your books`);
-        const actions = document.createElement('p'); actions.append(manage); item.append(actions);
-        target.append(item);
-    }
-    document.getElementById('converted-section').hidden = !books.length;
-    return books.length;
-}
-
 async function load() {
     try {
         if (!navigator.serviceWorker || !window.indexedDB || !window.caches) throw new Error('Offline storage is unavailable in this browser.');
@@ -116,9 +91,7 @@ async function load() {
             }
         }
         for (const root of (await read('books')).sort()) await showBook(root, await read('books', root));
-        const converted = await showConvertedBooks().catch(() => 0);
-        const total = list.children.length + converted;
-        status.textContent = total ? `${total} saved ${total === 1 ? 'book' : 'books'}.` : 'No books saved on this site.';
+        status.textContent = list.children.length ? `${list.children.length} saved ${list.children.length === 1 ? 'book' : 'books'}.` : 'No books saved on this site.';
     } catch (error) { status.textContent = error.message || 'Saved books could not be loaded.'; }
 }
 load();
