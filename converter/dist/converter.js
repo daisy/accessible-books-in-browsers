@@ -23677,7 +23677,7 @@ function shapeBookPage(html, delivery) {
       for (const option of doc.querySelectorAll("datalist#pages option")) {
         const li = doc.createElement("li"), a = doc.createElement("a");
         a.href = option.getAttribute("data-href");
-        a.textContent = option.textContent;
+        a.textContent = option.textContent?.trim() || option.getAttribute("label") || option.getAttribute("value") || "";
         li.append(a);
         pages.append(li);
       }
