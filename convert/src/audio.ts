@@ -194,59 +194,66 @@ async function mergeAudioSegments(
     // the cue timings, so narration drifted ahead of the audio over a long page.
     tmp.setGracefulCleanup();
     const tmpDirname = tmp.dirSync({ unsafeCleanup: true }).name;
-    const audioTmpFilenames = mediaSegments.map((audio, idx) => {
-        const audioTmpFilename = path.join(tmpDirname, `${idx}.wav`);
-        audio.tmpFilename = audioTmpFilename;
-        return audioTmpFilename;
-    });
-
-    await runWithConcurrency(mediaSegments, AUDIO_SEGMENT_CONCURRENCY, async(audio, idx) => {
-        await extractAudioSegment(audio, audioTmpFilenames[idx], settings);
-    });
-
-    for (const audio of mediaSegments) {
-        if (audio.tmpFilename) {
-            audio.durOnDisk = await utils.getDuration(audio.tmpFilename);
-        }
-    }
-
-    const rawJoinedFilename = path.join(tmpDirname, 'joined-raw.wav');
-    await joinPcmFiles(audioTmpFilenames, rawJoinedFilename, settings, tmpDirname, 'raw-segments.txt');
-    const findings = await analyzeAudio(rawJoinedFilename);
-    const joinedDuration = await utils.getDuration(rawJoinedFilename);
-    let joinedFilename = rawJoinedFilename;
-    if (cleanup.enabled) {
-        const fadedFilenames = audioTmpFilenames.map((_, index) => path.join(tmpDirname, `${index}-faded.wav`));
-        await runWithConcurrency(audioTmpFilenames, AUDIO_SEGMENT_CONCURRENCY, async(filename, index) => {
-            await applyClipFades(filename, fadedFilenames[index], mediaSegments[index].durOnDisk ?? 0, cleanup);
+    // Each page's clips, faded clips and joined files are deleted as soon as its audio is encoded,
+    // so a long book doesn't fill the temporary folder (or, in the browser converter, memory) until
+    // the conversion ends. Nothing reads them afterwards: the cues use the durations already read.
+    try {
+        const audioTmpFilenames = mediaSegments.map((audio, idx) => {
+            const audioTmpFilename = path.join(tmpDirname, `${idx}.wav`);
+            audio.tmpFilename = audioTmpFilename;
+            return audioTmpFilename;
         });
-        joinedFilename = path.join(tmpDirname, 'joined.wav');
-        await joinPcmFiles(fadedFilenames, joinedFilename, settings, tmpDirname, 'faded-segments.txt');
+
+        await runWithConcurrency(mediaSegments, AUDIO_SEGMENT_CONCURRENCY, async(audio, idx) => {
+            await extractAudioSegment(audio, audioTmpFilenames[idx], settings);
+        });
+
+        for (const audio of mediaSegments) {
+            if (audio.tmpFilename) {
+                audio.durOnDisk = await utils.getDuration(audio.tmpFilename);
+            }
+        }
+
+        const rawJoinedFilename = path.join(tmpDirname, 'joined-raw.wav');
+        await joinPcmFiles(audioTmpFilenames, rawJoinedFilename, settings, tmpDirname, 'raw-segments.txt');
+        const findings = await analyzeAudio(rawJoinedFilename);
+        const joinedDuration = await utils.getDuration(rawJoinedFilename);
+        let joinedFilename = rawJoinedFilename;
+        if (cleanup.enabled) {
+            const fadedFilenames = audioTmpFilenames.map((_, index) => path.join(tmpDirname, `${index}-faded.wav`));
+            await runWithConcurrency(audioTmpFilenames, AUDIO_SEGMENT_CONCURRENCY, async(filename, index) => {
+                await applyClipFades(filename, fadedFilenames[index], mediaSegments[index].durOnDisk ?? 0, cleanup);
+            });
+            joinedFilename = path.join(tmpDirname, 'joined.wav');
+            await joinPcmFiles(fadedFilenames, joinedFilename, settings, tmpDirname, 'faded-segments.txt');
+        }
+        const measured = cleanup.enabled ? await measureLoudnorm(joinedFilename, cleanup) : null;
+        if (cleanup.enabled && !measured) {
+            winston.warn(`Could not measure loudness for ${path.basename(outFilename)}; applying cleanup without normalization`);
+        }
+        await new Promise<void>((resolve, reject) => {
+            const command = ffmpeg().input(joinedFilename)
+                .audioChannels(settings.channels)
+                .audioFrequency(settings.sampleRate)
+                .audioBitrate(`${settings.bitrateKbps}k`);
+            const filters = cleanup.enabled
+                ? [...cleanupFilters(cleanup), ...(measured ? [loudnormFilter(cleanup, measured)] : []),
+                    'apad', `atrim=duration=${joinedDuration}`]
+                : [];
+            if (filters.length) command.audioFilters(filters.join(','));
+            if (settings.codec) command.audioCodec(settings.codec);
+            // MP4 (.m4a) puts its index at the end unless asked; at the start, playback can begin
+            // without first fetching the end of the file
+            if (settings.extension === '.m4a') command.outputOptions(['-movflags', '+faststart']);
+            command.output(outFilename)
+                .on('error', reject)
+                .on('end', resolve)
+                .run();
+        });
+        return findings;
+    } finally {
+        await fs.remove(tmpDirname).catch(() => {});
     }
-    const measured = cleanup.enabled ? await measureLoudnorm(joinedFilename, cleanup) : null;
-    if (cleanup.enabled && !measured) {
-        winston.warn(`Could not measure loudness for ${path.basename(outFilename)}; applying cleanup without normalization`);
-    }
-    await new Promise<void>((resolve, reject) => {
-        const command = ffmpeg().input(joinedFilename)
-            .audioChannels(settings.channels)
-            .audioFrequency(settings.sampleRate)
-            .audioBitrate(`${settings.bitrateKbps}k`);
-        const filters = cleanup.enabled
-            ? [...cleanupFilters(cleanup), ...(measured ? [loudnormFilter(cleanup, measured)] : []),
-                'apad', `atrim=duration=${joinedDuration}`]
-            : [];
-        if (filters.length) command.audioFilters(filters.join(','));
-        if (settings.codec) command.audioCodec(settings.codec);
-        // MP4 (.m4a) puts its index at the end unless asked; at the start, playback can begin
-        // without first fetching the end of the file
-        if (settings.extension === '.m4a') command.outputOptions(['-movflags', '+faststart']);
-        command.output(outFilename)
-            .on('error', reject)
-            .on('end', resolve)
-            .run();
-    });
-    return findings;
 }
 
 async function joinPcmFiles(
