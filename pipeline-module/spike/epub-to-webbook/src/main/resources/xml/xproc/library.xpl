@@ -8,12 +8,16 @@
         <p:option name="result" required="true"/>
         <p:option name="include-non-linear" select="'false'"/>
         <p:option name="identifier" select="''"/>
+        <p:option name="remote-ui" select="'false'"/>
+        <p:option name="ui-base-url" select="''"/>
 
         <p:declare-step type="pxi:epub-to-webbook">
             <p:option name="source" required="true"/>
             <p:option name="result" required="true"/>
             <p:option name="include-non-linear" required="true"/>
             <p:option name="identifier" required="true"/>
+            <p:option name="remote-ui" required="true"/>
+            <p:option name="ui-base-url" required="true"/>
         </p:declare-step>
 
         <pxi:epub-to-webbook>
@@ -21,6 +25,8 @@
             <p:with-option name="result" select="$result"/>
             <p:with-option name="include-non-linear" select="$include-non-linear"/>
             <p:with-option name="identifier" select="$identifier"/>
+        <p:with-option name="remote-ui" select="$remote-ui"/>
+        <p:with-option name="ui-base-url" select="$ui-base-url"/>
         </pxi:epub-to-webbook>
     </p:declare-step>
 </p:library>

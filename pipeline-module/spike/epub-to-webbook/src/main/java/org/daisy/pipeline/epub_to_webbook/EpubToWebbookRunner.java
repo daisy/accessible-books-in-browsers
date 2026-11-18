@@ -32,7 +32,7 @@ public final class EpubToWebbookRunner {
 			"../../../convert/template");
 	}
 
-	public void convert(File source, File result, boolean includeNonLinear, String identifier) throws Throwable {
+	public void convert(File source, File result, boolean includeNonLinear, String identifier, boolean remoteUi, String uiBaseUrl) throws Throwable {
 		List<String> command = new ArrayList<>();
 		command.add(node.getAbsolutePath());
 		command.add(converterScript.getAbsolutePath());
@@ -46,6 +46,8 @@ public final class EpubToWebbookRunner {
 			command.add("--identifier");
 			command.add(identifier.trim());
 		}
+		if (remoteUi) command.add("--remote-ui");
+		if (uiBaseUrl != null && !uiBaseUrl.trim().isEmpty()) { command.add("--ui-base-url"); command.add(uiBaseUrl.trim()); }
 		new CommandRunner(command).consumeError(LOGGER).run();
 	}
 

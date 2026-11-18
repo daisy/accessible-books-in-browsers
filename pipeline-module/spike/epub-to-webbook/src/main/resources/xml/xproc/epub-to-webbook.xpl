@@ -39,6 +39,8 @@
         </p:documentation>
     </p:option>
 
+    <p:option name="remote-ui" select="'false'" px:type="boolean"><p:documentation xmlns="http://www.w3.org/1999/xhtml"><h2 px:role="name">Use beta remote UI</h2><p px:role="desc">Receive compatible reader updates from the beta channel. Keep the source EPUB.</p></p:documentation></p:option>
+    <p:option name="ui-base-url" select="''" px:type="string"><p:documentation xmlns="http://www.w3.org/1999/xhtml"><h2 px:role="name">UI channel URL</h2><p px:role="desc">Optional channel override; also enables remote UI.</p></p:documentation></p:option>
     <p:import href="library.xpl"/>
 
     <px:epub-to-webbook>
@@ -46,5 +48,7 @@
         <p:with-option name="result" select="$result"/>
         <p:with-option name="include-non-linear" select="$include-non-linear"/>
         <p:with-option name="identifier" select="$identifier"/>
+        <p:with-option name="remote-ui" select="$remote-ui"/>
+        <p:with-option name="ui-base-url" select="$ui-base-url"/>
     </px:epub-to-webbook>
 </p:declare-step>

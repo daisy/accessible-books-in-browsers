@@ -44,6 +44,8 @@ public class EpubToWebbookProvider implements XProcStepProvider {
 		private static final QName _source = new QName("source");
 		private static final QName _result = new QName("result");
 		private static final QName _includeNonLinear = new QName("include-non-linear");
+		private static final QName _remoteUi = new QName("remote-ui");
+		private static final QName _uiBaseUrl = new QName("ui-base-url");
 		private static final QName _identifier = new QName("identifier");
 
 		private final EpubToWebbookRunner converter;
@@ -67,7 +69,7 @@ public class EpubToWebbookProvider implements XProcStepProvider {
 				File result = new File(new URI(getOption(_result).getString()));
 				boolean includeNonLinear = getOption(_includeNonLinear).getBoolean();
 				String identifier = getOption(_identifier, "");
-				converter.convert(source, result, includeNonLinear, identifier);
+				converter.convert(source, result, includeNonLinear, identifier, getOption(_remoteUi).getBoolean(), getOption(_uiBaseUrl, ""));
 			} catch (Throwable e) {
 				throw XProcStep.raiseError(e, step);
 			}
