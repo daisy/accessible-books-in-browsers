@@ -11,7 +11,7 @@ hold the rights to one of them and want it changed or removed, [open an issue](h
 Contribution.
 
 **Moby-Dick**, Herman Melville. EPUB by Dave Cramer.
-Contribution.
+Public domain: first published 1851.
 
 **Amar Bangla Boi, Class 5** (আমার বাংলা বই পঞ্চম শ্রেণি), NCTB. Prepared by YPSA, with a2i, Prime
 Minister's Office; implemented by the Department of Social Services (from the book: প্রণয়নে - ইপসা।

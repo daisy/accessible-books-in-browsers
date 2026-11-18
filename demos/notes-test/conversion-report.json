@@ -48,7 +48,7 @@
   "publisherStyles": {
     "pages": {
       "index.html": {
-        "kept": 0,
+        "kept": 1,
         "frozen": 0,
         "unapplied": 0,
         "causes": {},
@@ -63,7 +63,7 @@
         }
       },
       "chapter1.html": {
-        "kept": 0,
+        "kept": 1,
         "frozen": 0,
         "unapplied": 0,
         "causes": {},
@@ -78,7 +78,7 @@
         }
       },
       "chapter2.html": {
-        "kept": 0,
+        "kept": 1,
         "frozen": 0,
         "unapplied": 0,
         "causes": {},
@@ -93,7 +93,7 @@
         }
       },
       "endnotes.html": {
-        "kept": 0,
+        "kept": 1,
         "frozen": 0,
         "unapplied": 0,
         "causes": {},
@@ -109,7 +109,7 @@
       }
     },
     "totals": {
-      "kept": 0,
+      "kept": 4,
       "frozen": 0,
       "unapplied": 0,
       "causes": {},

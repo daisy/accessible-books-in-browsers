@@ -1,0 +1,11 @@
+@layer publisher { @layer source, inline, source-important, inline-important;
+@layer source {/* The phrase being narrated (media:active-class in the package document) */
+
+:where(:root[data-webbook-appearance="published"]) :where(.-epub-media-overlay-active:where(#webbook-main, #webbook-main *):not(:where([data-webbook-reader], .webbook, .webbook *))):is(*,.webbook-publisher-specificity) {
+  background-color: #fff3a8;
+  color: #000;
+}}
+@layer source-important {}
+@layer inline {}
+@layer inline-important {}
+}
