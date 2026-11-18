@@ -36,6 +36,8 @@ export type ConvertOptions = {
     publisherStyles?: boolean;
     language?: string;
     smallAudio?: boolean;
+    // Split a content document into a page per chapter at its table of contents entries; on by default
+    splitChapters?: boolean;
     check?: boolean;
 };
 
@@ -57,7 +59,7 @@ async function convert(input: string, output: string, template: string, options:
         const site = await buildSiteModel(epub, {
             identifier: options.identifier,
             headingTitles: options.headingTitles !== false,
-            splitChapters: true,
+            splitChapters: options.splitChapters !== false,
             language: options.language,
             warn: message => winston.warn(message),
             onSplit: (sourcePath, pieces) => winston.info(
@@ -81,6 +83,7 @@ async function convert(input: string, output: string, template: string, options:
         }, {
             ...(options.publisherStyles === false ? { '--no-publisher-styles': true } : { 'publisher styles': true }),
             'heading titles': options.headingTitles !== false,
+            'split chapters': options.splitChapters !== false,
             'small audio': options.smallAudio === true,
             'audio cleanup': options.audioCleanup !== false,
             'audio enhancements': options.audioEnhance?.join(',') || false,

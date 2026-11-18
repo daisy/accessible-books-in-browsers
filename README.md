@@ -311,6 +311,7 @@ pass, including its controls inside the book. IDPF and Adobe font obfuscation is
 |---|---|
 | `--no-publisher-styles` | Leave out the publisher stylesheet and Appearance group. |
 | `--no-heading-titles` | Keep the EPUB's page titles. By default, when every page's title is just the book title, each page is titled by its first other heading. |
+| `--no-split-chapters` | Keep each content document as one page. By default, a document is split into a page per chapter where the table of contents points to places inside it. |
 | `--language <tag>` | Use this BCP 47 language instead of the one the EPUB declares, for the pages, search and accessibility information. |
 | `--identifier <id>` | Key saved reading positions by this book ID instead of the EPUB's identifier. |
 | `--include-non-linear` | Include spine items marked `linear="no"` in the reading order. |

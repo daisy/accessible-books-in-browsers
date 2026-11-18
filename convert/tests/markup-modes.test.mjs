@@ -76,8 +76,9 @@ test('both looks share repaired markup, language, text and warning analysis',asy
   assert.ok(report.data().warnings.length>0);
  }finally{await fs.rm(dir,{recursive:true,force:true});}
 });
+// --no-split-chapters came back as an option of its own (user, 2026-11-17), so it isn't listed here
 test('CLI rejects removed markup modes and individual repair options',()=>{
- for(const option of ['--markup-cleanup','--no-markup-cleanup','--keep-all-ids','--split-chapters','--no-split-chapters','--responsive-tables','--no-responsive-tables','--markup=repaired','--markup=original']){
+ for(const option of ['--markup-cleanup','--no-markup-cleanup','--keep-all-ids','--responsive-tables','--no-responsive-tables','--markup=repaired','--markup=original']){
   const result=spawnSync(process.execPath,['build/index.js','convert','missing','out','template',option],{cwd:new URL('..',import.meta.url),encoding:'utf8'});
   assert.notEqual(result.status,0);assert.match(result.stderr,/unknown option|invalid/i);
  }

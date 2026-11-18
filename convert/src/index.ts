@@ -22,10 +22,12 @@ async function main() {
         .option('--audio-enhance <list>', 'Comma-separated narration filters: warm-eq, compression, noise, deess, declick (default: all), or none')
         .option('--heading-titles', "On by default: when every page's <title> is the book title, title each page by its first other heading", true)
         .option('--no-heading-titles', 'Do not replace repeated book titles with heading titles')
+        .option('--split-chapters', "On by default: split a content document into a page per chapter where the table of contents points into it", true)
+        .option('--no-split-chapters', 'Keep each content document as one page, even when the table of contents points to places inside it')
         .option('--language <tag>', "Override the EPUB's declared BCP 47 language")
         .option('--no-publisher-styles', "Omit publisher stylesheets and the Appearance group")
         .option('--check', 'Run optional Ace and axe accessibility checks when their tools are available')
-        .action(async(input, output, template, options: { audioCache?: string | boolean, audioCleanup: boolean, audioEnhance?: string, check?: boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, language?: string, publisherStyles: boolean, smallAudio?: boolean }) => {
+        .action(async(input, output, template, options: { audioCache?: string | boolean, audioCleanup: boolean, audioEnhance?: string, check?: boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, language?: string, publisherStyles: boolean, smallAudio?: boolean, splitChapters: boolean }) => {
             const identifier = options.identifier?.trim();
             if (options.identifier !== undefined && !identifier) {
                 throw new Error('--identifier must not be empty');
@@ -50,6 +52,7 @@ async function main() {
                     publisherStyles: options.publisherStyles,
                     language,
                     smallAudio: options.smallAudio === true,
+                    splitChapters: options.splitChapters,
                     check: options.check === true
                 }
             );
