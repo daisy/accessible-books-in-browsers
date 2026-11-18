@@ -69,7 +69,7 @@ export function initOfflineReading() {
     if (!panel || document.getElementById('webbook-offline')) return;
     try { const url = new URL(location.href); if (url.searchParams.has('webbook-offline-recover')) { url.searchParams.delete('webbook-offline-recover'); history.replaceState(history.state, '', url); } } catch { /* Reading does not depend on history being writable. */ }
     const root = bookRoot(), section = document.createElement('section'); section.id = 'webbook-offline';
-    const library = document.createElement('a'); library.href = new URL('src/offline-books.html', root); library.textContent = 'Offline books';
+    const libraryLink = document.createElement('a'); libraryLink.href = new URL('src/offline-books.html', root); libraryLink.textContent = 'Offline books';
     const heading = document.createElement('h3'); heading.id = 'webbook-offline-heading'; heading.tabIndex = -1; heading.textContent = 'Offline reading';
     section.setAttribute('aria-labelledby', heading.id);
     const status = document.createElement('p'); status.id = 'webbook-offline-status'; status.setAttribute('role', 'status'); status.setAttribute('aria-atomic', 'true');
@@ -83,9 +83,9 @@ export function initOfflineReading() {
     const indicator = document.createElement('button'); indicator.type = 'button'; indicator.id = 'webbook-offline-indicator'; indicator.textContent = 'Offline'; indicator.hidden = true;
     indicator.addEventListener('click', open);
     document.getElementById('webbook-top-toolbar')?.prepend(indicator);
-    section.append(heading, library, status, storage, progressLabel, progress, count, controls, confirmation); const title = panel.querySelector('h2'); if (title) title.after(section); else panel.prepend(section);
+    section.append(heading, libraryLink, status, storage, progressLabel, progress, count, controls, confirmation); const title = panel.querySelector('h2'); if (title) title.after(section); else panel.prepend(section);
     let registration, snapshot = null, savedRecord = false, pending = false, busy = false, remoteBusy = false, controller, prepared = null, persistent = null, operationVersion = 0;
-    let serverReachable = null, probing = false;
+    let serverReachable = null, probing = false, inLibrary = false;
     const available = window.isSecureContext && Boolean(typeof window.Worker === 'function' && navigator.serviceWorker && window.caches && window.indexedDB && window.crypto?.subtle);
     const button = (id, label, run) => { const node = document.createElement('button'); node.type = 'button'; node.id = 'webbook-offline-' + id; node.textContent = label; node.addEventListener('click', () => Promise.resolve().then(run).catch(fail)); controls.append(node); return node; };
     const save = button('save', 'Save for offline reading', download);
@@ -112,6 +112,7 @@ export function initOfflineReading() {
     function report(message) { if (status.textContent !== message) status.textContent = message; }
     function fail(error) { if (error.name === 'AbortError') report('Download cancelled.'); else report(error.message || 'Offline reading is unavailable.'); }
     function render() {
+        if (inLibrary) return;   // a library copy has no controls (showLibraryCopy)
         const operating = busy || remoteBusy, focused = document.activeElement;
         indicator.hidden = serverReachable !== false;
         indicator.setAttribute('aria-label', `Book server unavailable. ${snapshot ? 'Reading the saved copy.' : "This book isn't saved."} Open offline reading.`);
@@ -189,15 +190,15 @@ export function initOfflineReading() {
         registerAction({ id, label, group: 'Offline reading', isAvailable: () => !control.hidden && !control.disabled, run: () => { open(); control.click(); } });
     }
     registerAction({ id: 'open-offline', label: 'Offline reading', group: 'Panels', isAvailable: () => typeof document.getElementById('webbook-info')?.showPopover === 'function', run: open });
-    document.getElementById('webbook-info')?.addEventListener('beforetoggle', event => { if (event.newState === 'open' && !busy) refresh().then(estimate).catch(fail); });
+    document.getElementById('webbook-info')?.addEventListener('beforetoggle', event => { if (event.newState === 'open' && !busy && !inLibrary) refresh().then(estimate).catch(fail); });
     navigator.serviceWorker?.addEventListener('message', event => {
-        if (event.data?.webbookOffline !== 1) return;
+        if (event.data?.webbookOffline !== 1 || inLibrary) return;
         if (event.data.changed && !busy) refresh().catch(fail);
         if (event.data.incomplete) { snapshot = null; report('This saved copy is incomplete. Reconnect and save it again.'); render(); }
         if (event.data.progress && !busy) { remoteBusy = true; downloadProgress(event.data.progress); report('A book download is in progress in another tab.'); render(); }
     });
     async function checkServer() {
-        if (probing || document.visibilityState === 'hidden') return;
+        if (inLibrary || probing || document.visibilityState === 'hidden') return;
         probing = true;
         try {
             const reachable = await bookServerReachable(new URL('index.html', root));
@@ -212,6 +213,33 @@ export function initOfflineReading() {
     for (const name of ['online', 'offline', 'focus']) window.addEventListener(name, checkServer);
     document.addEventListener('visibilitychange', checkServer);
     report(available ? 'Save this book to read and listen without a connection.' : 'Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.'); render();
-    if (available) { checkServer(); window.setInterval(checkServer, 30000); }
-    if (available && navigator.serviceWorker.controller) refresh().catch(fail);
+    // A book kept in a converter's library has no web address to save from: its pages come from the
+    // browser's storage, served by the library's worker (plan 19, "Open it here"). Then there is
+    // nothing to save, check or update here, and the server check would always fail.
+    libraryCopy(root).then(library => {
+        if (library) { showLibraryCopy(library); return; }
+        if (available) { checkServer(); window.setInterval(checkServer, 30000); }
+        if (available && navigator.serviceWorker.controller) refresh().catch(fail);
+    });
+    function showLibraryCopy(library) {
+        inLibrary = true; serverReachable = null;
+        for (const control of [save, inspect, cancel, check, update, use, remove, progress, progressLabel, count, confirmation]) control.hidden = true;
+        libraryLink.hidden = true; storage.textContent = '';
+        const books = document.createElement('a'); books.href = new URL('books.html', library.converter).href; books.textContent = 'Your books';
+        status.replaceChildren('This book was converted in this browser and is kept here, so it reads offline. It’s only in this browser: find it again, download it or remove it in ', books, '.');
+        indicator.hidden = true;
+    }
 }
+
+// Asks the worker controlling this page whether the book is a copy kept in a converter's library
+// (webbook-library protocol 1); resolves null for an ordinary book, quickly, when nothing answers.
+function libraryCopy(root) {
+    const controller = navigator.serviceWorker?.controller;
+    if (!controller || typeof MessageChannel !== 'function') return Promise.resolve(null);
+    return new Promise(resolve => {
+        const channel = new MessageChannel(), timer = setTimeout(() => resolve(null), 1000);
+        channel.port1.onmessage = event => { clearTimeout(timer); resolve(event.data?.webbookLibrary === 1 && event.data.book ? event.data : null); };
+        try { controller.postMessage({ webbookLibrary: 1, type: 'status', root }, [channel.port2]); } catch { clearTimeout(timer); resolve(null); }
+    });
+}
+
