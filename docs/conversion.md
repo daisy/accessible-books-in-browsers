@@ -269,7 +269,7 @@ The staging folder replaces the output folder ([`finalizeOutput`](../convert/src
 ## Converting in the browser
 
 The same source runs in a browser, bundled with stand-ins for Node's file system, jsdom, logging and
-FFmpeg (plan 19, a spike for now). Its narration is made differently: the browser decodes each
+FFmpeg (plan 19). It lives in [`converter/`](../converter/README.md). Its narration is made differently: the browser decodes each
 source once and cuts the clips itself, lined up sample for sample with FFmpeg's decoding;
 ffmpeg.wasm does the fades, joins, cleanup and encode. The results and measurements are in
 `.claude/19_BROWSER_CONVERTER_FINDINGS.md`.

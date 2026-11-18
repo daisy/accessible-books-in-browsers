@@ -1,0 +1,17 @@
+{
+  "name": "browser-converter",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@ffmpeg/core": "^0.12.10",
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@noble/hashes": "^1.5.0",
+    "buffer": "^6.0.3",
+    "esbuild": "^0.24.0",
+    "fflate": "^0.8.2",
+    "path-browserify": "^1.0.1"
+  },
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}
