@@ -1,5 +1,11 @@
 {
   "version": 1,
+  "provenance": {
+    "source": "notes-test",
+    "identifier": "urn:uuid:6f1c2a52-8d0e-4b7a-9a7e-2f5d3c1b9e40",
+    "converter": "1.0.0"
+  },
+  "betaWarning": "READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.",
   "language": {
     "declared": "en",
     "effective": "en"
@@ -7,10 +13,12 @@
   "options": {
     "publisher styles": true,
     "heading titles": true,
+    "split chapters": true,
     "small audio": true,
     "audio cleanup": true,
     "audio enhancements": "warm-eq,compression,noise,deess,declick",
-    "optional checks": false
+    "optional checks": false,
+    "reader updates": "https://daisy.github.io/accessible-books-in-browsers/v0/"
   },
   "changes": [
     {

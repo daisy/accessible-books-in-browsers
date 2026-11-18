@@ -1,5 +1,9 @@
 # Conversion report
 
+READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
+
+Source: AmarBanglaEPUB; identifier: 7239a599-3299-4bb1-a727-47464bdaf383; converter: 1.0.0. Keep the source EPUB for future reconversion.
+
 Changes: 6193. Warnings for review: 98. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
@@ -8,10 +12,12 @@ Changes: 6193. Warnings for review: 98. Optional checks: Ace not requested, axe 
 - Effective language: en-US
 - publisher styles: true
 - heading titles: true
+- split chapters: true
 - small audio: true
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
 - optional checks: false
+- reader updates: https://daisy.github.io/accessible-books-in-browsers/v0/
 
 ## Publisher styles (As published)
 

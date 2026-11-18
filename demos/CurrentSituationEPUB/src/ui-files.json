@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": 0,
-  "revision": "dec3bddc838134799f2f4b2ff9a261384ddf2109a484ec9a4d6515466c1a9617",
+  "revision": "54a6b56b9a7cd18f70076bed2c5dd9e9110321c119f624e335e6b30d4607ad01",
   "files": [
     {
       "href": "src/css/offline-books.css",
@@ -10,8 +10,8 @@
     },
     {
       "href": "src/css/style.css",
-      "bytes": 80910,
-      "sha256": "0d48b3bfb29631e008853fda97732b28ead0543dcef882537efb81ceed3f8074"
+      "bytes": 81591,
+      "sha256": "3b7488e12dd629d1dc7ba115bbef30fe2e616634f8a099f87b45b05d8148280a"
     },
     {
       "href": "src/icons/book.svg",
@@ -42,6 +42,21 @@
       "href": "src/js/book-timeline.js",
       "bytes": 15247,
       "sha256": "7ae2e9ecd71a94eac2ecc2ddcf544f43ca4ecaeba8c514f6ca63be723fa43b42"
+    },
+    {
+      "href": "src/js/bootstrap-policy.js",
+      "bytes": 4950,
+      "sha256": "a15abd37a5ea7a5414eee1216f3d3d124a7ac5dabcf88c29eb6ed3452093a76e"
+    },
+    {
+      "href": "src/js/bootstrap-source.js",
+      "bytes": 11972,
+      "sha256": "159c9aa1ed523ac2264e713fb226ba433fb8e128edf59f8e42de12ad59646674"
+    },
+    {
+      "href": "src/js/bootstrap.js",
+      "bytes": 15661,
+      "sha256": "d362d0ce76cdae046963f11ffa6970ff4a536ecef00b55124a324eb1c5188015"
     },
     {
       "href": "src/js/browser-bookmarks.js",
@@ -100,8 +115,8 @@
     },
     {
       "href": "src/js/in-place-navigation.js",
-      "bytes": 17512,
-      "sha256": "d0586198b67704c16fc4edd1bf20331581ad6f46acadafcf4f30ca22d89a095d"
+      "bytes": 17645,
+      "sha256": "f3f1cab8d73249de0a564c37a6f02a094ee71dc6581caad87c05413c7470caac"
     },
     {
       "href": "src/js/keyboard-shortcut-settings.js",
@@ -115,8 +130,8 @@
     },
     {
       "href": "src/js/main.js",
-      "bytes": 3427,
-      "sha256": "fe3f446492c850026574838b5a344887c863a080567347de2f95631582b66a62"
+      "bytes": 4893,
+      "sha256": "35e1f88262f68462d522d2400dd3e9873a499a923240f60dbbcbf70cc98b53b5"
     },
     {
       "href": "src/js/media-session.js",
@@ -135,8 +150,8 @@
     },
     {
       "href": "src/js/offline-books.js",
-      "bytes": 7489,
-      "sha256": "d06daba6eae36e3c3bd0ad0551f1aba6b15f435e95efd8eb9902770b6d841bdf"
+      "bytes": 7636,
+      "sha256": "0d6dac7c3d0b99d264138c7ad4d1128ea9e731011b3bc747f900f397add33387"
     },
     {
       "href": "src/js/offline-connectivity.js",
@@ -145,8 +160,8 @@
     },
     {
       "href": "src/js/offline-discovery.js",
-      "bytes": 9581,
-      "sha256": "a28dfbc18c0da192a9dec8dadaed991df9177df3e9f4453c6193cb30fa53835f"
+      "bytes": 9641,
+      "sha256": "ba5342681c3095f09865052b69059dd4e68fcf20ef431bf512092a6daaeec2e0"
     },
     {
       "href": "src/js/offline-download-worker.js",
@@ -170,8 +185,8 @@
     },
     {
       "href": "src/js/offline-worker-core.js",
-      "bytes": 28255,
-      "sha256": "feb62748fed2c3953499f0b1a19dbabdf93b8d1b1c7c113bd0c4d4f857ba6ace"
+      "bytes": 28542,
+      "sha256": "75c1eecfcb7f51b415d034efd7a5fc91a44e98652aaae57842c3bc6c045d3118"
     },
     {
       "href": "src/js/offline-worker.js",
@@ -180,8 +195,8 @@
     },
     {
       "href": "src/js/offline.js",
-      "bytes": 19511,
-      "sha256": "fb0da55d56093676ba7a50e6769ace79e5774358494bb6375fb5bf289dc5c0c1"
+      "bytes": 19962,
+      "sha256": "594f01666153422903a9ccfdbfd895c7dd97c97d06ce460750e9583f63a2b0a4"
     },
     {
       "href": "src/js/page-colors.js",
@@ -214,9 +229,24 @@
       "sha256": "046d618c4941b3dd797a12388203bf94d3eae53dcbacbbfe7fe372c5f056f8a2"
     },
     {
+      "href": "src/js/reader-shell.js",
+      "bytes": 7061,
+      "sha256": "f5401588bd4c688520fe63fe4bc61a33eb5f1d026cf43eaad2cdb785766b6fee"
+    },
+    {
+      "href": "src/js/reader-updates.js",
+      "bytes": 2614,
+      "sha256": "613deb20ca8daa10be28ddf8011a311eafc91edc34a912fc943291ee1763253b"
+    },
+    {
       "href": "src/js/reading-axis.js",
       "bytes": 2835,
       "sha256": "4748a485d130702c6e07840b4eb94c1e8a3ed24557a9d61e51554be4c888ac71"
+    },
+    {
+      "href": "src/js/remote-ui.js",
+      "bytes": 3245,
+      "sha256": "20efb9b40df8086b0a798564dc1d8b5178bc972a5ac81657c759a053fae62d87"
     },
     {
       "href": "src/js/responsive-equations.js",
@@ -347,6 +377,11 @@
       "href": "src/offline-books.html",
       "bytes": 680,
       "sha256": "20921a24cf09f4a2246145fb523a6c2ea6094daf8f18f83933a8d62cfa065c33"
+    },
+    {
+      "href": "src/reader-shell.html",
+      "bytes": 12662,
+      "sha256": "683269917453dfbe1b04951be8843abb95c3c75300cd780f6d30252b53fb8cd3"
     }
   ]
 }

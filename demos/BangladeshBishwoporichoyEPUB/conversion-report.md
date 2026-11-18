@@ -1,5 +1,9 @@
 # Conversion report
 
+READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
+
+Source: BangladeshBishwoporichoyEPUB; identifier: aeed20c9-e8c5-4154-9764-2d29718320db; converter: 1.0.0. Keep the source EPUB for future reconversion.
+
 Changes: 3672. Warnings for review: 80. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
@@ -8,10 +12,12 @@ Changes: 3672. Warnings for review: 80. Optional checks: Ace not requested, axe 
 - Effective language: en-US
 - publisher styles: true
 - heading titles: true
+- split chapters: true
 - small audio: true
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
 - optional checks: false
+- reader updates: https://daisy.github.io/accessible-books-in-browsers/v0/
 
 ## Publisher styles (As published)
 

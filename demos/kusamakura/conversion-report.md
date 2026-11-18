@@ -1,5 +1,9 @@
 # Conversion report
 
+READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
+
+Source: kusamakura; identifier: http://www.aozora.gr.jp/cards/000148/card776.html; converter: 1.0.0. Keep the source EPUB for future reconversion.
+
 Changes: 1262. Warnings for review: 5. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
@@ -8,10 +12,12 @@ Changes: 1262. Warnings for review: 5. Optional checks: Ace not requested, axe n
 - Effective language: ja-jp
 - publisher styles: true
 - heading titles: true
+- split chapters: true
 - small audio: true
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
 - optional checks: false
+- reader updates: https://daisy.github.io/accessible-books-in-browsers/v0/
 
 ## Publisher styles (As published)
 

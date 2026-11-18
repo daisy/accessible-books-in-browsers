@@ -1,4 +1,5 @@
 import { readingScroll, scrollToReading } from './reading-axis.js';
+import { enhanceDocument } from './reader-shell.js';
 import { applyAppearance } from './appearance.js';
 import { applyWritingMode } from './writing-mode.js';
 import { startPlayerForPage } from './player.js';
@@ -162,7 +163,7 @@ export function fetchPage(url) {
                 if (!response.ok) throw new Error(`${response.status} ${url.href}`);
                 return response.text();
             })
-            .then(html => new DOMParser().parseFromString(html, 'text/html'));
+            .then(html => { const doc = new DOMParser().parseFromString(html, 'text/html'); enhanceDocument(doc); return doc; });
         page.catch(() => pageCache.delete(key));
         pageCache.set(key, page);
         while (pageCache.size > PREFETCH_LIMIT) pageCache.delete(pageCache.keys().next().value);
@@ -184,7 +185,7 @@ function canSwapIn(doc) {
     if (root.dataset.webbookContract !== document.documentElement.dataset.webbookContract) return false;
     const bookId = d => d.querySelector('meta[name="webbook-book-id"]')?.content?.trim() || '';
     if (bookId(doc) !== bookId(document)) return false;
-    const stylesheets = d => Array.from(d.querySelectorAll('link[rel~="stylesheet"]:not([data-webbook-publisher-style])'), link => link.getAttribute('href')).join('\n');
+    const stylesheets = d => Array.from(d.querySelectorAll('link[rel~="stylesheet"]:not([data-webbook-publisher-style]):not([data-webbook-ui-style])'), link => link.getAttribute('href')).join('\n');
     if (stylesheets(doc) !== stylesheets(document)) return false;
     return Boolean(doc.querySelector('main') && doc.querySelector('#webbook-toolbar') && document.querySelector('main'));
 }

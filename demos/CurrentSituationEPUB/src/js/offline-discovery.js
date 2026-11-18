@@ -43,7 +43,7 @@ export async function discoverBook(root, { signal, onProgress = () => {}, curren
     }
     // Inventory-backed scripts need no JavaScript parser, including static and lazy imports.
     for (;;) {
-        const entry = Array.from(entries.values()).find(item => !item.scanned && ['html', 'css', 'json'].includes(item.kind));
+        const entry = Array.from(entries.values()).find(item => !item.scanned && ['html', 'css', 'json'].includes(item.kind) && item.url !== new URL('src/reader-shell.html', root).href);
         if (!entry) break;
         entry.scanned = true; onProgress(entries.size);
         const text = entry.body ? await entry.body.text() : await read(entry);

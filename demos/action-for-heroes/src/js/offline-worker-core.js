@@ -288,6 +288,10 @@ self.WebbookOfflineWorker = { protocol: 1, version: '1', start(options = {}) {
             else if (data.command === 'end-save') result = await endLease(client.id, data.cache);
             else if (data.command === 'notify') { const lease = (await state()).job; await broadcast(data.progress && lease?.owner === client.id ? { progress: data.progress } : { changed: true }); result = {}; }
             else if (data.command === 'status') result = await status(client.id);
+            else if (data.command === 'saved-ui') {
+                const row = await state(), saved = row.active && await db('snapshots', row.active);
+                result = { ui: saved?.ui || null, recovering: await db('pins', scope + '|' + client.id) === 'network' };
+            }
             else if (data.command === 'save') result = await save(data, reply);
             else if (data.command === 'cancel') { if (job) job.controller.abort(); else { const lease = await bookTransaction(row => { if (row.job?.owner) { row.job.cancelled = true; return row.job; } return null; }); if (lease?.owner) (await self.clients.get(lease.owner))?.postMessage({ webbookOffline: 1, cancelDownload: lease.cache }); } result = { cancelled: true }; }
             else if (data.command === 'remove') result = await remove();

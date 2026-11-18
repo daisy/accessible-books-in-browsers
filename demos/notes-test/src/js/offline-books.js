@@ -1,5 +1,6 @@
 import { offlineCommand } from './offline.js';
 import { discoverBook } from './offline-discovery.js';
+import { includeSelectedUI } from './remote-ui.js';
 
 const list = document.getElementById('offline-books'), status = document.getElementById('library-status');
 let database;
@@ -47,7 +48,8 @@ async function showBook(root, row) {
         if (busy) return;
         busy = true; controller = new AbortController(); render(); cancel.focus(); message.textContent = 'Finding book files… Keep this page open.'; progress.removeAttribute('value');
         try {
-            const files = await discoverBook(root, { current: new URL('index.html', root).href, signal: controller.signal });
+            const local = await discoverBook(root, { current: new URL('index.html', root).href, signal: controller.signal });
+            const files = await includeSelectedUI(root, local, { signal: controller.signal });
             message.textContent = 'Downloading a fresh copy… Keep this page open.';
             await command('save', files, value => { progress.max = value.total; progress.value = value.done; }, controller.signal);
             const state = await command('status'); use.hidden = !state.pending;
