@@ -8,7 +8,7 @@
         <p:option name="result" required="true"/>
         <p:option name="include-non-linear" select="'false'"/>
         <p:option name="identifier" select="''"/>
-        <p:option name="remote-ui" select="'false'"/>
+        <p:option name="remote-ui" select="'true'"/>
         <p:option name="ui-base-url" select="''"/>
 
         <p:declare-step type="pxi:epub-to-webbook">

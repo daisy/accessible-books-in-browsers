@@ -46,7 +46,8 @@ export type ConvertOptions = {
 };
 
 async function convert(input: string, output: string, template: string, options: ConvertOptions = {}): Promise<void> {
-    const channelValue = options.uiBaseUrl || (options.remoteUi ? process.env.WEBBOOK_UI_BASE_URL || 'https://daisy.github.io/accessible-books-in-browsers/v0/' : undefined);
+    if (options.remoteUi === false && options.uiBaseUrl) throw new Error('--no-remote-ui cannot be combined with --ui-base-url.');
+    const channelValue = options.uiBaseUrl || (options.remoteUi !== false ? process.env.WEBBOOK_UI_BASE_URL || 'https://daisy.github.io/accessible-books-in-browsers/v0/' : undefined);
     if (options.remoteUi && !channelValue) throw new Error('The beta UI channel is not configured. Supply --ui-base-url or WEBBOOK_UI_BASE_URL.');
     let channel: string | undefined;
     if (channelValue) {
@@ -54,7 +55,6 @@ async function convert(input: string, output: string, template: string, options:
         if (!(url.protocol === 'https:' || url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) || url.username || url.password || url.search || url.hash || !url.pathname.endsWith('/')) throw new Error('The UI channel must be an HTTPS directory URL (localhost HTTP is allowed for testing).');
         channel = url.href;
     }
-    const bootstrap = await fs.readFile(path.join(template, 'src/js/bootstrap.js'), 'utf8');
     const converterVersion = (await fs.readJson(fileURLToPath(new URL('../package.json', import.meta.url)))).version;
     const outputPaths = await createOutputStaging(output);
     logger.initLogger(outputPaths.logFile);
@@ -101,14 +101,15 @@ async function convert(input: string, output: string, template: string, options:
             'small audio': options.smallAudio === true,
             'audio cleanup': options.audioCleanup !== false,
             'audio enhancements': options.audioEnhance?.join(',') || false,
-            'optional checks': options.check === true
+            'optional checks': options.check === true,
+            'reader updates': channel || 'bundled (fixed copy)'
         });
         await imageRegistry.configureFonts(epub.basedir, epub.packageFilename, report);
         report.provenance = { source: path.basename(input), identifier: site.metadata.identifier || '', converter: converterVersion };
         if (channel) {
-            report.betaWarning = `Remote UI: this book loads its interface from the beta channel at ${channel}. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.`;
+            report.betaWarning = `READER UPDATES: this book will receive reader updates from the beta channel at ${channel}. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.`;
             winston.warn(report.betaWarning);
-        }
+        } else winston.info('READER UPDATES: fixed bundled reader selected with --no-remote-ui. This book will not receive channel updates.');
         const audioCache = openAudioCache(options.audioCache, site.bookId);
         const cleanup = audioCleanupSettings(options.audioCleanup !== false, options.audioEnhance ?? []);
         const accessibility = await readAccessibilityInfo(epub.packageFilename);
@@ -120,6 +121,7 @@ async function convert(input: string, output: string, template: string, options:
             : null;
 
         await copyUiAssets(template, outputPaths);
+        const bootstrap = await fs.readFile(path.join(outputPaths.stagingDir, 'src/js/bootstrap.js'), 'utf8');
         await writeServiceWorkerStub(outputPaths);
         const favicon = await createBookFavicon(site.metadata.coverPath, outputPaths);
 

@@ -27,7 +27,8 @@ async function main() {
         .option('--language <tag>', "Override the EPUB's declared BCP 47 language")
         .option('--no-publisher-styles', "Omit publisher stylesheets and the Appearance group")
         .option('--check', 'Run optional Ace and axe accessibility checks when their tools are available')
-        .option('--remote-ui', 'Load compatible interface releases from the configured beta channel; keep the source EPUB')
+        .option('--remote-ui', 'Use the beta reader-update channel (default); keep the source EPUB', true)
+        .option('--no-remote-ui', 'Choose a fixed bundled reader instead of receiving channel updates')
         .option('--ui-base-url <url>', 'Beta UI channel directory URL; also enables remote UI')
         .addHelpText('after', '\nKeep the source EPUB. A new reader contract requires reconverting from it; there is no book upgrader.\n')
         .action(async(input, output, template, options: { remoteUi?: boolean, uiBaseUrl?: string, audioCache?: string | boolean, audioCleanup: boolean, audioEnhance?: string, check?: boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, language?: string, publisherStyles: boolean, smallAudio?: boolean, splitChapters: boolean }) => {

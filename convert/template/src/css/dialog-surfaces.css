@@ -39,7 +39,7 @@
     background: var(--webbook-panel-surface);
     box-shadow: 0 1px 2px rgb(0 0 0 / 7%);
 }
-#webbook-info:popover-open :is(#webbook-offline, #webbook-accessibility, #webbook-progress) {
+#webbook-info:popover-open :is(#webbook-offline, #webbook-accessibility, #webbook-progress, #webbook-reader-updates) {
     padding: 1rem;
     border: var(--webbook-panel-border);
     border-radius: .6rem;
@@ -83,4 +83,16 @@
 @media (forced-colors: active) {
     .webbook[popover]:popover-open,
     :is(#webbook-offline, #webbook-settings) .webbook-confirmation { border: 2px solid CanvasText; }
+}
+#webbook-reader-updates h3 { margin: 0 0 .5rem; font-size: 1.15rem; }
+#webbook-reader-updates p { margin: 0 0 .75rem; }
+#webbook-reader-updates button {
+    font: inherit;
+    min-height: 2.75rem;
+    padding: .5rem .75rem;
+    border: 1px solid var(--theme-fg);
+    border-radius: .4rem;
+    color: var(--theme-fg);
+    background: var(--theme-bg);
+    cursor: pointer;
 }

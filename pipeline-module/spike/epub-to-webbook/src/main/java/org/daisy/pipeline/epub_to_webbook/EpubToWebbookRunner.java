@@ -46,7 +46,7 @@ public final class EpubToWebbookRunner {
 			command.add("--identifier");
 			command.add(identifier.trim());
 		}
-		if (remoteUi) command.add("--remote-ui");
+		command.add(remoteUi ? "--remote-ui" : "--no-remote-ui");
 		if (uiBaseUrl != null && !uiBaseUrl.trim().isEmpty()) { command.add("--ui-base-url"); command.add(uiBaseUrl.trim()); }
 		new CommandRunner(command).consumeError(LOGGER).run();
 	}

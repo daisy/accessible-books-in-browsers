@@ -1,3 +1,4 @@
+import { initReaderUpdates } from './reader-updates.js';
 import { prepareReaderShell } from './reader-shell.js';
 import { initOfflineReading } from './offline.js';
 import { initEscapability } from './escapability.js';
@@ -58,6 +59,7 @@ export async function init() {
     initResponsiveEquations();
     initSettingsTransfer();
     initOfflineReading();
+    initReaderUpdates();
     // Before the shortcuts start: they read saved keys only for actions already registered
     initWhereAmI();
     initKeyboardShortcuts();
