@@ -119,9 +119,9 @@ export function initSettingsTransfer() {
 
 // Save the current page and narration time in this tab, independently of the resume preference.
 // Reinitializing the reader on this same page applies every module's settings together.
-function prepareReload(message, focusId) {
+export function prepareReload(message, focusId, panelId = 'webbook-settings') {
     const audio = pageAudio();
-    const panel = document.getElementById('webbook-settings');
+    const panel = document.getElementById(panelId);
     // A text block and its position in the viewport survive a font/spacing change better than
     // an absolute scroll offset. The same page's block order stays the same on reload.
     const blocks = readingBlocks();
@@ -129,13 +129,13 @@ function prepareReload(message, focusId) {
     const block = blocks[blockIndex]?.getBoundingClientRect();
     const state = { url: location.href, scrollY: readingScroll(), audioTime: audio?.currentTime ?? 0,
         blockIndex, blockOffset: block ? readingStart(block) - readingLine() : 0,
-        playing: Boolean(audio && !audio.paused), panelScroll: panel.scrollTop, message, focusId };
+        playing: Boolean(audio && !audio.paused), panelId, panelScroll: panel.scrollTop, message, focusId };
     // Check session storage before changing any preferences: without it a reload could lose place.
     sessionStorage.setItem(RETURN_KEY, JSON.stringify(state));
     return () => location.reload();
 }
 
-function clearReturnState() {
+export function clearReturnState() {
     try { sessionStorage.removeItem(RETURN_KEY); } catch { /* Storage itself may be blocked. */ }
 }
 
@@ -159,7 +159,7 @@ function restoreAfterReload(report) {
             ? readingScroll() + readingStart(block.getBoundingClientRect()) - readingLine() - state.blockOffset
             : state.scrollY;
         scrollToReading(top);
-        const panel = document.getElementById('webbook-settings');
+        const panel = document.getElementById(state.panelId || 'webbook-settings');
         // Opening the panel moves focus to its first control (popovers.js, on toggle), so the
         // button the reader used gets it back after that
         const refocus = () => {

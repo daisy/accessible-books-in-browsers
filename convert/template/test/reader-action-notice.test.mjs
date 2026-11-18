@@ -23,3 +23,19 @@ test('the message is dismissed by a click or tap anywhere, as well as by Escape'
     assert.equal(notice().hidden, true);
     assert.equal(escape.defaultPrevented, true);
 });
+
+test('an inline About action is accessible and survives pointerdown until its click opens the panel', () => {
+    let opened = false;
+    announceReaderAction('Book server unavailable. Open About for saved-book status.', { action: { label: 'About', run: () => { opened = true; } } });
+    const button = notice().querySelector('button');
+    assert.equal(button.textContent, 'About');
+    assert.equal(notice().hasAttribute('aria-hidden'), false);
+    button.dispatchEvent(new dom.window.Event('pointerdown', { bubbles: true }));
+    assert.equal(notice().hidden, false);
+    button.click();
+    assert.equal(opened, true);
+    assert.equal(notice().hidden, true);
+    announceReaderAction('Another ordinary message.');
+    assert.equal(notice().querySelector('button'), null);
+    assert.equal(notice().getAttribute('aria-hidden'), 'true');
+});

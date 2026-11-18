@@ -45,3 +45,19 @@
 #webbook-action-notice[hidden] {
     display: none;
 }
+#webbook-action-notice button {
+    font: inherit;
+    font-weight: 600;
+    min-height: 2.75rem;
+    padding: .25rem .65rem;
+    margin-inline: .25rem;
+    border: 1px solid currentColor;
+    border-radius: .4rem;
+    background: var(--theme-bg);
+    color: var(--theme-fg);
+    cursor: pointer;
+}
+#webbook-action-notice button:focus-visible {
+    outline: 3px solid var(--webbook-focus-color);
+    outline-offset: 3px;
+}

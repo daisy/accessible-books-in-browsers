@@ -229,6 +229,57 @@ WebMCP continue to work normally. **Let AI assistants in this browser control th
 default in Settings when WebMCP is available and is shared across books on the same website; turn
 it off to unregister all of the reader's tools. Unsupported browsers do not show the setting.
 
+## Offline reading
+
+Open **About → Offline reading** and choose **Find download size** to inspect the book, or
+**Save for offline reading** to download it. Keep the tab open until it says **Saved for offline
+reading**. The saved copy includes every discovered page, narration and cues, search data,
+reader tools, images, and publisher styles/fonts, so both Appearance choices work offline.
+Downloads run in a worker owned by the open page, so a service-worker task timeout does not
+cut off a slow whole-book download. Closing that page interrupts the download safely. Saving a
+book does not download or remove other books on the same website.
+
+Downloads have labelled progress and Cancel. A failed or cancelled update leaves the working
+copy intact. **Check for updates** compares the hosted files with the saved copy; **Refresh saved
+copy** is also available when a host cannot provide reliable version information. After an update
+downloads, choose **Use update and reload** when ready. Close other tabs of that book first.
+The current reading position is retained; no update interrupts narration while it downloads.
+
+**Remove saved book** frees this book's download, keeping settings and reading positions.
+**Offline books** in About opens a page listing this browser's saved books on the same site,
+with links to open them and controls to refresh or remove each copy. Refresh downloads a
+replacement; **Use update** activates it after other tabs of that book are closed. The list
+works offline and keeps its reader files even after the last book is removed. Book content,
+including audio, is removed; a small copy of the reader files remains for the management page.
+You can bookmark that page. Different hosts, ports and browsers have separate collections.
+Resetting settings does not remove saved books. An **Offline** button appears in the top toolbar
+when the book server cannot be reached; it opens the saved-book status in About. The server is
+checked directly on load, on returning to the tab, and every 30 seconds while visible, bypassing
+the saved copy and HTTP cache. Without an
+explicit Save, the reader does not maintain a partial offline copy.
+
+Offline reading needs HTTPS (or localhost for development), service workers and browser storage.
+File URLs and a phone's plain HTTP LAN address do not support saving. Unknown download sizes,
+denied persistent storage and a full device are reported without claiming success. Essential
+resources outside the book folder that cannot be saved cause a clear error; ordinary external
+links are not downloaded. Saved books use their saved files even online until explicitly updated.
+
+If part of a saved copy goes missing, reconnect and follow **Open the online recovery copy**,
+then save again and use the update. The recovery copy uses the connection for all its files.
+
+Browser storage can be removed by the browser or by clearing website data. On Safari, inactive
+sites can lose script-created storage after seven days of Safari use without interaction; Home
+Screen web apps have a separate use counter. Storage quotas are estimates, and persistence
+requests can be denied. See [WebKit's storage policy](https://webkit.org/blog/14403/updates-to-storage-policy/)
+and [its inactivity-policy explanation](https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/).
+App installation and unattended/background downloads are not part of this beta.
+
+Books made before offline reading need the complete updated reader package, including
+`src/ui-files.json`, installed by their publisher; their existing root `sw.js` stays unchanged.
+Publishers can take the complete `src/` folder from a newly converted v0 book as that package;
+keep the older book's root `sw.js` in place. The local reader works independently of a remote UI channel. Remote delivery is a separate,
+subsequent feature; its worker/snapshot integration is prepared and tested with a local mock.
+
 ## Reading without JavaScript
 
 Every page is a complete HTML page. Without JavaScript, it has a plain header with a Contents button (the table of contents opens without JavaScript, as a native popover) and links to the previous and next pages, and narrated pages have the browser's own audio player at the bottom. The reading interface's toolbars only appear when its script runs.

@@ -1,4 +1,5 @@
 import fs from 'fs-extra';
+import { createHash } from 'crypto';
 import path from 'path';
 import { deobfuscateFont, readFontEncryption, type FontEncryption } from './font-obfuscation.js';
 import type { ConversionReport } from './conversion-report.js';
@@ -96,6 +97,22 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
         }
     }));
     await combineStylesheets(path.join(outputPaths.stagingDir, 'src', 'css'), 'style.css');
+    const files: { href: string; bytes: number; sha256: string }[] = [];
+    const walk = async (directory: string): Promise<void> => {
+        for (const name of (await fs.readdir(directory)).sort()) {
+            const filename = path.join(directory, name);
+            if ((await fs.stat(filename)).isDirectory()) await walk(filename);
+            else if (name !== 'ui-files.json') {
+                const bytes = await fs.readFile(filename);
+                files.push({ href: utils.toPosixPath(path.relative(outputPaths.stagingDir, filename)), bytes: bytes.length,
+                    sha256: createHash('sha256').update(bytes).digest('hex') });
+            }
+        }
+    };
+    await walk(path.join(outputPaths.stagingDir, 'src'));
+    files.sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
+    const revision = createHash('sha256').update(JSON.stringify(files)).digest('hex');
+    await fs.writeJson(path.join(outputPaths.stagingDir, 'src', 'ui-files.json'), { version: 1, contract: 0, revision, files }, { spaces: 2 });
 }
 
 // The template keeps its CSS in one file per component, joined by @import in style.css. A browser
@@ -131,7 +148,7 @@ async function combineStylesheets(cssDir: string, entry: string): Promise<void> 
 // A service worker only controls pages in its own folder and below, and must come from the book's
 // own site, so offline reading needs this file at the book's root; a CDN or a later UI upgrade
 // can't add it. It's the same for every book and does nothing by itself: the behavior lives with
-// the reader's files, which can be upgraded. Nothing registers it yet.
+// the reader's files, which can be upgraded. The reader registers it when offline features are used.
 const SERVICE_WORKER_STUB = `// Offline reading. The behavior lives with the reader's files, so it can be upgraded with them.
 importScripts('src/js/offline-worker.js');
 `;
