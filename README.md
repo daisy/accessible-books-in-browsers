@@ -339,15 +339,16 @@ Converted books get a small favicon made from the cover (a 64 × 64 PNG, preserv
 
 ## Beta reader updates
 
-Remote UI is optional and off by default. Convert with `--remote-ui` for the beta channel at
+Reader updates use the beta channel by default, and the converter announces the choice.
+Use `--no-remote-ui` for a fixed bundled reader, or `--remote-ui` explicitly for the channel at
 `https://daisy.github.io/accessible-books-in-browsers/v0/`, or use `--ui-base-url <directory-url>`
 for another channel or a local cross-origin mock. Every book keeps its bundled local reader;
 plain content, Contents, About and optional print-page files also work without JavaScript.
 The converter warns that the channel is beta content. Keep the original EPUB: a new contract
 requires reconversion, not an upgrader.
 
-Readers can use `?webbook-ui=local` as an escape hatch, or `?webbook-ui=auto` to return to normal
-selection. Saved books retain their saved UI until an explicit update. Remote code has access
+Readers can use `?webbook-ui=local` as an escape hatch. About shows the override and offers
+**Return to automatic updates**; `?webbook-ui=auto` also restores normal selection. Saved books retain their saved UI until an explicit update. Remote code has access
 to the book's origin and reading settings, so publishers must trust the channel's maintainers.
 See [remote delivery and releases](convert/REMOTE_UI.md) for the manifest, privacy, fallback,
 Pipeline options, testing and protected publication workflow. The channel must be published

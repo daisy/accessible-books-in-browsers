@@ -1,17 +1,22 @@
 # Beta remote reader UI
 
-Remote delivery is opt-in. Convert with `--remote-ui` to use
-`https://daisy.github.io/accessible-books-in-browsers/v0/`, or supply
-`--ui-base-url https://your-channel.example/v0/`. The latter also enables remote delivery.
-`WEBBOOK_UI_BASE_URL` can override the default for `--remote-ui`. Ordinary conversions make no
-channel requests. Keep the source EPUB: a different book contract requires reconversion.
-The converter prints a beta warning and records it at the top of the conversion report.
+Reader updates use the beta channel by default:
+`https://daisy.github.io/accessible-books-in-browsers/v0/`. The command-line converter always
+announces this choice and explains `--no-remote-ui`, which selects a fixed bundled reader.
+`--ui-base-url https://your-channel.example/v0/` selects a different channel and conflicts with
+`--no-remote-ui`. `--remote-ui` explicitly selects the default; `WEBBOOK_UI_BASE_URL` can change
+that default for a deployment. The conversion report records either the channel or the fixed
+bundled choice. The browser converter presents Reader updates as a visible required choice with
+the channel preselected. Keep the source EPUB: a different contract requires reconversion.
 
-Each opted-in book keeps its local reader. A valid channel release loads its CSS and exported
+Every channel-enabled book keeps its local reader. A valid channel release loads its CSS and exported
 `init()` together; download, CORS, CSP and compatibility failures select the complete local
 reader. Startup crashes reload cleanly into local UI, then the plain baseline if local startup
 also fails. Flags and URL fallbacks prevent loops even when storage is blocked. Nothing hides
-the publication while loading. The inline bootstrap has a local external copy for CSPs that
+the publication while loading. The inline bootstrap is prebuilt and readable by `npm run compile`, using the same bytes as its
+external copy. Pure decisions in `bootstrap-policy.js` have unit tests; no untested copy of the
+policy is maintained in the frozen script. Conversions copy the prebuilt bundle, keeping the shared
+conversion code browser-compatible. The inline bootstrap has a local external copy for CSPs that
 permit only same-origin scripts. Reader code must have no startup side effects at import time.
 
 The channel's publisher can run JavaScript with the book's origin privileges, including access
@@ -41,7 +46,9 @@ continue to work, but a remote bootstrap cannot be retrofitted without changing 
 
 Use `?webbook-ui=local`, `remote`, `release:VERSION`, or `auto`. Local persists for that book;
 remote/release testing persists for the tab, and auto clears overrides. Valid override parameters
-are removed from the address bar. Storage keys are scoped to the book root (not origin-wide).
+are removed from the address bar. About’s Reader updates section shows any saved override
+and offers **Return to automatic updates**, keeping the reading position through the reload.
+Auto also clears internal URL crash guards. Storage keys are scoped to the book root (not origin-wide).
 Local overrides use the bundled worker/core and UI. Testing overrides require any uncached
 release to be available online and do not rewrite saved content.
 
@@ -51,7 +58,7 @@ An uncertain/timed-out worker reply selects local fallback, rather than risking 
 channel UI over an unknown saved generation. Older workers use a feature-detected status reply.
 A saved book keeps its complete saved release, online or offline. Check/Refresh downloads a
 replacement release and content alongside the current copy; activation remains explicit.
-Closing other book tabs is required. Worker updates wait normally; there is no forced
+Closing other book tabs is required. Workers remain local; compatible local worker updates wait normally; there is no forced
 `skipWaiting`. The fixed root `sw.js` is unchanged.
 
 ## Build, check and promote
@@ -87,8 +94,18 @@ node convert/scripts/promote-ui-release.mjs /tmp/ui-channel/v0 --local
 `current.json` is mutable; all release directories are retained. Cached channel changes apply
 on the next page view for unsaved books. Saved books wait for an explicit update. A release's
 `contract` must be 0 and `minBootstrap` must be 1; unsupported offline protocols use fallback.
-Optional SHA-256 integrity fields are supported for CSS and bundled JS; JS is verified before
-execution through a module Blob URL (a CSP that blocks that URL selects local UI).
+Every remote selection requires SHA-256 hashes from `ui-files.json` before script or stylesheet
+loading, even when current.json omits its optional integrity fields. Pinned releases fetch their
+inventory; saved releases use the verified file hashes stored with the saved descriptor. Missing
+or inconsistent hashes select the complete local reader. CSS uses mandatory SRI; JS bytes are
+verified before importing a module Blob URL (a CSP blocking that URL selects local UI). The
+release manifest also publishes integrity fields; they must agree with the inventory.
+
+Classic `importScripts` cannot enforce SRI before execution. The current reader therefore uses
+bundled service/download workers, including when its page UI is remote. The saved release still
+includes a checked worker bundle, but that remote bundle is not executed. Remote worker updates
+must wait for a delivery mechanism that can guarantee pre-execution integrity; the old bridge
+remains an explicitly testable compatibility API, not the channel reader's loading path.
 
 ## Publish in this repository
 
@@ -103,7 +120,11 @@ Before enabling publication, configure required reviewers on the `ui-channel-rel
 environment and permit its reviewed commit to main under the repository's branch rules. The
 workflow never bypasses branch protection. A manual dispatch supports release/rollback/local.
 Artifacts retain the built channel; GitHub Releases record the tag and notes. Readers load files
-from Pages, not GitHub Release downloads. Keep all previous versions on main.
+from Pages, not GitHub Release downloads. Keep all previous versions on main. Each bot release commit advances remote main: before your
+next local push, run `git pull --ff-only` (or reconcile any local commits explicitly). If branch
+protection disallows the bot’s push, publication stops; use an approved PR-based release path or
+a separate publishing branch/repository rather than bypassing protection. Sharing the repository
+was the user's choice; it trades simpler hosting for this coordination with ordinary development.
 
 After publication, verify `current.json` and the release files at the real Pages URL: MIME/CORS,
 cache propagation, rollback, CSP, offline/save/update and browser behavior. No live channel is

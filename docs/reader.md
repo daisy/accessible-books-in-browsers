@@ -50,7 +50,13 @@ into the plain page.
    release fails to load or start, it falls back to the book's own reader, and then to the plain
    page. Testers can choose with `?webbook-ui=local`, `remote`, `release:<version>` or `auto`.
    The channel and its safeguards are explained in [`REMOTE_UI.md`](../convert/REMOTE_UI.md).
-   The bootstrap is frozen into the book: changing it means converting again.
+   New conversions default to the channel, announced by the converter; `--no-remote-ui` chooses
+   a fixed copy. About shows saved overrides and offers Return to automatic updates.
+   The bootstrap is bundled, readable and frozen into the book: changing it means converting again.
+   Its pure selection, manifest, inventory, override and failure decisions are unit-tested in
+   [`bootstrap-policy.js`](../convert/template/src/js/bootstrap-policy.js). Every remote selection
+   needs inventory hashes, including saved and pinned releases. Missing hashes use local fallback;
+   CSS uses SRI and script bytes are verified before import.
 2. **The reader shell** ([`reader-shell.js`](../convert/template/src/js/reader-shell.js)) adds the
    reader's toolbars, panels and settings around the plain page, and fills the table of contents,
    page list and About from the navigation pages.
@@ -188,7 +194,9 @@ on the Offline books page. Contract details are in the
 | The Offline books page | [`offline-books.html`](../convert/template/src/offline-books.html), [`offline-books.js`](../convert/template/src/js/offline-books.js) |
 
 A saved book with a UI channel keeps the reader release it was saved with: the bootstrap asks the
-worker (`saved-ui`) before the channel.
+worker (`saved-ui`) before the channel. Its stored verified file hashes supply integrity without
+fetching an inventory while offline. Service and download workers remain bundled locally because
+classic worker imports cannot enforce pre-execution integrity; remote page UI still updates.
 
 ### AI assistants (experimental)
 

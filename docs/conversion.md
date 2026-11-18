@@ -26,9 +26,9 @@ These decisions shape everything below. When a change seems to need breaking one
 - **Parse once, write once.** The EPUB is read into one in-memory model; each page is transformed
   and rendered once; everything is written to a staging folder that replaces the output only when
   the whole conversion succeeds.
-- **The reader is data, not code.** The template's `index.html` is read as a document and filled in
-  per page; the converter never rebuilds the reader's markup itself. Every element it fills is
-  listed in [`template-contract.ts`](../convert/src/template-contract.ts).
+- **The authoring template supplies the reader shell.** `index.html` is filled as an intermediate
+  document; `book-shape.ts` writes plain content and separate navigation pages. `copyUiAssets`
+  extracts the runtime shell. Source-template hooks remain listed in [`template-contract.ts`](../convert/src/template-contract.ts).
 - **Every page reads without JavaScript.** Each content page is plain HTML with real links and the
   browser's own audio player; the reader's controls are added by script (step 8).
 - **Keep the source EPUB.** There is no book upgrader: a new contract means converting again from
@@ -87,9 +87,9 @@ book, without writing anything:
 
 Back in [`convert()`](../convert/src/convert.ts):
 
-- the **UI channel** is settled: none by default, so the book always uses its own copy of the
-  reader; with `--remote-ui` (the beta channel) or `--ui-base-url <url>`, the book may load newer
-  reader releases from that channel, and the converter prints a beta warning (see
+- the **Reader updates** choice defaults to the beta channel, with a prominent notice naming
+  it and explaining `--no-remote-ui` for a fixed bundled reader. `--ui-base-url <url>` selects
+  another channel. The report records the choice and the converter prints a beta warning (see
   [`REMOTE_UI.md`](../convert/REMOTE_UI.md));
 - the **source record**: the EPUB's file name, its identifier and the converter's version, for the
   report and a `webbook-source` meta in every page;
@@ -228,7 +228,8 @@ plain page (plan 11):
 - the book's content, the native `<audio controls>` with its cue track, and the live regions the
   reader announces through;
 - the source record, the UI channel (if any) and a small stylesheet for reading without script;
-- the **bootstrap**, inline and as `src/js/bootstrap.js` (for sites whose security policy allows
+- the **bootstrap**, prebuilt and readable by `build-bootstrap.mjs` from `bootstrap-source.js` and the
+  unit-tested pure decisions in `bootstrap-policy.js`, inline and as `src/js/bootstrap.js` (for sites whose security policy allows
   only same-origin scripts). It picks the reader to load: the book's own, a saved copy's release,
   or the channel's current release, falling back to the book's own, and then to the plain page, if
   anything fails ([`bootstrap.js`](../convert/template/src/js/bootstrap.js)). It is frozen into every

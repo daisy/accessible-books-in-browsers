@@ -73,6 +73,7 @@ const url = `http://127.0.0.1:${server.address().port}`;
 let cors = true,
     delay = 0,
     missing = '',
+    corrupt = '',
     manifest;
 const channel = createServer(async (req, res) => {
     try {
@@ -90,7 +91,7 @@ const channel = createServer(async (req, res) => {
             res.end();
             return;
         }
-        const data = await fs.readFile(path.join(base, 'channel', p));
+        const data = corrupt && p.endsWith(corrupt) ? Buffer.from(corrupt.endsWith('.js') ? 'window.unverifiedReaderExecuted = true; export function init(){}' : 'body{color:red!important}') : await fs.readFile(path.join(base, 'channel', p));
         res.setHeader('Content-Type', types[path.extname(p)] || 'application/octet-stream');
         res.end(data);
     } catch {
@@ -155,15 +156,14 @@ async function scenario(name, expected, options = {}) {
     cors = options.cors !== false;
     delay = options.delay || 0;
     missing = options.missing || '';
+    corrupt = options.corrupt || '';
     strict = !!options.strict;
     localFault = options.localFault || '';
     manifest = options.manifest ?? release('E');
     const ctx = await browser.newContext({ viewport: { width: 390, height: 900 } }),
         p = await ctx.newPage();
     let loads = 0;
-    p.on('framenavigated', (frame) => {
-        if (frame === p.mainFrame()) loads++;
-    });
+    p.on('request', (request) => { if (request.isNavigationRequest() && request.frame() === p.mainFrame()) loads++; });
     try {
         if(options.storageBlocked) await ctx.addInitScript(()=>{for(const name of ['localStorage','sessionStorage'])Object.defineProperty(window,name,{get(){throw new DOMException('Blocked','SecurityError');}});});
         if(options.caption) await ctx.addInitScript(()=>localStorage.setItem('webbook-caption-mode','true'));
@@ -182,6 +182,8 @@ async function scenario(name, expected, options = {}) {
             assert.equal(await p.locator('main').getAttribute('aria-hidden'), null);
             if (expected === 'local') assert.equal(await p.locator('link[data-webbook-ui-style]').count(), 0);
         }
+        if (options.reloads) assert.equal(loads, options.reloads, name+' must reload cleanly');
+        if (options.corrupt) assert.equal(await p.evaluate(()=>window.unverifiedReaderExecuted),undefined);
         results.push(name);
         console.log('PASS', name);
         return { ctx, p };
@@ -216,6 +218,10 @@ try {
             integrity: { script: 'sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=' },
         },
     });
+    await scenario('missing inventory prevents remote execution','local',{missing:'ui-files.json'});
+    await scenario('pinned release also requires inventory','local',{missing:'ui-files.json',query:'?webbook-ui=release:D'});
+    await scenario('corrupt remote script never executes','local',{corrupt:'main.js'});
+    await scenario('corrupt remote CSS is rejected','local',{corrupt:'style.css'});
     await scenario('CORS failure falls back', 'local', { cors: false });
     await scenario('slow manifest timeout', 'local', { delay: 2000 });
     await scenario('invalid JSON', 'local', { manifest: 'not json' });
@@ -225,12 +231,18 @@ try {
     await scenario('missing remote CSS', 'local', { missing: 'style.css' });
     await scenario('missing remote JS', 'local', { missing: 'main.js' });
     await scenario('strict self CSP permits local path', 'local', { strict: true });
-    await fs.cp(base + '/channel/v0/releases/E', base + '/channel/v0/releases/Erash', { recursive: true });
+    await fs.cp(base + '/channel/v0/releases/E', base + '/channel/v0/releases/Crash', { recursive: true });
     await fs.writeFile(
-        base + '/channel/v0/releases/Erash/main.js',
+        base + '/channel/v0/releases/Crash/main.js',
         `export function init(){document.querySelector('main').setAttribute('aria-hidden','true');throw Error('remote crash')}`,
     );
-    await scenario('remote startup crash reloads clean local', 'local', { manifest: release('Crash') });
+    const crashInventoryPath=path.join(base,'channel/v0/releases/Crash/ui-files.json');
+    const crashInventory=JSON.parse(await fs.readFile(crashInventoryPath,'utf8'));
+    const crashBytes=await fs.readFile(path.join(base,'channel/v0/releases/Crash/main.js'));
+    Object.assign(crashInventory.files.find(file=>file.href==='main.js'),{sha256:createHash('sha256').update(crashBytes).digest('hex'),bytes:crashBytes.length});
+    crashInventory.revision=createHash('sha256').update(JSON.stringify(crashInventory.files)).digest('hex');
+    await fs.writeFile(crashInventoryPath,JSON.stringify(crashInventory));
+    await scenario('verified remote startup crash reloads clean local', 'local', { manifest: release('Crash'), reloads:2 });
     await scenario('local startup crash reloads clean baseline', 'baseline', {
         manifest: { contract: 0, useLocal: true },
         localFault: 'crash',
@@ -245,10 +257,12 @@ try {
     assert.equal(await state.p.evaluate(() => location.search), '');
     await state.p.goto(url + '/book/chapter2.html');
     await state.p.waitForFunction(() => document.documentElement.dataset.webbookUi === 'local');
-    await state.p.goto(url + '/book/chapter2.html?webbook-ui=auto');
+    await state.p.locator('button[popovertarget="webbook-info"]').first().click();
+    assert.match(await state.p.locator('#webbook-reader-updates').textContent(),/paused/);
+    await state.p.locator('#webbook-reader-updates-auto').click();
     await state.p.waitForFunction(() => document.documentElement.dataset.webbookUi === 'E');
     await state.ctx.close();
-    results.push('override persists and auto clears it');
+    results.push('override persists, is visible in About and can be cleared there');
     const pinned = await scenario('release test override', 'D', {
         query: '?webbook-ui=release:D',
         keep: true,
