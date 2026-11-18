@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import fs from 'fs-extra';
 import path from 'path';
 import winston from 'winston';
@@ -6,6 +7,7 @@ import * as logger from './logger/index.js';
 import { ImageAssetRegistry, copyImageAssets, copyUiAssets, writeServiceWorkerStub } from './assets.js';
 import { TemplateRenderer } from './template.js';
 import { createBookFavicon } from './favicon.js';
+import { shapeBookPage } from './book-shape.js';
 import { buildSiteModel } from './model.js';
 import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
 import { openAudioCache } from './audio-cache.js';
@@ -25,6 +27,8 @@ import { runOptionalChecks } from './optional-checks.js';
 import { audioCleanupSettings, cleanupFilters, type AudioEnhancement, type AudioCleanupSettings } from './audio-cleanup.js';
 
 export type ConvertOptions = {
+    remoteUi?: boolean;
+    uiBaseUrl?: string;
     // A folder (or true for the default one in the system's temp folder) to reuse unchanged page
     // audio from; off by default
     audioCache?: string | boolean;
@@ -42,6 +46,16 @@ export type ConvertOptions = {
 };
 
 async function convert(input: string, output: string, template: string, options: ConvertOptions = {}): Promise<void> {
+    const channelValue = options.uiBaseUrl || (options.remoteUi ? process.env.WEBBOOK_UI_BASE_URL || 'https://daisy.github.io/accessible-books-in-browsers/v0/' : undefined);
+    if (options.remoteUi && !channelValue) throw new Error('The beta UI channel is not configured. Supply --ui-base-url or WEBBOOK_UI_BASE_URL.');
+    let channel: string | undefined;
+    if (channelValue) {
+        const url = new URL(channelValue);
+        if (!(url.protocol === 'https:' || url.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname)) || url.username || url.password || url.search || url.hash || !url.pathname.endsWith('/')) throw new Error('The UI channel must be an HTTPS directory URL (localhost HTTP is allowed for testing).');
+        channel = url.href;
+    }
+    const bootstrap = await fs.readFile(path.join(template, 'src/js/bootstrap.js'), 'utf8');
+    const converterVersion = (await fs.readJson(fileURLToPath(new URL('../package.json', import.meta.url)))).version;
     const outputPaths = await createOutputStaging(output);
     logger.initLogger(outputPaths.logFile);
 
@@ -90,9 +104,15 @@ async function convert(input: string, output: string, template: string, options:
             'optional checks': options.check === true
         });
         await imageRegistry.configureFonts(epub.basedir, epub.packageFilename, report);
+        report.provenance = { source: path.basename(input), identifier: site.metadata.identifier || '', converter: converterVersion };
+        if (channel) {
+            report.betaWarning = `Remote UI: this book loads its interface from the beta channel at ${channel}. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.`;
+            winston.warn(report.betaWarning);
+        }
         const audioCache = openAudioCache(options.audioCache, site.bookId);
         const cleanup = audioCleanupSettings(options.audioCleanup !== false, options.audioEnhance ?? []);
         const accessibility = await readAccessibilityInfo(epub.packageFilename);
+        const metadataXml = new JSDOM(await fileio.readToString(epub.packageFilename), { contentType: 'application/xml' }).window.document.querySelector('metadata')?.outerHTML;
         const searchData = createSearchData(site);
         const referencedIdsByPage = await crossPageReferencedIds(site);
         const coverAsset = site.metadata.coverPath
@@ -176,7 +196,9 @@ async function convert(input: string, output: string, template: string, options:
                 publisherHref,
                 hasPublished
             });
-            await fs.writeFile(outputPath(outputPaths, page.outputFilename), html);
+            const shaped = shapeBookPage(html, { channel, source: path.basename(input), identifier: site.metadata.identifier || '', converter: converterVersion, bootstrap, page: page.outputFilename, metadataXml, navigation: page.index === 0 });
+            await fs.writeFile(outputPath(outputPaths, page.outputFilename), shaped.html);
+            if (page.index === 0) for (const [filename, content] of Object.entries(shaped.navigation)) await fs.writeFile(outputPath(outputPaths, filename), content);
         }
 
         await generateAudioMap(site, pageAudioSources, outputPaths);

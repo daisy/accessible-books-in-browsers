@@ -3,6 +3,7 @@ import { discoverBook, compareInventory } from './offline-discovery.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
 import { prepareReload, clearReturnState } from './settings-transfer.js';
 import { bookServerReachable } from './offline-connectivity.js';
+import { includeSelectedUI } from './remote-ui.js';
 
 export function offlineCommand(worker, command, data = {}, onProgress = () => {}, signal) {
     return command === 'save' ? foregroundDownload(worker, data, onProgress, signal) : workerCommand(worker, command, data, onProgress);
@@ -123,7 +124,14 @@ export function initOfflineReading() {
         else if (!operating && focused === cancel) (snapshot ? check : save).focus({ preventScroll: true });
     }
     async function ensure() {
-        if (!registration) { const existing = await navigator.serviceWorker.getRegistration(root); registration = existing?.scope === root && existing.active ? existing : await registerOfflineWorker(root); }
+        if (!registration) {
+            const existing = await navigator.serviceWorker.getRegistration(root);
+            const selected = window.webbookUI;
+            const remote = selected && !selected.local && selected.worker ? { channel: selected.channel, worker: selected.worker } : undefined;
+            const expected = workerScriptURL(root, remote);
+            registration = existing?.scope === root && existing.active && (!selected || existing.active.scriptURL === expected)
+                ? existing : await registerOfflineWorker(root, remote);
+        }
         return registration;
     }
     async function command(name, data, onProgress, signal) { await ensure(); return offlineCommand(registration.active, name, data, onProgress, signal); }
@@ -152,7 +160,8 @@ export function initOfflineReading() {
     }
     async function discover() {
         controller = new AbortController(); report('Finding book files… Keep this tab open.'); progress.removeAttribute('value');
-        return discoverBook(root, { signal: controller.signal, onProgress: total => { count.textContent = `${total} files found.`; } });
+        const list = await discoverBook(root, { signal: controller.signal, onProgress: total => { count.textContent = `${total} files found.`; } });
+        return includeSelectedUI(root, list, { initial: !snapshot, signal: controller.signal });
     }
     async function findSize() {
         operationVersion++; busy = true; render();

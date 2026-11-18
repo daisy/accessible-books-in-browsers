@@ -87,7 +87,8 @@ async function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): Promi
         ...(epub.pageProgression ? { pageProgression: epub.pageProgression } : {}) };
     const bookTitle = collapseWhitespace(metadata.title);
     const sourceToOutput = new Map<string, string>();
-    const usedFilenames = new Set<string>();
+    const navigationFilenames = new Set(['toc.html', 'pages.html', 'about.html']);
+    const usedFilenames = new Set<string>(navigationFilenames);
     const plannedPages: PlannedPage[] = [];
 
     for (const [spineIndex, spineItem] of epub.spine.entries()) {
@@ -114,7 +115,8 @@ async function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): Promi
             const baseName = piece === 0
                 ? (spineIndex === 0 ? 'index.html' : `${stem}.html`)
                 : `${stem}-${piece + 1}.html`;
-            const outputFilename = uniqueFilename(baseName, usedFilenames);
+            const contentName = navigationFilenames.has(baseName.toLowerCase()) ? `${stem}-content.html` : baseName;
+            const outputFilename = uniqueFilename(contentName, usedFilenames);
             usedFilenames.add(outputFilename);
             if (piece === 0) sourceToOutput.set(sourcePath, outputFilename);
 

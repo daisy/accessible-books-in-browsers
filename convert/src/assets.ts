@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import { createHash } from 'crypto';
 import path from 'path';
+import { JSDOM } from 'jsdom';
 import { deobfuscateFont, readFontEncryption, type FontEncryption } from './font-obfuscation.js';
 import type { ConversionReport } from './conversion-report.js';
 import { OutputLayout } from './output.js';
@@ -96,6 +97,16 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
             await fs.copy(source, path.join(outputPaths.stagingDir, dirname));
         }
     }));
+    const templatePage = path.join(template, 'index.html');
+    if (await fs.pathExists(templatePage)) {
+        const doc = new JSDOM(await fs.readFile(templatePage, 'utf8')).window.document;
+        doc.querySelectorAll('main, #webbook-basic-nav, #webbook-skip-link, script, #webbook-resume-banner, #webbook-escape-status, audio').forEach(node => node.remove());
+        doc.querySelector('#webbook-toc-nav ol')?.replaceChildren();
+        doc.querySelector('#pages')?.replaceChildren();
+        doc.querySelectorAll('#webbook-info .webbook-info-body > :not(h2):not(#webbook-progress)').forEach(node => node.remove());
+        doc.querySelector('#webbook-cover')?.removeAttribute('src');
+        await fs.writeFile(path.join(outputPaths.stagingDir, 'src/reader-shell.html'), doc.body.innerHTML);
+    }
     await combineStylesheets(path.join(outputPaths.stagingDir, 'src', 'css'), 'style.css');
     const files: { href: string; bytes: number; sha256: string }[] = [];
     const walk = async (directory: string): Promise<void> => {

@@ -18,6 +18,8 @@ export type ReportCheck = {
 type AssetCounts = { fonts: { count: number; bytes: number }; images: { count: number; bytes: number } };
 type PublisherPage = PublisherCounts & AssetCounts;
 export type ConversionReportData = {
+    provenance?: { source: string; identifier: string; converter: string };
+    betaWarning?: string;
     version: 1;
     language: { declared: string; override?: string; effective: string };
     options: Record<string, string | boolean>;
@@ -49,6 +51,8 @@ export type ConversionReportData = {
 };
 
 export class ConversionReport {
+    provenance?: ConversionReportData['provenance'];
+    betaWarning?: string;
     private publisherPages = new Map<string, PublisherPage>();
     private publisherAssetTotals: AssetCounts = { fonts: { count: 0, bytes: 0 }, images: { count: 0, bytes: 0 } };
     publisherRules(page: string, counts: PublisherCounts): void { this.publisherPages.set(page, { ...counts, fonts: { count: 0, bytes: 0 }, images: { count: 0, bytes: 0 } }); }
@@ -122,6 +126,8 @@ export class ConversionReport {
     data(): ConversionReportData {
         return {
             version: 1,
+            ...(this.provenance ? { provenance: this.provenance } : {}),
+            ...(this.betaWarning ? { betaWarning: this.betaWarning } : {}),
             language: this.language,
             options: this.options,
             changes: Array.from(this.changes, ([kind, pages]) => ({
@@ -147,6 +153,8 @@ export function reportMarkdown(data: ConversionReportData): string {
     const changeCount = data.changes.reduce((sum, change) => sum + change.count, 0);
     const lines = [
         '# Conversion report', '',
+        ...(data.betaWarning ? [data.betaWarning, ''] : []),
+        ...(data.provenance ? [`Source: ${data.provenance.source}; identifier: ${data.provenance.identifier}; converter: ${data.provenance.converter}. Keep the source EPUB for future reconversion.`, ''] : []),
         `Changes: ${changeCount}. Warnings for review: ${data.warnings.length}. Optional checks: ${checkSummary(data.checks)}.`, '',
         '## Options used', '',
         `- Declared language: ${data.language.declared || 'none'}`,

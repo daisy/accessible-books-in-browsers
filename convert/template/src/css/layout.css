@@ -35,6 +35,18 @@ body {
 [hidden] {
     display: none !important;
 }
+.webbook-ui-nav-fallback {
+    color: var(--webbook-chrome-fg);
+    background: var(--webbook-chrome-bg);
+    font: inherit;
+    padding: .5rem;
+    min-height: 2.75rem;
+}
+#webbook-source-metadata pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font-size: .85em;
+}
 .sr-only {
     position: absolute;
     width: 1px;
