@@ -74,6 +74,7 @@ export function initSettingsTransfer() {
     });
     const confirmation = document.createElement('div');
     confirmation.id = 'webbook-settings-reset-confirmation';
+    confirmation.className = 'webbook-confirmation';
     confirmation.hidden = true;
     confirmation.setAttribute('role', 'group');
     confirmation.setAttribute('aria-labelledby', 'webbook-settings-reset-question');

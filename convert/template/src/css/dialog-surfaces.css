@@ -1,0 +1,86 @@
+/* Reader dialogs share three levels: panel, section and confirmation. Derive
+   surfaces from the reader colors so every color choice keeps the same hierarchy. */
+:root {
+    --webbook-panel-surface: color-mix(in srgb, var(--theme-fg) 4%, var(--theme-bg));
+    --webbook-panel-raised: color-mix(in srgb, var(--theme-fg) 8%, var(--theme-bg));
+    --webbook-panel-edge: color-mix(in srgb, var(--theme-fg) 32%, var(--theme-bg));
+    --webbook-panel-shadow: 0 12px 40px rgb(0 0 0 / 28%), 0 2px 8px rgb(0 0 0 / 18%);
+}
+.webbook[popover]:popover-open {
+    border: 1px solid var(--webbook-panel-edge);
+    border-radius: .75rem;
+    box-shadow: var(--webbook-panel-shadow);
+    overflow: auto;
+    /* Muted text must still contrast on the slightly deeper section surfaces. */
+    --webbook-muted-fg: color-mix(in srgb, var(--theme-fg) 78%, var(--theme-bg));
+}
+:is(#webbook-info, #webbook-settings, #webbook-keyboard-shortcuts):popover-open {
+    border-radius: .75rem 0 0 .75rem;
+}
+#webbook-toc-nav:popover-open { border-radius: 0 .75rem .75rem 0; }
+:is(#webbook-settings, #webbook-keyboard-shortcuts):popover-open h2,
+#webbook-toc-nav:popover-open #webbook-toc-header {
+    background: var(--webbook-panel-surface);
+    border-bottom-color: var(--webbook-panel-edge);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 5%);
+}
+#webbook-info:popover-open h2 {
+    padding: .75rem 2.75rem .75rem 1rem;
+    margin: -.25rem -.5rem 0;
+    border-radius: .5rem;
+    background: var(--webbook-panel-surface);
+    border-bottom: var(--webbook-panel-border);
+}
+#webbook-settings:popover-open .webbook-settings-section {
+    margin-block: 1rem;
+    padding: 1rem;
+    border: var(--webbook-panel-border);
+    border-radius: .6rem;
+    background: var(--webbook-panel-surface);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 7%);
+}
+#webbook-info:popover-open :is(#webbook-offline, #webbook-accessibility, #webbook-progress) {
+    padding: 1rem;
+    border: var(--webbook-panel-border);
+    border-radius: .6rem;
+    background: var(--webbook-panel-surface);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 7%);
+}
+.webbook[popover]:popover-open .webbook-popover-close {
+    border: 1px solid var(--webbook-panel-edge);
+    border-radius: .5rem;
+    background: var(--theme-bg);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
+}
+.webbook[popover]:popover-open .webbook-popover-close:hover {
+    background: var(--webbook-panel-raised);
+}
+.webbook[popover] :is(button, a, input, select):focus-visible {
+    outline: 3px solid var(--webbook-focus-color);
+    outline-offset: 3px;
+}
+/* Inline confirmation is a separate decision, visibly nested within the panel. */
+:is(#webbook-offline, #webbook-settings) .webbook-confirmation {
+    margin-block-start: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--webbook-panel-edge);
+    border-inline-start: 4px solid var(--theme-fg);
+    border-radius: .5rem;
+    background: var(--theme-bg);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 14%);
+    p { margin: 0 0 1rem; line-height: 1.5; font-weight: 600; }
+    button { margin-block: .25rem; margin-inline-end: .5rem; }
+}
+#webbook-offline #webbook-offline-remove-confirm,
+#webbook-settings #webbook-settings-reset-confirm {
+    background: var(--theme-fg);
+    color: var(--theme-bg);
+    font-weight: 600;
+}
+@media (max-width: 45rem) {
+    :is(#webbook-info, #webbook-settings, #webbook-keyboard-shortcuts, #webbook-toc-nav):popover-open { border-radius: 0; }
+}
+@media (forced-colors: active) {
+    .webbook[popover]:popover-open,
+    :is(#webbook-offline, #webbook-settings) .webbook-confirmation { border: 2px solid CanvasText; }
+}
