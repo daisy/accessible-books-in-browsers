@@ -2,34 +2,22 @@ import { Command } from 'commander';
 import path from 'path';
 import { convert } from './convert.js';
 import { AUDIO_ENHANCEMENTS, parseAudioEnhancements, type AudioEnhancement } from './audio-cleanup.js';
+import { CONVERTER_OPTIONS } from './options.js';
 
 async function main() {
     let program = new Command();
-    program
+    const command = program
         .command("convert")
         .description("Convert an EPUB to a book for the web")
         .argument('input', "Input EPUB file or directory")
         .argument('output', "Output directory")
-        .argument('template', "Directory containing template files")
-        .option('--include-non-linear', 'Include OPF spine items marked linear="no" in the generated reading order')
-        .option('--identifier <id>', "Book ID used to key saved reading positions; defaults to the EPUB's identifier")
-        .option('--audio-cache [dir]', "Reuse each page's merged narration audio from an earlier conversion when its clips haven't changed (development convenience). Keeps the latest audio per page in dir, or in the system temp folder if no dir is given")
-        // Small audio and every enhancement are the defaults (user, 2026-11-11): what the demos use
-        .option('--small-audio', 'Encode narration for smaller downloads: mono 24 kHz MP3 at 32 kb/s', true)
-        .option('--no-small-audio', "Keep narration's source encoding settings (channels, sample rate, bitrate)")
-        .option('--audio-cleanup', 'Smooth joins, remove rumble, and normalize narration loudness', true)
-        .option('--no-audio-cleanup', 'Do not smooth joins, remove rumble, or normalize narration loudness')
-        .option('--audio-enhance <list>', 'Comma-separated narration filters: warm-eq, compression, noise, deess, declick (default: all), or none')
-        .option('--heading-titles', "On by default: when every page's <title> is the book title, title each page by its first other heading", true)
-        .option('--no-heading-titles', 'Do not replace repeated book titles with heading titles')
-        .option('--split-chapters', "On by default: split a content document into a page per chapter where the table of contents points into it", true)
-        .option('--no-split-chapters', 'Keep each content document as one page, even when the table of contents points to places inside it')
-        .option('--language <tag>', "Override the EPUB's declared BCP 47 language")
-        .option('--no-publisher-styles', "Omit publisher stylesheets and the Appearance group")
-        .option('--check', 'Run optional Ace and axe accessibility checks when their tools are available')
-        .option('--remote-ui', 'Use the beta reader-update channel (default); keep the source EPUB', true)
-        .option('--no-remote-ui', 'Choose a fixed bundled reader instead of receiving channel updates')
-        .option('--ui-base-url <url>', 'Beta UI channel directory URL; also enables remote UI')
+        .argument('template', "Directory containing template files");
+    // The options are listed once, in options.ts, which the browser converter's form also uses
+    for (const option of CONVERTER_OPTIONS) {
+        if (option.flag) command.option(option.flag, option.help ?? '', option.defaultValue as boolean | undefined);
+        if (option.negation) command.option(option.negation.flag, option.negation.help);
+    }
+    command
         .addHelpText('after', '\nKeep the source EPUB. A new reader contract requires reconverting from it; there is no book upgrader.\n')
         .action(async(input, output, template, options: { remoteUi?: boolean, uiBaseUrl?: string, audioCache?: string | boolean, audioCleanup: boolean, audioEnhance?: string, check?: boolean, headingTitles: boolean, identifier?: string, includeNonLinear?: boolean, language?: string, publisherStyles: boolean, smallAudio?: boolean, splitChapters: boolean }) => {
             const identifier = options.identifier?.trim();
