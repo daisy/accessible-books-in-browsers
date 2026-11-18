@@ -1,0 +1,5 @@
+/* The phrase being narrated (media:active-class in the package document) */
+.-epub-media-overlay-active {
+    background-color: #fff3a8;
+    color: #000;
+}

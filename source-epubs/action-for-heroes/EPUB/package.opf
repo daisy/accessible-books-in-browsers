@@ -3,7 +3,8 @@
     <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
         <dc:title id="title2">Action for Heroes </dc:title>
         <dc:identifier id="pub-id2">AUTO-UID-4754997194290171790</dc:identifier>
-        <dc:language>en-US en-IN</dc:language>
+        <dc:language>en-US</dc:language>
+        <dc:language>en-IN</dc:language>
         <meta property="dcterms:modified">2021-10-08T17:06:29Z</meta>
         <meta name="dcterms:modified" content="2021-10-08T17:06:29Z"/>
         <dc:date id="date2">2021-10-07</dc:date>
@@ -21,8 +22,8 @@
             xmlns:opf="http://www.idpf.org/2007/opf" property="media:duration" refines="#item_110">1:14:52.106</meta>
     </metadata>
     <manifest>
-        <item href="Content/favicon-96x96.png" properties="favico"/>
-        <item href="Content/images/cover.png" media-type="image/png" properties="cover-image"/>
+        <item href="Content/favicon-96x96.png" id="favicon" media-type="image/png"/>
+        <item href="Content/images/cover.png" id="cover-image" media-type="image/png" properties="cover-image"/>
         <item href="Content/ncc.xhtml" media-type="application/xhtml+xml" id="item_1" properties="nav"/>
         <item media-type="application/xhtml+xml" href="Content/content.xhtml" id="item_2" media-overlay="item_110"/>
         <item href="Content/default.css" media-type="text/css" id="item_3"/>

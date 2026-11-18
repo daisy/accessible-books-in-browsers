@@ -24,6 +24,7 @@
     <meta property="schema:accessibilitySummary">A test book: footnotes on the same page, endnotes in a separate file, and synchronized narration of all text including the notes. Two note references are plain links without note semantics, and only one note has its own back-link, on purpose.</meta>
   </metadata>
   <manifest>
+    <item id="css" href="css/notes.css" media-type="text/css"/>
     <item id="nav" href="xhtml/nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
     <item id="title" href="xhtml/title.xhtml" media-type="application/xhtml+xml" media-overlay="title-mo"/>
     <item id="title-mo" href="smil/title.smil" media-type="application/smil+xml"/>
