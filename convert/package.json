@@ -23,6 +23,8 @@
     "@types/node": "^24.13.3",
     "@types/xmldom": "^0.1.31",
     "axe-core": "^4.14.0",
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.65.1",
     "rimraf": "^3.0.2",
     "typescript": "^5.9.3"
   },

@@ -1,0 +1,87 @@
+name: Release the beta reader UI
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Immutable version (for example 2026-11-17)'
+        required: true
+      mode:
+        description: 'Build a release, roll back, or select local UI'
+        type: choice
+        options: [release, rollback, local]
+        default: release
+permissions:
+  contents: read
+concurrency:
+  group: beta-ui-channel
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'ui-v0-')
+    runs-on: ubuntu-latest
+    # Configure required reviewers on this environment before enabling publication.
+    environment: ui-channel-release
+    permissions:
+      contents: write
+      pages: write
+    env:
+      UI_VERSION: ${{ inputs.version }}
+      UI_TAG: ${{ github.event.release.tag_name }}
+      UI_MODE: ${{ inputs.mode || 'release' }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: convert/package-lock.json
+      - name: Validate the release version
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const version=process.env.UI_VERSION||process.env.UI_TAG.replace(/^ui-v0-/,'');
+          if(!/^\d{4}-\d{2}-\d{2}(?:-[A-Za-z0-9]+)?$/.test(version))throw Error('Invalid release version');
+          fs.appendFileSync(process.env.GITHUB_ENV,'UI_VERSION='+version+'\n');
+          JS
+      - run: npm ci --prefix convert
+      - run: npm run compile --prefix convert
+      - run: node --test convert/tests/*.test.mjs convert/template/test/*.test.mjs
+      - name: Preserve the channel already on main
+        run: |
+          git fetch origin main
+          git worktree add --detach ../ui-publish origin/main
+          mkdir -p ../ui-publish/v0
+      - name: Build and verify the immutable release
+        if: env.UI_MODE == 'release'
+        run: |
+          node convert/scripts/build-ui-release.mjs "$RUNNER_TEMP/ui-candidate" "$UI_VERSION"
+          node convert/scripts/check-ui-release.mjs "$RUNNER_TEMP/ui-candidate" "$UI_VERSION"
+          node convert/scripts/install-ui-release.mjs "$RUNNER_TEMP/ui-candidate" ../ui-publish/v0 "$UI_VERSION"
+      - name: Promote the checked release or roll back
+        if: env.UI_MODE != 'local'
+        run: node convert/scripts/promote-ui-release.mjs ../ui-publish/v0 "$UI_VERSION"
+      - name: Select bundled local UI
+        if: env.UI_MODE == 'local'
+        run: node convert/scripts/promote-ui-release.mjs ../ui-publish/v0 --local
+      - uses: actions/upload-artifact@v7
+        with:
+          name: beta-ui-channel
+          path: ../ui-publish/v0
+      - name: Publish without replacing the demos or earlier releases
+        working-directory: ../ui-publish
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add v0
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish beta reader UI $UI_VERSION ($UI_MODE)"
+          gh auth setup-git
+          git push origin HEAD:main
+          # This repository serves Pages from main at /. A token-authored push
+          # does not trigger its legacy Pages build automatically.
+          gh api --method POST repos/daisy/accessible-books-in-browsers/pages/builds
