@@ -95,3 +95,11 @@ test('navigation filenames are reserved without losing source content or TOC tar
         await fs.rm(directory, { recursive: true, force: true });
     }
 });
+
+test('print page links are named by the page label, which the template keeps in value and label', () => {
+    const html = source.replace('<option data-href="chapter.html#p1">1</option>', '<option value="xii" label="xii" data-href="chapter.html#p12"></option>');
+    const result = shapeBookPage(html, { source: 'book.epub', identifier: 'book-id', converter: '1', page: 'chapter.html', bootstrap: '' });
+    const link = new JSDOM(result.navigation['pages.html']).window.document.querySelector('#webbook-page-list a');
+    assert.equal(link.textContent, 'xii');
+    assert.equal(link.getAttribute('href'), 'chapter.html#p12');
+});

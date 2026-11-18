@@ -151,7 +151,8 @@ export function shapeBookPage(
             const li = doc.createElement('li'),
                 a = doc.createElement('a');
             a.href = option.getAttribute('data-href')!;
-            a.textContent = option.textContent;
+            // The template's options carry the print page's label in value and label, not as text
+            a.textContent = option.textContent?.trim() || option.getAttribute('label') || option.getAttribute('value') || '';
             li.append(a);
             pages.append(li);
         }
