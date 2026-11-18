@@ -126,11 +126,11 @@ export function initOfflineReading() {
     async function ensure() {
         if (!registration) {
             const existing = await navigator.serviceWorker.getRegistration(root);
-            const selected = window.webbookUI;
-            const remote = selected && !selected.local && selected.worker ? { channel: selected.channel, worker: selected.worker } : undefined;
-            const expected = workerScriptURL(root, remote);
-            registration = existing?.scope === root && existing.active && (!selected || existing.active.scriptURL === expected)
-                ? existing : await registerOfflineWorker(root, remote);
+            // importScripts has no integrity parameter. Keep executable workers
+            // local rather than importing unchecked channel code.
+            const expected = workerScriptURL(root);
+            registration = existing?.scope === root && existing.active && existing.active.scriptURL === expected
+                ? existing : await registerOfflineWorker(root);
         }
         return registration;
     }

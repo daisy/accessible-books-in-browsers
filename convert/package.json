@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run clean && npm run compile",
     "clean": "rimraf -rf ./build",
-    "compile": "tsc",
+    "compile": "node scripts/build-bootstrap.mjs && tsc",
     "start": "node build/index.js",
     "convert": "npm run start -- convert",
     "gulp": "gulp",

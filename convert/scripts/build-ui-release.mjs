@@ -70,6 +70,7 @@ try {
         worker: `releases/${version}/offline-worker.js`,
         inventory: `releases/${version}/ui-files.json`,
         protocol: 1,
+        integrity: Object.fromEntries([['script', 'main.js'], ['stylesheet', 'style.css']].map(([key, href]) => [key, 'sha256-' + Buffer.from(files.find(file => file.href === href).sha256, 'hex').toString('base64')])),
     };
     await fs.mkdir(path.join(channel, 'manifests'), { recursive: true });
     await fs.writeFile(
