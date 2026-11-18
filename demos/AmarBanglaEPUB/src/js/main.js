@@ -1,3 +1,4 @@
+import { initOfflineReading } from './offline.js';
 import { initEscapability } from './escapability.js';
 import { initResumePosition, initResumeSetting } from './resume-position.js';
 import { initPopoverCloseButtons, initPopoverToggleTracking, initTocInPageLinks, initPopoverActions } from './popovers.js';
@@ -46,6 +47,7 @@ initNotesInPlace();
 initCopyContent();
 initResponsiveEquations();
 initSettingsTransfer();
+initOfflineReading();
 // Before the shortcuts start: they read saved keys only for actions already registered
 initWhereAmI();
 initKeyboardShortcuts();

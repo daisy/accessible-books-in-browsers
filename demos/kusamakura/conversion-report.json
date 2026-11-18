@@ -202,12 +202,12 @@
     {
       "kind": "Audio clipping",
       "page": "一.html",
-      "message": "2 samples are at or near full scale. Cleanup cannot restore clipped detail."
+      "message": "67 samples are at or near full scale. Cleanup cannot restore clipped detail."
     },
     {
       "kind": "Audio clipping",
       "page": "二.html",
-      "message": "2 samples are at or near full scale. Cleanup cannot restore clipped detail."
+      "message": "41 samples are at or near full scale. Cleanup cannot restore clipped detail."
     }
   ],
   "checks": [
@@ -469,11 +469,11 @@
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 18015720,
-    "outputBytes": 14413050,
+    "outputBytes": 14412376,
     "settings": [
       "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
     ],
-    "maximumEncoderDriftSeconds": 6.821210263296962e-13,
+    "maximumEncoderDriftSeconds": 0.09399999999959618,
     "cleanup": {
       "enabled": true,
       "targetLufs": -18,
@@ -491,21 +491,21 @@
         "adeclick",
         "two-pass loudnorm"
       ],
-      "loudnessRangeBeforeLu": 1.3999999999999986,
+      "loudnessRangeBeforeLu": 1.4000000000000021,
       "pages": [
         {
           "page": "一.html",
-          "clippingSamples": 2,
-          "loudnessLufs": -22.5,
-          "noiseFloorDb": -57.484717,
-          "peakDb": 0.462759
+          "clippingSamples": 67,
+          "loudnessLufs": -22.4,
+          "noiseFloorDb": -57.485282,
+          "peakDb": -0.000265
         },
         {
           "page": "二.html",
-          "clippingSamples": 2,
-          "loudnessLufs": -23.9,
-          "noiseFloorDb": -58.918469,
-          "peakDb": 0.448422
+          "clippingSamples": 41,
+          "loudnessLufs": -23.8,
+          "noiseFloorDb": -58.918491,
+          "peakDb": 0
         }
       ]
     }

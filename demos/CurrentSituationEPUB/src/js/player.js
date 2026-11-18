@@ -3,7 +3,7 @@ import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarge
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
 import { showCaptionForCue, refreshCaptionItemsFromTrack, canStepCaption, stepCaption } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
-import { handleCuePlayability, restoreSkipMute, cancelSkipPreroll, canPlay } from './skippability.js';
+import { handleCuePlayability, restoreSkipMute, cancelSkipPreroll, canPlay, allNarrationSkipped } from './skippability.js';
 import { playOrOfferToContinue } from './continue-playing.js';
 import { requestAutoplayForForwardSpineLink, requestAutoplayForLink, clearAutoplayRequest, consumeAutoplayRequest, normalizeAutoplayUrl } from './autoplay.js';
 import { consumePageEntry, adjacentPageLink, stepAcrossPageBoundary } from './page-entry.js';
@@ -126,6 +126,8 @@ export function startPlayerForPage({ audioTime } = {}) {
 
 function initAudioElement() {
     audio.addEventListener('play', updatePlayPause);
+    // Native controls, media keys and note playback also start this element.
+    audio.addEventListener('play', explainExcludedPage);
     audio.addEventListener('pause', updatePlayPause);
     audio.addEventListener('playing', catchUpHighlight);
     audio.addEventListener('loadedmetadata', setSeekMax);
@@ -296,10 +298,19 @@ function updatePlayPause() {
 function togglePlayback() {
     if (!metadataTrack) return;
     if (audio.paused || audio.ended) {
+        if (explainExcludedPage()) return;
         startFromReaderFocus();
         playOrOfferToContinue(audio);
     }
     else audio.pause();
+}
+
+function explainExcludedPage() {
+    if (!allNarrationSkipped(metadataTrack)) return false;
+    cancelSkipPreroll(audio);
+    audio.pause();
+    announceReaderAction('All narrated content on this page is being skipped. Check the skip settings in Narration.');
+    return true;
 }
 
 // Where the reader moved focus in the text while narration was paused: Tab to a heading, a click
@@ -470,6 +481,10 @@ function handleTrackReady() {
     updatePhraseButtons();
     // Started here rather than with the autoplay attribute, so a page opened partway through
     // doesn't play its first moments before seeking there
+    if ((shouldAutoplayThisPage || !audio.paused) && explainExcludedPage()) {
+        document.dispatchEvent(new CustomEvent('webbook:playerready'));
+        return;
+    }
     if (shouldAutoplayThisPage && startsPartway) playOrOfferToContinue(audio);
     catchUpHighlight();
     document.dispatchEvent(new CustomEvent('webbook:playerready'));

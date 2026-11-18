@@ -49,6 +49,16 @@ export function clearPlaybackException() {
     playableExceptionId = '';
 }
 
+// Missing/unloaded cues or unresolved selectors are not evidence that a page is
+// excluded. Explicitly following a note still honours its playback exception.
+export function allNarrationSkipped(track) {
+    const cues = Array.from(track?.cues || []);
+    return cues.length > 0 && cues.every(cue => {
+        const elm = elmForCue(cue);
+        return elm && !canPlay(elm);
+    });
+}
+
 function findNextPlayableCue(cues, fromIdx) {
     for (let i = fromIdx + 1; i < cues.length; i++) {
         const elm = elmForCue(cues[i]);
@@ -74,6 +84,12 @@ export function skipCue(audio, track, fromIdx, cue) {
     } else {
         skipSeekIgnoreUntil = 0;
         skipMuteUntil = 0;
+        if (allNarrationSkipped(track)) {
+            cancelSkipPreroll(audio);
+            audio.pause();
+            hideEscape();
+            return;
+        }
         keepSoundsForSeek();
         audio.currentTime = Math.min(cue.endTime, audio.duration || cue.endTime);
     }

@@ -37,21 +37,22 @@ export function initReaderActionStatus() {
 
 let announcementTimer;
 let noticeTimer;
+let noticeReturnFocus;
 const NOTICE_SECONDS = 5;
 
 // Said to screen readers, and shown for a few seconds for everyone else: most actions that announce
 // (time left, print page, link copied) have nothing else to show. A message about something already
 // on screen (a setting in the open panel) passes show: false.
-export function announceReaderAction(message, { show = true } = {}) {
+export function announceReaderAction(message, { show = true, action } = {}) {
     const status = document.getElementById('webbook-action-status');
     if (!status) return;
     clearTimeout(announcementTimer);
     status.textContent = '';
     announcementTimer = setTimeout(() => { status.textContent = message; }, 30);
-    if (show) showNotice(message);
+    if (show) showNotice(message, action);
 }
 
-function showNotice(message) {
+function showNotice(message, action) {
     let notice = document.getElementById('webbook-action-notice');
     if (!notice) {
         notice = document.createElement('div');
@@ -61,10 +62,19 @@ function showNotice(message) {
         notice.setAttribute('aria-hidden', 'true');
         document.body.append(notice);
     }
+    if (action && !notice.contains(document.activeElement)) noticeReturnFocus = document.activeElement;
     notice.textContent = message;
+    if (action && message.includes(action.label)) {
+        const index = message.indexOf(action.label), button = document.createElement('button');
+        button.type = 'button'; button.textContent = action.label;
+        button.addEventListener('click', () => { hideNotice(); action.run(); });
+        notice.replaceChildren(document.createTextNode(message.slice(0, index)), button, document.createTextNode(message.slice(index + action.label.length)));
+        notice.removeAttribute('aria-hidden');
+    } else notice.setAttribute('aria-hidden', 'true');
     notice.hidden = false;
     clearTimeout(noticeTimer);
-    noticeTimer = setTimeout(() => { notice.hidden = true; }, NOTICE_SECONDS * 1000);
+    // A message with an action remains available until dismissed or used.
+    if (!action) noticeTimer = setTimeout(() => { notice.hidden = true; }, NOTICE_SECONDS * 1000);
 }
 
 function hideNotice() {
@@ -72,6 +82,7 @@ function hideNotice() {
     if (!notice || notice.hidden) return false;
     clearTimeout(noticeTimer);
     notice.hidden = true;
+    if (notice.contains(document.activeElement) && noticeReturnFocus?.isConnected) noticeReturnFocus.focus({ preventScroll: true });
     return true;
 }
 
@@ -86,5 +97,8 @@ export function initReaderActionNotice() {
         e.preventDefault();
         e.stopImmediatePropagation();
     }, { capture: true });
-    window.addEventListener('pointerdown', () => { hideNotice(); }, { capture: true });
+    window.addEventListener('pointerdown', event => {
+        if (event.target.closest?.('#webbook-action-notice button')) return;
+        hideNotice();
+    }, { capture: true });
 }

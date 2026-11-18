@@ -58,7 +58,7 @@ Loudness range before cleanup: 0.2 LU.
 - index.html: -16.8 LUFS; peak -2.3 dBFS; quietest stretch -75.0 dBFS; clipping samples 0
 - chapter1.html: -17.0 LUFS; peak -1.6 dBFS; quietest stretch -77.9 dBFS; clipping samples 0
 - chapter2.html: -16.9 LUFS; peak -2.0 dBFS; quietest stretch -77.9 dBFS; clipping samples 0
-- endnotes.html: -16.9 LUFS; peak -1.9 dBFS; quietest stretch -78.4 dBFS; clipping samples 0
+- endnotes.html: -16.8 LUFS; peak -1.9 dBFS; quietest stretch -78.4 dBFS; clipping samples 0
 
 ## Changes (4)
 

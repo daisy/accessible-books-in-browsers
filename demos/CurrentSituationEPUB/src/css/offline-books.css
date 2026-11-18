@@ -1,0 +1,15 @@
+:root { color-scheme: light dark; font: 1.05rem/1.5 system-ui, sans-serif; }
+body { margin: 0; }
+main { max-width: 48rem; margin: 2rem auto; padding: 0 1rem; }
+h1 { line-height: 1.2; }
+ul { list-style: none; padding: 0; }
+li { border: 1px solid; border-radius: .4rem; padding: 1rem; margin-block: 1rem; overflow-wrap: anywhere; }
+li { box-shadow: 0 3px 12px rgb(0 0 0 / 12%); }
+.confirmation { margin-top: 1rem; padding: 1rem; border: 1px solid; border-inline-start-width: 4px; border-radius: .5rem; background: Canvas; box-shadow: 0 3px 10px rgb(0 0 0 / 15%); }
+.confirmation p { margin-top: 0; font-weight: 600; }
+.confirmation button { margin: .25rem .5rem .25rem 0; }
+h2 { font-size: 1.25rem; margin: 0; }
+button { font: inherit; padding: .5rem .75rem; min-height: 2.75rem; cursor: pointer; }
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+progress { width: 100%; }
+:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }

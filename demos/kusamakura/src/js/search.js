@@ -79,6 +79,8 @@ export function initSearch() {
     if (panel.matches(':popover-open')) {
         input.focus();
         input.select();
+        // A cold offline module load can finish after the reader has already typed.
+        if (Array.from(input.value.trim()).length >= 2) runSearch(input.value, { panel, status, results });
     }
 }
 

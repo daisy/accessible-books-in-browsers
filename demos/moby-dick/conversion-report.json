@@ -2857,11 +2857,11 @@
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 9131982,
-    "outputBytes": 5614938,
+    "outputBytes": 5614552,
     "settings": [
       "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
     ],
-    "maximumEncoderDriftSeconds": 0.0000019999999949504854,
+    "maximumEncoderDriftSeconds": 0.09825200000000223,
     "cleanup": {
       "enabled": true,
       "targetLufs": -18,
@@ -2885,15 +2885,15 @@
           "page": "chapter_001.html",
           "clippingSamples": 0,
           "loudnessLufs": -24.5,
-          "noiseFloorDb": -75.829348,
+          "noiseFloorDb": -75.81402,
           "peakDb": -1.909884
         },
         {
           "page": "chapter_002.html",
           "clippingSamples": 0,
           "loudnessLufs": -23.6,
-          "noiseFloorDb": -75.869926,
-          "peakDb": -2.115224
+          "noiseFloorDb": -77.118767,
+          "peakDb": -2.362367
         }
       ]
     }
