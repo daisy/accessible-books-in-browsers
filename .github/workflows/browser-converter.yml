@@ -1,0 +1,51 @@
+# The browser converter (converter/) publishes a built copy of the converter, which nothing rebuilds
+# automatically: GitHub Pages serves the committed files. This rebuilds it from the current source
+# and fails if the committed converter/dist/ or converter/vendor/ differ, so a converter change can't
+# reach the demos and the command line but not the published browser converter.
+name: Browser converter is up to date
+
+on:
+  push:
+    paths:
+      - 'convert/**'
+      - 'converter/**'
+      - '.github/workflows/browser-converter.yml'
+  pull_request:
+    paths:
+      - 'convert/**'
+      - 'converter/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            convert/package-lock.json
+            converter/package-lock.json
+      - name: Build the converter
+        working-directory: convert
+        run: |
+          npm ci
+          npm run build
+      - name: Build the browser converter
+        working-directory: converter
+        run: |
+          npm ci
+          npm run build
+      - name: Check the committed build matches
+        run: |
+          if ! git diff --quiet -- converter/dist converter/vendor || [ -n "$(git status --porcelain -- converter/dist converter/vendor)" ]; then
+            git status --short -- converter/dist converter/vendor
+            echo "::error::converter/dist or converter/vendor is out of date. Run: cd convert && npm run build && cd ../converter && npm run build, then commit converter/dist and converter/vendor."
+            exit 1
+          fi
+          echo "converter/dist and converter/vendor match the source."
