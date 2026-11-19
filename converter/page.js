@@ -149,8 +149,9 @@ function initPage() {
         const h = Math.floor(m / 60), r = m % 60;
         return `${h} hour${h === 1 ? '' : 's'}${r ? ` ${r} minute${r === 1 ? '' : 's'}` : ''}`;
     };
-    // About 2.4 s per narrated minute in Chrome on the user's Mac (plan 19 findings); slower computers correct it while running
-    const RATE = 2.5 / 60;
+    // About 4 s per narrated minute through this page in Chrome on the user's Mac (Kusamakura: 4 minutes
+    // for 1 hour; direct runs were faster, 2.4 s, for reasons not yet found)
+    const RATE = 4 / 60;
     const estimateSeconds = narration => 5 + narration * RATE;
     const estimateText = narration => estimateSeconds(narration) < 60 ? 'less than a minute' : `about ${minutesText(estimateSeconds(narration))}`;
 
@@ -263,21 +264,21 @@ function initPage() {
         $('progress-heading').focus();
         status.textContent = `Converting ${whole ? 'the whole book' : `a preview of ${title}`}. ${narration ? `${estimateText(narration)[0].toUpperCase()}${estimateText(narration).slice(1)}.` : ''}`;
         const started = performance.now();
-        // Progress follows the audio work: each clip is cut, then faded, and each narrated page takes
-        // about five more steps (join, measure, normalize, encode, check). Counted from this run's start.
-        const steps = clips * 2 + pages * 5;
-        const base = { ...(globalThis.spike.wasmStats ?? {}) };
-        const done = () => { const stats = globalThis.spike.wasmStats ?? {}; return ((stats.cuts ?? 0) - (base.cuts ?? 0)) + ((stats.commands ?? 0) - (base.commands ?? 0)); };
+        // Progress follows the time estimate from the narration's length. Counting audio steps ran far
+        // ahead: cutting and fading each clip is quick, and the slow work (cleaning up and encoding each
+        // page's whole audio) comes last. Past the estimate it says so rather than counting down.
+        const expected = estimateSeconds(narration);
         const tick = setInterval(() => {
             const elapsed = (performance.now() - started) / 1000;
-            if (!steps) { progress.removeAttribute('value'); progressDetail.textContent = `${minutesText(elapsed)} so far.`; return; }
-            const fraction = Math.min(0.99, done() / steps);
+            if (!narration) { progress.removeAttribute('value'); progressDetail.textContent = 'Converting the book…'; return; }
+            const fraction = Math.min(0.99, elapsed / expected);
             progress.max = 100; progress.value = Math.round(fraction * 100);
-            const left = fraction > 0.05 ? elapsed / fraction - elapsed : estimateSeconds(narration) - elapsed;
-            progressDetail.textContent = `Converting the narration (${Math.round(fraction * 100)}%). ${minutesText(elapsed)} so far; about ${minutesText(Math.max(0, left))} left.`;
+            const left = expected - elapsed;
+            progressDetail.textContent = left <= 0 ? 'Converting the narration: taking longer than expected, almost done.'
+                : `Converting the narration: about ${Math.round(fraction * 100)}% done, ${left < 60 ? 'less than a minute' : `about ${minutesText(left)}`} left.`;
         }, 1000);
         // Screen readers hear the progress once a minute, not every second
-        const announce = setInterval(() => { if (steps) status.textContent = progressDetail.textContent; }, 60000);
+        const announce = setInterval(() => { if (narration) status.textContent = progressDetail.textContent; }, 60000);
         try {
             return await convertBytes(bytes, chosen, book.file.name);
         } catch (e) {
