@@ -34,7 +34,7 @@ const OPTIONS = globalThis.spike.options, OPTION_GROUPS = globalThis.spike.optio
 export const CLI_DEFAULTS = Object.fromEntries(OPTIONS.flatMap(option =>
     option.web.kind === 'list' ? [[option.key, option.web.items.map(item => item.value)]]
         : typeof option.defaultValue === 'boolean' ? [[option.key, option.defaultValue]] : []));
-// Converts EPUB bytes; returns the output as { path: Uint8Array }
+// Converts EPUB bytes; returns the output as { path: Uint8Array }, and the conversion report's data
 export async function convertBytes(bytes, options = {}, fileName = 'book.epub') {
     options = { ...CLI_DEFAULTS, ...options, audioCache: false };
     if (options.remoteUi && !options.uiBaseUrl) options.uiBaseUrl = UI_CHANNEL;
@@ -43,11 +43,11 @@ export async function convertBytes(bytes, options = {}, fileName = 'book.epub') 
     // The converter records the EPUB's file name in the report and each page, so keep the person's own
     const name = String(fileName).replace(/[\\/\u0000]/g, '_') || 'book.epub';
     vfs.writeFileSync(`/in/${name}`, bytes);
-    await convert(`/in/${name}`, '/out', '/template', options);
-    const out = {};
-    for (const [p, data] of vfs.files) if (p.startsWith('/out/')) out[p.slice(5)] = data;
+    const report = await convert(`/in/${name}`, '/out', '/template', options);
+    const files = {};
+    for (const [p, data] of vfs.files) if (p.startsWith('/out/')) files[p.slice(5)] = data;
     vfs.removeSync('/in'); vfs.removeSync('/out');
-    return out;
+    return { files, report };
 }
 globalThis.convertBytes = convertBytes;
 
@@ -225,10 +225,10 @@ function initPage() {
         const PREVIEW_NARRATION = 5 * 60;
         const short = $('preview-short').checked && chapter.seconds > PREVIEW_NARRATION;
         const share = short ? PREVIEW_NARRATION / chapter.seconds : 1;
-        const out = await run({ title: `“${chapter.title}”`, bytes: chapterEpub(book.bytes, book.check.book.opfPath, chapter.idref, short ? { narrationLimit: PREVIEW_NARRATION } : {}),
+        const converted = await run({ title: `“${chapter.title}”`, bytes: chapterEpub(book.bytes, book.check.book.opfPath, chapter.idref, short ? { narrationLimit: PREVIEW_NARRATION } : {}),
             options: { ...chosen, identifier }, narration: chapter.seconds * share, clips: Math.ceil(chapter.clips * share), pages: chapter.narrated ? 1 : 0 });
-        if (!out) return;
-        const url = await showPreview(out);
+        if (!converted) return;
+        const url = await showPreview(converted.files);
         previewFrame.src = url + '?preview=' + Date.now();
         $('preview-open').href = url;
         previewFrame.title = `Preview of ${chapter.title}`;
@@ -242,22 +242,23 @@ function initPage() {
         event.preventDefault();
         const chosen = ready();
         if (!chosen) return;
-        const out = await run({ title: book.check.book.title, bytes: book.bytes, options: chosen, narration: book.check.book.narrationSeconds,
+        const converted = await run({ title: book.check.book.title, bytes: book.bytes, options: chosen, narration: book.check.book.narrationSeconds,
             clips: book.check.book.narrationClips, pages: book.check.book.chapters.filter(chapter => chapter.narrated).length, whole: true });
-        if (!out) return;
+        if (!converted) return;
+        const out = converted.files;
         recordConfirmation(out);
         const zip = zipSync(out, { level: 0 });   // the audio is already compressed; storing is much faster
         if (download.href) URL.revokeObjectURL(download.href);
         download.href = URL.createObjectURL(new Blob([zip], { type: 'application/zip' }));
         download.download = book.file.name.replace(/\.epub$/i, '') + '-web.zip';
-        showReport(out);
+        showReport(converted.report);
         $('result-summary').textContent = `${Object.keys(out).length} files, ${(zip.byteLength / 1e6).toFixed(1)} MB.`;
         form.hidden = true; result.hidden = false;
         status.textContent = `Finished. ${$('result-summary').textContent}`;
         $('result-heading').focus();
     });
 
-    // Converts with progress; returns the output, or null after showing the error
+    // Converts with progress; returns { files, report }, or null after showing the error
     async function run({ title, bytes, options: chosen, narration, clips, pages, whole = false }) {
         form.hidden = true; result.hidden = true; progressSection.hidden = false;
         $('progress-what').textContent = whole ? `The whole book, ${title}.` : `A preview of ${title}.`;
@@ -296,20 +297,14 @@ function initPage() {
     // The conversion report says who checked the EPUB: the user, not the converter (plan 19, step 5)
     function recordConfirmation(out) {
         const note = 'EPUBCheck: confirmed by the person converting; the browser converter ran basic checks only.';
-        if (out['conversion-report.json']) {
-            const json = JSON.parse(strFromU8(out['conversion-report.json']));
-            json.validation = { epubcheck: 'confirmed by the person converting', converterChecks: 'basic (browser)' };
-            out['conversion-report.json'] = strToU8(JSON.stringify(json, null, 2) + '\n');
-        }
         if (out['conversion-report.md']) out['conversion-report.md'] = strToU8(strFromU8(out['conversion-report.md']).replace(/\n/, `\n\n${note}\n`));
     }
 
-    function showReport(out) {
+    function showReport(data) {
         report.replaceChildren();
-        if (!out['conversion-report.json']) return;
-        const json = JSON.parse(strFromU8(out['conversion-report.json']));
+        if (!data) return;
         const h = document.createElement('h3'); h.textContent = 'What to review'; report.append(h);
-        const warnings = json.warnings ?? [];
+        const warnings = data.warnings ?? [];
         if (!warnings.length) { report.append(Object.assign(document.createElement('p'), { className: 'ok', textContent: 'No warnings.' })); }
         else {
             report.append(Object.assign(document.createElement('p'), { textContent: `${warnings.length} warning${warnings.length === 1 ? '' : 's'}, by kind. The full report is in the zip (conversion-report.md).` }));

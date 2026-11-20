@@ -115,7 +115,7 @@ const textSource = path.join(base, 'source-text');
 await fs.cp(fixture, textSource, { recursive: true });
 const opf = path.join(textSource, 'EPUB/package.opf');
 await fs.writeFile(opf, (await fs.readFile(opf, 'utf8')).replace(/ media-overlay="[^"]+"/g, ''));
-await convert(textSource, path.join(base, 'book'), template, {
+const report = await convert(textSource, path.join(base, 'book'), template, {
     uiBaseUrl: channelURL,
     audioCleanup: false,
     audioEnhance: [],
@@ -127,7 +127,6 @@ await convert(fixture, path.join(base, 'narrated'), template, {
     audioEnhance: [],
     smallAudio: true,
 });
-const report = JSON.parse(await fs.readFile(path.join(base, 'book/conversion-report.json'), 'utf8'));
 assert(report.betaWarning.includes(channelURL));
 assert(report.provenance.identifier);
 const browser = await chromium.launch({

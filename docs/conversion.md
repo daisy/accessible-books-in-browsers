@@ -276,8 +276,8 @@ so a source chapter called `about.xhtml` becomes `about-content.html`, and its l
 - With `--check`, Ace (on the EPUB) and axe (on the output) run if they're installed
   ([`runOptionalChecks`](../convert/src/optional-checks.ts#L12)).
 - The report starts with the beta warning, if the book uses a UI channel, and the source record.
-- The report is written as JSON and Markdown
-  ([`writeConversionReport`](../convert/src/conversion-report.ts#L146)).
+- The report is written as Markdown
+  ([`writeConversionReport`](../convert/src/conversion-report.ts#L149)).
 
 ### 11. Finish
 

@@ -143,10 +143,13 @@ export class ConversionReport {
     }
 }
 
-export async function writeConversionReport(report: ConversionReport, paths: OutputPaths): Promise<void> {
+// The report is Markdown, for people. There's no machine-readable file: its format was never
+// defined, and a book shouldn't carry one that tools could come to rely on. Code that converts a book
+// (the browser converter) gets the same data as convert()'s result.
+export async function writeConversionReport(report: ConversionReport, paths: OutputPaths): Promise<ConversionReportData> {
     const data = report.data();
-    await fs.writeJson(outputPath(paths, 'conversion-report.json'), data, { spaces: 2 });
     await fs.writeFile(outputPath(paths, 'conversion-report.md'), reportMarkdown(data));
+    return data;
 }
 
 export function reportMarkdown(data: ConversionReportData): string {

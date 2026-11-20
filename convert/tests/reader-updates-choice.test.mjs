@@ -24,12 +24,14 @@ test('CLI announces the default channel, records an explicit bundled choice, and
   assert.match(bootstrap,/function selectionDecision\(/);
   assert.equal(doc.body.querySelector('script:not([src])').textContent,bootstrap);
   assert(!/^import /m.test(bootstrap));
-  const report=JSON.parse(await fs.readFile(path.join(normal.output,'conversion-report.json'),'utf8'));
-  assert.equal(report.options['reader updates'],doc.querySelector('meta[name="webbook-ui-channel"]').content);
-  assert.match(report.betaWarning,/--no-remote-ui/);
+  // The report is Markdown only; there's no JSON report
+  await assert.rejects(fs.access(path.join(normal.output,'conversion-report.json')));
+  const report=await fs.readFile(path.join(normal.output,'conversion-report.md'),'utf8');
+  assert(report.includes('- reader updates: '+doc.querySelector('meta[name="webbook-ui-channel"]').content+'\n'));
+  assert.match(report,/^READER UPDATES: .*--no-remote-ui/m);
   const bundled=run('bundled',['--no-remote-ui']);assert.match(bundled.stdout,/fixed bundled reader/);
   assert.equal(new JSDOM(await fs.readFile(path.join(bundled.output,'index.html'),'utf8')).window.document.querySelector('meta[name="webbook-ui-channel"]'),null);
-  assert.equal(JSON.parse(await fs.readFile(path.join(bundled.output,'conversion-report.json'),'utf8')).options['reader updates'],'bundled (fixed copy)');
+  assert.match(await fs.readFile(path.join(bundled.output,'conversion-report.md'),'utf8'),/^- reader updates: bundled \(fixed copy\)$/m);
   const custom=run('custom',['--ui-base-url','http://127.0.0.1:9000/v0/']);assert.match(custom.stdout,/127.0.0.1:9000/);
   assert.throws(()=>run('conflicting',['--no-remote-ui','--ui-base-url','https://reader.example/v0/']));
  }finally{await fs.rm(dir,{recursive:true,force:true});}

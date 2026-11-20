@@ -19,7 +19,7 @@ import { createSearchData, generateSearchIndex } from './create-search-index.js'
 import * as utils from './utils.js';
 import { generateAudioMap, type PageAudioMapSource } from './audio-map.js';
 import * as fileio from './file-io.js';
-import { ConversionReport, writeConversionReport } from './conversion-report.js';
+import { ConversionReport, writeConversionReport, type ConversionReportData } from './conversion-report.js';
 import { rewriteRenamedFragment } from './markup-cleanup.js';
 import { isExternalHref } from './ids.js';
 import { createHash } from 'crypto';
@@ -49,7 +49,7 @@ export type ConvertOptions = {
     check?: boolean;
 };
 
-async function convert(input: string, output: string, template: string, options: ConvertOptions = {}): Promise<void> {
+async function convert(input: string, output: string, template: string, options: ConvertOptions = {}): Promise<ConversionReportData> {
     if (options.remoteUi === false && options.uiBaseUrl) throw new Error('--no-remote-ui cannot be combined with --ui-base-url.');
     const channelValue = options.uiBaseUrl || (options.remoteUi !== false ? process.env.WEBBOOK_UI_BASE_URL || 'https://webbook.daisy.org/ui/releases/v0/' : undefined);
     if (options.remoteUi && !channelValue) throw new Error('The beta UI channel is not configured. Supply --ui-base-url or WEBBOOK_UI_BASE_URL.');
@@ -231,9 +231,10 @@ async function convert(input: string, output: string, template: string, options:
             );
         }
         if (options.check === true) await runOptionalChecks(input, outputPaths, report);
-        await writeConversionReport(report, outputPaths);
+        const reportData = await writeConversionReport(report, outputPaths);
         await finalizeOutput(outputPaths);
         winston.info(`Wrote ${output}`);
+        return reportData;
     }
     catch (err) {
         await discardOutputStaging(outputPaths);

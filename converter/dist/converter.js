@@ -26733,8 +26733,8 @@ var ConversionReport = class {
 };
 async function writeConversionReport(report, paths) {
   const data = report.data();
-  await fs_default.writeJson(outputPath(paths, "conversion-report.json"), data, { spaces: 2 });
   await fs_default.writeFile(outputPath(paths, "conversion-report.md"), reportMarkdown(data));
+  return data;
 }
 function reportMarkdown(data) {
   const changeCount = data.changes.reduce((sum, change) => sum + change.count, 0);
@@ -27109,9 +27109,10 @@ async function convert(input, output2, template, options = {}) {
     }
     if (options.check === true)
       await runOptionalChecks(input, outputPaths, report);
-    await writeConversionReport(report, outputPaths);
+    const reportData = await writeConversionReport(report, outputPaths);
     await finalizeOutput(outputPaths);
     winston_default.info(`Wrote ${output2}`);
+    return reportData;
   } catch (err2) {
     await discardOutputStaging(outputPaths);
     throw err2;

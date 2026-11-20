@@ -143,6 +143,6 @@ on yours first. Keep your EPUBs too. When the book format changes, you'll need t
 | `--no-remote-ui` | Always use the reader that comes with the book. Normally a book gets reader updates from the v0 update channel, and falls back to its own copy if it can't reach it. See [how it works](convert/REMOTE_UI.md). |
 | `--ui-base-url <url>` | Get reader updates from a different channel. |
 
-Each conversion writes a report, `conversion-report.md` and `conversion-report.json`. It lists the
+Each conversion writes a report, `conversion-report.md`. It lists the
 options used, what the converter changed, and anything you should look at.
 [The conversion report](docs/conversion-report.md) explains it.

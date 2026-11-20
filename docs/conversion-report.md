@@ -1,17 +1,21 @@
 # The conversion report and log
 
-Every conversion writes three files next to the web book.
+Every conversion writes two files next to the web book.
 
 - `conversion-report.md` is the report, for people to read.
-- `conversion-report.json` is the same report, for tools.
 - `output.log` is what the converter did, step by step.
+
+There's no machine-readable report. Its format was never defined, and a book shouldn't carry a file
+that tools could come to rely on. Code that converts books gets the same content, as the
+[`ConversionReportData`](../convert/src/conversion-report.ts#L20) that `convert()` returns; the
+browser converter uses it to list the warnings.
 
 The report says what the converter changed, and what it found that someone should look at. It
 isn't a validation. The converter expects an EPUB that already passes EPUBCheck and Ace, and the
 report doesn't replace running them. [How a book is converted](conversion.md) explains each step.
 
 [`ConversionReport`](../convert/src/conversion-report.ts#L53) builds the report, and
-[`writeConversionReport`](../convert/src/conversion-report.ts#L146) writes it.
+[`writeConversionReport`](../convert/src/conversion-report.ts#L149) writes it.
 
 ## The report, section by section
 
@@ -133,29 +137,6 @@ axe checks the converted pages, if they're installed. "Skipped" means one of the
 
 The browser converter can't run them, or EPUBCheck. Its report adds a `validation` entry saying that
 the person converting confirmed the EPUB passes EPUBCheck.
-
-## The JSON report
-
-It has the same content as the Markdown, in this shape
-([`ConversionReportData`](../convert/src/conversion-report.ts#L20)).
-
-```
-{
-  "version": 1,
-  "language": { "declared", "override"?, "effective" },
-  "options": { "<option>": value, … },
-  "changes": [ { "kind", "count", "pages": { "<page>": count } } ],
-  "warnings": [ { "kind", "page"?, "message" } ],
-  "checks": [ { "name": "Ace" | "axe", "status", "detail" } ],
-  "publisherStyles"?: { "pages": { "<page>": counts }, "totals": counts },
-  "audio"?: { "mode", "sourceBytes", "outputBytes", "settings", "maximumEncoderDriftSeconds", "cleanup" },
-  "provenance"?: { "source", "identifier", "converter" },
-  "betaWarning"?: "…",
-  "validation"?: { "epubcheck", "converterChecks" }    (browser converter only)
-}
-```
-
-`version` changes if the shape changes.
 
 ## The log
 
