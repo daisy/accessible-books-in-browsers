@@ -1,0 +1,169 @@
+
+tr {
+   text-align : left;
+   margin-top : 0.2em;
+   margin-bottom : 0.2em;
+   margin-left : 1em;
+   padding : 4px;
+   border-width : 0px;
+   border-style : solid;
+   border-color : gray;
+}
+
+
+td {
+   text-align : left;
+   margin-top : 0.2em;
+   margin-bottom : 0.2em;
+   margin-left : 1em;
+   padding : 4px;
+   border-width : 0px;
+   border-style : solid;
+   border-color : gray;
+}
+
+
+p {
+   margin-top : 0.2em;
+   margin-bottom : 1em;
+}
+
+p.q {
+   font-style : italic;
+   margin-top : 0.2em;
+   margin-bottom : 1em;
+}
+
+li {
+   margin-top : 1em;
+   margin-bottom : 1em;
+}
+
+
+img {
+   border-width : 0;
+   border-style : none;
+   border-color : inherit;
+   width: 250px;
+   height: 350px;
+}
+
+div.frontImage {
+  text-align: center;
+}
+
+h5 {
+   font-style : italic;
+   font-weight : bold;
+   font-size : 80%;
+   margin-top : 1.2em;
+   color : #000099;
+   margin-bottom : 0.2em;
+}
+
+
+h4 {
+   font-style : italic;
+   font-weight : bold;
+   font-size : 88%;
+   color : #000099;
+   margin-top : 2.5em;
+   margin-bottom : 0.4em;
+}
+
+
+h3 {
+   font-style : italic;
+   font-weight : bold;
+   font-size : 100%;
+   color : #000099;
+   letter-spacing : 0.05em;
+   margin-top : 2.5em;
+   margin-bottom : 1em;
+}
+
+
+h2 {
+   font-style : normal;
+   font-weight : bold;
+   font-size : 150%;
+   color : #000099;
+   letter-spacing : 0.05em;
+   margin-top : 3em;
+   margin-bottom : 1em;
+}
+
+
+h1 {
+   font-style : normal;
+   font-weight : bold;
+   font-size : 190%;
+   color : #000099;
+   margin-top : 3em;
+   margin-bottom : 1em;
+}
+
+h1.front {
+   text-align : center;
+}
+
+h2.front {
+   text-align : center;
+}
+
+h3.front {
+   text-align : center;
+   letter-spacing : 0.01em;
+   font-style : normal;
+   font-size : 80%;
+
+}
+
+em {
+   font-style : italic;
+   font-size : 100%;
+}
+
+
+dt {
+   font-size : 100%;
+   margin-top : 0.8em;
+   margin-bottom : 0.2em;
+   margin-left : 2%;
+}
+
+body {
+   font-style : normal;
+   font-weight : normal;
+   font-family : arial, verdana, sans-serif;
+   margin-right : 20%;
+   margin-left : 20%;
+}
+
+
+a:hover {
+   color : #ff0000;
+   font-size : 100%;
+}
+
+a {
+   color : black;
+   text-decoration: none;
+}
+
+a.heading {
+   color : #000099;
+}
+
+a.page {
+   color : #000099;
+}
+
+blockquote {
+   font-size : 90%;
+}
+
+span.page-normal {
+   color : #000099;
+   font-weight : bold;
+}

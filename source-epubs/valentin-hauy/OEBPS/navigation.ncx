@@ -1,0 +1,458 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE ncx PUBLIC "-//NISO//DTD ncx 2005-1//EN" "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd" >
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+	<head>
+		<meta name="generator" content="Daisy Pipeline OPS Creator" />
+	</head>
+	<docTitle>
+		<text>Valentin Haüy - the father of the education for the blind</text>
+	</docTitle>
+	<docAuthor>
+		<text>Beatrice Christensen Sköld</text>
+	</docAuthor>
+	<navMap>
+		<navPoint id="ncx1" class="h1" playOrder="1">
+			<navLabel>
+				<text>Valentin Haüy The father of the education for the blind</text>
+			</navLabel>
+			<content src="valentinhauy11.html#ops1" />
+			<navPoint id="ncx2" class="h2" playOrder="2">
+				<navLabel>
+					<text>
+			List of contents
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0026" />
+			</navPoint>
+			<navPoint id="ncx3" class="h2" playOrder="4">
+				<navLabel>
+					<text>
+			Preface
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0095" />
+			</navPoint>
+			<navPoint id="ncx4" class="h2" playOrder="6">
+				<navLabel>
+					<text>
+			1. Research questions
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0103" />
+			</navPoint>
+			<navPoint id="ncx5" class="h2" playOrder="7">
+				<navLabel>
+					<text>
+			2. Purpose, method and sources
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0112" />
+			</navPoint>
+			<navPoint id="ncx6" class="h2" playOrder="10">
+				<navLabel>
+					<text>
+			3. Valentin Haüy
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0127" />
+				<navPoint id="ncx7" class="h3" playOrder="11">
+					<navLabel>
+						<text>
+			3.1 Introduction
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0128" />
+				</navPoint>
+				<navPoint id="ncx8" class="h3" playOrder="13">
+					<navLabel>
+						<text>
+			3.2 Biographical background
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0136" />
+				</navPoint>
+				<navPoint id="ncx9" class="h3" playOrder="14">
+					<navLabel>
+						<text>
+			3.3 The market in St Ovid's Square
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0140" />
+				</navPoint>
+				<navPoint id="ncx10" class="h3" playOrder="16">
+					<navLabel>
+						<text>
+			3.4 Maria Theresia von Paradis (1733-1808)
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0148" />
+				</navPoint>
+				<navPoint id="ncx11" class="h3" playOrder="18">
+					<navLabel>
+						<text>
+			3.5 Haüy's meeting with Lesueur and the founding of l'Institution des Jeunes Aveugles
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0168" />
+				</navPoint>
+				<navPoint id="ncx12" class="h3" playOrder="20">
+					<navLabel>
+						<text>
+			3.6 Valentin Haüy's teaching methods
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0178" />
+				</navPoint>
+				<navPoint id="ncx13" class="h3" playOrder="23">
+					<navLabel>
+						<text>
+			3.7 The French Revolution
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0195" />
+				</navPoint>
+				<navPoint id="ncx14" class="h3" playOrder="25">
+					<navLabel>
+						<text>
+			3.8 Musée des Aveugles
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0234" />
+				</navPoint>
+				<navPoint id="ncx15" class="h3" playOrder="27">
+					<navLabel>
+						<text>
+			3.9 Valentin Haüy in Russia
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0238" />
+					<navPoint id="ncx16" class="h4" playOrder="28">
+						<navLabel>
+							<text>
+			3.9.1 An invitation from Alexander I
+		</text>
+						</navLabel>
+						<content src="valentinhauy11.html#rgn_cnt_0239" />
+					</navPoint>
+					<navPoint id="ncx17" class="h4" playOrder="30">
+						<navLabel>
+							<text>
+			3.9.2 Berlin
+		</text>
+						</navLabel>
+						<content src="valentinhauy11.html#rgn_cnt_0250" />
+					</navPoint>
+					<navPoint id="ncx18" class="h4" playOrder="31">
+						<navLabel>
+							<text>
+			3.9.3 In St Petersburg
+		</text>
+						</navLabel>
+						<content src="valentinhauy11.html#rgn_cnt_0252" />
+					</navPoint>
+					<navPoint id="ncx19" class="h4" playOrder="36">
+						<navLabel>
+							<text>
+			3.9.4 Haüy's last will and testament
+		</text>
+						</navLabel>
+						<content src="valentinhauy11.html#rgn_cnt_0285" />
+					</navPoint>
+					<navPoint id="ncx20" class="h4" playOrder="38">
+						<navLabel>
+							<text>
+			3.9.5 The education of deaf pupils in St Petersburg
+		</text>
+						</navLabel>
+						<content src="valentinhauy11.html#rgn_cnt_0291" />
+					</navPoint>
+				</navPoint>
+				<navPoint id="ncx21" class="h3" playOrder="40">
+					<navLabel>
+						<text>
+			3.10 Haüy's telegraph
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0302" />
+				</navPoint>
+				<navPoint id="ncx22" class="h3" playOrder="41">
+					<navLabel>
+						<text>
+			3.11 The final years
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0398" />
+				</navPoint>
+			</navPoint>
+			<navPoint id="ncx23" class="h2" playOrder="43">
+				<navLabel>
+					<text>
+			4. The importance of Haüy in the education of the blind in Sweden and elsewhere
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0434" />
+			</navPoint>
+			<navPoint id="ncx24" class="h2" playOrder="47">
+				<navLabel>
+					<text>
+			5. Discussion and conclusions
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0456" />
+			</navPoint>
+			<navPoint id="ncx25" class="h2" playOrder="50">
+				<navLabel>
+					<text>
+			References
+		</text>
+				</navLabel>
+				<content src="valentinhauy11.html#rgn_cnt_0480" />
+				<navPoint id="ncx26" class="h3" playOrder="52">
+					<navLabel>
+						<text>
+			Literature
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0482" />
+				</navPoint>
+				<navPoint id="ncx27" class="h3" playOrder="54">
+					<navLabel>
+						<text>
+			Articles
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0504" />
+				</navPoint>
+				<navPoint id="ncx28" class="h3" playOrder="55">
+					<navLabel>
+						<text>
+			Electronic media
+		</text>
+					</navLabel>
+					<content src="valentinhauy11.html#rgn_cnt_0508" />
+				</navPoint>
+			</navPoint>
+		</navPoint>
+	</navMap>
+	<pageList class="pagenum" id="pagenum-list">
+		<navLabel>
+			<text>Sidor</text>
+		</navLabel>
+		<pageTarget id="ncx29" class="span" playOrder="3" type="normal" value="4">
+			<navLabel>
+				<text>
+			4
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0094" />
+		</pageTarget>
+		<pageTarget id="ncx30" class="span" playOrder="5" type="normal" value="5">
+			<navLabel>
+				<text>
+			5
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0102" />
+		</pageTarget>
+		<pageTarget id="ncx31" class="span" playOrder="8" type="normal" value="6">
+			<navLabel>
+				<text>
+			6
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0117" />
+		</pageTarget>
+		<pageTarget id="ncx32" class="span" playOrder="9" type="normal" value="7">
+			<navLabel>
+				<text>
+			7
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0124" />
+		</pageTarget>
+		<pageTarget id="ncx33" class="span" playOrder="12" type="normal" value="8">
+			<navLabel>
+				<text>
+			8
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0133" />
+		</pageTarget>
+		<pageTarget id="ncx34" class="span" playOrder="15" type="normal" value="9">
+			<navLabel>
+				<text>
+			9
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0143" />
+		</pageTarget>
+		<pageTarget id="ncx35" class="span" playOrder="17" type="normal" value="10">
+			<navLabel>
+				<text>
+			10
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0167" />
+		</pageTarget>
+		<pageTarget id="ncx36" class="span" playOrder="19" type="normal" value="11">
+			<navLabel>
+				<text>
+			11
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0175" />
+		</pageTarget>
+		<pageTarget id="ncx37" class="span" playOrder="21" type="normal" value="12">
+			<navLabel>
+				<text>
+			12
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0183" />
+		</pageTarget>
+		<pageTarget id="ncx38" class="span" playOrder="22" type="normal" value="13">
+			<navLabel>
+				<text>
+			13
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0190" />
+		</pageTarget>
+		<pageTarget id="ncx39" class="span" playOrder="24" type="normal" value="14">
+			<navLabel>
+				<text>
+			14
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0215" />
+		</pageTarget>
+		<pageTarget id="ncx40" class="span" playOrder="26" type="normal" value="15">
+			<navLabel>
+				<text>
+			15
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0237" />
+		</pageTarget>
+		<pageTarget id="ncx41" class="span" playOrder="29" type="normal" value="16">
+			<navLabel>
+				<text>
+			16
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0247" />
+		</pageTarget>
+		<pageTarget id="ncx42" class="span" playOrder="32" type="normal" value="17">
+			<navLabel>
+				<text>
+			17
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0255" />
+		</pageTarget>
+		<pageTarget id="ncx43" class="span" playOrder="33" type="normal" value="18">
+			<navLabel>
+				<text>
+			18
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0262" />
+		</pageTarget>
+		<pageTarget id="ncx44" class="span" playOrder="34" type="normal" value="19">
+			<navLabel>
+				<text>
+			19
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0270" />
+		</pageTarget>
+		<pageTarget id="ncx45" class="span" playOrder="35" type="normal" value="20">
+			<navLabel>
+				<text>
+			20
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0280" />
+		</pageTarget>
+		<pageTarget id="ncx46" class="span" playOrder="37" type="normal" value="21">
+			<navLabel>
+				<text>
+			21
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0288" />
+		</pageTarget>
+		<pageTarget id="ncx47" class="span" playOrder="39" type="normal" value="22">
+			<navLabel>
+				<text>
+			22
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0298" />
+		</pageTarget>
+		<pageTarget id="ncx48" class="span" playOrder="42" type="normal" value="23">
+			<navLabel>
+				<text>
+			23
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0418" />
+		</pageTarget>
+		<pageTarget id="ncx49" class="span" playOrder="44" type="normal" value="24">
+			<navLabel>
+				<text>
+			24
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0440" />
+		</pageTarget>
+		<pageTarget id="ncx50" class="span" playOrder="45" type="normal" value="25">
+			<navLabel>
+				<text>
+			25
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0449" />
+		</pageTarget>
+		<pageTarget id="ncx51" class="span" playOrder="46" type="normal" value="26">
+			<navLabel>
+				<text>
+			26
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0454" />
+		</pageTarget>
+		<pageTarget id="ncx52" class="span" playOrder="48" type="normal" value="27">
+			<navLabel>
+				<text>
+			27
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0467" />
+		</pageTarget>
+		<pageTarget id="ncx53" class="span" playOrder="49" type="normal" value="28">
+			<navLabel>
+				<text>
+			28
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0474" />
+		</pageTarget>
+		<pageTarget id="ncx54" class="span" playOrder="51" type="normal" value="29">
+			<navLabel>
+				<text>
+			29
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0481" />
+		</pageTarget>
+		<pageTarget id="ncx55" class="span" playOrder="53" type="normal" value="30">
+			<navLabel>
+				<text>
+			30
+		</text>
+			</navLabel>
+			<content src="valentinhauy11.html#rgn_cnt_0497" />
+		</pageTarget>
+	</pageList>
+</ncx>

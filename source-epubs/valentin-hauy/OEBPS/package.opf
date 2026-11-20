@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" prefix="schema: http://schema.org/" version="3.0" unique-identifier="uid" xml:lang="en">
+	<metadata>
+		<dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">Valentin Haüy - the father of the education for the blind</dc:title>
+		<dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Beatrice Christensen Sköld</dc:creator>
+		<meta property="dcterms:created">2008-02-19</meta>
+		<dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/" id="uid">C1093a</dc:identifier>
+		<dc:language xmlns:dc="http://purl.org/dc/elements/1.1/">en</dc:language>
+		<meta property="dcterms:modified">2026-11-19T00:00:00Z</meta>
+		<meta property="media:duration">2:53:11.857</meta>
+		<meta property="media:duration" refines="#mo1">2:53:11.857</meta>
+		<dc:source xmlns:dc="http://purl.org/dc/elements/1.1/">Valentin Haüy – the Father of the Education for the Blind, The Swedish Library of Talking Books and Braille (TPB)</dc:source>
+		<meta property="pageBreakSource">Valentin Haüy – the Father of the Education for the Blind, The Swedish Library of Talking Books and Braille (TPB)</meta>
+		<meta property="schema:accessMode">textual</meta>
+		<meta property="schema:accessMode">visual</meta>
+		<meta property="schema:accessMode">auditory</meta>
+		<meta property="schema:accessModeSufficient">textual</meta>
+		<meta property="schema:accessModeSufficient">auditory</meta>
+		<meta property="schema:accessibilityFeature">alternativeText</meta>
+		<meta property="schema:accessibilityFeature">synchronizedAudioText</meta>
+		<meta property="schema:accessibilityFeature">structuralNavigation</meta>
+		<meta property="schema:accessibilityFeature">tableOfContents</meta>
+		<meta property="schema:accessibilityFeature">pageNavigation</meta>
+		<meta property="schema:accessibilityFeature">printPageNumbers</meta>
+		<meta property="schema:accessibilityHazard">none</meta>
+		<meta property="schema:accessibilitySummary">A text book with headings, a table of contents and the print edition's page numbers, narrated in full with each phrase synchronized to the audio. Its one image, a portrait of Valentin Haüy, has alternative text.</meta>
+		<meta name="generator" content="Daisy Pipeline OPS Creator" />
+	</metadata>
+	<manifest>
+		<item id="opf1" href="valentinhauy11.html" media-type="application/xhtml+xml" media-overlay="mo1" />
+		<item id="mo1" href="smil/valentinhauy11.smil" media-type="application/smil+xml" />
+		<item id="audio1" href="audio/hauy_0001.mp3" media-type="audio/mpeg" />
+		<item id="audio2" href="audio/hauy_0002.mp3" media-type="audio/mpeg" />
+		<item id="audio3" href="audio/hauy_0003.mp3" media-type="audio/mpeg" />
+		<item id="audio4" href="audio/hauy_0004.mp3" media-type="audio/mpeg" />
+		<item id="audio5" href="audio/hauy_0005.mp3" media-type="audio/mpeg" />
+		<item id="audio6" href="audio/hauy_0006.mp3" media-type="audio/mpeg" />
+		<item id="audio7" href="audio/hauy_0007.mp3" media-type="audio/mpeg" />
+		<item id="audio8" href="audio/hauy_0008.mp3" media-type="audio/mpeg" />
+		<item id="audio9" href="audio/hauy_0009.mp3" media-type="audio/mpeg" />
+		<item id="audio10" href="audio/hauy_0010.mp3" media-type="audio/mpeg" />
+		<item id="audio11" href="audio/hauy_0011.mp3" media-type="audio/mpeg" />
+		<item id="audio12" href="audio/hauy_0012.mp3" media-type="audio/mpeg" />
+		<item id="audio13" href="audio/hauy_0013.mp3" media-type="audio/mpeg" />
+		<item id="audio14" href="audio/hauy_0014.mp3" media-type="audio/mpeg" />
+		<item id="audio15" href="audio/hauy_0015.mp3" media-type="audio/mpeg" />
+		<item id="audio16" href="audio/hauy_0016.mp3" media-type="audio/mpeg" />
+		<item id="audio17" href="audio/hauy_0017.mp3" media-type="audio/mpeg" />
+		<item id="audio18" href="audio/hauy_0018.mp3" media-type="audio/mpeg" />
+		<item id="audio19" href="audio/hauy_0019.mp3" media-type="audio/mpeg" />
+		<item id="audio20" href="audio/hauy_0020.mp3" media-type="audio/mpeg" />
+		<item id="audio21" href="audio/hauy_0021.mp3" media-type="audio/mpeg" />
+		<item id="audio22" href="audio/hauy_0022.mp3" media-type="audio/mpeg" />
+		<item id="audio23" href="audio/hauy_0023.mp3" media-type="audio/mpeg" />
+		<item id="audio24" href="audio/hauy_0024.mp3" media-type="audio/mpeg" />
+		<item id="audio25" href="audio/hauy_0025.mp3" media-type="audio/mpeg" />
+		<item id="audio26" href="audio/hauy_0026.mp3" media-type="audio/mpeg" />
+		<item id="audio27" href="audio/hauy_0027.mp3" media-type="audio/mpeg" />
+		<item id="audio28" href="audio/hauy_0028.mp3" media-type="audio/mpeg" />
+		<item id="audio29" href="audio/hauy_0029.mp3" media-type="audio/mpeg" />
+		<item id="audio30" href="audio/hauy_0030.mp3" media-type="audio/mpeg" />
+		<item id="opf2" href="valentin.jpg" media-type="image/jpeg" />
+		<item id="opf3" href="base.css" media-type="text/css" />
+		<item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" />
+		<item id="ncx" href="navigation.ncx" media-type="application/x-dtbncx+xml" />
+	</manifest>
+	<spine toc="ncx">
+		<itemref idref="opf1" />
+	</spine>
+</package>
