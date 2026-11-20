@@ -97,16 +97,10 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
             await fs.copy(source, path.join(outputPaths.stagingDir, dirname));
         }
     }));
-    await useReaderBundle(template, outputPaths);
-    const templatePage = path.join(template, 'index.html');
-    if (await fs.pathExists(templatePage)) {
-        const doc = new JSDOM(await fs.readFile(templatePage, 'utf8')).window.document;
-        doc.querySelectorAll('main, #webbook-basic-nav, #webbook-skip-link, script, #webbook-resume-banner, #webbook-escape-status, audio').forEach(node => node.remove());
-        doc.querySelector('#webbook-toc-nav ol')?.replaceChildren();
-        doc.querySelector('#pages')?.replaceChildren();
-        doc.querySelectorAll('#webbook-info .webbook-info-body > :not(h2):not(#webbook-progress)').forEach(node => node.remove());
-        doc.querySelector('#webbook-cover')?.removeAttribute('src');
-        await fs.writeFile(path.join(outputPaths.stagingDir, 'src/reader-shell.html'), doc.body.innerHTML);
+    // A bundled reader has the shell built in; the separate modules fetch it
+    if (!await useReaderBundle(template, outputPaths)) {
+        const shell = await readerShell(template);
+        if (shell !== null) await fs.writeFile(path.join(outputPaths.stagingDir, 'src/reader-shell.html'), shell);
     }
     await combineStylesheets(path.join(outputPaths.stagingDir, 'src', 'css'), 'style.css');
     const files: { href: string; bytes: number; sha256: string }[] = [];
@@ -127,14 +121,28 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
     await fs.writeJson(path.join(outputPaths.stagingDir, 'src', 'ui-files.json'), { version: 1, contract: 0, revision, files }, { spaces: 2 });
 }
 
+// The reader's toolbars, panels and settings, as markup: the template's index.html without the
+// book's own parts. reader-shell.js puts it around the plain page. The same for every book.
+async function readerShell(template: string): Promise<string | null> {
+    const templatePage = path.join(template, 'index.html');
+    if (!await fs.pathExists(templatePage)) return null;
+    const doc = new JSDOM(await fs.readFile(templatePage, 'utf8')).window.document;
+    doc.querySelectorAll('main, #webbook-basic-nav, #webbook-skip-link, script, #webbook-resume-banner, #webbook-escape-status, audio').forEach(node => node.remove());
+    doc.querySelector('#webbook-toc-nav ol')?.replaceChildren();
+    doc.querySelector('#pages')?.replaceChildren();
+    doc.querySelectorAll('#webbook-info .webbook-info-body > :not(h2):not(#webbook-progress)').forEach(node => node.remove());
+    doc.querySelector('#webbook-cover')?.removeAttribute('src');
+    return doc.body.innerHTML;
+}
+
 // The reader is about 70 modules. A browser only finds each one after loading the one that
 // imports it, so on a slow connection the reader took many round trips to arrive. When the
 // template has been bundled (scripts/build-reader.mjs, part of `npm run compile`), a book gets the
 // bundle, a few files, in place of the modules it contains. Files the bundle doesn't contain stay:
 // the offline workers, which load with importScripts, and the bootstrap's own copy.
-async function useReaderBundle(template: string, outputPaths: OutputPaths): Promise<void> {
+async function useReaderBundle(template: string, outputPaths: OutputPaths): Promise<boolean> {
     const listing = path.join(template, 'build', 'bundled.json');
-    if (!await fs.pathExists(listing)) return;
+    if (!await fs.pathExists(listing)) return false;
     const js = path.join(outputPaths.stagingDir, 'src', 'js');
     const bundled: string[] = await fs.readJson(listing);
     await Promise.all(bundled.map(file => fs.remove(path.join(js, file))));
@@ -144,6 +152,7 @@ async function useReaderBundle(template: string, outputPaths: OutputPaths): Prom
         if (await fs.pathExists(remaining) && !(await fs.readdir(remaining)).length) await fs.remove(remaining);
     }
     await fs.copy(path.join(template, 'build', 'js'), js);
+    return true;
 }
 
 // The template keeps its CSS in one file per component, joined by @import in style.css. A browser
@@ -198,6 +207,7 @@ async function copyImageAssets(registry: ImageAssetRegistry, outputPaths: Output
 export {
     copyImageAssets,
     copyUiAssets,
+    readerShell,
     ImageAssetRegistry,
     UI_ASSET_DIRS,
     writeServiceWorkerStub

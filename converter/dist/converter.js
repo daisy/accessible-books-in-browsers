@@ -22673,16 +22673,10 @@ async function copyUiAssets(template, outputPaths) {
       await fs_default.copy(source, import_path7.default.join(outputPaths.stagingDir, dirname));
     }
   }));
-  await useReaderBundle(template, outputPaths);
-  const templatePage = import_path7.default.join(template, "index.html");
-  if (await fs_default.pathExists(templatePage)) {
-    const doc = new JSDOM(await fs_default.readFile(templatePage, "utf8")).window.document;
-    doc.querySelectorAll("main, #webbook-basic-nav, #webbook-skip-link, script, #webbook-resume-banner, #webbook-escape-status, audio").forEach((node) => node.remove());
-    doc.querySelector("#webbook-toc-nav ol")?.replaceChildren();
-    doc.querySelector("#pages")?.replaceChildren();
-    doc.querySelectorAll("#webbook-info .webbook-info-body > :not(h2):not(#webbook-progress)").forEach((node) => node.remove());
-    doc.querySelector("#webbook-cover")?.removeAttribute("src");
-    await fs_default.writeFile(import_path7.default.join(outputPaths.stagingDir, "src/reader-shell.html"), doc.body.innerHTML);
+  if (!await useReaderBundle(template, outputPaths)) {
+    const shell = await readerShell(template);
+    if (shell !== null)
+      await fs_default.writeFile(import_path7.default.join(outputPaths.stagingDir, "src/reader-shell.html"), shell);
   }
   await combineStylesheets(import_path7.default.join(outputPaths.stagingDir, "src", "css"), "style.css");
   const files2 = [];
@@ -22706,10 +22700,22 @@ async function copyUiAssets(template, outputPaths) {
   const revision = createHash("sha256").update(JSON.stringify(files2)).digest("hex");
   await fs_default.writeJson(import_path7.default.join(outputPaths.stagingDir, "src", "ui-files.json"), { version: 1, contract: 0, revision, files: files2 }, { spaces: 2 });
 }
+async function readerShell(template) {
+  const templatePage = import_path7.default.join(template, "index.html");
+  if (!await fs_default.pathExists(templatePage))
+    return null;
+  const doc = new JSDOM(await fs_default.readFile(templatePage, "utf8")).window.document;
+  doc.querySelectorAll("main, #webbook-basic-nav, #webbook-skip-link, script, #webbook-resume-banner, #webbook-escape-status, audio").forEach((node) => node.remove());
+  doc.querySelector("#webbook-toc-nav ol")?.replaceChildren();
+  doc.querySelector("#pages")?.replaceChildren();
+  doc.querySelectorAll("#webbook-info .webbook-info-body > :not(h2):not(#webbook-progress)").forEach((node) => node.remove());
+  doc.querySelector("#webbook-cover")?.removeAttribute("src");
+  return doc.body.innerHTML;
+}
 async function useReaderBundle(template, outputPaths) {
   const listing = import_path7.default.join(template, "build", "bundled.json");
   if (!await fs_default.pathExists(listing))
-    return;
+    return false;
   const js = import_path7.default.join(outputPaths.stagingDir, "src", "js");
   const bundled = await fs_default.readJson(listing);
   await Promise.all(bundled.map((file) => fs_default.remove(import_path7.default.join(js, file))));
@@ -22719,6 +22725,7 @@ async function useReaderBundle(template, outputPaths) {
       await fs_default.remove(remaining);
   }
   await fs_default.copy(import_path7.default.join(template, "build", "js"), js);
+  return true;
 }
 async function combineStylesheets(cssDir, entry) {
   const entryPath = import_path7.default.join(cssDir, entry);

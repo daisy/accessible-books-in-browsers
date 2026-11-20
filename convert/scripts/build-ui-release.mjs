@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { createHash } from 'node:crypto';
-import { copyUiAssets } from '../build/assets.js';
+import { copyUiAssets, readerShell } from '../build/assets.js';
 import { cssReferences } from '../template/src/js/offline-resources.js';
 const [destination, version] = process.argv.slice(2);
 if (!destination || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(version || ''))
@@ -22,7 +22,7 @@ try {
 const staging = await fs.mkdtemp(path.join(os.tmpdir(), 'webbook-release-'));
 try {
     await copyUiAssets(fileURLToPath(new URL('../template', import.meta.url)), { stagingDir: staging });
-    const shell = await fs.readFile(path.join(staging, 'src/reader-shell.html'), 'utf8');
+    const shell = await readerShell(fileURLToPath(new URL('../template', import.meta.url)));
     const output = path.join(staging, 'release');
     await fs.mkdir(output);
     const bundled = await build({
