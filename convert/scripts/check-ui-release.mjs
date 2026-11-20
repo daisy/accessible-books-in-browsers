@@ -284,9 +284,13 @@ try {
     await saved.p.waitForFunction(() => document.documentElement.dataset.webbookUi === 'D');
     assert.equal(
         await saved.p.evaluate(async () => {
-            const { offlineCommand } = await import('./src/js/offline.js');
-            return (await offlineCommand(navigator.serviceWorker.controller, 'status')).saved.ui.remote
-                .version;
+            // As offline.js's offlineCommand asks it (the reader's modules are bundled in a book)
+            const reply = await new Promise((resolve) => {
+                const pipe = new MessageChannel();
+                pipe.port1.onmessage = (event) => resolve(event.data);
+                navigator.serviceWorker.controller.postMessage({ webbookOffline: 1, protocol: 1, command: 'status' }, [pipe.port2]);
+            });
+            return reply.result.saved.ui.remote.version;
         }),
         'D',
     );
@@ -332,10 +336,8 @@ try {
     await np.waitForFunction(
         () => !document.querySelector('audio').paused && document.querySelector('audio').currentTime > 0.1,
     );
-    await np.evaluate(async () => {
-        const { navigateTo } = await import('./src/js/in-place-navigation.js');
-        await navigateTo('chapter2.html', { autoplay: true });
-    });
+    // Next, during narration, opens the next page in place and keeps playing
+    await np.locator('#webbook-next-document').click();
     await np.waitForURL('**/chapter2.html');
     await np.waitForFunction(() => !document.querySelector('audio').paused);
     await np.locator('audio').evaluate((e) => e.pause());

@@ -22673,6 +22673,7 @@ async function copyUiAssets(template, outputPaths) {
       await fs_default.copy(source, import_path7.default.join(outputPaths.stagingDir, dirname));
     }
   }));
+  await useReaderBundle(template, outputPaths);
   const templatePage = import_path7.default.join(template, "index.html");
   if (await fs_default.pathExists(templatePage)) {
     const doc = new JSDOM(await fs_default.readFile(templatePage, "utf8")).window.document;
@@ -22704,6 +22705,20 @@ async function copyUiAssets(template, outputPaths) {
   files2.sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
   const revision = createHash("sha256").update(JSON.stringify(files2)).digest("hex");
   await fs_default.writeJson(import_path7.default.join(outputPaths.stagingDir, "src", "ui-files.json"), { version: 1, contract: 0, revision, files: files2 }, { spaces: 2 });
+}
+async function useReaderBundle(template, outputPaths) {
+  const listing = import_path7.default.join(template, "build", "bundled.json");
+  if (!await fs_default.pathExists(listing))
+    return;
+  const js = import_path7.default.join(outputPaths.stagingDir, "src", "js");
+  const bundled = await fs_default.readJson(listing);
+  await Promise.all(bundled.map((file) => fs_default.remove(import_path7.default.join(js, file))));
+  for (const directory of new Set(bundled.map((file) => import_path7.default.dirname(file)).filter((dir) => dir !== "."))) {
+    const remaining = import_path7.default.join(js, directory);
+    if (await fs_default.pathExists(remaining) && !(await fs_default.readdir(remaining)).length)
+      await fs_default.remove(remaining);
+  }
+  await fs_default.copy(import_path7.default.join(template, "build", "js"), js);
 }
 async function combineStylesheets(cssDir, entry) {
   const entryPath = import_path7.default.join(cssDir, entry);

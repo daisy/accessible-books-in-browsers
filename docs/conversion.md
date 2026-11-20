@@ -106,9 +106,15 @@ Back in [`convert()`](../convert/src/convert.ts), a few things are set up for th
   claims.
 - **The reader's files** are copied from the template, from a fixed list, and its stylesheets are
   combined into one ([`copyUiAssets`](../convert/src/assets.ts#L93),
-  [`combineStylesheets`](../convert/src/assets.ts#L133)).
+  [`combineStylesheets`](../convert/src/assets.ts#L153)). Its scripts go in as a bundle: `npm run
+  compile` runs [`build-reader.mjs`](../convert/scripts/build-reader.mjs), which bundles the reader's
+  70 or so modules into a few files, with the parts that load only when used (search, math copying,
+  the shortcut editor) in their own. Each module was a separate request, found only after the one
+  that imports it, so on a slow connection the reader took many round trips to arrive. The offline
+  workers stay separate files. Without a bundle, a book gets the separate modules
+  ([`useReaderBundle`](../convert/src/assets.ts#L135)).
 - **`sw.js`**, the fixed stub for offline reading, is written
-  ([`writeServiceWorkerStub`](../convert/src/assets.ts#L167)).
+  ([`writeServiceWorkerStub`](../convert/src/assets.ts#L187)).
 - **A favicon** is made from the cover, or a generic one is used
   ([`createBookFavicon`](../convert/src/favicon.ts#L11)).
 
@@ -259,7 +265,7 @@ so a source chapter called `about.xhtml` becomes `about-content.html`, and its l
 - **The search data** ([`generateSearchIndex`](../convert/src/create-search-index.ts#L146)) has
   every passage, with its page, heading and selector. Search runs in the browser, and splits words
   by language.
-- **Images** and fonts are copied ([`copyImageAssets`](../convert/src/assets.ts#L171)).
+- **Images** and fonts are copied ([`copyImageAssets`](../convert/src/assets.ts#L191)).
 
 ### 10. Report
 

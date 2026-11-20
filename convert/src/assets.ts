@@ -97,6 +97,7 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
             await fs.copy(source, path.join(outputPaths.stagingDir, dirname));
         }
     }));
+    await useReaderBundle(template, outputPaths);
     const templatePage = path.join(template, 'index.html');
     if (await fs.pathExists(templatePage)) {
         const doc = new JSDOM(await fs.readFile(templatePage, 'utf8')).window.document;
@@ -124,6 +125,25 @@ async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise
     files.sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
     const revision = createHash('sha256').update(JSON.stringify(files)).digest('hex');
     await fs.writeJson(path.join(outputPaths.stagingDir, 'src', 'ui-files.json'), { version: 1, contract: 0, revision, files }, { spaces: 2 });
+}
+
+// The reader is about 70 modules. A browser only finds each one after loading the one that
+// imports it, so on a slow connection the reader took many round trips to arrive. When the
+// template has been bundled (scripts/build-reader.mjs, part of `npm run compile`), a book gets the
+// bundle, a few files, in place of the modules it contains. Files the bundle doesn't contain stay:
+// the offline workers, which load with importScripts, and the bootstrap's own copy.
+async function useReaderBundle(template: string, outputPaths: OutputPaths): Promise<void> {
+    const listing = path.join(template, 'build', 'bundled.json');
+    if (!await fs.pathExists(listing)) return;
+    const js = path.join(outputPaths.stagingDir, 'src', 'js');
+    const bundled: string[] = await fs.readJson(listing);
+    await Promise.all(bundled.map(file => fs.remove(path.join(js, file))));
+    for (const directory of new Set(bundled.map(file => path.dirname(file)).filter(dir => dir !== '.'))) {
+        const remaining = path.join(js, directory);
+        // A folder keeps any notices (vendor/ keeps its license README)
+        if (await fs.pathExists(remaining) && !(await fs.readdir(remaining)).length) await fs.remove(remaining);
+    }
+    await fs.copy(path.join(template, 'build', 'js'), js);
 }
 
 // The template keeps its CSS in one file per component, joined by @import in style.css. A browser

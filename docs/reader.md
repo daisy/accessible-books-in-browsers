@@ -49,7 +49,9 @@ into the plain page.
    page, and picks which reader to load. That's either the book's own (`src/`), or, for a book
    converted with a UI channel, a release from the channel. A saved offline copy keeps the release
    it was saved with. If a release fails to load or start, it falls back to the book's own reader,
-   and then to the plain page.
+   and then to the plain page. The book's own reader isn't given up on for being slow: if it hasn't
+   arrived after 5 seconds, the plain page shows (with its links and audio controls), and the
+   reader takes over when it arrives. Only an error makes the plain page stay for the session.
    - Testers can choose with `?webbook-ui=local`, `remote`, `release:<version>` or `auto`. About
      shows any saved override, with a button to go back to automatic updates.
    - New conversions use the channel by default, and the converter says so. `--no-remote-ui` gives a
