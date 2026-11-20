@@ -52,6 +52,10 @@ into the plain page.
    and then to the plain page. The book's own reader isn't given up on for being slow: if it hasn't
    arrived after 5 seconds, the plain page shows (with its links and audio controls), and the
    reader takes over when it arrives. Only an error makes the plain page stay for the session.
+   - In a book with updates on, the console says which reader a page uses, and if it's the book's
+     own, why: `Reader updates: using this book's own reader, because the update channel didn't
+     answer within 1.5 s.` About's Reader updates section says the same, for testers without a
+     console. The bootstrap leaves it in `window.webbookUIStatus`.
    - Testers can choose with `?webbook-ui=local`, `remote`, `release:<version>` or `auto`. About
      shows any saved override, with a button to go back to automatic updates.
    - New conversions use the channel by default, and the converter says so. `--no-remote-ui` gives a

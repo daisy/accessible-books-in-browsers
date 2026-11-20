@@ -1,6 +1,14 @@
 import { uiKey } from './bootstrap-policy.js';
 import { prepareReload, clearReturnState } from './settings-transfer.js';
 import { registerAction, announceReaderAction } from './reader-actions.js';
+// Which reader this page is using, and if it's the book's own, why: so a tester without a console
+// can report it. The bootstrap leaves window.webbookUIStatus (older bootstraps don't).
+function runningReader() {
+    const status = window.webbookUIStatus;
+    if (status?.version) return `Reader updates are on. This page uses reader release ${status.version}.`;
+    if (status?.reason) return `Reader updates are on, but this page uses the book's own reader, because ${status.reason}.`;
+    return 'Reader updates are on.';
+}
 export function initReaderUpdates() {
     const panel = document.querySelector('#webbook-info .webbook-info-body');
     if (!panel || document.getElementById('webbook-reader-updates')) return;
@@ -15,7 +23,7 @@ export function initReaderUpdates() {
     status.textContent = !channel ? 'This book uses its fixed bundled reader.' : override === 'local' ? 'Updates are paused for this book: you chose the bundled reader.'
         : override?.startsWith('release:') ? `This tab is pinned to reader release ${override.slice(8)}.`
         : override === 'remote' ? 'This tab checks the reader channel on every page load.'
-        : channel ? 'Reader updates are enabled.' : 'This book uses its fixed bundled reader.';
+        : runningReader();
     const restore = document.createElement('button'); restore.type = 'button'; restore.id = 'webbook-reader-updates-auto';
     restore.textContent = 'Return to automatic updates'; restore.hidden = !override || !channel;
     restore.addEventListener('click', () => {

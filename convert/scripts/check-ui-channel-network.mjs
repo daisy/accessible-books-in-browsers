@@ -191,7 +191,7 @@ const profiles = {
     '3G': { latency: 2000, downloadThroughput: 400e3 / 8 * 0.9, uploadThroughput: 400e3 / 8 * 0.9 }
 };
 
-const passed = [], failed = [], measured = [];
+const passed = [], failed = [], measured = [], reasons = [];
 
 // Publishes another release next to the first, with a changed reader, and returns its current.json
 async function publish(name, script) {
@@ -213,8 +213,9 @@ function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 async function session({ profile } = {}) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 900 }, ignoreHTTPSErrors: true });
     const page = await ctx.newPage();
-    const errors = [];
+    const errors = [], logs = [];
     page.on('pageerror', e => errors.push(e.message));
+    page.on('console', m => { if (/^Reader/.test(m.text())) logs.push({ type: m.type(), text: m.text() }); });
     if (process.env.DEBUG) {
         page.on('console', m => console.log('  console', m.type(), m.text()));
         page.on('requestfailed', r => console.log('  failed', r.url(), r.failure()?.errorText));
@@ -225,7 +226,15 @@ async function session({ profile } = {}) {
         await cdp.send('Network.enable');
         await cdp.send('Network.emulateNetworkConditions', { offline: false, ...profiles[profile] });
     }
-    return { ctx, page, errors };
+    return { ctx, page, errors, logs };
+}
+
+// What the reader told a tester: the console line, and About's Reader updates section
+async function told(page, logs) {
+    await openAbout(page);
+    const about = (await page.locator('#webbook-reader-updates p').first().textContent()).trim();
+    await page.keyboard.press('Escape');
+    return { about, console: logs.map(l => `${l.type}: ${l.text}`) };
 }
 
 // Opens a page and waits for the reader to be running; returns which reader and how long it took.
@@ -293,9 +302,12 @@ try {
     for (const status of [302, 307, 301, 308]) {
         await check(`stable URL redirect ${status} loads the release`, async () => {
             net.status = status;
-            const { ctx, page, errors } = await session();
+            const { ctx, page, errors, logs } = await session();
             const first = await open(page, 'chapter1.html');
             assert.equal(first.ui, remote);
+            const said = await told(page, logs);
+            assert.equal(said.about, `Reader updates are on. This page uses reader release ${remote}.`);
+            assert.deepEqual(said.console, [`info: Reader updates: using reader release ${remote}.`]);
             const second = await open(page, 'chapter2.html');
             assert.equal(second.ui, remote);
             assert.deepEqual(errors, []);
@@ -342,10 +354,14 @@ try {
     ]) {
         await check(`falls back to the book's reader: ${name}`, async () => {
             change();
-            const { ctx, page } = await session();
+            const { ctx, page, logs } = await session();
             const first = await open(page, 'chapter1.html');
             assert.equal(first.ui, 'local');
             assert(first.ms < ms, `took ${first.ms} ms (limit ${ms})`);
+            const said = await told(page, logs);
+            assert.match(said.about, /^Reader updates are on, but this page uses the book's own reader, because .+\.$/);
+            assert(said.console.some(line => line.startsWith("warning: Reader updates: using this book's own reader, because ")), said.console.join('\n'));
+            reasons.push(`${name}: "${said.about.replace(/^.*because /, '')}"`);
             const second = await open(page, 'chapter2.html');
             assert.equal(second.ui, 'local');
             await ctx.close();
@@ -370,9 +386,12 @@ try {
     ]) {
         await check(`timeouts: ${name} falls back to the book's reader`, async () => {
             change();
-            const { ctx, page } = await session();
+            const { ctx, page, logs } = await session();
             const first = await open(page, 'chapter1.html');
             assert.equal(first.ui, 'local');
+            const said = await told(page, logs);
+            assert.match(said.about, /because .+\.$/);
+            reasons.push(`${name}: "${said.about.replace(/^.*because /, '')}"`);
             assert(first.ms < limit, `took ${first.ms} ms (limit ${limit})`);
             measured.push(`${name}: the book's reader was running after ${(first.ms / 1000).toFixed(1)} s`);
             await ctx.close();
@@ -493,10 +512,11 @@ try {
     ]) {
         await check(`updates off: unaffected with the ${name}`, async () => {
             change();
-            const { ctx, page, errors } = await session();
+            const { ctx, page, errors, logs } = await session();
             const first = await open(page, 'chapter1.html', { book: 'fixed' });
             assert.equal(first.ui, 'local');
             assert(first.ms < 2500, `took ${first.ms} ms`);
+            assert.deepEqual(logs, [], 'a book with updates off says nothing about updates');
             assert.equal((await open(page, 'chapter2.html', { book: 'fixed' })).ui, 'local');
             // About doesn't offer channel controls
             await openAbout(page);
@@ -526,6 +546,8 @@ try {
     await fs.rm(base, { recursive: true, force: true });
 }
 
+console.log('\nWhat About says when a book falls back:');
+for (const line of reasons) console.log('  ' + line);
 console.log('\nMeasured:');
 for (const line of measured) console.log('  ' + line);
 console.log(`\n${passed.length} passed, ${failed.length} failed`);
