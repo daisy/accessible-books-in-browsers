@@ -31,8 +31,10 @@
 }
 #webbook-note-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 #webbook-back-to-text { flex: 0 0 auto; }
-#webbook-note-menu:popover-open { padding: .5rem; display: grid; gap: .25rem; }
-#webbook-note-menu button { text-align: start; padding: .5rem .75rem; }
+#webbook-note-menu:popover-open { padding: .5rem; }
+#webbook-note-menu h2 { font-size: 1rem; margin: .25rem .5rem .5rem; }
+#webbook-note-menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .25rem; }
+#webbook-note-menu button { width: 100%; text-align: start; padding: .5rem .75rem; }
 .webbook-note-menu-label,
 .webbook-note-menu-context { display: block; }
 .webbook-note-menu-label { font-weight: 700; }

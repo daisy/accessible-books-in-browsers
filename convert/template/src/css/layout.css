@@ -2,7 +2,7 @@
    that sit over the text (WCAG 2.4.11), with a little room to spare */
 :root {
     scroll-padding-top: calc(var(--webbook-top-toolbar-height, 4rem) + .5rem);
-    scroll-padding-bottom: calc(var(--webbook-toolbar-height, 4rem) + .5rem);
+    scroll-padding-bottom: calc(var(--webbook-toolbar-height, 8.5rem) + .5rem);
 }
 /* page container */
 :root {
@@ -31,6 +31,11 @@ body {
     grid-template-columns: var(--webbook-page-arrow-gutter) minmax(0, 1fr) var(--webbook-page-arrow-gutter);
     /* without this, a short page stretches every row to fill the viewport, toolbar rows included */
     grid-template-rows: auto 1fr auto;
+}
+/* The reader adds the top toolbar when it starts (reader-shell.js); until then its row keeps the
+   toolbar's room, so the text doesn't drop into place a moment after the page shows */
+:root.webbook-js body {
+    grid-template-rows: minmax(var(--webbook-top-toolbar-height, 4rem), auto) 1fr auto;
 }
 [hidden] {
     display: none !important;

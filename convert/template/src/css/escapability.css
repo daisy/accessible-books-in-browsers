@@ -2,7 +2,7 @@
 #webbook-escape-container {
     position: fixed;
     /* above the bottom toolbar, which appears on any touch and would otherwise cover it */
-    bottom: calc(var(--webbook-toolbar-height, 4rem) + .75rem);
+    bottom: calc(var(--webbook-toolbar-height, 8.5rem) + .75rem);
     left: 50%;
     transform: translateX(-50%);
     z-index: 25;

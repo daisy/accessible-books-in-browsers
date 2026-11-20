@@ -90,7 +90,7 @@
     /* The column height is the Line length setting, centered between the toolbars. Padding
        percentages are of the page's height here (its inline size). */
     --webbook-column-top: calc(var(--webbook-top-toolbar-height, 4rem) + 1rem);
-    --webbook-column-bottom: calc(var(--webbook-toolbar-height, 4rem) + 1rem);
+    --webbook-column-bottom: calc(var(--webbook-toolbar-height, 8.5rem) + 1rem);
     box-sizing: border-box;
     width: auto;
     max-width: none;

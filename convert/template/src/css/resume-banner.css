@@ -18,6 +18,9 @@
    at the top, because Skip past is just above the bottom toolbar */
 #webbook-action-notice {
     position: fixed;
+    /* It's a popover (to show above open panels): undo the browser's popover position */
+    inset: auto;
+    margin-block: 0;
     top: calc(var(--webbook-top-toolbar-height, 4rem) + .75rem);
     /* Centered by its margins, not left: 50% and a transform: in a vertical book at phone width,
        left: 50% put it off the screen. It wraps long text rather than overflowing. */
@@ -44,6 +47,12 @@
 }
 #webbook-action-notice[hidden] {
     display: none;
+}
+/* Not the panels' backdrop (popover-base.css): the notice mustn't dim or blur the page or the
+   panel it's about */
+#webbook-action-notice:popover-open::backdrop {
+    background: none;
+    backdrop-filter: none;
 }
 #webbook-action-notice button {
     font: inherit;

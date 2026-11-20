@@ -7,8 +7,24 @@
     <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
     <title>Gibberish Field Notes</title>
+    <!-- before the head script, which reads this book's As published setting -->
+    <meta name="webbook-book-id" content="gibberish-field-notes-template-sample">
     <script>
         (() => {
+            // The reader's layout from the first paint, instead of the plain page's until bootstrap.js
+            // (deferred) runs. Same rule as baselineDecision in bootstrap-policy.js; bootstrap.js still
+            // decides, and if it never runs (it failed to load), the plain page comes back.
+            try {
+                const root = document.documentElement;
+                const url = new URL(location.href);
+                let failed = null;
+                try { failed = sessionStorage.getItem('webbook-ui:' + new URL('./', url).href + ':baseline'); } catch { }
+                const auto = url.searchParams.get('webbook-ui') === 'auto';
+                if (!(location.protocol === 'file:' || (failed || url.searchParams.get('webbook-baseline') === '1') && !auto)) {
+                    root.classList.add('webbook-js');
+                    addEventListener('load', () => { if (!window.webbookBootstrapStarted) root.classList.remove('webbook-js'); });
+                }
+            } catch { }
             try {
                 const root = document.documentElement;
                 const appearance = localStorage.getItem('webbook-appearance') || 'auto';
@@ -26,18 +42,32 @@
                 const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
                 root.style.setProperty('--webbook-main-font-family', font);
 
+                // Line length, as text-spacing.js sets it (keep the two the same), so the text
+                // doesn't change width when the reader starts
+                const floor = 'min(100%, 20rem)', narrow = `max(min(50ch, 50%), ${floor})`;
+                const lengths = { narrow, medium: `max(min(65ch, 75%), ${narrow})`, wide: '100%' };
+                const storedLength = localStorage.getItem('webbook-line-length');
+                const length = Object.hasOwn(lengths, storedLength) ? storedLength : 'medium';
+                root.setAttribute('data-webbook-line-length', length);
+                root.style.setProperty('--webbook-line-length', lengths[length]);
+
                 root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
 
-                // Vertical text (writing-mode.js), unless the reader chose horizontal
+                // As published, saved per book (appearance.js)
+                const bookId = document.querySelector('meta[name="webbook-book-id"]')?.content?.trim() || '';
+                const published = root.hasAttribute('data-webbook-has-published')
+                    && localStorage.getItem('webbook-appearance:' + bookId) === 'published';
+                if (published) root.setAttribute('data-webbook-appearance', 'published');
+
+                // Vertical text (writing-mode.js): always as published, else unless the reader chose horizontal
                 const writing = root.getAttribute('data-webbook-writing-mode');
                 const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
-                    && localStorage.getItem('webbook-writing-mode') !== 'horizontal';
+                    && (published || localStorage.getItem('webbook-writing-mode') !== 'horizontal');
                 root.classList.toggle('webbook-vertical', vertical);
                 root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
             } catch { }
         })();
     </script>
-    <meta name="webbook-book-id" content="gibberish-field-notes-template-sample">
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 

@@ -79,7 +79,7 @@ test('position: a selection comes before focus, and focus on main itself is not 
 
 test('focus in an open reader panel is described as the panel, even while narration is elsewhere', () => {
     document.body.insertAdjacentHTML('beforeend', '<section popover id="webbook-settings" class="webbook"><div class="webbook-settings-section"><h3>Narration</h3><input id="setting" type="checkbox"></div></section>'
-        + '<nav popover id="webbook-toc-nav" class="webbook"><ul role="tree"><li role="none"><a role="treeitem" id="t1" href="#">Part</a><ul role="group"><li role="none"><a role="treeitem" id="t2" href="#">Chapter 3</a></li></ul></li></ul></nav>');
+        + '<nav popover id="webbook-toc-nav" class="webbook"><ol><li><a id="t1" href="#">Part</a><ol><li><a id="t2" href="#">Chapter 3</a></li></ol></li></ol></nav>');
     assert.equal(whereAmI({ active: document.getElementById('setting') }), 'Settings. Narration section.');
     assert.equal(whereAmI({ active: document.getElementById('t2') }), 'Table of contents. ‘Chapter 3’, level 2.');
     assert.equal(whereAmI({ active: document.getElementById('t1') }), 'Table of contents. ‘Part’, level 1.');
