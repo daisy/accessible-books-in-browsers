@@ -6,8 +6,8 @@ if (!from || !to || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(version || ''))
     throw new Error(
         'Usage: node scripts/install-ui-release.mjs <checked-channel> <retained-channel> <version>',
     );
-const source = path.resolve(from, 'releases', version),
-    target = path.resolve(to, 'releases', version);
+const source = path.resolve(from, version),
+    target = path.resolve(to, version);
 const inventory = JSON.parse(await fs.readFile(path.join(source, 'ui-files.json'), 'utf8'));
 for (const file of inventory.files) {
     if (!/^[A-Za-z0-9._-]+$/.test(file.href)) throw new Error('Invalid release path');

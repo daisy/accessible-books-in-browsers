@@ -26,9 +26,9 @@ test('srcset parsing retains data URL commas and separates width/density candida
 });
 test('remote worker updates retain the root stub and reject an arbitrary worker URL',()=>{
  assert.equal(workerScriptURL(root),root+'sw.js');
- const url=new URL(workerScriptURL(root,{channel:'https://ui.example/v0/',worker:'releases/2026-11-16/offline-worker.js'}));
- assert.equal(url.pathname,'/library/book/sw.js');assert.equal(url.searchParams.get('webbook-worker'),'https://ui.example/v0/releases/2026-11-16/offline-worker.js');
- for(const remote of [{channel:'http://ui.example/v0/',worker:'releases/a/offline-worker.js'},{channel:'https://ui.example/v0/',worker:'https://bad.example/offline-worker.js'},{channel:'https://ui.example/v0/',worker:'../worker.js'}])assert.throws(()=>workerScriptURL(root,remote));
+ const url=new URL(workerScriptURL(root,{channel:'https://ui.example/v0/',worker:'2026-11-16/offline-worker.js'}));
+ assert.equal(url.pathname,'/library/book/sw.js');assert.equal(url.searchParams.get('webbook-worker'),'https://ui.example/v0/2026-11-16/offline-worker.js');
+ for(const remote of [{channel:'http://ui.example/v0/',worker:'a/offline-worker.js'},{channel:'https://ui.example/v0/',worker:'https://bad.example/offline-worker.js'},{channel:'https://ui.example/v0/',worker:'../worker.js'},{channel:'https://ui.example/v0/',worker:'offline-worker.js'},{channel:'https://ui.example/v0/',worker:'a/b/offline-worker.js'},{channel:'https://ui.example/v0/',worker:'a/other.js'}])assert.throws(()=>workerScriptURL(root,remote));
 });
 const worker={};vm.runInNewContext(readFileSync(new URL('../src/js/offline-range.js',import.meta.url),'utf8'),{self:worker,Blob,Headers,Response});
 const full=()=>new Response('abcdefghij',{headers:{'Content-Type':'audio/mpeg','Content-Length':'999','Content-Encoding':'gzip','ETag':'"version"'}});
@@ -51,9 +51,11 @@ test('foreground GET and HEAD bypass saved local audio without adding CORS prefl
  const target={},requests=[];
  vm.runInNewContext(readFileSync(new URL('../src/js/offline-network.js',import.meta.url),'utf8'),{self:target,URL,AbortController,AbortSignal,setTimeout,clearTimeout,fetch:async(url,options)=>{requests.push({url,options});return new Response('fresh');}});
  for(const method of ['GET','HEAD'])await target.WebbookOfflineFetch(root+'audio/chapter.mp3',{scope:root,foreground:true,method});
- await target.WebbookOfflineFetch('https://ui.example/v0/releases/A/main.js',{scope:root,foreground:true});
+ await target.WebbookOfflineFetch('https://ui.example/v0/A/main.js',{scope:root,foreground:true});
  await target.WebbookOfflineFetch(root+'audio/chapter.mp3',{scope:root,foreground:false});
  assert.equal(requests[0].options.headers['X-Webbook-Offline-Network'],'1');assert.equal(requests[1].options.headers['X-Webbook-Offline-Network'],'1');assert.equal(requests[1].options.method,'HEAD');
  assert.equal(requests[2].options.headers,undefined);assert.equal(requests[2].options.credentials,'omit');assert.equal(requests[3].options.headers,undefined);
- assert(requests.every(request=>request.options.cache==='no-store'&&request.options.redirect==='error'));
+ assert(requests.every(request=>request.options.cache==='no-store'));
+ // The book's own files never follow redirects; a release behind a stable URL does (its files are hash-checked)
+ assert.deepEqual(requests.map(request=>request.options.redirect),['error','error','follow','error']);
 });

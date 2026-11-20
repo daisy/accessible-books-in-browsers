@@ -27,7 +27,7 @@ function loadTemplate() {
 }
 
 // The beta reader channel (plan 11)
-const UI_CHANNEL = 'https://daisy.github.io/accessible-books-in-browsers/v0/';
+const UI_CHANNEL = 'https://webbook.daisy.org/ui/releases/v0/';
 // The converter's options, listed once in convert/src/options.ts: the command line and this page's
 // form both come from it. Defaults are the command line's.
 const OPTIONS = globalThis.spike.options, OPTION_GROUPS = globalThis.spike.optionGroups;

@@ -26936,7 +26936,7 @@ var AUDIO_PAGE_CONCURRENCY = Math.max(1, Math.min(4, Math.floor(node_stubs_defau
 async function convert(input, output2, template, options = {}) {
   if (options.remoteUi === false && options.uiBaseUrl)
     throw new Error("--no-remote-ui cannot be combined with --ui-base-url.");
-  const channelValue = options.uiBaseUrl || (options.remoteUi !== false ? process.env.WEBBOOK_UI_BASE_URL || "https://daisy.github.io/accessible-books-in-browsers/v0/" : void 0);
+  const channelValue = options.uiBaseUrl || (options.remoteUi !== false ? process.env.WEBBOOK_UI_BASE_URL || "https://webbook.daisy.org/ui/releases/v0/" : void 0);
   if (options.remoteUi && !channelValue)
     throw new Error("The beta UI channel is not configured. Supply --ui-base-url or WEBBOOK_UI_BASE_URL.");
   let channel;

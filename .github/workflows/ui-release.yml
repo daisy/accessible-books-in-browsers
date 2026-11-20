@@ -55,29 +55,29 @@ jobs:
         run: |
           git fetch origin main
           git worktree add --detach ../ui-publish origin/main
-          mkdir -p ../ui-publish/v0
+          mkdir -p ../ui-publish/ui/releases/v0
       - name: Build and verify the immutable release
         if: env.UI_MODE == 'release'
         run: |
           node convert/scripts/build-ui-release.mjs "$RUNNER_TEMP/ui-candidate" "$UI_VERSION"
           node convert/scripts/check-ui-release.mjs "$RUNNER_TEMP/ui-candidate" "$UI_VERSION"
-          node convert/scripts/install-ui-release.mjs "$RUNNER_TEMP/ui-candidate" ../ui-publish/v0 "$UI_VERSION"
+          node convert/scripts/install-ui-release.mjs "$RUNNER_TEMP/ui-candidate" ../ui-publish/ui/releases/v0 "$UI_VERSION"
       - name: Promote the checked release or roll back
         if: env.UI_MODE != 'local'
-        run: node convert/scripts/promote-ui-release.mjs ../ui-publish/v0 "$UI_VERSION"
+        run: node convert/scripts/promote-ui-release.mjs ../ui-publish/ui/releases/v0 "$UI_VERSION"
       - name: Select bundled local UI
         if: env.UI_MODE == 'local'
-        run: node convert/scripts/promote-ui-release.mjs ../ui-publish/v0 --local
+        run: node convert/scripts/promote-ui-release.mjs ../ui-publish/ui/releases/v0 --local
       - uses: actions/upload-artifact@v7
         with:
           name: beta-ui-channel
-          path: ../ui-publish/v0
+          path: ../ui-publish/ui/releases/v0
       - name: Publish without replacing the demos or earlier releases
         working-directory: ../ui-publish
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add v0
+          git add ui/releases/v0
           git diff --cached --quiet && exit 0
           git commit -m "Publish beta reader UI $UI_VERSION ($UI_MODE)"
           gh auth setup-git

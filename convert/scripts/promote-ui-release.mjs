@@ -9,7 +9,7 @@ let manifest;
 if (version === '--local') manifest = { contract: 0, useLocal: true };
 else {
     if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(version)) throw new Error('Invalid version');
-    const inventoryPath = path.join(channel, 'releases', version, 'ui-files.json'),
+    const inventoryPath = path.join(channel, version, 'ui-files.json'),
         bytes = await fs.readFile(inventoryPath),
         inventory = JSON.parse(bytes);
     const receipt = JSON.parse(await fs.readFile(path.join(channel, 'checks', version + '.json'), 'utf8'));
@@ -24,7 +24,7 @@ else {
     for (const file of inventory.files) {
         if (
             !/^[A-Za-z0-9._-]+$/.test(file.href) ||
-            file.sha256 !== hash(await fs.readFile(path.join(channel, 'releases', version, file.href)))
+            file.sha256 !== hash(await fs.readFile(path.join(channel, version, file.href)))
         )
             throw new Error('Release files changed after verification.');
     }

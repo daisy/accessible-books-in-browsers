@@ -9,8 +9,10 @@ import { cssReferences } from '../template/src/js/offline-resources.js';
 const [destination, version] = process.argv.slice(2);
 if (!destination || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(version || ''))
     throw new Error('Usage: node scripts/build-ui-release.mjs <channel-directory> <immutable-version>');
+// Each release is a folder directly in the channel, next to current.json and the checks and manifests
+if (/^(checks|manifests)$|\.json$/i.test(version)) throw new Error(`"${version}" is reserved in the channel folder.`);
 const channel = path.resolve(destination),
-    release = path.join(channel, 'releases', version);
+    release = path.join(channel, version);
 try {
     await fs.access(release);
     throw new Error('Release already exists; immutable releases cannot be overwritten.');
@@ -65,10 +67,10 @@ try {
         contract: 0,
         version,
         minBootstrap: 1,
-        script: `releases/${version}/main.js`,
-        stylesheet: `releases/${version}/style.css`,
-        worker: `releases/${version}/offline-worker.js`,
-        inventory: `releases/${version}/ui-files.json`,
+        script: `${version}/main.js`,
+        stylesheet: `${version}/style.css`,
+        worker: `${version}/offline-worker.js`,
+        inventory: `${version}/ui-files.json`,
         protocol: 1,
         integrity: Object.fromEntries([['script', 'main.js'], ['stylesheet', 'style.css']].map(([key, href]) => [key, 'sha256-' + Buffer.from(files.find(file => file.href === href).sha256, 'hex').toString('base64')])),
     };

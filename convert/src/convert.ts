@@ -51,7 +51,7 @@ export type ConvertOptions = {
 
 async function convert(input: string, output: string, template: string, options: ConvertOptions = {}): Promise<void> {
     if (options.remoteUi === false && options.uiBaseUrl) throw new Error('--no-remote-ui cannot be combined with --ui-base-url.');
-    const channelValue = options.uiBaseUrl || (options.remoteUi !== false ? process.env.WEBBOOK_UI_BASE_URL || 'https://daisy.github.io/accessible-books-in-browsers/v0/' : undefined);
+    const channelValue = options.uiBaseUrl || (options.remoteUi !== false ? process.env.WEBBOOK_UI_BASE_URL || 'https://webbook.daisy.org/ui/releases/v0/' : undefined);
     if (options.remoteUi && !channelValue) throw new Error('The beta UI channel is not configured. Supply --ui-base-url or WEBBOOK_UI_BASE_URL.');
     let channel: string | undefined;
     if (channelValue) {

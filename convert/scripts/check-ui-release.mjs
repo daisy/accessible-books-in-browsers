@@ -17,9 +17,9 @@ if (!channelDirectory || !releaseVersion)
 const base = await fs.mkdtemp(path.join(os.tmpdir(), 'webbook-conformance-'));
 const template = fileURLToPath(new URL('../template', import.meta.url));
 const fixture = fileURLToPath(new URL('../../source-epubs/notes-test', import.meta.url));
-const supplied = path.resolve(channelDirectory, 'releases', releaseVersion);
+const supplied = path.resolve(channelDirectory, releaseVersion);
 for (const version of ['D', 'E'])
-    await fs.cp(supplied, path.join(base, 'channel/v0/releases', version), { recursive: true });
+    await fs.cp(supplied, path.join(base, 'channel/v0', version), { recursive: true });
 const types = {
     '.html': 'text/html',
     '.js': 'text/javascript',
@@ -105,10 +105,10 @@ const release = (version) => ({
     contract: 0,
     version,
     minBootstrap: 1,
-    script: `releases/${version}/main.js`,
-    stylesheet: `releases/${version}/style.css`,
-    worker: `releases/${version}/offline-worker.js`,
-    inventory: `releases/${version}/ui-files.json`,
+    script: `${version}/main.js`,
+    stylesheet: `${version}/style.css`,
+    worker: `${version}/offline-worker.js`,
+    inventory: `${version}/ui-files.json`,
     protocol: 1,
 });
 const textSource = path.join(base, 'source-text');
@@ -207,7 +207,7 @@ try {
     const scriptHash =
         'sha256-' +
         createHash('sha256')
-            .update(await fs.readFile(path.join(base, 'channel/v0/releases/E/main.js')))
+            .update(await fs.readFile(path.join(base, 'channel/v0/E/main.js')))
             .digest('base64');
     await scenario('valid script integrity', 'E', {
         manifest: { ...release('E'), integrity: { script: scriptHash } },
@@ -231,14 +231,14 @@ try {
     await scenario('missing remote CSS', 'local', { missing: 'style.css' });
     await scenario('missing remote JS', 'local', { missing: 'main.js' });
     await scenario('strict self CSP permits local path', 'local', { strict: true });
-    await fs.cp(base + '/channel/v0/releases/E', base + '/channel/v0/releases/Crash', { recursive: true });
+    await fs.cp(base + '/channel/v0/E', base + '/channel/v0/Crash', { recursive: true });
     await fs.writeFile(
-        base + '/channel/v0/releases/Crash/main.js',
+        base + '/channel/v0/Crash/main.js',
         `export function init(){document.querySelector('main').setAttribute('aria-hidden','true');throw Error('remote crash')}`,
     );
-    const crashInventoryPath=path.join(base,'channel/v0/releases/Crash/ui-files.json');
+    const crashInventoryPath=path.join(base,'channel/v0/Crash/ui-files.json');
     const crashInventory=JSON.parse(await fs.readFile(crashInventoryPath,'utf8'));
-    const crashBytes=await fs.readFile(path.join(base,'channel/v0/releases/Crash/main.js'));
+    const crashBytes=await fs.readFile(path.join(base,'channel/v0/Crash/main.js'));
     Object.assign(crashInventory.files.find(file=>file.href==='main.js'),{sha256:createHash('sha256').update(crashBytes).digest('hex'),bytes:crashBytes.length});
     crashInventory.revision=createHash('sha256').update(JSON.stringify(crashInventory.files)).digest('hex');
     await fs.writeFile(crashInventoryPath,JSON.stringify(crashInventory));

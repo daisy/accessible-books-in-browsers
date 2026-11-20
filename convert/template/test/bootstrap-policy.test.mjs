@@ -2,15 +2,15 @@ import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {validChannel, overrideDecision, validateManifest, releaseSelection, selectionDecision, verifyInventory, finalSelection, baselineDecision, failureDecision} from '../src/js/bootstrap-policy.js';
 const local={local:true},channel='https://reader.example/v0/',options={contract:0,channel,local};
-const manifest={contract:0,version:'A',minBootstrap:1,script:'releases/A/main.js',stylesheet:'releases/A/style.css',worker:'releases/A/offline-worker.js'};
+const manifest={contract:0,version:'A',minBootstrap:1,script:'A/main.js',stylesheet:'A/style.css',worker:'A/offline-worker.js'};
 const selected=validateManifest(manifest,options);
 const files=['main.js','style.css','offline-worker.js'].map(href=>({href,sha256:'ab'.repeat(32)}));
 const inventory={version:1,contract:0,files};
 test('manifest decisions reject incompatible contracts, bootstrap/protocol versions and escaped release URLs',()=>{
  assert.equal(validateManifest({contract:0,useLocal:true},options),local);
  assert.equal(selected.version,'A');
- for(const bad of [{contract:1},{minBootstrap:2},{minBootstrap:0},{protocol:2},{version:'../A'},{script:'https://elsewhere.example/main.js'},{script:'releases/A/../B/main.js'},{script:'releases/A/main.js?other'},{stylesheet:'releases/A/style.css#other'}])assert.throws(()=>validateManifest({...manifest,...bad},options),JSON.stringify(bad));
- assert.equal(releaseSelection('A',options).inventory,channel+'releases/A/ui-files.json');
+ for(const bad of [{contract:1},{minBootstrap:2},{minBootstrap:0},{protocol:2},{version:'../A'},{script:'https://elsewhere.example/main.js'},{script:'A/../B/main.js'},{script:'A/main.js?other'},{stylesheet:'A/style.css#other'}])assert.throws(()=>validateManifest({...manifest,...bad},options),JSON.stringify(bad));
+ assert.equal(releaseSelection('A',options).inventory,channel+'A/ui-files.json');
 });
 test('channel URLs require a safe directory URL',()=>{
  for(const value of ['http://remote.example/v0/','https://a:b@reader.example/v0/','https://reader.example/v0/?token=x','https://reader.example/v0/#x','https://reader.example/v0','file:///v0/','junk'])assert.equal(validChannel(value),null,value);
@@ -21,7 +21,7 @@ test('every selection requires script and stylesheet integrity, including saved 
  assert.match(verified.integrity.script,/^sha256-/);assert.equal(verified.integrity.script,verified.integrity.stylesheet);
  for(const missing of [undefined,{...inventory,contract:1},{...inventory,files:files.slice(1)},{...inventory,files:files.filter(f=>f.href!=='style.css')},{...inventory,files:files.slice(0,2)},{...inventory,files:[...files,{...files[0]}]},{...inventory,files:files.map(f=>({...f,sha256:'bad'}))}])assert.throws(()=>verifyInventory(selected,missing));
  assert.throws(()=>verifyInventory({...selected,integrity:{script:'sha256-wrong'}},inventory));
- const saved={...inventory,files:files.map(({href,sha256})=>({url:channel+'releases/A/'+href,sha256}))};
+ const saved={...inventory,files:files.map(({href,sha256})=>({url:channel+'A/'+href,sha256}))};
  assert.deepEqual(verifyInventory(selected,saved).integrity,verified.integrity);
  assert.deepEqual(verifyInventory(releaseSelection('A',options),inventory).integrity,verified.integrity);
 });

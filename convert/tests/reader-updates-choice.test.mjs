@@ -18,7 +18,7 @@ test('CLI announces the default channel, records an explicit bundled choice, and
   const run=(name,flags=[])=>{const output=path.join(dir,name);const stdout=execFileSync(process.execPath,[cli,'convert',source,output,template,...flags],{encoding:'utf8',stdio:'pipe',env:{...process.env,WEBBOOK_UI_BASE_URL:''}});return {output,stdout};};
   const normal=run('default');assert.match(normal.stdout,/READER UPDATES/);assert.match(normal.stdout,/--no-remote-ui/);
   const doc=new JSDOM(await fs.readFile(path.join(normal.output,'index.html'),'utf8')).window.document;
-  assert.equal(doc.querySelector('meta[name="webbook-ui-channel"]').content,'https://daisy.github.io/accessible-books-in-browsers/v0/');
+  assert.equal(doc.querySelector('meta[name="webbook-ui-channel"]').content,'https://webbook.daisy.org/ui/releases/v0/');
   const bootstrap=await fs.readFile(path.join(normal.output,'src/js/bootstrap.js'),'utf8');
   assert.match(bootstrap,/function validateManifest\(/);
   assert.match(bootstrap,/function selectionDecision\(/);

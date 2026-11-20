@@ -16,7 +16,7 @@ test('immutable releases cannot be overwritten or promoted without matching veri
         const candidate = await fs.readFile(path.join(directory, 'candidate.json'), 'utf8');
         assert.throws(() => run('build-ui-release.mjs', 'test'));
         assert.throws(() => run('promote-ui-release.mjs', 'test'));
-        const bytes = await fs.readFile(path.join(directory, 'releases/test/ui-files.json'));
+        const bytes = await fs.readFile(path.join(directory, 'test/ui-files.json'));
         await fs.mkdir(path.join(directory, 'checks'));
         await fs.writeFile(
             path.join(directory, 'checks/test.json'),
@@ -29,12 +29,12 @@ test('immutable releases cannot be overwritten or promoted without matching veri
         run('promote-ui-release.mjs', 'test');
         assert.equal(await fs.readFile(path.join(directory, 'current.json'), 'utf8'), candidate);
         const retained = path.join(directory, 'retained');
-        await fs.mkdir(path.join(retained, 'releases/older'), { recursive: true });
-        await fs.writeFile(path.join(retained, 'releases/older/main.js'), 'older release');
+        await fs.mkdir(path.join(retained, 'older'), { recursive: true });
+        await fs.writeFile(path.join(retained, 'older/main.js'), 'older release');
         const install = () => execFileSync(process.execPath, [script('install-ui-release.mjs'), directory, retained, 'test'], { stdio: 'pipe' });
         install(); install();
-        assert.equal(await fs.readFile(path.join(retained, 'releases/older/main.js'), 'utf8'), 'older release');
-        await fs.appendFile(path.join(directory, 'releases/test/main.js'), '/* corruption */');
+        assert.equal(await fs.readFile(path.join(retained, 'older/main.js'), 'utf8'), 'older release');
+        await fs.appendFile(path.join(directory, 'test/main.js'), '/* corruption */');
         assert.throws(install);
         assert.throws(() => run('promote-ui-release.mjs', 'test'));
         assert.equal(await fs.readFile(path.join(directory, 'current.json'), 'utf8'), candidate);

@@ -1,9 +1,17 @@
 # Beta remote reader UI
 
-Reader updates use the beta channel by default:
-`https://daisy.github.io/accessible-books-in-browsers/v0/`. The command-line converter always
+Reader updates use the beta channel by default: `https://webbook.daisy.org/ui/releases/v0/`.
+That's a stable URL, so the files can move without changing any book: `https://webbook.daisy.org/ui/*`
+redirects (302, `Cache-Control: public, max-age=3600`, `Access-Control-Allow-Origin: *`) to
+`https://daisy.github.io/accessible-books-in-browsers/ui/*`, where the release workflow publishes
+them, and later to a CDN. In the channel folder, `current.json` names the current release, and
+each release is a folder named by its version: `v0/current.json`, `v0/2026-11-20/main.js`. The redirect needs the CORS header itself: browsers check it on the
+redirect, and without it every book quietly uses its own reader. Saving for offline follows the
+redirect for release files only (they're checked against the release's hashes), and stores them
+under the stable URL. `scripts/check-ui-channel-network.mjs` tests the redirect, timeouts,
+failures, connection speeds, offline saving and books with updates off. The command-line converter always
 announces this choice and explains `--no-remote-ui`, which selects a fixed bundled reader.
-`--ui-base-url https://your-channel.example/v0/` selects a different channel and conflicts with
+`--ui-base-url https://your-channel.example/releases/v0/` selects a different channel and conflicts with
 `--no-remote-ui`. `--remote-ui` explicitly selects the default; `WEBBOOK_UI_BASE_URL` can change
 that default for a deployment. The conversion report records either the channel or the fixed
 bundled choice. The browser converter presents Reader updates as a visible required choice with
@@ -111,7 +119,7 @@ remains an explicitly testable compatibility API, not the channel reader's loadi
 
 The user selected `daisy/accessible-books-in-browsers`, rather than the earlier separate-repo
 proposal. Its existing Pages configuration serves `main` at `/`. The release workflow retains
-channel files in `v0/` and changes no demo files. A GitHub Release tagged `ui-v0-YYYY-MM-DD`
+channel files in `ui/releases/v0/` and changes no demo files. A GitHub Release tagged `ui-v0-YYYY-MM-DD`
 builds/checks the tagged source, compares any existing immutable assets, then commits the new
 release, its receipt and `current.json` on main. The workflow explicitly requests a legacy Pages
 build because token-authored commits do not trigger that build by themselves.
