@@ -6,13 +6,11 @@ export const slides = {
         sound: true,
         // The heading, then "Call me Ishmael.", then the next sentence
         url: 'demos/moby-dick/chapter_001.html',
-        // Starts 3 s in, near the end of the heading
-        async setup({ page }) {
-            await page.click('#webbook-audio-playpause');
-            await page.waitForTimeout(3000);
-        },
-        async act({ wait }) {
-            await wait(5000);
+        // From the play button, in the recording: started in setup, the clip opened on the heading
+        // highlighted with its audio already over (user, 2026-11-19, as with caption-mode)
+        async act({ click, wait }) {
+            await click('#webbook-audio-playpause');
+            await wait(7000);
         }
     },
     'caption-mode': {
