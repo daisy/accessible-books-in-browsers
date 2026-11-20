@@ -7,7 +7,7 @@ import { test } from 'node:test';
 import ffmpegPath from 'ffmpeg-static';
 import {
     DEPLOSIVE_FILTER, analyzeAudio, audioCleanupSettings, cleanupFilters, fadeFilters,
-    loudnormFilter, parseAudioEnhancements
+    loudnessFilters, parseAudioEnhancements
 } from '../build/audio-cleanup.js';
 import { reportMarkdown } from '../build/conversion-report.js';
 
@@ -15,7 +15,13 @@ test('default cleanup and optional enhancements build a timing-preserving filter
     const defaults = audioCleanupSettings(true, []);
     assert.deepEqual(fadeFilters(2, defaults), ['afade=t=in:st=0:d=0.005', 'afade=t=out:st=1.995:d=0.005']);
     assert.deepEqual(cleanupFilters(defaults), ['asubcut=cutoff=90:order=10', DEPLOSIVE_FILTER]);
-    assert.match(loudnormFilter(defaults, null), /I=-18.*TP=-1.5.*print_format=json/);
+    // Quieter narration is raised to -18 LUFS; louder narration is never lowered; the limiter always runs
+    assert.deepEqual(loudnessFilters(defaults, -24), ['volume=6.00dB', 'alimiter=limit=0.6310:level=false:latency=1']);
+    assert.deepEqual(loudnessFilters(defaults, -15.6), ['alimiter=limit=0.6310:level=false:latency=1']);
+    assert.deepEqual(loudnessFilters(defaults, null), ['alimiter=limit=0.6310:level=false:latency=1']);
+    // A source louder than the target gets back to its own level after the cleanup filters
+    assert.deepEqual(loudnessFilters(defaults, -19, -16), ['volume=3.00dB', 'alimiter=limit=0.6310:level=false:latency=1']);
+    assert.deepEqual(loudnessFilters(defaults, -19, -22), ['volume=1.00dB', 'alimiter=limit=0.6310:level=false:latency=1']);
 
     const all = audioCleanupSettings(true, parseAudioEnhancements('warm-eq,compression,noise,deess,declick,warm-eq'));
     assert.deepEqual(all.enhancements, ['warm-eq', 'compression', 'noise', 'deess', 'declick']);

@@ -15,7 +15,7 @@ import { cacheKey, restoreCachedAudio, storeCachedAudio, type AudioCache } from 
 import type { NarrationSelector } from './structure-ids.js';
 import { isExternalHref } from './ids.js';
 import {
-    analyzeAudio, cleanupFilters, fadeFilters, loudnormFilter, measureLoudnorm,
+    analyzeAudio, cleanupFilters, fadeFilters, loudnessFilters, measureLoudness,
     type AudioCleanupSettings, type AudioFindings
 } from './audio-cleanup.js';
 
@@ -57,6 +57,13 @@ const select = xpath.useNamespaces({
 const AUDIO_SEGMENT_CONCURRENCY = 4;
 const sourceProperties = new Map<string, Promise<utils.AudioProperties>>();
 
+// The browser converter turns this off: its ffmpeg runner cuts clips in the browser itself, from
+// each source decoded once (converter/shims/ffmpeg-wasm-runner.js)
+let sourceRangeDecoding = true;
+export function setSourceRangeDecoding(enabled: boolean): void {
+    sourceRangeDecoding = enabled;
+}
+
 async function createAudioForPage(
     page: SitePage,
     outputPaths: OutputPaths,
@@ -65,7 +72,7 @@ async function createAudioForPage(
     selectors: Map<string, NarrationSelector> = new Map(),
     smallAudio = false,
     cleanup: AudioCleanupSettings = { enabled: false, enhancements: [], fadeMilliseconds: 0,
-        lowCutHz: 0, deplosive: false, loudnessLufs: -18, loudnessRangeLu: 7, truePeakDb: -1.5 }
+        lowCutHz: 0, deplosive: false, loudnessLufs: -18, truePeakDb: -1.5 }
 ): Promise<PageAudioAssets | null> {
     if (!page.moPath) return null;
 
@@ -183,7 +190,7 @@ async function mergeAudioSegments(
     outFilename: string,
     encoding?: AudioEncodingSettings,
     cleanup: AudioCleanupSettings = { enabled: false, enhancements: [], fadeMilliseconds: 0,
-        lowCutHz: 0, deplosive: false, loudnessLufs: -18, loudnessRangeLu: 7, truePeakDb: -1.5 }
+        lowCutHz: 0, deplosive: false, loudnessLufs: -18, truePeakDb: -1.5 }
 ): Promise<AudioFindings> {
     winston.info(`Merging audio clips into ${outFilename}`);
     await configureFfmpeg();
@@ -204,13 +211,28 @@ async function mergeAudioSegments(
             return audioTmpFilename;
         });
 
-        await runWithConcurrency(mediaSegments, AUDIO_SEGMENT_CONCURRENCY, async(audio, idx) => {
-            await extractAudioSegment(audio, audioTmpFilenames[idx], settings);
-        });
+        // Each source the page uses is decoded once, from its first clip to its last, and the clips
+        // are cut from that WAV. Cutting each clip from the source itself decoded it from the start
+        // every time, so a long recording took longer for every clip further in. A seek in the MP3
+        // instead can land off the clip in a VBR file; atrim on the WAV gives the same samples as
+        // atrim on the source (checked on Valentin Haüy, 2026-11-19).
+        const ranges = sourceRangeDecoding
+            ? await decodeSourceRanges(mediaSegments, settings, tmpDirname)
+            : new Map(mediaSegments.map(audio => [audio.src, { filename: audio.src, start: 0 }]));
+        try {
+            await runWithConcurrency(mediaSegments, AUDIO_SEGMENT_CONCURRENCY, async(audio, idx) => {
+                const range = ranges.get(audio.src)!;
+                await cutToWav(range.filename, audio.clipBegin.seconds - range.start,
+                    audio.clipEnd.seconds - range.start, audioTmpFilenames[idx], settings);
+            });
+        } finally {
+            if (sourceRangeDecoding) await Promise.all(Array.from(ranges.values(), range => fs.remove(range.filename).catch(() => {})));
+        }
 
+        // From each clip's WAV header: the exact sample count, with no ffprobe for every clip
         for (const audio of mediaSegments) {
             if (audio.tmpFilename) {
-                audio.durOnDisk = await utils.getDuration(audio.tmpFilename);
+                audio.durOnDisk = await wavDuration(audio.tmpFilename) ?? await utils.getDuration(audio.tmpFilename);
             }
         }
 
@@ -227,9 +249,9 @@ async function mergeAudioSegments(
             joinedFilename = path.join(tmpDirname, 'joined.wav');
             await joinPcmFiles(fadedFilenames, joinedFilename, settings, tmpDirname, 'faded-segments.txt');
         }
-        const measured = cleanup.enabled ? await measureLoudnorm(joinedFilename, cleanup) : null;
-        if (cleanup.enabled && !measured) {
-            winston.warn(`Could not measure loudness for ${path.basename(outFilename)}; applying cleanup without normalization`);
+        const measured = cleanup.enabled ? await measureLoudness(joinedFilename, cleanup) : null;
+        if (cleanup.enabled && measured === null) {
+            winston.warn(`Could not measure loudness for ${path.basename(outFilename)}; applying cleanup without raising the level`);
         }
         await new Promise<void>((resolve, reject) => {
             const command = ffmpeg().input(joinedFilename)
@@ -237,7 +259,7 @@ async function mergeAudioSegments(
                 .audioFrequency(settings.sampleRate)
                 .audioBitrate(`${settings.bitrateKbps}k`);
             const filters = cleanup.enabled
-                ? [...cleanupFilters(cleanup), ...(measured ? [loudnormFilter(cleanup, measured)] : []),
+                ? [...cleanupFilters(cleanup), ...loudnessFilters(cleanup, measured, findings.loudnessLufs),
                     'apad', `atrim=duration=${joinedDuration}`]
                 : [];
             if (filters.length) command.audioFilters(filters.join(','));
@@ -304,19 +326,39 @@ async function applyClipFades(
     });
 }
 
-async function extractAudioSegment(
-    audio: MediaSegment,
-    audioTmpFilename: string,
-    settings: AudioEncodingSettings
-): Promise<void> {
+// Each source, from the start of its first clip on this page to the end of its last
+async function decodeSourceRanges(
+    mediaSegments: MediaSegment[],
+    settings: AudioEncodingSettings,
+    tmpDirname: string
+): Promise<Map<string, { filename: string; start: number }>> {
+    const bounds = new Map<string, { start: number; end: number }>();
+    for (const audio of mediaSegments) {
+        const bound = bounds.get(audio.src);
+        if (!bound) bounds.set(audio.src, { start: audio.clipBegin.seconds, end: audio.clipEnd.seconds });
+        else {
+            bound.start = Math.min(bound.start, audio.clipBegin.seconds);
+            bound.end = Math.max(bound.end, audio.clipEnd.seconds);
+        }
+    }
+    const ranges = new Map<string, { filename: string; start: number }>();
+    let index = 0;
+    for (const [src, bound] of bounds) ranges.set(src, { filename: path.join(tmpDirname, `source-${index++}.wav`), start: bound.start });
+    await runWithConcurrency(Array.from(bounds), AUDIO_SEGMENT_CONCURRENCY, async([src, bound]) => {
+        await cutToWav(src, bound.start, bound.end, ranges.get(src)!.filename, settings);
+    });
+    return ranges;
+}
+
+function cutToWav(input: string, begin: number, end: number, output: string, settings: AudioEncodingSettings): Promise<void> {
     return new Promise<void>((resolve, reject) => {
         ffmpeg()
-            .input(audio.src)
-            .audioFilters(`atrim=${audio.clipBegin.seconds}:${audio.clipEnd.seconds}`)
+            .input(input)
+            .audioFilters(`atrim=${begin}:${end}`)
             .audioCodec('pcm_s16le')
             .audioChannels(settings.channels)
             .audioFrequency(settings.sampleRate)
-            .output(audioTmpFilename)
+            .output(output)
             .on('progress', progress => {
                 winston.verbose(`[ffmpeg] ${JSON.stringify(progress)}`);
             })
@@ -330,6 +372,31 @@ async function extractAudioSegment(
             })
             .run();
     });
+}
+
+// A WAV's length from its header (the data chunk's size), or null if it can't be read
+export async function wavDuration(filename: string): Promise<number | null> {
+    try {
+        const bytes: Uint8Array = await fs.readFile(filename);
+        const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+        if (bytes.byteLength < 12 || String.fromCharCode(...bytes.subarray(0, 4)) !== 'RIFF') return null;
+        let offset = 12;
+        let format: { channels: number; sampleRate: number; bits: number } | null = null;
+        while (offset + 8 <= view.byteLength) {
+            const id = String.fromCharCode(...bytes.subarray(offset, offset + 4));
+            let size = view.getUint32(offset + 4, true);
+            if (id === 'fmt ') format = { channels: view.getUint16(offset + 10, true), sampleRate: view.getUint32(offset + 12, true), bits: view.getUint16(offset + 22, true) };
+            if (id === 'data') {
+                if (!format || !format.sampleRate || !format.channels || !format.bits) return null;
+                size = Math.min(size, view.byteLength - offset - 8);
+                return size / (format.sampleRate * format.channels * format.bits / 8);
+            }
+            offset += 8 + size + (size % 2);
+        }
+        return null;
+    } catch {
+        return null;
+    }
 }
 
 async function runWithConcurrency<T>(
@@ -362,5 +429,6 @@ function resolveSmilReference(smilPath: string, reference: string, pageSourcePat
 export {
     createAudioForPage,
     getMediaSegments,
-    mergeAudioSegments
+    mergeAudioSegments,
+    runWithConcurrency
 };

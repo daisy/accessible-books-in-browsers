@@ -14,7 +14,6 @@ export type AudioCleanupSettings = {
     lowCutHz: number;
     deplosive: boolean;
     loudnessLufs: number;
-    loudnessRangeLu: number;
     truePeakDb: number;
 };
 
@@ -23,14 +22,6 @@ export type AudioFindings = {
     loudnessLufs: number | null;
     noiseFloorDb: number | null;
     peakDb: number | null;
-};
-
-export type LoudnormMeasurement = {
-    input_i: string;
-    input_lra: string;
-    input_tp: string;
-    input_thresh: string;
-    target_offset: string;
 };
 
 export function audioCleanupSettings(enabled: boolean, enhancements: AudioEnhancement[]): AudioCleanupSettings {
@@ -44,7 +35,6 @@ export function audioCleanupSettings(enabled: boolean, enhancements: AudioEnhanc
         // (Moby Dick's by about 7 dB). With the de-plosive, -20 sounded best for Moby Dick, but is too
         // quiet for every book; -18 (user, 2026-11-10)
         loudnessLufs: -18,
-        loudnessRangeLu: 7,
         truePeakDb: -1.5
     };
 }
@@ -112,30 +102,30 @@ export function parseAudioFindings(output: string): AudioFindings {
     };
 }
 
-export async function measureLoudnorm(filename: string, settings: AudioCleanupSettings): Promise<LoudnormMeasurement | null> {
-    const filters = [...cleanupFilters(settings), loudnormFilter(settings, null)];
+// Integrated loudness after the cleanup filters, from one pass of ebur128
+export async function measureLoudness(filename: string, settings: AudioCleanupSettings): Promise<number | null> {
+    const filters = [...cleanupFilters(settings), 'ebur128'];
     const stderr = await runFfmpeg(['-hide_banner', '-nostats', '-i', filename, '-af', filters.join(','), '-f', 'null', '-']);
-    const matches = stderr.match(/\{\s*"input_i"[\s\S]*?\}/g);
-    const match = matches?.[matches.length - 1];
-    if (!match) return null;
-    const measured = JSON.parse(match) as LoudnormMeasurement;
-    return [measured.input_i, measured.input_lra, measured.input_tp, measured.input_thresh, measured.target_offset]
-        .every(value => Number.isFinite(Number(value))) ? measured : null;
+    const summary = stderr.slice(stderr.lastIndexOf('Summary:'));
+    return matchNumber(summary, /Integrated loudness:[\s\S]*?I:\s*(-?\d+(?:\.\d+)?) LUFS/);
 }
 
-export function loudnormFilter(settings: AudioCleanupSettings, measured: LoudnormMeasurement | null): string {
-    const parts = [
-        `I=${settings.loudnessLufs}`,
-        `LRA=${settings.loudnessRangeLu}`,
-        `TP=${settings.truePeakDb}`
-    ];
-    if (measured) {
-        parts.push(`measured_I=${measured.input_i}`, `measured_LRA=${measured.input_lra}`,
-            `measured_TP=${measured.input_tp}`, `measured_thresh=${measured.input_thresh}`,
-            `offset=${measured.target_offset}`, 'linear=true');
-    }
-    else parts.push('print_format=json');
-    return `loudnorm=${parts.join(':')}`;
+// Narration quieter than the target is raised to it; louder narration keeps its own level, because a
+// well-made recording should stay as it was (user, 2026-11-19: "the source is pretty good", on
+// Valentin Haüy at -15.6 LUFS). A limiter then holds peaks under the limit; latency=1 makes up for
+// its lookahead, so the audio isn't delayed against the cues.
+// This replaced loudnorm, run twice (to measure, then to adjust), which took most of a narrated
+// book's conversion time and switched to compressing the dynamics on nearly every book; side by
+// side, the two sounded the same (user, 2026-11-19). The ceiling is 2.5 dB under the
+// peak limit: alimiter limits samples, and encoding adds peaks. Through the small MP3 (32 kb/s),
+// a ceiling of -2 dB still gave peaks of +0.4 dB on Valentin Haüy; -4 dB kept them under -1.5 dB.
+// The level to reach is the target or the source's own loudness, whichever is louder: the cleanup
+// filters (warm EQ above all) make a voice quieter, and a loud source gets back to where it was.
+export function loudnessFilters(settings: AudioCleanupSettings, measuredLufs: number | null, sourceLufs: number | null = null): string[] {
+    const level = Math.max(settings.loudnessLufs, sourceLufs ?? -Infinity);
+    const gain = measuredLufs === null ? 0 : Math.max(0, level - measuredLufs);
+    const limit = Math.min(1, Math.max(0.0625, 10 ** ((settings.truePeakDb - 2.5) / 20)));
+    return [...(gain > 0 ? [`volume=${gain.toFixed(2)}dB`] : []), `alimiter=limit=${limit.toFixed(4)}:level=false:latency=1`];
 }
 
 function matchNumber(value: string, pattern: RegExp): number | null {

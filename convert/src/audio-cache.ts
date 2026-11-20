@@ -10,7 +10,7 @@ import * as utils from './utils.js';
 // Bump whenever mergeAudioSegments changes what it writes, so cached audio made the old way is
 // rebuilt rather than reused
 // 6: FFmpeg 6 (ffmpeg-static) replaced 4.4, whose MP3 decoder added a whistle to some sources
-const MERGE_VERSION = 6;
+const MERGE_VERSION = 7;
 
 export type AudioCache = {
     // This book's folder in the cache

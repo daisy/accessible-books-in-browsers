@@ -9,7 +9,8 @@ import { TemplateRenderer } from './template.js';
 import { createBookFavicon } from './favicon.js';
 import { shapeBookPage } from './book-shape.js';
 import { buildSiteModel } from './model.js';
-import { createAudioForPage, getMediaSegments, type MediaSegment } from './audio.js';
+import { createAudioForPage, getMediaSegments, runWithConcurrency, type MediaSegment } from './audio.js';
+import os from 'os';
 import { openAudioCache } from './audio-cache.js';
 import { readAccessibilityInfo } from './accessibility-info.js';
 import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath } from './output.js';
@@ -25,6 +26,9 @@ import { createHash } from 'crypto';
 import { JSDOM } from 'jsdom';
 import { runOptionalChecks } from './optional-checks.js';
 import { audioCleanupSettings, cleanupFilters, type AudioEnhancement, type AudioCleanupSettings } from './audio-cleanup.js';
+
+// Half the cores, up to 4: pages also cut their clips 4 at a time (audio.ts)
+const AUDIO_PAGE_CONCURRENCY = Math.max(1, Math.min(4, Math.floor(os.cpus().length / 2)));
 
 export type ConvertOptions = {
     remoteUi?: boolean;
@@ -165,12 +169,23 @@ async function convert(input: string, output: string, template: string, options:
                     reservedIds: renderer.reservedContentIds(),
                     responsiveTables: true
                 });
-            const audio = await createAudioForPage(
-                page, outputPaths, mediaSegments, audioCache, content.narrationSelectors, options.smallAudio === true, cleanup
-            );
-            pageAudioSources.set(page.outputFilename, { audio, bodyHtml: content.bodyHtml });
-            transformed.set(page.outputFilename, { content, audio });
+            transformed.set(page.outputFilename, { content, audio: null });
             renamesByPage.set(page.outputFilename, content.renamedIds);
+        }
+
+        // Narration, a few pages at a time: each page's ffmpeg work (above all the loudness pass and
+        // the encode) runs on one core. One at a time in the browser converter, whose ffmpeg.wasm
+        // runs one job at a time anyway (its os.cpus() is a single entry).
+        await runWithConcurrency(site.pages, AUDIO_PAGE_CONCURRENCY, async page => {
+            const result = transformed.get(page.outputFilename)!;
+            result.audio = await createAudioForPage(
+                page, outputPaths, mediaSegmentsByPage.get(page.outputFilename) ?? [], audioCache,
+                result.content.narrationSelectors, options.smallAudio === true, cleanup
+            );
+        });
+        for (const page of site.pages) {
+            const result = transformed.get(page.outputFilename)!;
+            pageAudioSources.set(page.outputFilename, { audio: result.audio, bodyHtml: result.content.bodyHtml });
         }
 
         const contentDocuments = rewriteRenamedTargets(site, transformed, renamesByPage);
@@ -273,7 +288,7 @@ async function addAudioReport(
             enabled: cleanup.enabled,
             targetLufs: cleanup.loudnessLufs,
             truePeakDb: cleanup.truePeakDb,
-            filters: cleanup.enabled ? ['5 ms fades at joins', ...cleanupFilters(cleanup), 'two-pass loudnorm'] : [],
+            filters: cleanup.enabled ? ['5 ms fades at joins', ...cleanupFilters(cleanup), 'raised to the loudness target if quieter (never lowered)', 'peak limiter'] : [],
             loudnessRangeBeforeLu: loudnessRange,
             pages: findings
         }

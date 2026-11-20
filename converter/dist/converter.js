@@ -23758,7 +23758,7 @@ init_globals();
 init_fs();
 init_node_stubs();
 var import_path11 = __toESM(require_path_browserify(), 1);
-var MERGE_VERSION = 6;
+var MERGE_VERSION = 7;
 var DEFAULT_CACHE_DIR = import_path11.default.join(node_stubs_default.tmpdir(), "webbook-audio-cache");
 function openAudioCache(option, bookId) {
   if (!option)
@@ -23914,7 +23914,6 @@ function audioCleanupSettings(enabled, enhancements) {
     // (Moby Dick's by about 7 dB). With the de-plosive, -20 sounded best for Moby Dick, but is too
     // quiet for every book; -18 (user, 2026-11-10)
     loudnessLufs: -18,
-    loudnessRangeLu: 7,
     truePeakDb: -1.5
   };
 }
@@ -23973,27 +23972,17 @@ function parseAudioFindings(output2) {
     peakDb: peak
   };
 }
-async function measureLoudnorm(filename, settings) {
-  const filters = [...cleanupFilters(settings), loudnormFilter(settings, null)];
+async function measureLoudness(filename, settings) {
+  const filters = [...cleanupFilters(settings), "ebur128"];
   const stderr = await runFfmpeg2(["-hide_banner", "-nostats", "-i", filename, "-af", filters.join(","), "-f", "null", "-"]);
-  const matches = stderr.match(/\{\s*"input_i"[\s\S]*?\}/g);
-  const match = matches?.[matches.length - 1];
-  if (!match)
-    return null;
-  const measured = JSON.parse(match);
-  return [measured.input_i, measured.input_lra, measured.input_tp, measured.input_thresh, measured.target_offset].every((value) => Number.isFinite(Number(value))) ? measured : null;
+  const summary = stderr.slice(stderr.lastIndexOf("Summary:"));
+  return matchNumber(summary, /Integrated loudness:[\s\S]*?I:\s*(-?\d+(?:\.\d+)?) LUFS/);
 }
-function loudnormFilter(settings, measured) {
-  const parts = [
-    `I=${settings.loudnessLufs}`,
-    `LRA=${settings.loudnessRangeLu}`,
-    `TP=${settings.truePeakDb}`
-  ];
-  if (measured) {
-    parts.push(`measured_I=${measured.input_i}`, `measured_LRA=${measured.input_lra}`, `measured_TP=${measured.input_tp}`, `measured_thresh=${measured.input_thresh}`, `offset=${measured.target_offset}`, "linear=true");
-  } else
-    parts.push("print_format=json");
-  return `loudnorm=${parts.join(":")}`;
+function loudnessFilters(settings, measuredLufs, sourceLufs = null) {
+  const level = Math.max(settings.loudnessLufs, sourceLufs ?? -Infinity);
+  const gain = measuredLufs === null ? 0 : Math.max(0, level - measuredLufs);
+  const limit = Math.min(1, Math.max(0.0625, 10 ** ((settings.truePeakDb - 2.5) / 20)));
+  return [...gain > 0 ? [`volume=${gain.toFixed(2)}dB`] : [], `alimiter=limit=${limit.toFixed(4)}:level=false:latency=1`];
 }
 function matchNumber(value, pattern) {
   const match = value.match(pattern)?.[1];
@@ -24022,6 +24011,10 @@ var select4 = import_xpath5.default.useNamespaces({
 });
 var AUDIO_SEGMENT_CONCURRENCY = 4;
 var sourceProperties = /* @__PURE__ */ new Map();
+var sourceRangeDecoding = true;
+function setSourceRangeDecoding(enabled) {
+  sourceRangeDecoding = enabled;
+}
 async function createAudioForPage(page, outputPaths, suppliedMediaSegments, cache, selectors = /* @__PURE__ */ new Map(), smallAudio = false, cleanup = {
   enabled: false,
   enhancements: [],
@@ -24029,7 +24022,6 @@ async function createAudioForPage(page, outputPaths, suppliedMediaSegments, cach
   lowCutHz: 0,
   deplosive: false,
   loudnessLufs: -18,
-  loudnessRangeLu: 7,
   truePeakDb: -1.5
 }) {
   if (!page.moPath)
@@ -24139,7 +24131,6 @@ async function mergeAudioSegments(mediaSegments, outFilename, encoding, cleanup 
   lowCutHz: 0,
   deplosive: false,
   loudnessLufs: -18,
-  loudnessRangeLu: 7,
   truePeakDb: -1.5
 }) {
   winston_default.info(`Merging audio clips into ${outFilename}`);
@@ -24153,12 +24144,20 @@ async function mergeAudioSegments(mediaSegments, outFilename, encoding, cleanup 
       audio.tmpFilename = audioTmpFilename;
       return audioTmpFilename;
     });
-    await runWithConcurrency(mediaSegments, AUDIO_SEGMENT_CONCURRENCY, async (audio, idx) => {
-      await extractAudioSegment(audio, audioTmpFilenames[idx], settings);
-    });
+    const ranges = sourceRangeDecoding ? await decodeSourceRanges(mediaSegments, settings, tmpDirname) : new Map(mediaSegments.map((audio) => [audio.src, { filename: audio.src, start: 0 }]));
+    try {
+      await runWithConcurrency(mediaSegments, AUDIO_SEGMENT_CONCURRENCY, async (audio, idx) => {
+        const range = ranges.get(audio.src);
+        await cutToWav(range.filename, audio.clipBegin.seconds - range.start, audio.clipEnd.seconds - range.start, audioTmpFilenames[idx], settings);
+      });
+    } finally {
+      if (sourceRangeDecoding)
+        await Promise.all(Array.from(ranges.values(), (range) => fs_default.remove(range.filename).catch(() => {
+        })));
+    }
     for (const audio of mediaSegments) {
       if (audio.tmpFilename) {
-        audio.durOnDisk = await getDuration(audio.tmpFilename);
+        audio.durOnDisk = await wavDuration(audio.tmpFilename) ?? await getDuration(audio.tmpFilename);
       }
     }
     const rawJoinedFilename = import_path12.default.join(tmpDirname, "joined-raw.wav");
@@ -24174,15 +24173,15 @@ async function mergeAudioSegments(mediaSegments, outFilename, encoding, cleanup 
       joinedFilename = import_path12.default.join(tmpDirname, "joined.wav");
       await joinPcmFiles(fadedFilenames, joinedFilename, settings, tmpDirname, "faded-segments.txt");
     }
-    const measured = cleanup.enabled ? await measureLoudnorm(joinedFilename, cleanup) : null;
-    if (cleanup.enabled && !measured) {
-      winston_default.warn(`Could not measure loudness for ${import_path12.default.basename(outFilename)}; applying cleanup without normalization`);
+    const measured = cleanup.enabled ? await measureLoudness(joinedFilename, cleanup) : null;
+    if (cleanup.enabled && measured === null) {
+      winston_default.warn(`Could not measure loudness for ${import_path12.default.basename(outFilename)}; applying cleanup without raising the level`);
     }
     await new Promise((resolve, reject) => {
       const command = ffmpeg_wasm_default().input(joinedFilename).audioChannels(settings.channels).audioFrequency(settings.sampleRate).audioBitrate(`${settings.bitrateKbps}k`);
       const filters = cleanup.enabled ? [
         ...cleanupFilters(cleanup),
-        ...measured ? [loudnormFilter(cleanup, measured)] : [],
+        ...loudnessFilters(cleanup, measured, findings.loudnessLufs),
         "apad",
         `atrim=duration=${joinedDuration}`
       ] : [];
@@ -24226,9 +24225,29 @@ async function applyClipFades(input, output2, duration, cleanup) {
     ffmpeg_wasm_default().input(input).audioFilters(filters.join(",")).audioCodec("pcm_s16le").output(output2).on("error", reject).on("end", resolve).run();
   });
 }
-async function extractAudioSegment(audio, audioTmpFilename, settings) {
+async function decodeSourceRanges(mediaSegments, settings, tmpDirname) {
+  const bounds = /* @__PURE__ */ new Map();
+  for (const audio of mediaSegments) {
+    const bound = bounds.get(audio.src);
+    if (!bound)
+      bounds.set(audio.src, { start: audio.clipBegin.seconds, end: audio.clipEnd.seconds });
+    else {
+      bound.start = Math.min(bound.start, audio.clipBegin.seconds);
+      bound.end = Math.max(bound.end, audio.clipEnd.seconds);
+    }
+  }
+  const ranges = /* @__PURE__ */ new Map();
+  let index = 0;
+  for (const [src, bound] of bounds)
+    ranges.set(src, { filename: import_path12.default.join(tmpDirname, `source-${index++}.wav`), start: bound.start });
+  await runWithConcurrency(Array.from(bounds), AUDIO_SEGMENT_CONCURRENCY, async ([src, bound]) => {
+    await cutToWav(src, bound.start, bound.end, ranges.get(src).filename, settings);
+  });
+  return ranges;
+}
+function cutToWav(input, begin, end, output2, settings) {
   return new Promise((resolve, reject) => {
-    ffmpeg_wasm_default().input(audio.src).audioFilters(`atrim=${audio.clipBegin.seconds}:${audio.clipEnd.seconds}`).audioCodec("pcm_s16le").audioChannels(settings.channels).audioFrequency(settings.sampleRate).output(audioTmpFilename).on("progress", (progress) => {
+    ffmpeg_wasm_default().input(input).audioFilters(`atrim=${begin}:${end}`).audioCodec("pcm_s16le").audioChannels(settings.channels).audioFrequency(settings.sampleRate).output(output2).on("progress", (progress) => {
       winston_default.verbose(`[ffmpeg] ${JSON.stringify(progress)}`);
     }).on("error", (err2) => {
       winston_default.error(`[ffmpeg] error: ${err2.message}`);
@@ -24238,6 +24257,32 @@ async function extractAudioSegment(audio, audioTmpFilename, settings) {
       resolve();
     }).run();
   });
+}
+async function wavDuration(filename) {
+  try {
+    const bytes2 = await fs_default.readFile(filename);
+    const view = new DataView(bytes2.buffer, bytes2.byteOffset, bytes2.byteLength);
+    if (bytes2.byteLength < 12 || String.fromCharCode(...bytes2.subarray(0, 4)) !== "RIFF")
+      return null;
+    let offset = 12;
+    let format2 = null;
+    while (offset + 8 <= view.byteLength) {
+      const id = String.fromCharCode(...bytes2.subarray(offset, offset + 4));
+      let size = view.getUint32(offset + 4, true);
+      if (id === "fmt ")
+        format2 = { channels: view.getUint16(offset + 10, true), sampleRate: view.getUint32(offset + 12, true), bits: view.getUint16(offset + 22, true) };
+      if (id === "data") {
+        if (!format2 || !format2.sampleRate || !format2.channels || !format2.bits)
+          return null;
+        size = Math.min(size, view.byteLength - offset - 8);
+        return size / (format2.sampleRate * format2.channels * format2.bits / 8);
+      }
+      offset += 8 + size + size % 2;
+    }
+    return null;
+  } catch {
+    return null;
+  }
 }
 async function runWithConcurrency(items, concurrency, task) {
   const workerCount = Math.min(concurrency, items.length);
@@ -24260,6 +24305,9 @@ function resolveSmilReference(smilPath, reference, pageSourcePath) {
   const resolved = import_path12.default.resolve(import_path12.default.dirname(smilPath), withoutFrag);
   return frag ? `${resolved}#${frag}` : resolved;
 }
+
+// ../convert/build/convert.js
+init_node_stubs();
 
 // ../convert/build/accessibility-info.js
 init_globals();
@@ -26884,6 +26932,7 @@ function concise(output2) {
 }
 
 // ../convert/build/convert.js
+var AUDIO_PAGE_CONCURRENCY = Math.max(1, Math.min(4, Math.floor(node_stubs_default.cpus().length / 2)));
 async function convert(input, output2, template, options = {}) {
   if (options.remoteUi === false && options.uiBaseUrl)
     throw new Error("--no-remote-ui cannot be combined with --ui-base-url.");
@@ -26993,10 +27042,16 @@ async function convert(input, output2, template, options = {}) {
         reservedIds: renderer.reservedContentIds(),
         responsiveTables: true
       });
-      const audio = await createAudioForPage(page, outputPaths, mediaSegments, audioCache, content.narrationSelectors, options.smallAudio === true, cleanup);
-      pageAudioSources.set(page.outputFilename, { audio, bodyHtml: content.bodyHtml });
-      transformed.set(page.outputFilename, { content, audio });
+      transformed.set(page.outputFilename, { content, audio: null });
       renamesByPage.set(page.outputFilename, content.renamedIds);
+    }
+    await runWithConcurrency(site.pages, AUDIO_PAGE_CONCURRENCY, async (page) => {
+      const result = transformed.get(page.outputFilename);
+      result.audio = await createAudioForPage(page, outputPaths, mediaSegmentsByPage.get(page.outputFilename) ?? [], audioCache, result.content.narrationSelectors, options.smallAudio === true, cleanup);
+    });
+    for (const page of site.pages) {
+      const result = transformed.get(page.outputFilename);
+      pageAudioSources.set(page.outputFilename, { audio: result.audio, bodyHtml: result.content.bodyHtml });
     }
     const contentDocuments = rewriteRenamedTargets(site, transformed, renamesByPage);
     const hasPublished = Array.from(transformed.values()).some((result) => Boolean(result.content.publisherCss));
@@ -27087,7 +27142,7 @@ async function addAudioReport(report, segmentsByPage, transformed, paths, smallA
       enabled: cleanup.enabled,
       targetLufs: cleanup.loudnessLufs,
       truePeakDb: cleanup.truePeakDb,
-      filters: cleanup.enabled ? ["5 ms fades at joins", ...cleanupFilters(cleanup), "two-pass loudnorm"] : [],
+      filters: cleanup.enabled ? ["5 ms fades at joins", ...cleanupFilters(cleanup), "raised to the loudness target if quieter (never lowered)", "peak limiter"] : [],
       loudnessRangeBeforeLu: loudnessRange,
       pages: findings
     }
@@ -27291,6 +27346,7 @@ var CONVERTER_OPTIONS = [
 
 // entry.js
 init_fs();
+setSourceRangeDecoding(false);
 globalThis.spike = { ...globalThis.spike, convert, vfs, log, options: CONVERTER_OPTIONS, optionGroups: WEB_GROUPS };
 /*! Bundled license information:
 
