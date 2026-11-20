@@ -55,7 +55,8 @@ into the plain page.
    - In a book with updates on, the console says which reader a page uses, and if it's the book's
      own, why: `Reader updates: using this book's own reader, because the update channel didn't
      answer within 1.5 s.` About's Reader updates section says the same, for testers without a
-     console. The bootstrap leaves it in `window.webbookUIStatus`.
+     console. The bootstrap leaves it in `window.webbookUIStatus`. Every message and reason is
+     listed in [Console messages and About](../convert/REMOTE_UI.md#console-messages-and-about).
    - Testers can choose with `?webbook-ui=local`, `remote`, `release:<version>` or `auto`. About
      shows any saved override, with a button to go back to automatic updates.
    - New conversions use the channel by default, and the converter says so. `--no-remote-ui` gives a

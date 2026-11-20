@@ -69,6 +69,60 @@ replacement release and content alongside the current copy; activation remains e
 Closing other book tabs is required. Workers remain local; compatible local worker updates wait normally; there is no forced
 `skipWaiting`. The fixed root `sw.js` is unchanged.
 
+## Console messages and About
+
+A book with updates on says, in the console, which reader each page uses, and if it's the book's
+own, why. About's Reader updates section says the same, for testers without a console, from
+`window.webbookUIStatus` (`{ channel, version, reason }`, with `version` null for the book's own
+reader and `reason` null for a release). A book with updates off logs nothing, and About says it
+uses its fixed bundled reader. Every message starts with `Reader updates:` or `Reader:`, so a
+tester can filter the console for `Reader`.
+
+| Level | Message | When |
+|---|---|---|
+| info | `Reader updates: using reader release VERSION.` | A release loaded. |
+| warning | `Reader updates: using this book's own reader, because REASON.` | The channel or a release failed; reasons below. Info, not a warning, when the tester chose the book's own reader. |
+| warning | `Reader updates: reader release VERSION failed to start (ERROR); reloading with this book's own reader.` | A release loaded but crashed while starting. The tab reloads; the next page says `because a reader release failed to start in this tab`, and the release is skipped in that browser. |
+| info | `Reader: still arriving after 5 s, so the plain page shows until it's here.` | The book's own reader is slow. The reader takes over when it arrives. |
+| warning | `Reader: this book's own reader stopped arriving, so this page shows the plain page.` | The book's own reader stalled for 120 s. The next page tries again. |
+| warning | `Reader: this book's own reader couldn't start (ERROR), so this tab shows the plain page.` | The book's own reader is missing or broken. The tab stays on the plain page for the session. |
+
+The browser's own errors (a blocked CORS request, a failed download) appear alongside these.
+They're the only way to tell a missing CORS header from an unreachable host: both give
+`the update channel couldn't be reached`.
+
+**Reasons** (the text after `because`). VERSION is the release's version, and WHAT is the release
+file: `reader release VERSION's file list` or `reader release VERSION's script`.
+
+- The channel's `current.json`:
+  - `the update channel couldn't be reached`: no connection, a host that doesn't resolve, a missing
+    CORS header (on the redirect or the files), or a redirect loop.
+  - `the update channel didn't answer within 1.5 s`
+  - `the update channel answered STATUS`: for example 404 or 503.
+  - `the update channel's current.json isn't valid`: not JSON, such as a captive-portal page.
+  - `the update channel's current release isn't compatible (DETAIL)`: a different contract, or a
+    newer bootstrap than this book has.
+  - `the update channel has updates switched off for now`: `current.json` selects the book's own
+    reader.
+- A release's files:
+  - `WHAT answered STATUS`, `WHAT took too long to arrive`, `WHAT couldn't be downloaded`
+  - `WHAT doesn't match its checksum`
+  - `reader release VERSION failed its checks (DETAIL)`: the file list is incomplete or invalid.
+  - `reader release VERSION's stylesheet took longer than 5 s`
+  - `reader release VERSION's stylesheet couldn't be downloaded, or didn't match its checksum`
+  - `reader release VERSION's script couldn't be started (ERROR; the site's security policy may
+    block it)`
+  - `reader release VERSION's script took longer than 5 s to start`
+  - `reader release VERSION has no init()`
+- Choices and history:
+  - `you chose this book's own reader`: `?webbook-ui=local`.
+  - `a reader release failed to start in this tab`
+  - `reader release VERSION failed to start before, so it's skipped`
+  - `the saved copy has this book's own reader`, or `the saved copy didn't say which reader it
+    has`: an offline copy saved with the book's own reader.
+  - `the chosen reader release …`: a pinned release (`?webbook-ui=release:VERSION`) failed, with
+    the failure.
+
 ## Build, check and promote
 
 From the repository root:
