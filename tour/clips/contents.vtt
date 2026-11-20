@@ -1,0 +1,25 @@
+WEBVTT
+
+00:00.842 --> 00:02.342
+[Alt+Shift+C opens the table of contents, with focus on the current section]
+
+00:03.112 --> 00:04.612
+[Tab to the next section]
+
+00:04.797 --> 00:06.297
+[Alt+Shift+2 shows 2 levels]
+
+00:07.047 --> 00:08.547
+[Alt+Shift+1 shows only the top level]
+
+00:09.314 --> 00:10.814
+[Alt+Shift+0 shows all levels]
+
+00:11.566 --> 00:13.066
+[Alt+Shift+F goes to Find a section]
+
+00:13.116 --> 00:14.616
+[types “Russia”, which narrows the sections]
+
+00:16.279 --> 00:17.779
+[Enter opens the first match, “3.9 Valentin Haüy in Russia”]

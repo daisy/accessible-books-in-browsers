@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accessible books in browsers</title>
+<meta name="description" content="Convert EPUBs, including narrated ones, into web books you can read in any browser.">
+<link rel="stylesheet" href="tour/tour.css">
+<script src="tour/tour.js" defer></script>
+</head>
+<body>
+<header>
+  <h1>Accessible books in browsers</h1>
+  <p class="lede">This project converts EPUBs into web books you can read in any browser. Media Overlays playback with synchronized text highlight is preserved. The result is a folder of HTML files you can put on any website.</p>
+  <nav aria-label="Project">
+    <ul class="links">
+      <li><a href="converter/">Convert a book</a> (beta)</li>
+      <li><a href="tour/converter.html">Conversion features</a></li>
+      <li><a href="#demos">Reading demos</a></li>
+      <li><a href="docs/">Developer documentation</a></li>
+      <li><a href="https://github.com/daisy/accessible-books-in-browsers">GitHub project</a></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <h2 id="features">Reading features</h2>
+  <p>The videos below show a few seconds of each feature. The <a href="https://github.com/daisy/accessible-books-in-browsers#features">README has the full list</a>, and the <a href="https://github.com/daisy/accessible-books-in-browsers#keyboard-shortcuts">keyboard shortcuts</a>.</p>
+  <section class="tour" id="tour" aria-label="Reading features">
+    <ol class="slides">
+      <li class="slide" id="follow-along" data-clip="follow-along" data-captions="en">
+        <h3>Synchronized playback</h3>
+        <p>Narration plays and each phrase is highlighted as it's read, and the page keeps the phrase positioned in view.</p>
+        <p class="clip"><img src="tour/clips/follow-along.jpg" alt="" width="1280" height="966"><a href="tour/clips/follow-along.mp4">Watch the clip (with sound)</a></p>
+      </li>
+      <li class="slide" id="caption-mode" data-clip="caption-mode" data-captions="en">
+        <h3>Caption mode</h3>
+        <p>Caption mode shows only the phrase being read, large and in the middle of the screen.</p>
+        <p class="clip phone"><img src="tour/clips/caption-mode.jpg" alt="" width="540" height="1308"><a href="tour/clips/caption-mode.mp4">Watch the clip (with sound)</a></p>
+      </li>
+      <li class="slide" id="contents" data-clip="contents" data-captions="en">
+        <h3>Table of contents</h3>
+        <p>The table of contents opens at the current section, with shortcuts to show more or fewer levels and to find a section. The captions show each key.</p>
+        <p class="clip"><img src="tour/clips/contents.jpg" alt="" width="1280" height="966"><a href="tour/clips/contents.mp4">Watch the clip</a></p>
+      </li>
+      <li class="slide" id="search" data-clip="search">
+        <h3>Search</h3>
+        <p>Search finds a word anywhere in the book, in any language.</p>
+        <p class="clip"><img src="tour/clips/search.jpg" alt="" width="1280" height="800"><a href="tour/clips/search.mp4">Watch the clip</a></p>
+      </li>
+      <li class="slide" id="where-am-i" data-clip="where-am-i">
+        <h3>Where am I?</h3>
+        <p>Where am I? says what you're in and which heading it's under.</p>
+        <p class="clip"><img src="tour/clips/where-am-i.jpg" alt="" width="1280" height="800"><a href="tour/clips/where-am-i.mp4">Watch the clip</a></p>
+      </li>
+      <li class="slide" id="notes" data-clip="notes" data-captions="en">
+        <h3>Notes</h3>
+        <p>When narration reaches a phrase with a note, the Note button shows the note, and Back to text returns to the same spot.</p>
+        <p class="clip"><img src="tour/clips/notes.jpg" alt="" width="1280" height="966"><a href="tour/clips/notes.mp4">Watch the clip</a></p>
+      </li>
+      <li class="slide" id="leave" data-clip="leave" data-captions="en">
+        <h3>Leave a structure</h3>
+        <p>During narration, one key leaves the table, list or note being read.</p>
+        <p class="clip"><img src="tour/clips/leave.jpg" alt="" width="1280" height="966"><a href="tour/clips/leave.mp4">Watch the clip (with sound)</a></p>
+      </li>
+      <li class="slide" id="structure-sounds" data-clip="structure-sounds" data-captions="en">
+        <h3>Structure sounds</h3>
+        <p>An option to enable structural sounds, like rising notes before a heading and knocks entering a table.</p>
+        <p class="clip"><img src="tour/clips/structure-sounds.jpg" alt="" width="1280" height="966"><a href="tour/clips/structure-sounds.mp4">Watch the clip (with sound)</a></p>
+      </li>
+      <li class="slide" id="colors-and-text" data-clip="colors-and-text">
+        <h3>Colors and text</h3>
+        <p>Colors and text are customizable, and the color pairs are checked for contrast.</p>
+        <p class="clip phone"><img src="tour/clips/colors-and-text.jpg" alt="" width="540" height="1168"><a href="tour/clips/colors-and-text.mp4">Watch the clip</a></p>
+      </li>
+      <li class="slide" id="as-published" data-clip="as-published">
+        <h3>As published</h3>
+        <p>As published shows the book in the publisher's own design, and My settings shows it in yours.</p>
+        <p class="clip"><img src="tour/clips/as-published.jpg" alt="" width="1280" height="800"><a href="tour/clips/as-published.mp4">Watch the clip</a></p>
+      </li>
+      <li class="slide" id="vertical-writing" data-clip="vertical-writing" data-captions="en">
+        <h3>Vertical writing</h3>
+        <p>Books in vertical writing stay vertical, and the Writing direction setting can switch them to horizontal.</p>
+        <p class="clip"><img src="tour/clips/vertical-writing.jpg" alt="" width="1280" height="966"><a href="tour/clips/vertical-writing.mp4">Watch the clip (with sound)</a></p>
+      </li>
+      <li class="slide" id="offline" data-clip="offline">
+        <h3>Offline</h3>
+        <p>Save a book for offline reading, then read it with no connection, narration included.</p>
+        <p class="clip phone"><img src="tour/clips/offline.jpg" alt="" width="540" height="1168"><a href="tour/clips/offline.mp4">Watch the clip</a></p>
+      </li>
+    </ol>
+  </section>
+
+  <h2 id="demos">Reading demos</h2>
+  <p>Real books converted with this project. See <a href="https://github.com/daisy/accessible-books-in-browsers/blob/main/demos/README.md">About the demos</a> for details.</p>
+  <ul class="demos">
+    <li><a href="demos/action-for-heroes/">Action for Heroes</a> <span>(narrated)</span></li>
+    <li><a href="demos/moby-dick/">Moby-Dick</a> <span>(narrated)</span></li>
+    <li><a href="demos/AmarBanglaEPUB/">Amar Bangla Boi, Class 5</a> <span>(Bangla, narrated)</span></li>
+    <li><a href="demos/BangladeshBishwoporichoyEPUB/">Bangladesh o Bishwoporichoy, Class 4</a> <span>(Bangla, narrated)</span></li>
+    <li><a href="demos/EnglishForTodayEPUB/">English for Today, Classes 9–10</a> <span>(narrated)</span></li>
+    <li><a href="demos/CurrentSituationEPUB/">Current Situation of SRHR of Persons with Disabilities in Bangladesh</a> <span>(narrated)</span></li>
+    <li><a href="demos/kusamakura/">Kusamakura (草枕)</a> <span>(Japanese, vertical, narrated)</span></li>
+    <li><a href="demos/math-optimization-ml/">Mathematical Optimization for Machine Learning</a> <span>(math)</span></li>
+    <li><a href="demos/real-mother-goose/">The Real Mother Goose</a></li>
+    <li><a href="demos/valentin-hauy/">Valentin Haüy: the father of the education for the blind</a> <span>(narrated)</span></li>
+    <li><a href="demos/notes-test/">Notes Test Book</a> <span>(notes, narrated)</span></li>
+  </ul>
+
+  <h2 id="convert">Convert a book</h2>
+  <p>Use the <a href="converter/">converter in your browser</a> on a computer, with nothing to install. <a href="tour/converter.html">Conversion features</a> shows each step. Or run it from the command line, as the <a href="https://github.com/daisy/accessible-books-in-browsers#converting-a-book">README explains</a>.</p>
+</main>
+</body>
+</html>
