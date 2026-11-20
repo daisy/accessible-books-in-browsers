@@ -195,12 +195,14 @@ import { uiKey, validChannel, baselineDecision, finalSelection, overrideDecision
                 scriptURL = URL.createObjectURL(new Blob([bytes], { type: 'text/javascript' }));
                 revoke = scriptURL;
             }
-            module = await Promise.race([
-                import(scriptURL),
-                new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Reader download timeout')), 5000),
-                ),
-            ]);
+            module = selection.local
+                ? await importLocal(scriptURL)
+                : await Promise.race([
+                    import(scriptURL),
+                    new Promise((_, reject) =>
+                        setTimeout(() => reject(new Error('Reader download timeout')), 5000),
+                    ),
+                ]);
             if (typeof module.init !== 'function') throw new Error('Missing reader init');
         } catch (error) {
             remoteLink?.remove();
@@ -228,6 +230,31 @@ import { uiKey, validChannel, baselineDecision, finalSelection, overrideDecision
             clearTimeout(startupTimer);
         }
     }
+    // The book's own reader has nothing to fall back to but the plain page, so being slow isn't a
+    // failure: on a slow connection the plain page (with its links and audio controls) shows after
+    // 5 s, and the reader takes over when it arrives. Only a download that stalls completely gives
+    // up, and then just for this page; errors (a missing file, broken code) still reject at once.
+    async function importLocal(href) {
+        const importing = import(href);
+        let waiting = false, giveUp;
+        const slow = setTimeout(() => {
+            waiting = true;
+            baseline();
+        }, 5000);
+        try {
+            const module = await Promise.race([
+                importing,
+                new Promise((_, reject) => {
+                    giveUp = setTimeout(() => reject(Object.assign(new Error('Reader download stalled'), { webbookStalled: true })), 120000);
+                }),
+            ]);
+            if (waiting) root.classList.add('webbook-js');
+            return module;
+        } finally {
+            clearTimeout(slow);
+            clearTimeout(giveUp);
+        }
+    }
     async function failLocal() {
         write(sessionStorageSafe, baselineKey, '1');
         // Only reload when the flag can be read back; blocked storage must not loop.
@@ -241,6 +268,7 @@ import { uiKey, validChannel, baselineDecision, finalSelection, overrideDecision
     try {
         await load(selected);
     } catch (error) {
+        if (error.webbookStalled) return baseline();
         const failure = failureDecision(selected.local, error.webbookStartup);
         if (failure === 'reload-local') {
             write(localStorageSafe, key + ':bad:' + selected.version, '1');
@@ -255,8 +283,9 @@ import { uiKey, validChannel, baselineDecision, finalSelection, overrideDecision
         } else if (failure === 'local') {
             try {
                 await load(local);
-            } catch {
-                await failLocal();
+            } catch (localError) {
+                if (localError.webbookStalled) baseline();
+                else await failLocal();
             }
         } else await failLocal();
     }

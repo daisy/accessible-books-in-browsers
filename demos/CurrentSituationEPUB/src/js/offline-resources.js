@@ -82,7 +82,7 @@ export function workerScriptURL(root, remote) {
         const channel = new URL(remote.channel), worker = new URL(remote.worker, channel);
         if (!(channel.protocol === 'https:' || channel.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(channel.hostname))
             || /(?:^|\/)\.\.(?:\/|$)|[\\\u0000]/.test(decodeURIComponent(worker.pathname)) || !channel.pathname.endsWith('/') || worker.origin !== channel.origin
-            || !worker.pathname.startsWith(channel.pathname + 'releases/') || !/\/releases\/[^/]+\/offline-worker\.js$/.test(worker.pathname) || worker.search || worker.hash) throw new Error('Invalid offline worker release.');
+            || !worker.pathname.startsWith(channel.pathname) || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}\/offline-worker\.js$/.test(worker.pathname.slice(channel.pathname.length)) || worker.search || worker.hash) throw new Error('Invalid offline worker release.');
         script.searchParams.set('webbook-channel', channel.href); script.searchParams.set('webbook-worker', worker.href);
     }
     return script.href;

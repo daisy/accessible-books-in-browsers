@@ -1,6 +1,6 @@
 # Conversion report
 
-READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
+READER UPDATES: this book will receive reader updates from the beta channel at https://webbook.daisy.org/ui/releases/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
 
 Source: math-optimization-ml; identifier: 9783111377742; converter: 1.0.0. Keep the source EPUB for future reconversion.
 
@@ -17,7 +17,7 @@ Changes: 60577. Warnings for review: 49. Optional checks: Ace not requested, axe
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
 - optional checks: false
-- reader updates: https://daisy.github.io/accessible-books-in-browsers/v0/
+- reader updates: https://webbook.daisy.org/ui/releases/v0/
 
 ## Publisher styles (As published)
 

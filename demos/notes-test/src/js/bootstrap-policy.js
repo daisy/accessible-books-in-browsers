@@ -11,17 +11,17 @@ export function validateManifest(data, { contract, channel, local }) {
     if (data.useLocal === true) return local;
     if (data.protocol !== undefined && data.protocol !== 1) throw new Error('Incompatible offline protocol');
     if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error('Incompatible release');
-    const base = new URL('releases/' + data.version + '/', channel);
+    const base = new URL(data.version + '/', channel);
     const file = (value, fallback) => {
         if (typeof (value || fallback) !== 'string') throw new Error('Missing release file');
         const url = new URL(value || fallback, channel);
         if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error('Invalid release path');
         return url.href;
     };
-    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
 }
 export function releaseSelection(version, options) {
-    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `${version}/main.js`, stylesheet: `${version}/style.css`, worker: `${version}/offline-worker.js` }, options);
 }
 export function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
     if (!channel || override === 'local' || forceLocal) return { selected: local };
@@ -35,7 +35,7 @@ export function selectionDecision({ channel, override, saved, cached, forceLocal
 const sri = (hex) => 'sha256-' + btoa(String.fromCharCode(...hex.match(/../g).map(byte => parseInt(byte, 16))));
 export function verifyInventory(selection, inventory) {
     if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error('Missing compatible release inventory');
-    const base = new URL('releases/' + selection.version + '/', selection.channel), files = new Map();
+    const base = new URL(selection.version + '/', selection.channel), files = new Map();
     for (const file of inventory.files) {
         const url = new URL(file.href || file.url, base);
         if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || '') || files.has(url.href)) throw new Error('Invalid release integrity inventory');

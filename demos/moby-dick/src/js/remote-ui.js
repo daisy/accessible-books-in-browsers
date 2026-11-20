@@ -39,7 +39,7 @@ export async function includeSelectedUI(root, list, { initial = false, signal } 
             throw new Error('The UI channel is incompatible.');
         selected = validateManifest(manifest, {contract:list.ui.contract,channel:channel.href,local:{local:true}});
     }
-    const base = new URL('releases/' + selected.version + '/', channel);
+    const base = new URL(selected.version + '/', channel);
     workerScriptURL(root, { channel: channel.href, worker: new URL('offline-worker.js', base).href });
     const inventoryURL = new URL(selected.inventory || 'ui-files.json', base);
     if (

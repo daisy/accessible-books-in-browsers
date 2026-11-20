@@ -104,7 +104,7 @@ export function compareInventory(saved, fresh) {
 // The local reader remains in the list as the offline fallback.
 export function includeRemoteRelease(list, root, remote) {
     if (!remote || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(remote.version)) throw new Error('Invalid UI release.');
-    const base = new URL('releases/' + remote.version + '/', remote.channel);
+    const base = new URL(remote.version + '/', remote.channel);
     workerScriptURL(root, { channel: remote.channel, worker: new URL('offline-worker.js', base).href });
     if (remote.inventory?.version !== 1 || remote.inventory.contract !== list.ui.contract || !Array.isArray(remote.inventory.files)) throw new Error('Incompatible remote UI inventory.');
     const entries = remote.inventory.files.map(file => {

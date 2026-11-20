@@ -114,7 +114,7 @@ self.WebbookOfflineWorker = { protocol: 1, version: '1', start(options = {}) {
         if (ui?.remote) {
             const remote = ui.remote, base = new URL(remote.channel);
             if (!(base.protocol === 'https:' || base.protocol === 'http:' && ['localhost', '127.0.0.1', '[::1]'].includes(base.hostname)) || !base.pathname.endsWith('/') || !/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(remote.version) || !Array.isArray(remote.files)) throw new Error('Invalid saved UI release.');
-            const prefix = new URL('releases/' + remote.version + '/', base).href;
+            const prefix = new URL(remote.version + '/', base).href;
             for (const file of remote.files) { if (!file.url.startsWith(prefix) || /(?:^|\/)\.\.(?:\/|$)|[\\\u0000]/.test(decodeURIComponent(new URL(file.url).pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256)) throw new Error('Invalid remote UI inventory.'); remoteFiles.set(file.url, file.sha256); }
         }
         if (!Array.isArray(files) || !files.length || files.length > MAX_FILES) throw new Error('Invalid offline file list.');
@@ -125,7 +125,7 @@ self.WebbookOfflineWorker = { protocol: 1, version: '1', start(options = {}) {
             if (file.sha256 && !/^[a-f0-9]{64}$/.test(file.sha256)) throw new Error('Invalid reader checksum.');
         }
         if (Array.from(remoteFiles.keys()).some(url => !used.has(url))) throw new Error('The remote UI file list is incomplete.');
-        if (ui?.remote) { const base = new URL('releases/' + ui.remote.version + '/', ui.remote.channel); for (const name of ['main.js', 'style.css', 'offline-worker.js']) if (!remoteFiles.has(new URL(name, base).href)) throw new Error('The remote UI release is incomplete.'); }
+        if (ui?.remote) { const base = new URL(ui.remote.version + '/', ui.remote.channel); for (const name of ['main.js', 'style.css', 'offline-worker.js']) if (!remoteFiles.has(new URL(name, base).href)) throw new Error('The remote UI release is incomplete.'); }
         if (!used.has(new URL('index.html', scope).href) || !used.has(new URL('src/ui-files.json', scope).href) || size > MAX_BYTES) throw new Error('The offline file list is incomplete or too large.');
     }
     function network(url, signal, method = 'GET') {

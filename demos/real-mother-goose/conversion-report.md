@@ -1,6 +1,6 @@
 # Conversion report
 
-READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
+READER UPDATES: this book will receive reader updates from the beta channel at https://webbook.daisy.org/ui/releases/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
 
 Source: real-mother-goose; identifier: urn:uuid:c66e5bc6-f0ff-4435-bef6-376a6196ca81; converter: 1.0.0. Keep the source EPUB for future reconversion.
 
@@ -17,7 +17,7 @@ Changes: 15772. Warnings for review: 1. Optional checks: Ace not requested, axe 
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
 - optional checks: false
-- reader updates: https://daisy.github.io/accessible-books-in-browsers/v0/
+- reader updates: https://webbook.daisy.org/ui/releases/v0/
 
 ## Publisher styles (As published)
 

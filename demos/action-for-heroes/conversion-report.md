@@ -1,6 +1,6 @@
 # Conversion report
 
-READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
+READER UPDATES: this book will receive reader updates from the beta channel at https://webbook.daisy.org/ui/releases/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.
 
 Source: action-for-heroes; identifier: AUTO-UID-4754997194290171790; converter: 1.0.0. Keep the source EPUB for future reconversion.
 
@@ -17,7 +17,7 @@ Changes: 7064. Warnings for review: 1. Optional checks: Ace not requested, axe n
 - audio cleanup: true
 - audio enhancements: warm-eq,compression,noise,deess,declick
 - optional checks: false
-- reader updates: https://daisy.github.io/accessible-books-in-browsers/v0/
+- reader updates: https://webbook.daisy.org/ui/releases/v0/
 
 ## Publisher styles (As published)
 
