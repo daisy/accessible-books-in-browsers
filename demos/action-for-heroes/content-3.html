@@ -405,6 +405,18 @@
       root.classList.remove("webbook-js");
       root.dataset.webbookUi = "baseline";
     };
+    let reason = null;
+    const because = (text) => {
+      reason ??= text;
+    };
+    const say = (level, text) => {
+      try {
+        console[level](text);
+      } catch {
+      }
+    };
+    const described = (error, what) => error?.webbookReason || (error?.name === "TimeoutError" || error?.name === "AbortError" ? `${what} took too long to arrive` : error instanceof TypeError ? `${what} couldn't be downloaded` : `${what} failed (${error?.message || error})`);
+    const reasonError = (text) => Object.assign(new Error(text), { webbookReason: text });
     const entryURL = new URL(location.href);
     if (entryURL.searchParams.get("webbook-ui") === "auto") {
       write(sessionStorageSafe, baselineKey, null);
@@ -424,21 +436,37 @@
     const channel = validChannel(channelValue);
     const policy = { contract, channel, local };
     const validate = (data) => validateManifest(data, policy);
-    async function fetchManifest() {
+    async function fetchManifest(background = false) {
       const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
       try {
-        const response = await fetch(new URL("current.json", channel), {
-          signal: controller.signal,
-          credentials: "omit",
-          cache: "no-cache",
-          referrerPolicy: "no-referrer"
-        });
-        if (!response.ok) throw new Error("Channel unavailable");
-        const data = await response.json();
-        validate(data);
+        let response, data;
+        try {
+          response = await fetch(new URL("current.json", channel), {
+            signal: controller.signal,
+            credentials: "omit",
+            cache: "no-cache",
+            referrerPolicy: "no-referrer"
+          });
+        } catch (error) {
+          throw reasonError(error?.name === "AbortError" ? "the update channel didn't answer within 1.5 s" : "the update channel couldn't be reached");
+        }
+        if (!response.ok) throw reasonError(`the update channel answered ${response.status}`);
+        try {
+          data = await response.json();
+        } catch {
+          throw reasonError("the update channel's current.json isn't valid");
+        }
+        let selection;
+        try {
+          selection = validate(data);
+        } catch (error) {
+          throw reasonError(`the update channel's current release isn't compatible (${error.message})`);
+        }
         write(localStorageSafe, key + ":manifest", JSON.stringify(data));
-        return validate(data);
-      } catch {
+        if (selection.local) because("the update channel has updates switched off for now");
+        return selection;
+      } catch (error) {
+        if (!background) because(described(error, "the update channel's current.json"));
         return local;
       } finally {
         clearTimeout(timer);
@@ -498,33 +526,42 @@
         cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
       } catch {
       }
-      const decision = selectionDecision({
-        channel,
-        override,
-        saved,
-        cached,
-        local,
-        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
-      });
+      const forceLocal = read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local";
+      const decision = selectionDecision({ channel, override, saved, cached, local, forceLocal });
+      if (override === "local") because("you chose this book's own reader");
+      else if (forceLocal) because("a reader release failed to start in this tab");
+      else if (saved && !decision.version) because(saved.unknown ? "the saved copy didn't say which reader it has" : "the saved copy has this book's own reader");
       try {
         selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
         if (decision.saved) savedFiles = decision.files;
-        if (decision.refresh) fetchManifest();
-      } catch {
+        if (decision.refresh) fetchManifest(true);
+      } catch (error) {
+        because(described(error, "the chosen reader release"));
         selected = local;
       }
     }
-    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    const bad = read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version);
+    if (!selected.local && bad) because(`reader release ${selected.version} failed to start before, so it's skipped`);
+    selected = finalSelection(selected, { local, bad, forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
     async function load(selection) {
       if (!selection.local) {
         let inventory;
         if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
         else {
-          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
-          if (!response.ok) throw new Error("Release integrity inventory unavailable");
-          inventory = await response.json();
+          const what = `reader release ${selection.version}'s file list`;
+          try {
+            const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+            if (!response.ok) throw reasonError(`${what} answered ${response.status}`);
+            inventory = await response.json();
+          } catch (error) {
+            throw reasonError(described(error, what));
+          }
         }
-        selection = verifyInventory(selection, inventory);
+        try {
+          selection = verifyInventory(selection, inventory);
+        } catch (error) {
+          throw reasonError(`reader release ${selection.version} failed its checks (${error.message})`);
+        }
       }
       const localLink = document.querySelector("link[data-webbook-local-style]");
       let remoteLink;
@@ -539,14 +576,14 @@
         remoteLink.integrity = selection.integrity.stylesheet;
         try {
           await new Promise((resolve, reject) => {
-            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            const timer = setTimeout(() => reject(reasonError(`reader release ${selection.version}'s stylesheet took longer than 5 s`)), 5e3);
             remoteLink.onload = () => {
               clearTimeout(timer);
               resolve();
             };
             remoteLink.onerror = () => {
               clearTimeout(timer);
-              reject(new Error("Stylesheet unavailable"));
+              reject(reasonError(`reader release ${selection.version}'s stylesheet couldn't be downloaded, or didn't match its checksum`));
             };
             document.head.append(remoteLink);
           });
@@ -559,27 +596,36 @@
       let scriptURL = selection.script, revoke;
       try {
         if (!selection.local) {
-          const response = await fetch(selection.script, {
-            mode: "cors",
-            credentials: "omit",
-            referrerPolicy: "no-referrer",
-            signal: AbortSignal.timeout(5e3)
-          });
-          if (!response.ok) throw new Error("Reader unavailable");
-          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const what = `reader release ${selection.version}'s script`;
+          let bytes;
+          try {
+            const response = await fetch(selection.script, {
+              mode: "cors",
+              credentials: "omit",
+              referrerPolicy: "no-referrer",
+              signal: AbortSignal.timeout(5e3)
+            });
+            if (!response.ok) throw reasonError(`${what} answered ${response.status}`);
+            bytes = await response.arrayBuffer();
+          } catch (error) {
+            throw reasonError(described(error, what));
+          }
+          const digest = await crypto.subtle.digest("SHA-256", bytes);
           const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
           if (integrity !== selection.integrity.script)
-            throw new Error("Reader integrity check failed");
+            throw reasonError(`${what} doesn't match its checksum`);
           scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
           revoke = scriptURL;
         }
         module = selection.local ? await importLocal(scriptURL) : await Promise.race([
-          import(scriptURL),
+          import(scriptURL).catch((error) => {
+            throw reasonError(`reader release ${selection.version}'s script couldn't be started (${error.message}; the site's security policy may block it)`);
+          }),
           new Promise(
-            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+            (_, reject) => setTimeout(() => reject(reasonError(`reader release ${selection.version}'s script took longer than 5 s to start`)), 5e3)
           )
         ]);
-        if (typeof module.init !== "function") throw new Error("Missing reader init");
+        if (typeof module.init !== "function") throw reasonError(`${selection.local ? "this book's own reader" : `reader release ${selection.version}`} has no init()`);
       } catch (error) {
         remoteLink?.remove();
         throw error;
@@ -590,6 +636,9 @@
       if (localLink) localLink.disabled = !selection.local;
       window.webbookUI = selection;
       root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      window.webbookUIStatus = { channel: channel || null, version: selection.local ? null : selection.version, reason: selection.local ? reason : null };
+      if (channel && selection.local) say(override === "local" ? "info" : "warn", `Reader updates: using this book's own reader, because ${reason || "of an unknown problem"}.`);
+      else if (channel) say("info", `Reader updates: using reader release ${selection.version}.`);
       let startupTimer;
       try {
         await Promise.race([
@@ -611,6 +660,7 @@
       let waiting = false, giveUp;
       const slow = setTimeout(() => {
         waiting = true;
+        say("info", "Reader: still arriving after 5 s, so the plain page shows until it's here.");
         baseline();
       }, 5e3);
       try {
@@ -627,7 +677,8 @@
         clearTimeout(giveUp);
       }
     }
-    async function failLocal() {
+    async function failLocal(error) {
+      say("warn", `Reader: this book's own reader couldn't start (${error?.webbookReason || error?.message || error}), so this tab shows the plain page.`);
       write(sessionStorageSafe, baselineKey, "1");
       if (read(sessionStorageSafe, baselineKey)) location.reload();
       else {
@@ -639,9 +690,13 @@
     try {
       await load(selected);
     } catch (error) {
-      if (error.webbookStalled) return baseline();
+      if (error.webbookStalled) {
+        say("warn", "Reader: this book's own reader stopped arriving, so this page shows the plain page.");
+        return baseline();
+      }
       const failure = failureDecision(selected.local, error.webbookStartup);
       if (failure === "reload-local") {
+        say("warn", `Reader updates: reader release ${selected.version} failed to start (${error?.message || error}); reloading with this book's own reader.`);
         write(localStorageSafe, key + ":bad:" + selected.version, "1");
         write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
         write(sessionStorageSafe, key + ":force-local", "1");
@@ -652,13 +707,16 @@
           location.replace(target);
         }
       } else if (failure === "local") {
+        because(described(error, `reader release ${selected.version}`));
         try {
           await load(local);
         } catch (localError) {
-          if (localError.webbookStalled) baseline();
-          else await failLocal();
+          if (localError.webbookStalled) {
+            say("warn", "Reader: this book's own reader stopped arriving, so this page shows the plain page.");
+            baseline();
+          } else await failLocal(localError);
         }
-      } else await failLocal();
+      } else await failLocal(error);
     }
   })();
 })();

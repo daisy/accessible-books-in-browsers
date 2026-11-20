@@ -391,6 +391,12 @@ function restoreAfterReload(report) {
 }
 
 // template/src/js/reader-updates.js
+function runningReader() {
+  const status = window.webbookUIStatus;
+  if (status?.version) return `Reader updates are on. This page uses reader release ${status.version}.`;
+  if (status?.reason) return `Reader updates are on, but this page uses the book's own reader, because ${status.reason}.`;
+  return "Reader updates are on.";
+}
 function initReaderUpdates() {
   const panel = document.querySelector("#webbook-info .webbook-info-body");
   if (!panel || document.getElementById("webbook-reader-updates")) return;
@@ -410,7 +416,7 @@ function initReaderUpdates() {
   heading.textContent = "Reader updates";
   const status = document.createElement("p");
   const channel = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
-  status.textContent = !channel ? "This book uses its fixed bundled reader." : override === "local" ? "Updates are paused for this book: you chose the bundled reader." : override?.startsWith("release:") ? `This tab is pinned to reader release ${override.slice(8)}.` : override === "remote" ? "This tab checks the reader channel on every page load." : channel ? "Reader updates are enabled." : "This book uses its fixed bundled reader.";
+  status.textContent = !channel ? "This book uses its fixed bundled reader." : override === "local" ? "Updates are paused for this book: you chose the bundled reader." : override?.startsWith("release:") ? `This tab is pinned to reader release ${override.slice(8)}.` : override === "remote" ? "This tab checks the reader channel on every page load." : runningReader();
   const restore = document.createElement("button");
   restore.type = "button";
   restore.id = "webbook-reader-updates-auto";
