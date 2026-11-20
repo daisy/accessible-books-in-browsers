@@ -41,6 +41,7 @@ const SETTINGS = [
 // History: em, then ch, ran together at large sizes; fractions alone (user, 2026-11-10: "fractions
 // of the window") gave Medium 110 characters a line on a laptop (user, 2026-11-13: "it used to
 // look different").
+// The head script in template/index.html sets the saved step the same way, before the first paint
 function lineLength(step) {
     const floor = 'min(100%, 20rem)';
     const narrow = `max(min(50ch, 50%), ${floor})`;

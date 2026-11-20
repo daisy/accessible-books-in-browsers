@@ -1,173 +1,173 @@
 {
   "version": 1,
-  "duration": 4492.129688,
+  "duration": 4492.106000000001,
   "pages": [
     {
       "href": "index.html",
       "title": "Action for Heroes ",
       "start": 0,
-      "duration": 54.16612599999999,
+      "duration": 54.166,
       "audio": "audio/index.mp3"
     },
     {
       "href": "content-2.html",
       "title": "Introduction",
-      "start": 54.16612599999999,
-      "duration": 169.52142,
+      "start": 54.166,
+      "duration": 169.52100000000002,
       "audio": "audio/content-2.mp3"
     },
     {
       "href": "content-3.html",
       "title": "CHAT messages",
-      "start": 223.687546,
-      "duration": 69.74962999999998,
+      "start": 223.687,
+      "duration": 69.74899999999998,
       "audio": "audio/content-3.mp3"
     },
     {
       "href": "content-4.html",
       "title": "Preparing to read and CHAT",
-      "start": 293.43717599999997,
-      "duration": 642.6150240000002,
+      "start": 293.436,
+      "duration": 642.6120000000002,
       "audio": "audio/content-4.mp3"
     },
     {
       "href": "content-5.html",
       "title": "Understanding the Guide",
-      "start": 936.0522000000001,
-      "duration": 138.70162999999997,
+      "start": 936.0480000000002,
+      "duration": 138.70100000000002,
       "audio": "audio/content-5.mp3"
     },
     {
       "href": "content-6.html",
       "title": "THE ARIO",
-      "start": 1074.75383,
-      "duration": 135.96675599999998,
+      "start": 1074.7490000000003,
+      "duration": 135.96599999999998,
       "audio": "audio/content-6.mp3"
     },
     {
       "href": "content-7.html",
       "title": "THE ARIO",
-      "start": 1210.7205860000001,
-      "duration": 169.88279799999998,
+      "start": 1210.7150000000001,
+      "duration": 169.882,
       "audio": "audio/content-7.mp3"
     },
     {
       "href": "content-8.html",
       "title": "KEY MESSAGE 1 Staying healthy",
-      "start": 1380.603384,
-      "duration": 236.958218,
+      "start": 1380.5970000000002,
+      "duration": 236.95700000000005,
       "audio": "audio/content-8.mp3"
     },
     {
       "href": "content-9.html",
       "title": "THE ARIO",
-      "start": 1617.561602,
-      "duration": 128.026546,
+      "start": 1617.5540000000003,
+      "duration": 128.02599999999998,
       "audio": "audio/content-9.mp3"
     },
     {
       "href": "content-10.html",
       "title": "KEY MESSAGE 2 Children speak out",
-      "start": 1745.588148,
-      "duration": 283.92755399999993,
+      "start": 1745.5800000000004,
+      "duration": 283.92599999999993,
       "audio": "audio/content-10.mp3"
     },
     {
       "href": "content-11.html",
       "title": "KEY MESSAGE 3 Coping with stress",
-      "start": 2029.515702,
-      "duration": 403.357772,
+      "start": 2029.5060000000003,
+      "duration": 403.355,
       "audio": "audio/content-11.mp3"
     },
     {
       "href": "content-12.html",
       "title": "THE ARIO",
-      "start": 2432.873474,
-      "duration": 174.04075599999996,
+      "start": 2432.8610000000003,
+      "duration": 174.03999999999996,
       "audio": "audio/content-12.mp3"
     },
     {
       "href": "content-13.html",
       "title": "KEY MESSAGE 4 Keeping each other safe",
-      "start": 2606.91423,
-      "duration": 245.81551200000004,
+      "start": 2606.9010000000003,
+      "duration": 245.81400000000005,
       "audio": "audio/content-13.mp3"
     },
     {
       "href": "content-14.html",
       "title": "THE ARIO",
-      "start": 2852.729742,
-      "duration": 177.26179799999997,
+      "start": 2852.715,
+      "duration": 177.26099999999997,
       "audio": "audio/content-14.mp3"
     },
     {
       "href": "content-15.html",
       "title": "KEY MESSAGE 5 Solving problems",
-      "start": 3029.99154,
-      "duration": 219.43555400000002,
+      "start": 3029.976,
+      "duration": 219.434,
       "audio": "audio/content-15.mp3"
     },
     {
       "href": "content-16.html",
       "title": "THE ARIO",
-      "start": 3249.427094,
-      "duration": 132.39758799999998,
+      "start": 3249.4100000000003,
+      "duration": 132.397,
       "audio": "audio/content-16.mp3"
     },
     {
       "href": "content-17.html",
       "title": "KEY MESSAGE 6 All people need to be protected",
-      "start": 3381.824682,
-      "duration": 74.48350400000001,
+      "start": 3381.8070000000002,
+      "duration": 74.48300000000002,
       "audio": "audio/content-17.mp3"
     },
     {
       "href": "content-18.html",
       "title": "THE ARIO",
-      "start": 3456.3081859999998,
-      "duration": 102.22454599999999,
+      "start": 3456.2900000000004,
+      "duration": 102.22399999999999,
       "audio": "audio/content-18.mp3"
     },
     {
       "href": "content-19.html",
       "title": "KEY MESSAGE 7 Living with heartache",
-      "start": 3558.5327319999997,
-      "duration": 286.40363800000006,
+      "start": 3558.5140000000006,
+      "duration": 286.402,
       "audio": "audio/content-19.mp3"
     },
     {
       "href": "content-20.html",
       "title": "THE ARIO",
-      "start": 3844.93637,
-      "duration": 112.895462,
+      "start": 3844.9160000000006,
+      "duration": 112.89500000000001,
       "audio": "audio/content-20.mp3"
     },
     {
       "href": "content-21.html",
       "title": "KEY MESSAGE 8 Being a responsible citizen of the world",
-      "start": 3957.831832,
-      "duration": 323.4068060000002,
+      "start": 3957.8110000000006,
+      "duration": 323.405,
       "audio": "audio/content-21.mp3"
     },
     {
       "href": "content-22.html",
       "title": "THE ARIO",
-      "start": 4281.238638,
-      "duration": 62.60221000000001,
+      "start": 4281.216,
+      "duration": 62.602000000000004,
       "audio": "audio/content-22.mp3"
     },
     {
       "href": "content-23.html",
       "title": "KEY MESSAGE 9 My hero is YOU",
-      "start": 4343.840848,
-      "duration": 110.97867199999997,
+      "start": 4343.818,
+      "duration": 110.978,
       "audio": "audio/content-23.mp3"
     },
     {
       "href": "content-24.html",
       "title": "Links to My Hero is You further resources:",
-      "start": 4454.81952,
-      "duration": 37.310168,
+      "start": 4454.796,
+      "duration": 37.31,
       "audio": "audio/content-24.mp3"
     }
   ],
@@ -175,339 +175,339 @@
     {
       "title": "Introduction",
       "href": "content-2.html",
-      "time": 54.16612599999999
+      "time": 54.166
     },
     {
       "title": "CHAT messages",
       "href": "content-3.html",
-      "time": 223.687546
+      "time": 223.687
     },
     {
       "title": "Preparing to read and CHAT",
       "href": "content-4.html",
-      "time": 293.43717599999997
+      "time": 293.436
     },
     {
       "title": "Understanding the Guide",
       "href": "content-5.html",
-      "time": 936.0522000000001
+      "time": 936.0480000000002
     },
     {
       "title": "THE ARIO",
       "href": "content-6.html",
-      "time": 1074.75383
+      "time": 1074.7490000000003
     },
     {
       "title": "THE ARIO",
       "href": "content-7.html",
-      "time": 1210.7205860000001
+      "time": 1210.7150000000001
     },
     {
       "title": "KEY MESSAGE 1 Staying healthy",
       "href": "content-8.html",
-      "time": 1380.603384
+      "time": 1380.5970000000002
     },
     {
       "title": "THE ARIO",
       "href": "content-9.html",
-      "time": 1617.561602
+      "time": 1617.5540000000003
     },
     {
       "title": "KEY MESSAGE 2 Children speak out",
       "href": "content-10.html",
-      "time": 1745.588148
+      "time": 1745.5800000000004
     },
     {
       "title": "KEY MESSAGE 3 Coping with stress",
       "href": "content-11.html",
-      "time": 2029.515702
+      "time": 2029.5060000000003
     },
     {
       "title": "THE ARIO",
       "href": "content-12.html",
-      "time": 2432.873474
+      "time": 2432.8610000000003
     },
     {
       "title": "KEY MESSAGE 4 Keeping each other safe",
       "href": "content-13.html",
-      "time": 2606.91423
+      "time": 2606.9010000000003
     },
     {
       "title": "THE ARIO",
       "href": "content-14.html",
-      "time": 2852.729742
+      "time": 2852.715
     },
     {
       "title": "KEY MESSAGE 5 Solving problems",
       "href": "content-15.html",
-      "time": 3029.99154
+      "time": 3029.976
     },
     {
       "title": "THE ARIO",
       "href": "content-16.html",
-      "time": 3249.427094
+      "time": 3249.4100000000003
     },
     {
       "title": "KEY MESSAGE 6 All people need to be protected",
       "href": "content-17.html",
-      "time": 3381.824682
+      "time": 3381.8070000000002
     },
     {
       "title": "THE ARIO",
       "href": "content-18.html",
-      "time": 3456.3081859999998
+      "time": 3456.2900000000004
     },
     {
       "title": "KEY MESSAGE 7 Living with heartache",
       "href": "content-19.html",
-      "time": 3558.5327319999997
+      "time": 3558.5140000000006
     },
     {
       "title": "THE ARIO",
       "href": "content-20.html",
-      "time": 3844.93637
+      "time": 3844.9160000000006
     },
     {
       "title": "KEY MESSAGE 8 Being a responsible citizen of the world",
       "href": "content-21.html",
-      "time": 3957.831832
+      "time": 3957.8110000000006
     },
     {
       "title": "THE ARIO",
       "href": "content-22.html",
-      "time": 4281.238638
+      "time": 4281.216
     },
     {
       "title": "KEY MESSAGE 9 My hero is YOU",
       "href": "content-23.html",
-      "time": 4343.840848
+      "time": 4343.818
     },
     {
       "title": "Links to My Hero is You further resources:",
       "href": "content-24.html",
-      "time": 4454.81952
+      "time": 4454.796
     }
   ],
   "toc": [
     {
       "href": "content-2.html",
-      "time": 54.16612599999999,
-      "end": 56.91012599999999
+      "time": 54.166,
+      "end": 56.91
     },
     {
       "href": "content-3.html",
-      "time": 223.687546,
-      "end": 228.47654599999998
+      "time": 223.687,
+      "end": 228.476
     },
     {
       "href": "content-3.html#dtb25",
-      "time": 228.47654599999998,
-      "end": 231.600546
+      "time": 228.476,
+      "end": 231.60000000000002
     },
     {
       "href": "content-4.html",
-      "time": 293.43717599999997,
-      "end": 298.73621799999995
+      "time": 293.436,
+      "end": 298.73499999999996
     },
     {
       "href": "content-4.html#dtb64",
-      "time": 298.73621799999995,
-      "end": 303.545218
+      "time": 298.73499999999996,
+      "end": 303.544
     },
     {
       "href": "content-4.html#dtb73",
-      "time": 353.21246999999994,
-      "end": 357.18147
+      "time": 353.21099999999996,
+      "end": 357.17999999999995
     },
     {
       "href": "content-4.html#dtb90",
-      "time": 455.59189,
-      "end": 458.685932
+      "time": 455.59,
+      "end": 458.68399999999997
     },
     {
       "href": "content-4.html#dtb97",
-      "time": 515.551016,
-      "end": 518.430058
+      "time": 515.549,
+      "end": 518.428
     },
     {
       "href": "content-4.html#dtb112",
-      "time": 583.415394,
-      "end": 587.459394
+      "time": 583.413,
+      "end": 587.457
     },
     {
       "href": "content-4.html#dtb143",
-      "time": 705.240108,
-      "end": 709.53415
+      "time": 705.2370000000001,
+      "end": 709.531
     },
     {
       "href": "content-4.html#dtb161",
-      "time": 783.187612,
-      "end": 786.6016539999999
+      "time": 783.184,
+      "end": 786.598
     },
     {
       "href": "content-4.html#dtb171",
-      "time": 834.308822,
-      "end": 837.022864
+      "time": 834.3050000000001,
+      "end": 837.019
     },
     {
       "href": "content-4.html#dtb179",
-      "time": 874.47299,
-      "end": 877.31699
+      "time": 874.469,
+      "end": 877.3130000000001
     },
     {
       "href": "content-4.html#dtb184",
-      "time": 907.2491580000001,
-      "end": 911.453158
+      "time": 907.2450000000001,
+      "end": 911.4490000000001
     },
     {
       "href": "content-5.html",
-      "time": 936.0522000000001,
-      "end": 939.0812000000001
+      "time": 936.0480000000002,
+      "end": 939.0770000000002
     },
     {
       "href": "content-6.html",
-      "time": 1074.75383,
-      "end": 1077.17783
+      "time": 1074.7490000000003,
+      "end": 1077.1730000000002
     },
     {
       "href": "content-6.html#dtb215",
-      "time": 1081.6868720000002,
-      "end": 1085.765914
+      "time": 1081.6820000000002,
+      "end": 1085.7610000000002
     },
     {
       "href": "content-7.html",
-      "time": 1210.7205860000001,
-      "end": 1213.1445860000001
+      "time": 1210.7150000000001,
+      "end": 1213.1390000000001
     },
     {
       "href": "content-7.html#dtb239",
-      "time": 1217.653628,
-      "end": 1222.3976280000002
+      "time": 1217.6480000000001,
+      "end": 1222.392
     },
     {
       "href": "content-8.html",
-      "time": 1380.603384,
-      "end": 1384.112384
+      "time": 1380.5970000000002,
+      "end": 1384.1060000000002
     },
     {
       "href": "content-9.html",
-      "time": 1617.561602,
-      "end": 1619.985602
+      "time": 1617.5540000000003,
+      "end": 1619.9780000000003
     },
     {
       "href": "content-9.html#dtb312",
-      "time": 1624.4946439999999,
-      "end": 1627.508686
+      "time": 1624.4870000000003,
+      "end": 1627.5010000000002
     },
     {
       "href": "content-10.html",
-      "time": 1745.588148,
-      "end": 1749.4121480000001
+      "time": 1745.5800000000004,
+      "end": 1749.4040000000005
     },
     {
       "href": "content-10.html#dtb366",
-      "time": 1888.3091140000001,
-      "end": 1891.383156
+      "time": 1888.3000000000004,
+      "end": 1891.3740000000003
     },
     {
       "href": "content-11.html",
-      "time": 2029.515702,
-      "end": 2033.314744
+      "time": 2029.5060000000003,
+      "end": 2033.3050000000003
     },
     {
       "href": "content-12.html",
-      "time": 2432.873474,
-      "end": 2435.297474
+      "time": 2432.8610000000003,
+      "end": 2435.2850000000003
     },
     {
       "href": "content-12.html#dtb498",
-      "time": 2439.806516,
-      "end": 2443.405558
+      "time": 2439.7940000000003,
+      "end": 2443.3930000000005
     },
     {
       "href": "content-13.html",
-      "time": 2606.91423,
-      "end": 2610.90323
+      "time": 2606.9010000000003,
+      "end": 2610.8900000000003
     },
     {
       "href": "content-14.html",
-      "time": 2852.729742,
-      "end": 2855.153742
+      "time": 2852.715,
+      "end": 2855.139
     },
     {
       "href": "content-14.html#dtb584",
-      "time": 2859.662784,
-      "end": 2863.701826
+      "time": 2859.648,
+      "end": 2863.6870000000004
     },
     {
       "href": "content-15.html",
-      "time": 3029.99154,
-      "end": 3033.90054
+      "time": 3029.976,
+      "end": 3033.885
     },
     {
       "href": "content-16.html",
-      "time": 3249.427094,
-      "end": 3251.851094
+      "time": 3249.4100000000003,
+      "end": 3251.8340000000003
     },
     {
       "href": "content-16.html#dtb666",
-      "time": 3256.3601360000002,
-      "end": 3260.324136
+      "time": 3256.3430000000003,
+      "end": 3260.3070000000002
     },
     {
       "href": "content-17.html",
-      "time": 3381.824682,
-      "end": 3386.148682
+      "time": 3381.8070000000002,
+      "end": 3386.1310000000003
     },
     {
       "href": "content-18.html",
-      "time": 3456.3081859999998,
-      "end": 3458.7321859999997
+      "time": 3456.2900000000004,
+      "end": 3458.7140000000004
     },
     {
       "href": "content-18.html#dtb704",
-      "time": 3463.241228,
-      "end": 3466.7152699999997
+      "time": 3463.2230000000004,
+      "end": 3466.6970000000006
     },
     {
       "href": "content-19.html",
-      "time": 3558.5327319999997,
-      "end": 3562.2667739999997
+      "time": 3558.5140000000006,
+      "end": 3562.2480000000005
     },
     {
       "href": "content-20.html",
-      "time": 3844.93637,
-      "end": 3847.36037
+      "time": 3844.9160000000006,
+      "end": 3847.3400000000006
     },
     {
       "href": "content-20.html#dtb780",
-      "time": 3851.869412,
-      "end": 3856.253412
+      "time": 3851.8490000000006,
+      "end": 3856.2330000000006
     },
     {
       "href": "content-21.html",
-      "time": 3957.831832,
-      "end": 3962.590874
+      "time": 3957.8110000000006,
+      "end": 3962.5700000000006
     },
     {
       "href": "content-22.html",
-      "time": 4281.238638,
-      "end": 4283.662638
+      "time": 4281.216,
+      "end": 4283.64
     },
     {
       "href": "content-22.html#dtb880",
-      "time": 4288.1716799999995,
-      "end": 4290.92068
+      "time": 4288.149,
+      "end": 4290.898
     },
     {
       "href": "content-23.html",
-      "time": 4343.840848,
-      "end": 4347.529848
+      "time": 4343.818,
+      "end": 4347.5070000000005
     },
     {
       "href": "content-24.html",
-      "time": 4454.81952,
-      "end": 4458.98352
+      "time": 4454.796,
+      "end": 4458.96
     }
   ]
 }

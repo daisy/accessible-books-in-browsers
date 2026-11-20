@@ -60,6 +60,8 @@ function showNotice(message, action) {
         notice.className = 'webbook';
         // The status above already says it
         notice.setAttribute('aria-hidden', 'true');
+        // A popover, so it shows above an open panel (panels are popovers too)
+        notice.setAttribute('popover', 'manual');
         document.body.append(notice);
     }
     if (action && !notice.contains(document.activeElement)) noticeReturnFocus = document.activeElement;
@@ -72,9 +74,21 @@ function showNotice(message, action) {
         notice.removeAttribute('aria-hidden');
     } else notice.setAttribute('aria-hidden', 'true');
     notice.hidden = false;
+    showOnTop(notice);
     clearTimeout(noticeTimer);
     // A message with an action remains available until dismissed or used.
-    if (!action) noticeTimer = setTimeout(() => { notice.hidden = true; }, NOTICE_SECONDS * 1000);
+    if (!action) noticeTimer = setTimeout(() => { notice.hidden = true; hidePopover(notice); }, NOTICE_SECONDS * 1000);
+}
+
+// Shown again each time, so it's above a panel opened since
+function showOnTop(notice) {
+    if (typeof notice.showPopover !== 'function') return;
+    hidePopover(notice);
+    try { notice.showPopover(); } catch { }
+}
+
+function hidePopover(notice) {
+    try { if (notice.matches(':popover-open')) notice.hidePopover(); } catch { }
 }
 
 function hideNotice() {
@@ -82,6 +96,7 @@ function hideNotice() {
     if (!notice || notice.hidden) return false;
     clearTimeout(noticeTimer);
     notice.hidden = true;
+    hidePopover(notice);
     if (notice.contains(document.activeElement) && noticeReturnFocus?.isConnected) noticeReturnFocus.focus({ preventScroll: true });
     return true;
 }

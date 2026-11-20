@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "duration": 149.618084,
+  "duration": 149.618,
   "pages": [
     {
       "href": "index.html",
@@ -13,20 +13,20 @@
       "href": "chapter1.html",
       "title": "Chapter 1. Footnotes on the same page",
       "start": 6.833,
-      "duration": 74.935042,
+      "duration": 74.935,
       "audio": "audio/chapter1.mp3"
     },
     {
       "href": "chapter2.html",
       "title": "Chapter 2. Endnotes in another file",
-      "start": 81.768042,
-      "duration": 37.122042,
+      "start": 81.768,
+      "duration": 37.122,
       "audio": "audio/chapter2.mp3"
     },
     {
       "href": "endnotes.html",
       "title": "Notes",
-      "start": 118.890084,
+      "start": 118.89,
       "duration": 30.728,
       "audio": "audio/endnotes.mp3"
     }
@@ -45,12 +45,12 @@
     {
       "title": "Chapter 2. Endnotes in another file",
       "href": "chapter2.html",
-      "time": 81.768042
+      "time": 81.768
     },
     {
       "title": "Notes",
       "href": "endnotes.html",
-      "time": 118.890084
+      "time": 118.89
     }
   ],
   "toc": [
@@ -66,13 +66,13 @@
     },
     {
       "href": "chapter2.html",
-      "time": 81.768042,
-      "end": 84.763042
+      "time": 81.768,
+      "end": 84.763
     },
     {
       "href": "endnotes.html",
-      "time": 118.890084,
-      "end": 119.932084
+      "time": 118.89,
+      "end": 119.932
     }
   ]
 }

@@ -1,0 +1,89 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:22.105
+{"selector":{"type":"FragmentSelector","value":"rgn_cnt_0434"}}
+
+2
+00:00:22.105 --> 00:00:54.930
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(1)"}}
+
+3
+00:00:54.930 --> 00:01:32.822
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(2)"}}
+
+4
+00:01:32.822 --> 00:02:46.203
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(3)"}}
+
+5
+00:02:46.203 --> 00:04:51.769
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(4)"}}
+
+6
+00:04:51.769 --> 00:05:49.689
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(5)"}}
+
+7
+00:05:49.689 --> 00:05:52.266
+{"selector":{"type":"FragmentSelector","value":"rgn_cnt_0440"}}
+
+8
+00:05:52.266 --> 00:06:08.721
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(7)"}}
+
+9
+00:06:08.721 --> 00:06:34.149
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(8)"}}
+
+10
+00:06:34.149 --> 00:07:28.747
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(9)"}}
+
+11
+00:07:28.747 --> 00:08:14.620
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(10)"}}
+
+12
+00:08:14.620 --> 00:09:34.730
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(11)"}}
+
+13
+00:09:34.730 --> 00:11:17.360
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(12)"}}
+
+14
+00:11:17.360 --> 00:12:00.822
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(13)"}}
+
+15
+00:12:00.822 --> 00:12:50.767
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(14)"}}
+
+16
+00:12:50.767 --> 00:12:53.673
+{"selector":{"type":"FragmentSelector","value":"rgn_cnt_0449"}}
+
+17
+00:12:53.673 --> 00:13:57.580
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(16)"}}
+
+18
+00:13:57.580 --> 00:15:33.644
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(17)"}}
+
+19
+00:15:33.644 --> 00:18:17.690
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(18)"}}
+
+20
+00:18:17.690 --> 00:18:27.412
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(19)"}}
+
+21
+00:18:27.412 --> 00:18:30.567
+{"selector":{"type":"FragmentSelector","value":"rgn_cnt_0454"}}
+
+22
+00:18:30.567 --> 00:19:32.240
+{"selector":{"type":"CssSelector","value":":scope > p:nth-of-type(21)"}}

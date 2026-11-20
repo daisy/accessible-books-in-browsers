@@ -17,11 +17,11 @@ WEBVTT
 {"selector":{"type":"FragmentSelector","value":"dtb_5121","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(2) > p:nth-of-type(1)"}}}
 
 5
-00:00:11.817 --> 00:00:15.116
+00:00:11.817 --> 00:00:15.117
 {"selector":{"type":"FragmentSelector","value":"dtb_5121","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(3) > p:nth-of-type(1)"}}}
 
 6
-00:00:15.116 --> 00:00:16.996
+00:00:15.117 --> 00:00:16.996
 {"selector":{"type":"FragmentSelector","value":"dtb_5121","refinedBy":{"type":"CssSelector","value":":scope > li:nth-of-type(4) > p:nth-of-type(1)"}}}
 
 7

@@ -1275,11 +1275,11 @@
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 95907352,
-    "outputBytes": 63887944,
+    "outputBytes": 63893896,
     "settings": [
       "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
     ],
-    "maximumEncoderDriftSeconds": 0.09650099999998929,
+    "maximumEncoderDriftSeconds": 0.0019163333331562171,
     "cleanup": {
       "enabled": true,
       "targetLufs": -18,
@@ -1295,7 +1295,8 @@
         "afftdn=nr=8:nf=-35",
         "deesser=i=0.2:m=0.5:f=0.5",
         "adeclick",
-        "two-pass loudnorm"
+        "raised to the loudness target if quieter (never lowered)",
+        "peak limiter"
       ],
       "loudnessRangeBeforeLu": 4,
       "pages": [
@@ -1318,21 +1319,21 @@
           "clippingSamples": 0,
           "loudnessLufs": -24.9,
           "noiseFloorDb": null,
-          "peakDb": -5.842715
+          "peakDb": -5.76155
         },
         {
           "page": "package-4.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.6,
           "noiseFloorDb": null,
-          "peakDb": -7.126682
+          "peakDb": -7.111642
         },
         {
           "page": "package-5.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.9,
           "noiseFloorDb": null,
-          "peakDb": -7.454328
+          "peakDb": -7.457455
         },
         {
           "page": "package-6.html",
@@ -1345,8 +1346,8 @@
           "page": "package-7.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.3,
-          "noiseFloorDb": -99.487822,
-          "peakDb": -7.67855
+          "noiseFloorDb": -99.272413,
+          "peakDb": -7.786371
         },
         {
           "page": "package-8.html",
@@ -1367,203 +1368,203 @@
           "clippingSamples": 0,
           "loudnessLufs": -27.3,
           "noiseFloorDb": null,
-          "peakDb": -8.000783
+          "peakDb": -8.01211
         },
         {
           "page": "package-11.html",
           "clippingSamples": 0,
           "loudnessLufs": -27.4,
           "noiseFloorDb": null,
-          "peakDb": -6.008945
+          "peakDb": -6.068444
         },
         {
           "page": "package-12.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.6,
           "noiseFloorDb": null,
-          "peakDb": -6.946713
+          "peakDb": -6.937281
         },
         {
           "page": "package-13.html",
           "clippingSamples": 0,
           "loudnessLufs": -26,
           "noiseFloorDb": null,
-          "peakDb": -5.590858
+          "peakDb": -5.553601
         },
         {
           "page": "package-14.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.3,
-          "noiseFloorDb": -99.638786,
-          "peakDb": -6.596456
+          "noiseFloorDb": -99.721727,
+          "peakDb": -6.651009
         },
         {
           "page": "package-15.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.1,
-          "noiseFloorDb": -99.630242,
-          "peakDb": -5.266022
+          "noiseFloorDb": -99.470835,
+          "peakDb": -5.365251
         },
         {
           "page": "package-16.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.7,
-          "noiseFloorDb": -99.588016,
-          "peakDb": -5.257277
+          "noiseFloorDb": -99.737381,
+          "peakDb": -5.316228
         },
         {
           "page": "package-17.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.5,
-          "noiseFloorDb": -99.525462,
-          "peakDb": -4.18951
+          "noiseFloorDb": -99.685175,
+          "peakDb": -4.171924
         },
         {
           "page": "package-18.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.5,
           "noiseFloorDb": null,
-          "peakDb": -5.836484
+          "peakDb": -5.777001
         },
         {
           "page": "package-19.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.2,
           "noiseFloorDb": null,
-          "peakDb": -5.090883
+          "peakDb": -5.020198
         },
         {
           "page": "package-20.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.5,
-          "noiseFloorDb": -99.659883,
-          "peakDb": -5.927268
+          "noiseFloorDb": -99.696889,
+          "peakDb": -5.924646
         },
         {
           "page": "package-21.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.1,
           "noiseFloorDb": null,
-          "peakDb": -5.506004
+          "peakDb": -5.492026
         },
         {
           "page": "package-22.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.1,
-          "noiseFloorDb": -99.785209,
-          "peakDb": -5.542556
+          "noiseFloorDb": -99.779668,
+          "peakDb": -5.589345
         },
         {
           "page": "package-23.html",
           "clippingSamples": 0,
           "loudnessLufs": -26.2,
           "noiseFloorDb": null,
-          "peakDb": -4.952428
+          "peakDb": -5.019726
         },
         {
           "page": "package-24.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.9,
           "noiseFloorDb": null,
-          "peakDb": -5.606513
+          "peakDb": -5.489033
         },
         {
           "page": "package-25.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.7,
-          "noiseFloorDb": -99.878297,
-          "peakDb": -5.711268
+          "noiseFloorDb": -99.632068,
+          "peakDb": -5.734321
         },
         {
           "page": "package-26.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.5,
           "noiseFloorDb": null,
-          "peakDb": -6.180037
+          "peakDb": -5.999949
         },
         {
           "page": "package-27.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.8,
           "noiseFloorDb": null,
-          "peakDb": -4.666077
+          "peakDb": -4.629413
         },
         {
           "page": "package-28.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.8,
           "noiseFloorDb": null,
-          "peakDb": -5.388388
+          "peakDb": -5.359845
         },
         {
           "page": "package-29.html",
           "clippingSamples": 0,
           "loudnessLufs": -26,
           "noiseFloorDb": null,
-          "peakDb": -4.042624
+          "peakDb": -3.99253
         },
         {
           "page": "package-30.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.8,
           "noiseFloorDb": null,
-          "peakDb": -5.564661
+          "peakDb": -5.559632
         },
         {
           "page": "package-31.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.7,
           "noiseFloorDb": null,
-          "peakDb": -5.127638
+          "peakDb": -4.940716
         },
         {
           "page": "package-32.html",
           "clippingSamples": 0,
           "loudnessLufs": -24.9,
-          "noiseFloorDb": -99.705183,
-          "peakDb": -4.579869
+          "noiseFloorDb": -99.637833,
+          "peakDb": -4.60821
         },
         {
           "page": "package-33.html",
           "clippingSamples": 0,
           "loudnessLufs": -24.6,
           "noiseFloorDb": null,
-          "peakDb": -4.063335
+          "peakDb": -4.000088
         },
         {
           "page": "package-34.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.7,
           "noiseFloorDb": null,
-          "peakDb": -4.671522
+          "peakDb": -4.780222
         },
         {
           "page": "package-35.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.7,
           "noiseFloorDb": null,
-          "peakDb": -5.576742
+          "peakDb": -5.236908
         },
         {
           "page": "package-36.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.1,
           "noiseFloorDb": null,
-          "peakDb": -4.261081
+          "peakDb": -4.161218
         },
         {
           "page": "package-37.html",
           "clippingSamples": 0,
           "loudnessLufs": -25.7,
           "noiseFloorDb": null,
-          "peakDb": -4.183072
+          "peakDb": -4.204552
         },
         {
           "page": "package-38.html",
           "clippingSamples": 0,
           "loudnessLufs": -26,
           "noiseFloorDb": null,
-          "peakDb": -5.114255
+          "peakDb": -5.08755
         }
       ]
     }

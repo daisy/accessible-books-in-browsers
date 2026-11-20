@@ -683,11 +683,11 @@
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 36338184,
-    "outputBytes": 17975808,
+    "outputBytes": 17980032,
     "settings": [
       "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
     ],
-    "maximumEncoderDriftSeconds": 0.09837999999996327,
+    "maximumEncoderDriftSeconds": 2.2737367544323206e-13,
     "cleanup": {
       "enabled": true,
       "targetLufs": -18,
@@ -703,7 +703,8 @@
         "afftdn=nr=8:nf=-35",
         "deesser=i=0.2:m=0.5:f=0.5",
         "adeclick",
-        "two-pass loudnorm"
+        "raised to the loudness target if quieter (never lowered)",
+        "peak limiter"
       ],
       "loudnessRangeBeforeLu": 0.5999999999999979,
       "pages": [
@@ -712,21 +713,21 @@
           "clippingSamples": 0,
           "loudnessLufs": -20.7,
           "noiseFloorDb": null,
-          "peakDb": -2.43574
+          "peakDb": -2.449435
         },
         {
           "page": "content-2.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.7,
           "noiseFloorDb": null,
-          "peakDb": -3.193074
+          "peakDb": -3.240292
         },
         {
           "page": "content-3.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.9,
           "noiseFloorDb": null,
-          "peakDb": -2.954428
+          "peakDb": -2.950704
         },
         {
           "page": "content-4.html",
@@ -740,105 +741,105 @@
           "clippingSamples": 0,
           "loudnessLufs": -20.7,
           "noiseFloorDb": null,
-          "peakDb": -2.977925
+          "peakDb": -2.961508
         },
         {
           "page": "content-6.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.6,
           "noiseFloorDb": null,
-          "peakDb": -3.256088
+          "peakDb": -3.307141
         },
         {
           "page": "content-7.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.5,
           "noiseFloorDb": null,
-          "peakDb": -2.55124
+          "peakDb": -2.578306
         },
         {
           "page": "content-8.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.5,
           "noiseFloorDb": null,
-          "peakDb": -2.814398
+          "peakDb": -2.882099
         },
         {
           "page": "content-9.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.6,
           "noiseFloorDb": null,
-          "peakDb": -3.027364
+          "peakDb": -3.036383
         },
         {
           "page": "content-10.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.7,
           "noiseFloorDb": null,
-          "peakDb": -2.390595
+          "peakDb": -2.301348
         },
         {
           "page": "content-11.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.8,
           "noiseFloorDb": null,
-          "peakDb": -2.263771
+          "peakDb": -2.253457
         },
         {
           "page": "content-12.html",
           "clippingSamples": 0,
-          "loudnessLufs": -20.7,
+          "loudnessLufs": -20.6,
           "noiseFloorDb": null,
-          "peakDb": -2.868812
+          "peakDb": -2.858123
         },
         {
           "page": "content-13.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.5,
           "noiseFloorDb": null,
-          "peakDb": -2.461744
+          "peakDb": -2.468785
         },
         {
           "page": "content-14.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.6,
           "noiseFloorDb": null,
-          "peakDb": -2.351936
+          "peakDb": -2.343947
         },
         {
           "page": "content-15.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.7,
           "noiseFloorDb": null,
-          "peakDb": -2.808902
+          "peakDb": -2.815498
         },
         {
           "page": "content-16.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.6,
           "noiseFloorDb": null,
-          "peakDb": -2.810368
+          "peakDb": -2.816598
         },
         {
           "page": "content-17.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.7,
           "noiseFloorDb": null,
-          "peakDb": -2.886163
+          "peakDb": -2.860702
         },
         {
           "page": "content-18.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.8,
           "noiseFloorDb": null,
-          "peakDb": -3.152207
+          "peakDb": -3.196138
         },
         {
           "page": "content-19.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.9,
           "noiseFloorDb": null,
-          "peakDb": -2.347767
+          "peakDb": -2.402471
         },
         {
           "page": "content-20.html",
@@ -852,28 +853,28 @@
           "clippingSamples": 0,
           "loudnessLufs": -20.6,
           "noiseFloorDb": null,
-          "peakDb": -2.9548
+          "peakDb": -3.029618
         },
         {
           "page": "content-22.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.5,
           "noiseFloorDb": null,
-          "peakDb": -3.216843
+          "peakDb": -3.242217
         },
         {
           "page": "content-23.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.5,
           "noiseFloorDb": null,
-          "peakDb": -3.172808
+          "peakDb": -3.22683
         },
         {
           "page": "content-24.html",
           "clippingSamples": 0,
           "loudnessLufs": -20.3,
           "noiseFloorDb": null,
-          "peakDb": -3.619119
+          "peakDb": -3.612287
         }
       ]
     }

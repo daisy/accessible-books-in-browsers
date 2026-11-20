@@ -1,0 +1,419 @@
+{
+  "version": 1,
+  "provenance": {
+    "source": "valentin-hauy",
+    "identifier": "C1093a",
+    "converter": "1.0.0"
+  },
+  "betaWarning": "READER UPDATES: this book will receive reader updates from the beta channel at https://daisy.github.io/accessible-books-in-browsers/v0/. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.",
+  "language": {
+    "declared": "en",
+    "effective": "en"
+  },
+  "options": {
+    "publisher styles": true,
+    "heading titles": true,
+    "split chapters": true,
+    "small audio": true,
+    "audio cleanup": true,
+    "audio enhancements": "warm-eq,compression,noise,deess,declick",
+    "optional checks": false,
+    "reader updates": "https://daisy.github.io/accessible-books-in-browsers/v0/"
+  },
+  "changes": [
+    {
+      "kind": "Book styles kept as reader classes (font-style)",
+      "count": 261,
+      "pages": {
+        "index.html": 29,
+        "valentinhauy11-2.html": 29,
+        "valentinhauy11-3.html": 29,
+        "valentinhauy11-4.html": 29,
+        "valentinhauy11-5.html": 29,
+        "valentinhauy11-6.html": 29,
+        "valentinhauy11-7.html": 29,
+        "valentinhauy11-8.html": 29,
+        "valentinhauy11-9.html": 29
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (font-weight)",
+      "count": 504,
+      "pages": {
+        "index.html": 56,
+        "valentinhauy11-2.html": 56,
+        "valentinhauy11-3.html": 56,
+        "valentinhauy11-4.html": 56,
+        "valentinhauy11-5.html": 56,
+        "valentinhauy11-6.html": 56,
+        "valentinhauy11-7.html": 56,
+        "valentinhauy11-8.html": 56,
+        "valentinhauy11-9.html": 56
+      }
+    },
+    {
+      "kind": "Book styles kept as reader classes (text-align)",
+      "count": 837,
+      "pages": {
+        "index.html": 93,
+        "valentinhauy11-2.html": 93,
+        "valentinhauy11-3.html": 93,
+        "valentinhauy11-4.html": 93,
+        "valentinhauy11-5.html": 93,
+        "valentinhauy11-6.html": 93,
+        "valentinhauy11-7.html": 93,
+        "valentinhauy11-8.html": 93,
+        "valentinhauy11-9.html": 93
+      }
+    },
+    {
+      "kind": "Ineffective xml:lang attributes removed",
+      "count": 9,
+      "pages": {
+        "index.html": 1,
+        "valentinhauy11-2.html": 1,
+        "valentinhauy11-3.html": 1,
+        "valentinhauy11-4.html": 1,
+        "valentinhauy11-5.html": 1,
+        "valentinhauy11-6.html": 1,
+        "valentinhauy11-7.html": 1,
+        "valentinhauy11-8.html": 1,
+        "valentinhauy11-9.html": 1
+      }
+    },
+    {
+      "kind": "Tables given responsive scrolling wrappers",
+      "count": 1,
+      "pages": {
+        "valentinhauy11-2.html": 1
+      }
+    }
+  ],
+  "warnings": [
+    {
+      "kind": "Data tables without headers",
+      "page": "valentinhauy11-2.html",
+      "message": "Table has 23 rows and 3 columns but no header cells."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "valentinhauy11-6.html",
+      "message": "“1. The supervision, in Paris, of the production of all the teaching material …” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "valentinhauy11-6.html",
+      "message": "“2. Haüy would travel to Russia the following Spring (1804) and remain there f…” starts like a list item."
+    },
+    {
+      "kind": "Paragraphs resembling list items",
+      "page": "valentinhauy11-6.html",
+      "message": "“3. Haüy, whose idea the project was, agreed to teach his methods faithfully t…” starts like a list item."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "index.html",
+      "message": "20 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-2.html",
+      "message": "69 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-3.html",
+      "message": "77 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-4.html",
+      "message": "43 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-5.html",
+      "message": "894 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-6.html",
+      "message": "5517 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-7.html",
+      "message": "599 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-8.html",
+      "message": "687 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    },
+    {
+      "kind": "Audio clipping",
+      "page": "valentinhauy11-9.html",
+      "message": "726 samples are at or near full scale. Cleanup cannot restore clipped detail."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Ace",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    },
+    {
+      "name": "axe",
+      "status": "not requested",
+      "detail": "Run with --check to request this check."
+    }
+  ],
+  "publisherStyles": {
+    "pages": {
+      "index.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-2.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-3.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-4.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-5.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-6.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-7.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-8.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      },
+      "valentinhauy11-9.html": {
+        "kept": 24,
+        "frozen": 0,
+        "unapplied": 0,
+        "causes": {},
+        "examples": [],
+        "fonts": {
+          "count": 0,
+          "bytes": 0
+        },
+        "images": {
+          "count": 0,
+          "bytes": 0
+        }
+      }
+    },
+    "totals": {
+      "kept": 216,
+      "frozen": 0,
+      "unapplied": 0,
+      "causes": {},
+      "examples": [],
+      "fonts": {
+        "count": 0,
+        "bytes": 0
+      },
+      "images": {
+        "count": 0,
+        "bytes": 0
+      }
+    }
+  },
+  "audio": {
+    "mode": "small audio (mp3)",
+    "sourceBytes": 124728284,
+    "outputBytes": 41571660,
+    "settings": [
+      "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
+    ],
+    "maximumEncoderDriftSeconds": 0.0009579999999971278,
+    "cleanup": {
+      "enabled": true,
+      "targetLufs": -18,
+      "truePeakDb": -1.5,
+      "filters": [
+        "5 ms fades at joins",
+        "asubcut=cutoff=90:order=10",
+        "acrossover=split=200[lo][hi];[lo]acompressor=threshold=0.015:ratio=20:attack=0.1:release=40:knee=2[loc];[loc][hi]amix=inputs=2,volume=2",
+        "equalizer=f=220:t=q:w=1:g=0.75",
+        "equalizer=f=2800:t=q:w=0.7:g=-3",
+        "equalizer=f=5200:t=q:w=1:g=-1",
+        "acompressor=threshold=0.063:ratio=2:attack=20:release=250:makeup=1.1",
+        "afftdn=nr=8:nf=-35",
+        "deesser=i=0.2:m=0.5:f=0.5",
+        "adeclick",
+        "raised to the loudness target if quieter (never lowered)",
+        "peak limiter"
+      ],
+      "loudnessRangeBeforeLu": 1.7999999999999972,
+      "pages": [
+        {
+          "page": "index.html",
+          "clippingSamples": 20,
+          "loudnessLufs": -17.5,
+          "noiseFloorDb": -68.619348,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-2.html",
+          "clippingSamples": 69,
+          "loudnessLufs": -17.2,
+          "noiseFloorDb": -61.96278,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-3.html",
+          "clippingSamples": 77,
+          "loudnessLufs": -17.5,
+          "noiseFloorDb": -79.622726,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-4.html",
+          "clippingSamples": 43,
+          "loudnessLufs": -17.9,
+          "noiseFloorDb": -61.91376,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-5.html",
+          "clippingSamples": 894,
+          "loudnessLufs": -16.7,
+          "noiseFloorDb": -66.994262,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-6.html",
+          "clippingSamples": 5517,
+          "loudnessLufs": -16.7,
+          "noiseFloorDb": -64.258336,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-7.html",
+          "clippingSamples": 599,
+          "loudnessLufs": -17,
+          "noiseFloorDb": -64.979458,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-8.html",
+          "clippingSamples": 687,
+          "loudnessLufs": -16.9,
+          "noiseFloorDb": -62.500396,
+          "peakDb": 0
+        },
+        {
+          "page": "valentinhauy11-9.html",
+          "clippingSamples": 726,
+          "loudnessLufs": -16.1,
+          "noiseFloorDb": -62.871262,
+          "peakDb": 0
+        }
+      ]
+    }
+  }
+}

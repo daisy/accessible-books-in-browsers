@@ -1,57 +1,94 @@
 // Saved preferences must also be listed in settings-file.js (export, import and reset).
+//
+// The table of contents is the book's nested lists of links, kept as they are: each section is an
+// ordinary link, one Tab stop each, and screen readers read the lists' nesting and item counts as
+// usual. No ARIA widget roles (user, 2026-11-19: standard controls only). Two standard controls go
+// with it:
+// - Find a section, a search field that narrows the lists to the matching sections and the sections
+//   they're in. Enter opens the first match; Escape clears it.
+// - Show levels, a select (1, 2, 3, All): how many levels of sections show, from only the outermost
+//   to every level.
+// Shortcuts while it's open (remappable, like every reader key): Alt+Shift+F goes to Find a section
+// (Search's key, see popovers.js), and Alt+Shift+1, 2, 3 and 0 show 1, 2, 3 or all levels. Each says
+// what it did.
+import { announceReaderAction, registerAction } from './reader-actions.js';
 import { currentTocEntry } from './popovers.js';
 import { normalizeSearchText } from './search-text.js';
 
 const DEPTH_KEY = 'webbook-toc-depth';
-const TYPEAHEAD_DELAY = 500;
+const DEPTHS = ['1', '2', '3', 'all'];
 const FIND_DELAY = 150;
 const FIND_STATUS_DELAY = 600;
 
 let toc;
-let tree;
-let items = [];
-let actualCurrent = null;
-let typeahead = '';
-let typeaheadTimer;
+let list;
+let links = [];
+let depth = 'all';
 let findInput = null;
 let findStatus = null;
 let findTimer;
 let findStatusTimer;
-// Each section's expanded state from before a find, put back when it's cleared
-let expandedBeforeFind = null;
+
+// Registered with the other panel actions, before the shortcuts start (main.js)
+export function initTocActions() {
+    for (const [value, code] of [['1', 'Digit1'], ['2', 'Digit2'], ['3', 'Digit3'], ['all', 'Digit0']]) {
+        registerAction({
+            id: `toc-levels-${value}`,
+            label: value === 'all' ? 'Table of contents: show all levels' : `Table of contents: show ${value} ${value === '1' ? 'level' : 'levels'}`,
+            group: 'Panels',
+            inPanels: true,
+            defaultKeys: [{ code, alt: true, shift: true }],
+            isAvailable: () => Boolean(toc?.matches(':popover-open') && depthValues().includes(value)),
+            run: () => {
+                clearFind();
+                writeDepth(value);
+                applyDepth(value);
+                announceReaderAction(levelsMessage(value));
+            }
+        });
+    }
+}
+
+function levelsMessage(value) {
+    return value === 'all' ? 'Showing all levels.' : value === '1' ? 'Showing the top level.' : `Showing ${value} levels.`;
+}
+
+// For Search's key while the table of contents is open
+export function tocFindAvailable() {
+    return Boolean(toc?.matches(':popover-open') && findInput);
+}
+
+export function focusTocFind() {
+    if (!tocFindAvailable()) return false;
+    findInput.focus();
+    findInput.select();
+    announceReaderAction('Find a section.');
+    return true;
+}
 
 export function initTocTree() {
     toc = document.querySelector('#webbook-toc-nav');
     moveCoverLinkToAbout();
-    tree = directChild(toc, 'ol');
-    if (!toc || !tree) return;
+    list = directChild(toc, 'ol');
+    if (!toc || !list) return;
+    list.setAttribute('aria-labelledby', 'webbook-toc-nav-hd');
+    links = Array.from(list.querySelectorAll('li > a'));
+    if (!links.length) return;
 
-    tree.setAttribute('role', 'tree');
-    tree.setAttribute('aria-labelledby', 'webbook-toc-nav-hd');
-    enhanceList(tree, 1);
-    items = Array.from(tree.querySelectorAll('a[role="treeitem"]'));
-    if (!items.length) return;
-
-    actualCurrent = items.find(item => item.getAttribute('aria-current') === 'page') || null;
     addFindField();
     addDepthControl();
-    applySavedDepth();
-    setRovingItem(items[0]);
+    applyDepth(readDepth());
 
-    tree.addEventListener('keydown', handleTreeKeydown);
-    tree.addEventListener('click', handleTreeClick);
     toc.addEventListener('toggle', event => {
         if (event.newState !== 'open') {
             clearFind();
             return;
         }
-        refreshTocTree({ expandCurrentPath: true, moveFocus: true });
+        refreshTocTree({ moveFocus: true });
     });
-    document.addEventListener('webbook:pagechange', () => {
-        refreshTocTree({ expandCurrentPath: true });
-    });
+    document.addEventListener('webbook:pagechange', () => refreshTocTree());
     document.addEventListener('webbook:narrationpositionchange', () => {
-        if (toc.matches(':popover-open')) refreshNarrationCurrent();
+        if (toc.matches(':popover-open')) renderCurrentMarker();
     });
 }
 
@@ -66,75 +103,28 @@ function moveCoverLinkToAbout() {
     else infoBody.append(coverLink);
 }
 
-export function refreshTocTree({ expandCurrentPath = false, moveFocus = false } = {}) {
-    if (!tree) return;
-    const current = currentTocEntry().current;
-    actualCurrent = current?.matches?.('[role="treeitem"]') ? current : null;
-    if (actualCurrent && expandCurrentPath) expandPath(actualCurrent);
-
+// Marks the section being read, and on opening the panel puts focus on it
+export function refreshTocTree({ moveFocus = false } = {}) {
+    if (!list) return;
     const marked = renderCurrentMarker();
-
-    const target = marked || visibleItems()[0] || items[0];
-    setRovingItem(target);
-    if (moveFocus && target) moveFocusToItem(target);
+    if (!moveFocus) return;
+    const target = marked || visibleLinks()[0];
+    if (!target) return;
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ block: 'nearest' });
 }
 
-function refreshNarrationCurrent() {
-    const current = currentTocEntry().current;
-    const next = current?.matches?.('[role="treeitem"]') ? current : null;
-    if (next === actualCurrent) return;
-    actualCurrent = next;
-    renderCurrentMarker();
-}
-
+// The section being read, or the nearest section around it that shows at the chosen levels
 function renderCurrentMarker() {
-    const marked = actualCurrent ? nearestVisibleItem(actualCurrent) : null;
-    items.forEach(item => item.removeAttribute('aria-current'));
+    const current = currentTocEntry().current;
+    const actual = current && links.includes(current) ? current : null;
+    const marked = actual ? nearestVisibleLink(actual) : null;
+    links.forEach(link => link.removeAttribute('aria-current'));
     marked?.setAttribute('aria-current', 'page');
     return marked;
 }
 
-// All tree focus changes pass here so a future talking-TOC feature has one hook.
-// Always scrolled into view: arrowing past the edge of the list otherwise leaves focus out of sight
-function moveFocusToItem(item) {
-    if (!item) return;
-    setRovingItem(item);
-    item.focus({ preventScroll: true });
-    item.scrollIntoView({ block: 'nearest' });
-}
-
-function enhanceList(list, level) {
-    if (level > 1) list.setAttribute('role', 'group');
-    directChildren(list, 'li').forEach(li => {
-        li.setAttribute('role', 'none');
-        const item = directChild(li, 'a');
-        const group = directChild(li, 'ol');
-        if (item) {
-            item.setAttribute('role', 'treeitem');
-            item.tabIndex = -1;
-        }
-        if (group) {
-            enhanceList(group, level + 1);
-            if (item) {
-                item.setAttribute('aria-expanded', 'true');
-                li.insertBefore(createChevron(), item);
-            }
-        }
-    });
-}
-
-function createChevron() {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'webbook-toc-chevron';
-    button.tabIndex = -1;
-    button.setAttribute('aria-hidden', 'true');
-    button.title = 'Expand or collapse section';
-    return button;
-}
-
-// Type-ahead only finds the start of a title; this finds text anywhere in one, matched the way book
-// search matches, and narrows the tree to the matching entries and the sections they're in
+// Matched the way book search matches, anywhere in a title
 function addFindField() {
     const header = toc.querySelector('#webbook-toc-header');
     if (!header || header.querySelector('#webbook-toc-find')) return;
@@ -171,16 +161,16 @@ function handleFindKeydown(event) {
         clearFind();
         return;
     }
-    if (event.key !== 'ArrowDown' && event.key !== 'Enter') return;
+    if (event.key !== 'Enter' || !findInput.value) return;
     clearTimeout(findTimer);
-    if (findInput.value) applyFind(findInput.value);
-    const first = findInput.value ? visibleItems().find(item => item.dataset.webbookTocMatch === 'true') : visibleItems()[0];
+    applyFind(findInput.value);
+    const first = links.find(link => link.dataset.webbookTocMatch === 'true');
     if (!first) return;
     event.preventDefault();
-    if (event.key === 'Enter') first.click();
-    else moveFocusToItem(first);
+    first.click();
 }
 
+// Shows the matches, the sections they're in, and what's inside a matching section, at every level
 function applyFind(query) {
     const lang = document.documentElement.lang || '';
     const wanted = normalizeSearchText(query.trim().replace(/\s+/g, ' '), lang);
@@ -188,31 +178,19 @@ function applyFind(query) {
         clearFind({ keepText: true });
         return;
     }
-    if (!expandedBeforeFind) {
-        expandedBeforeFind = new Map(items.filter(groupForItem).map(item => [item, item.getAttribute('aria-expanded') === 'true']));
-    }
-
-    // Shown: the matches, the sections they're in (opened), and what's inside a matching section
-    // (left closed, so it can still be opened)
     const shown = new Set();
-    const opened = new Set();
     let matches = 0;
-    for (const item of items) {
-        const match = normalizeSearchText(itemText(item), lang).includes(wanted);
-        item.dataset.webbookTocMatch = String(match);
+    for (const link of links) {
+        const match = normalizeSearchText(linkText(link), lang).includes(wanted);
+        link.dataset.webbookTocMatch = String(match);
         if (!match) continue;
         matches += 1;
-        shown.add(item);
-        groupForItem(item)?.querySelectorAll('a[role="treeitem"]').forEach(inner => shown.add(inner));
-        for (let parent = parentItem(item); parent; parent = parentItem(parent)) {
-            shown.add(parent);
-            opened.add(parent);
-        }
+        shown.add(link);
+        sublistFor(link)?.querySelectorAll('li > a').forEach(inner => shown.add(inner));
+        for (let parent = parentLink(link); parent; parent = parentLink(parent)) shown.add(parent);
     }
-    for (const item of items) {
-        item.parentElement.hidden = !shown.has(item);
-        if (groupForItem(item)) setExpanded(item, opened.has(item));
-    }
+    for (const link of links) link.parentElement.hidden = !shown.has(link);
+    nestedLists().forEach(nested => { nested.hidden = false; });
     renderCurrentMarker();
     announceFind(matches);
 }
@@ -222,14 +200,12 @@ function clearFind({ keepText = false } = {}) {
     clearTimeout(findStatusTimer);
     if (findInput && !keepText) findInput.value = '';
     if (findStatus) findStatus.textContent = '';
-    if (!expandedBeforeFind) return;
-    for (const item of items) {
-        item.parentElement.hidden = false;
-        delete item.dataset.webbookTocMatch;
+    if (!links.some(link => 'webbookTocMatch' in link.dataset)) return;
+    for (const link of links) {
+        link.parentElement.hidden = false;
+        delete link.dataset.webbookTocMatch;
     }
-    expandedBeforeFind.forEach((expanded, item) => setExpanded(item, expanded));
-    expandedBeforeFind = null;
-    renderCurrentMarker();
+    applyDepth(depth);
 }
 
 // After a pause in typing, as book search does, so it isn't read out on every key
@@ -244,7 +220,7 @@ function announceFind(matches) {
 function addDepthControl() {
     const header = toc.querySelector('#webbook-toc-header');
     if (!header || header.querySelector('#webbook-toc-depth')) return;
-    const maxDepth = Math.max(...items.map(itemDepth));
+    const maxDepth = Math.max(...links.map(linkDepth));
     if (maxDepth <= 1) return;
     const wrapper = document.createElement('div');
     wrapper.id = 'webbook-toc-depth-control';
@@ -253,32 +229,32 @@ function addDepthControl() {
     label.textContent = 'Show levels';
     const select = document.createElement('select');
     select.id = 'webbook-toc-depth';
-    for (let level = 1; level <= Math.min(3, maxDepth - 1); level += 1) {
-        select.add(new Option(String(level), String(level)));
+    for (const value of [...DEPTHS.slice(0, Math.min(3, maxDepth - 1)), 'all']) {
+        select.add(new Option(value === 'all' ? 'All' : value, value));
     }
-    select.add(new Option('All', 'all'));
     select.addEventListener('change', () => {
         clearFind();
         writeDepth(select.value);
         applyDepth(select.value);
+        // The select already says which it is; this is for anyone not hearing it
+        announceReaderAction(levelsMessage(select.value), { show: false });
     });
     wrapper.append(label, select);
     header.append(wrapper);
 }
 
-function applySavedDepth() {
-    const select = toc.querySelector('#webbook-toc-depth');
-    if (!select) return;
-    const saved = readDepth();
-    const available = Array.from(select.options, option => option.value);
-    select.value = available.includes(saved) ? saved : 'all';
-    applyDepth(select.value);
+function depthSelect() {
+    return toc?.querySelector('#webbook-toc-depth') || null;
+}
+
+function depthValues() {
+    return Array.from(depthSelect()?.options || [], option => option.value);
 }
 
 function readDepth() {
     try {
         const value = localStorage.getItem(DEPTH_KEY);
-        return ['1', '2', '3', 'all'].includes(value) ? value : 'all';
+        return DEPTHS.includes(value) ? value : 'all';
     } catch {
         return 'all';
     }
@@ -288,160 +264,66 @@ function writeDepth(value) {
     try { localStorage.setItem(DEPTH_KEY, value); } catch { }
 }
 
+// Hides the lists of sections deeper than the chosen level
 function applyDepth(value) {
-    const depth = value === 'all' ? Infinity : Number(value);
-    items.forEach(item => {
-        if (groupForItem(item)) setExpanded(item, itemDepth(item) < depth);
-    });
-    const current = actualCurrent || items.find(item => item.getAttribute('aria-current') === 'page');
-    if (current) expandPath(current);
-    const focused = document.activeElement?.matches?.('[role="treeitem"]') ? document.activeElement : null;
-    if (focused && !isVisible(focused)) moveFocusToItem(nearestVisibleItem(focused));
+    depth = depthValues().includes(value) ? value : 'all';
+    const select = depthSelect();
+    if (select) select.value = depth;
+    const shownLevels = depth === 'all' ? Infinity : Number(depth);
+    nestedLists().forEach(nested => { nested.hidden = listLevel(nested) > shownLevels; });
     renderCurrentMarker();
-}
-
-function handleTreeClick(event) {
-    const chevron = event.target instanceof Element ? event.target.closest('.webbook-toc-chevron') : null;
-    if (!chevron || !tree.contains(chevron)) return;
-    event.preventDefault();
-    event.stopPropagation();
-    const item = directChild(chevron.parentElement, 'a');
-    if (item) {
-        setExpanded(item, item.getAttribute('aria-expanded') !== 'true');
-        renderCurrentMarker();
-    }
-}
-
-function handleTreeKeydown(event) {
-    const item = event.target instanceof Element ? event.target.closest('[role="treeitem"]') : null;
-    if (!item || !tree.contains(item) || event.altKey || event.ctrlKey || event.metaKey) return;
-    const visible = visibleItems();
-    const index = visible.indexOf(item);
-    let target = null;
-
-    if (event.key === 'ArrowDown') target = visible[index + 1];
-    else if (event.key === 'ArrowUp') {
-        target = visible[index - 1];
-        if (!target && findInput) {
-            event.preventDefault();
-            findInput.focus();
-            return;
-        }
-    }
-    else if (event.key === 'Home') target = visible[0];
-    else if (event.key === 'End') target = visible.at(-1);
-    else if (event.key === 'ArrowRight') {
-        const group = groupForItem(item);
-        if (group && item.getAttribute('aria-expanded') !== 'true') setExpanded(item, true);
-        else if (group) target = firstItem(group);
-    }
-    else if (event.key === 'ArrowLeft') {
-        if (groupForItem(item) && item.getAttribute('aria-expanded') === 'true') setExpanded(item, false);
-        else target = parentItem(item);
-    }
-    else if (event.key === '*') expandSiblingGroups(item);
-    else if (event.key.length === 1) target = typeaheadItem(item, event.key);
-    else return;
-
-    event.preventDefault();
-    if (target) moveFocusToItem(target);
-}
-
-function typeaheadItem(current, character) {
-    clearTimeout(typeaheadTimer);
-    typeahead += character.toLocaleLowerCase(document.documentElement.lang || undefined);
-    typeaheadTimer = setTimeout(() => { typeahead = ''; }, TYPEAHEAD_DELAY);
-    const visible = visibleItems();
-    const start = visible.indexOf(current);
-    const ordered = [...visible.slice(start + 1), ...visible.slice(0, start + 1)];
-    const match = ordered.find(item => itemLabel(item).startsWith(typeahead));
-    if (match) return match;
-    typeahead = character.toLocaleLowerCase(document.documentElement.lang || undefined);
-    return ordered.find(item => itemLabel(item).startsWith(typeahead)) || null;
-}
-
-function itemLabel(item) {
-    return itemText(item).toLocaleLowerCase(document.documentElement.lang || undefined);
+    // A section that's now hidden can't keep focus: the nearest one still shown gets it
+    const focused = document.activeElement;
+    if (focused && links.includes(focused) && !isVisible(focused)) nearestVisibleLink(focused)?.focus({ preventScroll: true });
 }
 
 // The entry's title alone, without the narrated mark
-function itemText(item) {
-    const clone = item.cloneNode(true);
+function linkText(link) {
+    const clone = link.cloneNode(true);
     clone.querySelectorAll('.sr-only, .webbook-narrated-mark').forEach(node => node.remove());
     return clone.textContent.trim().replace(/\s+/g, ' ');
 }
 
-function expandSiblingGroups(item) {
-    const list = item.parentElement?.parentElement;
-    directChildren(list, 'li').forEach(li => {
-        const sibling = directChild(li, 'a');
-        if (sibling && groupForItem(sibling)) setExpanded(sibling, true);
-    });
-}
-
-function setExpanded(item, expanded) {
-    const group = groupForItem(item);
-    if (!group) return;
-    item.setAttribute('aria-expanded', String(expanded));
-    group.hidden = !expanded;
-}
-
-function expandPath(item) {
-    let parent = parentItem(item);
-    while (parent) {
-        setExpanded(parent, true);
-        parent = parentItem(parent);
-    }
-}
-
-function nearestVisibleItem(item) {
-    let candidate = item;
-    while (candidate && !isVisible(candidate)) candidate = parentItem(candidate);
+function nearestVisibleLink(link) {
+    let candidate = link;
+    while (candidate && !isVisible(candidate)) candidate = parentLink(candidate);
     return candidate;
 }
 
-function visibleItems() {
-    return items.filter(isVisible);
+function visibleLinks() {
+    return links.filter(isVisible);
 }
 
-function isVisible(item) {
-    return !item.closest('ol[hidden], li[hidden]');
+function isVisible(link) {
+    return !link.closest('ol[hidden], li[hidden]');
 }
 
-function setRovingItem(item) {
-    items.forEach(candidate => { candidate.tabIndex = candidate === item ? 0 : -1; });
+function nestedLists() {
+    return Array.from(list.querySelectorAll('ol'));
 }
 
-function itemDepth(item) {
-    let depth = 1;
-    let list = item.parentElement?.parentElement;
-    while (list && list !== tree) {
-        if (list.matches('ol')) depth += 1;
-        list = list.parentElement?.closest('ol');
-    }
-    return depth;
+// The outermost list is level 1
+function listLevel(ol) {
+    let level = 1;
+    for (let parent = ol.parentElement?.closest('ol'); parent && list.contains(parent); parent = parent.parentElement?.closest('ol')) level += 1;
+    return level;
 }
 
-function groupForItem(item) {
-    return directChild(item.parentElement, 'ol');
+function linkDepth(link) {
+    return listLevel(link.closest('ol'));
 }
 
-function firstItem(list) {
-    return directChild(directChild(list, 'li'), 'a');
+function sublistFor(link) {
+    return directChild(link.parentElement, 'ol');
 }
 
-function parentItem(item) {
-    const parentList = item.parentElement?.parentElement;
-    if (!parentList || parentList === tree) return null;
+function parentLink(link) {
+    const parentList = link.parentElement?.parentElement;
+    if (!parentList || parentList === list) return null;
     return directChild(parentList.parentElement, 'a');
 }
 
 function directChild(parent, localName) {
     if (!parent) return null;
     return Array.from(parent.children).find(child => child.localName === localName) || null;
-}
-
-function directChildren(parent, localName) {
-    if (!parent) return [];
-    return Array.from(parent.children).filter(child => child.localName === localName);
 }

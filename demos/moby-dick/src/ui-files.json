@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": 0,
-  "revision": "899189e2d3fe4dd5e8e35c88dd12033e3db7763311f8e465a230f66e1c6a3ec1",
+  "revision": "1a4c83600cdffb9e174e1b0ba2713ec666882bdd7c56ce1e16627b1ca67cc8fa",
   "files": [
     {
       "href": "src/css/offline-books.css",
@@ -10,8 +10,8 @@
     },
     {
       "href": "src/css/style.css",
-      "bytes": 81909,
-      "sha256": "68bc4a78c31d234e56f55ba2d353aaa38d1b3bbae0b795f4c533303dde0e0116"
+      "bytes": 81045,
+      "sha256": "c72896300c829300f689b7ae3f8f43767b3134a6426f27ac862038ca399caf7b"
     },
     {
       "href": "src/icons/book.svg",
@@ -120,8 +120,8 @@
     },
     {
       "href": "src/js/keyboard-shortcut-settings.js",
-      "bytes": 16311,
-      "sha256": "4ee936862f3d4e55a1be76d84037cff8400fc0813dae41600b78af3e40a21e4e"
+      "bytes": 16377,
+      "sha256": "693b0cb91be8ebcda91152999e95dcd811f3b7351f230925284ff20b61008332"
     },
     {
       "href": "src/js/keyboard-shortcuts.js",
@@ -130,8 +130,8 @@
     },
     {
       "href": "src/js/main.js",
-      "bytes": 4893,
-      "sha256": "35e1f88262f68462d522d2400dd3e9873a499a923240f60dbbcbf70cc98b53b5"
+      "bytes": 4931,
+      "sha256": "e86120f78ae35df8b905869fab297cb8e918dc4de237b799fa7bfd292860bc99"
     },
     {
       "href": "src/js/media-session.js",
@@ -145,8 +145,8 @@
     },
     {
       "href": "src/js/notes-in-place.js",
-      "bytes": 29100,
-      "sha256": "8c964d6f21d04933a7a2afd66773afe5c0c3ab244df0be51a73b65a23130e9fe"
+      "bytes": 29170,
+      "sha256": "33e2944feb65d59d93a3ad8e83658a439de631c03176f81523a044a8d48c8736"
     },
     {
       "href": "src/js/offline-books.js",
@@ -215,8 +215,8 @@
     },
     {
       "href": "src/js/popovers.js",
-      "bytes": 10970,
-      "sha256": "5bc46ddb5b42ca4ebb73b6193206646a31406963677d1cc2fb7291c763aacecd"
+      "bytes": 11497,
+      "sha256": "d590704b900bc81113856feeaef54a58cfbdf364626a335dc356fe3c9f098aa0"
     },
     {
       "href": "src/js/published-colors.js",
@@ -225,8 +225,8 @@
     },
     {
       "href": "src/js/reader-actions.js",
-      "bytes": 4808,
-      "sha256": "046d618c4941b3dd797a12388203bf94d3eae53dcbacbbfe7fe372c5f056f8a2"
+      "bytes": 5342,
+      "sha256": "cf1828bdbf668d070a084372c75f19fae0dc8389a99ed1d62802d291895f05c6"
     },
     {
       "href": "src/js/reader-shell.js",
@@ -335,13 +335,13 @@
     },
     {
       "href": "src/js/text-spacing.js",
-      "bytes": 6138,
-      "sha256": "373a15877d9ef8ae842066450610841973ce127b0158e5d96da2d7e043a76221"
+      "bytes": 6237,
+      "sha256": "ea5e585edd0f4620a69ba1566fd277bc549e618e15651c8bdb1264927a57ffc5"
     },
     {
       "href": "src/js/toc-tree.js",
-      "bytes": 15962,
-      "sha256": "90fe68dd40a15d85b49ef121863294c1dcf1f514b317899bf17db936c0f49b55"
+      "bytes": 12213,
+      "sha256": "0ce5aef9443d82cff01f59455dae6c966143ff028ba762fd8ba2a7b767b9e65b"
     },
     {
       "href": "src/js/toolbar.js",
@@ -365,8 +365,8 @@
     },
     {
       "href": "src/js/where-am-i.js",
-      "bytes": 8133,
-      "sha256": "4cd17ef92913a2f55d0595d90139601e15e34673f57d9af8ecf01cfe04dc8c11"
+      "bytes": 8202,
+      "sha256": "9c1c1e4bed57c1cda6e3915da449d57086bb893a042327a9aa008588193583ab"
     },
     {
       "href": "src/js/writing-mode.js",

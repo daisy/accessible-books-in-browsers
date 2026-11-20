@@ -477,11 +477,11 @@
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 18015720,
-    "outputBytes": 14412376,
+    "outputBytes": 14413048,
     "settings": [
       "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
     ],
-    "maximumEncoderDriftSeconds": 0.09399999999959618,
+    "maximumEncoderDriftSeconds": 6.821210263296962e-13,
     "cleanup": {
       "enabled": true,
       "targetLufs": -18,
@@ -497,7 +497,8 @@
         "afftdn=nr=8:nf=-35",
         "deesser=i=0.2:m=0.5:f=0.5",
         "adeclick",
-        "two-pass loudnorm"
+        "raised to the loudness target if quieter (never lowered)",
+        "peak limiter"
       ],
       "loudnessRangeBeforeLu": 1.4000000000000021,
       "pages": [

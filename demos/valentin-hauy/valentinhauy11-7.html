@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-webbook-contract="0" data-webbook-has-published="" data-webbook-shell="1"><head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="src/icons/book.svg" type="image/svg+xml" sizes="any">
+    <!-- minimum-scale=1: a vertical book scrolls sideways, and without it a phone browser widens the page to the whole text, so the toolbars and messages run off the screen. Zooming in still works. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+    <title>4. The importance of Haüy in the education of the blind in Sweden and elsewhere – Valentin Haüy - the father of the education for the blind</title>
+    <!-- before the head script, which reads this book's As published setting -->
+    <meta name="webbook-book-id" content="C1093a">
+    <script>
+        (() => {
+            // The reader's layout from the first paint, instead of the plain page's until bootstrap.js
+            // (deferred) runs. Same rule as baselineDecision in bootstrap-policy.js; bootstrap.js still
+            // decides, and if it never runs (it failed to load), the plain page comes back.
+            try {
+                const root = document.documentElement;
+                const url = new URL(location.href);
+                let failed = null;
+                try { failed = sessionStorage.getItem('webbook-ui:' + new URL('./', url).href + ':baseline'); } catch { }
+                const auto = url.searchParams.get('webbook-ui') === 'auto';
+                if (!(location.protocol === 'file:' || (failed || url.searchParams.get('webbook-baseline') === '1') && !auto)) {
+                    root.classList.add('webbook-js');
+                    addEventListener('load', () => { if (!window.webbookBootstrapStarted) root.classList.remove('webbook-js'); });
+                }
+            } catch { }
+            try {
+                const root = document.documentElement;
+                const appearance = localStorage.getItem('webbook-appearance') || 'auto';
+                const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+                const dark = appearance === 'dark' || (appearance === 'auto' && prefersDark);
+                root.classList.toggle('webbook-dark', dark);
+                root.classList.toggle('webbook-light', !dark);
+
+                const storedSize = parseInt(localStorage.getItem('webbook-font-size') || '100', 10);
+                const size = Number.isFinite(storedSize) ? Math.min(200, Math.max(50, storedSize)) : 100;
+                root.style.setProperty('--webbook-main-font-size', `${size}%`);
+                root.style.setProperty('--webbook-font-scale', String(size / 100));
+
+                const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
+                const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
+                root.style.setProperty('--webbook-main-font-family', font);
+
+                // Line length, as text-spacing.js sets it (keep the two the same), so the text
+                // doesn't change width when the reader starts
+                const floor = 'min(100%, 20rem)', narrow = `max(min(50ch, 50%), ${floor})`;
+                const lengths = { narrow, medium: `max(min(65ch, 75%), ${narrow})`, wide: '100%' };
+                const storedLength = localStorage.getItem('webbook-line-length');
+                const length = Object.hasOwn(lengths, storedLength) ? storedLength : 'medium';
+                root.setAttribute('data-webbook-line-length', length);
+                root.style.setProperty('--webbook-line-length', lengths[length]);
+
+                root.classList.toggle('webbook-caption-mode', localStorage.getItem('webbook-caption-mode') === 'true');
+
+                // As published, saved per book (appearance.js)
+                const bookId = document.querySelector('meta[name="webbook-book-id"]')?.content?.trim() || '';
+                const published = root.hasAttribute('data-webbook-has-published')
+                    && localStorage.getItem('webbook-appearance:' + bookId) === 'published';
+                if (published) root.setAttribute('data-webbook-appearance', 'published');
+
+                // Vertical text (writing-mode.js): always as published, else unless the reader chose horizontal
+                const writing = root.getAttribute('data-webbook-writing-mode');
+                const vertical = (writing === 'vertical-rl' || writing === 'vertical-lr')
+                    && (published || localStorage.getItem('webbook-writing-mode') !== 'horizontal');
+                root.classList.toggle('webbook-vertical', vertical);
+                root.classList.toggle('webbook-vertical-lr', vertical && writing === 'vertical-lr');
+            } catch { }
+        })();
+    </script>
+    <link rel="stylesheet" href="src/css/style.css" data-webbook-local-style="">
+<link rel="stylesheet" data-webbook-publisher-style="" href="styles/publisher-3fd9e4f46e0ec175f848.css"><meta name="webbook-source" content="{&quot;file&quot;:&quot;valentin-hauy&quot;,&quot;identifier&quot;:&quot;C1093a&quot;,&quot;converter&quot;:&quot;1.0.0&quot;}"><meta name="webbook-ui-channel" content="https://daisy.github.io/accessible-books-in-browsers/v0/"><link rel="preconnect" href="https://daisy.github.io" crossorigin="anonymous"><meta name="referrer" content="no-referrer"><style data-webbook-baseline="">html:not(.webbook-js) body{display:block}html:not(.webbook-js) #webbook-basic-nav{display:flex!important;flex-wrap:wrap;gap:1rem;padding:1rem}html:not(.webbook-js) #webbook-spine-nav{display:none}html:not(.webbook-js) #webbook-toolbar{position:static;display:block!important;padding:1rem;background:transparent}html:not(.webbook-js) #webbook-toolbar audio{display:block!important;width:min(100%,40rem)}html:not(.webbook-js) main{padding:1rem;max-width:65ch;margin:auto}html:not(.webbook-js) #webbook-escape-container{display:none}html:not(.webbook-js) #webbook-skip-link{position:static}html:not(.webbook-js) :target{outline:2px solid currentColor;outline-offset:3px}@media(prefers-color-scheme:dark){html:not(.webbook-js):not(.webbook-light){--theme-bg:#111;--theme-fg:#fff;color-scheme:dark}}</style><meta name="webbook-page-file" content="valentinhauy11-7.html"><meta name="webbook-page-number" content="7"><meta name="webbook-page-count" content="9"><meta name="webbook-page-label" content="Section: 4. The importance of Haüy in the education of the blind in Sweden and elsewhere"><script src="src/js/bootstrap.js" defer="" data-webbook-bootstrap=""></script></head>
+
+<body><a id="webbook-skip-link" class="webbook" href="#webbook-main">Skip to text</a><nav id="webbook-basic-nav" aria-label="Book"><a href="toc.html#toc-1-6">Contents</a><a href="pages.html">Go to page</a><a href="about.html">About</a><a href="valentinhauy11-6.html" rel="prev" id="webbook-basic-previous">Previous</a><a href="valentinhauy11-8.html" rel="next" id="webbook-basic-next">Next</a></nav><main id="webbook-main" class="webbook-style-not-italic webbook-style-unbold" data-webbook-print-page-before="23"><h2 id="rgn_cnt_0434" class="webbook-style-not-italic webbook-style-bold" tabindex="-1">
+			4. The importance of Haüy in the education of the blind in Sweden and elsewhere
+		<a href="#rgn_cnt_0434" rel="bookmark" class="webbook" title="Link to 4. The importance of Haüy in the education of the blind in Sweden and elsewhere" aria-label="Link to 4. The importance of Haüy in the education of the blind in Sweden and elsewhere" data-webbook-reader=""><svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" data-webbook-reader=""><g transform="rotate(135 12 12)" data-webbook-reader=""><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor" data-webbook-reader=""></path></g></svg></a></h2>
+		<p>
+			Blind individuals have probably been educated to some degree or other in a number of countries throughout the world for many centuries (Johansson 1974, Kretschmer 1937, Pritchard 1963). Organised education of the blind, however, did not exist before the end of the 18th century and the beginning of the 19th century.
+		</p>
+		<p>
+			D.G. Pritchard (1965) demonstrated that organised education of the blind began in Britain in the 1780s, independent of Haüy, but that rumours of his work reached that country after a few years. Education of the blind in Britain, which was entirely private, initially only aimed at teaching the pupils some sort of handicraft while education proper can be said to have commenced in 1800.
+		</p>
+		<p>
+			Education of the blind in the German-speaking world began, give or take a few years, at the period when Haüy initiated his activities. In both cases John Locke and other Enlightenment philosophers exerted a powerful influence over the pioneers of education for the blind. Another pioneer in this field was Johan Wilhelm Klein, who in 1804 founded an institute for the blind in Vienna (Eriksson 1998). From the first, Klein regarded his school as a public concern (Förhammar 1991) and his real wish was to integrate blind children into ordinary classes. Klein's institute was from the outset financed by the State, while the institute which Haüy and Zeune founded in Berlin in 1806 also received State funds.
+		</p>
+		<p>
+			The birth of Swedish education for the blind is usually considered to have occurred in 1807 (Förhammar 1991). At that time, the Keeper of Royal Records, Pär Aron Borg, received a visit from the 24- year old Charlotta Seijerling, who had become blind at the age of four and later boarded with the Borg family where she was taught music, writing, arithmetic, German, French, etc.
+       In Berättelse om den i Maj månad 1808 med en blind Elev hållne första Examen (The story of the first exam taken by a blind pupil in May 1808), Pär Aron Borg describes the public examination of Charlotta Seijerling, who was able to demonstrate her skill in reading, singing, playing the piano and the harp and also in "a number of handicrafts, which she had been taught such as spinning, knitting and needlework; and she had, particularly in the latter crafts, acquired such skill that she was able to show a sweater which she had made for herself". (Borg 1883, p. 11 f). This examination was held prior to the funding of the institute. Borg points out that he had only been able to teach her in his "spare moments" and that Seijerling would probably have achieved much better results if she had been able to dedicate more time to her education.
+		</p>
+		<p>
+			After this public examination, Borg asked the king, King Gustav IV Adolf, to contribute financially to extending the institute's activities so that greater numbers of blind persons could be taught. In his letter to the king, he also requested permission to teach the deaf. Borg's petition met with approval and he was granted an annual personal allowance of 450 riksdaler banco (Borg 1883, Johansson 1974). Johansson is of the opinion that this decision led to the establishment in Sweden of an institute for the blind, the deaf and the mentally infirm.
+		</p>
+		<p>
+			<span class="page-normal webbook-style-bold epubtype_pagebreak" role="doc-pagebreak" aria-label="24" id="rgn_cnt_0440" data-webbook-epub-type="pagebreak">
+			24
+		</span>
+		</p>
+		<p>
+			The allowance continued to be paid after the events of March 1809, when Gustav IV Adolf was forced to abdicate in favour of his uncle (Carl XIII).
+		</p>
+		<p>
+			In his application to the monarch for funds, Borg also committed himself to holding annual public examinations of the institute's pupils, as demanded by the new régime, which at the same time had increased the institute's funding (Johansson, 1974).
+		</p>
+		<p>
+			During the Autumn and Winter of 1808 to 1809, Borg initiated teaching activities on a larger scale, by accepting six deaf pupils and one blind pupil. Borg claimed that he was familiar with the educational methods in vogue in other countries in Europe, but that he preferred to follow his own ideas (Förhammar 1991). With regard to the deaf, however, he allowed himself to be oriented by l'épée in his use of sign language and the finger alphabet. Handicrafts formed an important part of his teaching methods, as they had for Haüy.
+		</p>
+		<p>
+			Johansson (1974) believes that it is difficult to form an idea of how the handicapped pupils were taught during the institute's early years on the basis of the material which has survived. Because of the shortage of blind pupils, the institute eventually accepted only deaf children (Johansson 1974). Pär Aron Borg left the institute in 1818, after a series of conflicts, to found a private institute for the deaf in Manhem.
+		</p>
+		<p>
+			Serious debate on organised education for the blind and deaf did not develop until the introduction of the Elementary Schools Law in 1842. During the parliamentary session of 1844 to 1845, education for the disabled was discussed, and in the course of that debate it was in fact suggested that this type of education should be integrated into the general elementary school system (Förhammar 1991). The decision to create a separate school for the blind was taken in the Riddarhus (House of the Nobility) by Nils af Zellén, head of department at the Ministry of Education and Ecclesiastic Affairs. In this debate, Zellén particularly emphasised the element of self-sufficiency and referred to the fact that most civilised countries in Europe had developed a system of education which helped the blind to become self-supporting.
+		</p>
+		<p>
+			Ossian Edmund Borg, the son of Pär Aron Borg, had become director of the General Institute for the Deaf at Manilla and was sent on a tour of Denmark, Germany, Belgium and France for the purpose of studying the progress of the education for the blind in these countries (Förhammar 1991). In 1846, the Riksdag (Swedish parliament) decided that a new department for the blind should be established at Manilla. This regulation of education for the deaf and blind was a symptom, in Förhammars opinion, of the socializing ideas which had inspired the Elementary School Law of 1842. The blind were offered 13 free places (one from each diocese) at the Manilla institute. The curriculum was to include reading, writing, Luther's catechism and handicrafts. Musical skills would also be taught. The children would attend the institute from 12 to 18 years of age (Förhammar 1991). Prior to that, they would be admitted to the school in the locality in which they officially resided.
+		</p>
+		<p>
+			In Denmark, the situation was somewhat different. The Kjaeden Order had been founded towards the end of the 18th century; one of its activities was helping the blind (Förhammar 1991, Johansen 1983). Originally the Order ran an asylum which admitted a certain number of blind persons who were taught handicrafts. This idea originated in France, where the Philanthropic Society carried out similar activities.
+		</p>
+		<p>
+			Word of the school for the blind in Paris reached Copenhagen, and in 1803, a young doctor by the name of P.A. Castberg was commissioned by the Danish government (Cancelliet) to travel to Paris to study in the first place the education of the blind but also to "investigate the organisation of the institutes for the blind which exist in Paris, where the blind, each according to his capacity, are educated to become useful citizens since they are taught different skills in the production of a variety of articles."
+		</p>
+		<p>
+			<span class="page-normal webbook-style-bold epubtype_pagebreak" role="doc-pagebreak" aria-label="25" id="rgn_cnt_0449" data-webbook-epub-type="pagebreak">
+			25
+		</span>
+		</p>
+		<p>
+			Castberg spent the winter of 1804 to 1805 in Paris but there is no written testimony of his having informed the Institute for Blind Youth in Copenhagen of what he had observed. This is probably because the institute was not efficiently organised at that time. A letter from Castberg, however, contains an interesting piece of information; he mentions that during his stay in Paris he tried to buy Haüy's book but that only second-hand copies were to be had (Johansen, 1983). He bought three copies, one of which he kept for himself. One of the other copies eventually arrived in Dresden, where it was translated into German.
+		</p>
+		<p>
+			A pamphlet entitled Journal udgiven til Fordel for Blinde was published in 1811 in Copenhagen in which an article on Haüy, written by Daniel Fürst, a merchant, appeared (Johansen 1983). Fürst writes that he spent six months in 1805 in daily contact with Haüy and that he had learned how to teach the blind from him. It is not known whether Castberg and Fürst knew each other or whether they had met in Paris. Castberg eventually became a leading figure in education for the deaf in Denmark and in 1818 was appointed head of the Manilla Institute in Stockholm.
+		</p>
+		<p>
+			Johansen states that in 1810 the Kjaeden Order was interested in expanding its activities and that one of its members, Brother C.F. Brorson, suggested the creation of a school for blind children. Frederick VI supported the project and personally contributed funds towards it. He himself inaugurated the institute and named it "The Royal Institute for the Blind". Johansen could find no evidence to indicate that Fürst was a member of the Kjaeden Order, although he did find proof that he had approached Brorson after the creation of the institute for the blind and offered to teach there without compensation. The institute's curriculum included reading and writing and Fürst is said to have taught those subjects. Johansen, however, believes that education at the institute could not have been very successful, as Brorson was a decided opponent of the purchase of a printing press for the production of raised print books. The Danish Museum for the Blind, in spite of this opposition to the printing press, contains both a typographic case produced by Haüy and a copy of his famous essay. Were they perhaps Fürst's? Is the book one of the three copies Castberg bought in Paris? These questions remain unanswered. In the 1850s, management of the institute was taken over by the State. Nationalisation was preceded by a commission headed by Professor N.G. Melchior who had visited the institute in Paris in 1852 and seen for himself that blind pupils could learn to read with the help of raised print books. He later stated in his report that the Danish institute had not kept up with developments in this field (Johansen 1983). As a result of Melchior's report, the commission suggested that the institute should employ special teachers to teach the blind pupils to read and write. They should learn not only to write in ink in order to be able to communicate with the sighted, but also the Braille system so that they could communicate with one another. It was further suggested in the report that in their own interest blind children should be taught in their local school during their early years. They would then be admitted to the Institute for the Blind at the age of eleven.
+		</p>
+		<p>
+			Melchior later travelled to England to acquire suitable writing aids for the blind pupils.
+		</p>
+		<p>
+			<span class="page-normal webbook-style-bold epubtype_pagebreak" role="doc-pagebreak" aria-label="26" id="rgn_cnt_0454" data-webbook-epub-type="pagebreak">
+			26
+		</span>
+		</p>
+		<p>
+			In 1855, Haüy's Essai sur l'Education des Aveugles was translated into Danish by a young blind man by the name of Hans S/ondring. The Danish translation was called Om de Blinde (About the Blind). The National Institute for the Blind was inaugurated in 1856; the Kjaeden Order's final contribution to the education of blind children was to assume the costs of the new school building. The Order is still in existence and funds research into the history of the blind. From all this, it is obvious that Haüy's methods did not reach Denmark until the middle of the 19th century, in spite of Fürst's activities.
+		</p>
+		</main><nav id="webbook-spine-nav" aria-label="Spine navigation">
+        <a id="webbook-previous-document" href="valentinhauy11-6.html" rel="prev" title="Previous: 3. Valentin Haüy" aria-label="Previous: 3. Valentin Haüy">Previous</a>
+        <a id="webbook-next-document" href="valentinhauy11-8.html" title="Next: 5. Discussion and conclusions" aria-label="Next: 5. Discussion and conclusions" class="webbook-lightup" rel="next">Next</a>
+    </nav><div id="webbook-toolbar"><audio preload="metadata" src="audio/valentinhauy11-7.mp3" controls=""><track default="" kind="metadata" src="vtt/valentinhauy11-7.vtt"></audio></div><div id="webbook-escape-status" role="status"></div><div id="webbook-resume-banner" role="status" hidden=""></div><script>"use strict";
+(() => {
+  // template/src/js/bootstrap-policy.js
+  var uiKey = (root) => "webbook-ui:" + root;
+  var validVersion = (value) => typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(value);
+  var validOverride = (value) => ["local", "remote", "auto"].includes(value) || value?.startsWith("release:") && validVersion(value.slice(8));
+  function overrideDecision(parameter, stored) {
+    if (!validOverride(parameter)) return { value: stored || null, changed: false };
+    return { value: parameter === "auto" ? null : parameter, changed: true, persistent: parameter === "local" };
+  }
+  function validateManifest(data, { contract, channel, local }) {
+    if (!data || data.contract !== contract) throw new Error("Wrong UI contract");
+    if (data.useLocal === true) return local;
+    if (data.protocol !== void 0 && data.protocol !== 1) throw new Error("Incompatible offline protocol");
+    if (!validVersion(data.version) || data.minBootstrap !== 1) throw new Error("Incompatible release");
+    const base = new URL("releases/" + data.version + "/", channel);
+    const file = (value, fallback) => {
+      if (typeof (value || fallback) !== "string") throw new Error("Missing release file");
+      const url = new URL(value || fallback, channel);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || url.search || url.hash) throw new Error("Invalid release path");
+      return url.href;
+    };
+    return { contract, channel: new URL(channel).href, version: data.version, script: file(data.script), stylesheet: file(data.stylesheet), inventory: file(data.inventory, `releases/${data.version}/ui-files.json`), worker: data.worker ? file(data.worker) : null, protocol: 1, integrity: data.integrity };
+  }
+  function releaseSelection(version, options) {
+    return validateManifest({ contract: options.contract, minBootstrap: 1, version, script: `releases/${version}/main.js`, stylesheet: `releases/${version}/style.css`, worker: `releases/${version}/offline-worker.js` }, options);
+  }
+  function selectionDecision({ channel, override, saved, cached, forceLocal, local }) {
+    if (!channel || override === "local" || forceLocal) return { selected: local };
+    if (override?.startsWith("release:")) return { version: override.slice(8) };
+    if (override === "remote") return { fetch: true };
+    if (saved) return saved.remote?.channel === new URL(channel).href && validVersion(saved.remote.version) ? { version: saved.remote.version, files: saved.remote.files, saved: true } : { selected: local };
+    return cached ? { selected: cached, refresh: true } : { fetch: true };
+  }
+  var sri = (hex) => "sha256-" + btoa(String.fromCharCode(...hex.match(/../g).map((byte) => parseInt(byte, 16))));
+  function verifyInventory(selection, inventory) {
+    if (inventory?.version !== 1 || inventory.contract !== selection.contract || !Array.isArray(inventory.files)) throw new Error("Missing compatible release inventory");
+    const base = new URL("releases/" + selection.version + "/", selection.channel), files = /* @__PURE__ */ new Map();
+    for (const file of inventory.files) {
+      const url = new URL(file.href || file.url, base);
+      if (url.origin !== base.origin || !url.href.startsWith(base.href) || url.search || url.hash || /[\\\u0000]|(?:^|\/)\.\.(?:\/|$)/.test(decodeURIComponent(url.pathname)) || !/^[a-f0-9]{64}$/.test(file.sha256 || "") || files.has(url.href)) throw new Error("Invalid release integrity inventory");
+      files.set(url.href, file.sha256);
+    }
+    const integrity = {};
+    for (const name of ["script", "stylesheet"]) {
+      const hash = files.get(selection[name]);
+      if (!hash) throw new Error("Release integrity is missing for " + name);
+      integrity[name] = sri(hash);
+      if (selection.integrity?.[name] && selection.integrity[name] !== integrity[name]) throw new Error("Conflicting release integrity");
+    }
+    if (selection.worker && !files.has(selection.worker)) throw new Error("Worker integrity is missing");
+    return { ...selection, integrity };
+  }
+  function failureDecision(local, startup) {
+    return local ? "baseline" : startup ? "reload-local" : "local";
+  }
+  function validChannel(value) {
+    try {
+      const url = new URL(value);
+      return (url.protocol === "https:" || url.protocol === "http:" && ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname)) && !url.username && !url.password && !url.search && !url.hash && url.pathname.endsWith("/") ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+  var baselineDecision = ({ file, failed, urlBaseline, auto }) => Boolean(file || (failed || urlBaseline) && !auto);
+  var finalSelection = (selected, { bad, forceLocal, local }) => !selected.local && bad || forceLocal ? local : selected;
+
+  // template/src/js/bootstrap-source.js
+  (async () => {
+    if (window.webbookBootstrapStarted) return;
+    window.webbookBootstrapStarted = true;
+    const root = document.documentElement, contract = Number(root.dataset.webbookContract);
+    const book = new URL("./", location.href), channelValue = document.querySelector('meta[name="webbook-ui-channel"]')?.content;
+    const key = uiKey(book.href), baselineKey = key + ":baseline";
+    const read = (store, name) => {
+      try {
+        return store.getItem(name);
+      } catch {
+        return null;
+      }
+    };
+    const write = (store, name, value) => {
+      try {
+        if (value === null) store.removeItem(name);
+        else store.setItem(name, value);
+      } catch {
+      }
+    };
+    let localStorageSafe, sessionStorageSafe;
+    try {
+      localStorageSafe = localStorage;
+    } catch {
+    }
+    try {
+      sessionStorageSafe = sessionStorage;
+    } catch {
+    }
+    const local = {
+      script: new URL("src/js/main.js", book).href,
+      stylesheet: new URL("src/css/style.css", book).href,
+      local: true
+    };
+    const baseline = () => {
+      root.classList.remove("webbook-js");
+      root.dataset.webbookUi = "baseline";
+    };
+    const entryURL = new URL(location.href);
+    if (entryURL.searchParams.get("webbook-ui") === "auto") {
+      write(sessionStorageSafe, baselineKey, null);
+      write(sessionStorageSafe, key + ":force-local", null);
+      entryURL.searchParams.delete("webbook-ui-fallback");
+      entryURL.searchParams.delete("webbook-baseline");
+    }
+    if (baselineDecision({ failed: read(sessionStorageSafe, baselineKey), urlBaseline: entryURL.searchParams.get("webbook-baseline") === "1", auto: entryURL.searchParams.get("webbook-ui") === "auto", file: location.protocol === "file:" })) {
+      baseline();
+      return;
+    }
+    root.classList.add("webbook-js");
+    if (document.readyState === "loading")
+      await new Promise(
+        (resolve) => document.addEventListener("DOMContentLoaded", resolve, { once: true })
+      );
+    const channel = validChannel(channelValue);
+    const policy = { contract, channel, local };
+    const validate = (data) => validateManifest(data, policy);
+    async function fetchManifest() {
+      const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 1500);
+      try {
+        const response = await fetch(new URL("current.json", channel), {
+          signal: controller.signal,
+          credentials: "omit",
+          cache: "no-cache",
+          referrerPolicy: "no-referrer"
+        });
+        if (!response.ok) throw new Error("Channel unavailable");
+        const data = await response.json();
+        validate(data);
+        write(localStorageSafe, key + ":manifest", JSON.stringify(data));
+        return validate(data);
+      } catch {
+        return local;
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+    let override = read(sessionStorageSafe, key + ":override") || read(localStorageSafe, key + ":override");
+    const url = new URL(location.href), parameter = url.searchParams.get("webbook-ui");
+    const overrideChange = overrideDecision(parameter, override);
+    if (overrideChange.changed) {
+      override = overrideChange.value;
+      write(localStorageSafe, key + ":override", overrideChange.persistent ? override : null);
+      write(sessionStorageSafe, key + ":override", overrideChange.persistent ? null : override);
+      url.searchParams.delete("webbook-ui");
+      if (parameter === "auto") {
+        url.searchParams.delete("webbook-ui-fallback");
+        url.searchParams.delete("webbook-baseline");
+      }
+      try {
+        history.replaceState(history.state, "", url);
+      } catch {
+      }
+    }
+    async function savedUI() {
+      const worker = navigator.serviceWorker?.controller;
+      if (!worker) return null;
+      const ask = (command) => new Promise((resolve) => {
+        const pipe = new MessageChannel(), timer = setTimeout(() => {
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }, 1500);
+        pipe.port1.onmessage = (event) => {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve(event.data);
+        };
+        try {
+          worker.postMessage({ webbookOffline: 1, protocol: 1, command }, [pipe.port2]);
+        } catch {
+          clearTimeout(timer);
+          pipe.port1.close();
+          resolve({ unknown: true });
+        }
+      });
+      let reply = await ask("saved-ui");
+      if (reply.error) reply = await ask("status");
+      if (reply.unknown || reply.error) return { unknown: true };
+      const value = reply.result;
+      if (value && "ui" in value) return value.recovering ? null : value.ui;
+      if (value?.recovering) return null;
+      return value?.complete ? value.saved?.ui || null : value?.saved ? { unknown: true } : null;
+    }
+    let selected = local, savedFiles;
+    if (channel) {
+      const saved = override === "local" ? null : await savedUI();
+      let cached;
+      try {
+        cached = validate(JSON.parse(read(localStorageSafe, key + ":manifest")));
+      } catch {
+      }
+      const decision = selectionDecision({
+        channel,
+        override,
+        saved,
+        cached,
+        local,
+        forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local"
+      });
+      try {
+        selected = decision.version ? releaseSelection(decision.version, policy) : decision.fetch ? await fetchManifest() : decision.selected;
+        if (decision.saved) savedFiles = decision.files;
+        if (decision.refresh) fetchManifest();
+      } catch {
+        selected = local;
+      }
+    }
+    selected = finalSelection(selected, { local, bad: read(localStorageSafe, key + ":bad:" + selected.version) || read(sessionStorageSafe, key + ":bad:" + selected.version), forceLocal: read(sessionStorageSafe, key + ":force-local") || entryURL.searchParams.get("webbook-ui-fallback") === "local" });
+    async function load(selection) {
+      if (!selection.local) {
+        let inventory;
+        if (savedFiles) inventory = { version: 1, contract, files: savedFiles };
+        else {
+          const response = await fetch(selection.inventory, { mode: "cors", credentials: "omit", referrerPolicy: "no-referrer", signal: AbortSignal.timeout(5e3) });
+          if (!response.ok) throw new Error("Release integrity inventory unavailable");
+          inventory = await response.json();
+        }
+        selection = verifyInventory(selection, inventory);
+      }
+      const localLink = document.querySelector("link[data-webbook-local-style]");
+      let remoteLink;
+      if (!selection.local) {
+        remoteLink = document.createElement("link");
+        remoteLink.rel = "stylesheet";
+        remoteLink.href = selection.stylesheet;
+        remoteLink.crossOrigin = "anonymous";
+        remoteLink.referrerPolicy = "no-referrer";
+        remoteLink.dataset.webbookUiStyle = "";
+        remoteLink.media = "not all";
+        remoteLink.integrity = selection.integrity.stylesheet;
+        try {
+          await new Promise((resolve, reject) => {
+            const timer = setTimeout(() => reject(new Error("Stylesheet timeout")), 5e3);
+            remoteLink.onload = () => {
+              clearTimeout(timer);
+              resolve();
+            };
+            remoteLink.onerror = () => {
+              clearTimeout(timer);
+              reject(new Error("Stylesheet unavailable"));
+            };
+            document.head.append(remoteLink);
+          });
+        } catch (error) {
+          remoteLink.remove();
+          throw error;
+        }
+      }
+      let module;
+      let scriptURL = selection.script, revoke;
+      try {
+        if (!selection.local) {
+          const response = await fetch(selection.script, {
+            mode: "cors",
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            signal: AbortSignal.timeout(5e3)
+          });
+          if (!response.ok) throw new Error("Reader unavailable");
+          const bytes = await response.arrayBuffer(), digest = await crypto.subtle.digest("SHA-256", bytes);
+          const integrity = "sha256-" + btoa(String.fromCharCode(...new Uint8Array(digest)));
+          if (integrity !== selection.integrity.script)
+            throw new Error("Reader integrity check failed");
+          scriptURL = URL.createObjectURL(new Blob([bytes], { type: "text/javascript" }));
+          revoke = scriptURL;
+        }
+        module = await Promise.race([
+          import(scriptURL),
+          new Promise(
+            (_, reject) => setTimeout(() => reject(new Error("Reader download timeout")), 5e3)
+          )
+        ]);
+        if (typeof module.init !== "function") throw new Error("Missing reader init");
+      } catch (error) {
+        remoteLink?.remove();
+        throw error;
+      } finally {
+        if (revoke) URL.revokeObjectURL(revoke);
+      }
+      if (remoteLink) remoteLink.media = "all";
+      if (localLink) localLink.disabled = !selection.local;
+      window.webbookUI = selection;
+      root.dataset.webbookUi = selection.local ? "local" : selection.version;
+      let startupTimer;
+      try {
+        await Promise.race([
+          module.init(),
+          new Promise((_, reject) => {
+            startupTimer = setTimeout(() => reject(new Error("Reader startup timeout")), 1e4);
+          })
+        ]);
+        write(sessionStorageSafe, key + ":force-local", null);
+      } catch (error) {
+        error.webbookStartup = true;
+        throw error;
+      } finally {
+        clearTimeout(startupTimer);
+      }
+    }
+    async function failLocal() {
+      write(sessionStorageSafe, baselineKey, "1");
+      if (read(sessionStorageSafe, baselineKey)) location.reload();
+      else {
+        const target = new URL(location.href);
+        target.searchParams.set("webbook-baseline", "1");
+        location.replace(target);
+      }
+    }
+    try {
+      await load(selected);
+    } catch (error) {
+      const failure = failureDecision(selected.local, error.webbookStartup);
+      if (failure === "reload-local") {
+        write(localStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":bad:" + selected.version, "1");
+        write(sessionStorageSafe, key + ":force-local", "1");
+        if (read(sessionStorageSafe, key + ":force-local")) location.reload();
+        else {
+          const target = new URL(location.href);
+          target.searchParams.set("webbook-ui-fallback", "local");
+          location.replace(target);
+        }
+      } else if (failure === "local") {
+        try {
+          await load(local);
+        } catch {
+          await failLocal();
+        }
+      } else await failLocal();
+    }
+  })();
+})();
+</script></body></html>

@@ -158,10 +158,11 @@ function accessibleName(elm) {
 
 function panelDetail(panel, active) {
     if (panel.id === 'webbook-toc-nav') {
-        const item = active.closest('[role="treeitem"]');
-        if (!item) return '';
-        let level = 1;
-        for (let group = item.parentElement?.closest('[role="group"]'); group && panel.contains(group); group = group.parentElement?.closest('[role="group"]')) level++;
+        // The sections are nested lists of links; the outermost list is level 1
+        const item = active.closest('li > a');
+        if (!item || !panel.contains(item)) return '';
+        let level = 0;
+        for (let nested = item.closest('ol, ul'); nested && panel.contains(nested); nested = nested.parentElement?.closest('ol, ul')) level++;
         return `‘${plainName(item)}’, level ${level}.`;
     }
     if (panel.id === 'webbook-settings') {

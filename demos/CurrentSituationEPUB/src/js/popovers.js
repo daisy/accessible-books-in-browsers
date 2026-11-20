@@ -1,6 +1,7 @@
 import { lastNarratedElement, readingLine } from './narration-position.js';
 import { readingEnd, readingStart, viewportLength } from './reading-axis.js';
 import { registerAction } from './reader-actions.js';
+import { focusTocFind, tocFindAvailable } from './toc-tree.js';
 import { pageAudio } from './dom-utils.js';
 
 const WEBBOOK_POPOVER_IDS = ['webbook-toc-nav', 'webbook-menu', 'webbook-settings', 'webbook-info', 'webbook-search'];
@@ -23,9 +24,15 @@ export function initPopoverActions() {
         ['open-search', 'Search', 'webbook-search', 'KeyF'],
         ['open-about', 'About this publication', 'webbook-info', 'KeyO']
     ]) {
-        registerAction({ id, label, group: 'Panels', defaultKeys: [{ code, alt: true, shift: true }],
-            isAvailable: () => typeof document.getElementById(popoverId)?.showPopover === 'function',
+        // Search's key goes to Find a section while the table of contents is open
+        const findsInContents = id === 'open-search';
+        registerAction({ id, label: findsInContents ? 'Search (in the table of contents: Find a section)' : label,
+            group: 'Panels', defaultKeys: [{ code, alt: true, shift: true }],
+            ...(findsInContents ? { inPanels: true } : {}),
+            isAvailable: () => typeof document.getElementById(popoverId)?.showPopover === 'function'
+                && (!findsInContents || tocFindAvailable() || !document.querySelector('.webbook:popover-open')),
             run: () => {
+                if (findsInContents && focusTocFind()) return;
                 const popover = document.getElementById(popoverId);
                 openedByPointer.delete(popoverId);
                 // Establish the same focus-return point as opening the panel from its toolbar.

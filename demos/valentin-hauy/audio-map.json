@@ -1,0 +1,253 @@
+{
+  "version": 1,
+  "duration": 10391.856999999998,
+  "pages": [
+    {
+      "href": "index.html",
+      "title": "Valentin Haüy - the father of the education for the blind",
+      "start": 0,
+      "duration": 130.951,
+      "audio": "audio/index.mp3"
+    },
+    {
+      "href": "valentinhauy11-2.html",
+      "title": "List of contents",
+      "start": 130.951,
+      "duration": 180.049,
+      "audio": "audio/valentinhauy11-2.mp3"
+    },
+    {
+      "href": "valentinhauy11-3.html",
+      "title": "Preface",
+      "start": 311,
+      "duration": 195.455,
+      "audio": "audio/valentinhauy11-3.mp3"
+    },
+    {
+      "href": "valentinhauy11-4.html",
+      "title": "1. Research questions",
+      "start": 506.45500000000004,
+      "duration": 107.179,
+      "audio": "audio/valentinhauy11-4.mp3"
+    },
+    {
+      "href": "valentinhauy11-5.html",
+      "title": "2. Purpose, method and sources",
+      "start": 613.634,
+      "duration": 731.326,
+      "audio": "audio/valentinhauy11-5.mp3"
+    },
+    {
+      "href": "valentinhauy11-6.html",
+      "title": "3. Valentin Haüy",
+      "start": 1344.96,
+      "duration": 6270.165999999997,
+      "audio": "audio/valentinhauy11-6.mp3"
+    },
+    {
+      "href": "valentinhauy11-7.html",
+      "title": "4. The importance of Haüy in the education of the blind in Sweden and elsewhere",
+      "start": 7615.1259999999975,
+      "duration": 1172.24,
+      "audio": "audio/valentinhauy11-7.mp3"
+    },
+    {
+      "href": "valentinhauy11-8.html",
+      "title": "5. Discussion and conclusions",
+      "start": 8787.365999999998,
+      "duration": 985.168,
+      "audio": "audio/valentinhauy11-8.mp3"
+    },
+    {
+      "href": "valentinhauy11-9.html",
+      "title": "References",
+      "start": 9772.533999999998,
+      "duration": 619.323,
+      "audio": "audio/valentinhauy11-9.mp3"
+    }
+  ],
+  "chapters": [
+    {
+      "title": "List of contents",
+      "href": "valentinhauy11-2.html",
+      "time": 130.951
+    },
+    {
+      "title": "Preface",
+      "href": "valentinhauy11-3.html",
+      "time": 311
+    },
+    {
+      "title": "1. Research questions",
+      "href": "valentinhauy11-4.html",
+      "time": 506.45500000000004
+    },
+    {
+      "title": "2. Purpose, method and sources",
+      "href": "valentinhauy11-5.html",
+      "time": 613.634
+    },
+    {
+      "title": "3. Valentin Haüy",
+      "href": "valentinhauy11-6.html",
+      "time": 1344.96
+    },
+    {
+      "title": "4. The importance of Haüy in the education of the blind in Sweden and elsewhere",
+      "href": "valentinhauy11-7.html",
+      "time": 7615.1259999999975
+    },
+    {
+      "title": "5. Discussion and conclusions",
+      "href": "valentinhauy11-8.html",
+      "time": 8787.365999999998
+    },
+    {
+      "title": "References",
+      "href": "valentinhauy11-9.html",
+      "time": 9772.533999999998
+    }
+  ],
+  "toc": [
+    {
+      "href": "index.html#ops1",
+      "time": 0,
+      "end": 6.454000000000001
+    },
+    {
+      "href": "valentinhauy11-2.html",
+      "time": 130.951,
+      "end": 133.77599999999998
+    },
+    {
+      "href": "valentinhauy11-3.html",
+      "time": 311,
+      "end": 315.903
+    },
+    {
+      "href": "valentinhauy11-4.html",
+      "time": 506.45500000000004,
+      "end": 513.269
+    },
+    {
+      "href": "valentinhauy11-5.html",
+      "time": 613.634,
+      "end": 623.605
+    },
+    {
+      "href": "valentinhauy11-6.html",
+      "time": 1344.96,
+      "end": 1353.948
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0128",
+      "time": 1353.948,
+      "end": 1360.429
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0136",
+      "time": 1739.185,
+      "end": 1747.826
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0140",
+      "time": 1968.906,
+      "end": 1979.5430000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0148",
+      "time": 2149.438,
+      "end": 2163.563
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0168",
+      "time": 2434.8150000000005,
+      "end": 2450.7700000000004
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0178",
+      "time": 2917.8820000000005,
+      "end": 2929.7640000000006
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0195",
+      "time": 3735.905000000001,
+      "end": 3745.710000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0234",
+      "time": 4305.424000000001,
+      "end": 4316.226000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0238",
+      "time": 4451.891000000001,
+      "end": 4463.869000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0239",
+      "time": 4463.869000000001,
+      "end": 4472.844000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0250",
+      "time": 4916.3110000000015,
+      "end": 4925.750000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0252",
+      "time": 5077.825000000001,
+      "end": 5088.710000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0285",
+      "time": 6669.5170000000035,
+      "end": 6682.147000000004
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0291",
+      "time": 6854.894000000003,
+      "end": 6863.121000000003
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0302",
+      "time": 7211.718000000002,
+      "end": 7223.350000000001
+    },
+    {
+      "href": "valentinhauy11-6.html#rgn_cnt_0398",
+      "time": 7496.28,
+      "end": 7507.415
+    },
+    {
+      "href": "valentinhauy11-7.html",
+      "time": 7615.1259999999975,
+      "end": 7637.230999999997
+    },
+    {
+      "href": "valentinhauy11-8.html",
+      "time": 8787.365999999998,
+      "end": 8800.660999999998
+    },
+    {
+      "href": "valentinhauy11-9.html",
+      "time": 9772.533999999998,
+      "end": 9778.754999999997
+    },
+    {
+      "href": "valentinhauy11-9.html#rgn_cnt_0482",
+      "time": 9780.319999999998,
+      "end": 9781.897999999997
+    },
+    {
+      "href": "valentinhauy11-9.html#rgn_cnt_0504",
+      "time": 10290.881999999998,
+      "end": 10293.374999999998
+    },
+    {
+      "href": "valentinhauy11-9.html#rgn_cnt_0508",
+      "time": 10381.001999999999,
+      "end": 10383.161999999998
+    }
+  ]
+}

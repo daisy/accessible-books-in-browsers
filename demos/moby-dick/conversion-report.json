@@ -2865,11 +2865,11 @@
   "audio": {
     "mode": "small audio (mp3)",
     "sourceBytes": 9131982,
-    "outputBytes": 5614552,
+    "outputBytes": 5614936,
     "settings": [
       "MP3, mono, 24000 Hz, 32 kb/s (libmp3lame)"
     ],
-    "maximumEncoderDriftSeconds": 0.09825200000000223,
+    "maximumEncoderDriftSeconds": 0,
     "cleanup": {
       "enabled": true,
       "targetLufs": -18,
@@ -2885,7 +2885,8 @@
         "afftdn=nr=8:nf=-35",
         "deesser=i=0.2:m=0.5:f=0.5",
         "adeclick",
-        "two-pass loudnorm"
+        "raised to the loudness target if quieter (never lowered)",
+        "peak limiter"
       ],
       "loudnessRangeBeforeLu": 0.8999999999999986,
       "pages": [
@@ -2894,7 +2895,7 @@
           "clippingSamples": 0,
           "loudnessLufs": -24.5,
           "noiseFloorDb": -75.81402,
-          "peakDb": -1.909884
+          "peakDb": -2.08907
         },
         {
           "page": "chapter_002.html",

@@ -376,11 +376,16 @@ function openPhraseNotes() {
         goToNote(phraseReferences[0]);
         return true;
     }
-    phraseMenu.replaceChildren();
+    // A heading and a plain list of buttons, one for each note: standard controls, reached with Tab
+    const heading = document.createElement('h2');
+    heading.id = 'webbook-note-menu-heading';
+    heading.textContent = 'Notes in this phrase';
+    const list = document.createElement('ul');
+    phraseMenu.replaceChildren(heading, list);
     phraseReferences.forEach((reference, index) => {
+        const item = document.createElement('li');
         const button = document.createElement('button');
         button.type = 'button';
-        button.setAttribute('role', 'menuitem');
         const label = document.createElement('span');
         label.className = 'webbook-note-menu-label';
         label.textContent = `Note ${referenceLabel(reference)}`;
@@ -392,7 +397,8 @@ function openPhraseNotes() {
             phraseMenu.hidePopover();
             goToNote(reference);
         });
-        phraseMenu.append(button);
+        item.append(button);
+        list.append(item);
         if (!index) setTimeout(() => button.focus(), 0);
     });
     phraseMenu.showPopover();
@@ -453,21 +459,12 @@ function buildUi() {
     phraseMenu.id = 'webbook-note-menu';
     phraseMenu.className = 'webbook';
     phraseMenu.setAttribute('popover', 'auto');
-    phraseMenu.setAttribute('role', 'menu');
-    phraseMenu.setAttribute('aria-label', 'Notes in this phrase');
-    phraseMenu.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            e.preventDefault();
-            e.stopPropagation();
-            phraseMenu.hidePopover();
+    phraseMenu.setAttribute('aria-labelledby', 'webbook-note-menu-heading');
+    // The popover closes itself on Escape or a click outside; focus goes back to the Note button
+    phraseMenu.addEventListener('toggle', event => {
+        if (event.newState === 'closed' && (!document.activeElement || document.activeElement === document.body || phraseMenu.contains(document.activeElement))) {
             phraseButton.focus({ preventScroll: true });
-            return;
         }
-        if (!['ArrowDown', 'ArrowUp'].includes(e.key)) return;
-        e.preventDefault();
-        const items = Array.from(phraseMenu.querySelectorAll('[role=menuitem]'));
-        const index = items.indexOf(document.activeElement);
-        items[(index + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length]?.focus();
     });
     escapeContainer?.append(status, phraseButton);
 

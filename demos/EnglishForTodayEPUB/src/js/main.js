@@ -18,7 +18,7 @@ import { initToolbarAutoHide } from './toolbar.js';
 import { initInPlaceNavigation } from './in-place-navigation.js';
 import { initPageActions } from './page-entry.js';
 import { initKeyboardShortcuts, initKeyboardShortcutEditorButton } from './keyboard-shortcuts.js';
-import { initTocTree } from './toc-tree.js';
+import { initTocActions, initTocTree } from './toc-tree.js';
 import { initCurrentPrintPage } from './current-print-page.js';
 import { initNotesInPlace } from './notes-in-place.js';
 import { initAgentTools } from './agent-tools.js';
@@ -53,6 +53,7 @@ export async function init() {
     initToolbarAutoHide();
     initPageActions();
     initPopoverActions();
+    initTocActions();
     initCurrentPrintPage();
     initNotesInPlace();
     initCopyContent();

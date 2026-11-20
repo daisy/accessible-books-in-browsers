@@ -5,7 +5,7 @@ const MODIFIER_CODES = /^(Shift|Control|Alt|Meta)(Left|Right)$|^(AltGraph|CapsLo
 const ACTION_ORDER = [
     'play-pause', 'previous-phrase', 'next-phrase', 'go-to-narration', 'play-from-here', 'skip-past', 'rate-down', 'rate-up',
     'previous-page', 'next-page',
-    'open-toc', 'open-settings', 'open-goto-page', 'open-search', 'open-about',
+    'open-toc', 'toc-levels-1', 'toc-levels-2', 'toc-levels-3', 'toc-levels-all', 'open-settings', 'open-goto-page', 'open-search', 'open-about',
     'font-smaller', 'font-larger', 'toggle-caption-mode',
     'export-settings', 'import-settings', 'reset-settings',
     'copy-equation', 'copy-selection', 'copy-code'
