@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": 0,
-  "revision": "08c44b6cc49bfe1ef0e10a68e9baeff87ad405b650e923bab6f7244fa40dcf8e",
+  "revision": "9d9bf037ca61212b963673574e229240d3929886a14c8768a76e4e4d25276fc9",
   "files": [
     {
       "href": "src/css/offline-books.css",
@@ -19,149 +19,69 @@
       "sha256": "31a31f579efab8bdba6de584729dc2fe1c54b2b9a2bd76dd5876219ea80d54d0"
     },
     {
-      "href": "src/js/agent-tools.js",
-      "bytes": 18929,
-      "sha256": "6dce4a892f44c741612bf16f3fabe59581470cf09b333a18e0a60f264aec9cba"
-    },
-    {
-      "href": "src/js/appearance-state.js",
-      "bytes": 207,
-      "sha256": "eff67c5b894808ecde40bb2e84c738c1937b40b994f7d7944e8cc4db886ca7dc"
-    },
-    {
-      "href": "src/js/appearance.js",
-      "bytes": 8498,
-      "sha256": "0aaa31c8b5672f711800c2ced4b1d689ff0297b3a24152bfc57117d766a4dbbf"
-    },
-    {
-      "href": "src/js/autoplay.js",
-      "bytes": 1322,
-      "sha256": "fd1707f3cbb44594faee36337a30e1817d3a3cb3545d401fcf6fc92dd9894c5f"
-    },
-    {
-      "href": "src/js/book-timeline.js",
-      "bytes": 15247,
-      "sha256": "7ae2e9ecd71a94eac2ecc2ddcf544f43ca4ecaeba8c514f6ca63be723fa43b42"
-    },
-    {
-      "href": "src/js/bootstrap-policy.js",
-      "bytes": 4886,
-      "sha256": "eb5772b570843219202a26d0234432d4663d8a1d9d80ba312c2132081fb65094"
-    },
-    {
-      "href": "src/js/bootstrap-source.js",
-      "bytes": 13327,
-      "sha256": "ec8ce4eb1199081fef213ced7012c90a6b99de278e8bae6079337e2c41782797"
-    },
-    {
       "href": "src/js/bootstrap.js",
       "bytes": 16418,
       "sha256": "92171ce0c326f9921f9c455019c82e7b5a11ebd6008ccd0c82ff2d685ad8d595"
     },
     {
-      "href": "src/js/browser-bookmarks.js",
-      "bytes": 5599,
-      "sha256": "81fa52634d359f0856db0810f034f0df51725e00495241de229f51506da1c736"
+      "href": "src/js/chunk-2PIDKBOH.js",
+      "bytes": 209537,
+      "sha256": "51c00b8fa73e901da9ccaf8414e286879dbb512ee02f84f97fd57c4d523fbc64"
     },
     {
-      "href": "src/js/caption-mode.js",
-      "bytes": 13223,
-      "sha256": "6ca7fc66b8bdb91dafc35e5dd6468015fb6ae4cb560301841d249da73461af35"
+      "href": "src/js/chunk-CQENM7MV.js",
+      "bytes": 4760,
+      "sha256": "e2d98f7e66abfcd968374751c67f3bd2309ffd768f3303b9b28f079d337020ac"
     },
     {
-      "href": "src/js/color-contrast.js",
-      "bytes": 8213,
-      "sha256": "f05cd1d260744e265213aa25d45f0b16f0fcfdff00ff3c44d1d7b91067867821"
+      "href": "src/js/chunk-F443KPQR.js",
+      "bytes": 140086,
+      "sha256": "6dd02881f257683edb5dbbc9bef529b3eda58e1828886cf360dc5188fbf156fe"
     },
     {
-      "href": "src/js/continue-playing.js",
-      "bytes": 1450,
-      "sha256": "bf9dc13014de21d1e015cdbda1fb8defc380d6439c61d9e31a6f35a7c75eea6a"
+      "href": "src/js/chunk-FKETWL6Y.js",
+      "bytes": 64129,
+      "sha256": "ed1936774bd39cd4f616c5668842f8adb06033f5f26020379bb50b62dbec7af3"
     },
     {
-      "href": "src/js/copy-content.js",
-      "bytes": 12815,
-      "sha256": "857c6b4dc65b9b89e63116babb4990949d8785c13b0d20e374676f3c2b3ed204"
+      "href": "src/js/chunk-ITUILZ3U.js",
+      "bytes": 183,
+      "sha256": "303a566afd78541eea01836d4d1b3b3669e001a5a1ca2d16df5e63d6f36003bb"
     },
     {
-      "href": "src/js/copy-math.js",
-      "bytes": 6960,
-      "sha256": "c6326c61d3e0611124a7c600e93d86ce67a4d312b68482c7696e4c77267e8873"
+      "href": "src/js/chunk-JJPBXBH7.js",
+      "bytes": 1629,
+      "sha256": "757d830e2920ca12a3d4bd8ab4a21db87e1e06406cbcaf4a6f8b35bef1041c5e"
     },
     {
-      "href": "src/js/cue-selector.js",
-      "bytes": 2394,
-      "sha256": "ce3c33385edf2a25a68fcd8c97cb41589666ed8c8f0cd7934ecc91e775d2c0e4"
+      "href": "src/js/chunk-KMWNL5QT.js",
+      "bytes": 14579,
+      "sha256": "b4ea9ef895b97764b226f76b32c45c71d44db5c17e91e1dba8aa793f75d2d4ac"
     },
     {
-      "href": "src/js/current-print-page.js",
-      "bytes": 3999,
-      "sha256": "e5652c76ae23080835cbf09c915dac5e24719e3471a300703640099a4a8df2e3"
+      "href": "src/js/chunk-SW2AIXYA.js",
+      "bytes": 54103,
+      "sha256": "bb89d2409ee2c8fbe727bb25eee0dca7948b406377fcddea9479b3062b33a342"
     },
     {
-      "href": "src/js/dom-utils.js",
-      "bytes": 1142,
-      "sha256": "cf89ae9bbe7fe872a7297d11b66d39f8ac9a74814e1c4f33e94b55a41f8135a9"
+      "href": "src/js/chunk-VKFVGLPJ.js",
+      "bytes": 13505,
+      "sha256": "b31dfc7302adaedc9544ff19a9705cb1a11f7ce6276845bad180db094f8370dc"
     },
     {
-      "href": "src/js/escapability.js",
-      "bytes": 9604,
-      "sha256": "f81dfb87d3defbb6301228317c3c20de078ac171ba6994ef0e4630feeb65771b"
-    },
-    {
-      "href": "src/js/highlight-settings.js",
-      "bytes": 6611,
-      "sha256": "dd024f30a2e758b9bbc028e21cb168ebed1b526e8d35ac99cc1574d5b91ea0ce"
-    },
-    {
-      "href": "src/js/in-place-navigation.js",
-      "bytes": 17645,
-      "sha256": "f3f1cab8d73249de0a564c37a6f02a094ee71dc6581caad87c05413c7470caac"
-    },
-    {
-      "href": "src/js/keyboard-shortcut-settings.js",
-      "bytes": 16377,
-      "sha256": "693b0cb91be8ebcda91152999e95dcd811f3b7351f230925284ff20b61008332"
-    },
-    {
-      "href": "src/js/keyboard-shortcuts.js",
-      "bytes": 11952,
-      "sha256": "8e8b2e4487018d269792911b2b08470af2f66440c4dd4898c3df83eba10dc5c0"
+      "href": "src/js/chunk-WI63YOJX.js",
+      "bytes": 2297,
+      "sha256": "2e2842bc1e019fd52353467bf0b7438f7b5304f27f2f0715fbb9a704b64794cb"
     },
     {
       "href": "src/js/main.js",
-      "bytes": 4931,
-      "sha256": "e86120f78ae35df8b905869fab297cb8e918dc4de237b799fa7bfd292860bc99"
-    },
-    {
-      "href": "src/js/media-session.js",
-      "bytes": 2686,
-      "sha256": "e4270043bc2cd6ffffd23bd17948f0e503c69d4f9e0c00c4b5a3d5f2a61d9114"
-    },
-    {
-      "href": "src/js/narration-position.js",
-      "bytes": 12119,
-      "sha256": "52295f9fbc8da68570b7f62e75c5660f1443eabfd350aed90fa9934c49f7852e"
-    },
-    {
-      "href": "src/js/notes-in-place.js",
-      "bytes": 29170,
-      "sha256": "33e2944feb65d59d93a3ad8e83658a439de631c03176f81523a044a8d48c8736"
+      "bytes": 87949,
+      "sha256": "cfa249bc9bdb1544938fcf4f513f9c7a82ea489595986585535e5b2a9963ac56"
     },
     {
       "href": "src/js/offline-books.js",
-      "bytes": 7635,
-      "sha256": "3653dd324217dfb24e0bbe2342131b8d2183fd92bc76047cec356f1e6ac413b6"
-    },
-    {
-      "href": "src/js/offline-connectivity.js",
-      "bytes": 808,
-      "sha256": "967a364f1db022c40a14dd910fc6fa4e511dcf23859b69a9c4db13af2d29717f"
-    },
-    {
-      "href": "src/js/offline-discovery.js",
-      "bytes": 9627,
-      "sha256": "985a10684e0db72651d7a8c1381fe540bf330f7db886bb5ff3c5cacefa0893da"
+      "bytes": 7489,
+      "sha256": "c445642c92c8eacb8b35406ca358fb397e725d384a00b2297c4948c06f12c0c1"
     },
     {
       "href": "src/js/offline-download-worker.js",
@@ -179,11 +99,6 @@
       "sha256": "cb5e2940e240b1fa6879157ce220a3ad9e21c22257445e23d4cb903ea74a01e7"
     },
     {
-      "href": "src/js/offline-resources.js",
-      "bytes": 5908,
-      "sha256": "0c165e502d49eafa6008314f790e7b39b94436d1e71d8b131f7182159e239bbb"
-    },
-    {
       "href": "src/js/offline-worker-core.js",
       "bytes": 28511,
       "sha256": "c7decdb46a0662285bdeac82ffe06921485c1a47d008c8f18983479b3f8f1282"
@@ -194,184 +109,9 @@
       "sha256": "24576ecc2ab5199d8c43db2e68b871e39b08d91b8ae13ac92d9af965181b497e"
     },
     {
-      "href": "src/js/offline.js",
-      "bytes": 19956,
-      "sha256": "53dc598664122c0f1888bb948cb17eb0923c333bb7a9175b79c398292d577e98"
-    },
-    {
-      "href": "src/js/page-colors.js",
-      "bytes": 12237,
-      "sha256": "3fe7242c1f120d00bdd349533d4430c3d375110518a3b4d465831cb55d57b589"
-    },
-    {
-      "href": "src/js/page-entry.js",
-      "bytes": 2063,
-      "sha256": "450ea5aa96a5cb61f2292213590adedba3854e0e1ed8e6428d56b01d3dc8efb3"
-    },
-    {
-      "href": "src/js/player.js",
-      "bytes": 25113,
-      "sha256": "6aa07710d5d7efc4d7ef6034251d24391dd50ed3a7d6397765c4c99b89708a36"
-    },
-    {
-      "href": "src/js/popovers.js",
-      "bytes": 11497,
-      "sha256": "d590704b900bc81113856feeaef54a58cfbdf364626a335dc356fe3c9f098aa0"
-    },
-    {
-      "href": "src/js/published-colors.js",
-      "bytes": 3660,
-      "sha256": "85b0de90a4bde72235ce856de43193ecf5eac0ca45d3ec35c614b44ad2063883"
-    },
-    {
-      "href": "src/js/reader-actions.js",
-      "bytes": 5342,
-      "sha256": "cf1828bdbf668d070a084372c75f19fae0dc8389a99ed1d62802d291895f05c6"
-    },
-    {
-      "href": "src/js/reader-shell.js",
-      "bytes": 7061,
-      "sha256": "f5401588bd4c688520fe63fe4bc61a33eb5f1d026cf43eaad2cdb785766b6fee"
-    },
-    {
-      "href": "src/js/reader-updates.js",
-      "bytes": 2614,
-      "sha256": "613deb20ca8daa10be28ddf8011a311eafc91edc34a912fc943291ee1763253b"
-    },
-    {
-      "href": "src/js/reading-axis.js",
-      "bytes": 2835,
-      "sha256": "4748a485d130702c6e07840b4eb94c1e8a3ed24557a9d61e51554be4c888ac71"
-    },
-    {
-      "href": "src/js/remote-ui.js",
-      "bytes": 3231,
-      "sha256": "a1f62854a07ade5de5d7503ffdc9f2c270abe5f61e39e081c2371384db376408"
-    },
-    {
-      "href": "src/js/responsive-equations.js",
-      "bytes": 3254,
-      "sha256": "8a3c978043b9c66ee2c80388b0262a5bbc57df466aba743a384f30c42b6ca501"
-    },
-    {
-      "href": "src/js/responsive-tables.js",
-      "bytes": 2284,
-      "sha256": "7f16e7214d78173121e86c2dcdc9a0d4c69e43c44dd0bfcbc70bee6c16e8e25d"
-    },
-    {
-      "href": "src/js/resume-position.js",
-      "bytes": 5675,
-      "sha256": "778ca2dfe3abdf31a398de4109ef1e4ea51c4e52a2554fa8b0281ec46b48e4c4"
-    },
-    {
-      "href": "src/js/search-anchor.js",
-      "bytes": 1915,
-      "sha256": "be23bf84819bb706221891c00372538c7247b5ff3c79e7f8180c0fbeacc98cf3"
-    },
-    {
-      "href": "src/js/search-ranking.js",
-      "bytes": 831,
-      "sha256": "8c0dc4a817c8a3870787991e64f9256723bcaa5a6fed52c79574dc95748a09e3"
-    },
-    {
-      "href": "src/js/search-text.js",
-      "bytes": 5395,
-      "sha256": "5ddf3509140eccced34beb520930ac4e8fef8ddd4648d0693eff09bec7c8c91a"
-    },
-    {
-      "href": "src/js/search.js",
-      "bytes": 12582,
-      "sha256": "a3faa9ed5af20a91f49ac0d8797f1253139d3143b7d1ddd3ccb7e73c5fb77491"
-    },
-    {
-      "href": "src/js/settings-file.js",
-      "bytes": 5871,
-      "sha256": "0e15dcd9c0f6e4e4832f50b794888874a1a401dbacca67ea5f880b997d22a8fd"
-    },
-    {
-      "href": "src/js/settings-filter.js",
-      "bytes": 7552,
-      "sha256": "bcfb390e160566e5d75590ff500720825e14f3bb908ec0d6d5bf0a02acec0073"
-    },
-    {
-      "href": "src/js/settings-sections.js",
-      "bytes": 6951,
-      "sha256": "d9258cedb1f75741587a366d641911a20d2e1641bd88d1438ba8a4b0c3816ba3"
-    },
-    {
-      "href": "src/js/settings-transfer.js",
-      "bytes": 9511,
-      "sha256": "7880f5a53d73aff3e9afc691df73cbb404064956156b045063ad2a992e5b2262"
-    },
-    {
-      "href": "src/js/settings.js",
-      "bytes": 9673,
-      "sha256": "6a53de66c5f2ad665bd67966fd0e36188664958529b747acc16e61d7809c8069"
-    },
-    {
-      "href": "src/js/skip-link.js",
-      "bytes": 1163,
-      "sha256": "a36c8f14b4c75ee381fb37aa666a3a6431e4adb34e307ecc226cf2d54ddded3e"
-    },
-    {
-      "href": "src/js/skippability.js",
-      "bytes": 8543,
-      "sha256": "08e6fb56317dc69a388255f16d10e8532aa03eb413b11c278451f0ae7e18c648"
-    },
-    {
-      "href": "src/js/stored-settings.js",
-      "bytes": 847,
-      "sha256": "d0a9266c1438b92f5411306b03284597adead6921c5302bf23fc24e718c9aa3c"
-    },
-    {
-      "href": "src/js/structure-context.js",
-      "bytes": 10192,
-      "sha256": "fc664d986329a2ca71883e510e05002da21af17542bb6632408543e0dfd81eaf"
-    },
-    {
-      "href": "src/js/structure-sounds.js",
-      "bytes": 16720,
-      "sha256": "2e80fee5cde9b78f23139011497b721a8873530b374df33b7184977d5a363735"
-    },
-    {
-      "href": "src/js/text-spacing.js",
-      "bytes": 6237,
-      "sha256": "ea5e585edd0f4620a69ba1566fd277bc549e618e15651c8bdb1264927a57ffc5"
-    },
-    {
-      "href": "src/js/toc-tree.js",
-      "bytes": 12213,
-      "sha256": "0ce5aef9443d82cff01f59455dae6c966143ff028ba762fd8ba2a7b767b9e65b"
-    },
-    {
-      "href": "src/js/toolbar.js",
-      "bytes": 4081,
-      "sha256": "d85414eb03f4229accb71a26cd4e440af1cf1b99df4917a1a5f08e69b364058a"
-    },
-    {
       "href": "src/js/vendor/mathml-to-latex.README.md",
       "bytes": 977,
       "sha256": "f73ab47d2c63b992af710b8a1ba2f64f91a7d36da70374a3761fd3efe349dde1"
-    },
-    {
-      "href": "src/js/vendor/mathml-to-latex.js",
-      "bytes": 169560,
-      "sha256": "84957dc66835a363956e32d4859958f4da0f319166bb1f2925d30ba6362d1869"
-    },
-    {
-      "href": "src/js/vendor/minisearch.js",
-      "bytes": 79205,
-      "sha256": "34cba81abaa42a614734150cdc912bf444d7fa5a6558113d6f560e1c7f714e82"
-    },
-    {
-      "href": "src/js/where-am-i.js",
-      "bytes": 8202,
-      "sha256": "9c1c1e4bed57c1cda6e3915da449d57086bb893a042327a9aa008588193583ab"
-    },
-    {
-      "href": "src/js/writing-mode.js",
-      "bytes": 5529,
-      "sha256": "87d63b94dceb37e6a11776f726e742bda8a87a5a957f74d2e5b887e8b29ae581"
     },
     {
       "href": "src/offline-books.html",
