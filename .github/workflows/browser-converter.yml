@@ -1,7 +1,8 @@
 # The browser converter (converter/) publishes a built copy of the converter, which nothing rebuilds
 # automatically: GitHub Pages serves the committed files. This rebuilds it from the current source
 # and fails if the committed converter/dist/ or converter/vendor/ differ, so a converter change can't
-# reach the demos and the command line but not the published browser converter.
+# reach the demos and the command line but not the published browser converter. Then it runs the
+# browser converter's checks in Chrome (converter/check-converter.mjs).
 name: Browser converter is up to date
 
 on:
@@ -49,3 +50,6 @@ jobs:
             exit 1
           fi
           echo "converter/dist and converter/vendor match the source."
+      # ubuntu-latest has Google Chrome installed
+      - name: Check the browser converter in Chrome
+        run: node converter/check-converter.mjs
