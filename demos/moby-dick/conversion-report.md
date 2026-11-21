@@ -4,7 +4,7 @@ READER UPDATES: this book will receive reader updates from the beta channel at h
 
 Source: moby-dick; identifier: urn:isbn:9780316000000; converter: 1.0.0. Keep the source EPUB for future reconversion.
 
-Changes: 3410. Warnings for review: 6. Optional checks: Ace not requested, axe not requested.
+Changes: 3410. Warnings for review: 5. Optional checks: Ace not requested, axe not requested.
 
 ## Options used
 
@@ -1511,7 +1511,7 @@ Loudness range before cleanup: 0.9 LU.
 - chapter_135.html: 1
 - chapter_136.html: 1
 
-## Warnings (6)
+## Warnings (5)
 
 ### Headings (4)
 
@@ -1523,10 +1523,6 @@ Loudness range before cleanup: 0.9 LU.
 ### Link text (1)
 
 - copyright.html: 1 finding — “www.gutenberg.org” does not describe its destination.
-
-### Broken links (1)
-
-- toc-short.html: 1 finding — toc.xhtml points to a page that is not in the converted book.
 
 ## Optional checks
 
