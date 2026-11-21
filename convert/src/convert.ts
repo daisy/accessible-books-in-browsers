@@ -13,7 +13,7 @@ import { createAudioForPage, getMediaSegments, runWithConcurrency, type MediaSeg
 import os from 'os';
 import { openAudioCache } from './audio-cache.js';
 import { readAccessibilityInfo } from './accessibility-info.js';
-import { createOutputStaging, discardOutputStaging, finalizeOutput, outputPath } from './output.js';
+import { checkOutputPath, createOutputStaging, discardOutputStaging, finalizeOutput, outputPath } from './output.js';
 import { transformContent, type TransformedContent } from './content-transform.js';
 import { createSearchData, generateSearchIndex } from './create-search-index.js';
 import * as utils from './utils.js';
@@ -60,6 +60,7 @@ async function convert(input: string, output: string, template: string, options:
         channel = url.href;
     }
     const converterVersion = (await fs.readJson(fileURLToPath(new URL('../package.json', import.meta.url)))).version;
+    await checkOutputPath(output, { input, template });
     const outputPaths = await createOutputStaging(output);
     logger.initLogger(outputPaths.logFile);
 

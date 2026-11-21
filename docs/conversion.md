@@ -44,10 +44,13 @@ Everything below follows these rules. If a change seems to need breaking one, as
 
 ### 1. Stage the output
 
+First, [`checkOutputPath`](../convert/src/output.ts#L54) refuses an output folder that is, contains
+or is inside the EPUB or the template (through links too), since replacing it would delete them.
 [`createOutputStaging`](../convert/src/output.ts#L22) makes a temporary folder, and everything is
-written there. At the end, [`finalizeOutput`](../convert/src/output.ts#L40) moves it into place. If
-anything fails, [`discardOutputStaging`](../convert/src/output.ts#L46) deletes it, so a failed
-conversion never leaves a half-written book behind. The log (`output.log`) starts here
+written there. At the end, [`finalizeOutput`](../convert/src/output.ts#L64) moves it into place: an
+earlier book in the output folder is moved aside first and deleted only once the new one is there.
+If anything fails, [`discardOutputStaging`](../convert/src/output.ts#L73) deletes the temporary
+folder, so a failed conversion never leaves a half-written book behind. The log (`output.log`) starts here
 ([`logger/`](../convert/src/logger/)).
 
 ### 2. Read the EPUB
@@ -281,7 +284,7 @@ so a source chapter called `about.xhtml` becomes `about-content.html`, and its l
 
 ### 11. Finish
 
-The staging folder replaces the output folder ([`finalizeOutput`](../convert/src/output.ts#L40)).
+The staging folder replaces the output folder ([`finalizeOutput`](../convert/src/output.ts#L64)).
 
 ## Converting in the browser
 

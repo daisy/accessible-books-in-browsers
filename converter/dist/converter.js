@@ -2297,6 +2297,7 @@ __export(fs_exports, {
   readJsonSync: () => readJsonSync,
   readdir: () => readdir,
   readdirSync: () => readdirSync,
+  realpath: () => realpath,
   remove: () => remove,
   removeSync: () => removeSync,
   rm: () => rm,
@@ -2399,7 +2400,7 @@ function mkdtempSync(prefix) {
   mkdirSync(p);
   return p;
 }
-var import_path_browserify, import_buffer2, files, dirs, norm, enc, tempCount, later, writeFile, readFile, stat, lstat, readdir, remove, rm, copy, mkdtemp, pathExists, ensureDir, mkdirp, mkdir, readJson, writeJson, outputFile, move, access, promises, constants, vfs, fs_default;
+var import_path_browserify, import_buffer2, files, dirs, norm, enc, tempCount, later, writeFile, readFile, stat, lstat, readdir, remove, rm, copy, mkdtemp, pathExists, ensureDir, mkdirp, mkdir, readJson, writeJson, outputFile, move, realpathOf, realpath, access, promises, constants, vfs, fs_default;
 var init_fs = __esm({
   "shims/fs.js"() {
     init_globals();
@@ -2437,6 +2438,11 @@ var init_fs = __esm({
       copySync(from, to);
       removeSync(from);
     });
+    realpathOf = later((p) => {
+      if (!existsSync(p)) throw notFound(p);
+      return norm(p);
+    });
+    realpath = Object.assign(realpathOf, { native: realpathOf });
     access = later((p) => {
       if (!existsSync(p)) throw notFound(p);
     });
@@ -2473,6 +2479,7 @@ var init_fs = __esm({
       writeJson,
       outputFile,
       move,
+      realpath,
       access,
       promises,
       constants
@@ -22568,10 +22575,40 @@ async function createOutputStaging(output2) {
   await fs_default.ensureDir(paths.vttDir);
   return paths;
 }
+async function realPath(file) {
+  const rest = [];
+  for (let current = import_path6.default.resolve(file); ; current = import_path6.default.dirname(current)) {
+    try {
+      return import_path6.default.join(await fs_default.realpath.native(current), ...rest.reverse());
+    } catch {
+      if (import_path6.default.dirname(current) === current)
+        return import_path6.default.resolve(file);
+      rest.push(import_path6.default.basename(current));
+    }
+  }
+}
+var overlaps = (a, b) => a === b || a.startsWith(b + import_path6.default.sep) || b.startsWith(a + import_path6.default.sep);
+async function checkOutputPath(output2, others) {
+  const target = await realPath(output2);
+  for (const [name3, other] of Object.entries(others)) {
+    if (overlaps(target, await realPath(other)))
+      throw new Error(`The output folder ${output2} overlaps the ${name3 === "input" ? "EPUB" : "template"} (${other}). Choose a separate output folder.`);
+  }
+}
 async function finalizeOutput(paths) {
   await fs_default.ensureDir(import_path6.default.dirname(paths.output));
-  await fs_default.remove(paths.output);
-  await fs_default.move(paths.stagingDir, paths.output, { overwrite: true });
+  const previous = await fs_default.pathExists(paths.output) ? `${paths.output}.webbook-previous-${process.pid}` : null;
+  if (previous)
+    await fs_default.move(paths.output, previous, { overwrite: true });
+  try {
+    await fs_default.move(paths.stagingDir, paths.output);
+  } catch (error) {
+    if (previous)
+      await fs_default.move(previous, paths.output);
+    throw error;
+  }
+  if (previous)
+    await fs_default.remove(previous);
 }
 async function discardOutputStaging(paths) {
   await fs_default.remove(paths.stagingDir);
@@ -26969,6 +27006,7 @@ async function convert(input, output2, template, options = {}) {
     channel = url.href;
   }
   const converterVersion = (await fs_default.readJson(fileURLToPath(new URL("../package.json", import.meta.url)))).version;
+  await checkOutputPath(output2, { input, template });
   const outputPaths = await createOutputStaging(output2);
   initLogger(outputPaths.logFile);
   try {

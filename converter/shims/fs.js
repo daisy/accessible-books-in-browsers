@@ -96,6 +96,9 @@ export const readJson = later(readJsonSync);
 export const writeJson = later((p, value, options) => writeFileSync(p, JSON.stringify(value, null, options?.spaces ?? 0) + '\n')); // fs-extra ends with EOL
 export const outputFile = writeFile;
 export const move = later((from, to) => { copySync(from, to); removeSync(from); });
+// No links in memory: a path is its own real path (output.ts checks overlapping folders with it)
+const realpathOf = later(p => { if (!existsSync(p)) throw notFound(p); return norm(p); });
+export const realpath = Object.assign(realpathOf, { native: realpathOf });
 export const access = later(p => { if (!existsSync(p)) throw notFound(p); });
 export const promises = { readFile, writeFile, stat, readdir, mkdir, rm, access, lstat };
 export const constants = { F_OK: 0, R_OK: 4 };
@@ -106,5 +109,5 @@ export const vfs = { files, dirs, writeFileSync, readFileSync, removeSync, readd
 export default {
     writeFileSync, readFileSync, existsSync, statSync, mkdirSync, readdirSync, removeSync, copySync, truncateSync,
     readJsonSync, openSync, mkdtempSync, writeFile, readFile, stat, lstat, readdir, remove, rm, copy, mkdtemp,
-    pathExists, ensureDir, mkdirp, mkdir, readJson, writeJson, outputFile, move, access, promises, constants
+    pathExists, ensureDir, mkdirp, mkdir, readJson, writeJson, outputFile, move, realpath, access, promises, constants
 };

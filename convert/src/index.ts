@@ -51,7 +51,7 @@ async function main() {
                 }
             );
         });
-    program.parse(process.argv);
+    await program.parseAsync(process.argv);
 }
 
 function canonicalLanguage(value: string): string {
@@ -60,4 +60,8 @@ function canonicalLanguage(value: string): string {
     try { return Intl.getCanonicalLocales(tag)[0]; } catch { throw new Error(`Invalid BCP 47 language tag: ${value}`); }
 }
 
-(async () => await main())();
+// A failed conversion says why in one line, not with a stack trace
+main().catch((error: unknown) => {
+    console.error(`Error: ${error instanceof Error ? error.message : String(error)}`);
+    process.exitCode = 1;
+});
