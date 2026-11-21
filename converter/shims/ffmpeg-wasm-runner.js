@@ -47,13 +47,13 @@ async function put(ffmpeg, file) {
 }
 
 let queue = Promise.resolve();
-// Runs one ffmpeg command line; resolves with { code, log }. Copies the output back.
-// Approach C (?audio=wasm-c): cutting a clip from a source file is done in the browser instead,
-// from the source decoded once (decodeAudioData), rather than ffmpeg decoding it again per clip
+// By default, cut clips from source audio decoded by the browser. Set ?audio=wasm to cut them
+// with FFmpeg.
 const CUT_IN_BROWSER = new URLSearchParams(globalThis.location?.search ?? '').get('audio') !== 'wasm';
 // ?free=off keeps everything to the end, as before, to measure what freeing saves
 const FREE = new URLSearchParams(globalThis.location?.search ?? '').get('free') !== 'off';
-const decoded = new Map();   // source path + rate -> Promise<Float32Array> (mono)
+// Each source path and sample rate maps to a promise for mono samples and the alignment offset.
+const decoded = new Map();
 async function decodeSource(file, rate) {
     const key = `${file}@${rate}`;
     // Only the latest source stays decoded: a page's clips come from one source, in order, and a
@@ -134,6 +134,8 @@ async function cutInBrowser(args) {
     return { code: 0, log: '' };
 }
 
+// Queue a command and resolve with its exit code and log. Write the output to the converter's
+// in-memory file system.
 export function runFfmpeg(args) {
     const run = queue.then(async () => {
         if (CUT_IN_BROWSER) { const done = await cutInBrowser(args); if (done) return done; }

@@ -416,7 +416,7 @@ export async function handleNarratedPhrase(elm) {
     const candidates = referencesInPhrase(elm);
     const resolved = await Promise.all(candidates.map(reference => resolveNote(reference)));
     if (request !== phraseRequest) return;
-    // Notes skipped in the flow (the default) are exactly the ones the button is for
+    // Offer the note button for references in the phrase that resolve to a note.
     const references = candidates.filter((reference, index) => resolved[index]);
     const changed = references.length !== phraseReferences.length || references.some((ref, i) => ref !== phraseReferences[i]);
     phraseReferences = references;

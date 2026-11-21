@@ -1,9 +1,7 @@
-// Runs axe-core on every page of the converted books in a folder (the demos by default), in
-// headless Chrome, and fails if it finds WCAG 2.2 A or AA violations. Each page is checked as it
-// opens; each book's first page is also checked with each panel open, in each Colors choice (light,
-// dark and the four reviewed pairs),
-// and with JavaScript off (the plain navigation and native audio player), with the table of
-// contents open too.
+// Runs axe-core in headless Chrome on converted books (the demos by default) and fails on
+// WCAG 2.2 A or AA violations. Each selected page is checked as it opens. The first page of each
+// book also gets checks in each preset color, with available panels open, and in a simulation of
+// the plain reading layout.
 //
 //   node scripts/check-accessibility.mjs [folder] [--pages N] [--width N] [--report file.json]
 //
@@ -111,9 +109,8 @@ async function checkPage(chrome, url, where, { panels, themes }) {
     return out;
 }
 
-// Without JavaScript. Disabling scripts would stop axe too (it needs timers), so this blocks the
-// reader's script files and undoes what the head's inline script did, which is what a reader
-// without JavaScript gets: the plain navigation, the browser's audio player, no toolbars.
+// Simulate the plain reading layout by blocking /src/js/ requests and removing reader classes
+// after navigation. JavaScript stays enabled for axe, so the inline bootstrap can still run.
 async function checkWithoutJavaScript(chrome, url, where) {
     await chrome.send('Network.enable');
     await chrome.send('Network.setBlockedURLs', { urls: ['*/src/js/*'] });

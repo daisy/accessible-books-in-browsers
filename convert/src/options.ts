@@ -16,7 +16,7 @@ export type WebControl =
     // Radio buttons for a boolean option with two named answers
     | { kind: 'choice'; group: WebGroup; label: string; hint: string;
         choices: Array<{ value: boolean; label: string; hint: string }> }
-    // Checkboxes for a list option, shown under another option and only while it's on
+    // Checkboxes for a list option. The form disables them when the parent option is off.
     | { kind: 'list'; group: WebGroup; label: string; hint: string; parent: string;
         items: Array<{ value: string; label: string }> };
 

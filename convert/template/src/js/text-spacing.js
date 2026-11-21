@@ -1,12 +1,8 @@
 // Saved preferences must also be listed in settings-file.js (export, import and reset).
 import { appendSetting, settingsSection } from './settings-sections.js';
-// Text spacing settings: line spacing, letter spacing, word spacing and line length, for the book's
-// text and caption mode (WCAG 1.4.12's values are among the steps). Each is a few named steps
-// rather than a slider, which is easier by screen reader and by voice. Every option names its value:
-// no "Normal" or "Default" (one
-// sounds better than the others, the other means something else once a setting is global) (user,
-// 2026-11-10). The first spacing steps (stored '') set nothing, so the reader's own CSS applies:
-// line height 1.6 (layout.css), no extra letter or word spacing.
+// Text spacing settings use named steps for screen reader and voice control users. The options
+// include the spacing values in WCAG 1.4.12 and apply to book text and captions. For line, letter
+// and word spacing, an empty stored value uses the reader's CSS defaults.
 
 // Each step: [stored value, label, CSS value]. Line spacing also spaces paragraphs (2em, WCAG's
 // paragraph spacing); see layout.css.
@@ -50,7 +46,8 @@ function lineLength(step) {
     return `max(min(65ch, 75%), ${narrow})`;
 }
 
-// The saved step, else the setting's first choice (an old value such as line spacing 1.5 too)
+// Look up the saved value, then the configured initial value (empty by default).
+// If neither lookup finds a step, use the first choice.
 function stepFor(setting, value) {
     const find = wanted => setting.steps.find(([stepValue]) => stepValue === wanted);
     return find(value) || find(setting.initial ?? '') || setting.steps[0];

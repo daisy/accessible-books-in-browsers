@@ -1,9 +1,7 @@
-// The book's writing styles (plan 28). The converter drops a book's CSS, but some of it is meaning
-// the book states on purpose, mostly for East Asian text: the writing mode, numbers set upright
-// in a vertical line (tate-chū-yoko), emphasis marks, full-width letters, how text is spoken.
-// EPUB 3 states these as -epub- properties, which browsers ignore. This reads the book's own
-// cascade for just these properties and keeps the result as reader classes and <html> data
-// attributes, in standard CSS terms. It never inlines the book's CSS and never changes text.
+// Extract the book's writing properties, including vertical text, upright numbers in vertical
+// lines, emphasis marks and speech hints. Read standard and EPUB-prefixed CSS properties and
+// record the result as reader classes and page attributes. The As published stylesheet is
+// rewritten separately in publisher-styles.ts.
 import path from 'path';
 import css from 'css';
 import * as fileio from './file-io.js';
@@ -13,7 +11,6 @@ import type { ConversionReport } from './conversion-report.js';
 export type BookStylesheet = {
     css: string;
     sourcePath?: string;
-    // The <link>'s class, for an alternate stylesheet (EPUB Alternate Style Tags: horizontal, vertical)
 };
 
 export type WritingStyles = {

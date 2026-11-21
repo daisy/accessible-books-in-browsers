@@ -304,7 +304,7 @@ function initPage() {
         }
     }
 
-    // The conversion report says who checked the EPUB: the user, not the converter (plan 19, step 5)
+    // Record the confirmation that the EPUB passed EPUBCheck.
     function recordConfirmation(out) {
         const note = 'EPUBCheck: confirmed by the person converting; the browser converter ran basic checks only.';
         if (out['conversion-report.md']) out['conversion-report.md'] = strToU8(strFromU8(out['conversion-report.md']).replace(/\n/, `\n\n${note}\n`));
