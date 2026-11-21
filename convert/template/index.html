@@ -40,8 +40,9 @@
 
                 const storedFont = localStorage.getItem('webbook-font-family') || 'system-ui';
                 const font = ['system-ui', 'sans-serif', 'serif'].includes(storedFont) ? storedFont : 'system-ui';
-                // Serif is Charter where it's installed, as settings.js sets it (keep the two the same)
-                root.style.setProperty('--webbook-main-font-family', font === 'serif' ? 'Charter, "Bitstream Charter", serif' : font);
+                // Serif and sans serif as settings.js sets them (FONT_STACKS: keep the two the same)
+                const stacks = { serif: 'Charter, "Bitstream Charter", serif', 'sans-serif': '"Avenir Next", Verdana, sans-serif' };
+                root.style.setProperty('--webbook-main-font-family', stacks[font] ?? font);
 
                 // Line length, as text-spacing.js sets it (keep the two the same), so the text
                 // doesn't change width when the reader starts
