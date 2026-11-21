@@ -9,8 +9,9 @@
 // - Show levels, a select (1, 2, 3, All): how many levels of sections show, from only the outermost
 //   to every level.
 // Shortcuts while it's open (remappable, like every reader key): Alt+Shift+F goes to Find a section
-// (Search's key, see popovers.js), and Alt+Shift+1, 2, 3 and 0 show 1, 2, 3 or all levels. Each says
-// what it did.
+// (Search's key, see popovers.js), and Alt+Shift+V goes to Show levels, where the arrow keys choose
+// as in any select. One key for a standard control, rather than one per level: digits with Alt+Shift
+// switch keyboard languages on some Windows setups, and type characters with Option+Shift on a Mac.
 import { announceReaderAction, registerAction } from './reader-actions.js';
 import { currentTocEntry } from './popovers.js';
 import { normalizeSearchText } from './search-text.js';
@@ -31,22 +32,18 @@ let findStatusTimer;
 
 // Registered with the other panel actions, before the shortcuts start (main.js)
 export function initTocActions() {
-    for (const [value, code] of [['1', 'Digit1'], ['2', 'Digit2'], ['3', 'Digit3'], ['all', 'Digit0']]) {
-        registerAction({
-            id: `toc-levels-${value}`,
-            label: value === 'all' ? 'Table of contents: show all levels' : `Table of contents: show ${value} ${value === '1' ? 'level' : 'levels'}`,
-            group: 'Panels',
-            inPanels: true,
-            defaultKeys: [{ code, alt: true, shift: true }],
-            isAvailable: () => Boolean(toc?.matches(':popover-open') && depthValues().includes(value)),
-            run: () => {
-                clearFind();
-                writeDepth(value);
-                applyDepth(value);
-                announceReaderAction(levelsMessage(value));
-            }
-        });
-    }
+    registerAction({
+        id: 'toc-levels',
+        label: 'Table of contents: go to Show levels',
+        group: 'Panels',
+        inPanels: true,
+        defaultKeys: [{ code: 'KeyV', alt: true, shift: true }],
+        isAvailable: () => Boolean(toc?.matches(':popover-open') && depthSelect()),
+        run: () => {
+            depthSelect().focus();
+            announceReaderAction('Show levels.');
+        }
+    });
 }
 
 function levelsMessage(value) {

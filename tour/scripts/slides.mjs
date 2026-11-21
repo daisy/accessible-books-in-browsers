@@ -29,17 +29,26 @@ export const slides = {
         }
     },
     contents: {
-        // All by keyboard, each key captioned: focus starts on the current section, the level
-        // shortcuts, then Find a section
+        // All by keyboard, each key captioned: focus starts on the current section, Show levels,
+        // then Find a section
         url: 'demos/valentin-hauy/valentinhauy11-3.html',
-        async act({ key, typeCaptioned, wait }) {
+        async act({ key, typeCaptioned, wait, page }) {
             await wait(600);
             await key('Alt+Shift+KeyC', '[Alt+Shift+C opens the table of contents, with focus on the current section]', { after: 1600 });
             await key('Tab', '[Tab to the next section]', { after: 1200 });
-            await key('Alt+Shift+Digit2', '[Alt+Shift+2 shows 2 levels]', { after: 1600 });
-            await key('Alt+Shift+Digit1', '[Alt+Shift+1 shows only the top level]', { after: 1600 });
-            await key('Alt+Shift+Digit0', '[Alt+Shift+0 shows all levels]', { after: 1600 });
-            await key('Alt+Shift+KeyF', '[Alt+Shift+F goes to Find a section]', { after: 1100 });
+            await key('Alt+Shift+KeyV', '[Alt+Shift+V goes to Show levels]', { after: 900 });
+            // The browser's own dropdown is drawn outside the page, so recordings never show it:
+            // the select shows its options as a list in place while the arrow keys choose
+            const listed = size => page.evaluate(size => { const select = document.getElementById('webbook-toc-depth');
+                if (size) select.size = select.options.length; else select.removeAttribute('size'); }, size);
+            await listed(true);
+            await wait(500);
+            await key('ArrowUp', '[Up arrow chooses 3 levels]', { after: 1200 });
+            await key('ArrowUp', '[Up arrow again chooses 2]', { after: 1400 });
+            await key('ArrowDown', null, { after: 300 });
+            await key('ArrowDown', '[Down arrow, twice, goes back to all levels]', { after: 1200 });
+            await listed(false);
+            await key('Shift+Tab', '[Shift+Tab goes to Find a section]', { after: 1100 });
             await typeCaptioned('Russia', '[types “Russia”, which narrows the sections]');
             await wait(1300);
             await key('Enter', '[Enter opens the first match, “3.9 Valentin Haüy in Russia”]', { after: 1800 });
