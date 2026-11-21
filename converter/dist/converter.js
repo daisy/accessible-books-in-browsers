@@ -21952,8 +21952,18 @@ function unzipSync(data, opts) {
 
 // shims/extract-zip.js
 init_fs();
+
+// zip-names.js
+init_globals();
+function unsafeZipName(name3) {
+  return name3.startsWith("/") || name3.includes("\\") || /^[A-Za-z]:/.test(name3) || name3.split("/").includes("..");
+}
+
+// shims/extract-zip.js
 async function extractZip(file, { dir }) {
   const entries = unzipSync(new Uint8Array(readFileSync(file)));
+  const unsafe = Object.keys(entries).find(unsafeZipName);
+  if (unsafe) throw new Error(`Out of bound path "${unsafe}" found while processing file ${file}`);
   for (const [name3, bytes2] of Object.entries(entries)) {
     if (name3.endsWith("/")) mkdirSync(`${dir}/${name3}`);
     else writeFileSync(`${dir}/${name3}`, bytes2);

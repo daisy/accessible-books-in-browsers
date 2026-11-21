@@ -3,6 +3,7 @@
 // books the converter can't read at all, and give the page the book's title, language and the
 // length of its narration (for the time estimate).
 import { unzipSync, strFromU8 } from './vendor/fflate.js';
+import { unsafeZipName } from './zip-names.js';
 
 const OPF_NS = 'http://www.idpf.org/2007/opf';
 const DC_NS = 'http://purl.org/dc/elements/1.1/';
@@ -28,6 +29,10 @@ export function checkEpub(bytes) {
     const errors = [], warnings = [], book = {};
     let files;
     try { files = unzipSync(bytes); } catch { return { errors: ["This file isn't a zip archive, so it isn't an EPUB."], warnings, book }; }
+    // A name that leads out of the book's folder (../, a leading /, a drive or a backslash) could
+    // overwrite other files while unzipping; a valid EPUB never has one
+    const unsafe = Object.keys(files).filter(unsafeZipName);
+    if (unsafe.length) return { errors: [`This EPUB has file names that lead outside the book (${unsafe.slice(0, 3).join(', ')}), so it isn't valid and can't be converted.`], warnings, book };
     const text = name => (files[name] ? strFromU8(files[name]) : null);
     const xml = (name, source) => {
         const doc = new DOMParser().parseFromString(source, 'application/xml');
