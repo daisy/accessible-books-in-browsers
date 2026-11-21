@@ -87,7 +87,10 @@ export function initOfflineReading() {
     section.append(heading, library, status, storage, progressLabel, progress, count, controls, confirmation); const title = panel.querySelector('h2'); if (title) title.after(section); else panel.prepend(section);
     let registration, snapshot = null, savedRecord = false, pending = false, busy = false, remoteBusy = false, controller, prepared = null, persistent = null, operationVersion = 0;
     let serverReachable = null, probing = false;
-    const available = window.isSecureContext && Boolean(typeof window.Worker === 'function' && navigator.serviceWorker && window.caches && window.indexedDB && window.crypto?.subtle);
+    // Checked before the book's own worker is ever registered (ensure), which would replace another
+    const otherCheck = navigator.serviceWorker?.controller ? otherWorker().catch(() => false) : Promise.resolve(false);
+    let unavailable = 'Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.';
+    let available = window.isSecureContext && Boolean(typeof window.Worker === 'function' && navigator.serviceWorker && window.caches && window.indexedDB && window.crypto?.subtle);
     const button = (id, label, run) => { const node = document.createElement('button'); node.type = 'button'; node.id = 'webbook-offline-' + id; node.textContent = label; node.addEventListener('click', () => Promise.resolve().then(run).catch(fail)); controls.append(node); return node; };
     const save = button('save', 'Save for offline reading', download);
     const inspect = button('size', 'Find download size', findSize);
@@ -124,6 +127,7 @@ export function initOfflineReading() {
         else if (!operating && focused === cancel) (snapshot ? check : save).focus({ preventScroll: true });
     }
     async function ensure() {
+        if (await otherCheck) throw new Error(unavailable);
         if (!registration) {
             const existing = await navigator.serviceWorker.getRegistration(root);
             // importScripts has no integrity parameter. Keep executable workers
@@ -136,7 +140,7 @@ export function initOfflineReading() {
     }
     async function command(name, data, onProgress, signal) { await ensure(); return offlineCommand(registration.active, name, data, onProgress, signal); }
     async function refresh() {
-        if (!available) { report('Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.'); render(); return; }
+        if (!available) { report(unavailable); render(); return; }
         const version = operationVersion;
         const result = await command('status');
         if (version !== operationVersion) return;
@@ -220,7 +224,22 @@ export function initOfflineReading() {
     }
     for (const name of ['online', 'offline', 'focus']) window.addEventListener(name, checkServer);
     document.addEventListener('visibilitychange', checkServer);
-    report(available ? 'Save this book to read and listen without a connection.' : 'Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.'); render();
+    report(available ? 'Save this book to read and listen without a connection.' : unavailable); render();
     if (available) { checkServer(); window.setInterval(checkServer, 30000); }
-    if (available && navigator.serviceWorker.controller) refresh().catch(fail);
+    if (available && navigator.serviceWorker.controller) otherCheck.then(other => {
+        if (!other) return refresh();
+        // Installing the book's own worker would replace the one serving this page
+        available = false; controls.hidden = true;
+        unavailable = "Offline reading isn't available here: another service worker serves this book's folder, as in a converter's preview.";
+        report(unavailable); render();
+    }).catch(fail);
+}
+
+// Whether a service worker other than the book's own (sw.js) is registered for the book's own
+// folder, such as the browser converter's preview worker
+async function otherWorker() {
+    const root = bookRoot(), registration = await navigator.serviceWorker.getRegistration(location.href);
+    if (!registration || registration.scope !== root) return false;
+    const script = registration.active?.scriptURL ?? registration.waiting?.scriptURL ?? registration.installing?.scriptURL;
+    return Boolean(script) && new URL(script).pathname !== new URL('sw.js', root).pathname;
 }

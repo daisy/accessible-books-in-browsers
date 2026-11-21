@@ -193,6 +193,14 @@ export async function forget(prefix) {
 }
 
 // ffprobe's JSON for a file (sources and encoded output; WAVs are read from their header instead)
+// After a conversion: drops the decoded source and every file in ffmpeg.wasm's file system, so
+// nothing from one book stays in memory into the next (the next command starts ffmpeg.wasm again)
+export function releaseAll() {
+    const run = queue.then(async () => { decoded.clear(); await restart(); });
+    queue = run.catch(() => {});
+    return run;
+}
+
 export function probeFile(file) {
     const run = queue.then(async () => {
         const ffmpeg = await instance();

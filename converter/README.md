@@ -13,8 +13,11 @@ How it works:
   - basic EPUB checks, plus a confirmation that the EPUB passes EPUBCheck, which can't run in a
     browser;
   - the converter's options;
-  - a preview of one of the book’s content documents (often a chapter), optionally with its first 5 minutes of narration only;
+  - a preview of one of the book’s content documents (often a chapter), optionally with its first 5 minutes of narration only. The preview can't be saved for offline reading: its own service worker serves it;
   - the whole book, as a zip download.
+- **Memory:** after each conversion, worked or not, the page clears what it used: the EPUB, the
+  output once it's handed back, the temporary files in `/tmp` (the unpacked EPUB among them), and
+  ffmpeg.wasm's decoded audio and files (`releaseAll` in the runner). Only the reader template stays.
 - Computers only: narrated books need more memory than phones and tablets have.
 
 How a book is converted is in [docs/conversion.md](../docs/conversion.md). The measurements behind
@@ -38,7 +41,7 @@ fails, rather than doing something different.
 | [`ffmpeg-wasm-runner.js`](shims/ffmpeg-wasm-runner.js) | (used by the two above) | Runs FFmpeg commands in ffmpeg.wasm from `vendor/`, one at a time and single-threaded (threads need cross-origin isolation, which GitHub Pages can't set up). Copies input files in and output back. Restarts ffmpeg.wasm every 40 commands, and retries a command once after a crash. Clip cuts (`atrim` to a WAV) skip FFmpeg: the browser decodes each source once and cuts the samples, lined up with FFmpeg's decoding (`entry.js` turns off the converter's own range decoding for this). When ffprobe fails, it decodes the file to get its length (to 10 ms). |
 | [`crypto.js`](shims/crypto.js) | `crypto` | `createHash` for sha1 and sha256, synchronous, from `@noble/hashes`. Other algorithms throw. |
 | [`extract-zip.js`](shims/extract-zip.js) | `extract-zip` | Unzips the EPUB into `fs.js` with fflate. Like extract-zip, it refuses an entry whose name leads outside the folder ([`zip-names.js`](zip-names.js)); the page's EPUB checks reject the book before that, with a message. |
-| [`tmp.js`](shims/tmp.js) | `tmp` | Temporary files and folders under `/tmp` in `fs.js`. Nothing is cleaned up automatically. The converter removes each page's audio folder itself. |
+| [`tmp.js`](shims/tmp.js) | `tmp` | Temporary files and folders under `/tmp` in `fs.js`. The converter removes each page's audio folder itself, and the page clears all of `/tmp` after each conversion. |
 | [`winston.js`](shims/winston.js) | `winston`, `logform` | Messages are kept in `log` (and passed to `globalThis.spikeLog`, if a page sets it; this one doesn't), not written to a file. Formats do nothing. |
 | [`globals.js`](shims/globals.js) | the `Buffer` and `process` globals | Injected into the bundle: `Buffer` from the `buffer` package, and a minimal `process` with no environment variables (the page passes the update channel itself, `UI_CHANNEL` in `page.js`). |
 | [`node-stubs.js`](shims/node-stubs.js) | `os`, `url`, `node:module`, `node:child_process`, `@ffmpeg-installer/ffmpeg`, `ffmpeg-static` | The few harmless values the converter reads (`tmpdir`, `EOL`, file URL conversion). Anything else throws "not available in the browser converter", so a new Node dependency shows up at once. |

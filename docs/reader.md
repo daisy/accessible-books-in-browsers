@@ -198,7 +198,9 @@ in plain language. The converter writes these (see
 
 You can save a book from About and read it with no connection, narration included. Saved books
 are managed on the Offline books page. The details are in the
-[v0 contract](../convert/contracts/v0.md#offline-reading-optional-reader-enhancement).
+[v0 contract](../convert/contracts/v0.md#offline-reading-optional-reader-enhancement). Where another
+service worker is registered for the book's own folder, as in the browser converter's preview,
+offline reading isn't offered, and the book's worker is never registered: it would replace that one.
 
 | Part | Code |
 |---|---|

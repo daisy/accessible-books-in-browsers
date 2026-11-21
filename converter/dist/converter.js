@@ -21038,6 +21038,15 @@ async function runOnce(args) {
   }
   return { code, log: log2 };
 }
+function releaseAll() {
+  const run2 = queue.then(async () => {
+    decoded.clear();
+    await restart();
+  });
+  queue = run2.catch(() => {
+  });
+  return run2;
+}
 function probeFile(file) {
   const run2 = queue.then(async () => {
     const ffmpeg3 = await instance();
@@ -27492,7 +27501,7 @@ var CONVERTER_OPTIONS = [
 // entry.js
 init_fs();
 setSourceRangeDecoding(false);
-globalThis.spike = { ...globalThis.spike, convert, vfs, log, options: CONVERTER_OPTIONS, optionGroups: WEB_GROUPS };
+globalThis.spike = { ...globalThis.spike, convert, vfs, log, releaseAll, options: CONVERTER_OPTIONS, optionGroups: WEB_GROUPS };
 /*! Bundled license information:
 
 ieee754/index.js:

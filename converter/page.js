@@ -8,7 +8,7 @@ await import('./dist/converter.js');
 import { zipSync, strToU8, strFromU8 } from './vendor/fflate.js';
 import { checkEpub } from './epub-check.js';
 import { chapterEpub, showPreview, previewAvailable, cleanUp } from './preview.js';
-const { convert, vfs } = globalThis.spike;
+const { convert, vfs, releaseAll } = globalThis.spike;
 
 let templateLoaded;
 function loadTemplate() {
@@ -39,15 +39,25 @@ export async function convertBytes(bytes, options = {}, fileName = 'book.epub') 
     options = { ...CLI_DEFAULTS, ...options, audioCache: false };
     if (options.remoteUi && !options.uiBaseUrl) options.uiBaseUrl = UI_CHANNEL;
     await loadTemplate();
-    vfs.removeSync('/in'); vfs.removeSync('/out');
-    // The converter records the EPUB's file name in the report and each page, so keep the person's own
+    await releaseConversion();
+    // Use the selected EPUB's filename for the conversion report and each page's source metadata.
     const name = String(fileName).replace(/[\\/\u0000]/g, '_') || 'book.epub';
     vfs.writeFileSync(`/in/${name}`, bytes);
-    const report = await convert(`/in/${name}`, '/out', '/template', options);
-    const files = {};
-    for (const [p, data] of vfs.files) if (p.startsWith('/out/')) files[p.slice(5)] = data;
-    vfs.removeSync('/in'); vfs.removeSync('/out');
-    return { files, report };
+    try {
+        const report = await convert(`/in/${name}`, '/out', '/template', options);
+        const files = {};
+        for (const [p, data] of vfs.files) if (p.startsWith('/out/')) files[p.slice(5)] = data;
+        return { files, report };
+    } finally {
+        await releaseConversion();
+    }
+}
+// Everything one conversion leaves in memory, whether it worked or not: the EPUB, the output (once
+// it's been handed back), the unpacked EPUB and other temporary files in /tmp, and ffmpeg.wasm's
+// decoded audio and files. The template stays: it's the same for every book.
+async function releaseConversion() {
+    for (const folder of ['/in', '/out', '/tmp']) vfs.removeSync(folder);
+    await releaseAll();
 }
 globalThis.convertBytes = convertBytes;
 
