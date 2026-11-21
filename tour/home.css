@@ -1,0 +1,83 @@
+.home-skip {
+  position: absolute;
+  inset-block-start: .5rem;
+  inset-inline-start: .5rem;
+  z-index: 2;
+  padding: .65rem 1rem;
+  background: var(--surface);
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.home-skip:focus {
+  transform: none;
+}
+
+.home-main:focus-visible {
+  outline-offset: -3px;
+}
+
+.home-header .links {
+  gap: 0 1rem;
+  margin-block-end: .5rem;
+}
+
+.home-header a,
+.home-hero a {
+  display: inline-block;
+  min-height: 44px;
+  padding-block: .55rem;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid var(--border);
+  border-radius: .4rem;
+  background: var(--surface);
+}
+
+.home-hero h1 {
+  font-size: clamp(1.75rem, 3vw, 2.125rem);
+}
+
+.home-hero p {
+  margin: .75rem 0 .5rem;
+}
+
+.home-actions {
+  gap: 0 1rem;
+  margin: 0;
+}
+
+.home-preview {
+  margin: 0;
+}
+
+.home-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid var(--border);
+  border-radius: .25rem;
+}
+
+.home-preview figcaption {
+  font-size: .9375rem;
+}
+
+@media (max-width: 42rem) {
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .75rem;
+  }
+
+  .home-preview {
+    max-width: 26rem;
+  }
+}

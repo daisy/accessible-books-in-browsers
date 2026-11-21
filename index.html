@@ -6,23 +6,36 @@
 <title>Accessible books in browsers</title>
 <meta name="description" content="Convert EPUBs, including narrated ones, into web books you can read in any browser.">
 <link rel="stylesheet" href="tour/tour.css">
+<link rel="stylesheet" href="tour/home.css">
 <script src="tour/tour.js" defer></script>
 </head>
 <body>
-<header>
-  <h1>Accessible books in browsers</h1>
-  <p class="lede">This project converts EPUBs into web books you can read in any browser. Media Overlays playback with synchronized text highlight is preserved. The result is a folder of HTML files you can put on any website.</p>
+<a class="home-skip" href="#main">Skip to main content</a>
+<header class="home-header">
   <nav aria-label="Project">
     <ul class="links">
-      <li><a href="converter/">Convert a book</a> (beta)</li>
+      <li><a href="#features">Reading features</a></li>
       <li><a href="tour/converter.html">Conversion features</a></li>
-      <li><a href="#demos">Reading demos</a></li>
       <li><a href="docs/">Developer documentation</a></li>
-      <li><a href="https://github.com/daisy/accessible-books-in-browsers">GitHub project</a></li>
+      <li><a href="https://github.com/daisy/accessible-books-in-browsers">GitHub</a></li>
     </ul>
   </nav>
 </header>
-<main>
+<main id="main" class="home-main" tabindex="-1">
+  <section class="home-hero" aria-labelledby="home-title">
+    <div>
+      <h1 id="home-title">Accessible books in browsers</h1>
+      <p>This project converts EPUBs into web books. Narration stays in sync with the highlighted text, and the result is a folder of HTML files you can host on a website.</p>
+      <ul class="links home-actions">
+        <li><a href="converter/">Convert a book (beta)</a></li>
+        <li><a href="#demos">Explore reading demos</a></li>
+      </ul>
+    </div>
+    <figure class="home-preview">
+      <img src="tour/clips/follow-along.jpg" width="1280" height="966" alt="A narrated phrase in Moby-Dick is highlighted in yellow above the playback controls.">
+      <figcaption><a href="demos/moby-dick/chapter_001.html">Read <cite>Moby-Dick</cite></a></figcaption>
+    </figure>
+  </section>
   <h2 id="features">Reading features</h2>
   <p>The videos below show a few seconds of each feature. The <a href="https://github.com/daisy/accessible-books-in-browsers#features">README has the full list</a>, and the <a href="https://github.com/daisy/accessible-books-in-browsers#keyboard-shortcuts">keyboard shortcuts</a>.</p>
   <section class="tour" id="tour" aria-label="Reading features">
