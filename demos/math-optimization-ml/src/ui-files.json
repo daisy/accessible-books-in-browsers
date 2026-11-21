@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": 0,
-  "revision": "7ac1bf64c76ff08bb75307e41acce06e53531454283913224f31f41f5e270e47",
+  "revision": "4ae94d522daddfb0e4ad31b8cadb6cb60e1e923fb6611328483e7d56c9c7a52b",
   "files": [
     {
       "href": "src/css/offline-books.css",
@@ -10,8 +10,8 @@
     },
     {
       "href": "src/css/style.css",
-      "bytes": 81045,
-      "sha256": "c72896300c829300f689b7ae3f8f43767b3134a6426f27ac862038ca399caf7b"
+      "bytes": 81580,
+      "sha256": "4724689b33dbf70847c1d81cb091a066dd03dbf57ba1618a14a4ef5683e95522"
     },
     {
       "href": "src/icons/book.svg",
@@ -22,6 +22,16 @@
       "href": "src/js/bootstrap.js",
       "bytes": 20516,
       "sha256": "2b63f847934357bf63b52122c774ecfa890782f886852263e35d6ebef0db0fde"
+    },
+    {
+      "href": "src/js/chunk-2OJH6MV4.js",
+      "bytes": 2297,
+      "sha256": "4e85c24e272899b2d2791d254d810eac58641f8a4e5fe0fba70f1f37c213f762"
+    },
+    {
+      "href": "src/js/chunk-7EWI2T7L.js",
+      "bytes": 17340,
+      "sha256": "36095f5d6af9a756f595570a6ee3ce48064da57643608d2b4d5d0daaaeffa479"
     },
     {
       "href": "src/js/chunk-CQENM7MV.js",
@@ -39,9 +49,9 @@
       "sha256": "ed1936774bd39cd4f616c5668842f8adb06033f5f26020379bb50b62dbec7af3"
     },
     {
-      "href": "src/js/chunk-GACHRUYX.js",
-      "bytes": 14521,
-      "sha256": "922337c2f7a604bdb07801905057ee4502fbc9e9e8f77a6506e78fe3d3d296fb"
+      "href": "src/js/chunk-ITRCGZ6G.js",
+      "bytes": 209972,
+      "sha256": "54f61ef40392325ead1a728235f7598038a911d457a807f4786a6c2ab145befc"
     },
     {
       "href": "src/js/chunk-JJPBXBH7.js",
@@ -49,29 +59,19 @@
       "sha256": "757d830e2920ca12a3d4bd8ab4a21db87e1e06406cbcaf4a6f8b35bef1041c5e"
     },
     {
-      "href": "src/js/chunk-LSJETFBX.js",
-      "bytes": 2297,
-      "sha256": "b941d78514525762f5f3af7735fe3001d83e8942f8180e30b7470db6d73ad4e2"
-    },
-    {
-      "href": "src/js/chunk-TXOAWZAO.js",
-      "bytes": 183,
-      "sha256": "d439ccdd9ca72aa2643a44f9464b7b44269554fd817b7a39530f29693ce16844"
-    },
-    {
       "href": "src/js/chunk-VKFVGLPJ.js",
       "bytes": 13505,
       "sha256": "b31dfc7302adaedc9544ff19a9705cb1a11f7ce6276845bad180db094f8370dc"
     },
     {
-      "href": "src/js/chunk-ZXXJZROC.js",
-      "bytes": 209537,
-      "sha256": "50ada14197a2f4a63fc77d933e3f3751fcabfdf4ab1913f6dc14d7f64ee38fa1"
+      "href": "src/js/chunk-ZU37W27J.js",
+      "bytes": 183,
+      "sha256": "50a089294e5c45d4d7b2a07927504a51d72642ebaa54a3db09454b4f4c601be9"
     },
     {
       "href": "src/js/main.js",
       "bytes": 142512,
-      "sha256": "1ff58dab3d6d8ae3a3d92f90c5eb428dddc1521e8a75445d1b7df6d8888fa61f"
+      "sha256": "e46754ca5754dfd341e5d3c2db81c044025b011f5c0645d3fc055e8bc6a70ebd"
     },
     {
       "href": "src/js/offline-books.js",
