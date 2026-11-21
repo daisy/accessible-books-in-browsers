@@ -1,4 +1,5 @@
 import chardet from 'chardet';
+import path from 'path';
 import ffmpeg from 'fluent-ffmpeg';
 import { configureFfmpeg } from './ffmpeg.js';
 
@@ -70,6 +71,15 @@ function getFrag(str: string): string {
     return hashIndex === -1 ? '' : str.slice(hashIndex + 1);
 }
 
+// A book's href is a URL, so its path is percent-encoded ("my%20chapter.xhtml" for "my chapter.xhtml"):
+// decoded, then resolved against a folder, it's a file path. An href that isn't valid encoding is
+// used as it is.
+function resolveHrefPath(directory: string, hrefPath: string): string {
+    let decoded = hrefPath;
+    try { decoded = decodeURIComponent(hrefPath); } catch { /* not valid percent-encoding */ }
+    return path.resolve(directory, decoded);
+}
+
 function getWithoutFrag(str: string): string {
     const hashIndex = str.indexOf('#');
     return hashIndex === -1 ? str : str.slice(0, hashIndex);
@@ -125,6 +135,7 @@ export {
     getDuration,
     getFrag,
     getWithoutFrag,
+    resolveHrefPath,
     sniffEncoding,
     toPosixPath,
     toSeconds

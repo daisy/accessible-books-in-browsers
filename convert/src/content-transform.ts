@@ -268,6 +268,9 @@ function rewriteInternalLinks(doc: Document, page: SitePage, site: SiteModel): v
         const absoluteHref = resolveContentHref(page.sourcePath, href);
         const rewrittenHref = rewriteSourceHref(absoluteHref, site.sourceToOutput, site.idToOutput, site.cutPointToOutput);
         if (rewrittenHref) link.setAttribute('href', rewrittenHref);
+        // The book's own navigation document isn't a page in the web book: its table of contents is
+        // toc.html (a part of it that's in no page, such as a fragment, has no counterpart)
+        else if (site.navigationSource && utils.getWithoutFrag(absoluteHref) === site.navigationSource) link.setAttribute('href', 'toc.html');
     });
 }
 
@@ -281,6 +284,11 @@ function rewriteImageReferences(doc: Document, page: SitePage, imageRegistry: Im
     rewriteUrlAttribute(doc, page, imageRegistry, 'math[altimg]', 'altimg');
     rewriteUrlAttribute(doc, page, imageRegistry, 'image[href]', 'href');
     rewriteUrlAttribute(doc, page, imageRegistry, 'image[xlink\\:href]', 'xlink:href');
+    // The book's own audio and video (not its narration, which is in its media overlays) are copied
+    // the same way, with their captions and posters
+    for (const selector of ['audio[src]', 'video[src]', 'source[src]', 'track[src]'])
+        rewriteUrlAttribute(doc, page, imageRegistry, selector, 'src');
+    rewriteUrlAttribute(doc, page, imageRegistry, 'video[poster]', 'poster');
 
     doc.querySelectorAll('img[srcset], source[srcset]').forEach(elm => {
         const srcset = elm.getAttribute('srcset');
@@ -359,7 +367,7 @@ function resolveContentHref(sourcePath: string, href: string): string {
     const baseDir = path.dirname(sourcePath);
     const noFrag = utils.getWithoutFrag(href);
     const frag = utils.getFrag(href);
-    const resolved = path.resolve(baseDir, noFrag);
+    const resolved = utils.resolveHrefPath(baseDir, noFrag);
     return frag ? `${resolved}#${frag}` : resolved;
 }
 

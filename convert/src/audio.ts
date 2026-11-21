@@ -422,7 +422,7 @@ function resolveSmilReference(smilPath: string, reference: string, pageSourcePat
 
     const frag = utils.getFrag(reference);
     const withoutFrag = utils.getWithoutFrag(reference);
-    const resolved = path.resolve(path.dirname(smilPath), withoutFrag);
+    const resolved = utils.resolveHrefPath(path.dirname(smilPath), withoutFrag);
     return frag ? `${resolved}#${frag}` : resolved;
 }
 

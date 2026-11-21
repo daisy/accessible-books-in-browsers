@@ -1867,20 +1867,20 @@ var require_path_browserify = __commonJS({
   "node_modules/path-browserify/index.js"(exports, module) {
     "use strict";
     init_globals();
-    function assertPath(path22) {
-      if (typeof path22 !== "string") {
-        throw new TypeError("Path must be a string. Received " + JSON.stringify(path22));
+    function assertPath(path23) {
+      if (typeof path23 !== "string") {
+        throw new TypeError("Path must be a string. Received " + JSON.stringify(path23));
       }
     }
-    function normalizeStringPosix(path22, allowAboveRoot) {
+    function normalizeStringPosix(path23, allowAboveRoot) {
       var res = "";
       var lastSegmentLength = 0;
       var lastSlash = -1;
       var dots = 0;
       var code;
-      for (var i = 0; i <= path22.length; ++i) {
-        if (i < path22.length)
-          code = path22.charCodeAt(i);
+      for (var i = 0; i <= path23.length; ++i) {
+        if (i < path23.length)
+          code = path23.charCodeAt(i);
         else if (code === 47)
           break;
         else
@@ -1920,9 +1920,9 @@ var require_path_browserify = __commonJS({
             }
           } else {
             if (res.length > 0)
-              res += "/" + path22.slice(lastSlash + 1, i);
+              res += "/" + path23.slice(lastSlash + 1, i);
             else
-              res = path22.slice(lastSlash + 1, i);
+              res = path23.slice(lastSlash + 1, i);
             lastSegmentLength = i - lastSlash - 1;
           }
           lastSlash = i;
@@ -1953,20 +1953,20 @@ var require_path_browserify = __commonJS({
         var resolvedAbsolute = false;
         var cwd;
         for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-          var path22;
+          var path23;
           if (i >= 0)
-            path22 = arguments[i];
+            path23 = arguments[i];
           else {
             if (cwd === void 0)
               cwd = process.cwd();
-            path22 = cwd;
+            path23 = cwd;
           }
-          assertPath(path22);
-          if (path22.length === 0) {
+          assertPath(path23);
+          if (path23.length === 0) {
             continue;
           }
-          resolvedPath = path22 + "/" + resolvedPath;
-          resolvedAbsolute = path22.charCodeAt(0) === 47;
+          resolvedPath = path23 + "/" + resolvedPath;
+          resolvedAbsolute = path23.charCodeAt(0) === 47;
         }
         resolvedPath = normalizeStringPosix(resolvedPath, !resolvedAbsolute);
         if (resolvedAbsolute) {
@@ -1980,20 +1980,20 @@ var require_path_browserify = __commonJS({
           return ".";
         }
       },
-      normalize: function normalize(path22) {
-        assertPath(path22);
-        if (path22.length === 0) return ".";
-        var isAbsolute = path22.charCodeAt(0) === 47;
-        var trailingSeparator = path22.charCodeAt(path22.length - 1) === 47;
-        path22 = normalizeStringPosix(path22, !isAbsolute);
-        if (path22.length === 0 && !isAbsolute) path22 = ".";
-        if (path22.length > 0 && trailingSeparator) path22 += "/";
-        if (isAbsolute) return "/" + path22;
-        return path22;
+      normalize: function normalize(path23) {
+        assertPath(path23);
+        if (path23.length === 0) return ".";
+        var isAbsolute = path23.charCodeAt(0) === 47;
+        var trailingSeparator = path23.charCodeAt(path23.length - 1) === 47;
+        path23 = normalizeStringPosix(path23, !isAbsolute);
+        if (path23.length === 0 && !isAbsolute) path23 = ".";
+        if (path23.length > 0 && trailingSeparator) path23 += "/";
+        if (isAbsolute) return "/" + path23;
+        return path23;
       },
-      isAbsolute: function isAbsolute(path22) {
-        assertPath(path22);
-        return path22.length > 0 && path22.charCodeAt(0) === 47;
+      isAbsolute: function isAbsolute(path23) {
+        assertPath(path23);
+        return path23.length > 0 && path23.charCodeAt(0) === 47;
       },
       join: function join() {
         if (arguments.length === 0)
@@ -2079,18 +2079,18 @@ var require_path_browserify = __commonJS({
           return to.slice(toStart);
         }
       },
-      _makeLong: function _makeLong(path22) {
-        return path22;
+      _makeLong: function _makeLong(path23) {
+        return path23;
       },
-      dirname: function dirname(path22) {
-        assertPath(path22);
-        if (path22.length === 0) return ".";
-        var code = path22.charCodeAt(0);
+      dirname: function dirname(path23) {
+        assertPath(path23);
+        if (path23.length === 0) return ".";
+        var code = path23.charCodeAt(0);
         var hasRoot = code === 47;
         var end = -1;
         var matchedSlash = true;
-        for (var i = path22.length - 1; i >= 1; --i) {
-          code = path22.charCodeAt(i);
+        for (var i = path23.length - 1; i >= 1; --i) {
+          code = path23.charCodeAt(i);
           if (code === 47) {
             if (!matchedSlash) {
               end = i;
@@ -2102,21 +2102,21 @@ var require_path_browserify = __commonJS({
         }
         if (end === -1) return hasRoot ? "/" : ".";
         if (hasRoot && end === 1) return "//";
-        return path22.slice(0, end);
+        return path23.slice(0, end);
       },
-      basename: function basename(path22, ext) {
+      basename: function basename(path23, ext) {
         if (ext !== void 0 && typeof ext !== "string") throw new TypeError('"ext" argument must be a string');
-        assertPath(path22);
+        assertPath(path23);
         var start = 0;
         var end = -1;
         var matchedSlash = true;
         var i;
-        if (ext !== void 0 && ext.length > 0 && ext.length <= path22.length) {
-          if (ext.length === path22.length && ext === path22) return "";
+        if (ext !== void 0 && ext.length > 0 && ext.length <= path23.length) {
+          if (ext.length === path23.length && ext === path23) return "";
           var extIdx = ext.length - 1;
           var firstNonSlashEnd = -1;
-          for (i = path22.length - 1; i >= 0; --i) {
-            var code = path22.charCodeAt(i);
+          for (i = path23.length - 1; i >= 0; --i) {
+            var code = path23.charCodeAt(i);
             if (code === 47) {
               if (!matchedSlash) {
                 start = i + 1;
@@ -2140,11 +2140,11 @@ var require_path_browserify = __commonJS({
             }
           }
           if (start === end) end = firstNonSlashEnd;
-          else if (end === -1) end = path22.length;
-          return path22.slice(start, end);
+          else if (end === -1) end = path23.length;
+          return path23.slice(start, end);
         } else {
-          for (i = path22.length - 1; i >= 0; --i) {
-            if (path22.charCodeAt(i) === 47) {
+          for (i = path23.length - 1; i >= 0; --i) {
+            if (path23.charCodeAt(i) === 47) {
               if (!matchedSlash) {
                 start = i + 1;
                 break;
@@ -2155,18 +2155,18 @@ var require_path_browserify = __commonJS({
             }
           }
           if (end === -1) return "";
-          return path22.slice(start, end);
+          return path23.slice(start, end);
         }
       },
-      extname: function extname(path22) {
-        assertPath(path22);
+      extname: function extname(path23) {
+        assertPath(path23);
         var startDot = -1;
         var startPart = 0;
         var end = -1;
         var matchedSlash = true;
         var preDotState = 0;
-        for (var i = path22.length - 1; i >= 0; --i) {
-          var code = path22.charCodeAt(i);
+        for (var i = path23.length - 1; i >= 0; --i) {
+          var code = path23.charCodeAt(i);
           if (code === 47) {
             if (!matchedSlash) {
               startPart = i + 1;
@@ -2192,7 +2192,7 @@ var require_path_browserify = __commonJS({
         preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
           return "";
         }
-        return path22.slice(startDot, end);
+        return path23.slice(startDot, end);
       },
       format: function format2(pathObject) {
         if (pathObject === null || typeof pathObject !== "object") {
@@ -2200,11 +2200,11 @@ var require_path_browserify = __commonJS({
         }
         return _format("/", pathObject);
       },
-      parse: function parse5(path22) {
-        assertPath(path22);
+      parse: function parse5(path23) {
+        assertPath(path23);
         var ret = { root: "", dir: "", base: "", ext: "", name: "" };
-        if (path22.length === 0) return ret;
-        var code = path22.charCodeAt(0);
+        if (path23.length === 0) return ret;
+        var code = path23.charCodeAt(0);
         var isAbsolute = code === 47;
         var start;
         if (isAbsolute) {
@@ -2217,10 +2217,10 @@ var require_path_browserify = __commonJS({
         var startPart = 0;
         var end = -1;
         var matchedSlash = true;
-        var i = path22.length - 1;
+        var i = path23.length - 1;
         var preDotState = 0;
         for (; i >= start; --i) {
-          code = path22.charCodeAt(i);
+          code = path23.charCodeAt(i);
           if (code === 47) {
             if (!matchedSlash) {
               startPart = i + 1;
@@ -2243,20 +2243,20 @@ var require_path_browserify = __commonJS({
         preDotState === 0 || // The (right-most) trimmed path component is exactly '..'
         preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
           if (end !== -1) {
-            if (startPart === 0 && isAbsolute) ret.base = ret.name = path22.slice(1, end);
-            else ret.base = ret.name = path22.slice(startPart, end);
+            if (startPart === 0 && isAbsolute) ret.base = ret.name = path23.slice(1, end);
+            else ret.base = ret.name = path23.slice(startPart, end);
           }
         } else {
           if (startPart === 0 && isAbsolute) {
-            ret.name = path22.slice(1, startDot);
-            ret.base = path22.slice(1, end);
+            ret.name = path23.slice(1, startDot);
+            ret.base = path23.slice(1, end);
           } else {
-            ret.name = path22.slice(startPart, startDot);
-            ret.base = path22.slice(startPart, end);
+            ret.name = path23.slice(startPart, startDot);
+            ret.base = path23.slice(startPart, end);
           }
-          ret.ext = path22.slice(startDot, end);
+          ret.ext = path23.slice(startDot, end);
         }
-        if (startPart > 0) ret.dir = path22.slice(0, startPart - 1);
+        if (startPart > 0) ret.dir = path23.slice(0, startPart - 1);
         else if (isAbsolute) ret.dir = "/";
         return ret;
       },
@@ -18530,16 +18530,16 @@ var require_util = __commonJS({
     }
     exports.urlGenerate = urlGenerate;
     function normalize(aPath) {
-      var path22 = aPath;
+      var path23 = aPath;
       var url = urlParse(aPath);
       if (url) {
         if (!url.path) {
           return aPath;
         }
-        path22 = url.path;
+        path23 = url.path;
       }
-      var isAbsolute = exports.isAbsolute(path22);
-      var parts = path22.split(/\/+/);
+      var isAbsolute = exports.isAbsolute(path23);
+      var parts = path23.split(/\/+/);
       for (var part, up = 0, i = parts.length - 1; i >= 0; i--) {
         part = parts[i];
         if (part === ".") {
@@ -18556,15 +18556,15 @@ var require_util = __commonJS({
           }
         }
       }
-      path22 = parts.join("/");
-      if (path22 === "") {
-        path22 = isAbsolute ? "/" : ".";
+      path23 = parts.join("/");
+      if (path23 === "") {
+        path23 = isAbsolute ? "/" : ".";
       }
       if (url) {
-        url.path = path22;
+        url.path = path23;
         return urlGenerate(url);
       }
-      return path22;
+      return path23;
     }
     exports.normalize = normalize;
     function join(aRoot, aPath) {
@@ -20565,10 +20565,10 @@ var require_source_map_support = __commonJS({
     var SourceMapConsumer = require_source_map().SourceMapConsumer;
     var sourceMapResolve = require_source_map_resolve();
     var fs = (init_fs(), __toCommonJS(fs_exports));
-    var path22 = require_path_browserify();
+    var path23 = require_path_browserify();
     module.exports = mixin;
     var makeFriendlyPath = function(aPath) {
-      return path22.sep === "\\" ? aPath.replace(/\\/g, "/").replace(/^[a-z]:\/?/i, "/") : aPath;
+      return path23.sep === "\\" ? aPath.replace(/\\/g, "/").replace(/^[a-z]:\/?/i, "/") : aPath;
     };
     function mixin(compiler) {
       compiler._comment = compiler.comment;
@@ -20620,7 +20620,7 @@ var require_source_map_support = __commonJS({
           if (originalMap) {
             var map = new SourceMapConsumer(originalMap.map);
             var relativeTo = originalMap.sourcesRelativeTo;
-            this.map.applySourceMap(map, file, makeFriendlyPath(path22.dirname(relativeTo)));
+            this.map.applySourceMap(map, file, makeFriendlyPath(path23.dirname(relativeTo)));
           }
         }
       }, this);
@@ -20720,7 +20720,7 @@ init_globals();
 init_globals();
 init_node_stubs();
 init_fs();
-var import_path16 = __toESM(require_path_browserify(), 1);
+var import_path17 = __toESM(require_path_browserify(), 1);
 
 // shims/winston.js
 init_globals();
@@ -20752,7 +20752,7 @@ var winston_default = winston;
 // ../convert/build/epubParser/index.js
 init_globals();
 init_fs();
-var import_path4 = __toESM(require_path_browserify(), 1);
+var import_path5 = __toESM(require_path_browserify(), 1);
 
 // shims/tmp.js
 init_globals();
@@ -20797,12 +20797,13 @@ var JSDOM = class {
 };
 
 // ../convert/build/file-io.js
-var import_path = __toESM(require_path_browserify(), 1);
+var import_path2 = __toESM(require_path_browserify(), 1);
 var import_xmldom = __toESM(require_dom_parser(), 1);
 
 // ../convert/build/utils.js
 init_globals();
 var import_chardet = __toESM(require_lib2(), 1);
+var import_path = __toESM(require_path_browserify(), 1);
 
 // shims/ffmpeg-wasm.js
 init_globals();
@@ -21253,6 +21254,14 @@ function getFrag(str) {
   const hashIndex = str.indexOf("#");
   return hashIndex === -1 ? "" : str.slice(hashIndex + 1);
 }
+function resolveHrefPath(directory, hrefPath) {
+  let decoded2 = hrefPath;
+  try {
+    decoded2 = decodeURIComponent(hrefPath);
+  } catch {
+  }
+  return import_path.default.resolve(directory, decoded2);
+}
 function getWithoutFrag(str) {
   const hashIndex = str.indexOf("#");
   return hashIndex === -1 ? str : str.slice(0, hashIndex);
@@ -21299,7 +21308,7 @@ async function readToString(filename) {
 }
 async function parse(filename, forceXml = false) {
   const fileContentsString = await readToString(filename);
-  const ext = import_path.default.extname(filename);
+  const ext = import_path2.default.extname(filename);
   if (ext === ".html" && !forceXml)
     return new JSDOM(fileContentsString);
   return new import_xmldom.DOMParser().parseFromString(fileContentsString);
@@ -21308,7 +21317,7 @@ async function parse(filename, forceXml = false) {
 // ../convert/build/epubParser/nav-document.js
 init_globals();
 init_fs();
-var import_path2 = __toESM(require_path_browserify(), 1);
+var import_path3 = __toESM(require_path_browserify(), 1);
 var import_xpath = __toESM(require_xpath(), 1);
 var select = import_xpath.default.useNamespaces({
   html: "http://www.w3.org/1999/xhtml"
@@ -21338,20 +21347,20 @@ async function parse2(inputFilename, options = {}) {
 function resolveNavHref(navFilename, href, warn) {
   const withoutFrag = getWithoutFrag(href);
   if (!withoutFrag && href.startsWith("#"))
-    return `${import_path2.default.resolve(navFilename)}${href}`;
+    return `${import_path3.default.resolve(navFilename)}${href}`;
   if (!isLocalFileHref(withoutFrag)) {
     warn?.(`Nav document href is not a local file reference in ${navFilename}; leaving unchanged: ${href}`);
     return href;
   }
   const frag = getFrag(href);
-  const resolved = import_path2.default.resolve(import_path2.default.dirname(navFilename), withoutFrag);
+  const resolved = resolveHrefPath(import_path3.default.dirname(navFilename), withoutFrag);
   if (!isFile(resolved)) {
     warn?.(`Nav document href does not resolve to a local file in ${navFilename}: ${href}`);
   }
   return frag ? `${resolved}#${frag}` : resolved;
 }
 function isLocalFileHref(href) {
-  return Boolean(href) && !import_path2.default.isAbsolute(href) && !/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
+  return Boolean(href) && !import_path3.default.isAbsolute(href) && !/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
 }
 function isFile(filename) {
   try {
@@ -21363,7 +21372,7 @@ function isFile(filename) {
 
 // ../convert/build/epubParser/package-document.js
 init_globals();
-var import_path3 = __toESM(require_path_browserify(), 1);
+var import_path4 = __toESM(require_path_browserify(), 1);
 var import_xpath2 = __toESM(require_xpath(), 1);
 var select2 = import_xpath2.default.useNamespaces({
   opf: "http://www.idpf.org/2007/opf"
@@ -21385,7 +21394,7 @@ function parseGuideCoverHref(opfFilename, doc) {
   if (!href)
     return void 0;
   const [filename, fragment] = href.split("#", 2);
-  const resolved = import_path3.default.resolve(import_path3.default.dirname(opfFilename), filename);
+  const resolved = resolveHrefPath(import_path4.default.dirname(opfFilename), filename);
   return fragment ? `${resolved}#${fragment}` : resolved;
 }
 function parseMetadata(doc, opfFilename) {
@@ -21413,7 +21422,7 @@ function parseMetadata(doc, opfFilename) {
   }
   const cover = firstMetadataValue(parsedMetadata.cover);
   if (cover) {
-    parsedMetadata.cover = import_path3.default.resolve(import_path3.default.dirname(opfFilename), cover);
+    parsedMetadata.cover = resolveHrefPath(import_path4.default.dirname(opfFilename), cover);
   }
   return parsedMetadata;
 }
@@ -21447,11 +21456,11 @@ function parseSpine(opfFilename, doc, options) {
       const smilItem = manifestItems.get(mediaOverlayId);
       const smilHref = smilItem?.getAttribute("href");
       if (smilHref) {
-        smilfilename = import_path3.default.resolve(import_path3.default.dirname(opfFilename), smilHref);
+        smilfilename = resolveHrefPath(import_path4.default.dirname(opfFilename), smilHref);
       }
     }
     spineItems.push({
-      path: import_path3.default.resolve(import_path3.default.dirname(opfFilename), filename),
+      path: resolveHrefPath(import_path4.default.dirname(opfFilename), filename),
       moPath: smilfilename
     });
   });
@@ -21460,7 +21469,7 @@ function parseSpine(opfFilename, doc, options) {
 function getManifestItemHrefByProperty(property, doc, opfFilename) {
   const item = getManifestItemByProperty(property, doc);
   const href = item?.getAttribute("href");
-  return href ? import_path3.default.resolve(import_path3.default.dirname(opfFilename), href) : "";
+  return href ? resolveHrefPath(import_path4.default.dirname(opfFilename), href) : "";
 }
 function getManifestItemByProperty(property, doc) {
   const items = select2("//opf:manifest/opf:item", doc);
@@ -22049,14 +22058,14 @@ function collapsedText(node) {
   return (node.textContent ?? "").replace(/\s+/g, " ").trim();
 }
 async function calculatePackageDocPath(epubDir) {
-  const containerFilePath = import_path4.default.join(epubDir, "META-INF", "container.xml");
+  const containerFilePath = import_path5.default.join(epubDir, "META-INF", "container.xml");
   const doc = await parse(containerFilePath);
   const rootfiles = selectContainer('//ocf:rootfile[@media-type="application/oebps-package+xml"]/@full-path', doc);
   const rootfile = rootfiles[0];
   if (!rootfile?.nodeValue) {
     throw new Error(`Could not find EPUB package document in ${containerFilePath}`);
   }
-  return import_path4.default.join(epubDir, rootfile.nodeValue);
+  return import_path5.default.join(epubDir, rootfile.nodeValue);
 }
 
 // ../convert/build/logger/index.js
@@ -22506,11 +22515,11 @@ function createHash(name3) {
 var crypto_default = { createHash };
 
 // ../convert/build/assets.js
-var import_path7 = __toESM(require_path_browserify(), 1);
+var import_path8 = __toESM(require_path_browserify(), 1);
 
 // ../convert/build/font-obfuscation.js
 init_globals();
-var import_path5 = __toESM(require_path_browserify(), 1);
+var import_path6 = __toESM(require_path_browserify(), 1);
 init_fs();
 var IDPF_FONT = "http://www.idpf.org/2008/embedding";
 var ADOBE_FONT = "http://ns.adobe.com/pdf/enc#RC";
@@ -22534,7 +22543,7 @@ function deobfuscateFont(input, key, algorithm) {
   return output2;
 }
 async function readFontEncryption(root, packageFilename) {
-  const result = /* @__PURE__ */ new Map(), filename = import_path5.default.join(root, "META-INF", "encryption.xml");
+  const result = /* @__PURE__ */ new Map(), filename = import_path6.default.join(root, "META-INF", "encryption.xml");
   if (!await fs_default.pathExists(filename))
     return result;
   const opf = new JSDOM(await fs_default.readFile(packageFilename, "utf8"), { contentType: "application/xml" }).window.document;
@@ -22548,7 +22557,7 @@ async function readFontEncryption(root, packageFilename) {
     const uri = encrypted.getElementsByTagNameNS("*", "CipherReference")[0]?.getAttribute("URI");
     if (!uri)
       continue;
-    const source = import_path5.default.resolve(root, decodeURIComponent(uri));
+    const source = import_path6.default.resolve(root, decodeURIComponent(uri));
     try {
       result.set(source, { algorithm, key: fontKey(algorithm === ADOBE_FONT ? adobe : identifier, algorithm) });
     } catch (error) {
@@ -22561,7 +22570,7 @@ async function readFontEncryption(root, packageFilename) {
 // ../convert/build/output.js
 init_globals();
 init_fs();
-var import_path6 = __toESM(require_path_browserify(), 1);
+var import_path7 = __toESM(require_path_browserify(), 1);
 var OutputLayout = {
   audioDir: "audio",
   imagesDir: "images",
@@ -22575,10 +22584,10 @@ async function createOutputStaging(output2) {
   const paths = {
     output: output2,
     stagingDir,
-    audioDir: import_path6.default.join(stagingDir, OutputLayout.audioDir),
-    imagesDir: import_path6.default.join(stagingDir, OutputLayout.imagesDir),
-    logFile: import_path6.default.join(stagingDir, OutputLayout.logFilename),
-    vttDir: import_path6.default.join(stagingDir, OutputLayout.vttDir)
+    audioDir: import_path7.default.join(stagingDir, OutputLayout.audioDir),
+    imagesDir: import_path7.default.join(stagingDir, OutputLayout.imagesDir),
+    logFile: import_path7.default.join(stagingDir, OutputLayout.logFilename),
+    vttDir: import_path7.default.join(stagingDir, OutputLayout.vttDir)
   };
   await fs_default.ensureDir(paths.audioDir);
   await fs_default.ensureDir(paths.imagesDir);
@@ -22587,17 +22596,17 @@ async function createOutputStaging(output2) {
 }
 async function realPath(file) {
   const rest = [];
-  for (let current = import_path6.default.resolve(file); ; current = import_path6.default.dirname(current)) {
+  for (let current = import_path7.default.resolve(file); ; current = import_path7.default.dirname(current)) {
     try {
-      return import_path6.default.join(await fs_default.realpath.native(current), ...rest.reverse());
+      return import_path7.default.join(await fs_default.realpath.native(current), ...rest.reverse());
     } catch {
-      if (import_path6.default.dirname(current) === current)
-        return import_path6.default.resolve(file);
-      rest.push(import_path6.default.basename(current));
+      if (import_path7.default.dirname(current) === current)
+        return import_path7.default.resolve(file);
+      rest.push(import_path7.default.basename(current));
     }
   }
 }
-var overlaps = (a, b) => a === b || a.startsWith(b + import_path6.default.sep) || b.startsWith(a + import_path6.default.sep);
+var overlaps = (a, b) => a === b || a.startsWith(b + import_path7.default.sep) || b.startsWith(a + import_path7.default.sep);
 async function checkOutputPath(output2, others) {
   const target = await realPath(output2);
   for (const [name3, other] of Object.entries(others)) {
@@ -22606,7 +22615,7 @@ async function checkOutputPath(output2, others) {
   }
 }
 async function finalizeOutput(paths) {
-  await fs_default.ensureDir(import_path6.default.dirname(paths.output));
+  await fs_default.ensureDir(import_path7.default.dirname(paths.output));
   const previous = await fs_default.pathExists(paths.output) ? `${paths.output}.webbook-previous-${process.pid}` : null;
   if (previous)
     await fs_default.move(paths.output, previous, { overwrite: true });
@@ -22624,7 +22633,7 @@ async function discardOutputStaging(paths) {
   await fs_default.remove(paths.stagingDir);
 }
 function outputPath(paths, filename) {
-  return import_path6.default.join(paths.stagingDir, filename);
+  return import_path7.default.join(paths.stagingDir, filename);
 }
 
 // ../convert/build/markup-cleanup.js
@@ -23451,9 +23460,9 @@ var ImageAssetRegistry = class {
     this.encryption = await readFontEncryption(root, packageFilename);
   }
   registerPublisherAsset(source, page, font = false) {
-    const normalized = import_path7.default.resolve(source), policy = this.encryption.get(normalized);
+    const normalized = import_path8.default.resolve(source), policy = this.encryption.get(normalized);
     if (policy && !policy.key) {
-      this.report?.warning("Publisher styles font not copied", `${import_path7.default.basename(source)}: ${policy.reason}`, page);
+      this.report?.warning("Publisher styles font not copied", `${import_path8.default.basename(source)}: ${policy.reason}`, page);
       return null;
     }
     const uses = this.publisherUses.get(page) ?? /* @__PURE__ */ new Map();
@@ -23494,13 +23503,15 @@ var ImageAssetRegistry = class {
     this.report?.publisherAssetsTotal(counts);
   }
   register(sourcePath) {
-    const normalizedSourcePath = import_path7.default.resolve(sourcePath);
+    const normalizedSourcePath = import_path8.default.resolve(sourcePath);
     const existing = this.assetsBySource.get(normalizedSourcePath);
     if (existing)
       return existing;
-    const outputFilename = this.uniqueImageFilename(import_path7.default.basename(normalizedSourcePath));
+    const outputFilename = this.uniqueImageFilename(import_path8.default.basename(normalizedSourcePath));
     const asset = {
-      href: toPosixPath(import_path7.default.join(OutputLayout.imagesDir, outputFilename)),
+      // A URL: characters that would end or change it (a space, #, ?, % and so on) are encoded;
+      // other letters, in any script, stay readable
+      href: `${OutputLayout.imagesDir}/${outputFilename.replace(/[\u0000-\u0020%#?"<>\\^`{|}\u007f]/g, (character) => encodeURIComponent(character))}`,
       outputFilename,
       sourcePath: normalizedSourcePath
     };
@@ -23514,8 +23525,8 @@ var ImageAssetRegistry = class {
   uniqueImageFilename(filename) {
     if (!this.usedFilenames.has(filename))
       return filename;
-    const ext = import_path7.default.extname(filename);
-    const stem = import_path7.default.basename(filename, ext);
+    const ext = import_path8.default.extname(filename);
+    const stem = import_path8.default.basename(filename, ext);
     let index = 2;
     let candidate = `${stem}-${index}${ext}`;
     while (this.usedFilenames.has(candidate)) {
@@ -23538,7 +23549,7 @@ async function inertSvg(source, report) {
   const removed = removeActiveContent(doc);
   if (!removed.scripts && !removed.handlers && !removed.links)
     return bytes2;
-  const page = import_path7.default.basename(source);
+  const page = import_path8.default.basename(source);
   report?.change("Scripts removed", page, removed.scripts);
   report?.change("Event handler attributes removed", page, removed.handlers);
   report?.change("Script links removed", page, removed.links);
@@ -23546,40 +23557,40 @@ async function inertSvg(source, report) {
 }
 async function copyUiAssets(template, outputPaths) {
   await Promise.all(UI_ASSET_DIRS.map(async (dirname) => {
-    const source = import_path7.default.join(template, dirname);
+    const source = import_path8.default.join(template, dirname);
     if (await fs_default.pathExists(source)) {
-      await fs_default.copy(source, import_path7.default.join(outputPaths.stagingDir, dirname));
+      await fs_default.copy(source, import_path8.default.join(outputPaths.stagingDir, dirname));
     }
   }));
   if (!await useReaderBundle(template, outputPaths)) {
     const shell = await readerShell(template);
     if (shell !== null)
-      await fs_default.writeFile(import_path7.default.join(outputPaths.stagingDir, "src/reader-shell.html"), shell);
+      await fs_default.writeFile(import_path8.default.join(outputPaths.stagingDir, "src/reader-shell.html"), shell);
   }
-  await combineStylesheets(import_path7.default.join(outputPaths.stagingDir, "src", "css"), "style.css");
+  await combineStylesheets(import_path8.default.join(outputPaths.stagingDir, "src", "css"), "style.css");
   const files2 = [];
   const walk = async (directory) => {
     for (const name3 of (await fs_default.readdir(directory)).sort()) {
-      const filename = import_path7.default.join(directory, name3);
+      const filename = import_path8.default.join(directory, name3);
       if ((await fs_default.stat(filename)).isDirectory())
         await walk(filename);
       else if (name3 !== "ui-files.json") {
         const bytes2 = await fs_default.readFile(filename);
         files2.push({
-          href: toPosixPath(import_path7.default.relative(outputPaths.stagingDir, filename)),
+          href: toPosixPath(import_path8.default.relative(outputPaths.stagingDir, filename)),
           bytes: bytes2.length,
           sha256: createHash("sha256").update(bytes2).digest("hex")
         });
       }
     }
   };
-  await walk(import_path7.default.join(outputPaths.stagingDir, "src"));
+  await walk(import_path8.default.join(outputPaths.stagingDir, "src"));
   files2.sort((a, b) => a.href < b.href ? -1 : a.href > b.href ? 1 : 0);
   const revision = createHash("sha256").update(JSON.stringify(files2)).digest("hex");
-  await fs_default.writeJson(import_path7.default.join(outputPaths.stagingDir, "src", "ui-files.json"), { version: 1, contract: 0, revision, files: files2 }, { spaces: 2 });
+  await fs_default.writeJson(import_path8.default.join(outputPaths.stagingDir, "src", "ui-files.json"), { version: 1, contract: 0, revision, files: files2 }, { spaces: 2 });
 }
 async function readerShell(template) {
-  const templatePage = import_path7.default.join(template, "index.html");
+  const templatePage = import_path8.default.join(template, "index.html");
   if (!await fs_default.pathExists(templatePage))
     return null;
   const doc = new JSDOM(await fs_default.readFile(templatePage, "utf8")).window.document;
@@ -23591,22 +23602,22 @@ async function readerShell(template) {
   return doc.body.innerHTML;
 }
 async function useReaderBundle(template, outputPaths) {
-  const listing = import_path7.default.join(template, "build", "bundled.json");
+  const listing = import_path8.default.join(template, "build", "bundled.json");
   if (!await fs_default.pathExists(listing))
     return false;
-  const js = import_path7.default.join(outputPaths.stagingDir, "src", "js");
+  const js = import_path8.default.join(outputPaths.stagingDir, "src", "js");
   const bundled = await fs_default.readJson(listing);
-  await Promise.all(bundled.map((file) => fs_default.remove(import_path7.default.join(js, file))));
-  for (const directory of new Set(bundled.map((file) => import_path7.default.dirname(file)).filter((dir) => dir !== "."))) {
-    const remaining = import_path7.default.join(js, directory);
+  await Promise.all(bundled.map((file) => fs_default.remove(import_path8.default.join(js, file))));
+  for (const directory of new Set(bundled.map((file) => import_path8.default.dirname(file)).filter((dir) => dir !== "."))) {
+    const remaining = import_path8.default.join(js, directory);
     if (await fs_default.pathExists(remaining) && !(await fs_default.readdir(remaining)).length)
       await fs_default.remove(remaining);
   }
-  await fs_default.copy(import_path7.default.join(template, "build", "js"), js);
+  await fs_default.copy(import_path8.default.join(template, "build", "js"), js);
   return true;
 }
 async function combineStylesheets(cssDir, entry) {
-  const entryPath = import_path7.default.join(cssDir, entry);
+  const entryPath = import_path8.default.join(cssDir, entry);
   if (!await fs_default.pathExists(entryPath))
     return;
   const inlined = /* @__PURE__ */ new Set();
@@ -23617,10 +23628,10 @@ async function combineStylesheets(cssDir, entry) {
     const importRule = /@import\s+(?:url\()?["']([^"')]+)["']\)?\s*;/;
     for (let match = importRule.exec(rest); match; match = importRule.exec(rest)) {
       parts.push(rest.slice(0, match.index));
-      const imported = import_path7.default.resolve(import_path7.default.dirname(file), match[1]);
+      const imported = import_path8.default.resolve(import_path8.default.dirname(file), match[1]);
       if (!inlined.has(imported) && await fs_default.pathExists(imported)) {
         inlined.add(imported);
-        parts.push(`/* ${import_path7.default.basename(imported)} */
+        parts.push(`/* ${import_path8.default.basename(imported)} */
 ${(await inline(imported)).trim()}
 `);
       }
@@ -23637,22 +23648,22 @@ var SERVICE_WORKER_STUB = `// Offline reading. The behavior lives with the reade
 importScripts('src/js/offline-worker.js');
 `;
 async function writeServiceWorkerStub(outputPaths) {
-  await fs_default.writeFile(import_path7.default.join(outputPaths.stagingDir, OutputLayout.serviceWorkerFilename), SERVICE_WORKER_STUB);
+  await fs_default.writeFile(import_path8.default.join(outputPaths.stagingDir, OutputLayout.serviceWorkerFilename), SERVICE_WORKER_STUB);
 }
 async function copyImageAssets(registry, outputPaths) {
   await Promise.all(registry.all().map(async (asset) => {
-    await registry.copyAsset(asset, import_path7.default.join(outputPaths.imagesDir, asset.outputFilename));
+    await registry.copyAsset(asset, import_path8.default.join(outputPaths.imagesDir, asset.outputFilename));
   }));
   await registry.reportPublisherAssets();
 }
 
 // ../convert/build/template.js
 init_globals();
-var import_path10 = __toESM(require_path_browserify(), 1);
+var import_path11 = __toESM(require_path_browserify(), 1);
 
 // ../convert/build/model.js
 init_globals();
-var import_path8 = __toESM(require_path_browserify(), 1);
+var import_path9 = __toESM(require_path_browserify(), 1);
 var import_xpath4 = __toESM(require_xpath(), 1);
 
 // ../convert/build/chapter-split.js
@@ -23828,12 +23839,12 @@ async function buildSiteModel(epub, options = {}) {
     const doc = new JSDOM(source).window.document;
     ensureHeadingIds(doc);
     const targets = collectTocFragmentTargets(epub.nav.toc, sourcePath);
-    const candidateSplit = options.splitChapters === false ? void 0 : planDocumentSplit(doc, targets, (message) => options.warn?.(`${import_path8.default.basename(sourcePath)}: ${message}`));
+    const candidateSplit = options.splitChapters === false ? void 0 : planDocumentSplit(doc, targets, (message) => options.warn?.(`${import_path9.default.basename(sourcePath)}: ${message}`));
     const split = candidateSplit && (candidateSplit.depth === 1 || import_buffer.Buffer.byteLength(source) >= LONG_NESTED_DOCUMENT_BYTES) ? candidateSplit : void 0;
     if (split)
       options.onSplit?.(sourcePath, split.pieces);
     const pageCount = split?.pieces ?? 1;
-    const stem = import_path8.default.basename(sourcePath, import_path8.default.extname(sourcePath));
+    const stem = import_path9.default.basename(sourcePath, import_path9.default.extname(sourcePath));
     for (let piece = 0; piece < pageCount; piece += 1) {
       const baseName = piece === 0 ? spineIndex === 0 ? "index.html" : `${stem}.html` : `${stem}-${piece + 1}.html`;
       const contentName = navigationFilenames.has(baseName.toLowerCase()) ? `${stem}-content.html` : baseName;
@@ -23885,9 +23896,9 @@ async function buildSiteModel(epub, options = {}) {
   });
   const useHeadingTitles = options.headingTitles === true && plannedPages.length > 1 && plannedPages.every((page) => collapseWhitespace(page.spineItem.title ?? "") === bookTitle);
   const pages = plannedPages.map((planned, index) => {
-    const title = planned.tocTitle || navTitleBySource.get(planned.sourcePath) || (index === 0 ? metadata.title : "") || (useHeadingTitles ? planned.headingTitle : "") || planned.spineItem.title || import_path8.default.basename(planned.sourcePath, import_path8.default.extname(planned.sourcePath));
+    const title = planned.tocTitle || navTitleBySource.get(planned.sourcePath) || (index === 0 ? metadata.title : "") || (useHeadingTitles ? planned.headingTitle : "") || planned.spineItem.title || import_path9.default.basename(planned.sourcePath, import_path9.default.extname(planned.sourcePath));
     return {
-      audioBaseName: import_path8.default.basename(planned.outputFilename, import_path8.default.extname(planned.outputFilename)),
+      audioBaseName: import_path9.default.basename(planned.outputFilename, import_path9.default.extname(planned.outputFilename)),
       index,
       moPath: planned.spineItem.moPath,
       outputFilename: planned.outputFilename,
@@ -23906,6 +23917,8 @@ async function buildSiteModel(epub, options = {}) {
     ...coverHref ? { coverHref } : {},
     metadata,
     pageList: buildPageList(epub.nav["page-list"], sourceToOutput, idToOutput, cutPointToOutput),
+    // For links in the pages to the book's own navigation document (rewriteInternalLinks)
+    ...epub.navFilename ? { navigationSource: normalizeSourcePath(epub.navFilename) } : {},
     pages,
     sourceToOutput,
     toc: buildToc(epub.nav.toc, sourceToOutput, idToOutput, cutPointToOutput)
@@ -23943,8 +23956,8 @@ function collectTocFragmentTargets(nav, sourcePath) {
 function uniqueFilename(filename, usedFilenames) {
   if (!usedFilenames.has(filename))
     return filename;
-  const ext = import_path8.default.extname(filename);
-  const stem = import_path8.default.basename(filename, ext);
+  const ext = import_path9.default.extname(filename);
+  const stem = import_path9.default.basename(filename, ext);
   let index = 2;
   let candidate = `${stem}-${index}${ext}`;
   while (usedFilenames.has(candidate)) {
@@ -24021,7 +24034,7 @@ function firstValue(value) {
   return Array.isArray(value) ? value[0] ?? "" : value ?? "";
 }
 function normalizeSourcePath(sourcePath) {
-  return import_path8.default.resolve(sourcePath);
+  return import_path9.default.resolve(sourcePath);
 }
 function directChildElement(parent, localName) {
   return directChildElements(parent, localName)[0] ?? null;
@@ -24070,12 +24083,12 @@ function validateTemplateContract(doc) {
 // ../convert/build/favicon.js
 init_globals();
 init_fs();
-var import_path9 = __toESM(require_path_browserify(), 1);
+var import_path10 = __toESM(require_path_browserify(), 1);
 var GENERIC_BOOK_FAVICON = { href: "src/icons/book.svg", type: "image/svg+xml", sizes: "any" };
 async function createBookFavicon(cover, output2) {
   if (!cover)
     return GENERIC_BOOK_FAVICON;
-  const filename = import_path9.default.join(output2.stagingDir, "favicon.png");
+  const filename = import_path10.default.join(output2.stagingDir, "favicon.png");
   try {
     await configureFfmpeg();
     await new Promise((resolve, reject) => {
@@ -24096,7 +24109,7 @@ var TemplateRenderer = class _TemplateRenderer {
     this.templateDocument = templateDocument;
   }
   static async load(template) {
-    const templateFilename = import_path10.default.join(template, "index.html");
+    const templateFilename = import_path11.default.join(template, "index.html");
     const templateHtml = await readToString(templateFilename);
     const dom = new JSDOM(templateHtml);
     validateTemplateContract(dom.window.document);
@@ -24627,7 +24640,7 @@ function shapeBookPage(html, delivery) {
 // ../convert/build/audio.js
 init_globals();
 init_fs();
-var import_path12 = __toESM(require_path_browserify(), 1);
+var import_path13 = __toESM(require_path_browserify(), 1);
 var import_xpath5 = __toESM(require_xpath(), 1);
 
 // ../convert/build/vtt.js
@@ -24657,15 +24670,15 @@ async function createVtt(mediaSegments, outFilename, selectors = /* @__PURE__ */
 init_globals();
 init_fs();
 init_node_stubs();
-var import_path11 = __toESM(require_path_browserify(), 1);
+var import_path12 = __toESM(require_path_browserify(), 1);
 var MERGE_VERSION = 7;
-var DEFAULT_CACHE_DIR = import_path11.default.join(node_stubs_default.tmpdir(), "webbook-audio-cache");
+var DEFAULT_CACHE_DIR = import_path12.default.join(node_stubs_default.tmpdir(), "webbook-audio-cache");
 function openAudioCache(option, bookId) {
   if (!option)
     return null;
-  const root = typeof option === "string" ? import_path11.default.resolve(option) : DEFAULT_CACHE_DIR;
+  const root = typeof option === "string" ? import_path12.default.resolve(option) : DEFAULT_CACHE_DIR;
   const bookFolder = crypto_default.createHash("sha256").update(bookId).digest("hex").slice(0, 16);
-  const dir = import_path11.default.join(root, bookFolder);
+  const dir = import_path12.default.join(root, bookFolder);
   winston_default.info(`Reusing unchanged audio from ${dir}`);
   return { dir };
 }
@@ -24689,11 +24702,11 @@ async function cacheKey(segments, encoding, cleanup) {
 }
 async function restoreCachedAudio(cache, audioFilename, segments, outPath, key) {
   try {
-    const manifest = await fs_default.readJson(import_path11.default.join(cache.dir, `${audioFilename}.json`));
+    const manifest = await fs_default.readJson(import_path12.default.join(cache.dir, `${audioFilename}.json`));
     if (manifest.key !== key || !Array.isArray(manifest.durations) || manifest.durations.length !== segments.length) {
       return null;
     }
-    await fs_default.copy(import_path11.default.join(cache.dir, audioFilename), outPath);
+    await fs_default.copy(import_path12.default.join(cache.dir, audioFilename), outPath);
     segments.forEach((segment, i) => {
       segment.durOnDisk = manifest.durations[i];
     });
@@ -24706,8 +24719,8 @@ async function restoreCachedAudio(cache, audioFilename, segments, outPath, key) 
 async function storeCachedAudio(cache, audioFilename, segments, outPath, key, findings) {
   try {
     await fs_default.ensureDir(cache.dir);
-    await fs_default.copy(outPath, import_path11.default.join(cache.dir, audioFilename));
-    await fs_default.writeJson(import_path11.default.join(cache.dir, `${audioFilename}.json`), {
+    await fs_default.copy(outPath, import_path12.default.join(cache.dir, audioFilename));
+    await fs_default.writeJson(import_path12.default.join(cache.dir, `${audioFilename}.json`), {
       key,
       findings,
       durations: segments.map((segment) => segment.durOnDisk ?? null)
@@ -24875,12 +24888,12 @@ async function createAudioForPage(page, outputPaths, suppliedMediaSegments, cach
     winston_default.warn(`No media segments found for ${page.sourcePath}`);
     return null;
   }
-  const sourceExt = import_path12.default.extname(getWithoutFrag(mediaSegments[0].src)) || ".mp3";
+  const sourceExt = import_path13.default.extname(getWithoutFrag(mediaSegments[0].src)) || ".mp3";
   const audioExt = smallAudio ? SMALL_AUDIO_ENCODING.extension : sourceExt;
   const audioFilename = `${page.audioBaseName}${audioExt}`;
   const vttFilename = `${page.audioBaseName}.vtt`;
-  const audioOutPath = import_path12.default.join(outputPaths.audioDir, audioFilename);
-  const vttOutPath = import_path12.default.join(outputPaths.vttDir, vttFilename);
+  const audioOutPath = import_path13.default.join(outputPaths.audioDir, audioFilename);
+  const vttOutPath = import_path13.default.join(outputPaths.vttDir, vttFilename);
   const encoding = smallAudio ? SMALL_AUDIO_ENCODING : await encodingSettingsForSegments(mediaSegments, audioExt);
   const key = cache ? await cacheKey(mediaSegments, encoding, cleanup) : "";
   const restored = cache ? await restoreCachedAudio(cache, audioFilename, mediaSegments, audioOutPath, key) : null;
@@ -24905,13 +24918,13 @@ async function createAudioForPage(page, outputPaths, suppliedMediaSegments, cach
     winston_default.warn(`Encoded audio differs from its PCM cue duration by ${encoderDrift.toFixed(3)}s in ${audioFilename}`);
   }
   return {
-    audioHref: toPosixPath(import_path12.default.join(OutputLayout.audioDir, audioFilename)),
+    audioHref: toPosixPath(import_path13.default.join(OutputLayout.audioDir, audioFilename)),
     cues,
     duration,
     encoding,
     encoderDrift,
     findings: findings ?? await analyzeAudio(audioOutPath),
-    vttHref: toPosixPath(import_path12.default.join(OutputLayout.vttDir, vttFilename))
+    vttHref: toPosixPath(import_path13.default.join(OutputLayout.vttDir, vttFilename))
   };
 }
 var SMALL_AUDIO_ENCODING = Object.freeze({
@@ -24979,12 +24992,12 @@ async function mergeAudioSegments(mediaSegments, outFilename, encoding, cleanup 
 }) {
   winston_default.info(`Merging audio clips into ${outFilename}`);
   await configureFfmpeg();
-  const settings = encoding ?? await encodingSettingsForSegments(mediaSegments, import_path12.default.extname(outFilename) || ".mp3");
+  const settings = encoding ?? await encodingSettingsForSegments(mediaSegments, import_path13.default.extname(outFilename) || ".mp3");
   tmp_default.setGracefulCleanup();
   const tmpDirname = tmp_default.dirSync({ unsafeCleanup: true }).name;
   try {
     const audioTmpFilenames = mediaSegments.map((audio, idx) => {
-      const audioTmpFilename = import_path12.default.join(tmpDirname, `${idx}.wav`);
+      const audioTmpFilename = import_path13.default.join(tmpDirname, `${idx}.wav`);
       audio.tmpFilename = audioTmpFilename;
       return audioTmpFilename;
     });
@@ -25004,22 +25017,22 @@ async function mergeAudioSegments(mediaSegments, outFilename, encoding, cleanup 
         audio.durOnDisk = await wavDuration(audio.tmpFilename) ?? await getDuration(audio.tmpFilename);
       }
     }
-    const rawJoinedFilename = import_path12.default.join(tmpDirname, "joined-raw.wav");
+    const rawJoinedFilename = import_path13.default.join(tmpDirname, "joined-raw.wav");
     await joinPcmFiles(audioTmpFilenames, rawJoinedFilename, settings, tmpDirname, "raw-segments.txt");
     const findings = await analyzeAudio(rawJoinedFilename);
     const joinedDuration = await getDuration(rawJoinedFilename);
     let joinedFilename = rawJoinedFilename;
     if (cleanup.enabled) {
-      const fadedFilenames = audioTmpFilenames.map((_, index) => import_path12.default.join(tmpDirname, `${index}-faded.wav`));
+      const fadedFilenames = audioTmpFilenames.map((_, index) => import_path13.default.join(tmpDirname, `${index}-faded.wav`));
       await runWithConcurrency(audioTmpFilenames, AUDIO_SEGMENT_CONCURRENCY, async (filename, index) => {
         await applyClipFades(filename, fadedFilenames[index], mediaSegments[index].durOnDisk ?? 0, cleanup);
       });
-      joinedFilename = import_path12.default.join(tmpDirname, "joined.wav");
+      joinedFilename = import_path13.default.join(tmpDirname, "joined.wav");
       await joinPcmFiles(fadedFilenames, joinedFilename, settings, tmpDirname, "faded-segments.txt");
     }
     const measured = cleanup.enabled ? await measureLoudness(joinedFilename, cleanup) : null;
     if (cleanup.enabled && measured === null) {
-      winston_default.warn(`Could not measure loudness for ${import_path12.default.basename(outFilename)}; applying cleanup without raising the level`);
+      winston_default.warn(`Could not measure loudness for ${import_path13.default.basename(outFilename)}; applying cleanup without raising the level`);
     }
     await new Promise((resolve, reject) => {
       const command = ffmpeg_wasm_default().input(joinedFilename).audioChannels(settings.channels).audioFrequency(settings.sampleRate).audioBitrate(`${settings.bitrateKbps}k`);
@@ -25044,7 +25057,7 @@ async function mergeAudioSegments(mediaSegments, outFilename, encoding, cleanup 
   }
 }
 async function joinPcmFiles(filenames, joinedFilename, settings, tmpDirname, listName) {
-  const concatListFilename = import_path12.default.join(tmpDirname, listName);
+  const concatListFilename = import_path13.default.join(tmpDirname, listName);
   await fs_default.writeFile(concatListFilename, filenames.map((filename) => `file '${filename.replace(/'/g, "'\\''")}'`).join("\n"));
   await new Promise((resolve, reject) => {
     const command = ffmpeg_wasm_default().input(concatListFilename).inputOptions(["-f concat", "-safe 0"]).audioChannels(settings.channels).audioFrequency(settings.sampleRate).audioCodec("pcm_s16le");
@@ -25083,7 +25096,7 @@ async function decodeSourceRanges(mediaSegments, settings, tmpDirname) {
   const ranges = /* @__PURE__ */ new Map();
   let index = 0;
   for (const [src, bound] of bounds)
-    ranges.set(src, { filename: import_path12.default.join(tmpDirname, `source-${index++}.wav`), start: bound.start });
+    ranges.set(src, { filename: import_path13.default.join(tmpDirname, `source-${index++}.wav`), start: bound.start });
   await runWithConcurrency(Array.from(bounds), AUDIO_SEGMENT_CONCURRENCY, async ([src, bound]) => {
     await cutToWav(src, bound.start, bound.end, ranges.get(src).filename, settings);
   });
@@ -25146,7 +25159,7 @@ function resolveSmilReference(smilPath, reference, pageSourcePath) {
     return reference;
   const frag = getFrag(reference);
   const withoutFrag = getWithoutFrag(reference);
-  const resolved = import_path12.default.resolve(import_path12.default.dirname(smilPath), withoutFrag);
+  const resolved = resolveHrefPath(import_path13.default.dirname(smilPath), withoutFrag);
   return frag ? `${resolved}#${frag}` : resolved;
 }
 
@@ -25350,7 +25363,7 @@ function additionalInformation(m) {
 
 // ../convert/build/content-transform.js
 init_globals();
-var import_path15 = __toESM(require_path_browserify(), 1);
+var import_path16 = __toESM(require_path_browserify(), 1);
 
 // ../convert/build/create-search-index.js
 init_globals();
@@ -25626,7 +25639,7 @@ function applyStructureIds(doc, narrationTargetIds, navigationIds = [], keepAllI
 
 // ../convert/build/publisher-styles.js
 init_globals();
-var import_path13 = __toESM(require_path_browserify(), 1);
+var import_path14 = __toESM(require_path_browserify(), 1);
 var import_css2 = __toESM(require_css(), 1);
 init_fs();
 function rewriteSelectorIds(selector, ids) {
@@ -25700,7 +25713,7 @@ async function publisherStyles(doc, sheets, registry, warn, documentPath = "", o
     if (!parts)
       return match;
     try {
-      const asset = registry.registerPublisherAsset(import_path13.default.resolve(import_path13.default.dirname(sourcePath), decodeURIComponent(parts[1])), options.page ?? "", font);
+      const asset = registry.registerPublisherAsset(import_path14.default.resolve(import_path14.default.dirname(sourcePath), decodeURIComponent(parts[1])), options.page ?? "", font);
       return asset ? `url("../${asset.href}${parts[2]}")` : 'url("")';
     } catch {
       return match;
@@ -25720,7 +25733,7 @@ async function publisherStyles(doc, sheets, registry, warn, documentPath = "", o
           warn("A remote stylesheet import could not be scoped and was omitted.");
           continue;
         }
-        const imported = import_path13.default.resolve(import_path13.default.dirname(sourcePath), decodeURIComponent(match[1]));
+        const imported = import_path14.default.resolve(import_path14.default.dirname(sourcePath), decodeURIComponent(match[1]));
         if (ancestry.has(imported))
           continue;
         try {
@@ -25730,7 +25743,7 @@ async function publisherStyles(doc, sheets, registry, warn, documentPath = "", o
           else
             result.push(...rules);
         } catch {
-          warn(`Stylesheet import could not be read: ${import_path13.default.basename(imported)}`);
+          warn(`Stylesheet import could not be read: ${import_path14.default.basename(imported)}`);
         }
         continue;
       }
@@ -25827,7 +25840,7 @@ ${text2}
 
 // ../convert/build/book-styles.js
 init_globals();
-var import_path14 = __toESM(require_path_browserify(), 1);
+var import_path15 = __toESM(require_path_browserify(), 1);
 var import_css3 = __toESM(require_css(), 1);
 var MEANINGFUL = /* @__PURE__ */ new Set(["display", "visibility", "font-style", "font-weight", "font-variant", "font-variant-caps", "text-decoration", "text-decoration-line", "vertical-align", "text-align", "text-indent", "margin-left", "margin-inline-start", "padding-left", "padding-inline-start", "white-space", "list-style-type", "background", "background-color", "font", "margin", "padding", "list-style", "border", "border-style", "border-width", "border-color", ...["top", "right", "bottom", "left"].flatMap((side) => [`border-${side}`, `border-${side}-style`, `border-${side}-width`, `border-${side}-color`])]);
 var PROPERTIES = /* @__PURE__ */ new Set([
@@ -26225,10 +26238,10 @@ async function readPageStylesheets(doc, sourcePath, unreadable = () => {
       continue;
     }
     try {
-      const file = import_path14.default.resolve(import_path14.default.dirname(sourcePath), decodeURIComponent(href));
+      const file = import_path15.default.resolve(import_path15.default.dirname(sourcePath), decodeURIComponent(href));
       sheets.push({ sourcePath: file, css: await readToString(file), conditions });
     } catch {
-      unreadable(`Stylesheet could not be read: ${import_path14.default.basename(href)}`);
+      unreadable(`Stylesheet could not be read: ${import_path15.default.basename(href)}`);
     }
   }
   const wrap = (sheet, text2) => ({
@@ -26246,7 +26259,7 @@ async function readPageStylesheets(doc, sourcePath, unreadable = () => {
         if (isExternalHref(match[1]))
           unreadable(`External stylesheet import not included: ${match[1]}`);
         else {
-          const imported = import_path14.default.resolve(import_path14.default.dirname(sheet.sourcePath ?? sourcePath), decodeURIComponent(match[1]));
+          const imported = import_path15.default.resolve(import_path15.default.dirname(sheet.sourcePath ?? sourcePath), decodeURIComponent(match[1]));
           if (!seen.has(imported))
             output2.push(...await expand({
               sourcePath: imported,
@@ -26558,6 +26571,8 @@ function rewriteInternalLinks(doc, page, site) {
     const rewrittenHref = rewriteSourceHref(absoluteHref, site.sourceToOutput, site.idToOutput, site.cutPointToOutput);
     if (rewrittenHref)
       link.setAttribute("href", rewrittenHref);
+    else if (site.navigationSource && getWithoutFrag(absoluteHref) === site.navigationSource)
+      link.setAttribute("href", "toc.html");
   });
 }
 function removeIdsOwnedByOtherPages(doc, page, site) {
@@ -26570,6 +26585,9 @@ function rewriteImageReferences(doc, page, imageRegistry) {
   rewriteUrlAttribute(doc, page, imageRegistry, "math[altimg]", "altimg");
   rewriteUrlAttribute(doc, page, imageRegistry, "image[href]", "href");
   rewriteUrlAttribute(doc, page, imageRegistry, "image[xlink\\:href]", "xlink:href");
+  for (const selector of ["audio[src]", "video[src]", "source[src]", "track[src]"])
+    rewriteUrlAttribute(doc, page, imageRegistry, selector, "src");
+  rewriteUrlAttribute(doc, page, imageRegistry, "video[poster]", "poster");
   doc.querySelectorAll("img[srcset], source[srcset]").forEach((elm) => {
     const srcset = elm.getAttribute("srcset");
     if (!srcset)
@@ -26626,10 +26644,10 @@ function selfAnchorSvg() {
   return '<svg aria-hidden="true" role="img" width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="rotate(135 12 12)"><path d="M9 7a1 1 0 0 1 .117 1.993L9 9H7a3 3 0 0 0-.176 5.995L7 15h2a1 1 0 0 1 .117 1.993L9 17H7a5 5 0 0 1-.217-9.995L7 7h2Zm8 0a5 5 0 0 1 .217 9.995L17 17h-2a1 1 0 0 1-.117-1.993L15 15h2a3 3 0 0 0 .176-5.995L17 9h-2a1 1 0 0 1-.117-1.993L15 7h2ZM7 11h10a1 1 0 0 1 .117 1.993L17 13H7a1 1 0 0 1-.117-1.993L7 11h10H7Z" fill="currentColor"/></g></svg>';
 }
 function resolveContentHref(sourcePath, href) {
-  const baseDir = import_path15.default.dirname(sourcePath);
+  const baseDir = import_path16.default.dirname(sourcePath);
   const noFrag = getWithoutFrag(href);
   const frag = getFrag(href);
-  const resolved = import_path15.default.resolve(baseDir, noFrag);
+  const resolved = resolveHrefPath(baseDir, noFrag);
   return frag ? `${resolved}#${frag}` : resolved;
 }
 
@@ -27089,7 +27107,7 @@ async function convert(input, output2, template, options = {}) {
       splitChapters: options.splitChapters !== false,
       language: options.language,
       warn: (message) => winston_default.warn(message),
-      onSplit: (sourcePath, pieces) => winston_default.info(`Split ${import_path16.default.basename(sourcePath)} into ${pieces} pages at its table of contents entries`)
+      onSplit: (sourcePath, pieces) => winston_default.info(`Split ${import_path17.default.basename(sourcePath)} into ${pieces} pages at its table of contents entries`)
     });
     if (options.headingTitles !== false) {
       winston_default.info(site.headingTitles ? "Every page is titled with the book title, so pages are titled by their first other heading" : "Pages have their own titles, so --heading-titles has no effect");
@@ -27114,7 +27132,7 @@ async function convert(input, output2, template, options = {}) {
       "reader updates": channel || "bundled (fixed copy)"
     });
     await imageRegistry.configureFonts(epub.basedir, epub.packageFilename, report);
-    report.provenance = { source: import_path16.default.basename(input), identifier: site.metadata.identifier || "", converter: converterVersion };
+    report.provenance = { source: import_path17.default.basename(input), identifier: site.metadata.identifier || "", converter: converterVersion };
     if (channel) {
       report.betaWarning = `READER UPDATES: this book will receive reader updates from the beta channel at ${channel}. To choose a fixed bundled copy, use --no-remote-ui. The address and releases may change; a new contract requires reconverting from the source EPUB. Keep the EPUB.`;
       winston_default.warn(report.betaWarning);
@@ -27128,7 +27146,7 @@ async function convert(input, output2, template, options = {}) {
     const referencedIdsByPage = await crossPageReferencedIds(site);
     const coverAsset = site.metadata.coverPath ? imageRegistry.register(site.metadata.coverPath) : null;
     await copyUiAssets(template, outputPaths);
-    const bootstrap = await fs_default.readFile(import_path16.default.join(outputPaths.stagingDir, "src/js/bootstrap.js"), "utf8");
+    const bootstrap = await fs_default.readFile(import_path17.default.join(outputPaths.stagingDir, "src/js/bootstrap.js"), "utf8");
     await writeServiceWorkerStub(outputPaths);
     const favicon = await createBookFavicon(site.metadata.coverPath, outputPaths);
     const mediaSegmentsByPage = new Map(site.pages.map((page) => [page.outputFilename, []]));
@@ -27187,7 +27205,7 @@ async function convert(input, output2, template, options = {}) {
         const digest = createHash("sha256").update(result.content.publisherCss).digest("hex").slice(0, 20);
         publisherHref = `styles/publisher-${digest}.css`;
         if (!writtenDesigns.has(digest)) {
-          await fs_default.ensureDir(import_path16.default.join(outputPaths.stagingDir, "styles"));
+          await fs_default.ensureDir(import_path17.default.join(outputPaths.stagingDir, "styles"));
           await fs_default.writeFile(outputPath(outputPaths, publisherHref), result.content.publisherCss);
           writtenDesigns.set(digest, publisherHref);
         }
@@ -27201,7 +27219,7 @@ async function convert(input, output2, template, options = {}) {
         publisherHref,
         hasPublished
       });
-      const shaped = shapeBookPage(html, { channel, source: import_path16.default.basename(input), identifier: site.metadata.identifier || "", converter: converterVersion, bootstrap, page: page.outputFilename, metadataXml, navigation: page.index === 0 });
+      const shaped = shapeBookPage(html, { channel, source: import_path17.default.basename(input), identifier: site.metadata.identifier || "", converter: converterVersion, bootstrap, page: page.outputFilename, metadataXml, navigation: page.index === 0 });
       await fs_default.writeFile(outputPath(outputPaths, page.outputFilename), shaped.html);
       if (page.index === 0)
         for (const [filename, content] of Object.entries(shaped.navigation))
@@ -27236,7 +27254,7 @@ async function addAudioReport(report, segmentsByPage, transformed, paths, smallA
   const sourceBytes = (await Promise.all(Array.from(sources, (source) => fs_default.stat(source).then((stat2) => stat2.size)))).reduce((sum, size) => sum + size, 0);
   const audioEntries = Array.from(transformed, ([page, result]) => ({ page, asset: result.audio })).filter((entry) => entry.asset !== null);
   const audio = audioEntries.map((entry) => entry.asset);
-  const outputBytes = (await Promise.all(audio.map((asset) => fs_default.stat(import_path16.default.join(paths.stagingDir, asset.audioHref)).then((stat2) => stat2.size)))).reduce((sum, size) => sum + size, 0);
+  const outputBytes = (await Promise.all(audio.map((asset) => fs_default.stat(import_path17.default.join(paths.stagingDir, asset.audioHref)).then((stat2) => stat2.size)))).reduce((sum, size) => sum + size, 0);
   const settings = Array.from(new Set(audio.map((asset) => {
     const value = asset.encoding;
     return `${value.extension.replace(/^\./, "").toUpperCase()}, ${value.channels === 1 ? "mono" : `${value.channels} channels`}, ${value.sampleRate} Hz, ${value.bitrateKbps} kb/s${value.codec ? ` (${value.codec})` : ""}`;
@@ -27319,11 +27337,13 @@ async function reportBrokenLinks(site, documents, paths, report) {
       const fragment = url.hash ? decodeURIComponent(url.hash.slice(1)) : "";
       const pageLink = fragment || /\.x?html?$/i.test(target);
       if (!pageLink) {
-        if (!await fs_default.pathExists(import_path16.default.join(paths.stagingDir, target))) {
+        if (!await fs_default.pathExists(import_path17.default.join(paths.stagingDir, target))) {
           report.warning("Broken links", `${href} points to a file that is not in the converted book.`, page);
         }
         continue;
       }
+      if (!fragment && ["toc.html", "pages.html", "about.html"].includes(target) && await fs_default.pathExists(import_path17.default.join(paths.stagingDir, target)))
+        continue;
       if (!pages.has(target)) {
         report.warning("Broken links", `${href} points to a page that is not in the converted book.`, page);
         continue;
@@ -27345,7 +27365,7 @@ async function crossPageReferencedIds(site) {
       const hash = href.slice(href.indexOf("#") + 1);
       if (!hash)
         continue;
-      const targetSource = href.startsWith("#") ? sourcePath : import_path16.default.resolve(import_path16.default.dirname(sourcePath), href.slice(0, href.indexOf("#")));
+      const targetSource = href.startsWith("#") ? sourcePath : resolveHrefPath(import_path17.default.dirname(sourcePath), href.slice(0, href.indexOf("#")));
       const output2 = site.idToOutput.get(`${targetSource}#${hash}`);
       if (!output2)
         continue;

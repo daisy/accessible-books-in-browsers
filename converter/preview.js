@@ -84,7 +84,8 @@ export async function showPreview(files) {
     await caches.delete(CACHE);
     const cache = await caches.open(CACHE);
     for (const [path, data] of Object.entries(files)) {
-        await cache.put(new URL(path, PREVIEW_ROOT).href, new Response(data, { headers: { 'Content-Type': typeOf(path), 'Content-Length': String(data.byteLength) } }));
+        // A file name is a path, not a URL: a %, # or ? in it is part of the name, as the pages' links encode it
+        await cache.put(new URL(path.replace(/[%#?]/g, encodeURIComponent), PREVIEW_ROOT).href, new Response(data, { headers: { 'Content-Type': typeOf(path), 'Content-Length': String(data.byteLength) } }));
     }
     return PREVIEW_ROOT + 'index.html';
 }

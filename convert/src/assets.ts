@@ -63,7 +63,9 @@ class ImageAssetRegistry {
 
         const outputFilename = this.uniqueImageFilename(path.basename(normalizedSourcePath));
         const asset = {
-            href: utils.toPosixPath(path.join(OutputLayout.imagesDir, outputFilename)),
+            // A URL: characters that would end or change it (a space, #, ?, % and so on) are encoded;
+            // other letters, in any script, stay readable
+            href: `${OutputLayout.imagesDir}/${outputFilename.replace(/[\u0000-\u0020%#?"<>\\^`{|}\u007f]/g, character => encodeURIComponent(character))}`,
             outputFilename,
             sourcePath: normalizedSourcePath
         };

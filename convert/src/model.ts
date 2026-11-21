@@ -56,6 +56,7 @@ export type SiteModel = {
     pageList: PageListEntry[];
     pages: SitePage[];
     sourceToOutput: Map<string, string>;
+    navigationSource?: string;
     toc: TocEntry[];
 };
 
@@ -178,6 +179,8 @@ async function buildSiteModel(epub: Epub, options: SiteModelOptions = {}): Promi
         bookId: options.identifier ?? metadata.identifier, headingTitles: useHeadingTitles,
         idToOutput, cutPointToOutput, ...(coverHref ? { coverHref } : {}), metadata,
         pageList: buildPageList(epub.nav['page-list'], sourceToOutput, idToOutput, cutPointToOutput),
+        // For links in the pages to the book's own navigation document (rewriteInternalLinks)
+        ...(epub.navFilename ? { navigationSource: normalizeSourcePath(epub.navFilename) } : {}),
         pages, sourceToOutput,
         toc: buildToc(epub.nav.toc, sourceToOutput, idToOutput, cutPointToOutput)
     };

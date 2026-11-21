@@ -73,7 +73,7 @@ Spine items marked `linear="no"` are left out, unless you use `--include-non-lin
 
 ### 3. Build the site model
 
-[`buildSiteModel`](../convert/src/model.ts#L85) works out the plan for the web book, without writing
+[`buildSiteModel`](../convert/src/model.ts#L86) works out the plan for the web book, without writing
 anything yet.
 
 - Each spine item gets its output file name (`.html`, and the first one is `index.html`). Nothing is
@@ -86,9 +86,9 @@ anything yet.
 - If every page's `<title>` is just the book's title, each page gets its first other heading as its
   title instead, so you can tell tabs and history entries apart. `--no-heading-titles` turns this
   off.
-- The table of contents ([`buildToc`](../convert/src/model.ts#L248)) keeps the nav document's
-  nesting. The page list ([`buildPageList`](../convert/src/model.ts#L236)) has the print page
-  numbers. The metadata ([`buildMetadata`](../convert/src/model.ts#L224)) has the title, authors,
+- The table of contents ([`buildToc`](../convert/src/model.ts#L251)) keeps the nav document's
+  nesting. The page list ([`buildPageList`](../convert/src/model.ts#L239)) has the print page
+  numbers. The metadata ([`buildMetadata`](../convert/src/model.ts#L227)) has the title, authors,
   language (or `--language`) and cover.
 - Every id in the book is mapped to the page it ends up on (`idToOutput`), so links still work across
   split pages.
@@ -112,16 +112,16 @@ Back in [`convert()`](../convert/src/convert.ts), a few things are set up for th
   order of the W3C Accessibility Metadata Display Guide 2.0, and presents them as the publisher's
   claims.
 - **The reader's files** are copied from the template, from a fixed list, and its stylesheets are
-  combined into one ([`copyUiAssets`](../convert/src/assets.ts#L93),
-  [`combineStylesheets`](../convert/src/assets.ts#L162)). Its scripts go in as a bundle: `npm run
+  combined into one ([`copyUiAssets`](../convert/src/assets.ts#L114),
+  [`combineStylesheets`](../convert/src/assets.ts#L183)). Its scripts go in as a bundle: `npm run
   compile` runs [`build-reader.mjs`](../convert/scripts/build-reader.mjs), which bundles the reader's
   70 or so modules into a few files, with the parts that load only when used (search, math copying,
   the shortcut editor) in their own. Each module was a separate request, found only after the one
   that imports it, so on a slow connection the reader took many round trips to arrive. The offline
   workers stay separate files. Without a bundle, a book gets the separate modules
-  ([`useReaderBundle`](../convert/src/assets.ts#L143)).
+  ([`useReaderBundle`](../convert/src/assets.ts#L164)).
 - **`sw.js`**, the fixed stub for offline reading, is written
-  ([`writeServiceWorkerStub`](../convert/src/assets.ts#L196)).
+  ([`writeServiceWorkerStub`](../convert/src/assets.ts#L217)).
 - **A favicon** is made from the cover, or a generic one is used
   ([`createBookFavicon`](../convert/src/favicon.ts#L11)).
 
@@ -157,10 +157,16 @@ DOM, in this order.
 5. **EPUB semantics.** `epub:type` becomes `epubtype_*` classes and, where DPUB-ARIA has one, a role
    ([`translateEpubTypes`](../convert/src/content-transform.ts#L186)). Old `rearnote(s)` count as
    `endnote(s)`, and deprecated `doc-endnote` roles are dropped.
-6. **Images** are registered for copying, and their references are rewritten.
+6. **Images, and the book's own audio and video** (`audio`, `video`, `source` and `track`, and a
+   video's `poster`, as opposed to its narration) are registered for copying into `images/`, and their
+   references are rewritten. A book's `href`s are URLs, so they're decoded before they name a file
+   (`chapter%20one.xhtml` is `chapter one.xhtml`), here and wherever the converter reads one
+   ([`resolveHrefPath`](../convert/src/utils.ts#L77)). The copies' own names are encoded where a URL
+   needs it (a space, `#`, `?` or `%`).
 7. **Splitting.** For a split document, only this page's piece is kept
    ([`extractDocumentPiece`](../convert/src/chapter-split.ts#L76)), and links are rewritten to the
-   final file names.
+   final file names. A link to the book's own navigation document goes to `toc.html`, the web
+   book's table of contents.
 8. **Markup cleanup** ([`cleanPublicationMarkup`](../convert/src/markup-cleanup.ts#L50)). These are
    the small mechanical fixes, and each one is counted in the report.
    - A heading's `title` attribute is shown as its text if the heading is otherwise empty, and
@@ -279,7 +285,7 @@ so a source chapter called `about.xhtml` becomes `about-content.html`, and its l
 - **The search data** ([`generateSearchIndex`](../convert/src/create-search-index.ts#L146)) has
   every passage, with its page, heading and selector. Search runs in the browser, and splits words
   by language.
-- **Images** and fonts are copied ([`copyImageAssets`](../convert/src/assets.ts#L200)).
+- **Images** and fonts are copied ([`copyImageAssets`](../convert/src/assets.ts#L221)).
 
 ### 10. Report
 

@@ -51,7 +51,7 @@ function resolveNavHref(navFilename: string, href: string, warn?: (message: stri
     }
 
     const frag = utils.getFrag(href);
-    const resolved = path.resolve(path.dirname(navFilename), withoutFrag);
+    const resolved = utils.resolveHrefPath(path.dirname(navFilename), withoutFrag);
     if (!isFile(resolved)) {
         warn?.(`Nav document href does not resolve to a local file in ${navFilename}: ${href}`);
     }

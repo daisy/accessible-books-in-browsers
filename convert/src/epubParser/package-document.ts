@@ -39,7 +39,7 @@ function parseGuideCoverHref(opfFilename: string, doc: Document): string | undef
     const href = reference?.getAttribute('href');
     if (!href) return undefined;
     const [filename, fragment] = href.split('#', 2);
-    const resolved = path.resolve(path.dirname(opfFilename), filename);
+    const resolved = utils.resolveHrefPath(path.dirname(opfFilename), filename);
     return fragment ? `${resolved}#${fragment}` : resolved;
 }
 
@@ -74,7 +74,7 @@ function parseMetadata(doc: Document, opfFilename: string): Metadata {
 
     const cover = firstMetadataValue(parsedMetadata.cover);
     if (cover) {
-        parsedMetadata.cover = path.resolve(path.dirname(opfFilename), cover);
+        parsedMetadata.cover = utils.resolveHrefPath(path.dirname(opfFilename), cover);
     }
 
     return parsedMetadata;
@@ -112,12 +112,12 @@ function parseSpine(opfFilename: string, doc: Document, options: PackageDocument
             const smilItem = manifestItems.get(mediaOverlayId);
             const smilHref = smilItem?.getAttribute('href');
             if (smilHref) {
-                smilfilename = path.resolve(path.dirname(opfFilename), smilHref);
+                smilfilename = utils.resolveHrefPath(path.dirname(opfFilename), smilHref);
             }
         }
 
         spineItems.push({
-            path: path.resolve(path.dirname(opfFilename), filename),
+            path: utils.resolveHrefPath(path.dirname(opfFilename), filename),
             moPath: smilfilename
         });
     });
@@ -128,7 +128,7 @@ function parseSpine(opfFilename: string, doc: Document, options: PackageDocument
 function getManifestItemHrefByProperty(property: string, doc: Document, opfFilename: string): string {
     const item = getManifestItemByProperty(property, doc);
     const href = item?.getAttribute('href');
-    return href ? path.resolve(path.dirname(opfFilename), href) : '';
+    return href ? utils.resolveHrefPath(path.dirname(opfFilename), href) : '';
 }
 
 function getManifestItemByProperty(property: string, doc: Document): Element | undefined {

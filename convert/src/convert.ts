@@ -349,6 +349,8 @@ export async function reportBrokenLinks(
                 }
                 continue;
             }
+            // The navigation pages the converter writes (a link to the book's own contents goes to toc.html)
+            if (!fragment && ['toc.html', 'pages.html', 'about.html'].includes(target) && await fs.pathExists(path.join(paths.stagingDir, target))) continue;
             if (!pages.has(target)) {
                 report.warning('Broken links', `${href} points to a page that is not in the converted book.`, page);
                 continue;
@@ -371,7 +373,7 @@ async function crossPageReferencedIds(site: Awaited<ReturnType<typeof buildSiteM
             if (!hash) continue;
             const targetSource = href.startsWith('#')
                 ? sourcePath
-                : path.resolve(path.dirname(sourcePath), href.slice(0, href.indexOf('#')));
+                : utils.resolveHrefPath(path.dirname(sourcePath), href.slice(0, href.indexOf('#')));
             const output = site.idToOutput.get(`${targetSource}#${hash}`);
             if (!output) continue;
             const ids = result.get(output) ?? new Set<string>();
