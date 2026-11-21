@@ -111,7 +111,7 @@ replace. If the book has publisher CSS, it sits in cascade layers below the read
 |---|---|
 | The player. There's one audio element for every page, with play, pause, speed, seeking and the timeline | [`player.js`](../convert/template/src/js/player.js) |
 | Finding the phrase each cue names. Cue text is JSON with an id, or a CSS path from the nearest id | [`cue-selector.js`](../convert/template/src/js/cue-selector.js) |
-| Highlighting the phrase, keeping it in view, and keeping the address pointed at where you are | [`narration-position.js`](../convert/template/src/js/narration-position.js), [`narration-highlight.css`](../convert/template/src/css/narration-highlight.css) |
+| Highlighting the phrase, keeping it in view (also after text settings change the layout), and keeping the address pointed at where you are | [`narration-position.js`](../convert/template/src/js/narration-position.js), [`narration-highlight.css`](../convert/template/src/css/narration-highlight.css) |
 | The whole-book timeline, and time left in the chapter and book, from the converter's audio map | [`book-timeline.js`](../convert/template/src/js/book-timeline.js) |
 | Previous and next phrase, including across page boundaries | [`page-entry.js`](../convert/template/src/js/page-entry.js) |
 | The lock screen and media keys (Media Session) | [`media-session.js`](../convert/template/src/js/media-session.js) |
@@ -174,7 +174,7 @@ These work from the converter's `epubtype_*` classes and DPUB-ARIA roles.
 | Colors. Automatic, light, dark, reviewed pairs, or your own colors with readable text worked out for you | [`page-colors.js`](../convert/template/src/js/page-colors.js), [`color-contrast.js`](../convert/template/src/js/color-contrast.js) |
 | Font, size, line, letter and word spacing, and line length | [`text-spacing.js`](../convert/template/src/js/text-spacing.js), [`settings.js`](../convert/template/src/js/settings.js) |
 | As published or My settings, per book. In As published, the toolbars use the book's colors | [`appearance.js`](../convert/template/src/js/appearance.js), [`appearance-state.js`](../convert/template/src/js/appearance-state.js), [`published-colors.js`](../convert/template/src/js/published-colors.js) |
-| Keyboard shortcuts, and the shortcut editor (which loads the first time it's used) | [`keyboard-shortcuts.js`](../convert/template/src/js/keyboard-shortcuts.js), [`keyboard-shortcut-settings.js`](../convert/template/src/js/keyboard-shortcut-settings.js), [`reader-actions.js`](../convert/template/src/js/reader-actions.js) |
+| Keyboard shortcuts, and the shortcut editor (which loads the first time it's used), with Find a shortcut | [`keyboard-shortcuts.js`](../convert/template/src/js/keyboard-shortcuts.js), [`keyboard-shortcut-settings.js`](../convert/template/src/js/keyboard-shortcut-settings.js), [`reader-actions.js`](../convert/template/src/js/reader-actions.js) |
 | Exporting, importing and resetting settings | [`settings-file.js`](../convert/template/src/js/settings-file.js), [`settings-transfer.js`](../convert/template/src/js/settings-transfer.js) |
 
 The default shortcuts avoid keys that screen readers use.

@@ -56,6 +56,22 @@ function repaintAround(elm) {
     requestAnimationFrame(() => requestAnimationFrame(() => block.style.removeProperty('outline')));
 }
 
+// Text size, line length, spacing, font and so on change where everything is, so the highlighted
+// phrase can end up out of view, with nothing to bring it back until narration moves on. After each
+// layout change, it's brought back into view the way narration brings a new phrase in. Only while
+// there's a highlighted phrase; otherwise the page stays where it is. Started by initPlayer.
+export function keepHighlightInView() {
+    document.addEventListener('webbook:layoutchange', () => {
+        // After the new layout is in place
+        requestAnimationFrame(() => {
+            const elm = highlightedElement();
+            if (!elm) return;
+            const rect = elm.getBoundingClientRect(), viewport = readingViewport();
+            if (readingStart(rect) < viewport.top || readingEnd(rect) > viewport.bottom) scrollIntoReadingViewport(elm, viewport);
+        });
+    });
+}
+
 // The phrase the highlight is on now, or null when there's none
 export function highlightedElement() {
     return lastHighlightedElm?.isConnected ? lastHighlightedElm : null;

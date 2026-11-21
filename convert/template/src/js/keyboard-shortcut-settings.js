@@ -1,4 +1,5 @@
 import { getActions } from './reader-actions.js';
+import { normalizeSearchText } from './search-text.js';
 import { getActionKeys, keySpecForEvent, shortcutRejection, shortcutWarning, assignShortcut, shortcutConflicts, restoreActionDefaults, removeShortcut, resetShortcuts, setShortcutCapture, shortcutName, loadKeyboardLayout } from './keyboard-shortcuts.js';
 
 const MODIFIER_CODES = /^(Shift|Control|Alt|Meta)(Left|Right)$|^(AltGraph|CapsLock|NumLock|ScrollLock|Fn|FnLock)$/;
@@ -43,6 +44,67 @@ function buildEditor(openButton, settings) {
     instructions.className = 'webbook-shortcut-instructions';
     instructions.textContent = 'Tab, Enter and Space are reserved and cannot be assigned.';
     panel.append(instructions);
+
+    // Find a shortcut: narrows the list to the actions whose name, group or keys have every word
+    // typed ("contents", "narration", "alt shift c"). Escape clears it; a second Escape closes the
+    // panel as usual. The count is read out after a pause in typing, as in Find a section.
+    const find = document.createElement('div');
+    find.className = 'webbook-shortcut-find';
+    const findLabel = document.createElement('label');
+    findLabel.htmlFor = 'webbook-shortcut-find-input';
+    findLabel.textContent = 'Find a shortcut';
+    const findInput = document.createElement('input');
+    findInput.type = 'search';
+    findInput.id = 'webbook-shortcut-find-input';
+    findInput.autocomplete = 'off';
+    findInput.setAttribute('aria-describedby', 'webbook-shortcut-find-status');
+    const findStatus = document.createElement('p');
+    findStatus.id = 'webbook-shortcut-find-status';
+    findStatus.setAttribute('role', 'status');
+    findStatus.setAttribute('aria-atomic', 'true');
+    find.append(findLabel, findInput, findStatus);
+    panel.append(find);
+    let findTimer, findStatusTimer;
+    const words = text => normalizeSearchText(String(text).replace(/[+:()]/g, ' '), document.documentElement.lang || '').split(/\s+/).filter(Boolean);
+    // Every name a key goes by, so "alt shift c" finds Option-Shift-C on a Mac, and "cmd" Command
+    const MODIFIER_WORDS = { ctrl: 'ctrl control', alt: 'alt option', shift: 'shift', meta: 'meta cmd command' };
+    const keyWords = id => getActionKeys(id).map(spec => [
+        ...Object.keys(MODIFIER_WORDS).filter(flag => spec[flag]).map(flag => MODIFIER_WORDS[flag]),
+        // The key as spoken ("Backslash") and as shown (\)
+        shortcutName(spec).ariaLabel.split(' plus ').pop(),
+        shortcutName(spec).text.split('+').pop().replace(/^[⌃⌥⇧⌘]+/, '')
+    ].join(' ')).join(' ');
+    function applyFind() {
+        clearTimeout(findStatusTimer);
+        const wanted = words(findInput.value);
+        let matches = 0;
+        for (const [id, row] of rows) {
+            // Each word typed matches the start of a word in the action's name, group or keys. A
+            // single letter or symbol means a key, so it matches a key's own name only ("c" is C)
+            const haystack = words(`${row.action.label} ${row.action.group} ${keyWords(id)}`), keys = words(keyWords(id));
+            const match = wanted.every(word => [...word].length === 1 ? keys.includes(word) : haystack.some(have => have.startsWith(word)));
+            row.item.hidden = !match;
+            if (match) matches++;
+        }
+        for (const section of panel.querySelectorAll('section[aria-labelledby^="webbook-shortcuts-"]'))
+            section.hidden = !section.querySelector('li:not([hidden])');
+        if (!wanted.length) { findStatus.textContent = ''; return; }
+        findStatusTimer = setTimeout(() => {
+            findStatus.textContent = matches === 0 ? 'No shortcuts match'
+                : `${matches} ${matches === 1 ? 'shortcut matches' : 'shortcuts match'}`;
+        }, 600);
+    }
+    findInput.addEventListener('input', () => {
+        clearTimeout(findTimer);
+        findTimer = setTimeout(applyFind, 150);
+    });
+    findInput.addEventListener('keydown', event => {
+        if (event.key !== 'Escape' || !findInput.value || event.altKey || event.ctrlKey || event.metaKey) return;
+        event.preventDefault();
+        event.stopPropagation();
+        findInput.value = '';
+        applyFind();
+    });
 
     const status = document.createElement('p');
     status.id = 'webbook-shortcut-status';
@@ -259,7 +321,7 @@ function buildEditor(openButton, settings) {
             controls.append(button, remove, restore);
             row.append(label, keys, controls, changeWarning, restoreWarning, warning);
             list.append(row);
-            rows.set(action.id, { action, keys, change: button, changeWarning, restore, restoreWarning, warning, confirmingRestore: false, pendingAssignment: null });
+            rows.set(action.id, { action, item: row, keys, change: button, changeWarning, restore, restoreWarning, warning, confirmingRestore: false, pendingAssignment: null });
         }
     }
 

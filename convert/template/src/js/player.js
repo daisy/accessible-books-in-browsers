@@ -1,5 +1,5 @@
 import { cacheCueElements, cueForElement, cueNeedsTime, elmForCue } from './cue-selector.js';
-import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarget, lastNarratedElement, settlePositionUrlPlacement, highlightedElement } from './narration-position.js';
+import { highlightElm, clearNarrationHighlight, syncPositionUrl, seekToHashTarget, lastNarratedElement, settlePositionUrlPlacement, highlightedElement, keepHighlightInView } from './narration-position.js';
 import { recordResumePosition, applyResumeAudioTimeIfMatching } from './resume-position.js';
 import { showCaptionForCue, refreshCaptionItemsFromTrack, canStepCaption, stepCaption } from './caption-mode.js';
 import { handleEscapableStructure, hideEscape } from './escapability.js';
@@ -30,6 +30,7 @@ let controlsReady = false;
 const ui = {};
 
 export function initPlayer() {
+    keepHighlightInView();
     registerAction({ id: 'play-pause', label: 'Play or pause', group: 'Narration',
         defaultKeys: [{ code: 'Backslash' }], run: togglePlayback, isAvailable: () => Boolean(metadataTrack) });
     for (const [id, label, code, delta] of [

@@ -96,7 +96,7 @@ All of these were made with the [converter](convert/). For who owns each book an
 | `Shift`+`\` | Anywhere outside a text field or open popover | Caption mode on or off |
 | `Alt`+`Shift`+`C` | Anywhere outside a text field or open popover | Open the table of contents |
 | `Alt`+`Shift`+`F` | Anywhere outside a text field or open popover; in the open table of contents | Open search. In the table of contents, go to Find a section |
-| `Alt`+`Shift`+`1` / `2` / `3` / `0` | In the open table of contents | Show 1, 2 or 3 levels of sections, or all of them |
+| `Alt`+`Shift`+`V` | In the open table of contents | Go to Show levels, where the arrow keys choose how many levels of sections show |
 | `Alt`+`Shift`+`G` | Anywhere outside a text field or open popover | Open Go to page |
 | `Alt`+`Shift`+`S` | Anywhere outside a text field or open popover | Open Settings |
 | `Alt`+`Shift`+`O` | Anywhere outside a text field or open popover | Open About this publication |
@@ -108,7 +108,8 @@ All of these were made with the [converter](convert/). For who owns each book an
 | Unassigned (choose a key in Settings) | Selected text or focused code block | Copy selection / Copy code |
 
 On a Mac, `Alt` is `Option`. You can change any shortcut in Settings, under Change keyboard
-shortcuts, and the editor warns you about keys a screen reader uses. `[`, `]` and `\` work by
+shortcuts. The editor's Find a shortcut narrows the list by name or key (for example "contents"
+or "alt shift c"), and the editor warns you about keys a screen reader uses. `[`, `]` and `\` work by
 physical key, so they work on any keyboard layout. The Keyboard shortcuts setting turns them all
 off (WCAG 2.1.4).
 
