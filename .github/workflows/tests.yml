@@ -1,0 +1,39 @@
+# Runs both unit test folders, the converter's (convert/tests) and the reader's
+# (convert/template/test), on every push and pull request that changes them or what they test.
+# The release workflow runs them too, but only when a reader release is made.
+name: Tests
+
+on:
+  push:
+    paths:
+      - 'convert/**'
+      - 'converter/**'
+      - '.github/workflows/tests.yml'
+  pull_request:
+    paths:
+      - 'convert/**'
+      - 'converter/**'
+      - '.github/workflows/tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: convert
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: convert/package-lock.json
+      - run: npm ci
+      # The converter tests run the built converter (build/)
+      - run: npm run build
+      - run: node --test tests/*.test.mjs
+      - run: node --test template/test/*.test.mjs
