@@ -10,7 +10,7 @@ import * as utils from './utils.js';
 import type { SearchData } from './create-search-index.js';
 import { collectSearchPassages } from './create-search-index.js';
 import { applyStructureIds, type NarrationSelector } from './structure-ids.js';
-import { cleanPublicationMarkup, renameCollidingIds } from './markup-cleanup.js';
+import { cleanPublicationMarkup, removeActiveContent, renameCollidingIds } from './markup-cleanup.js';
 import { cssReferencedIds, isExternalHref } from './ids.js';
 import type { ConversionReport } from './conversion-report.js';
 import { cleanLeftoverAnchors } from './conversion-rules.js';
@@ -64,6 +64,11 @@ async function transformContent(
     // The rewritten head style is the only publisher CSS in the output; an unscoped
     // style/link in the source body must not be able to style reader controls.
     doc.querySelectorAll('style, link[rel~="stylesheet" i]').forEach(elm => { if (!elm.closest('svg, math')) elm.remove(); });
+    // The book's scripts never run in the web book (removeActiveContent)
+    const active = removeActiveContent(doc);
+    cleanupOptions?.report.change('Scripts removed', page.outputFilename, active.scripts);
+    cleanupOptions?.report.change('Event handler attributes removed', page.outputFilename, active.handlers);
+    cleanupOptions?.report.change('Script links removed', page.outputFilename, active.links);
     for (const name of Array.from(doc.documentElement.classList)) doc.body.classList.add(name);
     for (const elm of Array.from(doc.querySelectorAll('*'))) {
         const types = elm.getAttribute('epub:type');

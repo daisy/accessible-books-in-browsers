@@ -16,6 +16,35 @@ export type MarkupCleanupOptions = {
     onTransform?: (stage: 'cleanup' | 'table wrapper') => void;
 };
 
+// The web book doesn't run the book's own scripts. In the reader they'd run with the book's site's
+// access (its settings, saved books and, in the browser converter, the converter page), and fight
+// the reader. So scripts, event handler attributes (onclick and so on), and links and sources that
+// run script (javascript:) are removed from every page, whatever the cleanup option. The book's words
+// stay as they are.
+const SCRIPT_URL = /^javascript:|^vbscript:/i;
+const URL_ATTRIBUTES = ['href', 'xlink:href', 'src', 'action', 'formaction', 'data', 'poster', 'background'];
+export function removeActiveContent(doc: Document): { scripts: number; handlers: number; links: number } {
+    const counts = { scripts: 0, handlers: 0, links: 0 };
+    for (const elm of Array.from(doc.getElementsByTagName('*'))) {
+        if (!elm.isConnected) continue;
+        const name = elm.localName.toLowerCase();
+        // SVG can set an href by animation, so an animation of one counts as script too
+        if (name === 'script' || ((name === 'set' || name === 'animate') && /href$/i.test(elm.getAttribute('attributeName') ?? ''))) {
+            elm.remove(); counts.scripts++; continue;
+        }
+        for (const attribute of Array.from(elm.attributes)) {
+            const attributeName = attribute.name.toLowerCase();
+            if (attributeName.startsWith('on')) { elm.removeAttribute(attribute.name); counts.handlers++; }
+            else if (attributeName === 'srcdoc') { elm.removeAttribute(attribute.name); counts.scripts++; }
+            // Browsers ignore whitespace and control characters before the scheme
+            else if (URL_ATTRIBUTES.includes(attributeName) && SCRIPT_URL.test(attribute.value.replace(/[\u0000-\u0020]/g, ''))) {
+                elm.removeAttribute(attribute.name); counts.links++;
+            }
+        }
+    }
+    return counts;
+}
+
 // Ids are renamed separately, after the structure-id pass (renameCollidingIds), so only ids that
 // stay in the book are renamed
 export function cleanPublicationMarkup(doc: Document, options: MarkupCleanupOptions): void {

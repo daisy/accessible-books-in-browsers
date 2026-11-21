@@ -20,6 +20,10 @@ Everything below follows these rules. If a change seems to need breaking one, as
   one exception is an empty heading with a `title` attribute, whose title is shown as its text.
 - **Rules are generic.** Every fix is a rule about a markup pattern, never about a publisher or a
   particular book.
+- **The book's scripts never run.** Scripts, event handler attributes and `javascript:` links are
+  removed from every page and counted in the report (step 6). In the reader, they'd run with the
+  site's access to readers' settings and saved books, and in the browser converter, the converter
+  page's.
 - **Keep the book's writing direction.** Vertical writing and right-to-left text always survive
   conversion. The test book for this is `demos/kusamakura`.
 - **The book ID is the EPUB's unique identifier** (or `--identifier`). Readers' saved positions and
@@ -109,15 +113,15 @@ Back in [`convert()`](../convert/src/convert.ts), a few things are set up for th
   claims.
 - **The reader's files** are copied from the template, from a fixed list, and its stylesheets are
   combined into one ([`copyUiAssets`](../convert/src/assets.ts#L93),
-  [`combineStylesheets`](../convert/src/assets.ts#L153)). Its scripts go in as a bundle: `npm run
+  [`combineStylesheets`](../convert/src/assets.ts#L162)). Its scripts go in as a bundle: `npm run
   compile` runs [`build-reader.mjs`](../convert/scripts/build-reader.mjs), which bundles the reader's
   70 or so modules into a few files, with the parts that load only when used (search, math copying,
   the shortcut editor) in their own. Each module was a separate request, found only after the one
   that imports it, so on a slow connection the reader took many round trips to arrive. The offline
   workers stay separate files. Without a bundle, a book gets the separate modules
-  ([`useReaderBundle`](../convert/src/assets.ts#L135)).
+  ([`useReaderBundle`](../convert/src/assets.ts#L143)).
 - **`sw.js`**, the fixed stub for offline reading, is written
-  ([`writeServiceWorkerStub`](../convert/src/assets.ts#L187)).
+  ([`writeServiceWorkerStub`](../convert/src/assets.ts#L196)).
 - **A favicon** is made from the cover, or a generic one is used
   ([`createBookFavicon`](../convert/src/favicon.ts#L11)).
 
@@ -143,21 +147,28 @@ DOM, in this order.
 3. **Track the publisher's styles** ([`PublisherSelectors`](../convert/src/publisher-selectors.ts#L120)).
    If a later change would stop a publisher rule from matching, that rule is "frozen" first, so As
    published still looks the way it was published.
-4. **EPUB semantics.** `epub:type` becomes `epubtype_*` classes and, where DPUB-ARIA has one, a role
-   ([`translateEpubTypes`](../convert/src/content-transform.ts#L181)). Old `rearnote(s)` count as
+4. **Remove the book's scripts** ([`removeActiveContent`](../convert/src/markup-cleanup.ts#L26)), on
+   every page, whatever the cleanup option: `script` elements (SVG's too), event handler
+   attributes (`onclick` and so on), `srcdoc`, SVG animations of an `href`, and `href`, `src`,
+   `action` and similar attributes that start with `javascript:` or `vbscript:`. The element a
+   link was on stays, with its words. SVG image files get the same treatment as they're copied,
+   since an SVG opened by itself runs its scripts. The book's body styles and stylesheet links go here too: the
+   rewritten head style is the only book CSS in the output.
+5. **EPUB semantics.** `epub:type` becomes `epubtype_*` classes and, where DPUB-ARIA has one, a role
+   ([`translateEpubTypes`](../convert/src/content-transform.ts#L186)). Old `rearnote(s)` count as
    `endnote(s)`, and deprecated `doc-endnote` roles are dropped.
-5. **Images** are registered for copying, and their references are rewritten.
-6. **Splitting.** For a split document, only this page's piece is kept
+6. **Images** are registered for copying, and their references are rewritten.
+7. **Splitting.** For a split document, only this page's piece is kept
    ([`extractDocumentPiece`](../convert/src/chapter-split.ts#L76)), and links are rewritten to the
    final file names.
-7. **Markup cleanup** ([`cleanPublicationMarkup`](../convert/src/markup-cleanup.ts#L21)). These are
+8. **Markup cleanup** ([`cleanPublicationMarkup`](../convert/src/markup-cleanup.ts#L50)). These are
    the small mechanical fixes, and each one is counted in the report.
    - A heading's `title` attribute is shown as its text if the heading is otherwise empty, and
      dropped if it repeats the text. An empty heading that only repeats the one next to it is
      removed ([`repairHeadingTitles`](../convert/src/conversion-rules.ts#L10)).
    - `xml:lang` doesn't do anything in HTML, so it's copied to `lang` when the element's text is in
      the expected script, and then removed. If the script doesn't match, it isn't copied, and the
-     report says so ([`repairLanguages`](../convert/src/markup-cleanup.ts#L44)).
+     report says so ([`repairLanguages`](../convert/src/markup-cleanup.ts#L73)).
    - Numbered equations are marked ([`markNumberedEquations`](../convert/src/conversion-rules.ts#L41)).
    - Empty `<span>`s are unwrapped and empty paragraphs are removed. If the publisher's CSS styles
      them, they're kept, and the paragraphs only show in As published (`webbook-publisher-only`),
@@ -166,23 +177,23 @@ DOM, in this order.
    - A publication's own `<main>` becomes a `div`, because the reader has its own `main`.
    - Positive `tabindex` values become 0. Media lose `autoplay` and get controls.
    - Tables are wrapped so they scroll sideways on narrow screens
-     ([`wrapTables`](../convert/src/markup-cleanup.ts#L143)).
+     ([`wrapTables`](../convert/src/markup-cleanup.ts#L172)).
 
    It also looks for things to review and adds them to the report as warnings
-   ([`analyzeWarnings`](../convert/src/markup-cleanup.ts#L221)). MathML `alttext` is left the way
+   ([`analyzeWarnings`](../convert/src/markup-cleanup.ts#L250)). MathML `alttext` is left the way
    the book has it.
-8. **Heading permalinks.** Each heading gets a link to itself, with `tabindex="-1"` on the heading
+9. **Heading permalinks.** Each heading gets a link to itself, with `tabindex="-1"` on the heading
    so following the link moves focus.
-9. **Search passages** are collected from the cleaned-up text
+10. **Search passages** are collected from the cleaned-up text
    ([`collectSearchPassages`](../convert/src/create-search-index.ts#L50)).
-10. **Narration targets.** Ids are only kept where something needs them (narration, navigation,
+11. **Narration targets.** Ids are only kept where something needs them (narration, navigation,
     links, or the publisher's CSS). If a narrated phrase's id isn't needed for anything else, the
     phrase is found by a CSS path from the nearest kept id instead
     ([`applyStructureIds`](../convert/src/structure-ids.ts#L108)). This keeps the book's markup
     clean.
-11. **Id collisions.** An id that clashes with one of the reader's own is renamed, and everything
-    that points to it is updated ([`renameCollidingIds`](../convert/src/markup-cleanup.ts#L167)).
-12. **The publisher's CSS** for this page is written out. It's scoped to the book's content, in
+12. **Id collisions.** An id that clashes with one of the reader's own is renamed, and everything
+    that points to it is updated ([`renameCollidingIds`](../convert/src/markup-cleanup.ts#L196)).
+13. **The publisher's CSS** for this page is written out. It's scoped to the book's content, in
     cascade layers under the reader's settings, and frozen rules are padded to keep their
     specificity ([`publisherStyles`](../convert/src/publisher-styles.ts#L57)). Fonts and images it
     uses are copied. `--no-publisher-styles` leaves it out completely.
@@ -204,7 +215,7 @@ narrated page.
    compression, noise reduction, de-essing, click removal). Then it measures the loudness once
    ([`measureLoudness`](../convert/src/audio-cleanup.ts#L106)) and raises narration quieter than −18
    LUFS to that level. Louder narration keeps its level. A limiter holds the peaks under −1.5 dB
-   without delaying the audio ([`loudnessFilters`](../convert/src/audio-cleanup.ts#L121)).
+   without delaying the audio ([`loudnessFilters`](../convert/src/audio-cleanup.ts#L124)).
 5. **Encode once** to the output format. With `--small-audio` (the default) that's mono MP3, 24 kHz,
    32 kb/s ([`SMALL_AUDIO_ENCODING`](../convert/src/audio.ts#L130)). Otherwise it matches the source.
 6. **Measure** loudness, peaks and noise floor for the report
@@ -226,7 +237,7 @@ Some decisions behind this:
   number (`MERGE_VERSION`) goes up whenever the audio a conversion makes would be different.
 
 The cue file ([`createVtt`](../convert/src/vtt.ts#L8)) is WebVTT. Each cue's text is a JSON selector
-for its phrase, either an id or a CSS path from the nearest id (step 6.10).
+for its phrase, either an id or a CSS path from the nearest id (step 6.11).
 
 ### 8. Render and shape each page
 
@@ -268,14 +279,14 @@ so a source chapter called `about.xhtml` becomes `about-content.html`, and its l
 - **The search data** ([`generateSearchIndex`](../convert/src/create-search-index.ts#L146)) has
   every passage, with its page, heading and selector. Search runs in the browser, and splits words
   by language.
-- **Images** and fonts are copied ([`copyImageAssets`](../convert/src/assets.ts#L191)).
+- **Images** and fonts are copied ([`copyImageAssets`](../convert/src/assets.ts#L200)).
 
 ### 10. Report
 
 - Audio findings become warnings, for clipping, a high noise floor, or a page that's much louder or
   quieter than the rest.
 - Links are checked, and any link to a page or anchor that isn't in the converted book is listed
-  ([`reportBrokenLinks`](../convert/src/convert.ts#L324)).
+  ([`reportBrokenLinks`](../convert/src/convert.ts#L326)).
 - With `--check`, Ace (on the EPUB) and axe (on the output) run if they're installed
   ([`runOptionalChecks`](../convert/src/optional-checks.ts#L12)).
 - The report starts with the beta warning, if the book uses a UI channel, and the source record.

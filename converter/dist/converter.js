@@ -17797,53 +17797,6 @@ var require_lib2 = __commonJS({
   }
 });
 
-// ../convert/node_modules/vtt-creator/src/secondsToTime.js
-var require_secondsToTime = __commonJS({
-  "../convert/node_modules/vtt-creator/src/secondsToTime.js"(exports, module) {
-    "use strict";
-    init_globals();
-    function pad(num) {
-      if (num < 10) {
-        return "0" + num;
-      }
-      return num;
-    }
-    module.exports = function(sec) {
-      if (typeof sec !== "number") {
-        throw new Error("Invalid type: expected number");
-      }
-      var seconds = (sec % 60).toFixed(3);
-      var minutes = Math.floor(sec / 60) % 60;
-      var hours = Math.floor(sec / 60 / 60);
-      return pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
-    };
-  }
-});
-
-// ../convert/node_modules/vtt-creator/src/vtt.js
-var require_vtt = __commonJS({
-  "../convert/node_modules/vtt-creator/src/vtt.js"(exports, module) {
-    "use strict";
-    init_globals();
-    var secondsToTime = require_secondsToTime();
-    module.exports = function() {
-      var counter = 0;
-      var content = "WEBVTT\r\n";
-      this.add = function(from, to, lines, settings) {
-        ++counter;
-        lines = lines.constructor === Array ? lines : [lines];
-        content += "\r\n" + counter + "\r\n" + secondsToTime(from) + " --> " + secondsToTime(to) + (settings ? " " + settings : "") + "\r\n";
-        lines.forEach(function(line) {
-          content += line + "\r\n";
-        });
-      };
-      this.toString = function() {
-        return content;
-      };
-    };
-  }
-});
-
 // ../convert/node_modules/css/lib/parse/index.js
 var require_parse = __commonJS({
   "../convert/node_modules/css/lib/parse/index.js"(exports, module) {
@@ -20713,6 +20666,53 @@ var require_css = __commonJS({
   }
 });
 
+// ../convert/node_modules/vtt-creator/src/secondsToTime.js
+var require_secondsToTime = __commonJS({
+  "../convert/node_modules/vtt-creator/src/secondsToTime.js"(exports, module) {
+    "use strict";
+    init_globals();
+    function pad(num) {
+      if (num < 10) {
+        return "0" + num;
+      }
+      return num;
+    }
+    module.exports = function(sec) {
+      if (typeof sec !== "number") {
+        throw new Error("Invalid type: expected number");
+      }
+      var seconds = (sec % 60).toFixed(3);
+      var minutes = Math.floor(sec / 60) % 60;
+      var hours = Math.floor(sec / 60 / 60);
+      return pad(hours) + ":" + pad(minutes) + ":" + pad(seconds);
+    };
+  }
+});
+
+// ../convert/node_modules/vtt-creator/src/vtt.js
+var require_vtt = __commonJS({
+  "../convert/node_modules/vtt-creator/src/vtt.js"(exports, module) {
+    "use strict";
+    init_globals();
+    var secondsToTime = require_secondsToTime();
+    module.exports = function() {
+      var counter = 0;
+      var content = "WEBVTT\r\n";
+      this.add = function(from, to, lines, settings) {
+        ++counter;
+        lines = lines.constructor === Array ? lines : [lines];
+        content += "\r\n" + counter + "\r\n" + secondsToTime(from) + " --> " + secondsToTime(to) + (settings ? " " + settings : "") + "\r\n";
+        lines.forEach(function(line) {
+          content += line + "\r\n";
+        });
+      };
+      this.toString = function() {
+        return content;
+      };
+    };
+  }
+});
+
 // entry.js
 init_globals();
 
@@ -20787,7 +20787,7 @@ var import_iconv_lite = __toESM(require_lib(), 1);
 init_globals();
 var JSDOM = class {
   constructor(source = "", options = {}) {
-    const type = options.contentType === "application/xml" || options.contentType === "application/xhtml+xml" ? "application/xml" : "text/html";
+    const type = ["application/xml", "application/xhtml+xml", "image/svg+xml"].includes(options.contentType) ? "application/xml" : "text/html";
     const document2 = new DOMParser().parseFromString(String(source), type);
     this.window = { document: document2, DOMParser, XMLSerializer, Node, NodeFilter, Element, HTMLElement, CustomEvent, Event, getComputedStyle: () => ({}) };
   }
@@ -22617,6 +22617,816 @@ function outputPath(paths, filename) {
   return import_path6.default.join(paths.stagingDir, filename);
 }
 
+// ../convert/build/markup-cleanup.js
+init_globals();
+
+// ../convert/build/publisher-selectors.js
+init_globals();
+var import_css = __toESM(require_css(), 1);
+var SOURCE_ID = "data-webbook-publisher-source";
+var DYNAMIC = /^(?:hover|active|focus|focus-visible|focus-within|visited|link|any-link|target|checked|disabled|enabled|indeterminate|valid|invalid|user-valid|user-invalid|placeholder-shown|open)$/i;
+var DYNAMIC_IN = /:(?:hover|active|focus(?:-visible|-within)?|visited|link|any-link|target|checked|disabled|enabled|indeterminate|valid|invalid|user-valid|user-invalid|placeholder-shown|open)\b/i;
+function endGroup(text2, start, open = "(", close = ")") {
+  let depth = 1, quote = "";
+  for (let i = start + 1; i < text2.length; i++) {
+    const c = text2[i];
+    if (c === "\\") {
+      i++;
+      continue;
+    }
+    if (quote) {
+      if (c === quote)
+        quote = "";
+      continue;
+    }
+    if (c === '"' || c === "'") {
+      quote = c;
+      continue;
+    }
+    if (c === open)
+      depth++;
+    if (c === close && --depth === 0)
+      return i;
+  }
+  return text2.length - 1;
+}
+function selectorParts(text2, separator = ",") {
+  const result = [];
+  let start = 0;
+  for (let i = 0; i < text2.length; i++) {
+    if (text2[i] === "\\") {
+      i++;
+      continue;
+    }
+    if (text2[i] === "(" || text2[i] === "[") {
+      i = endGroup(text2, i, text2[i], text2[i] === "(" ? ")" : "]");
+      continue;
+    }
+    if (text2[i] === separator) {
+      result.push(text2.slice(start, i).trim());
+      start = i + 1;
+    }
+  }
+  result.push(text2.slice(start).trim());
+  return result;
+}
+var add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+var compare = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
+function selectorSpecificity(selector) {
+  let result = [0, 0, 0], typePossible = true;
+  for (let i = 0; i < selector.length; ) {
+    const c = selector[i];
+    if (/\s|[>+~,]/.test(c)) {
+      typePossible = true;
+      i++;
+      continue;
+    }
+    if (c === "[") {
+      result[1]++;
+      i = endGroup(selector, i, "[", "]") + 1;
+      typePossible = false;
+      continue;
+    }
+    if (c === "#" || c === ".") {
+      result[c === "#" ? 0 : 1]++;
+      i++;
+    } else if (c === ":") {
+      const pseudo = selector.slice(i).match(/^(:{1,2})([\w-]+)/);
+      if (!pseudo) {
+        i++;
+        continue;
+      }
+      const name3 = pseudo[2].toLowerCase(), element = pseudo[1] === "::" || /^(before|after|first-letter|first-line)$/.test(name3);
+      i += pseudo[0].length;
+      if (selector[i] === "(") {
+        const end = endGroup(selector, i), arg = selector.slice(i + 1, end);
+        if (["is", "not", "has", "matches"].includes(name3)) {
+          const weights = selectorParts(arg).map(selectorSpecificity).sort(compare);
+          result = add(result, weights[weights.length - 1] ?? [0, 0, 0]);
+        } else if (name3 !== "where") {
+          result[element ? 2 : 1]++;
+          if (/^nth-(?:last-)?child$/.test(name3) && /\s+of\s+/i.test(arg)) {
+            const weights = selectorParts(arg.split(/\s+of\s+/i).slice(1).join(" of ")).map(selectorSpecificity).sort(compare);
+            result = add(result, weights[weights.length - 1] ?? [0, 0, 0]);
+          }
+        }
+        i = end + 1;
+      } else
+        result[element ? 2 : 1]++;
+      typePossible = false;
+      continue;
+    } else if (c === "*") {
+      i++;
+      typePossible = false;
+      continue;
+    } else if (typePossible)
+      result[2]++;
+    const begin = i;
+    while (i < selector.length && !/[\s.#:[\]>+~,()]/.test(selector[i])) {
+      if (selector[i] === "\\")
+        i++;
+      i++;
+    }
+    if (i === begin)
+      i++;
+    typePossible = false;
+  }
+  return result;
+}
+function specificityPadding(weight) {
+  return ":is(*,#webbook-publisher-specificity)".repeat(weight[0]) + ":is(*,.webbook-publisher-specificity)".repeat(weight[1]) + ":is(*,webbook-publisher-specificity)".repeat(weight[2]);
+}
+function pseudoElement(selector) {
+  for (let i = 0; i < selector.length; i++) {
+    if (selector[i] === "[" || selector[i] === "(") {
+      i = endGroup(selector, i, selector[i], selector[i] === "[" ? "]" : ")");
+      continue;
+    }
+    if (selector[i] === ":" && /^(?:::|:(?:before|after|first-letter|first-line)\b)/i.test(selector.slice(i)))
+      return { base: selector.slice(0, i), pseudo: selector.slice(i) };
+  }
+  return { base: selector, pseudo: "" };
+}
+function states(selector) {
+  let plain = "", dynamic = "";
+  for (let i = 0; i < selector.length; ) {
+    if (selector[i] === "[") {
+      const end2 = endGroup(selector, i, "[", "]");
+      plain += selector.slice(i, end2 + 1);
+      i = end2 + 1;
+      continue;
+    }
+    const token2 = selector.slice(i).match(/^:([\w-]+)/);
+    if (!token2) {
+      plain += selector[i++];
+      continue;
+    }
+    let end = i + token2[0].length;
+    if (selector[end] === "(")
+      end = endGroup(selector, end) + 1;
+    const whole = selector.slice(i, end);
+    if (DYNAMIC.test(token2[1]) || DYNAMIC_IN.test(whole))
+      dynamic += whole;
+    else
+      plain += whole;
+    i = end;
+  }
+  return { static: plain.trim() || "*", dynamic };
+}
+function compounds(selector) {
+  const result = [];
+  let start = 0;
+  for (let i = 0; i <= selector.length; i++) {
+    if (selector[i] === "[" || selector[i] === "(") {
+      i = endGroup(selector, i, selector[i], selector[i] === "[" ? "]" : ")");
+      continue;
+    }
+    if (i === selector.length || /\s|[>+~]/.test(selector[i])) {
+      if (selector.slice(start, i).trim())
+        result.push({ text: selector.slice(start, i).trim(), prefix: selector.slice(0, i).trim() });
+      start = i + 1;
+    }
+  }
+  return result;
+}
+function structuralSelector(selector) {
+  const { base } = pseudoElement(selector);
+  return compounds(base).reduce((text2, part) => text2.replace(part.text, states(part.text).static), base).replace(/\[\s*epub\|type\b/g, "[epub\\:type");
+}
+var PublisherSelectors = class {
+  constructor(doc, sheets, warn = () => {
+  }) {
+    this.doc = doc;
+    this.warn = warn;
+    this.records = /* @__PURE__ */ new Map();
+    this.styled = /* @__PURE__ */ new Set();
+    this.serial = 0;
+    this.styledElement = (elm) => this.styled.has(elm.getAttribute(SOURCE_ID) ?? "");
+    const ids = /* @__PURE__ */ new Map();
+    let count2 = 0;
+    const id = (elm) => {
+      if (!ids.has(elm))
+        ids.set(elm, String(++count2));
+      return ids.get(elm);
+    };
+    const walk = (rules, sheet) => {
+      for (const rule of rules) {
+        if (rule.rules)
+          walk(rule.rules, sheet);
+        if (rule.type !== "rule")
+          continue;
+        for (const selector of rule.selectors ?? []) {
+          const key = `${sheet}:${selector}`;
+          if (this.records.has(key)) {
+            this.records.get(key).occurrences++;
+            continue;
+          }
+          const query = structuralSelector(selector);
+          let matches;
+          try {
+            matches = Array.from(doc.querySelectorAll(query));
+          } catch {
+            warn(`Publisher selector could not be matched: ${selector}`);
+            continue;
+          }
+          matches = matches.filter((elm) => elm === doc.documentElement || elm === doc.body || doc.body.contains(elm));
+          const sourceIds = matches.map(id);
+          sourceIds.forEach((value) => this.styled.add(value));
+          const parts = compounds(pseudoElement(selector).base), state = [];
+          for (const [index, part] of parts.entries()) {
+            const dynamic = states(part.text).dynamic;
+            if (!dynamic)
+              continue;
+            try {
+              state.push({ ids: Array.from(doc.querySelectorAll(structuralSelector(part.prefix))).map(id), dynamic, self: index === parts.length - 1, name: `webbook-publisher-s${++this.serial}` });
+            } catch {
+            }
+          }
+          this.records.set(key, { source: selector, query, ids: sourceIds, name: `webbook-publisher-r${++this.serial}`, pseudo: pseudoElement(selector).pseudo, state, frozen: false, removed: 0, occurrences: 1, root: matches.length > 0 && matches.every((elm) => elm === doc.body || elm === doc.documentElement) });
+        }
+      }
+    };
+    sheets.forEach((sheet, index) => walk(import_css.default.parse(sheet.css, { silent: true }).stylesheet?.rules ?? [], index));
+    [doc.documentElement, doc.body, ...Array.from(doc.body.querySelectorAll("*"))].forEach(id);
+    ids.forEach((value, elm) => elm.setAttribute(SOURCE_ID, value));
+  }
+  elements() {
+    return new Map(Array.from(this.doc.querySelectorAll(`[${SOURCE_ID}]`), (elm) => [elm.getAttribute(SOURCE_ID), elm]));
+  }
+  checkpoint(stage) {
+    const elements = this.elements();
+    if (stage === "splitting")
+      this.splitIds = new Set(elements.keys());
+    for (const record of this.records.values()) {
+      if (!record.ids.length || record.cause)
+        continue;
+      let now;
+      try {
+        now = Array.from(this.doc.querySelectorAll(record.query)).filter((elm) => elm.hasAttribute(SOURCE_ID));
+      } catch {
+        now = [];
+      }
+      const expected = record.ids.filter((value) => elements.has(value)), expectedSet = new Set(expected);
+      if (now.length !== expected.length || now.some((elm) => !expectedSet.has(elm.getAttribute(SOURCE_ID) ?? "")))
+        record.cause = stage;
+    }
+  }
+  finish() {
+    const elements = this.elements(), counts = { kept: 0, frozen: 0, unapplied: 0, causes: {}, examples: [] };
+    for (const record of this.records.values()) {
+      if (!record.ids.length) {
+        counts.kept += record.occurrences;
+        continue;
+      }
+      const expected = record.ids.filter((value) => elements.has(value)), expectedSet = new Set(expected);
+      let now;
+      try {
+        now = Array.from(this.doc.querySelectorAll(record.query)).filter((elm) => elm.hasAttribute(SOURCE_ID));
+      } catch {
+        now = [];
+      }
+      record.removed = record.ids.filter((value) => (this.splitIds?.has(value) ?? true) && !elements.has(value)).length;
+      record.frozen = record.removed > 0 || now.length !== expected.length || now.some((elm) => !expectedSet.has(elm.getAttribute(SOURCE_ID) ?? ""));
+      if (record.frozen) {
+        expected.forEach((value) => elements.get(value).classList.add(record.name));
+        for (const state of record.state)
+          state.ids.forEach((value) => elements.get(value)?.classList.add(state.name));
+        if (expected.length || !record.removed) {
+          counts.frozen += record.occurrences;
+          const cause = record.cause ?? "cleanup";
+          counts.causes[cause] = (counts.causes[cause] ?? 0) + record.occurrences;
+        }
+      } else
+        counts.kept += record.occurrences;
+      if (record.removed) {
+        counts.unapplied += record.occurrences;
+        if (counts.examples.length < 10)
+          counts.examples.push(`${record.source}: ${record.removed} source element(s) removed`);
+      }
+    }
+    this.doc.body.querySelectorAll("*").forEach((elm) => {
+      if (!elm.hasAttribute(SOURCE_ID))
+        elm.setAttribute("data-webbook-reader", "");
+    });
+    this.doc.querySelectorAll(`[${SOURCE_ID}]`).forEach((elm) => elm.removeAttribute(SOURCE_ID));
+    return counts;
+  }
+  selector(sheet, source) {
+    const record = this.records.get(`${sheet}:${source}`);
+    if (!record)
+      return null;
+    if (!record.frozen)
+      return { selector: source, root: record.root };
+    const ancestors = record.state.filter((state) => !state.self).map((state) => `.${state.name}${state.dynamic}`).join(" ");
+    const self = record.state.filter((state) => state.self).map((state) => state.dynamic).join("");
+    return { selector: `${ancestors ? ancestors + " " : ""}.${record.name}${self}${record.pseudo}`, root: record.root };
+  }
+};
+
+// ../convert/build/ids.js
+init_globals();
+var IDREF_ATTRIBUTES = [
+  "aria-describedby",
+  "aria-labelledby",
+  "aria-controls",
+  "aria-details",
+  "aria-activedescendant",
+  "aria-errormessage",
+  "aria-flowto",
+  "for",
+  "headers",
+  "list",
+  "form",
+  "usemap"
+];
+function isExternalHref(href) {
+  return /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
+}
+function decodeFragment(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+function cssReferencedIds(css4) {
+  return Array.from(css4.matchAll(/#([A-Za-z_][\w-]*)/g), (match) => match[1]);
+}
+function referencedIds(doc, extra = []) {
+  const ids = new Set(extra);
+  doc.querySelectorAll("a[href], area[href]").forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    const hash = href.includes("#") ? href.slice(href.indexOf("#") + 1) : "";
+    if (hash)
+      ids.add(decodeFragment(hash));
+  });
+  for (const attribute of IDREF_ATTRIBUTES) {
+    doc.querySelectorAll(`[${attribute}]`).forEach((elm) => {
+      const value = elm.getAttribute(attribute) || "";
+      value.replace(/^#/, "").split(/\s+/).filter(Boolean).forEach((id) => ids.add(id));
+    });
+  }
+  doc.querySelectorAll("style").forEach((style) => cssReferencedIds(style.textContent || "").forEach((id) => ids.add(id)));
+  doc.querySelectorAll("svg [id], math [id]").forEach((elm) => ids.add(elm.id));
+  return ids;
+}
+function uniqueId(base, used) {
+  let candidate = base;
+  let number = 2;
+  while (used.has(candidate))
+    candidate = `${base}-${number++}`;
+  used.add(candidate);
+  return candidate;
+}
+
+// ../convert/build/conversion-rules.js
+init_globals();
+var HEADING = 'h1, h2, h3, h4, h5, h6, [role="heading"]';
+var text = (element) => (element.textContent ?? "").replace(/\s+/g, " ").trim();
+var hasSemantics = (element) => Array.from(element.attributes).some((attribute) => attribute.name === "role" || attribute.name.startsWith("aria-") || attribute.name === "epub:type") || Array.from(element.classList).some((name3) => name3.startsWith("epubtype_"));
+function repairHeadingTitles(doc, options) {
+  for (const heading of Array.from(doc.querySelectorAll(HEADING))) {
+    const title = heading.getAttribute("title");
+    if (!title?.trim())
+      continue;
+    const label = title.replace(/\s+/g, " ").trim();
+    if (!text(heading) && !heading.querySelector("img, svg, math, a[href], input, button, audio, video")) {
+      const duplicate = [heading.previousElementSibling, heading.nextElementSibling].some((neighbor) => neighbor?.matches(HEADING) && text(neighbor) === label);
+      if (duplicate && !heading.children.length && !hasSemantics(heading) && !options.narratedTargetIds.includes(heading.id)) {
+        const anchor = doc.createElement("a");
+        for (const attribute of Array.from(heading.attributes)) {
+          if (attribute.name !== "title")
+            anchor.setAttribute(attribute.name, attribute.value);
+        }
+        heading.replaceWith(anchor);
+        options.report.change("Duplicate title-only headings removed", options.page);
+      } else {
+        heading.append(doc.createTextNode(title));
+        heading.removeAttribute("title");
+        options.report.change("Heading titles made visible", options.page);
+      }
+    } else if (text(heading) === label) {
+      heading.removeAttribute("title");
+      options.report.change("Redundant heading titles removed", options.page);
+    }
+  }
+}
+function markNumberedEquations(doc, options) {
+  for (const block of Array.from(doc.querySelectorAll("div, p, figure"))) {
+    if (block.closest("math") || block.classList.contains("webbook-equation"))
+      continue;
+    const children = Array.from(block.children);
+    if (children.length !== 2 || block.querySelectorAll("math").length !== 1 || Array.from(block.childNodes).some((node) => node.nodeType === 3 && node.textContent?.trim()))
+      continue;
+    const math = block.querySelector("math");
+    const expression = children.find((child) => child === math || math && child.contains(math));
+    const number = children.find((child) => child !== expression);
+    if (!math || !number || number.matches("math, a[href], input, button") || number.querySelector("math, img, svg, a[href], input, button"))
+      continue;
+    if (!expression)
+      continue;
+    if (expression !== math) {
+      const remainder = expression.cloneNode(true);
+      remainder.querySelector("math")?.remove();
+      if (text(remainder) || remainder.querySelector("img, svg, video, audio, input, button"))
+        continue;
+    }
+    const label = text(number);
+    if (label.length > 24 || !/^(?:\((?:\p{Nd}+|\p{L})(?:\.\p{Nd}+)*\)|\[(?:\p{Nd}+|\p{L})(?:\.\p{Nd}+)*\]|(?:\p{Nd}+|\p{L})(?:\.\p{Nd}+)+)$/u.test(label))
+      continue;
+    block.classList.add("webbook-equation");
+    number.classList.add("webbook-equation-number");
+    const scroll = doc.createElement("span");
+    scroll.className = "webbook-equation-scroll";
+    scroll.setAttribute("role", "region");
+    scroll.setAttribute("aria-label", `Equation ${label}`);
+    scroll.setAttribute("tabindex", "0");
+    expression.before(scroll);
+    scroll.append(expression);
+    options.report.change("Numbered equations given responsive layout", options.page);
+  }
+}
+function cleanLeftoverAnchors(doc, options, narratedTargets) {
+  for (const anchor of Array.from(doc.querySelectorAll("a:not([href]), span, div")).reverse()) {
+    if (options.publisherStyled?.(anchor))
+      continue;
+    if (anchor.id || hasSemantics(anchor) || narratedTargets.has(anchor) || anchor.closest("svg, math"))
+      continue;
+    if (Array.from(anchor.attributes).some((attribute) => !["class", "title", "style", SOURCE_ID].includes(attribute.name)))
+      continue;
+    const content = anchor.textContent?.trim() || anchor.children.length;
+    if (anchor.tagName !== "A" && content)
+      continue;
+    if (content)
+      anchor.replaceWith(...Array.from(anchor.childNodes));
+    else {
+      const before = anchor.previousSibling;
+      const after = anchor.nextSibling;
+      if (!anchor.closest("pre, code") && before?.nodeType === 3 && after?.nodeType === 3 && /^[\t ]*\r?\n/.test(after.textContent ?? "")) {
+        before.textContent = (before.textContent ?? "").replace(/(^|\n)[\t ]+$/, "$1");
+      }
+      anchor.remove();
+    }
+    const kind = anchor.tagName !== "A" ? "Empty nonsemantic wrappers removed" : content ? "Unlinked anchors unwrapped" : "Empty unlinked anchors removed";
+    options.report.change(kind, options.page);
+  }
+}
+
+// ../convert/build/markup-cleanup.js
+var SCRIPT_URL = /^javascript:|^vbscript:/i;
+var URL_ATTRIBUTES = ["href", "xlink:href", "src", "action", "formaction", "data", "poster", "background"];
+function removeActiveContent(doc) {
+  const counts = { scripts: 0, handlers: 0, links: 0 };
+  for (const elm of Array.from(doc.getElementsByTagName("*"))) {
+    if (!elm.isConnected)
+      continue;
+    const name3 = elm.localName.toLowerCase();
+    if (name3 === "script" || (name3 === "set" || name3 === "animate") && /href$/i.test(elm.getAttribute("attributeName") ?? "")) {
+      elm.remove();
+      counts.scripts++;
+      continue;
+    }
+    for (const attribute of Array.from(elm.attributes)) {
+      const attributeName = attribute.name.toLowerCase();
+      if (attributeName.startsWith("on")) {
+        elm.removeAttribute(attribute.name);
+        counts.handlers++;
+      } else if (attributeName === "srcdoc") {
+        elm.removeAttribute(attribute.name);
+        counts.scripts++;
+      } else if (URL_ATTRIBUTES.includes(attributeName) && SCRIPT_URL.test(attribute.value.replace(/[\u0000-\u0020]/g, ""))) {
+        elm.removeAttribute(attribute.name);
+        counts.links++;
+      }
+    }
+  }
+  return counts;
+}
+function cleanPublicationMarkup(doc, options) {
+  if (options.cleanup)
+    repairHeadingTitles(doc, options);
+  analyzeWarnings(doc, options);
+  const protectedIds = referencedIds(doc, [...options.protectedIds, ...options.narratedTargetIds]);
+  if (options.cleanup) {
+    repairLanguages(doc, options);
+    markNumberedEquations(doc, options);
+    unwrapEmptySpans(doc, options);
+    removeEmptyParagraphs(doc, protectedIds, options);
+    addHeaderScopes(doc, options);
+    replacePublicationMains(doc, options);
+    repairTabOrder(doc, options);
+    repairMedia(doc, options);
+  }
+  options.onTransform?.("cleanup");
+  if (options.responsiveTables)
+    wrapTables(doc, options);
+  options.onTransform?.("table wrapper");
+}
+function repairLanguages(doc, options) {
+  const mismatches = /* @__PURE__ */ new Map();
+  for (const elm of Array.from(doc.querySelectorAll("*"))) {
+    const tag = elm.getAttribute("xml:lang");
+    if (!tag)
+      continue;
+    if (!elm.hasAttribute("lang")) {
+      const agreement = languageAgreement(elm.textContent ?? "", tag);
+      if (agreement === true || agreement === null) {
+        elm.setAttribute("lang", tag);
+        options.report.change("Language attributes copied from xml:lang", options.page);
+      } else if (!elm.matches("html, body") && letterCount(elm.textContent ?? "") >= 10) {
+        const group = mismatches.get(tag) ?? { count: 0, examples: [] };
+        group.count++;
+        if (group.examples.length < 3)
+          group.examples.push(elementDescription(elm));
+        mismatches.set(tag, group);
+      }
+    }
+    elm.removeAttribute("xml:lang");
+    options.report.change("Ineffective xml:lang attributes removed", options.page);
+  }
+  for (const [tag, group] of mismatches) {
+    options.report.warning("Element language", `${group.count} element${group.count === 1 ? "" : "s"} marked ${tag} use a different dominant script; lang was not copied. Examples: ${group.examples.join("; ")}.`, options.page);
+  }
+}
+function unwrapEmptySpans(doc, options) {
+  const spans = Array.from(doc.querySelectorAll("span")).reverse();
+  for (const span of spans) {
+    if (Array.from(span.attributes).some((attribute) => attribute.name !== SOURCE_ID))
+      continue;
+    if (options.publisherStyled?.(span)) {
+      options.report.change("Publisher-styled spans retained", options.page);
+      continue;
+    }
+    span.replaceWith(...Array.from(span.childNodes));
+    options.report.change("Empty spans unwrapped", options.page);
+  }
+}
+function removeEmptyParagraphs(doc, protectedIds, options) {
+  for (const paragraph of Array.from(doc.querySelectorAll("p"))) {
+    if ((paragraph.textContent ?? "").trim() || paragraph.children.length)
+      continue;
+    if (options.publisherStyled?.(paragraph)) {
+      paragraph.classList.add("webbook-publisher-only");
+      options.report.change("Publisher-styled empty paragraphs retained", options.page);
+      continue;
+    }
+    if (paragraph.id && protectedIds.has(paragraph.id))
+      continue;
+    paragraph.remove();
+    options.report.change("Empty paragraphs removed", options.page);
+  }
+}
+function addHeaderScopes(doc, options) {
+  for (const table of Array.from(doc.querySelectorAll("table"))) {
+    const rows = Array.from(table.querySelectorAll("tr"));
+    const firstRow = rows[0];
+    for (const th of Array.from(table.querySelectorAll("th:not([scope])"))) {
+      const row = th.closest("tr");
+      let scope = "";
+      if (th.closest("thead") || row === firstRow)
+        scope = "col";
+      else if (row && Array.from(row.children).find((child) => child.matches("th, td")) === th)
+        scope = "row";
+      if (!scope)
+        continue;
+      th.setAttribute("scope", scope);
+      options.report.change(`Header cells given ${scope} scope`, options.page);
+    }
+  }
+}
+function replacePublicationMains(doc, options) {
+  for (const main of Array.from(doc.body.querySelectorAll("main"))) {
+    const replacement = doc.createElement("div");
+    for (const attribute of Array.from(main.attributes))
+      replacement.setAttribute(attribute.name, attribute.value);
+    replacement.append(...Array.from(main.childNodes));
+    main.replaceWith(replacement);
+    options.report.change("Nested main landmarks changed to div", options.page);
+  }
+}
+function repairTabOrder(doc, options) {
+  for (const elm of Array.from(doc.querySelectorAll("[tabindex]"))) {
+    const value = Number(elm.getAttribute("tabindex"));
+    if (!Number.isFinite(value) || value <= 0)
+      continue;
+    elm.setAttribute("tabindex", "0");
+    options.report.change("Positive tabindex values changed to 0", options.page);
+  }
+}
+function repairMedia(doc, options) {
+  for (const media of Array.from(doc.querySelectorAll("audio, video"))) {
+    if (media.hasAttribute("autoplay")) {
+      media.removeAttribute("autoplay");
+      options.report.change("Publication media autoplay removed", options.page);
+    }
+    if (!media.hasAttribute("controls")) {
+      media.setAttribute("controls", "");
+      options.report.change("Controls added to publication media", options.page);
+    }
+  }
+}
+function wrapTables(doc, options) {
+  const used = new Set(Array.from(doc.querySelectorAll("[id]"), (elm) => elm.id));
+  Array.from(doc.querySelectorAll("table")).filter((table) => !table.parentElement?.closest("table")).forEach((table, index) => {
+    if (table.parentElement?.classList.contains("webbook-table-scroll"))
+      return;
+    const wrapper = doc.createElement("div");
+    wrapper.className = "webbook-table-scroll";
+    wrapper.setAttribute("role", "region");
+    wrapper.setAttribute("tabindex", "0");
+    const caption = Array.from(table.children).find((child) => child.matches("caption")) ?? null;
+    if (caption) {
+      if (!caption.id)
+        caption.id = uniqueId(`table-caption-${index + 1}`, used);
+      wrapper.setAttribute("aria-labelledby", caption.id);
+    } else {
+      wrapper.setAttribute("aria-label", `Table ${index + 1}`);
+    }
+    table.before(wrapper);
+    wrapper.append(table);
+    options.report.change("Tables given responsive scrolling wrappers", options.page);
+  });
+}
+function renameCollidingIds(doc, selectors, reserved, page, report) {
+  const elements = Array.from(doc.querySelectorAll("[id]"));
+  const used = /* @__PURE__ */ new Set([...reserved, ...elements.map((elm) => elm.id)]);
+  const encountered = /* @__PURE__ */ new Set();
+  const renames = /* @__PURE__ */ new Map();
+  for (const elm of elements) {
+    const old = elm.id;
+    const collidesWithUi = isReservedReaderId(old, reserved);
+    const duplicate = encountered.has(old);
+    encountered.add(old);
+    if (!collidesWithUi && !duplicate)
+      continue;
+    const renamed = uniqueId(`${old}-content`, used);
+    elm.id = renamed;
+    if (!duplicate)
+      renames.set(old, renamed);
+    report.change(collidesWithUi ? "Ids colliding with reader UI renamed" : "Duplicate ids renamed", page);
+    report.warning("Renamed ids", `#${old} was renamed to #${renamed}.`, page);
+  }
+  updateReferences(doc, renames);
+  for (const selector of selectors.values()) {
+    if (selector.type === "FragmentSelector")
+      selector.value = renames.get(selector.value) ?? selector.value;
+  }
+  return renames;
+}
+function isReservedReaderId(id, reserved) {
+  return reserved.has(id) || id.startsWith("webbook-") || /^toc-\d+(?:-|$)/.test(id);
+}
+function updateReferences(doc, renames) {
+  if (!renames.size)
+    return;
+  doc.querySelectorAll("[href]").forEach((elm) => {
+    const href = elm.getAttribute("href") ?? "";
+    const hashAt = href.indexOf("#");
+    if (hashAt < 0)
+      return;
+    const old = decodeFragment(href.slice(hashAt + 1));
+    const renamed = renames.get(old);
+    if (renamed)
+      elm.setAttribute("href", `${href.slice(0, hashAt + 1)}${encodeURIComponent(renamed)}`);
+  });
+  for (const attribute of IDREF_ATTRIBUTES) {
+    doc.querySelectorAll(`[${attribute}]`).forEach((elm) => {
+      const prefix = attribute === "usemap" ? "#" : "";
+      const ids = (elm.getAttribute(attribute) ?? "").replace(/^#/, "").split(/\s+/).map((id) => renames.get(id) ?? id).filter(Boolean);
+      elm.setAttribute(attribute, `${prefix}${ids.join(" ")}`);
+    });
+  }
+  doc.querySelectorAll("[style]").forEach((elm) => {
+    let style = elm.getAttribute("style") ?? "";
+    for (const [old, renamed] of renames)
+      style = style.split(`url(#${old})`).join(`url(#${renamed})`);
+    elm.setAttribute("style", style);
+  });
+}
+function analyzeWarnings(doc, options) {
+  const images = Array.from(doc.querySelectorAll("img"));
+  const emptyAlt = images.filter((image) => image.hasAttribute("alt") && !(image.getAttribute("alt") ?? "").trim()).length;
+  const missingAlt = images.filter((image) => !image.hasAttribute("alt")).length;
+  options.report.addImages(images.length, emptyAlt, missingAlt);
+  const stats2 = scriptStats(doc.body.textContent ?? "", options.bookLanguage);
+  options.report.addBookScript(stats2.letters, stats2.expectedLetters);
+  if (!options.cleanup) {
+    const mismatches = /* @__PURE__ */ new Map();
+    for (const elm of Array.from(doc.querySelectorAll("*:not(html):not(body)"))) {
+      const tag = elm.getAttribute("xml:lang");
+      if (tag && !elm.hasAttribute("lang") && languageAgreement(elm.textContent ?? "", tag) === false) {
+        if (letterCount(elm.textContent ?? "") < 10)
+          continue;
+        const group = mismatches.get(tag) ?? { count: 0, examples: [] };
+        group.count++;
+        if (group.examples.length < 3)
+          group.examples.push(elementDescription(elm));
+        mismatches.set(tag, group);
+      }
+    }
+    for (const [tag, group] of mismatches)
+      options.report.warning("Element language", `${group.count} element${group.count === 1 ? "" : "s"} marked ${tag} use a different dominant script. Examples: ${group.examples.join("; ")}.`, options.page);
+  }
+  let previousLevel = 0;
+  for (const heading of Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]'))) {
+    const text2 = normalizedText(heading);
+    if (!text2)
+      options.report.warning("Headings", heading.querySelector("img") ? "Heading contains only an image." : "Empty heading.", options.page);
+    const level = Number(heading.getAttribute("aria-level") || heading.tagName.slice(1));
+    if (previousLevel && level > previousLevel + 1) {
+      options.report.warning("Headings", `Heading level skips from ${previousLevel} to ${level}: ${text2 || "(empty)"}.`, options.page);
+    }
+    if (Number.isFinite(level))
+      previousLevel = level;
+  }
+  for (const paragraph of Array.from(doc.querySelectorAll("p"))) {
+    const text2 = normalizedText(paragraph);
+    if (!text2)
+      continue;
+    const meaningful = Array.from(paragraph.childNodes).filter((node) => node.nodeType !== 3 || Boolean(node.textContent?.trim()));
+    if (text2.length <= 100 && meaningful.length > 0 && meaningful.every((node) => node.nodeType === 1 && node.matches("b, strong"))) {
+      options.report.warning("Paragraphs resembling headings", `\u201C${excerpt(text2)}\u201D is short and entirely bold.`, options.page);
+    }
+    const inNote = Boolean(paragraph.closest('[role="doc-footnote"], [role="doc-endnote"], .epubtype_footnote, .epubtype_endnote, .epubtype_note'));
+    if (!inNote && /^(?:[•·▪–]\s*|\d+[.)]\s+)/u.test(text2)) {
+      options.report.warning("Paragraphs resembling list items", `\u201C${excerpt(text2)}\u201D starts like a list item.`, options.page);
+    }
+  }
+  for (const link of Array.from(doc.querySelectorAll("a[href]"))) {
+    const text2 = normalizedText(link);
+    if (/^(?:https?:\/\/|www\.)\S+$/i.test(text2) || /^(?:click here|here|more)$/i.test(text2)) {
+      options.report.warning("Link text", `\u201C${excerpt(text2)}\u201D does not describe its destination.`, options.page);
+    }
+  }
+  for (const svg of Array.from(doc.querySelectorAll("svg"))) {
+    if (svg.getAttribute("aria-hidden") === "true" || Array.from(svg.children).some((child) => child.matches("title")) || svg.getAttribute("aria-label")?.trim() || svg.getAttribute("aria-labelledby")?.trim())
+      continue;
+    options.report.warning("Inline SVG", "Inline SVG has no title or accessible name.", options.page);
+  }
+  for (const table of Array.from(doc.querySelectorAll("table"))) {
+    if (table.querySelector("th"))
+      continue;
+    const rows = Array.from(table.querySelectorAll("tr"));
+    const columns = Math.max(0, ...rows.map((row) => Array.from(row.children).filter((child) => child.matches("td, th")).length));
+    if (rows.length <= 1 || columns <= 1)
+      options.report.warning("Tables resembling layout", "Table has no headers and appears to be used for layout.", options.page);
+    else
+      options.report.warning("Data tables without headers", `Table has ${rows.length} rows and ${columns} columns but no header cells.`, options.page);
+  }
+}
+function languageAgreement(text2, tag) {
+  const stats2 = scriptStats(text2, tag);
+  if (!stats2.hasExpectedScript)
+    return null;
+  if (!stats2.letters)
+    return false;
+  return stats2.expectedLetters / stats2.letters > 0.5;
+}
+function letterCount(text2) {
+  return Array.from(text2.matchAll(/\p{Letter}/gu)).length;
+}
+function scriptStats(text2, tag) {
+  const letters = letterCount(text2);
+  const patterns = expectedScriptPatterns(tag);
+  if (!patterns.length)
+    return { letters, expectedLetters: 0, hasExpectedScript: false };
+  const expectedLetters = patterns.reduce((count2, pattern) => count2 + Array.from(text2.matchAll(pattern)).length, 0);
+  return { letters, expectedLetters: Math.min(letters, expectedLetters), hasExpectedScript: true };
+}
+function expectedScriptPatterns(tag) {
+  let script = "";
+  try {
+    script = new Intl.Locale(tag).maximize().script ?? "";
+  } catch {
+    return [];
+  }
+  const scripts = script === "Jpan" ? ["Han", "Hiragana", "Katakana"] : script === "Kore" ? ["Hangul", "Han"] : ["Hans", "Hant"].includes(script) ? ["Han"] : [script];
+  try {
+    return scripts.filter(Boolean).map((value) => new RegExp(`\\p{Script=${value}}`, "gu"));
+  } catch {
+    return [];
+  }
+}
+function normalizedText(elm) {
+  return (elm.textContent ?? "").replace(/\s+/g, " ").trim();
+}
+function excerpt(text2) {
+  return text2.length > 80 ? `${text2.slice(0, 77)}\u2026` : text2;
+}
+function elementDescription(elm) {
+  const text2 = normalizedText(elm);
+  return `<${elm.tagName.toLowerCase()}${elm.id ? ` id="${elm.id}"` : ""}>${text2 ? ` (\u201C${excerpt(text2)}\u201D)` : ""}`;
+}
+function rewriteRenamedFragment(href, page, renamesByPage) {
+  const hashAt = href.indexOf("#");
+  if (hashAt < 0)
+    return href;
+  const targetPage = href.slice(0, hashAt) || page;
+  const old = decodeFragment(href.slice(hashAt + 1));
+  const renamed = renamesByPage.get(targetPage)?.get(old);
+  return renamed ? `${href.slice(0, hashAt + 1)}${encodeURIComponent(renamed)}` : href;
+}
+
 // ../convert/build/assets.js
 var UI_ASSET_DIRS = ["src"];
 var ImageAssetRegistry = class {
@@ -22647,6 +23457,8 @@ var ImageAssetRegistry = class {
       return;
     if (policy?.key)
       await fs_default.writeFile(destination, deobfuscateFont(await fs_default.readFile(asset.sourcePath), policy.key, policy.algorithm));
+    else if (/\.svg$/i.test(asset.sourcePath))
+      await fs_default.writeFile(destination, await inertSvg(asset.sourcePath, this.report));
     else
       await fs_default.copy(asset.sourcePath, destination);
   }
@@ -22703,6 +23515,25 @@ var ImageAssetRegistry = class {
     return candidate;
   }
 };
+async function inertSvg(source, report) {
+  const bytes2 = await fs_default.readFile(source);
+  let doc;
+  try {
+    doc = new JSDOM(bytes2.toString("utf8"), { contentType: "image/svg+xml" }).window.document;
+  } catch {
+    return bytes2;
+  }
+  if (doc.getElementsByTagName("parsererror").length)
+    return bytes2;
+  const removed = removeActiveContent(doc);
+  if (!removed.scripts && !removed.handlers && !removed.links)
+    return bytes2;
+  const page = import_path7.default.basename(source);
+  report?.change("Scripts removed", page, removed.scripts);
+  report?.change("Event handler attributes removed", page, removed.handlers);
+  report?.change("Script links removed", page, removed.links);
+  return new new JSDOM("").window.XMLSerializer().serializeToString(doc);
+}
 async function copyUiAssets(template, outputPaths) {
   await Promise.all(UI_ASSET_DIRS.map(async (dirname) => {
     const source = import_path7.default.join(template, dirname);
@@ -23876,62 +24707,6 @@ async function storeCachedAudio(cache, audioFilename, segments, outPath, key, fi
   }
 }
 
-// ../convert/build/ids.js
-init_globals();
-var IDREF_ATTRIBUTES = [
-  "aria-describedby",
-  "aria-labelledby",
-  "aria-controls",
-  "aria-details",
-  "aria-activedescendant",
-  "aria-errormessage",
-  "aria-flowto",
-  "for",
-  "headers",
-  "list",
-  "form",
-  "usemap"
-];
-function isExternalHref(href) {
-  return /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(href);
-}
-function decodeFragment(value) {
-  try {
-    return decodeURIComponent(value);
-  } catch {
-    return value;
-  }
-}
-function cssReferencedIds(css4) {
-  return Array.from(css4.matchAll(/#([A-Za-z_][\w-]*)/g), (match) => match[1]);
-}
-function referencedIds(doc, extra = []) {
-  const ids = new Set(extra);
-  doc.querySelectorAll("a[href], area[href]").forEach((link) => {
-    const href = link.getAttribute("href") || "";
-    const hash = href.includes("#") ? href.slice(href.indexOf("#") + 1) : "";
-    if (hash)
-      ids.add(decodeFragment(hash));
-  });
-  for (const attribute of IDREF_ATTRIBUTES) {
-    doc.querySelectorAll(`[${attribute}]`).forEach((elm) => {
-      const value = elm.getAttribute(attribute) || "";
-      value.replace(/^#/, "").split(/\s+/).filter(Boolean).forEach((id) => ids.add(id));
-    });
-  }
-  doc.querySelectorAll("style").forEach((style) => cssReferencedIds(style.textContent || "").forEach((id) => ids.add(id)));
-  doc.querySelectorAll("svg [id], math [id]").forEach((elm) => ids.add(elm.id));
-  return ids;
-}
-function uniqueId(base, used) {
-  let candidate = base;
-  let number = 2;
-  while (used.has(candidate))
-    candidate = `${base}-${number++}`;
-  used.add(candidate);
-  return candidate;
-}
-
 // ../convert/build/audio-cleanup.js
 init_globals();
 
@@ -24567,309 +25342,6 @@ function additionalInformation(m) {
 init_globals();
 var import_path15 = __toESM(require_path_browserify(), 1);
 
-// ../convert/build/publisher-selectors.js
-init_globals();
-var import_css = __toESM(require_css(), 1);
-var SOURCE_ID = "data-webbook-publisher-source";
-var DYNAMIC = /^(?:hover|active|focus|focus-visible|focus-within|visited|link|any-link|target|checked|disabled|enabled|indeterminate|valid|invalid|user-valid|user-invalid|placeholder-shown|open)$/i;
-var DYNAMIC_IN = /:(?:hover|active|focus(?:-visible|-within)?|visited|link|any-link|target|checked|disabled|enabled|indeterminate|valid|invalid|user-valid|user-invalid|placeholder-shown|open)\b/i;
-function endGroup(text2, start, open = "(", close = ")") {
-  let depth = 1, quote = "";
-  for (let i = start + 1; i < text2.length; i++) {
-    const c = text2[i];
-    if (c === "\\") {
-      i++;
-      continue;
-    }
-    if (quote) {
-      if (c === quote)
-        quote = "";
-      continue;
-    }
-    if (c === '"' || c === "'") {
-      quote = c;
-      continue;
-    }
-    if (c === open)
-      depth++;
-    if (c === close && --depth === 0)
-      return i;
-  }
-  return text2.length - 1;
-}
-function selectorParts(text2, separator = ",") {
-  const result = [];
-  let start = 0;
-  for (let i = 0; i < text2.length; i++) {
-    if (text2[i] === "\\") {
-      i++;
-      continue;
-    }
-    if (text2[i] === "(" || text2[i] === "[") {
-      i = endGroup(text2, i, text2[i], text2[i] === "(" ? ")" : "]");
-      continue;
-    }
-    if (text2[i] === separator) {
-      result.push(text2.slice(start, i).trim());
-      start = i + 1;
-    }
-  }
-  result.push(text2.slice(start).trim());
-  return result;
-}
-var add = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
-var compare = (a, b) => a[0] - b[0] || a[1] - b[1] || a[2] - b[2];
-function selectorSpecificity(selector) {
-  let result = [0, 0, 0], typePossible = true;
-  for (let i = 0; i < selector.length; ) {
-    const c = selector[i];
-    if (/\s|[>+~,]/.test(c)) {
-      typePossible = true;
-      i++;
-      continue;
-    }
-    if (c === "[") {
-      result[1]++;
-      i = endGroup(selector, i, "[", "]") + 1;
-      typePossible = false;
-      continue;
-    }
-    if (c === "#" || c === ".") {
-      result[c === "#" ? 0 : 1]++;
-      i++;
-    } else if (c === ":") {
-      const pseudo = selector.slice(i).match(/^(:{1,2})([\w-]+)/);
-      if (!pseudo) {
-        i++;
-        continue;
-      }
-      const name3 = pseudo[2].toLowerCase(), element = pseudo[1] === "::" || /^(before|after|first-letter|first-line)$/.test(name3);
-      i += pseudo[0].length;
-      if (selector[i] === "(") {
-        const end = endGroup(selector, i), arg = selector.slice(i + 1, end);
-        if (["is", "not", "has", "matches"].includes(name3)) {
-          const weights = selectorParts(arg).map(selectorSpecificity).sort(compare);
-          result = add(result, weights[weights.length - 1] ?? [0, 0, 0]);
-        } else if (name3 !== "where") {
-          result[element ? 2 : 1]++;
-          if (/^nth-(?:last-)?child$/.test(name3) && /\s+of\s+/i.test(arg)) {
-            const weights = selectorParts(arg.split(/\s+of\s+/i).slice(1).join(" of ")).map(selectorSpecificity).sort(compare);
-            result = add(result, weights[weights.length - 1] ?? [0, 0, 0]);
-          }
-        }
-        i = end + 1;
-      } else
-        result[element ? 2 : 1]++;
-      typePossible = false;
-      continue;
-    } else if (c === "*") {
-      i++;
-      typePossible = false;
-      continue;
-    } else if (typePossible)
-      result[2]++;
-    const begin = i;
-    while (i < selector.length && !/[\s.#:[\]>+~,()]/.test(selector[i])) {
-      if (selector[i] === "\\")
-        i++;
-      i++;
-    }
-    if (i === begin)
-      i++;
-    typePossible = false;
-  }
-  return result;
-}
-function specificityPadding(weight) {
-  return ":is(*,#webbook-publisher-specificity)".repeat(weight[0]) + ":is(*,.webbook-publisher-specificity)".repeat(weight[1]) + ":is(*,webbook-publisher-specificity)".repeat(weight[2]);
-}
-function pseudoElement(selector) {
-  for (let i = 0; i < selector.length; i++) {
-    if (selector[i] === "[" || selector[i] === "(") {
-      i = endGroup(selector, i, selector[i], selector[i] === "[" ? "]" : ")");
-      continue;
-    }
-    if (selector[i] === ":" && /^(?:::|:(?:before|after|first-letter|first-line)\b)/i.test(selector.slice(i)))
-      return { base: selector.slice(0, i), pseudo: selector.slice(i) };
-  }
-  return { base: selector, pseudo: "" };
-}
-function states(selector) {
-  let plain = "", dynamic = "";
-  for (let i = 0; i < selector.length; ) {
-    if (selector[i] === "[") {
-      const end2 = endGroup(selector, i, "[", "]");
-      plain += selector.slice(i, end2 + 1);
-      i = end2 + 1;
-      continue;
-    }
-    const token2 = selector.slice(i).match(/^:([\w-]+)/);
-    if (!token2) {
-      plain += selector[i++];
-      continue;
-    }
-    let end = i + token2[0].length;
-    if (selector[end] === "(")
-      end = endGroup(selector, end) + 1;
-    const whole = selector.slice(i, end);
-    if (DYNAMIC.test(token2[1]) || DYNAMIC_IN.test(whole))
-      dynamic += whole;
-    else
-      plain += whole;
-    i = end;
-  }
-  return { static: plain.trim() || "*", dynamic };
-}
-function compounds(selector) {
-  const result = [];
-  let start = 0;
-  for (let i = 0; i <= selector.length; i++) {
-    if (selector[i] === "[" || selector[i] === "(") {
-      i = endGroup(selector, i, selector[i], selector[i] === "[" ? "]" : ")");
-      continue;
-    }
-    if (i === selector.length || /\s|[>+~]/.test(selector[i])) {
-      if (selector.slice(start, i).trim())
-        result.push({ text: selector.slice(start, i).trim(), prefix: selector.slice(0, i).trim() });
-      start = i + 1;
-    }
-  }
-  return result;
-}
-function structuralSelector(selector) {
-  const { base } = pseudoElement(selector);
-  return compounds(base).reduce((text2, part) => text2.replace(part.text, states(part.text).static), base).replace(/\[\s*epub\|type\b/g, "[epub\\:type");
-}
-var PublisherSelectors = class {
-  constructor(doc, sheets, warn = () => {
-  }) {
-    this.doc = doc;
-    this.warn = warn;
-    this.records = /* @__PURE__ */ new Map();
-    this.styled = /* @__PURE__ */ new Set();
-    this.serial = 0;
-    this.styledElement = (elm) => this.styled.has(elm.getAttribute(SOURCE_ID) ?? "");
-    const ids = /* @__PURE__ */ new Map();
-    let count2 = 0;
-    const id = (elm) => {
-      if (!ids.has(elm))
-        ids.set(elm, String(++count2));
-      return ids.get(elm);
-    };
-    const walk = (rules, sheet) => {
-      for (const rule of rules) {
-        if (rule.rules)
-          walk(rule.rules, sheet);
-        if (rule.type !== "rule")
-          continue;
-        for (const selector of rule.selectors ?? []) {
-          const key = `${sheet}:${selector}`;
-          if (this.records.has(key)) {
-            this.records.get(key).occurrences++;
-            continue;
-          }
-          const query = structuralSelector(selector);
-          let matches;
-          try {
-            matches = Array.from(doc.querySelectorAll(query));
-          } catch {
-            warn(`Publisher selector could not be matched: ${selector}`);
-            continue;
-          }
-          matches = matches.filter((elm) => elm === doc.documentElement || elm === doc.body || doc.body.contains(elm));
-          const sourceIds = matches.map(id);
-          sourceIds.forEach((value) => this.styled.add(value));
-          const parts = compounds(pseudoElement(selector).base), state = [];
-          for (const [index, part] of parts.entries()) {
-            const dynamic = states(part.text).dynamic;
-            if (!dynamic)
-              continue;
-            try {
-              state.push({ ids: Array.from(doc.querySelectorAll(structuralSelector(part.prefix))).map(id), dynamic, self: index === parts.length - 1, name: `webbook-publisher-s${++this.serial}` });
-            } catch {
-            }
-          }
-          this.records.set(key, { source: selector, query, ids: sourceIds, name: `webbook-publisher-r${++this.serial}`, pseudo: pseudoElement(selector).pseudo, state, frozen: false, removed: 0, occurrences: 1, root: matches.length > 0 && matches.every((elm) => elm === doc.body || elm === doc.documentElement) });
-        }
-      }
-    };
-    sheets.forEach((sheet, index) => walk(import_css.default.parse(sheet.css, { silent: true }).stylesheet?.rules ?? [], index));
-    [doc.documentElement, doc.body, ...Array.from(doc.body.querySelectorAll("*"))].forEach(id);
-    ids.forEach((value, elm) => elm.setAttribute(SOURCE_ID, value));
-  }
-  elements() {
-    return new Map(Array.from(this.doc.querySelectorAll(`[${SOURCE_ID}]`), (elm) => [elm.getAttribute(SOURCE_ID), elm]));
-  }
-  checkpoint(stage) {
-    const elements = this.elements();
-    if (stage === "splitting")
-      this.splitIds = new Set(elements.keys());
-    for (const record of this.records.values()) {
-      if (!record.ids.length || record.cause)
-        continue;
-      let now;
-      try {
-        now = Array.from(this.doc.querySelectorAll(record.query)).filter((elm) => elm.hasAttribute(SOURCE_ID));
-      } catch {
-        now = [];
-      }
-      const expected = record.ids.filter((value) => elements.has(value)), expectedSet = new Set(expected);
-      if (now.length !== expected.length || now.some((elm) => !expectedSet.has(elm.getAttribute(SOURCE_ID) ?? "")))
-        record.cause = stage;
-    }
-  }
-  finish() {
-    const elements = this.elements(), counts = { kept: 0, frozen: 0, unapplied: 0, causes: {}, examples: [] };
-    for (const record of this.records.values()) {
-      if (!record.ids.length) {
-        counts.kept += record.occurrences;
-        continue;
-      }
-      const expected = record.ids.filter((value) => elements.has(value)), expectedSet = new Set(expected);
-      let now;
-      try {
-        now = Array.from(this.doc.querySelectorAll(record.query)).filter((elm) => elm.hasAttribute(SOURCE_ID));
-      } catch {
-        now = [];
-      }
-      record.removed = record.ids.filter((value) => (this.splitIds?.has(value) ?? true) && !elements.has(value)).length;
-      record.frozen = record.removed > 0 || now.length !== expected.length || now.some((elm) => !expectedSet.has(elm.getAttribute(SOURCE_ID) ?? ""));
-      if (record.frozen) {
-        expected.forEach((value) => elements.get(value).classList.add(record.name));
-        for (const state of record.state)
-          state.ids.forEach((value) => elements.get(value)?.classList.add(state.name));
-        if (expected.length || !record.removed) {
-          counts.frozen += record.occurrences;
-          const cause = record.cause ?? "cleanup";
-          counts.causes[cause] = (counts.causes[cause] ?? 0) + record.occurrences;
-        }
-      } else
-        counts.kept += record.occurrences;
-      if (record.removed) {
-        counts.unapplied += record.occurrences;
-        if (counts.examples.length < 10)
-          counts.examples.push(`${record.source}: ${record.removed} source element(s) removed`);
-      }
-    }
-    this.doc.body.querySelectorAll("*").forEach((elm) => {
-      if (!elm.hasAttribute(SOURCE_ID))
-        elm.setAttribute("data-webbook-reader", "");
-    });
-    this.doc.querySelectorAll(`[${SOURCE_ID}]`).forEach((elm) => elm.removeAttribute(SOURCE_ID));
-    return counts;
-  }
-  selector(sheet, source) {
-    const record = this.records.get(`${sheet}:${source}`);
-    if (!record)
-      return null;
-    if (!record.frozen)
-      return { selector: source, root: record.root };
-    const ancestors = record.state.filter((state) => !state.self).map((state) => `.${state.name}${state.dynamic}`).join(" ");
-    const self = record.state.filter((state) => state.self).map((state) => state.dynamic).join("");
-    return { selector: `${ancestors ? ancestors + " " : ""}.${record.name}${self}${record.pseudo}`, root: record.root };
-  }
-};
-
 // ../convert/build/create-search-index.js
 init_globals();
 init_fs();
@@ -25140,428 +25612,6 @@ function applyStructureIds(doc, narrationTargetIds, navigationIds = [], keepAllI
     }
   }
   return selectors;
-}
-
-// ../convert/build/markup-cleanup.js
-init_globals();
-
-// ../convert/build/conversion-rules.js
-init_globals();
-var HEADING = 'h1, h2, h3, h4, h5, h6, [role="heading"]';
-var text = (element) => (element.textContent ?? "").replace(/\s+/g, " ").trim();
-var hasSemantics = (element) => Array.from(element.attributes).some((attribute) => attribute.name === "role" || attribute.name.startsWith("aria-") || attribute.name === "epub:type") || Array.from(element.classList).some((name3) => name3.startsWith("epubtype_"));
-function repairHeadingTitles(doc, options) {
-  for (const heading of Array.from(doc.querySelectorAll(HEADING))) {
-    const title = heading.getAttribute("title");
-    if (!title?.trim())
-      continue;
-    const label = title.replace(/\s+/g, " ").trim();
-    if (!text(heading) && !heading.querySelector("img, svg, math, a[href], input, button, audio, video")) {
-      const duplicate = [heading.previousElementSibling, heading.nextElementSibling].some((neighbor) => neighbor?.matches(HEADING) && text(neighbor) === label);
-      if (duplicate && !heading.children.length && !hasSemantics(heading) && !options.narratedTargetIds.includes(heading.id)) {
-        const anchor = doc.createElement("a");
-        for (const attribute of Array.from(heading.attributes)) {
-          if (attribute.name !== "title")
-            anchor.setAttribute(attribute.name, attribute.value);
-        }
-        heading.replaceWith(anchor);
-        options.report.change("Duplicate title-only headings removed", options.page);
-      } else {
-        heading.append(doc.createTextNode(title));
-        heading.removeAttribute("title");
-        options.report.change("Heading titles made visible", options.page);
-      }
-    } else if (text(heading) === label) {
-      heading.removeAttribute("title");
-      options.report.change("Redundant heading titles removed", options.page);
-    }
-  }
-}
-function markNumberedEquations(doc, options) {
-  for (const block of Array.from(doc.querySelectorAll("div, p, figure"))) {
-    if (block.closest("math") || block.classList.contains("webbook-equation"))
-      continue;
-    const children = Array.from(block.children);
-    if (children.length !== 2 || block.querySelectorAll("math").length !== 1 || Array.from(block.childNodes).some((node) => node.nodeType === 3 && node.textContent?.trim()))
-      continue;
-    const math = block.querySelector("math");
-    const expression = children.find((child) => child === math || math && child.contains(math));
-    const number = children.find((child) => child !== expression);
-    if (!math || !number || number.matches("math, a[href], input, button") || number.querySelector("math, img, svg, a[href], input, button"))
-      continue;
-    if (!expression)
-      continue;
-    if (expression !== math) {
-      const remainder = expression.cloneNode(true);
-      remainder.querySelector("math")?.remove();
-      if (text(remainder) || remainder.querySelector("img, svg, video, audio, input, button"))
-        continue;
-    }
-    const label = text(number);
-    if (label.length > 24 || !/^(?:\((?:\p{Nd}+|\p{L})(?:\.\p{Nd}+)*\)|\[(?:\p{Nd}+|\p{L})(?:\.\p{Nd}+)*\]|(?:\p{Nd}+|\p{L})(?:\.\p{Nd}+)+)$/u.test(label))
-      continue;
-    block.classList.add("webbook-equation");
-    number.classList.add("webbook-equation-number");
-    const scroll = doc.createElement("span");
-    scroll.className = "webbook-equation-scroll";
-    scroll.setAttribute("role", "region");
-    scroll.setAttribute("aria-label", `Equation ${label}`);
-    scroll.setAttribute("tabindex", "0");
-    expression.before(scroll);
-    scroll.append(expression);
-    options.report.change("Numbered equations given responsive layout", options.page);
-  }
-}
-function cleanLeftoverAnchors(doc, options, narratedTargets) {
-  for (const anchor of Array.from(doc.querySelectorAll("a:not([href]), span, div")).reverse()) {
-    if (options.publisherStyled?.(anchor))
-      continue;
-    if (anchor.id || hasSemantics(anchor) || narratedTargets.has(anchor) || anchor.closest("svg, math"))
-      continue;
-    if (Array.from(anchor.attributes).some((attribute) => !["class", "title", "style", SOURCE_ID].includes(attribute.name)))
-      continue;
-    const content = anchor.textContent?.trim() || anchor.children.length;
-    if (anchor.tagName !== "A" && content)
-      continue;
-    if (content)
-      anchor.replaceWith(...Array.from(anchor.childNodes));
-    else {
-      const before = anchor.previousSibling;
-      const after = anchor.nextSibling;
-      if (!anchor.closest("pre, code") && before?.nodeType === 3 && after?.nodeType === 3 && /^[\t ]*\r?\n/.test(after.textContent ?? "")) {
-        before.textContent = (before.textContent ?? "").replace(/(^|\n)[\t ]+$/, "$1");
-      }
-      anchor.remove();
-    }
-    const kind = anchor.tagName !== "A" ? "Empty nonsemantic wrappers removed" : content ? "Unlinked anchors unwrapped" : "Empty unlinked anchors removed";
-    options.report.change(kind, options.page);
-  }
-}
-
-// ../convert/build/markup-cleanup.js
-function cleanPublicationMarkup(doc, options) {
-  if (options.cleanup)
-    repairHeadingTitles(doc, options);
-  analyzeWarnings(doc, options);
-  const protectedIds = referencedIds(doc, [...options.protectedIds, ...options.narratedTargetIds]);
-  if (options.cleanup) {
-    repairLanguages(doc, options);
-    markNumberedEquations(doc, options);
-    unwrapEmptySpans(doc, options);
-    removeEmptyParagraphs(doc, protectedIds, options);
-    addHeaderScopes(doc, options);
-    replacePublicationMains(doc, options);
-    repairTabOrder(doc, options);
-    repairMedia(doc, options);
-  }
-  options.onTransform?.("cleanup");
-  if (options.responsiveTables)
-    wrapTables(doc, options);
-  options.onTransform?.("table wrapper");
-}
-function repairLanguages(doc, options) {
-  const mismatches = /* @__PURE__ */ new Map();
-  for (const elm of Array.from(doc.querySelectorAll("*"))) {
-    const tag = elm.getAttribute("xml:lang");
-    if (!tag)
-      continue;
-    if (!elm.hasAttribute("lang")) {
-      const agreement = languageAgreement(elm.textContent ?? "", tag);
-      if (agreement === true || agreement === null) {
-        elm.setAttribute("lang", tag);
-        options.report.change("Language attributes copied from xml:lang", options.page);
-      } else if (!elm.matches("html, body") && letterCount(elm.textContent ?? "") >= 10) {
-        const group = mismatches.get(tag) ?? { count: 0, examples: [] };
-        group.count++;
-        if (group.examples.length < 3)
-          group.examples.push(elementDescription(elm));
-        mismatches.set(tag, group);
-      }
-    }
-    elm.removeAttribute("xml:lang");
-    options.report.change("Ineffective xml:lang attributes removed", options.page);
-  }
-  for (const [tag, group] of mismatches) {
-    options.report.warning("Element language", `${group.count} element${group.count === 1 ? "" : "s"} marked ${tag} use a different dominant script; lang was not copied. Examples: ${group.examples.join("; ")}.`, options.page);
-  }
-}
-function unwrapEmptySpans(doc, options) {
-  const spans = Array.from(doc.querySelectorAll("span")).reverse();
-  for (const span of spans) {
-    if (Array.from(span.attributes).some((attribute) => attribute.name !== SOURCE_ID))
-      continue;
-    if (options.publisherStyled?.(span)) {
-      options.report.change("Publisher-styled spans retained", options.page);
-      continue;
-    }
-    span.replaceWith(...Array.from(span.childNodes));
-    options.report.change("Empty spans unwrapped", options.page);
-  }
-}
-function removeEmptyParagraphs(doc, protectedIds, options) {
-  for (const paragraph of Array.from(doc.querySelectorAll("p"))) {
-    if ((paragraph.textContent ?? "").trim() || paragraph.children.length)
-      continue;
-    if (options.publisherStyled?.(paragraph)) {
-      paragraph.classList.add("webbook-publisher-only");
-      options.report.change("Publisher-styled empty paragraphs retained", options.page);
-      continue;
-    }
-    if (paragraph.id && protectedIds.has(paragraph.id))
-      continue;
-    paragraph.remove();
-    options.report.change("Empty paragraphs removed", options.page);
-  }
-}
-function addHeaderScopes(doc, options) {
-  for (const table of Array.from(doc.querySelectorAll("table"))) {
-    const rows = Array.from(table.querySelectorAll("tr"));
-    const firstRow = rows[0];
-    for (const th of Array.from(table.querySelectorAll("th:not([scope])"))) {
-      const row = th.closest("tr");
-      let scope = "";
-      if (th.closest("thead") || row === firstRow)
-        scope = "col";
-      else if (row && Array.from(row.children).find((child) => child.matches("th, td")) === th)
-        scope = "row";
-      if (!scope)
-        continue;
-      th.setAttribute("scope", scope);
-      options.report.change(`Header cells given ${scope} scope`, options.page);
-    }
-  }
-}
-function replacePublicationMains(doc, options) {
-  for (const main of Array.from(doc.body.querySelectorAll("main"))) {
-    const replacement = doc.createElement("div");
-    for (const attribute of Array.from(main.attributes))
-      replacement.setAttribute(attribute.name, attribute.value);
-    replacement.append(...Array.from(main.childNodes));
-    main.replaceWith(replacement);
-    options.report.change("Nested main landmarks changed to div", options.page);
-  }
-}
-function repairTabOrder(doc, options) {
-  for (const elm of Array.from(doc.querySelectorAll("[tabindex]"))) {
-    const value = Number(elm.getAttribute("tabindex"));
-    if (!Number.isFinite(value) || value <= 0)
-      continue;
-    elm.setAttribute("tabindex", "0");
-    options.report.change("Positive tabindex values changed to 0", options.page);
-  }
-}
-function repairMedia(doc, options) {
-  for (const media of Array.from(doc.querySelectorAll("audio, video"))) {
-    if (media.hasAttribute("autoplay")) {
-      media.removeAttribute("autoplay");
-      options.report.change("Publication media autoplay removed", options.page);
-    }
-    if (!media.hasAttribute("controls")) {
-      media.setAttribute("controls", "");
-      options.report.change("Controls added to publication media", options.page);
-    }
-  }
-}
-function wrapTables(doc, options) {
-  const used = new Set(Array.from(doc.querySelectorAll("[id]"), (elm) => elm.id));
-  Array.from(doc.querySelectorAll("table")).filter((table) => !table.parentElement?.closest("table")).forEach((table, index) => {
-    if (table.parentElement?.classList.contains("webbook-table-scroll"))
-      return;
-    const wrapper = doc.createElement("div");
-    wrapper.className = "webbook-table-scroll";
-    wrapper.setAttribute("role", "region");
-    wrapper.setAttribute("tabindex", "0");
-    const caption = Array.from(table.children).find((child) => child.matches("caption")) ?? null;
-    if (caption) {
-      if (!caption.id)
-        caption.id = uniqueId(`table-caption-${index + 1}`, used);
-      wrapper.setAttribute("aria-labelledby", caption.id);
-    } else {
-      wrapper.setAttribute("aria-label", `Table ${index + 1}`);
-    }
-    table.before(wrapper);
-    wrapper.append(table);
-    options.report.change("Tables given responsive scrolling wrappers", options.page);
-  });
-}
-function renameCollidingIds(doc, selectors, reserved, page, report) {
-  const elements = Array.from(doc.querySelectorAll("[id]"));
-  const used = /* @__PURE__ */ new Set([...reserved, ...elements.map((elm) => elm.id)]);
-  const encountered = /* @__PURE__ */ new Set();
-  const renames = /* @__PURE__ */ new Map();
-  for (const elm of elements) {
-    const old = elm.id;
-    const collidesWithUi = isReservedReaderId(old, reserved);
-    const duplicate = encountered.has(old);
-    encountered.add(old);
-    if (!collidesWithUi && !duplicate)
-      continue;
-    const renamed = uniqueId(`${old}-content`, used);
-    elm.id = renamed;
-    if (!duplicate)
-      renames.set(old, renamed);
-    report.change(collidesWithUi ? "Ids colliding with reader UI renamed" : "Duplicate ids renamed", page);
-    report.warning("Renamed ids", `#${old} was renamed to #${renamed}.`, page);
-  }
-  updateReferences(doc, renames);
-  for (const selector of selectors.values()) {
-    if (selector.type === "FragmentSelector")
-      selector.value = renames.get(selector.value) ?? selector.value;
-  }
-  return renames;
-}
-function isReservedReaderId(id, reserved) {
-  return reserved.has(id) || id.startsWith("webbook-") || /^toc-\d+(?:-|$)/.test(id);
-}
-function updateReferences(doc, renames) {
-  if (!renames.size)
-    return;
-  doc.querySelectorAll("[href]").forEach((elm) => {
-    const href = elm.getAttribute("href") ?? "";
-    const hashAt = href.indexOf("#");
-    if (hashAt < 0)
-      return;
-    const old = decodeFragment(href.slice(hashAt + 1));
-    const renamed = renames.get(old);
-    if (renamed)
-      elm.setAttribute("href", `${href.slice(0, hashAt + 1)}${encodeURIComponent(renamed)}`);
-  });
-  for (const attribute of IDREF_ATTRIBUTES) {
-    doc.querySelectorAll(`[${attribute}]`).forEach((elm) => {
-      const prefix = attribute === "usemap" ? "#" : "";
-      const ids = (elm.getAttribute(attribute) ?? "").replace(/^#/, "").split(/\s+/).map((id) => renames.get(id) ?? id).filter(Boolean);
-      elm.setAttribute(attribute, `${prefix}${ids.join(" ")}`);
-    });
-  }
-  doc.querySelectorAll("[style]").forEach((elm) => {
-    let style = elm.getAttribute("style") ?? "";
-    for (const [old, renamed] of renames)
-      style = style.split(`url(#${old})`).join(`url(#${renamed})`);
-    elm.setAttribute("style", style);
-  });
-}
-function analyzeWarnings(doc, options) {
-  const images = Array.from(doc.querySelectorAll("img"));
-  const emptyAlt = images.filter((image) => image.hasAttribute("alt") && !(image.getAttribute("alt") ?? "").trim()).length;
-  const missingAlt = images.filter((image) => !image.hasAttribute("alt")).length;
-  options.report.addImages(images.length, emptyAlt, missingAlt);
-  const stats2 = scriptStats(doc.body.textContent ?? "", options.bookLanguage);
-  options.report.addBookScript(stats2.letters, stats2.expectedLetters);
-  if (!options.cleanup) {
-    const mismatches = /* @__PURE__ */ new Map();
-    for (const elm of Array.from(doc.querySelectorAll("*:not(html):not(body)"))) {
-      const tag = elm.getAttribute("xml:lang");
-      if (tag && !elm.hasAttribute("lang") && languageAgreement(elm.textContent ?? "", tag) === false) {
-        if (letterCount(elm.textContent ?? "") < 10)
-          continue;
-        const group = mismatches.get(tag) ?? { count: 0, examples: [] };
-        group.count++;
-        if (group.examples.length < 3)
-          group.examples.push(elementDescription(elm));
-        mismatches.set(tag, group);
-      }
-    }
-    for (const [tag, group] of mismatches)
-      options.report.warning("Element language", `${group.count} element${group.count === 1 ? "" : "s"} marked ${tag} use a different dominant script. Examples: ${group.examples.join("; ")}.`, options.page);
-  }
-  let previousLevel = 0;
-  for (const heading of Array.from(doc.querySelectorAll('h1, h2, h3, h4, h5, h6, [role="heading"]'))) {
-    const text2 = normalizedText(heading);
-    if (!text2)
-      options.report.warning("Headings", heading.querySelector("img") ? "Heading contains only an image." : "Empty heading.", options.page);
-    const level = Number(heading.getAttribute("aria-level") || heading.tagName.slice(1));
-    if (previousLevel && level > previousLevel + 1) {
-      options.report.warning("Headings", `Heading level skips from ${previousLevel} to ${level}: ${text2 || "(empty)"}.`, options.page);
-    }
-    if (Number.isFinite(level))
-      previousLevel = level;
-  }
-  for (const paragraph of Array.from(doc.querySelectorAll("p"))) {
-    const text2 = normalizedText(paragraph);
-    if (!text2)
-      continue;
-    const meaningful = Array.from(paragraph.childNodes).filter((node) => node.nodeType !== 3 || Boolean(node.textContent?.trim()));
-    if (text2.length <= 100 && meaningful.length > 0 && meaningful.every((node) => node.nodeType === 1 && node.matches("b, strong"))) {
-      options.report.warning("Paragraphs resembling headings", `\u201C${excerpt(text2)}\u201D is short and entirely bold.`, options.page);
-    }
-    const inNote = Boolean(paragraph.closest('[role="doc-footnote"], [role="doc-endnote"], .epubtype_footnote, .epubtype_endnote, .epubtype_note'));
-    if (!inNote && /^(?:[•·▪–]\s*|\d+[.)]\s+)/u.test(text2)) {
-      options.report.warning("Paragraphs resembling list items", `\u201C${excerpt(text2)}\u201D starts like a list item.`, options.page);
-    }
-  }
-  for (const link of Array.from(doc.querySelectorAll("a[href]"))) {
-    const text2 = normalizedText(link);
-    if (/^(?:https?:\/\/|www\.)\S+$/i.test(text2) || /^(?:click here|here|more)$/i.test(text2)) {
-      options.report.warning("Link text", `\u201C${excerpt(text2)}\u201D does not describe its destination.`, options.page);
-    }
-  }
-  for (const svg of Array.from(doc.querySelectorAll("svg"))) {
-    if (svg.getAttribute("aria-hidden") === "true" || Array.from(svg.children).some((child) => child.matches("title")) || svg.getAttribute("aria-label")?.trim() || svg.getAttribute("aria-labelledby")?.trim())
-      continue;
-    options.report.warning("Inline SVG", "Inline SVG has no title or accessible name.", options.page);
-  }
-  for (const table of Array.from(doc.querySelectorAll("table"))) {
-    if (table.querySelector("th"))
-      continue;
-    const rows = Array.from(table.querySelectorAll("tr"));
-    const columns = Math.max(0, ...rows.map((row) => Array.from(row.children).filter((child) => child.matches("td, th")).length));
-    if (rows.length <= 1 || columns <= 1)
-      options.report.warning("Tables resembling layout", "Table has no headers and appears to be used for layout.", options.page);
-    else
-      options.report.warning("Data tables without headers", `Table has ${rows.length} rows and ${columns} columns but no header cells.`, options.page);
-  }
-}
-function languageAgreement(text2, tag) {
-  const stats2 = scriptStats(text2, tag);
-  if (!stats2.hasExpectedScript)
-    return null;
-  if (!stats2.letters)
-    return false;
-  return stats2.expectedLetters / stats2.letters > 0.5;
-}
-function letterCount(text2) {
-  return Array.from(text2.matchAll(/\p{Letter}/gu)).length;
-}
-function scriptStats(text2, tag) {
-  const letters = letterCount(text2);
-  const patterns = expectedScriptPatterns(tag);
-  if (!patterns.length)
-    return { letters, expectedLetters: 0, hasExpectedScript: false };
-  const expectedLetters = patterns.reduce((count2, pattern) => count2 + Array.from(text2.matchAll(pattern)).length, 0);
-  return { letters, expectedLetters: Math.min(letters, expectedLetters), hasExpectedScript: true };
-}
-function expectedScriptPatterns(tag) {
-  let script = "";
-  try {
-    script = new Intl.Locale(tag).maximize().script ?? "";
-  } catch {
-    return [];
-  }
-  const scripts = script === "Jpan" ? ["Han", "Hiragana", "Katakana"] : script === "Kore" ? ["Hangul", "Han"] : ["Hans", "Hant"].includes(script) ? ["Han"] : [script];
-  try {
-    return scripts.filter(Boolean).map((value) => new RegExp(`\\p{Script=${value}}`, "gu"));
-  } catch {
-    return [];
-  }
-}
-function normalizedText(elm) {
-  return (elm.textContent ?? "").replace(/\s+/g, " ").trim();
-}
-function excerpt(text2) {
-  return text2.length > 80 ? `${text2.slice(0, 77)}\u2026` : text2;
-}
-function elementDescription(elm) {
-  const text2 = normalizedText(elm);
-  return `<${elm.tagName.toLowerCase()}${elm.id ? ` id="${elm.id}"` : ""}>${text2 ? ` (\u201C${excerpt(text2)}\u201D)` : ""}`;
-}
-function rewriteRenamedFragment(href, page, renamesByPage) {
-  const hashAt = href.indexOf("#");
-  if (hashAt < 0)
-    return href;
-  const targetPage = href.slice(0, hashAt) || page;
-  const old = decodeFragment(href.slice(hashAt + 1));
-  const renamed = renamesByPage.get(targetPage)?.get(old);
-  return renamed ? `${href.slice(0, hashAt + 1)}${encodeURIComponent(renamed)}` : href;
 }
 
 // ../convert/build/publisher-styles.js
@@ -26314,6 +26364,10 @@ async function transformContent(page, site, imageRegistry, searchData, narratedT
     if (!elm.closest("svg, math"))
       elm.remove();
   });
+  const active = removeActiveContent(doc);
+  cleanupOptions?.report.change("Scripts removed", page.outputFilename, active.scripts);
+  cleanupOptions?.report.change("Event handler attributes removed", page.outputFilename, active.handlers);
+  cleanupOptions?.report.change("Script links removed", page.outputFilename, active.links);
   for (const name3 of Array.from(doc.documentElement.classList))
     doc.body.classList.add(name3);
   for (const elm of Array.from(doc.querySelectorAll("*"))) {

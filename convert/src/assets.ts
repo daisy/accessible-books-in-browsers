@@ -7,6 +7,7 @@ import type { ConversionReport } from './conversion-report.js';
 import { OutputLayout } from './output.js';
 import type { OutputPaths } from './output.js';
 import * as utils from './utils.js';
+import { removeActiveContent } from './markup-cleanup.js';
 
 const UI_ASSET_DIRS = ['src'] as const;
 
@@ -36,6 +37,7 @@ class ImageAssetRegistry {
         const policy = this.encryption.get(asset.sourcePath);
         if (policy && !policy.key) return;
         if (policy?.key) await fs.writeFile(destination, deobfuscateFont(await fs.readFile(asset.sourcePath), policy.key, policy.algorithm));
+        else if (/\.svg$/i.test(asset.sourcePath)) await fs.writeFile(destination, await inertSvg(asset.sourcePath, this.report));
         else await fs.copy(asset.sourcePath, destination);
     }
     async reportPublisherAssets(): Promise<void> {
@@ -88,6 +90,23 @@ class ImageAssetRegistry {
         }
         return candidate;
     }
+}
+
+// An SVG image can carry scripts, which run if the file is opened by itself (not in an <img>), so
+// they're removed as it's copied (removeActiveContent). A file that isn't well-formed XML is
+// copied as it is: it can't run as SVG.
+async function inertSvg(source: string, report?: ConversionReport): Promise<Buffer | string> {
+    const bytes = await fs.readFile(source);
+    let doc: Document;
+    try { doc = new JSDOM(bytes.toString('utf8'), { contentType: 'image/svg+xml' }).window.document; } catch { return bytes; }
+    if (doc.getElementsByTagName('parsererror').length) return bytes;
+    const removed = removeActiveContent(doc);
+    if (!removed.scripts && !removed.handlers && !removed.links) return bytes;
+    const page = path.basename(source);
+    report?.change('Scripts removed', page, removed.scripts);
+    report?.change('Event handler attributes removed', page, removed.handlers);
+    report?.change('Script links removed', page, removed.links);
+    return new (new JSDOM('').window.XMLSerializer)().serializeToString(doc);
 }
 
 async function copyUiAssets(template: string, outputPaths: OutputPaths): Promise<void> {

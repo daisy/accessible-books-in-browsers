@@ -2,7 +2,7 @@
 // on the browser's own parser. HTML by default, as jsdom: the converter parses XHTML pages as HTML.
 export class JSDOM {
     constructor(source = '', options = {}) {
-        const type = options.contentType === 'application/xml' || options.contentType === 'application/xhtml+xml' ? 'application/xml' : 'text/html';
+        const type = ['application/xml', 'application/xhtml+xml', 'image/svg+xml'].includes(options.contentType) ? 'application/xml' : 'text/html';
         const document = new DOMParser().parseFromString(String(source), type);
         this.window = { document, DOMParser, XMLSerializer, Node, NodeFilter, Element, HTMLElement, CustomEvent, Event, getComputedStyle: () => ({}) };
     }

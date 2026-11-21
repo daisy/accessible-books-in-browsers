@@ -96,6 +96,7 @@ Each kind of change, with its total and the count for each page.
 | Nested main landmarks changed to div | The reader has its own `main` |
 | Numbered equations given responsive layout | An equation and its number were laid out to wrap on narrow screens |
 | Positive tabindex values changed to 0 | Positive values change the keyboard order |
+| Scripts removed / Event handler attributes removed / Script links removed | The book's scripts (`script`, `srcdoc`, SVG animations of a link), `onclick`-style attributes, and `javascript:` links and sources. The web book never runs the book's own scripts. The words they were on stay |
 | Tables given responsive scrolling wrappers | Wide tables scroll sideways on narrow screens |
 
 ### Warnings
@@ -124,10 +125,10 @@ structure. Fix them in the EPUB and convert it again.
 | Audio noise floor | The quietest stretch is above −35 dBFS | Try `--audio-enhance noise` |
 | Audio level | A page more than 6 LU from the book's median loudness | Listen to that page |
 
-The analysis is in [`analyzeWarnings`](../convert/src/markup-cleanup.ts#L221) and
+The analysis is in [`analyzeWarnings`](../convert/src/markup-cleanup.ts#L250) and
 [`finishBookWarnings`](../convert/src/conversion-report.ts#L112). Audio warnings are in
-[`addAudioReport`](../convert/src/convert.ts#L244), and broken links in
-[`reportBrokenLinks`](../convert/src/convert.ts#L324).
+[`addAudioReport`](../convert/src/convert.ts#L246), and broken links in
+[`reportBrokenLinks`](../convert/src/convert.ts#L326).
 
 ### Optional checks
 
