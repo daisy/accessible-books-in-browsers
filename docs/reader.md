@@ -226,7 +226,8 @@ it off in Settings, under All settings.
 
 ## Changing the reader
 
-- To run the reader tests, use `cd convert && node --test template/test/*.test.mjs`.
+- To run the reader tests, use `cd convert && node --test template/test/*.test.mjs`. [Testing](testing.md)
+  lists the other checks, such as accessibility and the update channel's.
 - If you add a saved preference, add it to its module and to `settings-file.js`.
 - If you add an action, register it with `reader-actions.js`. Only give it a default key if that key
   doesn't clash with screen reader commands.

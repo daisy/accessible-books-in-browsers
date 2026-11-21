@@ -11,5 +11,7 @@ reader does and how to run the converter.
   is.
 - [The v0 contract](../convert/contracts/v0.md) describes what a converted book contains. The reader
   and the converter both rely on it.
+- [Testing](testing.md) lists every test and check: what it covers, how to run it, and which
+  ones CI runs.
 - [The update channel](../convert/REMOTE_UI.md) explains how books load newer reader releases, and
   how releases are built, checked and published.

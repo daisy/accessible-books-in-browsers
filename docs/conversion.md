@@ -326,7 +326,8 @@ seconds instead of taking as long as the whole chapter.
 ## Changing the converter
 
 - To build and test, run `cd convert && npm run build && node --test tests/*.test.mjs`, then the
-  reader tests with `node --test template/test/*.test.mjs`.
+  reader tests with `node --test template/test/*.test.mjs`. [Testing](testing.md) lists the other
+  checks, such as the browser converter's.
 - To regenerate the demos, run `./refresh-demos.sh` from the repository root.
 - If you change what the output contains, that's a contract change, so update
   [`contracts/v0.md`](../convert/contracts/v0.md).
