@@ -1,25 +1,28 @@
 WEBVTT
 
-00:00.842 --> 00:02.342
+00:00.843 --> 00:02.343
 [Alt+Shift+C opens the table of contents, with focus on the current section]
 
-00:03.112 --> 00:04.612
+00:03.104 --> 00:04.604
 [Tab to the next section]
 
-00:04.797 --> 00:06.297
-[Alt+Shift+2 shows 2 levels]
+00:04.791 --> 00:06.291
+[Alt+Shift+V goes to Show levels]
 
-00:07.047 --> 00:08.547
-[Alt+Shift+1 shows only the top level]
+00:06.773 --> 00:08.273
+[Up arrow chooses 3 levels]
 
-00:09.314 --> 00:10.814
-[Alt+Shift+0 shows all levels]
+00:08.460 --> 00:09.960
+[Up arrow again chooses 2]
 
-00:11.566 --> 00:13.066
-[Alt+Shift+F goes to Find a section]
+00:10.855 --> 00:12.355
+[Down arrow, twice, goes back to all levels]
 
-00:13.116 --> 00:14.616
+00:12.547 --> 00:14.047
+[Shift+Tab goes to Find a section]
+
+00:14.095 --> 00:15.595
 [types “Russia”, which narrows the sections]
 
-00:16.279 --> 00:17.779
+00:17.262 --> 00:18.762
 [Enter opens the first match, “3.9 Valentin Haüy in Russia”]

@@ -48,7 +48,7 @@ import {
   syncPositionUrl,
   viewportLength,
   writeSetting
-} from "./chunk-2PIDKBOH.js";
+} from "./chunk-ZXXJZROC.js";
 import {
   cacheCueElements,
   cueForElement,
@@ -1286,22 +1286,18 @@ var findStatus = null;
 var findTimer;
 var findStatusTimer;
 function initTocActions() {
-  for (const [value, code] of [["1", "Digit1"], ["2", "Digit2"], ["3", "Digit3"], ["all", "Digit0"]]) {
-    registerAction({
-      id: `toc-levels-${value}`,
-      label: value === "all" ? "Table of contents: show all levels" : `Table of contents: show ${value} ${value === "1" ? "level" : "levels"}`,
-      group: "Panels",
-      inPanels: true,
-      defaultKeys: [{ code, alt: true, shift: true }],
-      isAvailable: () => Boolean(toc?.matches(":popover-open") && depthValues().includes(value)),
-      run: () => {
-        clearFind();
-        writeDepth(value);
-        applyDepth(value);
-        announceReaderAction(levelsMessage(value));
-      }
-    });
-  }
+  registerAction({
+    id: "toc-levels",
+    label: "Table of contents: go to Show levels",
+    group: "Panels",
+    inPanels: true,
+    defaultKeys: [{ code: "KeyV", alt: true, shift: true }],
+    isAvailable: () => Boolean(toc?.matches(":popover-open") && depthSelect()),
+    run: () => {
+      depthSelect().focus();
+      announceReaderAction("Show levels.");
+    }
+  });
 }
 function levelsMessage(value) {
   return value === "all" ? "Showing all levels." : value === "1" ? "Showing the top level." : `Showing ${value} levels.`;
@@ -3140,7 +3136,7 @@ async function init() {
   initSkipLink();
   initReaderActionNotice();
   initInPlaceNavigation();
-  import("./chunk-WI63YOJX.js").then(({ initMediaSessionControls }) => initMediaSessionControls()).catch((error2) => console.warn("Media Session controls unavailable.", error2));
+  import("./chunk-LSJETFBX.js").then(({ initMediaSessionControls }) => initMediaSessionControls()).catch((error2) => console.warn("Media Session controls unavailable.", error2));
 }
 function initSearchOnDemand() {
   const panel = document.getElementById("webbook-search");
