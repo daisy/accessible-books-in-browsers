@@ -286,7 +286,8 @@ The staging folder replaces the output folder ([`finalizeOutput`](../convert/src
 ## Converting in the browser
 
 The same code runs in a browser, bundled with stand-ins for Node's file system, jsdom, logging and
-FFmpeg (plan 19). It's in [`converter/`](../converter/README.md). Narration works a little
+FFmpeg (plan 19). It's in [`converter/`](../converter/README.md), and each stand-in is listed in
+its [Shims](../converter/README.md#shims) section. Narration works a little
 differently there. The browser decodes each audio source once and cuts the clips itself, lined up
 sample for sample with FFmpeg's decoding, and ffmpeg.wasm does the fades, joins, cleanup and
 encoding. The results and measurements are in `.claude/19_BROWSER_CONVERTER_FINDINGS.md`.

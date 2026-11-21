@@ -1,5 +1,6 @@
-// Browser converter (plan 19): Node modules the text side never reaches (audio, optional checks). Calling one is a
-// finding: it means the text side isn't separable from it yet.
+// Browser converter (plan 19): Node modules the converter shouldn't reach in the browser (the command-line FFmpeg
+// binaries and the like; audio runs through the ffmpeg.wasm shims). Calling one is a finding: a Node dependency
+// with no shim yet.
 const missing = name => () => { throw new Error(`${name} is not available in the browser converter`); };
 export const spawn = missing('child_process.spawn');
 export const createRequire = () => missing('require');
