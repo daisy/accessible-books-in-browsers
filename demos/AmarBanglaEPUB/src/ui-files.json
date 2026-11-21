@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": 0,
-  "revision": "4ce00e75e8689033e1c2bad6f0195cce1f818ed6c49d2e539f131db3c394ed50",
+  "revision": "8f4815fbf8eacfc85ceedd80661208dfd6e2433a776c40f54868b4883e66e26a",
   "files": [
     {
       "href": "src/css/offline-books.css",
@@ -29,11 +29,6 @@
       "sha256": "e2d98f7e66abfcd968374751c67f3bd2309ffd768f3303b9b28f079d337020ac"
     },
     {
-      "href": "src/js/chunk-EI4NTL5A.js",
-      "bytes": 210061,
-      "sha256": "e8bc73f10f26451c044f4817ad91c95033a4302597a95a1b79e6e7bbb86849f6"
-    },
-    {
       "href": "src/js/chunk-F443KPQR.js",
       "bytes": 140086,
       "sha256": "6dd02881f257683edb5dbbc9bef529b3eda58e1828886cf360dc5188fbf156fe"
@@ -44,14 +39,14 @@
       "sha256": "ed1936774bd39cd4f616c5668842f8adb06033f5f26020379bb50b62dbec7af3"
     },
     {
-      "href": "src/js/chunk-IAGB3TYP.js",
+      "href": "src/js/chunk-HXBAXYDL.js",
       "bytes": 2297,
-      "sha256": "3ccd55c1dc66b6f41bc2d9e3046d5e88769be43c25c5b13d778f0d8b0d014610"
+      "sha256": "1b32aa9743e0bc3abde3d8fea35bc95c27a2fa520886384714e3742753c6d7d0"
     },
     {
-      "href": "src/js/chunk-IXVOHQ7A.js",
-      "bytes": 183,
-      "sha256": "7f5f85dac8130e66c1a08d4345fa36e2fe1877d9c314fd4a980733e39136c5bf"
+      "href": "src/js/chunk-IPFCT5RQ.js",
+      "bytes": 210113,
+      "sha256": "8a1046f6c090637f6769b66baede0ba876f3c43a91eec4574712ecc7fefb6b41"
     },
     {
       "href": "src/js/chunk-JJPBXBH7.js",
@@ -59,9 +54,14 @@
       "sha256": "757d830e2920ca12a3d4bd8ab4a21db87e1e06406cbcaf4a6f8b35bef1041c5e"
     },
     {
-      "href": "src/js/chunk-N7GHASU5.js",
+      "href": "src/js/chunk-JS2XB37T.js",
       "bytes": 17340,
-      "sha256": "b9f8b846a89cedb2be4727b682286498caa0a6be9023ca0cb0e8a3a01c12da71"
+      "sha256": "8b7f50742ba5532fd6549f74bfb5e391ba37af3bf08de8a3e18c6127389504ad"
+    },
+    {
+      "href": "src/js/chunk-OP2XVX7R.js",
+      "bytes": 183,
+      "sha256": "586ad76765a38f89aad8e89bb93773172732920cb88b2ed0219aef04c3ce6c92"
     },
     {
       "href": "src/js/chunk-VKFVGLPJ.js",
@@ -71,7 +71,7 @@
     {
       "href": "src/js/main.js",
       "bytes": 142512,
-      "sha256": "623005c456fb892e4d225693ddb5a066d347db28d6ec7c88f2af07cc9e3bc556"
+      "sha256": "5236438fc0bb5c817d0637fc10ce54740b32334fc9e8927d8c79e093b4275762"
     },
     {
       "href": "src/js/offline-books.js",

@@ -48,7 +48,7 @@ import {
   syncPositionUrl,
   viewportLength,
   writeSetting
-} from "./chunk-EI4NTL5A.js";
+} from "./chunk-IPFCT5RQ.js";
 import {
   cacheCueElements,
   cueForElement,
@@ -3152,7 +3152,7 @@ async function init() {
   initSkipLink();
   initReaderActionNotice();
   initInPlaceNavigation();
-  import("./chunk-IAGB3TYP.js").then(({ initMediaSessionControls }) => initMediaSessionControls()).catch((error2) => console.warn("Media Session controls unavailable.", error2));
+  import("./chunk-HXBAXYDL.js").then(({ initMediaSessionControls }) => initMediaSessionControls()).catch((error2) => console.warn("Media Session controls unavailable.", error2));
 }
 function initSearchOnDemand() {
   const panel = document.getElementById("webbook-search");
