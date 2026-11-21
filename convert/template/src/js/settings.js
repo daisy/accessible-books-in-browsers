@@ -143,9 +143,14 @@ function initFontFamily() {
         applyFontFamily(select.value);
     });
 }
+// Serif is Charter where it's installed (Mac, iPhone and iPad, some Linux), and the device's own serif
+// elsewhere. The device's default serif is often Times, whose letters fill its line box, so the
+// narration highlight looked cramped; Charter has room above and below (user, 2026-11-20). The head
+// script in index.html sets the same before the first paint (keep the two the same).
+const FONT_STACKS = { serif: 'Charter, "Bitstream Charter", serif' };
 function applyFontFamily(font) {
     document.documentElement.toggleAttribute('data-webbook-font-family', true);
-    document.documentElement.style.setProperty('--webbook-main-font-family', font);
+    document.documentElement.style.setProperty('--webbook-main-font-family', FONT_STACKS[font] ?? font);
     const main = document.querySelector('main');
     if (main) main.style.removeProperty('font-family');
     document.dispatchEvent(new document.defaultView.CustomEvent('webbook:layoutchange'));
