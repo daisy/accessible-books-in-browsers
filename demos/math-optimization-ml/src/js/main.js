@@ -1000,7 +1000,9 @@ function initOfflineReading() {
   else panel.prepend(section);
   let registration, snapshot2 = null, savedRecord = false, pending = false, busy = false, remoteBusy = false, controller2, prepared = null, persistent = null, operationVersion = 0;
   let serverReachable = null, probing = false;
-  const available = window.isSecureContext && Boolean(typeof window.Worker === "function" && navigator.serviceWorker && window.caches && window.indexedDB && window.crypto?.subtle);
+  const otherCheck = navigator.serviceWorker?.controller ? otherWorker().catch(() => false) : Promise.resolve(false);
+  let unavailable = "Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.";
+  let available = window.isSecureContext && Boolean(typeof window.Worker === "function" && navigator.serviceWorker && window.caches && window.indexedDB && window.crypto?.subtle);
   const button2 = (id, label, run) => {
     const node = document.createElement("button");
     node.type = "button";
@@ -1095,6 +1097,7 @@ function initOfflineReading() {
     else if (!operating && focused === cancel) (snapshot2 ? check : save).focus({ preventScroll: true });
   }
   async function ensure() {
+    if (await otherCheck) throw new Error(unavailable);
     if (!registration) {
       const existing = await navigator.serviceWorker.getRegistration(root);
       const expected = workerScriptURL(root);
@@ -1108,7 +1111,7 @@ function initOfflineReading() {
   }
   async function refresh3() {
     if (!available) {
-      report("Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.");
+      report(unavailable);
       render();
       return;
     }
@@ -1263,13 +1266,26 @@ function initOfflineReading() {
   }
   for (const name of ["online", "offline", "focus"]) window.addEventListener(name, checkServer);
   document.addEventListener("visibilitychange", checkServer);
-  report(available ? "Save this book to read and listen without a connection." : "Offline reading is unavailable here. Use HTTPS or localhost with browser storage enabled.");
+  report(available ? "Save this book to read and listen without a connection." : unavailable);
   render();
   if (available) {
     checkServer();
     window.setInterval(checkServer, 3e4);
   }
-  if (available && navigator.serviceWorker.controller) refresh3().catch(fail);
+  if (available && navigator.serviceWorker.controller) otherCheck.then((other) => {
+    if (!other) return refresh3();
+    available = false;
+    controls.hidden = true;
+    unavailable = "Offline reading isn't available here: another service worker serves this book's folder, as in a converter's preview.";
+    report(unavailable);
+    render();
+  }).catch(fail);
+}
+async function otherWorker() {
+  const root = bookRoot(), registration = await navigator.serviceWorker.getRegistration(location.href);
+  if (!registration || registration.scope !== root) return false;
+  const script = registration.active?.scriptURL ?? registration.waiting?.scriptURL ?? registration.installing?.scriptURL;
+  return Boolean(script) && new URL(script).pathname !== new URL("sw.js", root).pathname;
 }
 
 // template/src/js/toc-tree.js

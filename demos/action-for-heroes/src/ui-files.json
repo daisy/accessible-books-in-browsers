@@ -1,7 +1,7 @@
 {
   "version": 1,
   "contract": 0,
-  "revision": "3a6ee4b8b23512947d0a27323df71c8ad288dd5ca59cb46a8611d93352721299",
+  "revision": "7ac1bf64c76ff08bb75307e41acce06e53531454283913224f31f41f5e270e47",
   "files": [
     {
       "href": "src/css/offline-books.css",
@@ -70,8 +70,8 @@
     },
     {
       "href": "src/js/main.js",
-      "bytes": 141686,
-      "sha256": "1a0235c9d3caaf1e1411cc0a5b16ee3c1d52c73d4de70d645d0b9e54fe3b1a33"
+      "bytes": 142512,
+      "sha256": "1ff58dab3d6d8ae3a3d92f90c5eb428dddc1521e8a75445d1b7df6d8888fa61f"
     },
     {
       "href": "src/js/offline-books.js",
